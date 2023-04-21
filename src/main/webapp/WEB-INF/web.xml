@@ -35,16 +35,15 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-		
-	<servlet-mapping>
-		<!-- 가상경로변수 설정 -->
-		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<!-- 가상경로변수 설정 -->
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>	
+	<servlet-mapping>
+		<!-- 가상경로변수 설정 -->
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
 	<filter>
@@ -62,12 +61,5 @@
 	  <filter-name>encodingFilter</filter-name>
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	
-	
-	
-	
-	
-	
 
 </web-app>

@@ -1,0 +1,126 @@
+@charset "UTF-8";
+/*-- 폰트--------------------------------------------*/
+/* 게시글*/
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 메뉴*/
+@font-face { 
+    font-family: '수트';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* 마이페이지, 구매내역*/
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.notosanskr * { 
+ font-family: '본고딕';
+}
+
+/*초기화*/
+*{
+	outline:none;
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-family:'수트';
+}
+
+a{
+	text-decoration: none;
+}
+a:visited{
+	color:#000;
+}
+
+
+/*메인 메뉴*/
+#header_wrap{
+	width:1902px;
+	height:130px;
+	border-bottom:1px solid #e4e4e4;
+	position:fixed;
+}
+#top_inner{
+	margin:0 auto;
+	display:flex;
+	width:1200px;
+	height:22px;
+	padding:8px 40px 0 40px;
+	justify-content:flex-end;
+}
+
+#top_menu{
+	height:16px;
+}
+
+#top_menu li{
+	display:inline-block;
+	color:rgba(34,34,34,.8); 
+	font-size:14px;
+}
+
+#header_main{
+	display:flex;
+	margin:0 auto;
+	width:1280px;
+	height:64px;
+	justify-content:center;
+	align-items:center;
+}
+
+#main_inner{
+	display:flex;
+	width:100%;
+	height:24px;
+	padding:20px 40px;
+	justify-content:space-between;
+}
+#logo{
+	width:120px;
+	height:22px;
+}
+
+#nav_main{
+	align-content:center;
+}
+
+#nav_main ul{
+	display:flex;
+	align-items:center;
+}
+#nav_main li{
+	display:inline-block;
+	font-size:18px;
+	font-weight:600;
+	color:#222;
+	height:22px;
+	text-align:center;
+	vertical-align:center;
+}
+
+/*팔로잉,인기글 같은 세부 메뉴*/
+#header_down{
+	width:1280px;
+	height:45px;
+	margin:0 auto;
+}
+#down_inner{
+	width:1200px;
+	height:44px;
+	padding:0 40px;
+}
+#down_inner li{
+	display:inline-block;
+	font-size:16px;
+	height:100%;
+	color:#222;
+	line-height:44px;	
+}
+
