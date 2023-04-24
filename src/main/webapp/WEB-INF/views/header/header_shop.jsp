@@ -22,7 +22,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="header_wrap" style='height:190px;'>
+		<div id="header_wrap" style='height:190px'>
 			<jsp:include page="header_common.jsp"></jsp:include>
 			<div id="subject_h2">
 				<h2>SHOP</h2>
