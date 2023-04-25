@@ -46,7 +46,7 @@
 							</div>
 						</div>
 						<div id="searchIdValBtn_area">
-							<input type="button" id="searchLoginBtn" class="searchBtn" name="loginBtn" value="로그인" onclick="logIn()">
+							<input type="button" id="searchLoginBtn" class="searchBtn" name="loginBtn" value="로그인" onclick="login()">
 							<input type="button" class="searchBtn" name="searchPwBtn" value="비밀번호 찾기" onclick="searchPw()">
 						</div>
 					</div>
