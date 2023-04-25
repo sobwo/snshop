@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,11 +31,11 @@
 			<div id="header_down">
 				<div id="down_inner">
 					<ul>
-						<li><a>전체</a></li>
-						<li style='margin-left:27px'><a>아우터</a></li>
-						<li style='margin-left:27px'><a>상의</a></li>
-						<li style='margin-left:27px'><a>하의</a></li>
-						<li style='margin-left:27px'><a>신발</a></li>
+						<li><a href='#'>전체</a></li>
+						<li style='margin-left:27px'><a href='#'>아우터</a></li>
+						<li style='margin-left:27px'><a href='#'>상의</a></li>
+						<li style='margin-left:27px'><a href='#'>하의</a></li>
+						<li style='margin-left:27px'><a href='#'>신발</a></li>
 					</ul>
 				</div>
 			</div>	

@@ -7,6 +7,7 @@
 		<title>HOME</title>
 	</head>
 	<body>
-		<jsp:include page="header/header_shop.jsp"></jsp:include>
+		<jsp:include page="common/header_shop.jsp"></jsp:include>
+		<jsp:include page="common/footer.jsp"></jsp:include>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,8 +14,8 @@
 			<div id="header_down">
 				<div id="down_inner">
 					<ul>
-						<li><a>팔로잉</a></li>
-						<li style='margin-left:27px'><a>인기글</a></li>
+						<li><a href='#'>팔로잉</a></li>
+						<li style='margin-left:27px'><a href='#'>인기글</a></li>
 					</ul>
 				</div>
 			</div>	
