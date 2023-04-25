@@ -15,7 +15,7 @@
 				<div id="down_inner">
 					<ul>
 						<li><a href='#'>팔로잉</a></li>
-						<li style='margin-left:27px'><a href='${pageContext.request.contextPath}/style/styleMain'>인기글</a></li>
+						<li style='margin-left:27px'><a href='${pageContext.request.contextPath}/style/styleMain.do'>인기글</a></li>
 					</ul>
 				</div>
 			</div>	

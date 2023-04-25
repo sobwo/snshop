@@ -112,7 +112,7 @@
 						</div>						
 					</div>
 					<div id="joinBtn_area">
-						<input type="button" id="joinBtn" name="joinBtn" value="회원가입" onclick="check()">
+						<input type="button" id="joinBtn" name="joinBtn" value="회원가입" disabled="disabled" onclick="check()">
 					</div>
 				</div>
 			</div>
@@ -121,71 +121,49 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){});
+			
+			$('#memberId, #memberPw, #memberPw2, #memberName, #memberPhone, #memberEmail').on('input',function(){
+				var inputId = $('#memberId').val();
+				var inputPw = $('#memberPw').val();
+				var inputPw2 = $('#memberPw2').val();
+				var inputName = $('#memberName').val();
+				var inputPhone = $('#memberPhone').val();
+				var inputEmail = $('#memberEmail').val();
+
+				if((inputId != '') && (inputPw != '') && (inputPw2 != '') && (inputName != '') && (inputPhone != '') && (inputEmail != '')){
+					$('#joinBtn').prop('disabled', false);
+					$('#joinBtn').css('background-color', '#222');
+				}
+				else{ 
+					$('#joinBtn').css('background-color', '#ebebeb');
+					$('#joinBtn').prop('disabled', true);
+				}
+			});
+			
 			function check(){
 				var isYN;
 				
-				let memberId = $("#memberId").val();
 				let memberPw = $("#memberPw").val();
 				let memberPw2 = $("#memberPw2").val();
-				let memberName = $("#memberName").val();
 				let memberPhone = $("#memberPhone").val();
-				let memberEmail = $("#memberEmail").val();
 				
-				$("#idMsg").text("");
-				$("#pwMsg").text("");
 				$("#pw2Msg").text("");
-				$("#nameMsg").text("");
-				$("#emailMsg").text("");
 				$("#phoneMsg").text("");
-				
-				if(!memberId) {
-					$("#idMsg").text("필수 정보입니다.");
-					$("#memberId").focus();
-					isYN = 0;
-				}
-				
-				if(!memberPw) {
-					$("#pwMsg").text("필수 정보입니다."); 
-					$("#memberPw").focus();
-					isYN = 0;
-				}
-				
-				if(!memberPw2) {
-					$("#pw2Msg").text("필수 정보입니다."); 
+							
+				if(memberPw!=memberPw2){
+					$("#pw2Msg").text("비밀번호가 일치하지 않습니다."); 
 					$("#memberPw2").focus();
 					isYN = 0;
 				}
-				
-				else if(memberPw!=memberPw2){
-					$("#pw2Msg").text("비밀번호가 일치하지 않습니다."); 
-					$("memberPw2").focus();
-					isYN = 0;
-				}
-				
-				if(!memberName) {
-					$("#nameMsg").text("필수 정보입니다."); 
-					$("#name").focus();
-					isYN = 0;
-				}
-				
-				if(!memberPhone) {
-					$("#phoneMsg").text("필수 정보입니다."); 
-					$("#memberPhone").focus();
-					isYN = 0;
-				}
+
 				else if(isNaN(memberPhone)){
 					$("#phoneMsg").text("숫자를 입력해주세요."); 
 					$("#memberPhone").focus();
 					isYN = 0;
 				}
-				
-				if(!memberEmail) {
-					$("#emailMsg").text("필수 정보입니다."); 
-					$("#memberEmail").focus();
-					isYN = 0;
-				}
-				
-				else IdCheck();
+				else
+					alert("등록완료");
+// 				else IdCheck();
 			}
 			
 			function IdCheck(){
