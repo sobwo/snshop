@@ -26,7 +26,7 @@
 				</div>
 				<div id="nav_main">
 					<ul>
-						<li style='margin-right:40px;'><a href='/'>HOME</a></li>
+						<li style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li>
 						<li style='margin-right:40px;'><a href='#'>STYLE</a></li>
 						<li style='margin-right:40px;'><a href='#'>SHOP</a></li>
 						<li style='margin-right:40px;'><a href='#'>MY</a></li>

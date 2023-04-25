@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#login_wrap, #join_wrap, #search_wrap{
+	width:1902px;
+	height:600px;
+	animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#login_inner_wrap, #join_inner_wrap ,#search_inner_wrap{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+}
+
+#login_area, #join_area, #search_area{
+	width:400px;
+	height:480px;
+	margin:0 auto;
+	padding:60px 0 60px 0;
+	text-align:center;
+}
+
+#loginId_area, #loginPw_area, #joinId_area, #joinPw_area, #joinEmail_area, #joinPhone_area, #joinGender_area, 
+#searchPhone_area, #searchEmail_area{
+	margin:0 auto;
+	width:400px;
+	height:56px;
+	padding:20px 0 24px 0;
+}
+
+#loginId_area h3, #loginPw_area h3, #joinId_area h3, #joinPw_area h3, #joinEmail_area h3, #joinPhone_area h3, #joinGender_area h3{
+	font-size:16px;
+	text-align:left;
+}
+
+
+.input_item{
+	width:400px;
+	height:38px;
+	border:0;
+	border-bottom:1px solid #e4e4e4;
+}
+
+.input_item input{
+	width:370px;
+	height:21px;
+	padding:8px 30px 8px 0;
+	border:0;
+}
+
+.input_item input:focus{
+	outline:none;
+	border-bottom:2px solid #222;
+}
+
+#loginBtn_area, #joinBtn_area, #searchBtn_area{
+	width:400px;
+	height:52px;
+	padding-top:20px;
+}
+
+#loginBtn, #joinBtn, #searchBtn{
+	width:100%;
+	height:100%;
+	background:#ebebeb;
+	color:#fff;
+	font-size:18px;
+	border:0;
+	border-radius:12px;
+}

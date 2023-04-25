@@ -10,7 +10,7 @@
 				font-family:'수트';
 				width:1902px;
 				height:300px;
-				padding-top:200px;
+				padding-top:100px;
 			}
 			
 			#footer_service_wrap,#corporation_info{
