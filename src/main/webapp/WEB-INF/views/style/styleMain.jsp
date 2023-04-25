@@ -16,7 +16,7 @@
 			.tagContainer {
 				display: flex;
 				margin: 0 auto;
-				width: 1280px;
+				width: 1200px;
 				height: 160px;
 				justify-content: center;
 				align-items: center;
@@ -67,7 +67,8 @@
 			    display: flex;
 			    padding: 12px 16px;
 				margin: 0 auto;
-				width: 1280px;
+				width: 1200px;
+				padding:10px 40px;
 				height: 20px;
 				justify-content: right;
 				align-items: right;
@@ -86,7 +87,8 @@
 			 	display: flex;
 			    padding: 12px 16px;
 				margin: 0 auto;
-				width: 1280px;
+				width: 1200px;
+				padding:0 40px;
 				justify-content:left;
 				align-items: center;
 				position: relative;

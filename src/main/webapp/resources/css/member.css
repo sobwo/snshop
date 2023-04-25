@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-#login_wrap, #join_wrap, #search_wrap, #searchVal_wrap{
+/* 로그인,회원가입,아이디찾기,결과, 비밀번호찾기,결과 공통 css*/
+#login_wrap, #join_wrap, .search_wrap{
 	width:1902px;
 	height:600px;
 	animation: fadein 0.5s;
@@ -15,13 +16,13 @@
     }
 }
 
-#login_inner_wrap, #join_inner_wrap ,#search_inner_wrap, #searchVal_inner_wrap{
+#login_inner_wrap, #join_inner_wrap , .search_inner_wrap{
 	width:1200px;
 	height:100%;
 	margin:0 auto;
 }
 
-#login_area, #join_area, #search_area, #searchVal_area{
+#login_area, #join_area, .search_area{
 	width:400px;
 	height:480px;
 	margin:0 auto;
@@ -65,13 +66,13 @@
 	border-bottom:2px solid #222;
 }
 
-#loginBtn_area, #joinBtn_area, #searchBtn_area, #searchValBtn_area{
+#loginBtn_area, #joinBtn_area, .searchBtn_area, #searchIdValBtn_area{
 	width:400px;
 	height:52px;
 	padding-top:20px;
 }
 
-#loginBtn, #joinBtn, #searchBtn, #searchLoginBtn, #searchPwBtn{
+#loginBtn, #joinBtn, .searchBtn{
 	width:100%;
 	height:100%;
 	background:#ebebeb;
@@ -79,4 +80,50 @@
 	font-size:18px;
 	border:0;
 	border-radius:12px;
+	cursor:pointer;
+}
+
+
+
+/*searchId, searchPw 공통 css*/
+.search_wrap{
+	height:704px;
+}
+
+.search_area{
+	height:584px;
+}	
+.searchPhone_area, .searchEmail_area{
+	padding-bottom:60px;
+}	
+	
+.search_radio_wrap{
+	width:100%;
+	height:21px;
+	text-align:left;
+	padding-bottom:15px;
+}
+
+.search_radio_wrap h3{
+	height:25px;
+	font-size:15px;	
+	display:inline-block;
+	padding-left:20px;	
+	vertical-align:middle;	
+}
+
+input[name=searchMeasure]{
+	width:19px;
+	height:19px;
+}
+
+.searchInfo{
+	margin:0 auto;
+	width:500px;
+	margin-bottom:15px;
+	text-align:left;
+}
+
+.searchPhone input, .searchEmail input{
+	margin-bottom:10px;
 }

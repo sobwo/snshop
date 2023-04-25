@@ -25,7 +25,7 @@ public class MemberController {
 		return "member/searchId";
 	}
 	
-	@RequestMapping(value = "/searchIdAction.do")
+	@RequestMapping(value = "/searchIdVal.do")
 	public String searchIdAction() {
 		
 		return "member/searchIdVal";
@@ -37,9 +37,15 @@ public class MemberController {
 		return "member/searchPw";
 	}
 	
+	@RequestMapping(value = "/searchPwVal.do")
+	public String searchPwVal() {
+		
+		return "member/searchPwVal";
+	}
+	
 	@RequestMapping(value = "/searchPwAction.do")
 	public String searchPwAction() {
 		
-		return "member/searchPwVal";
+		return "redirect:/member/memberLogin.do";
 	}
 }

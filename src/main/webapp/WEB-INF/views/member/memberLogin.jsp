@@ -43,6 +43,7 @@
 				background-position: 15px center;
 				background-size: 30px;
 				background-repeat:no-repeat;
+				cursor:pointer;
 			}
 		</style>
 	</head>
@@ -70,7 +71,7 @@
 						</div>						
 					</div>
 					<div id="loginBtn_area">
-						<input type="button" id="loginBtn" name="loginBtn" value="로그인">
+						<input type="button" id="loginBtn" name="loginBtn" value="로그인" disabled="disabled" onclick="login()">
 					</div>
 					<ul id="look_area">
 						<li><a href="${pageContext.request.contextPath}/member/memberJoin.do">회원 가입</a></li>
@@ -86,5 +87,27 @@
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script>
+			$(document).ready(function(){});
+			
+			$('#memberId,#memberPw').on('input',function(){
+				var inputId = $('#memberId').val();
+				var inputPw = $('#memberPw').val();
+
+				if(inputId != '' && inputPw != ''){ 
+					$('#loginBtn').css('background-color', '#222');
+					$('#loginBtn').prop('disabled', false);
+				}
+				else {
+					$('#loginBtn').css('background-color', '#ebebeb');
+					$('#loginBtn').prop('disabled', true);
+				}
+			});
+			
+			function login(){
+				alert("로그인");
+			}
+		</script>
 	</body>
 </html>
