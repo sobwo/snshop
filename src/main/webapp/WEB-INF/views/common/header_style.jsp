@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>header_style</title>
-		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="header_wrap">
@@ -15,7 +15,7 @@
 				<div id="down_inner">
 					<ul>
 						<li><a href='#'>팔로잉</a></li>
-						<li style='margin-left:27px'><a href='#'>인기글</a></li>
+						<li style='margin-left:27px'><a href='${pageContext.request.contextPath}/style/styleMain'>인기글</a></li>
 					</ul>
 				</div>
 			</div>	

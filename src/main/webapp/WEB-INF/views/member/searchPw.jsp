@@ -37,6 +37,7 @@
 			
 			.searchInfo{
 				margin:0 auto;
+				margin-top:20px;
 				width:500px;
 				text-align:left;
 			}
@@ -58,15 +59,18 @@
 							<div class='search_radio_wrap'>
 								<input type="radio" name="searchMeasure" value="phone"><h3>회원정보에 등록한 휴대전화로 찾기</h3>
 							</div>
-							<div class="searchInfo">
-								<p>회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 합니다.</p>
-							</div>
-							<div id="searchPhone">	
+							<div id="searchPhone">
 								<div class="input_item">
-									<input type="text" name="memberName_phone" placeholder="이름을 입력해주세요.">
+									<input type="text" name="memberId" placeholder="ID를 입력해주세요.">
+								</div>		
+								<div class="input_item">
+									<input type="text" name="memberName" placeholder="이름을 입력해주세요.">
 								</div>	
 								<div class="input_item">
 									<input type="text" name="memberPhone" placeholder="휴대폰번호를 입력해주세요.">
+								</div>
+								<div class="searchInfo">
+									<p>회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야 합니다.</p>
 								</div>
 							</div>				
 						</div>
@@ -74,17 +78,19 @@
 							<div class="search_radio_wrap">
 								<input type="radio" name="searchMeasure" value="email"><h3>회원정보에 등록한 이메일 주소로 찾기</h3>
 							</div>
-							<div class="searchInfo">
-								<p>회원정보에 등록한 이메일 주소와 입력한 이메일 주소가 같아야 합니다.</p>
-							</div>
 							<div id="searchEmail">
 								<div class="input_item">
-									<input type="text" name="memberName_email" placeholder="이름을 입력해주세요.">
+									<input type="text" name="memberId" placeholder="ID를 입력해주세요.">
+								</div>
+								<div class="input_item">
+									<input type="text" name="memberName" placeholder="이름을 입력해주세요.">
 								</div>
 								<div class="input_item">
 									<input type="text" name="memberEmail" placeholder="이메일을 입력해주세요.">
 								</div>
-
+								<div class="searchInfo">
+									<p>회원정보에 등록한 이메일 주소와 입력한 이메일 주소가 같아야 합니다.</p>
+								</div>
 							</div>						
 						</div>
 						<div id="searchBtn_area">

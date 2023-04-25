@@ -79,7 +79,6 @@
 					</ul>
 					<div id="socialLogin_area">
 						<div id="naverLogin_area">
-<%-- 							<img src="${pageContext.request.contextPath}/resources/image/naver.png" style='width:20px;height:20px'> --%>
 							<input type="button" id="naverLogin" name="naverLogin" value="네이버로 로그인">
 						</div>
 					</div>

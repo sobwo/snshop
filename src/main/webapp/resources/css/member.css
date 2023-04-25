@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#login_wrap, #join_wrap, #search_wrap{
+#login_wrap, #join_wrap, #search_wrap, #searchVal_wrap{
 	width:1902px;
 	height:600px;
 	animation: fadein 0.5s;
@@ -15,13 +15,13 @@
     }
 }
 
-#login_inner_wrap, #join_inner_wrap ,#search_inner_wrap{
+#login_inner_wrap, #join_inner_wrap ,#search_inner_wrap, #searchVal_inner_wrap{
 	width:1200px;
 	height:100%;
 	margin:0 auto;
 }
 
-#login_area, #join_area, #search_area{
+#login_area, #join_area, #search_area, #searchVal_area{
 	width:400px;
 	height:480px;
 	margin:0 auto;
@@ -29,15 +29,18 @@
 	text-align:center;
 }
 
-#loginId_area, #loginPw_area, #joinId_area, #joinPw_area, #joinEmail_area, #joinPhone_area, #joinGender_area, 
+#loginId_area, #loginPw_area, #joinId_area, #joinPw_area, #joinPw2_area, 
+#joinName_area, #joinEmail_area, #joinPhone_area, #joinGender_area, 
 #searchPhone_area, #searchEmail_area{
 	margin:0 auto;
 	width:400px;
 	height:56px;
 	padding:20px 0 24px 0;
+	text-align:left;
 }
 
-#loginId_area h3, #loginPw_area h3, #joinId_area h3, #joinPw_area h3, #joinEmail_area h3, #joinPhone_area h3, #joinGender_area h3{
+#loginId_area h3, #loginPw_area h3, #joinId_area h3, #joinPw_area h3, #joinPw2_area h3,
+#joinName_area h3, #joinEmail_area h3, #joinPhone_area h3, #joinGender_area h3{
 	font-size:16px;
 	text-align:left;
 }
@@ -62,13 +65,13 @@
 	border-bottom:2px solid #222;
 }
 
-#loginBtn_area, #joinBtn_area, #searchBtn_area{
+#loginBtn_area, #joinBtn_area, #searchBtn_area, #searchValBtn_area{
 	width:400px;
 	height:52px;
 	padding-top:20px;
 }
 
-#loginBtn, #joinBtn, #searchBtn{
+#loginBtn, #joinBtn, #searchBtn, #searchLoginBtn, #searchPwBtn{
 	width:100%;
 	height:100%;
 	background:#ebebeb;

@@ -24,4 +24,22 @@ public class MemberController {
 		
 		return "member/searchId";
 	}
+	
+	@RequestMapping(value = "/searchIdAction.do")
+	public String searchIdAction() {
+		
+		return "member/searchIdVal";
+	}
+	
+	@RequestMapping(value = "/searchPw.do")
+	public String searchPw() {
+		
+		return "member/searchPw";
+	}
+	
+	@RequestMapping(value = "/searchPwAction.do")
+	public String searchPwAction() {
+		
+		return "member/searchPwVal";
+	}
 }
