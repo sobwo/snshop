@@ -13,7 +13,6 @@
 				z-index: 2;
 				top: 30px;
 			}
-			
 			.tagContainer {
 				display: flex;
 				margin: 0 auto;
@@ -64,7 +63,6 @@
 				word-break: break-word;
 				text-align: center;		
 			}
-			
 			.sortingContainer{
 			    display: flex;
 			    padding: 12px 16px;
@@ -81,13 +79,9 @@
 				float:left;
 				margin:0 6px;
 			}
-			
 			.socialSorting{}
-			.choiceActive{
-				
-    		}
+			.choiceActive{}
 			.choice{}
-			
 			.feedContainer{
 			 	display: flex;
 			    padding: 12px 16px;
@@ -98,7 +92,6 @@
 				position: relative;
 				z-index: 2;
 			}
-
 			.feedPost{
 				width:279px;
 				height:458px;
@@ -117,8 +110,7 @@
 			    display: flex;
    				border: none;
    				border-radius: 5%;
-			}
-			
+			}	
 			.imageCnt{
 				position:absolute;
 				top:10px;
@@ -130,7 +122,6 @@
 				letter-spacing: -.33px;
 			    color: #000;
 			}
-			
 			.userProfileImage{
 				object-fit: cover;
 			    width:26px;
@@ -138,15 +129,12 @@
     			image-rendering: auto;
     			border-radius: 50%;
 			}
-			
 			.feedPostUser{
 				display: flex;
 				width:279px;
 				height:28px;
-				padding-top:8px;
-			    
+				padding-top:8px;   
 			}
-			
 			.userName{
 				width:185.203px;
 				height:18px;
@@ -157,13 +145,11 @@
    				letter-spacing: -.15px;
    				color: rgba(34,34,34,.8);
 			}
-			
 			.likeBox{
 				float:right;
 				width:59.797px;
 				height:32px;
 			}
-			
 			.likeImage{}
 			.likeCount{}
 			.feedPostContent{
@@ -210,7 +196,7 @@
 							<p class="userName">아이디</p>
 							
 							<span class="likeBox">
-							<img class="likeImage"/>♡
+							<img class="likeImage" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
 							<span class="likeCount">7</span>
 							</span>
 						</div>
