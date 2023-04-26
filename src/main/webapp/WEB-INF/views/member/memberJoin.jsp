@@ -51,8 +51,8 @@
 		</style>
 	</head>
 	<body>
-		<div id="header_wrap" style='height:94px;'>
-			<jsp:include page="../common/header_common.jsp"></jsp:include>
+		<div id="header_wrap" style='height:94px;border:0'>
+				<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
 		<div id="join_wrap">
 			<div id="join_inner_wrap">

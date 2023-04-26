@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<form name="frm">
-			<div id="header_wrap" style='height:94px'>
+			<div id="header_wrap" style='height:94px;border:0'>
 				<jsp:include page="../common/header_common.jsp"></jsp:include>
 			</div>
 			<div class="search_wrap">

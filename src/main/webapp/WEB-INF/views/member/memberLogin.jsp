@@ -48,9 +48,9 @@
 		</style>
 	</head>
 	<body>
-		<div id="header_wrap" style='height:94px'>
-			<jsp:include page="../common/header_common.jsp"></jsp:include>
-		</div>
+		<div id="header_wrap" style='height:94px;border:0'>
+				<jsp:include page="../common/header_common.jsp"></jsp:include>
+			</div>
 		<div id="login_wrap">
 			<div id="login_inner_wrap">
 				<div id="login_area">

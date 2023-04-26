@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.myPage_wrap{
+	width:1903px;
+}
+
+.myPage_inner_wrap{
+	width:1200px;
+	padding:40px 40px 160px 40px;
+	margin:0 auto;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.content_wrap{
+	width:1000px;
+	animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>header_style</title>
 		<link href="${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 	</head>
 	<body>

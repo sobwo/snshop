@@ -159,9 +159,10 @@
 					<div class="orderFinishBtn">
 						<input type="button" name="orderFinish" id="orderFinish" value="È® ÀÎ" onclick="">
 						<label for="buyContinue"></label>
-				</div>	
-			</div>
-		</div>	
+					</div>	
+				</div>
+			</div>	
+		</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>	
 	</body>
 </html>

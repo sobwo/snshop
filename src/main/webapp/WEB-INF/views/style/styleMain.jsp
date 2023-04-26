@@ -8,20 +8,18 @@
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<style>
 			#content_wrap{
-				widht:1903px;
-				position: relative;
-				z-index: 2;
-				top: 30px;
+				width:1903px;
+ 				position: relative; 
+ 				z-index: 2; 
+ 				top: 30px; 
 			}
 			.tagContainer {
-				display: flex;
-				margin: 0 auto;
+ 				display: flex; 
+ 				margin: 0 auto; 
 				width: 1200px;
 				height: 160px;
-				justify-content: center;
-				align-items: center;
-				position: relative;
-				z-index: 2;
+ 				justify-content: center; 
+  				align-items: center; 
 				border-bottom:1px solid #e4e4e4;
 			}
 			.tagShortCuts{
@@ -72,8 +70,6 @@
 				height: 20px;
 				justify-content: right;
 				align-items: right;
-				position: relative;
-				z-index: 2;
 			}
 			.sortingContainer ul{}
 			.sortingContainer li{
@@ -91,8 +87,6 @@
 				padding:0 40px;
 				justify-content:left;
 				align-items: center;
-				position: relative;
-				z-index: 2;
 			}
 			.feedPost{
 				width:279px;
