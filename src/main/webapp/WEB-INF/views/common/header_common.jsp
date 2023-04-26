@@ -20,7 +20,7 @@
 		<div id="header_main">
 			<div id="main_inner">
 				<div id="logo">
-					<h1 style='font-size:22px;'><a>로고</a></h1>
+					<h1 style='font-size:22px;'><a href="${pageContext.request.contextPath}/">로고</a></h1>
 				</div>
 				<div id="nav_main">
 					<ul>

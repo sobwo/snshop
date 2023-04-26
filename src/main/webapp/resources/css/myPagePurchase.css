@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+.purchase_category{
+	width:100%;
+	height:68px;
+	margin-top:20px;
+	display:flex;
+}
+
+.tab_category{
+	width:33%;
+	height:100%;
+	display:flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items:center;
+	border-bottom:1px solid #d3d3d3;
+	cursor:pointer;
+}
+.category_first{
+	border-bottom:2px solid #222;
+}
+.tab_count{
+	font-size:20px;
+}
+
+.tab_title{
+	font-size:14px;
+	color:rgba(34,34,34,.8);
+}
+
+.count_first{
+	color:#f15746;
+	font-weight:bold;
+}
+
+.title_first{
+	font-weight:bold;
+}
+
+.period_search{
+	width:100%;
+	height:32px;
+	padding:14px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:#fafafa;
+}
+
+.month_btn_area{
+	margin-right:20px;
+}
+
+.month_btn_area li{
+	display:inline-block;
+}
+
+.month_link, .calander{
+	background:#fff;
+	padding:0 12px;
+	border:1px solid #ebebeb;
+	height:32px;
+	font-size:13px;
+	cursor:pointer;
+}
+
+.calander{
+	color:rgba(34,34,34,.8);
+	cursor:default;
+	letter-spacing: -.07px;
+}
+
+.btn_search{
+	background:#222;
+	border:0;
+	width:60px;
+	height:32px;
+	color:#fff;
+	padding:0 16px;
+	margin-left:20px;
+	cursor:pointer;
+}
+
+.search_info{
+	width:100%;
+	height:40px;
+	padding:12px 0;
+}
+
+.search_info p{
+	font-size:12px;
+	color:rgba(34,34,34,.5);
+}
+
+.search_head{
+	width:100%;
+	height:61px;
+	padding:10px 10px 5px 10px;
+	border-bottom:1px solid #ebebeb;
+	display:flex; 
+	align-items:center;
+	justify-content:space-between;
+}
+
+.search_filter{
+	width:100px;
+	height:25px;
+	padding:5px 10px;
+	border:1px solid #d3d3d3;
+	border-radius:12px;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	cursor:pointer;
+}
+.search_filter_txt{
+	font-size:13px;
+}
+
+.downside_img{
+	width:19px;
+	height:19px;
+	border:1px solid #d3d3d3;
+	border-radius:50%;
+	text-align:center;
+}
+.downside_img img{
+	width:17px;
+	height:17px;
+}
+
+.price_txt{
+	display:inline-block;
+	width:120px;
+	height:24px;
+	font-size:13px;
+	cursor:pointer;
+}
+
+.price_txt img{
+	vertical-align:middle;
+	width:17px;
+	height:17px;
+}
+

@@ -12,4 +12,16 @@ public class MyPageController {
 		
 		return "myPage/myPageMain";
 	}
+	
+	@RequestMapping(value = "/purchase.do")
+	public String purchase() {
+		
+		return "myPage/purchase";
+	}
+	
+	@RequestMapping(value = "/sale.do")
+	public String sale() {
+		
+		return "myPage/sale";
+	}
 }
