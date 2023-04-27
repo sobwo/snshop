@@ -10,7 +10,7 @@
 		<div id="top_inner">
 			<div id="top_menu">
 				<ul>
-					<li><a href='#'>고객센터</a></li>
+					<li><a href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'>고객센터</a></li>
 					<li style='margin-left:24px'><a href='#'>관심상품</a></li>
 					<li style='margin-left:24px'><a href='${pageContext.request.contextPath}/member/memberLogin.do'>로그인</a></li>
 					<li><a>로그아웃</a></li>

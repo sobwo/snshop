@@ -9,5 +9,8 @@
 	<body>
 		<jsp:include page="common/header_shop.jsp"></jsp:include>
 		<jsp:include page="common/footer.jsp"></jsp:include>
+		test
 	</body>
+	
+	
 </html>

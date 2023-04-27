@@ -153,6 +153,10 @@
 				height:40px;
 				margin-top:6px;				
 			}
+			.socialSorting li:nth-child(1) a{
+				color:#222;
+				font-weight:bold;
+			}
 		</style>
 	</head>
 	<body>
