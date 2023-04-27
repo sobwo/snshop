@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,13 +33,13 @@
 	<div class="questionContainer">
 		<table class="questionTable">
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do">ÀüÃ¼</a></td>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_use.do">ÀÌ¿ëÁ¤Ã¥</a></td>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_common.do">°øÅë</a></td>
+				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do">ì „ì²´</a></td>
+				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_use.do">ì´ìš©ì •ì±…</a></td>
+				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_common.do">ê³µí†µ</a></td>
 			</tr>
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_buy.do">±¸¸Å</a></td>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_sale.do">ÆÇ¸Å</a></td>
+				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_buy.do">êµ¬ë§¤</a></td>
+				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_sale.do">íŒë§¤</a></td>
 				<td></td>
 			</tr>
 		</table>

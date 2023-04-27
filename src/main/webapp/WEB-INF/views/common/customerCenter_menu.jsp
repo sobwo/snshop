@@ -42,7 +42,6 @@
 				<ul class="customerCenter_list">
 					<li><a href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'>공지사항</a></li>
 					<li><a href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'>자주 묻는 질문</a></li>
-					<li><a href='#'>검수 기준</a></li>
 				</ul>
 			</div>
 		</div>

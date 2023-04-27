@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>고객센터</title>
-		<link href="${pageContext.request.contextPath}/resources/css/customerCenter.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/customerCenter.css" rel="stylesheet"/>
 		<style>
 			.titleSorting{}
 			
