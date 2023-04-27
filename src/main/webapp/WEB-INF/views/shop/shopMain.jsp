@@ -9,10 +9,10 @@
 		<style type="text/css">
 			main{
 				width: 1280px;
-
 				display : flex;
 				flex-direction: column;
 				justify-content: space-around;
+				padding-top:191px;
 			}
 			.trend_container{
 				width : 1200px;

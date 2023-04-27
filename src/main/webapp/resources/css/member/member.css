@@ -5,6 +5,7 @@
 	width:1902px;
 	height:600px;
 	animation: fadein 0.5s;
+	padding-top:94px; 
 }
 
 @keyframes fadein {

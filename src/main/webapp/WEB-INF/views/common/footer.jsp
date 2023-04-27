@@ -3,50 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<style>
-			#footer_wrap{
-				font-family:'수트';
-				width:1902px;
-				height:300px;
-				padding-top:100px;
-				positon:relative;
-				z-index:3;
-			}
-			
-			#footer_service_wrap,#corporation_info{
-				margin:0 auto;
-				width:1200px;
-				height:150px;
-				padding:40px 40px;
-				border:1px solid #e4e4e4;
-				border-left:0;
-				border-right:0;
-				display:flex;
-				justify-content:space-between;
-				line-height:30px;
-			}
-			
-			#menu_box, #custmor_service{
-				width:280px;
-				height:500px;
-			}
-			
-			#btn_Wrap{
-				padding-top:20px;
-			}
-			
-			#questionBtn{
-				background:#222;
-				color:#fafafa;
-				width:105px;
-				height:34px;
-			}
-			
-			#corporation_info li{
-				display:inline-block;
-				margin-right:50px;
-			}
-		</style>
+		<link href=" ${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="footer_wrap">

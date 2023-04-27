@@ -9,9 +9,7 @@
 		<style>
 			#content_wrap{
 				width:1903px;
- 				position: relative; 
- 				z-index: 2; 
- 				top: 30px; 
+				padding-top:131px; 
 			}
 			.tagContainer {
  				display: flex; 

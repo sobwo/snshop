@@ -10,7 +10,7 @@
 	width:1903px;
 	font-family:'Noto Sans KR';
 	positon:relative;
-	z-index:3;
+	padding-top:94px; 
 }
 
 .myPage_inner_wrap{

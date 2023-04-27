@@ -7,11 +7,11 @@
 	<meta charset="utf-8">
 	<title>팔로우</title>
 	<style>
-		.f{
+		.f_wrap{
 			width: 1902px;
 			display:flex;
 			justify-content:center;
-			padding-top:30px;
+			padding-top:131px; 
 		}
 		
 		.f_inner_wrap{
@@ -41,7 +41,7 @@
 </head>
 <body>
 	<jsp:include page="../common/header_style.jsp"></jsp:include>
-	<div class="f" style="width:1902px;">
+	<div class="f_wrap" style="width:1902px;">
 		<div class="f_inner_wrap">
 			<img src="${pageContext.request.contextPath}/resources/image/다운로드.png" style="width: 99.98px; height: 99.98px;">
 			<p><strong>팔로잉</strong></p>
