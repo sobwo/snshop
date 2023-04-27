@@ -25,13 +25,6 @@
 	color:#222;
 }
 
-body{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	flex-direction: column;
-}
-
 a{
 	text-decoration: none;
 }
@@ -53,6 +46,8 @@ a:visited{
 	background:#fff;
 	font-family:'수트';
 /* 	position:fixed; */
+	positon:relative;
+	z-index:3;
 }
 #top_inner{
 	margin:0 auto;

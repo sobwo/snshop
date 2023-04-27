@@ -101,6 +101,7 @@
 	display:flex; 
 	align-items:center;
 	justify-content:space-between;
+	margin-bottom:20px;
 }
 
 .search_filter{
@@ -114,6 +115,7 @@
 	justify-content:space-between;
 	cursor:pointer;
 }
+
 .search_filter_txt{
 	font-size:13px;
 }
@@ -144,3 +146,8 @@
 	height:17px;
 }
 
+.purchase_contents_wrap{
+	width:1000px;
+	display:flex;
+	justify-content:center;
+}

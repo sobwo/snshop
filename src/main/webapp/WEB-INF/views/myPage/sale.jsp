@@ -5,9 +5,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>판매내역</title>
-		<link href="${pageContext.request.contextPath}/resources/css/myPage.css" rel="stylesheet"/>
-		<link href="${pageContext.request.contextPath}/resources/css/myPagePurchase.css" rel="stylesheet"/>
-		<link href="${pageContext.request.contextPath}/resources/css/myPage_PitemCommon.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_purchase.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_PitemCommon.css" rel="stylesheet"/>
 		<style>
 			.shopping_info_list li:nth-child(2) a{
 				color:#222;
@@ -16,6 +16,7 @@
 		</style>
 	</head>
 	<body>
+		<jsp:include page="../common/purchase_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
 			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
@@ -68,34 +69,31 @@
 							<span class="price_txt">판매 금액&nbsp;<img class="price_btn_img" src="${pageContext.request.contextPath}/resources/image/triangle.png"></span>
 						</div>
 					</div>
-					<div class="purchase_contents">
-						<div class="purchase_detail">
-							<div class="purchase_thumb">
-								<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+					<div class="purchase_contents_wrap">
+						<div class="purchase_contents">
+							<div class="purchase_detail">
+								<div class="purchase_thumb">
+									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+								</div>
+								<div class="purchase_info">
+									<strong class="purchase_name">제품 이름</strong>
+									<p class="purchase_price">판매 가격</p>
+									<p class="purchase_size">250</p>
+								</div>
 							</div>
-							<div class="purchase_info">
-								<strong class="purchase_name">제품 이름</strong>
-								<p class="purchase_price">결제 가격</p>
-								<p class="purchase_size">250</p>
+							<div class="delivery_info">
+								<p class="delivery_status">대기중</p>
 							</div>
-						</div>
-						<div class="delivery_info">
-							<p class="delivery_status">대기중</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>	
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
-// 			var price = $(".price_txt");
-// 			var btn_img = $(".price_btn_img");
-			
-// 			price.click(function(){
-// 				btn_img.attr("src", imgurl);
-// 			});
 		</script>
 	</body>
 </html>

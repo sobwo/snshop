@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>footer</title>
 		<style>
 			#footer_wrap{
 				font-family:'수트';
 				width:1902px;
 				height:300px;
 				padding-top:100px;
+				positon:relative;
+				z-index:3;
 			}
 			
 			#footer_service_wrap,#corporation_info{

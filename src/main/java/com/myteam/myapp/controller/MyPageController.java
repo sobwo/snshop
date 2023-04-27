@@ -24,4 +24,10 @@ public class MyPageController {
 		
 		return "myPage/sale";
 	}
+	
+	@RequestMapping(value = "/interest.do")
+	public String interest() {
+		
+		return "myPage/interest";
+	}
 }

@@ -5,7 +5,6 @@
 <html>
 	<head>
 		<style>
-		
 			.menu_wrap{
 				width:180px;
 			}
@@ -49,7 +48,7 @@
 				<ul class="shopping_info_list">
 					<li><a href='${pageContext.request.contextPath}/myPage/purchase.do'>구매 내역</a></li>
 					<li><a href='${pageContext.request.contextPath}/myPage/sale.do'>판매 내역</a></li>
-					<li><a href='#'>관심 상품</a></li>
+					<li><a href='${pageContext.request.contextPath}/myPage/interest.do'>관심 상품</a></li>
 				</ul>
 			</div>
 			<div class="snb_list" style="margin-top:40px;">

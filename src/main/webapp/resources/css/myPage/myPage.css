@@ -9,6 +9,8 @@
 .myPage_wrap{
 	width:1903px;
 	font-family:'Noto Sans KR';
+	positon:relative;
+	z-index:3;
 }
 
 .myPage_inner_wrap{
@@ -41,5 +43,11 @@
 	font-size:24px;
 }
 
+/*관심상품 css(추가 및 변경)*/
+.content_title_on{
+	padding-bottom:15px;
+	border-bottom:2px solid #222;
+	margin-bottom:20px;
+}
 
 
