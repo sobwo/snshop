@@ -4,300 +4,229 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="UTF-8">
-	<title>SHOP 메인페이지</title>
+		<meta charset="UTF-8">
+		<title>SHOP 메인페이지</title>
+		<style type="text/css">
+			main{
+				width: 1280px;
+
+				display : flex;
+				flex-direction: column;
+				justify-content: space-around;
+			}
+			.trend_container{
+				width : 1200px;
+				height : 190px;
+				padding : 15px;
+				display : flex;
+				flex-direction : column;
+				justify-content: center;
+			}
+			.trend_con_area{
+				display : flex;
+				flex-direction: row;
+				
+			}
+			.trendContents{
+				width:134px;
+				height:109px;
+				display : flex;
+				flex-direction : column;
+				justify-content: center;
+			}
+			.trendImg,.trendName{
+				display : flex;
+				justify-content: center;
+			}
+			
+			.trend_btn_area{
+				width : 1200px;
+				height : 30px;
+				margin-top : 16px;
+				display : flex;
+				justify-content:center;
+				flex-direction: row;
+			}
+			
+			.trend_btn_area>button{
+				border: none;
+				width : 30px;
+				height : 30px;
+				margin : 0 15px;
+			}
+			.trend_pre_btn>img{
+				transform:rotate(180deg);
+			}
+			
+			.trend_btn_area>ul{
+				display : flex;
+				flex-direction : row;
+				margin : 0 10px;
+			}
+			
+			.product_container{
+				display : flex;
+				flex-direction: row;
+			}
+			
+			aside{
+				width:220px;
+			}
+			.filter_title{
+				width:200px;
+				padding : 12px 0px;
+				display:flex;
+				flex-direction : column;
+				justify-content:space-between;
+				border-bottom: 1px solid #000;
+			}
+			.title_first{
+				flex-direction : row;
+			}
+			.title_area{
+				display:flex;
+				flex-direction : row;
+				justify-content:space-between;
+			}
+			
+			.filterName{
+				font-size : 14px;
+				font-weight: 600;
+			
+			}
+			.title_area>button{
+				border:none;
+				background-color : white;
+				width:20px;
+				height:20px;
+			}
+			.filterName1{
+				display:flex;
+				flex-direction : column;
+				font-size : 16px;
+
+			}
+			.filter_allSelect{
+				font-size : 16px;
+				color : rgba(34,34,34,.5);
+				margin : 3px;
+			}
+			.filter_list_area{
+				width:200px;
+
+			}
+			.filter_list{
+				display: flex;
+				flex-direction: column;
+				padding : 3px;
+			}
+			.filter_list_in{
+				padding-bottom: 3px;
+			}
+			input[type="checkbox"]{
+				width : 15px;
+				height: 15px;
+				margin: 3px;
+				vertical-align:-2px;
+			}
+			.filter_child_list{
+				margin-left : 22px;
+				display: flex;
+				flex-direction: column;
+				padding : 3px;
+			
+			}
+			
+		</style>
 	</head>
 	<body>
 		<jsp:include page="../common/header_shop.jsp"></jsp:include>
-		<div>
-			<div>
-				<div>
-					<img src="">
-					<span></span>
-				</div>
-				<div>
-					<button></button>
-					<ul>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-					<button></button>
-				</div>
-			</div>
-		</div>
-		<div>
-			<aside>
-				<div>
-					<div>
-						<span>필터</span>
-						<span></span>
+		<main>
+			<section class="trend_container">
+				<div class="trend_con_area">
+					<div class="trendContents">
+						<div class="trendImg">
+							<img src="" width="90px" height="90px">
+						</div><!-- trendImg -->
+						<div class="trendName">
+							<span>반팔</span>
+						</div><!-- trendName -->
 					</div>
-					<a href="#">초기화</a>
-				</div>
-				<div	class="filter_list">
-					<div class="filter_title">
-						<div>
-							<span>카테고리</span>
-						</div>
-						<div class="iconBox">
-							<img alt="" src="">
-						</div>
-					</div>
+									
+				</div><!-- trend_con_area -->
+				
+				<div class="trend_btn_area">
+					<button class="trend_pre_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
 					<ul>
-						<li>
-							<input type="checkbox" id="filter1"  name="filter1" class="" value="" >
-							<label for="filter1">신발</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="filter1_1" name="filter1_1" class="" value="" >
-									<label for="filter1_1">스니커즈</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">플랫</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">로퍼</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">더비/레이스업</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">샌들/슬리퍼</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">힐/펌프스</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">부츠</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타</label>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">아우터</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">자켓</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">코트</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">패딩</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타 아우터</label>
-								</li>
-							</ul>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">상의</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">가디건</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">긴팔 티셔츠</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">반팔 티셔츠</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">셔츠</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">후드</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">후드 집업</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">스웨트셔츠</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">슬리브리스</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">원피스</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">니트</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타 상의</label>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">하의</label>
-								<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">바지</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">반바지</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">스커트</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">레깅스</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타 하의</label>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">가방</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">프리미엄 가방</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">미니백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">백팩</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">숄더백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">토트백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">크로스백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">클러치</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">더플백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">에코백</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">캐리어</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타 가방</label>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">지갑</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">반지갑</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">장지갑</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">카드지갑</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">체인지갑</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타지갑</label>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<input type="checkbox" id="" class="" value="" >
-							<label for="">시계</label>
-							<ul>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">프리미엄시계</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">전자시계</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">메탈 시계</label>
-								</li>
-								<li>
-									<input type="checkbox" id="" class="" value="" >
-									<label for="">기타시계</label>
-								</li>
-							</ul>
-						</li>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
 					</ul>
-					
-					<div class="filter_title">
-						<div>
-							<span>성별</span>
+					<button class="trend_next_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
+				</div><!-- trend_btn_area -->
+			</section><!-- trend_container -->
+			
+			<section class="product_container">
+				<aside>
+					<div class="filter_area">
+						<div class="filter_title title_first">
+							<div class="filterName">
+								<span>필터</span>
+								<span>1</span>
+							</div><!-- filterName -->
+							<a href="#">초기화</a>
+						</div><!-- filter_title -->
+						
+						<div class="filter_title">
+							<div class="title_area">
+								<div class="filterName1">
+									<span>카테고리</span>
+									<span class="filter_allSelect">모든 카테고리</span>
+								</div><!-- filterName -->
+								<button>+</button>
+							</div><!-- title_area -->
+							<div class="filter_list_area">
+							
+								<ul class="filter_list">
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 신발</a>
+										<ul class="filter_child_list">
+											<li class="filter_list_in">
+												<a href="#"><input type="checkbox" name="" value="" > </a>		
+											</li>
+											<li class="filter_list_in">
+												<a href="#"><input type="checkbox" name="" value="" > </a>
+											</li>							
+										</ul><!-- filter_child_list -->		
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 아우터</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 상의</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 하의</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 가방</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 지갑</a>
+									</li>								
+								</ul><!-- filter_list -->
+							</div><!-- filter_list_area -->
+						</div><!-- filter_title -->
+						
+						
+						
+						<div class="filterList">
+						
 						</div>
-						<div class="iconBox">
-							<img alt="" src="">
-						</div>
-					</div>
-					<ul>
-						<li>남성</li>
-						<li>여성</li>
-						<li>키즈</li>
-					</ul>
-					
-					
-				</div>
-			</aside>
-			<main>
+						
+					</div><!-- filter_area -->
+				</aside>
+				
 				<div>
 					<div>
 						<span>상품 수</span>
@@ -352,6 +281,7 @@
 					<div style="display : none;">
 						상품 태그 시 표시 공간
 					</div>
+	
 					<div>
 						<div>
 							<a href="${pageContext.request.contextPath}/shop/shopContents.do">
@@ -373,8 +303,11 @@
 						</div>
 					</div>
 				</div>
-			</main>
-			
-		</div>
+			</section><!-- product_area -->	
+		</main>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+		</script>
 	</body>
 </html>
