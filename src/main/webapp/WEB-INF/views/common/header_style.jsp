@@ -12,8 +12,8 @@
 			<div id="header_down">
 				<div id="down_inner">
 					<ul>
-						<li><a href='${pageContext.request.contextPath}/style/styleFollowing.do'>팔로잉</a></li>
-						<li style='margin-left:27px'><a href='${pageContext.request.contextPath}/style/styleMain.do'>인기글</a></li>
+						<li><a href='${pageContext.request.contextPath}/style/style_following.do'>팔로잉</a></li>
+						<li style='margin-left:27px'><a href='${pageContext.request.contextPath}/style/style_discover.do'>인기글</a></li>
 					</ul>
 				</div>
 			</div>	

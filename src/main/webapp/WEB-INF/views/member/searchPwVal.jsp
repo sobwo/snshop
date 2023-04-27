@@ -5,9 +5,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>비밀번호 찾기 결과</title>
-		<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 		<style>
-		
 			.search_wrap{
 				height:440px;
 			}
@@ -23,7 +22,8 @@
 				display:inline-block;
 				width:100px;
 				height:20px;
-				font-size:18px;
+				font-size:15px;
+				font-weight:bold;
 				text-align:left;
 				padding-right:10px;
 				margin-right:10px;

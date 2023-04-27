@@ -27,7 +27,6 @@
 			color: #22222280;
 		}
 	</style>
-
 </head>
 <body>
 	<div class="questionContainer">

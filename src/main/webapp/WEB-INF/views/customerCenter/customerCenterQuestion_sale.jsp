@@ -6,8 +6,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>자주 묻는 질문</title>
-		<link href="${pageContext.request.contextPath}/resources/css/customerCenter.css" rel="stylesheet"/>
-		<link href="${pageContext.request.contextPath}/resources/css/customerCenterQuestion.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/customerCenter.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/customerCenterQuestion.css" rel="stylesheet"/>
 		<style>
 			.customerCenter_list li:nth-child(2) a{
 				color:#222;

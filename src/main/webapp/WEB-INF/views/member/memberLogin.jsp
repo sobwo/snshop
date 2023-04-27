@@ -5,22 +5,23 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>LogIn</title>
-		<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 		<style>
 			#look_area{
 				width:400px;
 				height:17px;
 				margin-top:20px;
 				color:#222;
+				display:flex;
+				justify-content:center;
 			}
 			
 			#look_area li{
 				height:100%;
-				display:inline-block;
 			}
 			
 			#look_area a{
-				padding:0 10px;
+				width:100%;
 				margin:0 22.75px;
 				font-size:14px;
 			}

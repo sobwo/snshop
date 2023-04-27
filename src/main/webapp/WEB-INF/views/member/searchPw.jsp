@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>비밀번호 찾기</title>
-		<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<form name="frm">
@@ -74,14 +74,14 @@
 					if($("input[name=searchMeasure]:checked").val() == "phone"){
 						$('.searchEmail').hide();
 						$('.searchPhone').show();
-						$('.searchPhone_area').css('height','150px');
+						$('.searchPhone_area').css('height','200px');
 						$('.searchEmail_area').css('height','100px');
 					}
 					else if($("input[name=searchMeasure]:checked").val() == "email"){
 						$('.searchEmail').show();
 						$('.searchPhone').hide();
 						$('.searchPhone_area').css('height','100px');
-						$('.searchEmail_area').css('height','150px');
+						$('.searchEmail_area').css('height','200px');
 					}
 				});
 			});

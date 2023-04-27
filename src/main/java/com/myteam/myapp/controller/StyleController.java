@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/style")
 public class StyleController {
 	
-	@RequestMapping(value = "/styleFollowing.do")
+	@RequestMapping(value = "/style_following.do")
 	public String styleFollowing() {
 		
-		return "style/styleFollowing";
+		return "style/style_following";
 	}
 	
-	@RequestMapping(value = "/styleMain.do")
+	@RequestMapping(value = "/style_discover.do")
 	public String styleMain() {
 		
-		return "style/styleMain";
+		return "style/style_discover";
 	}
 
 }

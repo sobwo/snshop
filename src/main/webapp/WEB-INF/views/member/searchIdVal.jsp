@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>아이디 찾기 결과</title>
-		<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 		<style>
 			#searchIdVal{
 				height:150px;

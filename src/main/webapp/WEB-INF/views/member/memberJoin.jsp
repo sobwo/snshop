@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>회원가입</title>
-		<link href="${pageContext.request.contextPath}/resources/css/member.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 		<style>
 			#join_wrap{
 				height:986px;
