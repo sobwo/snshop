@@ -6,27 +6,7 @@
 		<meta charset="UTF-8">
 		<title>아이디 찾기 결과</title>
 		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
-		<style>
-			#searchIdVal{
-				height:150px;
-				line-height:150px;
-			}
-			#searchIdVal *{
-				display:inline-block;
-			}
-			#searchIdVal input[type=radio]{
-				margin-right:15px;
-			}
-			#searchIdVal input[type=text]{
-				border:0;
-				font-size:16px;
-				text-align:center;
-			}
-			
-			#searchLoginBtn{
-				margin-bottom:15px;
-			}
-		</style>
+		<link href="${pageContext.request.contextPath}/resources/css/member/searchIdVal.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<form name="frm">

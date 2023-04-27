@@ -42,4 +42,5 @@ public class CustomerCenterController {
 		
 		return "customerCenter/customerCenterQuestion_sale";
 	}
+	
 }

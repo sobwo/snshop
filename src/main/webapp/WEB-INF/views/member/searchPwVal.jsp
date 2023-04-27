@@ -6,35 +6,7 @@
 		<meta charset="UTF-8">
 		<title>비밀번호 찾기 결과</title>
 		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
-		<style>
-			.search_wrap{
-				height:440px;
-			}
-			.search_area{
-				height:320px;
-			}
-
-			.input_item{
-				padding-bottom:5px;
-				margin-bottom:15px;
-			}
-			.input_item p{
-				display:inline-block;
-				width:100px;
-				height:20px;
-				font-size:15px;
-				font-weight:bold;
-				text-align:left;
-				padding-right:10px;
-				margin-right:10px;
-				border-right:1px solid #ebebeb;
-			}
-			.input_item input{
-				width:240px;
-				display:inline-block;
-			}
-			
-		</style>
+		<link href="${pageContext.request.contextPath}/resources/css/member/searchPwVal.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<form name="frm">

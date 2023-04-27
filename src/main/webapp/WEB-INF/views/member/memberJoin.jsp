@@ -6,49 +6,7 @@
 		<meta charset="UTF-8">
 		<title>회원가입</title>
 		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
-		<style>
-			#join_wrap{
-				height:986px;
-			}
-			
-			#join_area{
-				height:866px;
-			}
-			
-			#join_area span{
-				text-align:left;
-				font-size:12px;
-				color:#f00;
-			}
-			
-			#joinId_area, #joinPw_area, #joinEmail_area, #joinPhone_area, #joinGender_area{
-				padding:20px 0 24px 0;
-			}
-			
-			#joinGender_inner_area{
-				width:400px;
-				height:37px;
-				padding:8px 30px 8px 0;
-			}
-			#joinGender_area input{
-				width:21px;
-				height:21px;
-				vertical-align:middle;
-				margin-left:10px;
-			}
-			
-			.input_item{
-				text-align:left;		
-			}
-			
-			.input_item div{
-				display:inline-block;
-			}
-			
-			#woman{
-				margin-left:30px;
-			}	
-		</style>
+		<link href="${pageContext.request.contextPath}/resources/css/member/memberJoin.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>

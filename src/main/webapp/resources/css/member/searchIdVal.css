@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+#searchIdVal{
+	height:150px;
+	line-height:150px;
+}
+#searchIdVal *{
+	display:inline-block;
+}
+#searchIdVal input[type=radio]{
+	margin-right:15px;
+}
+#searchIdVal input[type=text]{
+	border:0;
+	font-size:16px;
+	text-align:center;
+}
+
+#searchLoginBtn{
+	margin-bottom:15px;
+}

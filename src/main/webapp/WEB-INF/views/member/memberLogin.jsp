@@ -6,47 +6,7 @@
 		<meta charset="UTF-8">
 		<title>LogIn</title>
 		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
-		<style>
-			#look_area{
-				width:400px;
-				height:17px;
-				margin-top:20px;
-				color:#222;
-				display:flex;
-				justify-content:center;
-			}
-			
-			#look_area li{
-				height:100%;
-			}
-			
-			#look_area a{
-				width:100%;
-				margin:0 22.75px;
-				font-size:14px;
-			}
-			
-			#socialLogin_area{
-				width:400px;
-				height:52px;
-				margin-top:40px;
-			}
-			
-			#naverLogin{
-				width:100%;
-				height:52px;
-				background:#fff;
-				border:1px solid #ebebeb;
-				border-radius:12px;
-				font-size:18px;
-				font-weight:bold;
-				background-image:url("${pageContext.request.contextPath}/resources/image/naver.png");
-				background-position: 15px center;
-				background-size: 30px;
-				background-repeat:no-repeat;
-				cursor:pointer;
-			}
-		</style>
+		<link href="${pageContext.request.contextPath}/resources/css/member/memberLogin.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>
