@@ -43,11 +43,51 @@
 	font-size:24px;
 }
 
+.user_detail{
+	height:100px;
+	display:flex;
+}
+
+.user_thumb{
+	width:100px;
+	height:100px;
+	margin-right:12px;
+}
+
+.user_thumb img{
+	width:100%;
+	height:100%;
+}
+
+.user_info{
+	height:100px;
+	width:220px;
+}
+
+.user_name{
+	font-size:18px;
+	color:#000;
+}
+
+.user_id{
+	font-size:14px;
+	color:rgba(34,34,34,.5);
+}
+
+.myPageBtn{
+	display:inline-block;
+	height:36px;
+	background:#fff;
+	border:1px solid #d3d3d3;
+	border-radius:10px;
+	padding:0 14px;
+	margin-top:12px;
+}
+
 /*관심상품 css(추가 및 변경)*/
 .content_title_on{
 	padding-bottom:15px;
 	border-bottom:2px solid #222;
-	margin-bottom:20px;
 }
 
 

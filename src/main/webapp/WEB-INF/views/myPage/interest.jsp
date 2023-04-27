@@ -13,6 +13,9 @@
 				color:#222;
 				font-weight:bold;
 			}
+			.content_title_on{
+				margin-bottom:20px;
+			}
 		</style>
 	</head>
 	<body>

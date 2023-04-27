@@ -30,4 +30,10 @@ public class MyPageController {
 		
 		return "myPage/interest";
 	}
+	
+	@RequestMapping(value = "/profileInfo.do")
+	public String profileInfo() {
+		
+		return "myPage/profileInfo";
+	}
 }

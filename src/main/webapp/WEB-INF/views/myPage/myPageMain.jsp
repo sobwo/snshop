@@ -18,19 +18,19 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
-					<div id="user_memberShip">
-						<div id="user_detail">
-							<div id="user_thumb">
+					<div class="user_memberShip">
+						<div class="user_detail">
+							<div class="user_thumb">
 								<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
 							</div>
-							<div id="user_info">
-								<strong id="user_name">이름</strong>
-								<p id="user_id">ID</p>
+							<div class="user_info">
+								<strong class="user_name">이름</strong>
+								<p class="user_id">ID</p>
 								<input type="button" class="myPageBtn" value="프로필 수정">
 								<input type="button" class="myPageBtn" value="내 스타일">
 							</div>
 						</div>
-						<div id="memberShip_detail">
+						<div class="memberShip_detail">
 							<div class="memberShip_item" style="border-right:1px solid #ebebeb">
 								<strong class="info">일반 회원</strong>
 								<p class="title">회원 등급</p>

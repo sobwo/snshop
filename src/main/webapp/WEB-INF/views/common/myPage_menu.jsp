@@ -53,8 +53,8 @@
 			</div>
 			<div class="snb_list" style="margin-top:40px;">
 				<strong class="snb_title">내 정보</strong>
-				<ul>
-					<li><a href='#'>프로필 정보</a></li>
+				<ul class="memberInfo_list">
+					<li><a href='${pageContext.request.contextPath}/myPage/profileInfo.do'>프로필 정보</a></li>
 					<li><a href='#'>주소록</a></li>
 					<li><a href='#'>결제 정보</a></li>
 					<li><a href='#'>판매 정산 계좌</a></li>
