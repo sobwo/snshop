@@ -42,4 +42,16 @@ public class MyPageController {
 		
 		return "myPage/myStyle";
 	}
+	
+	@RequestMapping(value = "/address.do")
+	public String address() {
+		
+		return "myPage/address";
+	}
+	
+	@RequestMapping(value = "/incomeAccount.do")
+	public String incomeAccount() {
+		
+		return "myPage/incomeAccount";
+	}
 }
