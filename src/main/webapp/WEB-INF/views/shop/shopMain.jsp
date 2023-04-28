@@ -7,9 +7,16 @@
 		<meta charset="UTF-8">
 		<title>SHOP 메인페이지</title>
 		<style type="text/css">
+			.inner{
+				width: 1900px;
+				display: flex;
+				flex-direction: column;
+				flex-wrap: wrap;
+			}
 			main{
 				width: 1280px;
-				margin : 0 auto;
+				margin: 0 auto;
+				padding-top: 191px;
 				display : flex;
 				flex-direction: row;
 				flex-wrap : wrap;
@@ -139,7 +146,34 @@
 				flex-direction: column;
 				padding : 3px;
 			}
-			.product_area{
+			.filter_teg_area{
+				display: flex;
+				flex-direction: row;
+				
+			}
+			.teg_item{
+				height : 30px;
+				display :inline-flex;
+				border:1px solid #ebebeb;
+				align-items: center;
+				margin: 4px 9px 0 0;
+				padding: 4px 2px 4px 10px;
+				background-color: #f4f4f4;
+				border-radius: 6px;
+			}
+			.teg_item>span{
+				margin-right:5px;
+				font-size: 14px;
+			}
+			.teg_item>button{
+				width : 25px;
+				height : 25px;
+				border:none;
+				background-color: #f4f4f4;
+				
+			}
+			
+			.product_wrap{
 				width : 980px;
 				display: flex;
 				flex-direction: column;
@@ -180,219 +214,284 @@
 				display: flex;
 				flex-direction: column;
 			}
+			.product_area{
+				width:100%;
+				display : grid;
+				grid-template-columns: repeat(4,minmax(0,1fr));
+				grid-column-gap: 20px;
+				column-gap: 20px;
+				grid-row-gap: 40px;
+				row-gap: 40px;
+			}
 			
+			.product_item{
+				padding: 10px;
+			}
+			.pro_img_area{
+			
+			}
+			.pro_name_area{
+			
+			}
+			.pro_icon_area{
+			
+			}
 		</style>
 	</head>
 	<body>
-		<jsp:include page="../common/header_shop.jsp"></jsp:include>
-		<main>
-			<section class="trend_container">
-				<div class="trend_con_area">
-					<div class="trendContents">
-						<div class="trendImg">
-							<img src="" width="90px" height="90px">
-						</div><!-- trendImg -->
-						<div class="trendName">
-							<span>반팔</span>
-						</div><!-- trendName -->
-					</div>
-									
-				</div><!-- trend_con_area -->
-				
-				<div class="trend_btn_area">
-					<button class="trend_pre_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
-					<ul>
-						<li>1</li>
-						<li>2</li>
-						<li>3</li>
-					</ul>
-					<button class="trend_next_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
-				</div><!-- trend_btn_area -->
-			</section><!-- trend_container -->
-			
-			<section class="product_container">
-				<aside>
-					<div class="filter_area">
-						<div class="filter_title title_first">
-							<div class="filterName">
-								<span>필터</span>
-								<span>1</span>
-							</div><!-- filterName -->
-							<a href="#">초기화</a>
-						</div><!-- filter_title -->
-						
-						<div class="filter_title">
-							<div class="title_area">
-								<div class="filterName1">
-									<span>카테고리</span>
-									<span class="filter_allSelect">모든 카테고리</span>
-								</div><!-- filterName -->
-								<button>+</button>
-							</div><!-- title_area -->
-							
-							<div class="filter_list_area">
-								<ul class="filter_list">
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 신발</a>
-										<ul class="filter_child_list">
-											<li class="filter_list_in">
-												<a href="#"><input type="checkbox" name="" value="" > </a>		
-											</li>
-											<li class="filter_list_in">
-												<a href="#"><input type="checkbox" name="" value="" > </a>
-											</li>							
-										</ul><!-- filter_child_list -->		
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 아우터</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 상의</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 하의</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 가방</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 지갑</a>
-									</li>								
-								</ul><!-- filter_list -->
-							</div><!-- filter_list_area -->
-						</div><!-- filter_title -->
-						
-						<div class="filter_title">
-							<div class="title_area">
-								<div class="filterName1">
-									<span>성별</span>
-									<span class="filter_allSelect">모든 성별</span>
-								</div><!-- filterName -->
-								<button>+</button>
-							</div><!-- title_area -->
-							
-							<div class="filter_list_area">
-								<ul class="filter_list">
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 남성</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 여성</a>
-									</li>
-									<li class="filter_list_in">
-										<a href="#"><input type="checkbox" name="" value="" > 키즈</a>
-									</li>
-								</ul><!-- filter_list -->
-							</div><!-- filter_list_area -->
-						</div><!-- filter_title -->
-						
-						<div class="filter_title">
-							<div class="title_area">
-								<div class="filterName1">
-									<span>사이즈</span>
-									<span class="filter_allSelect">모든 사이즈</span>
-								</div><!-- filterName -->
-								<button>+</button>
-							</div><!-- title_area -->
-							
-							<div class="filter_list_area">
-								<ul class="filter_list">
-								</ul><!-- filter_list -->
-							</div><!-- filter_list_area -->
-						</div><!-- filter_title -->
-						
-						<div class="filter_title">
-							<div class="title_area">
-								<div class="filterName1">
-									<span>혜택/가격</span>
-									<span class="filter_allSelect">모든 혜택/가격</span>
-								</div><!-- filterName -->
-								<button>+</button>
-							</div><!-- title_area -->
-							
-							<div class="filter_list_area">
-								<ul class="filter_list">
-								</ul><!-- filter_list -->
-							</div><!-- filter_list_area -->
-						</div><!-- filter_title -->
-					</div><!-- filter_area -->
-				</aside>
-				
-				<div class="product_area">
-					<div class="product_top">
-						<div class="product_count">
-							<span>상품수  12312</span>
-						</div><!-- product_count -->
-						
-						<div class="product_btn_area">
-							<button>인기순</button>
-							<ul class="product_btn_list">
-								<li>
-									<a class="btn_list_item">
-										<span class="list_sub">인기순</span>
-										<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
-									</a>
-								</li>
-								<li>
-									<a class="btn_list_item">
-										<span class="list_sub">높은 가격순</span>
-										<span class="list_con">가격이 높은 순서대로 정렬합니다.</span>
-									</a>
-								</li>
-								<li>
-									<a class="btn_list_item">
-										<span class="list_sub">낮은 가격순</span>
-										<span class="list_con">가격이 낮은 순서대로 정렬합니다.</span>
-									</a>
-								</li>
-								<li>
-									<a class="btn_list_item">
-										<span class="list_sub">관심 많은 순</span>
-										<span class="list_con">관심 상품에 많이 추가된 순서대로 정렬합니다.</span>
-									</a>
-								</li>
-								<li>
-									<a class="btn_list_item">
-										<span class="list_sub">리뷰순</span>
-										<span class="list_con">리뷰가 많이 등록된 순서대로 정렬합니다.</span>
-									</a>
-								</li>
-							</ul><!-- product_btn_list -->
-						</div><!-- product_btn_area -->
-					</div><!-- product_top -->
+		<div class="inner">
+			<jsp:include page="../common/header_shop.jsp"></jsp:include>
+			<main>
+				<section class="trend_container">
+					<div class="trend_con_area">
+						<div class="trendContents">
+							<div class="trendImg">
+								<img src="" width="90px" height="90px">
+							</div><!-- trendImg -->
+							<div class="trendName">
+								<span>반팔</span>
+							</div><!-- trendName -->
+						</div>
+										
+					</div><!-- trend_con_area -->
 					
-					<div class="filter_teg_area">
-						<div class="teg_item">
+					<div class="trend_btn_area">
+						<button class="trend_pre_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+						</ul>
+						<button class="trend_next_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
+					</div><!-- trend_btn_area -->
+				</section><!-- trend_container -->
+				
+				<section class="product_container">
+					<aside>
+						<div class="filter_area">
+							<div class="filter_title title_first">
+								<div class="filterName">
+									<span>필터</span>
+									<span>1</span>
+								</div><!-- filterName -->
+								<a href="#">초기화</a>
+							</div><!-- filter_title -->
+							
+							<div class="filter_title">
+								<div class="title_area">
+									<div class="filterName1">
+										<span>카테고리</span>
+										<span class="filter_allSelect">모든 카테고리</span>
+									</div><!-- filterName -->
+									<button class="filter_btn" value="open">+</button>
+								</div><!-- title_area -->
+								
+								<div class="filter_list_area" style="display:none;">
+									<ul class="filter_list">
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" id="shoes" name="shoes" value="신발" > 신발</a>
+											<ul class="filter_child_list">
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" name="" value="" > </a>		
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" name="" value="" > </a>
+												</li>							
+											</ul><!-- filter_child_list -->		
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 아우터</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 상의</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 하의</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 가방</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 지갑</a>
+										</li>								
+									</ul><!-- filter_list -->
+								</div><!-- filter_list_area -->
+							</div><!-- filter_title -->
+							
+							<div class="filter_title">
+								<div class="title_area">
+									<div class="filterName1">
+										<span>성별</span>
+										<span class="filter_allSelect">모든 성별</span>
+									</div><!-- filterName -->
+									<button class="filter_btn" value="open">+</button>
+								</div><!-- title_area -->
+								
+								<div class="filter_list_area" style="display:none;">
+									<ul class="filter_list">
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 남성</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 여성</a>
+										</li>
+										<li class="filter_list_in">
+											<a href="#"><input type="checkbox" name="" value="" > 키즈</a>
+										</li>
+									</ul><!-- filter_list -->
+								</div><!-- filter_list_area -->
+							</div><!-- filter_title -->
+							
+							<div class="filter_title">
+								<div class="title_area">
+									<div class="filterName1">
+										<span>사이즈</span>
+										<span class="filter_allSelect">모든 사이즈</span>
+									</div><!-- filterName -->
+									<button class="filter_btn" value="open">+</button>
+								</div><!-- title_area -->
+								
+								<div class="filter_list_area" style="display:none;">
+									<ul class="filter_list">
+									</ul><!-- filter_list -->
+								</div><!-- filter_list_area -->
+							</div><!-- filter_title -->
+							
+							<div class="filter_title">
+								<div class="title_area">
+									<div class="filterName1">
+										<span>혜택/가격</span>
+										<span class="filter_allSelect">모든 혜택/가격</span>
+									</div><!-- filterName -->
+									<button class="filter_btn" value="open">+</button>
+								</div><!-- title_area -->
+								
+								<div class="filter_list_area" style="display:none;">
+									<ul class="filter_list">
+									</ul><!-- filter_list -->
+								</div><!-- filter_list_area -->
+							</div><!-- filter_title -->
+						</div><!-- filter_area -->
+					</aside>
+					
+					<div class="product_wrap">
+						<div class="product_top">
+							<div class="product_count">
+								<span>상품수  12312</span>
+							</div><!-- product_count -->
+							
+							<div class="product_btn_area">
+								<button onclick="btn_list();">인기순</button>
+								<ul class="product_btn_list" style="display:none;">
+									<li>
+										<a class="btn_list_item">
+											<span class="list_sub">인기순</span>
+											<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
+										</a>
+									</li>
+									<li>
+										<a class="btn_list_item">
+											<span class="list_sub">높은 가격순</span>
+											<span class="list_con">가격이 높은 순서대로 정렬합니다.</span>
+										</a>
+									</li>
+									<li>
+										<a class="btn_list_item">
+											<span class="list_sub">낮은 가격순</span>
+											<span class="list_con">가격이 낮은 순서대로 정렬합니다.</span>
+										</a>
+									</li>
+									<li>
+										<a class="btn_list_item">
+											<span class="list_sub">관심 많은 순</span>
+											<span class="list_con">관심 상품에 많이 추가된 순서대로 정렬합니다.</span>
+										</a>
+									</li>
+									<li>
+										<a class="btn_list_item">
+											<span class="list_sub">리뷰순</span>
+											<span class="list_con">리뷰가 많이 등록된 순서대로 정렬합니다.</span>
+										</a>
+									</li>
+								</ul><!-- product_btn_list -->
+							</div><!-- product_btn_area -->
+						</div><!-- product_top -->
 						
-						</div>
-					</div><!-- filter_teg_area -->
-	
-					<div>
-						<div>
+						<div class="filter_teg_area">
+						</div><!-- filter_teg_area -->
+		
+						<div class="product_area">
 							<a href="${pageContext.request.contextPath}/shop/shopContents.do">
-								<div>
-									<img src="">
-								</div>
-								<div>
-									<ul>
-										<li>상품명</li>
-										<li>상품상세명</li>
-										<li>상품가격</li>
-									</ul>
-								</div>
+								<div class="product_item">
+									<div class="pro_img_area">
+										<img src="" width="200px" height="200px" >
+									</div>
+									<div class="pro_name_area">
+										<ul>
+											<li>상품명</li>
+											<li>상품상세명</li>
+											<li>상품가격</li>
+										</ul>
+									</div>
+									<div class="pro_icon_area">
+										<span>즐겨찾기수</span>
+										<span>123</span>
+										<span>리뷰수</span>
+										<span>123</span>
+									</div>
+								</div><!-- product_item -->
 							</a>
-							<div>
-								<span>즐겨찾기수</span>
-								<span>리뷰수</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section><!-- product_area -->	
-		</main>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
+						</div><!-- product_area -->
+					</div><!-- product_wrap -->
+				</section><!-- product_area -->	
+			</main>	
+			<jsp:include page="../common/footer.jsp"></jsp:include>
+			
+		</div><!-- inner -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
+			$(document).ready(function(){});
+
+			var filter_btn = $(".filter_btn");
+			var filter_list_area = $(".filter_list_area");
+			
+			for(var i=0; i<4;i++){
+				btn_filter(i);
+			}
+			
+			$("#shoes").change(function(){
+				if($("#shoes").is(":checked")){
+					$(".filter_teg_area").append("<div class='teg_item'><span>"+$("#shoes").val()+"</span><button>X</button></div>")
+				}
+				else
+					$(".filter_teg_area").text("");
+			});
+			
+			function btn_list(){
+		 		var list = $(".product_btn_list");
+				if ( list.css('display') === 'none'){
+					list.show();
+				}else{
+					list.hide();
+				}
+			}
+			
+			function btn_filter(index){
+				filter_btn.eq(index).on("click",function(){
+					if(filter_btn.eq(index).val()=="open"){
+						filter_list_area.eq(index).show();
+						filter_btn.eq(index).text("-");
+						filter_btn.eq(index).attr("value","close");
+					}
+					else{
+						filter_list_area.eq(index).hide();
+						filter_btn.eq(index).text("+");
+						filter_btn.eq(index).attr("value","open");
+					}	
+				});
+			}
+			
+			
 		</script>
 	</body>
 </html>
