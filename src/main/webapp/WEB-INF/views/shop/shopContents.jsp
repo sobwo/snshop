@@ -7,12 +7,9 @@
 	<meta charset="UTF-8">
 	<title>상품 상세 페이지</title>
 		<style type="text/css">
-			main *{
-				text-align: center;
-			}
-			main{
-				width:1903px;
-				padding-top:141px; 
+			*{margin: 0; padding: 0; text-align: center;}
+			.main{
+			width: 1903px;
 			}
 			.container{
 				width:1200px;

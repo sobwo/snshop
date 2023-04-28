@@ -9,18 +9,20 @@
 		<style type="text/css">
 			main{
 				width: 1280px;
+				margin : 0 auto;
 				display : flex;
-				flex-direction: column;
+				flex-direction: row;
+				flex-wrap : wrap;
 				justify-content: space-around;
-				padding-top:191px;
 			}
 			.trend_container{
 				width : 1200px;
 				height : 190px;
-				padding : 15px;
+				margin : 40px;
 				display : flex;
 				flex-direction : column;
 				justify-content: center;
+				border-bottom: 1px solid #ebebeb;
 			}
 			.trend_con_area{
 				display : flex;
@@ -67,6 +69,7 @@
 			.product_container{
 				display : flex;
 				flex-direction: row;
+				justify-content:space-between;
 			}
 			
 			aside{
@@ -78,13 +81,14 @@
 				display:flex;
 				flex-direction : column;
 				justify-content:space-between;
-				border-bottom: 1px solid #000;
+				border-bottom: 1px solid #ebebeb;
 			}
 			.title_first{
 				flex-direction : row;
 			}
 			.title_area{
 				display:flex;
+				width:200px;
 				flex-direction : row;
 				justify-content:space-between;
 			}
@@ -134,7 +138,47 @@
 				display: flex;
 				flex-direction: column;
 				padding : 3px;
-			
+			}
+			.product_area{
+				width : 980px;
+				display: flex;
+				flex-direction: column;
+				
+			}
+			.product_top{
+				display : flex;
+				height : 30px;
+				flex-direction : row;
+				justify-content : space-between;
+				padding : 12px 16px;
+				
+			}
+			.product_count{
+				font-size: 13px;
+				color: rgba(34,34,34,.8);	
+			}
+			.product_btn_area{
+				width: 70px;
+				position: relative;
+			}
+			.product_btn_list{
+				position: relative;
+				width: 278px;
+				right: 235px;
+			}
+			.list_sub{
+				font-size: 14px ;
+				font-weight: 700;
+			}
+			.list_con{
+				padding: 8px 12px;
+				font-size: 12px;
+				letter-spacing: -.06px;
+				color: rgba(34,34,34,.5);
+			}
+			.btn_list_item{
+				display: flex;
+				flex-direction: column;
 			}
 			
 		</style>
@@ -185,8 +229,8 @@
 								</div><!-- filterName -->
 								<button>+</button>
 							</div><!-- title_area -->
-							<div class="filter_list_area">
 							
+							<div class="filter_list_area">
 								<ul class="filter_list">
 									<li class="filter_list_in">
 										<a href="#"><input type="checkbox" name="" value="" > 신발</a>
@@ -218,69 +262,110 @@
 							</div><!-- filter_list_area -->
 						</div><!-- filter_title -->
 						
+						<div class="filter_title">
+							<div class="title_area">
+								<div class="filterName1">
+									<span>성별</span>
+									<span class="filter_allSelect">모든 성별</span>
+								</div><!-- filterName -->
+								<button>+</button>
+							</div><!-- title_area -->
+							
+							<div class="filter_list_area">
+								<ul class="filter_list">
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 남성</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 여성</a>
+									</li>
+									<li class="filter_list_in">
+										<a href="#"><input type="checkbox" name="" value="" > 키즈</a>
+									</li>
+								</ul><!-- filter_list -->
+							</div><!-- filter_list_area -->
+						</div><!-- filter_title -->
 						
+						<div class="filter_title">
+							<div class="title_area">
+								<div class="filterName1">
+									<span>사이즈</span>
+									<span class="filter_allSelect">모든 사이즈</span>
+								</div><!-- filterName -->
+								<button>+</button>
+							</div><!-- title_area -->
+							
+							<div class="filter_list_area">
+								<ul class="filter_list">
+								</ul><!-- filter_list -->
+							</div><!-- filter_list_area -->
+						</div><!-- filter_title -->
 						
-						<div class="filterList">
-						
-						</div>
-						
+						<div class="filter_title">
+							<div class="title_area">
+								<div class="filterName1">
+									<span>혜택/가격</span>
+									<span class="filter_allSelect">모든 혜택/가격</span>
+								</div><!-- filterName -->
+								<button>+</button>
+							</div><!-- title_area -->
+							
+							<div class="filter_list_area">
+								<ul class="filter_list">
+								</ul><!-- filter_list -->
+							</div><!-- filter_list_area -->
+						</div><!-- filter_title -->
 					</div><!-- filter_area -->
 				</aside>
 				
-				<div>
-					<div>
-						<span>상품 수</span>
-					</div>
-					<div>
-						<button>
-							인기순
-						</button>
-						<ul>
-							<li>
-								<a>
-									<div>
-										<p>인기순</p>
-										<p>많이 판매된 순서대로 정렬합니다.</p>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a>
-									<div>
-										<p>높은 가격순</p>
-										<p>가격이 높은 순서대로 정렬합니다.</p>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a>
-									<div>
-										<p>낮은 가격순</p>
-										<p>가격이 낮은 순서대로 정렬합니다.</p>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a>
-									<div>
-										<p>관심 많은 순</p>
-										<p>관심 상품에 많이 추가된 순서대로 정렬합니다.</p>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a>
-									<div>
-										<p>리뷰순</p>
-										<p>리뷰가 많이 등록된 순서대로 정렬합니다.</p>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div style="display : none;">
-						상품 태그 시 표시 공간
-					</div>
+				<div class="product_area">
+					<div class="product_top">
+						<div class="product_count">
+							<span>상품수  12312</span>
+						</div><!-- product_count -->
+						
+						<div class="product_btn_area">
+							<button>인기순</button>
+							<ul class="product_btn_list">
+								<li>
+									<a class="btn_list_item">
+										<span class="list_sub">인기순</span>
+										<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
+									</a>
+								</li>
+								<li>
+									<a class="btn_list_item">
+										<span class="list_sub">높은 가격순</span>
+										<span class="list_con">가격이 높은 순서대로 정렬합니다.</span>
+									</a>
+								</li>
+								<li>
+									<a class="btn_list_item">
+										<span class="list_sub">낮은 가격순</span>
+										<span class="list_con">가격이 낮은 순서대로 정렬합니다.</span>
+									</a>
+								</li>
+								<li>
+									<a class="btn_list_item">
+										<span class="list_sub">관심 많은 순</span>
+										<span class="list_con">관심 상품에 많이 추가된 순서대로 정렬합니다.</span>
+									</a>
+								</li>
+								<li>
+									<a class="btn_list_item">
+										<span class="list_sub">리뷰순</span>
+										<span class="list_con">리뷰가 많이 등록된 순서대로 정렬합니다.</span>
+									</a>
+								</li>
+							</ul><!-- product_btn_list -->
+						</div><!-- product_btn_area -->
+					</div><!-- product_top -->
+					
+					<div class="filter_teg_area">
+						<div class="teg_item">
+						
+						</div>
+					</div><!-- filter_teg_area -->
 	
 					<div>
 						<div>
