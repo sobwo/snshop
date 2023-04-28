@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.myStyleContainer{
+	width:1903px;
+	position: relative; 
+	z-index: 2; 
+	top: 30px; 
+	padding-top:131px;
+}
+.myStyleContainer_inner{
+	width:1280px;
+	border:1px solid #ebebeb;
+	border-radius:12px;
+	margin: 0 auto;
+}
+.uploadContainer{
+	display: flex; 
+	margin: 0 auto; 
+	width: 1280px;
+	justify-content: left; 
+	align-items: center; 
+}
+.uploadBox{
+	width:1200px;
+	margin:40px;
+}
+.userProfileImage{
+	width:118px;
+	height:118px;
+	border: 1px solid rgba(34,34,34,.1);
+	border-radius: 10px;
+}
+.fileatt{
+	display: block;
+}
+.contents{
+	display: block;
+	width:800px;
+	height: auto;
+	min-height: 100px;
+	margin-top:20px;
+	border: none;
+	resize: none;
+	overflow-y: hidden; 
+}
+input[type="radio"] {
+	display:none;
+}
+.tagSelectContainer{
+	display: block; 
+	margin: 0 auto; 
+	width: 1280px;
+	justify-content: left; 
+	align-items: center; 
+}
+.tagSelectBox{
+	display: inline-block;
+	vertical-align: left;
+	align-items: center;
+	width:1200px;
+	margin:20px 40px;
+}
+.tagTitle{
+	width:1200px;
+	height:20px;
+}
+.tagTitle span{
+	font-weight:600;
+}
+.tagSelect{
+	display: flex;
+	width:1200px;
+	height:30px;
+	padding-top:20px;
+}
+.tagSelect label{
+	display:block;
+	width:50px; 
+	height:30px; 
+	line-height: 30px; 
+	margin: 0 5px;
+	text-align: center;
+	cursor: pointer; 
+	background: #fff;
+	border: 1px solid rgba(34,34,34,.1);
+	border-radius: 15px;
+}
+ 	
+input[type="radio"]:checked + label{
+	background:#000;
+	color:#fff;
+}
+
+	
+.uploadBtn_area{
+	display: flex;
+	margin: 0 auto; 
+	padding-top:30px;
+	width: 1200px;
+	justify-content: center; 
+	align-items: center;
+	}
+#uploadBtn{
+	width:400px;
+	height:52px;
+	background: #000;
+	color: #fff;
+    font-size: 18px;
+    border: 0;
+    border-radius: 12px;
+    cursor: pointer;
+ 	}
