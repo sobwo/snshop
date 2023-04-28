@@ -36,4 +36,10 @@ public class MyPageController {
 		
 		return "myPage/profileInfo";
 	}
+	
+	@RequestMapping(value = "/myStyle.do")
+	public String myStyle() {
+		
+		return "myPage/myStyle";
+	}
 }
