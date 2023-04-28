@@ -43,6 +43,12 @@ public class MyPageController {
 		return "myPage/myStyle";
 	}
 	
+	@RequestMapping(value = "/myStyle_upload.do")
+	public String myStyle_upload() {
+		
+		return "myPage/myStyle_upload";
+	}
+	
 	@RequestMapping(value = "/address.do")
 	public String address() {
 		
