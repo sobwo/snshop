@@ -52,9 +52,8 @@
 					<strong class="EmptyTxt">게시물 없음</strong>
 					<p class="EmptySubTxt">사진을 공유하면 내 프로필에 표시됩니다.</p>
 				</div>
-			</div>
-			
-			
+				<input type="button" class="feedFirstShare" value="첫 사진 공유" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle_upload.do'">
+			</div>			
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</body>
