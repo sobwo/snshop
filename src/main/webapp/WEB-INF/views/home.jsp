@@ -8,8 +8,9 @@
 	</head>
 	<body>
 		<jsp:include page="common/header_shop.jsp"></jsp:include>
+		<!-- 임시로 넣어놈 -->
+		<div style='padding-top:191px;height:100px;'></div>
 		<jsp:include page="common/footer.jsp"></jsp:include>
-		git test용
 	</body>
 	
 	

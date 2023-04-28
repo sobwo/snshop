@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+.f_wrap{
+	width: 1902px;
+	display:flex;
+	justify-content:center;
+	padding-top:131px; 
+	font-family:"GmarketSansMedium";
+}
+
+.f_inner_wrap{
+	width:350px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	padding-top:110px;
+}
+
+.following_title{
+	font-size:15px;
+	padding:10px 0;
+}
+
+.following_noti{
+	font-size:13px;
+	text-align:center;
+	padding-bottom:20px;
+}
+
+.custom-btn {
+    border-radius: 12px;
+    border: 1px solid #ebebeb;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+}
+
+.custom-btn:hover {
+	background-color: #f2f2f2;
+	cursor: pointer;
+}

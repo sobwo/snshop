@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.account_registration{
+	width:480px;
+	padding-top:20px;
+}
+
+.account_registration_wrap{
+	margin-bottom:10px;
+}
+
+.ar_title_wrap{
+	width:100%;
+	font-size:13px;
+	font-weight:bold;
+}
+
+.ar_input_wrap{
+	width:100%;
+}
+
+.ar_input{
+	width:100%;
+	height:22px;
+	padding:8px 0;
+	border:0;
+	border-bottom:1px solid #ebebeb;
+}
+
+.ar_input:focus{
+	border-bottom:2px solid #222;
+}
+
+.ar_btn_area{
+	width:480px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	padding-top:20px;
+}
+
+.ar_btn{
+	width:105px;
+	height:40px;
+	text-align:center;
+	font-size:14px;
+	border-radius:12px;
+	cursor:pointer;
+	background:#ebebeb;
+	border:0;
+	color:#fff;
+}
+
+.ar_msg{
+	font-size:11px;
+	color:#f00;
+}

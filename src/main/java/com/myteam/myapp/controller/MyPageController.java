@@ -36,4 +36,28 @@ public class MyPageController {
 		
 		return "myPage/profileInfo";
 	}
+	
+	@RequestMapping(value = "/myStyle.do")
+	public String myStyle() {
+		
+		return "myPage/myStyle";
+	}
+	
+	@RequestMapping(value = "/myStyle_upload.do")
+	public String myStyle_upload() {
+		
+		return "myPage/myStyle_upload";
+	}
+	
+	@RequestMapping(value = "/address.do")
+	public String address() {
+		
+		return "myPage/address";
+	}
+	
+	@RequestMapping(value = "/incomeAccount.do")
+	public String incomeAccount() {
+		
+		return "myPage/incomeAccount";
+	}
 }

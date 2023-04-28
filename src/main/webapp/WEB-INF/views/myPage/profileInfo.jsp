@@ -60,8 +60,9 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status modify_password_area">
 										<h6 class="modify_info_title">새로운 비밀번호</h6>
-										<input type="password" class="modify_info_status" name="modify_name" placeholder="비밀번호를 입력하세요.">
-										<input type="password" class="modify_info_status" placeholder="비밀번호를 다시 입력하세요.">
+										<input type="password" class="modify_info_status_1" id="modify_pw" name="modify_name" placeholder="비밀번호를 입력하세요.">
+										<input type="password" class="modify_info_status" id="modify_pw2" placeholder="비밀번호를 다시 입력하세요.">
+										<span class="msg" id="pw_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
@@ -83,7 +84,8 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status">
 										<h6 class="modify_info_title">새로운 이름</h6>
-										<input type="text" class="modify_info_status" name="modify_name" placeholder="이름을 입력하세요.">
+										<input type="text" class="modify_info_status" id="modify_name" name="modify_name" placeholder="이름을 입력하세요.">
+										<span class="msg" id="name_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
@@ -102,7 +104,8 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status">
 										<h6 class="modify_info_title">이메일 주소</h6>
-										<input type="text" class="modify_info_status" name="modify_name" placeholder="이메일 주소을 입력하세요.">
+										<input type="text" class="modify_info_status" id="modify_email" name="modify_name" placeholder="이메일 주소을 입력하세요.">
+										<span class="msg" id="email_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
@@ -121,7 +124,8 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status">
 										<h6 class="modify_info_title">휴대폰 번호</h6>
-										<input type="text" class="modify_info_status" name="modify_name" placeholder="휴대폰 번호를 입력하세요.">
+										<input type="text" class="modify_info_status" id="modify_phone" name="modify_name" placeholder="휴대폰 번호를 입력하세요.">
+										<span class="msg"  id="phone_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
