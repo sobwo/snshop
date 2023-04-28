@@ -47,7 +47,6 @@
 								</div>
 								<div class="profile_user_info">
 									<input type="text" class="profile_contents" value="asdfasdf" readonly>
-									<input type="button" class="modify_btn" value="변경">
 								</div>
 							</div>
 							<div class="profile_unit">
@@ -57,6 +56,17 @@
 								<div class="profile_user_info">
 									<input type="password" class="profile_contents" value="asdfasdf" readonly>
 									<input type="button" class="modify_btn" value="변경">
+								</div>
+								<div class="profile_modify_info" style="display:none">
+									<div class="profile_modify_info_status modify_password_area">
+										<h6 class="modify_info_title">새로운 비밀번호</h6>
+										<input type="password" class="modify_info_status" name="modify_name" placeholder="비밀번호를 입력하세요.">
+										<input type="password" class="modify_info_status" placeholder="비밀번호를 다시 입력하세요.">
+									</div>
+									<div class="modify_btn_box">	
+										<input type="button" class="modify_btn_1" value="취소">
+										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -71,8 +81,14 @@
 									<input type="button" class="modify_btn" value="변경">
 								</div>
 								<div class="profile_modify_info" style="display:none">
-									<h6>새로운 이름</h6>
-									<input type="text" class="modify_name" name="modify_name" placeholder="이름을 입력하세요.">
+									<div class="profile_modify_info_status">
+										<h6 class="modify_info_title">새로운 이름</h6>
+										<input type="text" class="modify_info_status" name="modify_name" placeholder="이름을 입력하세요.">
+									</div>
+									<div class="modify_btn_box">	
+										<input type="button" class="modify_btn_1" value="취소">
+										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+									</div>
 								</div>
 							</div>
 							<div class="profile_unit">
@@ -83,6 +99,16 @@
 									<input type="text" class="profile_contents" value="snshop@naver.com" readonly>
 									<input type="button" class="modify_btn" value="변경">
 								</div>
+								<div class="profile_modify_info" style="display:none">
+									<div class="profile_modify_info_status">
+										<h6 class="modify_info_title">이메일 주소</h6>
+										<input type="text" class="modify_info_status" name="modify_name" placeholder="이메일 주소을 입력하세요.">
+									</div>
+									<div class="modify_btn_box">	
+										<input type="button" class="modify_btn_1" value="취소">
+										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+									</div>
+								</div>
 							</div>
 							<div class="profile_unit">
 								<div class="profile_title">
@@ -92,6 +118,16 @@
 									<input type="text" class="profile_contents" value="010-0000-0000" readonly>
 									<input type="button" class="modify_btn" value="변경">
 								</div>
+								<div class="profile_modify_info" style="display:none">
+									<div class="profile_modify_info_status">
+										<h6 class="modify_info_title">휴대폰 번호</h6>
+										<input type="text" class="modify_info_status" name="modify_name" placeholder="휴대폰 번호를 입력하세요.">
+									</div>
+									<div class="modify_btn_box">	
+										<input type="button" class="modify_btn_1" value="취소">
+										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+									</div>
+								</div>
 							</div>
 							<div class="profile_unit">
 								<div class="profile_title">
@@ -100,6 +136,19 @@
 								<div class="profile_user_info">
 									<input type="text" class="profile_contents" value="남자" readonly>
 									<input type="button" class="modify_btn" value="변경">
+								</div>
+								<div class="profile_modify_info" style="display:none">
+									<div class="profile_modify_info_status modify_gender_area">
+										<h6 class="modify_info_title">새로운 성별</h6>
+										<div class="modifyGender_area">
+											<div id="man">남성<input type="radio" class="modifyGender" name="modifyGender"/></div>
+											<div id="woman">여성<input type="radio" class="modifyGender" name="modifyGender"/></div>
+										</div>
+									</div>
+									<div class="modify_btn_box">	
+										<input type="button" class="modify_btn_1" value="취소">
+										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+									</div>
 								</div>
 							</div>
 						</div>
@@ -125,8 +174,7 @@
 		</div>	
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myPage/profileInfo.js"></script>
 		<script>
 		</script>
 	</body>
