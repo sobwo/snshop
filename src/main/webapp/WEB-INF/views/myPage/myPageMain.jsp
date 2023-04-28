@@ -27,7 +27,7 @@
 								<strong class="user_name">이름</strong>
 								<p class="user_id">ID</p>
 								<input type="button" class="myPageBtn" value="프로필 수정">
-								<input type="button" class="myPageBtn" value="내 스타일">
+								<input type="button" class="myPageBtn" value="내 스타일" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle.do'">
 							</div>
 						</div>
 						<div class="memberShip_detail">
