@@ -18,9 +18,13 @@
 					<div class="uploadBox">
 						<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/photo.jpg">
 						<input type="file" id= "fileatt" name="filename">
-						<textarea class="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
+						<textarea id="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
 								onkeydown="resize(this)" onkeyup="resize(this)"
 						></textarea>
+					</div>
+					<div class="hashtagContainer">
+						<button onclick="addHashtag('#하이라이트챌린지')">#하이라이트챌린지</button>
+						<button onclick="addHashtag('#스타일컬렉터')">#스타일컬렉터</button>
 					</div>
 				</div>
 				<div class="tagSelectContainer">
@@ -65,6 +69,12 @@
 			  obj.style.height = "1px";
 			  obj.style.height = (12+obj.scrollHeight)+"px";
 			}
+			 function addHashtag(hashtag) {
+			      var textarea = document.getElementById("contents");
+			      var currentText = textarea.value;
+			      var newText = currentText + " " + hashtag;
+			      textarea.value = newText;
+			 }
 		</script>
 	</body>
 </html>

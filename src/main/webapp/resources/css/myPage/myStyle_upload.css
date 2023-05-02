@@ -14,15 +14,16 @@
 	margin: 0 auto;
 }
 .uploadContainer{
-	display: flex; 
+	display: inline-block; 
 	margin: 0 auto; 
 	width: 1280px;
 	justify-content: left; 
 	align-items: center; 
+	border-bottom: 1px solid rgba(34,34,34,.1);
 }
 .uploadBox{
 	width:1200px;
-	margin:40px;
+	margin:40px 40px 10px 40px;
 }
 .userProfileImage{
 	width:118px;
@@ -33,7 +34,7 @@
 .fileatt{
 	display: block;
 }
-.contents{
+#contents{
 	display: block;
 	width:800px;
 	height: auto;
@@ -42,6 +43,23 @@
 	border: none;
 	resize: none;
 	overflow-y: hidden; 
+}
+.hashtagContainer{
+	display: flex;
+	margin: 0 auto; 
+	width: 1200px;
+	margin-bottom:20px;	
+}
+.hashtagContainer button{
+	display:block;
+	height:30px; 
+	line-height: 30px; 
+	margin: 0 5px;
+	text-align: center;
+	cursor: pointer; 
+	background: #fff;
+	border: 1px solid #000;
+	border-radius: 8px;
 }
 input[type="radio"] {
 	display:none;
@@ -85,13 +103,10 @@ input[type="radio"] {
 	border: 1px solid rgba(34,34,34,.1);
 	border-radius: 15px;
 }
- 	
 input[type="radio"]:checked + label{
 	background:#000;
 	color:#fff;
 }
-
-	
 .uploadBtn_area{
 	display: flex;
 	margin: 0 auto; 
