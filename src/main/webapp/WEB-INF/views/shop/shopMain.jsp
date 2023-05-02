@@ -332,13 +332,18 @@
 			}
 			.pro_icon_area>span{
 				color: rgba(34,34,34,.5);
-				font-size: 12px;
-				margin-right: 6px;
+				font-size: 15px;
+				margin-right: 10px;
 				display:flex;
 				align-items:center;
 			}	
 			
 			.wish_btn img{
+				width:16px;
+				height:13px;
+				cursor:pointer;
+			}
+			.review_btn img{
 				width:16px;
 				height:13px;
 				cursor:pointer;
@@ -573,10 +578,10 @@
 								<div class="pro_icon_area">
 									<span class="wish_btn"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
 									<span>123</span>
-									<span class="review_btn">리뷰수</span>
+									<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
 									<span>123</span>
 								</div>
-							</div>						
+							</div><!-- product_item_wrap -->				
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -660,6 +665,9 @@
 			status_item.on("click",function(){
 				popup_wrap.hide();
 			});
+			
+			//리뷰 버튼
+			
 			
 			
 		</script>
