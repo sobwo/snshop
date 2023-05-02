@@ -206,6 +206,19 @@
 				width: 70px;
 				position: relative;
 			}
+			.product_btn_area button{
+				border:0;
+				background:#fff;
+				cursor:pointer;
+				display:flex;
+				align-items:center;
+			}
+			.product_btn_area img{
+				width:15px;
+				height:15px;
+				margin-left:3px;
+			}
+			
 			.product_btn_list{
 				position: relative;
 				width: 278px;
@@ -224,6 +237,7 @@
 			.btn_list_item{
 				display: flex;
 				flex-direction: column;
+				padding-top:10px;
 			}
 			.product_area{
 				width:100%;
@@ -449,7 +463,7 @@
 							</div><!-- product_count -->
 							
 							<div class="product_btn_area">
-								<button onclick="btn_list();">인기순</button>
+								<button onclick="btn_list();">인기순<img src="${pageContext.request.contextPath}/resources/image/updownfilter.png"></button>
 								<ul class="product_btn_list" style="display:none;">
 									<li>
 										<a class="btn_list_item">
