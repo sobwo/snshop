@@ -12,11 +12,11 @@
 				display: flex;
 				flex-direction: column;
 				flex-wrap: wrap;
+				padding-top: 191px;
 			}
 			.main_area{
 				width: 1280px;
 				margin: 0 auto;
-				padding-top: 191px;
 				display : flex;
 				flex-direction: row;
 				flex-wrap : wrap;
@@ -293,8 +293,10 @@
 	</head>
 	<body>
 		<jsp:include page="popup/shopMain_popup.jsp"></jsp:include>
-		<div class="inner">
+		<div id="header_wrap" style='height:191px;border:0'>
 			<jsp:include page="../common/header_shop.jsp"></jsp:include>
+		</div>
+		<div class="inner">
 			<main class="main_area">
 				<section class="trend_container">
 					<div class="trend_con_area">
