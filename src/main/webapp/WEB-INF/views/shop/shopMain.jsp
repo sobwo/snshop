@@ -239,6 +239,7 @@
 				color: rgba(34,34,34,.5);
 			}
 			.btn_list_item{
+				width:100%;
 				display: flex;
 				padding-top:10px;
 				cursor:pointer;
@@ -247,13 +248,24 @@
 				background:#fafafa;
 			}
 			
+			.list_item_info{
+				width:80%;
+			}
+			
 			.list_item_info span{
 				display:block;
 			}
 			
 			.check_img{
-				width:80px;
+				width:20%;
 				height:100%;
+				margin-top:15px;
+				text-align:center;
+			}
+			
+			.check_img img{
+				width:25px;
+				height:25px;
 			}
 			
 			.product_area{
@@ -486,38 +498,55 @@
 								</button>
 								<ul class="product_btn_list" style="display:none;">
 									<li>
-										<a class="btn_list_item">
+										<div class="btn_list_item">
 											<div class="list_item_info">
-											<span class="list_sub">인기순</span>
-											<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
+												<span class="list_sub">인기순</span>
+												<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
 											</div>
-											<div class="check_img">?
+											<div class="check_img">
+												<img class="check" src="${pageContext.request.contextPath}/resources/image/check.png">
 											</div>
-										</a>
+										</div>
 									</li>
 									<li>
-										<a class="btn_list_item">
-											<span class="list_sub">높은 가격순</span>
-											<span class="list_con">가격이 높은 순서대로 정렬합니다.</span>
-										</a>
+										<div class="btn_list_item">
+											<div class="list_item_info">
+												<span class="list_sub">높은 가격순</span>
+												<span class="list_con">가격이 높은 순서대로 정렬합니다.</span>
+											</div>
+											<div class="check_img">
+											</div>
+										</div>
 									</li>
 									<li>
-										<a class="btn_list_item">
-											<span class="list_sub">낮은 가격순</span>
-											<span class="list_con">가격이 낮은 순서대로 정렬합니다.</span>
-										</a>
+										<div class="btn_list_item">
+											<div class="list_item_info">
+												<span class="list_sub">낮은 가격순</span>
+												<span class="list_con">가격이 낮은 순서대로 정렬합니다.</span>
+											</div>
+											<div class="check_img">
+											</div>
+										</div>
 									</li>
 									<li>
-										<a class="btn_list_item">
-											<span class="list_sub">관심 많은 순</span>
-											<span class="list_con">관심 상품에 많이 추가된 순서대로 정렬합니다.</span>
-										</a>
+										<div class="btn_list_item">
+											<div class="list_item_info">
+												<span class="list_sub">관심 많은 순</span>
+												<span class="list_con">관심 상품에 많이 추가된 순서대로 정렬합니다.</span>
+											</div>
+											<div class="check_img">
+											</div>
+										</div>
 									</li>
 									<li>
-										<a class="btn_list_item">
-											<span class="list_sub">리뷰순</span>
-											<span class="list_con">리뷰가 많이 등록된 순서대로 정렬합니다.</span>
-										</a>
+										<div class="btn_list_item">
+											<div class="list_item_info">
+												<span class="list_sub">리뷰순</span>
+												<span class="list_con">리뷰가 많이 등록된 순서대로 정렬합니다.</span>
+											</div>
+											<div class="check_img">
+											</div>
+										</div>
 									</li>
 								</ul><!-- product_btn_list -->
 							</div><!-- product_btn_area -->
@@ -591,9 +620,9 @@
 			btn_list_item.on("click",function(){
 				$(".btn_title").text($(this).find('span.list_sub').text());
 				for(var i=0;i<5;i++){
-					$(".check_img").text("");
+					$(".check_img").html("");
 				}
-				$(this).find('div.check_img').text("?");
+				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 				list.hide();
 			});
 			
