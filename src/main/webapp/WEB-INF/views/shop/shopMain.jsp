@@ -114,9 +114,17 @@
 			.filterName1{
 				display:flex;
 				flex-direction : column;
-				font-size : 16px;
-
 			}
+			
+			.filterName1 span:first-child{
+				font-size:14px;
+				font-weight:bold;
+			}
+			
+			.filtername1 span:last-child{
+				font-size:15px;
+			}
+			
 			.filter_allSelect{
 				font-size : 16px;
 				color : rgba(34,34,34,.5);
@@ -187,10 +195,13 @@
 				padding : 12px 16px;
 				
 			}
-			.product_count{
+			.product_count >span{
 				font-size: 13px;
 				color: rgba(34,34,34,.8);	
+				vertical-align:middle;
+				text-align:center;
 			}
+			
 			.product_btn_area{
 				width: 70px;
 				position: relative;
@@ -222,6 +233,7 @@
 				column-gap: 20px;
 				grid-row-gap: 40px;
 				row-gap: 30px;
+				padding:0 10px;
 			}
 			
 			.product_item{
