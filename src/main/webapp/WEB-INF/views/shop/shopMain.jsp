@@ -552,6 +552,8 @@
 			var wish_btn = $(".wish_btn");
 			var popup_wrap = $(".shopMain_popup_wrap");
 			var popup_cancel = $(".popup_cancel");
+			var status_item = $(".status_item");
+			
 			popup_wrap.css('height',window.outerHeight);
 			
 			wish_btn.on("click",function(){
