@@ -203,7 +203,7 @@
 			}
 			
 			.product_btn_area{
-				width: 70px;
+				width: 100px;
 				position: relative;
 			}
 			.product_btn_area button{
@@ -223,6 +223,10 @@
 				position: relative;
 				width: 278px;
 				right: 235px;
+				padding:10px;
+				border:1px solid #ebebeb;
+				border-radius:5px;
+				box-shadow:.5px .5px gray;
 			}
 			.list_sub{
 				font-size: 14px ;
@@ -236,9 +240,22 @@
 			}
 			.btn_list_item{
 				display: flex;
-				flex-direction: column;
 				padding-top:10px;
+				cursor:pointer;
 			}
+			.btn_list_item:hover{
+				background:#fafafa;
+			}
+			
+			.list_item_info span{
+				display:block;
+			}
+			
+			.check_img{
+				width:80px;
+				height:100%;
+			}
+			
 			.product_area{
 				width:100%;
 				display : grid;
@@ -463,12 +480,19 @@
 							</div><!-- product_count -->
 							
 							<div class="product_btn_area">
-								<button onclick="btn_list();">인기순<img src="${pageContext.request.contextPath}/resources/image/updownfilter.png"></button>
+								<button onclick="btn_list();">
+									<span class="btn_title">인기순</span>
+									<img src="${pageContext.request.contextPath}/resources/image/updownfilter.png">
+								</button>
 								<ul class="product_btn_list" style="display:none;">
 									<li>
 										<a class="btn_list_item">
+											<div class="list_item_info">
 											<span class="list_sub">인기순</span>
 											<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
+											</div>
+											<div class="check_img">?
+											</div>
 										</a>
 									</li>
 									<li>
@@ -552,14 +576,26 @@
 					$(".filter_teg_area").text("");
 			});
 			
+			//우측 필터버튼
+			var list = $(".product_btn_list");
 			function btn_list(){
-		 		var list = $(".product_btn_list");
 				if ( list.css('display') === 'none'){
 					list.show();
 				}else{
 					list.hide();
 				}
 			}
+			
+			//우측 필터버튼 클릭시
+			var btn_list_item = $(".btn_list_item");
+			btn_list_item.on("click",function(){
+				$(".btn_title").text($(this).find('span.list_sub').text());
+				for(var i=0;i<5;i++){
+					$(".check_img").text("");
+				}
+				$(this).find('div.check_img').text("?");
+				list.hide();
+			});
 			
 			function btn_filter(index){
 				filter_btn.eq(index).on("click",function(){
