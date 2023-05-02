@@ -50,7 +50,7 @@
 	flex-wrap: wrap;
 }
 
-.status_item{
+.status_item_fb{
 	width:120px;
 	height:52px;
 	margin:6px;
@@ -62,7 +62,7 @@
 	align-items:center;
 }
 
-.status_item span{
+.status_item_fb span{
 	width:100%;
 	height:100%;
 	text-align:center;
@@ -71,7 +71,7 @@
 	font-weight:bold;
 }
 
-.item_price img{
+.item_price_fb img{
 	width:18px;
 	height:16px;
 }

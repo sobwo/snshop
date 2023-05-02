@@ -338,7 +338,7 @@
 				align-items:center;
 			}	
 			
-			.wish_btn img{
+			.wish_img{
 				width:16px;
 				height:13px;
 				cursor:pointer;
@@ -347,7 +347,7 @@
 		</style>
 	</head>
 	<body>
-		<jsp:include page="popup/shopMain_popup.jsp"></jsp:include>
+		<jsp:include page="popup/favorite_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:191px;border:0'>
 			<jsp:include page="../common/header_shop.jsp"></jsp:include>
 		</div>
@@ -571,7 +571,7 @@
 									</div>
 								</div><!-- product_item -->
 								<div class="pro_icon_area">
-									<span class="wish_btn"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+									<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
 									<span>123</span>
 									<span class="review_btn">리뷰수</span>
 									<span>123</span>
@@ -645,7 +645,7 @@
 			var wish_btn = $(".wish_btn");
 			var popup_wrap = $(".shopMain_popup_wrap");
 			var popup_cancel = $(".popup_cancel");
-			var status_item = $(".status_item");
+			var status_item = $(".status_item_fb");
 			
 			popup_wrap.css('height',window.outerHeight);
 			

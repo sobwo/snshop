@@ -4,7 +4,7 @@
 <html>
 <head>
 	<link href="${pageContext.request.contextPath}/resources/css/popup/popup.css" rel="stylesheet"/>
-	<link href="${pageContext.request.contextPath}/resources/css/popup/shopMain_popup.css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}/resources/css/popup/favorite_popup.css" rel="stylesheet"/>
 </head>
 <body>
 	<!-- 팝업창 -->
@@ -25,9 +25,9 @@
 					</div>
 				</div>
 				<ul class="status_item_list">
-					<li class="status_item">
-						<span class="item_size" style="font-size:14px">사이즈</span>
-						<span class="item_price"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+					<li class="status_item_fb">
+						<span class="item_size_fb" style="font-size:14px">사이즈</span>
+						<span class="item_price_fb"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
 					</li>
 				</ul>
 			</div>
