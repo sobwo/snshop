@@ -37,7 +37,7 @@ basic_name.on("input",function(){
 });
 
 basic_phone.on("input",function(){
-	if(basic_phone.val()=='' || isNaN(basic_phone.val()) || basic_phone.val().indexOf("-") != -1) {
+	if(basic_phone.val()=='' || isNaN(basic_phone.val())) {
 		basic_phone.css('border-bottom','2px solid #f00');
 		$("#phone_msg").show();
 	}

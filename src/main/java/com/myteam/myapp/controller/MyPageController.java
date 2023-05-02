@@ -66,4 +66,10 @@ public class MyPageController {
 		
 		return "myPage/point";
 	}
+	
+	@RequestMapping(value = "/payAccount.do")
+	public String payAccount() {
+		
+		return "myPage/payAccount";
+	}
 }
