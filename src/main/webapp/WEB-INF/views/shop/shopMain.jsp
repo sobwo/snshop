@@ -279,100 +279,7 @@
 				font-size: 12px;
 				margin-right: 6px;
 			}
-			.layout_container{
-				width : 440px;
-	/* 			overflow: hidden;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				background-color: #fff;
-		    	border-radius: 16px;
-		        box-shadow: 0 4px 10px 0 rgba(0,0,0,.1); */
-			}
-			.layout_sub{
-				line-height: 30px;
-				padding: 1px 1px;
-				font-size: 22px;
-				font-weight: 700;
-				letter-spacing: -.15px;
-				min-height : 60px;
-				text-align: center;
-				background-color: #fff;
-			}
-			.layout_contents{
-				width : 100%;
-				display : flex;
-				flex-direction : column;
-			}
-			.layout_pro_wrap{
-				display : flex;
-				flex-direction : row;
-				justify-content : space-around;
-				border-bottom: 1px solid #ebebeb;
-				padding: 3px;
-			}
-			.layout_img_wrap{
-				width : 70px;
-				height: 70px;
-			}
-			.layout_img{
-				width : 100%;
-				height : 100%;
-			}
-			.layout_pro_name_wrap{
-				width: 80%;
-			}
-			.layout_name1{
-				text-overflow: ellipsis;
-				line-height: 20px;
-				font-size: 15px;
-				letter-spacing: -.15px;
-			}
-			.layout_name2{
-				margin-top: 2px;
-				line-height: 16px;
-				font-size: 11px;
-				text-overflow: ellipsis;
-				letter-spacing: -.06px;
-			    color: rgba(34,34,34,.5);
-			}
-			.layout_size_wrap{
-				width : 440px;
-				height : 288px;
-				overflow-x: hidden;
-				overflow-y: auto;
-				padding: 10px;
-				display : grid;
-				grid-auto-rows : 52px;
-				grid-template-columns: repeat(3,minmax(0,1fr));
-				grid-column-gap: 20px;
-				column-gap: 20px;
-				grid-row-gap: 15px;
-				row-gap: 15px;
-			}
-			.layout_size_pick,.layout_btn{
-				width: 120px;
-				height: 52px;
-				border: 1px solid #d3d3d3;
-				border-radius: 12px;
-				font-size: 14px;
-				text-align: center;
-			}
-			.layout_size_link{
-				width: 120px;
-				height: 52px;
-				display : flex;
-				flex-direction : column;
-				flex-wrap: wrap;
-				justify-content: center;
-				align-content: center;
-			}
-			.layout_btn_area{
-				padding: 24px 32px 32px;
-				display: flex;
-				justify-content: center;
-				
-			}
+			
 		</style>
 	</head>
 	<body>
@@ -584,35 +491,6 @@
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
 				
-				<div class="layout_container">
-					<div class="layout_header">
-						<h2 class="layout_sub">관심 상품 추가</h2>
-					</div><!-- layout_header -->
-					<div class="layout_contents">
-						<div class="layout_pro_wrap">
-							<div class="layout_img_wrap">
-								<img class="layout_img" src="">
-							</div><!-- layout_img_wrap -->
-							<div class="layout_pro_name_wrap">
-								<ul>
-									<li class="layout_name1" >Apple iPad Air 5th Gen Wifi 64GB Space Gray (Korean Ver.)</li>
-									<li class="layout_name2" >애플 아이패드 에어 5세대 와이파이 64기가 스페이스 그레이 (국내 정식 발매 제품)</li>
-								</ul>
-							</div><!-- layout_pro_name_wrap -->
-						</div><!-- layout_pro_wrap -->
-						<div class="layout_size_wrap">
-							<div class="layout_size_pick">
-								<a class="layout_size_link" href="">
-									<span>250</span>
-									<span>아이콘</span>
-								</a>
-							</div>
-						</div>
-						<div class="layout_btn_area">
-							<a class="layout_btn">확인</a>
-						</div>
-					</div><!-- layout_contents -->
-				</div>
 				
 			</main>	
 			<jsp:include page="../common/footer.jsp"></jsp:include>
