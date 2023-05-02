@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.point_area{
+	width:938px;
+	height:46px;
+	padding:30px;
+	margin-top:12px;
+	background:#fafafa;
+	border:1px solid #ebebeb;
+	display:flex;
+	justify-content:space-between;
+}
+
+.point_summery{
+	height:46px;
+	display:flex;
+}
+
+.point{
+	width:180px;
+	height:100%;
+}
+
+.point_p{
+	border-right:1px solid #ebebeb;
+}
+
+.point_n{
+	padding-left:70px;
+}
+
+.point_title{
+	color:rgba(34,34,34,.5);
+	font-size:13px;
+	display:block;
+}
+
+.point_content{
+	font-size:24px;
+	font-weight:bold;
+	display:block;
+}
+
+.register{
+	width:150px;
+	height:42px;
+	padding:0 18px;
+	background:#222;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	border:0;
+	border-radius:12px;
+	cursor:pointer;
+}
+
+.description{
+	height:16px;
+	margin-top:12px;
+	font-size:12px;
+	color:rgba(34,34,34,.5);
+}
+
+.point_table{
+	border-top:2px solid #222;
+	margin-top:40px;
+	width:1000px;
+}
+
+.point_history_header{
+	font-size:13px;
+	height:17px;
+	padding:15px 0;
+	border-bottom:1px solid #ebebeb;
+}
+
+.empty_point{
+	padding-top:150px;
+	font-size:14px;
+	color:rgba(34,34,34,.5);
+	text-align:center;
+}

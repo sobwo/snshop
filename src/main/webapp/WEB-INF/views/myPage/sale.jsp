@@ -16,7 +16,7 @@
 		</style>
 	</head>
 	<body>
-		<jsp:include page="../common/purchase_popup.jsp"></jsp:include>
+		<jsp:include page="popup/purchase_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
 			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
@@ -91,7 +91,7 @@
 		</div>	
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myPage/sale_menu.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
 		</script>

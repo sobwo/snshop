@@ -3,12 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="${pageContext.request.contextPath}/resources/css/myPage/basic_popup.css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}/resources/css/popup/popup.css" rel="stylesheet"/>
+	<link href="${pageContext.request.contextPath}/resources/css/popup/address_popup.css" rel="stylesheet"/>
 </head>
 <body>
 	<!-- 팝업창 -->
-	<div class="basic_popup_wrap" style="display:none">
-		<div class="basic_popup">
+	<div class="popup_wrap basic_popup_wrap" style="display:none">
+		<div class="popup basic_popup">
 			<div class="popup_head">
 				<h2 class="popup_name">새 주소 추가</h2>
 				<div class="popup_cancel">X</div>
@@ -22,7 +23,7 @@
 					<div class="basic_input_wrap">
 						<input type="text" class="basic_input" id="basic_name" name="basicName" placeholder="수령인의 이름">
 					</div>
-					<span class="basic_msg" style="display:none">올바른 이름을 입력해주세요.(2~10자)</span>
+					<span class="basic_msg" id="name_msg" style="display:none">올바른 이름을 입력해주세요.(2~10자)</span>
 				</div>
 				
 				<!-- 휴대폰번호 -->
@@ -33,7 +34,7 @@
 					<div class="basic_input_wrap">
 						<input type="text" class="basic_input" id="basic_phone" name="basicPhone" placeholder="- 없이 입력">
 					</div>
-					<span class="basic_msg" style="display:none">정확한 휴대폰 번호를 입력해주세요.</span>
+					<span class="basic_msg" id="phone_msg" style="display:none">정확한 휴대폰 번호를 입력해주세요.</span>
 				</div>
 				
 				<!-- 우편 번호 -->
