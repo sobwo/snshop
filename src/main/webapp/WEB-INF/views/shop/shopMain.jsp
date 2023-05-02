@@ -227,6 +227,7 @@
 			.product_item{
 				display : flex;
 				flex-direction : column;
+				cursor:pointer;
 			}
 			.pro_img_area{
 				margin-bottom: 5px;
@@ -278,13 +279,21 @@
 				color: rgba(34,34,34,.5);
 				font-size: 12px;
 				margin-right: 6px;
+				display:flex;
+				align-items:center;
+			}	
+			
+			.wish_btn img{
+				width:16px;
+				height:13px;
+				cursor:pointer;
 			}
 			
 		</style>
 	</head>
 	<body>
+		<jsp:include page="popup/shopMain_popup.jsp"></jsp:include>
 		<div class="inner">
-			
 			<jsp:include page="../common/header_shop.jsp"></jsp:include>
 			<main class="main_area">
 				<section class="trend_container">
@@ -466,8 +475,8 @@
 						</div><!-- filter_teg_area -->
 		
 						<div class="product_area">
-							<a href="${pageContext.request.contextPath}/shop/shopContents.do">
-								<div class="product_item">
+							<div class="product_item_wrap">
+								<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do'">
 									<div class="pro_img_area">
 										<img class="pro_img" src="">
 									</div>
@@ -479,14 +488,14 @@
 											<li class="pro_price">825,000원</li>
 										</ul>
 									</div>
-									<div class="pro_icon_area">
-										<span class="wish_btn">즐겨찾기수</span>
-										<span>123</span>
-										<span class="review_btn">리뷰수</span>
-										<span>123</span>
-									</div>
 								</div><!-- product_item -->
-							</a>						
+								<div class="pro_icon_area">
+									<span class="wish_btn"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+									<span>123</span>
+									<span class="review_btn">리뷰수</span>
+									<span>123</span>
+								</div>
+							</div>						
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -539,7 +548,23 @@
 				});
 			}
 			
+			//즐겨찾기 버튼
+			var wish_btn = $(".wish_btn");
+			var popup_wrap = $(".shopMain_popup_wrap");
+			var popup_cancel = $(".popup_cancel");
+			popup_wrap.css('height',window.outerHeight);
 			
+			wish_btn.on("click",function(){
+				popup_wrap.show();
+			});
+			
+			popup_cancel.click(function(){
+				popup_wrap.hide();
+			});
+			
+			status_item.on("click",function(){
+				popup_wrap.hide();
+			});
 			
 			
 		</script>
