@@ -18,6 +18,7 @@
 					<div class="uploadBox">
 						<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/photo.jpg">
 						<input type="file" id= "fileatt" name="filename">
+						<label for="fileatt"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
 						<textarea id="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
 								onkeydown="resize(this)" onkeyup="resize(this)"
 						></textarea>
