@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.basic_popup{
+	height:550px;
+	margin-top:100px;
+}
+
+
+.popup_contents{
+	padding:5px 10px;
+}
+
+.basic_wrap{
+	margin-bottom:10px;
+}
+
+.basic_title_wrap{
+	width:100%;
+	font-size:13px;
+	font-weight:bold;
+}
+
+.basic_input_wrap{
+	width:100%;
+}
+
+.basic_input{
+	width:100%;
+	height:22px;
+	padding:8px 0;
+	border:0;
+	border-bottom:1px solid #ebebeb;
+}
+
+.basic_input:focus{
+	border-bottom:2px solid #222;
+}
+
+.basic_msg{
+	font-size:11px;
+	color:#f00;
+	height:14px;
+}
+
+.basic_check{
+	width:100%;
+	height:24px;
+	padding-top:20px;
+}
+
+.basic_checkBtn{
+	width:24px;
+	height:24px;
+}
+
+.basic_checkTitle{
+	display:inline-block;
+	font-size:15px;
+	vertical-align:top;
+}

@@ -58,7 +58,7 @@
 					<li><a href='${pageContext.request.contextPath}/myPage/address.do'>주소록</a></li>
 					<li><a href='#'>결제 정보</a></li>
 					<li><a href='${pageContext.request.contextPath}/myPage/incomeAccount.do'>판매 정산 계좌</a></li>
-					<li><a href='#'>포인트</a></li>
+					<li><a href='${pageContext.request.contextPath}/myPage/point.do'>포인트</a></li>
 				</ul>
 			</div>
 		</div>

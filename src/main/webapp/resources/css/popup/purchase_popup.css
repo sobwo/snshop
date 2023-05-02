@@ -10,16 +10,11 @@
 }
 
 .search_filter_popup{
-	width:448px;
 	height:180px;
 	display:flex;
 	justify-content:center;
 	margin-top:200px;
 	flex-direction: column;
-	background:#fff;
-	border-radius:16px;
-	box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
-	padding:15px;
 }
 
 .popup_head{

@@ -60,4 +60,10 @@ public class MyPageController {
 		
 		return "myPage/incomeAccount";
 	}
+	
+	@RequestMapping(value = "/point.do")
+	public String point() {
+		
+		return "myPage/point";
+	}
 }

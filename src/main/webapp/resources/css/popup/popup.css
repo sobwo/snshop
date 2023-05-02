@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.basic_popup_wrap{
+.popup_wrap{
 	width:1902px;
 	background:rgba(34,34,34,.5);
 	position:fixed;
@@ -9,11 +9,9 @@
 	justify-content:center;
 }
 
-.basic_popup{
+.popup{
 	width:448px;
-	height:550px;
 	background:#fff;
-	margin-top:100px;
 	border-radius:16px;
 	box-shadow: 0 4px 10px 0 rgba(0,0,0,.1);
 	padding:15px;
@@ -44,56 +42,7 @@
 }
 
 .popup_contents{
-	width:428px;
-	padding:5px 10px;
-}
-
-.basic_wrap{
-	margin-bottom:10px;
-}
-
-.basic_title_wrap{
-	width:100%;
-	font-size:13px;
-	font-weight:bold;
-}
-
-.basic_input_wrap{
-	width:100%;
-}
-
-.basic_input{
-	width:100%;
-	height:22px;
-	padding:8px 0;
-	border:0;
-	border-bottom:1px solid #ebebeb;
-}
-
-.basic_input:focus{
-	border-bottom:2px solid #222;
-}
-
-.basic_msg{
-	font-size:11px;
-	color:#f00;
-}
-
-.basic_check{
-	width:100%;
-	height:24px;
-	padding-top:20px;
-}
-
-.basic_checkBtn{
-	width:24px;
-	height:24px;
-}
-
-.basic_checkTitle{
-	display:inline-block;
-	font-size:15px;
-	vertical-align:top;
+	width:448px;
 }
 
 .popup_bottom{

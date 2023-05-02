@@ -15,7 +15,6 @@
 		</style>
 	</head>
 	<body>
-		<jsp:include page="../common/address_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
 			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>

@@ -28,22 +28,22 @@ var basic_AddrDetail = $("#basic_AddrDetail");
 basic_name.on("input",function(){
 	if(basic_name.val()=='' || basic_name.val().length<3 || basic_name.val().length>10) {
 		basic_name.css('border-bottom','2px solid #f00');
-		basic_msg.eq(0).show();
+		$("#name_msg").show();
 	}
 	else {
 		basic_name.css('border-bottom','2px solid #222');
-		basic_msg.eq(0).hide();
+		$("#name_msg").hide();
 	}
 });
 
 basic_phone.on("input",function(){
-	if(basic_phone.val()=='' || isNaN(basic_phone.val())) {
+	if(basic_phone.val()=='' || isNaN(basic_phone.val()) || basic_phone.val().indexOf("-") != -1) {
 		basic_phone.css('border-bottom','2px solid #f00');
-		basic_msg.eq(1).show();
+		$("#phone_msg").show();
 	}
 	else {
 		basic_phone.css('border-bottom','2px solid #222');
-		basic_msg.eq(1).hide();
+		$("#phone_msg").hide();
 	}
 });
 
