@@ -99,15 +99,23 @@
 	border-radius: 5%;
 }	
 .imageCnt{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:23px;
+	height:18px;
 	position:absolute;
 	top:10px;
-	right:2px;
-	display: block;
+	right:10px;
 	padding: 3px 6px;
-    font-size: 12px;
-    font-weight: 600;
 	letter-spacing: -.33px;
-    color: #000;
+	background-color:rgba(34,34,34,.5);
+    border-radius: 15px;
+}
+.imageCount{
+	font-size: 13px;
+    font-weight: 600;
+	color: #fff;
 }
 .userProfileImage{
 	object-fit: cover;
@@ -134,7 +142,6 @@
 	color: rgba(34,34,34,.8);
 }
 .likeBox{
-	
 	width:59.797px;
 	height:32px;
 	display: flex;
