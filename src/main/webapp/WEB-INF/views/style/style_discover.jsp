@@ -34,24 +34,24 @@
 		
 			<div class="feedContainer">
 				<div class="feeds">
-					<div class="feedPost" onclick="location.href='#'">
-						<div class="feedPostImage">
+					<div class="feedPost">
+						<div class="feedPostImage" onclick="location.href='#'">
 							<img class="postImage" src="" />
 						</div>	
-						<div class="imageCnt">
+						<div class="imageCnt" onclick="location.href='#'">
 							<span class="imageCount">+1</span>
 						</div>
 						<div class="feedPostUser">
 							<img class="userProfileImage" src="" />
 							<p class="userName">아이디</p>
 							
-							<span class="likeBox">
-							<img class="likeImage" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
+							<span class="likeBox" onclick="like();">
+							<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
 							<span class="likeCount">7</span>
 							</span>
 						</div>
 						
-						<div class="feedPostContent">
+						<div class="feedPostContent" onclick="location.href='#'">
 							<p>게시글 내용</p>
 						</div>
 					</div>
@@ -59,5 +59,20 @@
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>	
+		
+		<script>
+			var imgChange = document.getElementById("likeImageChange");
+			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
+	
+			function like(){
+			    if (currentImage === '${pageContext.request.contextPath}/resources/image/heart.png/') {
+			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
+			        currentImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
+			    } else {
+			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png/');
+			        currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
+			    }
+			}
+		</script>
 	</body>
 </html>

@@ -25,11 +25,12 @@
 	width:1200px;
 	margin:40px 40px 10px 40px;
 }
-.userProfileImage{
+#previewImages img{
 	width:118px;
 	height:118px;
 	border: 1px solid rgba(34,34,34,.1);
 	border-radius: 10px;
+	margin:0 10px 0 0;
 }
 #fileatt{
 	position: absolute;
@@ -80,7 +81,7 @@
 	border: 1px solid #808080;
 	border-radius: 8px;
 }
-input[type="radio"] {
+input[type="checkbox"] {
 	display:none;
 }
 .tagSelectContainer{
@@ -122,7 +123,7 @@ input[type="radio"] {
 	border: 1px solid rgba(34,34,34,.1);
 	border-radius: 15px;
 }
-input[type="radio"]:checked + label{
+input[type="checkbox"]:checked + label{
 	background:#000;
 	color:#fff;
 }

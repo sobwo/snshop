@@ -16,9 +16,9 @@
 			<div class="myStyleContainer_inner">
 				<div class="uploadContainer">
 					<div class="uploadBox">
-						<img class="userProfileImage" id="previewImage" src="${pageContext.request.contextPath}/resources/image/photo.jpg">
-						<input type="file" id= "fileatt" name="filename">
-						<label for="fileatt"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
+						<div id="previewImages"></div>
+						<input type="file" multiple="multiple" id="fileatt" name="filename" onchange="readImage(event)">
+						<label for="fileatt" id="fileLabel"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
 						<textarea id="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
 								onkeydown="resize(this)" onkeyup="resize(this)"
 						></textarea>
@@ -34,9 +34,9 @@
 							<span>유형</span>
 						</div>
 						<div class="tagSelect">
-							<input class="genderSelect" id="male" type="radio" value="남성">
+							<input class="genderSelect" id="male" type="checkbox" value="남성">
 							<label for="male">남성</label>
-							<input class="genderSelect" id="female" type="radio" value="여성">
+							<input class="genderSelect" id="female" type="checkbox" value="여성">
 							<label for="female">여성</label>
 						</div>
 					</div>
@@ -46,15 +46,15 @@
 							<span>스타일</span>
 						</div>
 						<div class="tagSelect">
-							<input class="styleSelect" id="shoes" type="radio" value="신발">
+							<input class="styleSelect" id="shoes" type="checkbox" value="신발">
 							<label for="shoes">신발</label>
-							<input class="styleSelect" id="outer" type="radio" value="아우터">
+							<input class="styleSelect" id="outer" type="checkbox" value="아우터">
 							<label for="outer">아우터</label>
-							<input class="styleSelect" id="top" type="radio" value="상의">
+							<input class="styleSelect" id="top" type="checkbox" value="상의">
 							<label for="top">상의</label>
-							<input class="styleSelect" id="bottoms" type="radio" value="하의">
+							<input class="styleSelect" id="bottoms" type="checkbox" value="하의">
 							<label for="bottoms">하의</label>
-							<input class="styleSelect" id="bag" type="radio" value="가방">
+							<input class="styleSelect" id="bag" type="checkbox" value="가방">
 							<label for="bag">가방</label>
 						</div>
 					</div>
@@ -70,32 +70,38 @@
 			  obj.style.height = "1px";
 			  obj.style.height = (12+obj.scrollHeight)+"px";
 			}
-			 function addHashtag(hashtag) {
+			function addHashtag(hashtag) {
 			      var textarea = document.getElementById("contents");
 			      var currentText = textarea.value;
 			      var newText = currentText + " " + hashtag;
 			      textarea.value = newText;
-			 }
-			 function readImage(input) {
-				    // 인풋 태그에 파일이 있는 경우
-				    if(input.files && input.files[0]) {
-				        // 이미지 파일인지 검사 (생략)
-				        // FileReader 인스턴스 생성
-				        const reader = new FileReader();
-				        // 이미지가 로드가 된 경우
-				        reader.onload = e => {
-				            const previewImage = document.getElementById("previewImage");
-				            previewImage.src = e.target.result;
-				        }
-				        // reader가 이미지 읽도록 하기
-				        reader.readAsDataURL(input.files[0]);
-				    }
-				}
-				// input file에 change 이벤트 부여
-				const inputImage = document.getElementById("fileatt");
-				inputImage.addEventListener("change", e => {
-				    readImage(e.target);
-				})
+			}
+		
+			function readImage(event) {
+				  var previewImages = document.querySelector("div#previewImages");
+				  var fileLabel = document.querySelector("label#fileLabel");
+			
+				  // 파일 개수가 5개를 초과하는 경우 업로드를 막음
+				  if (event.target.files.length > 5) {
+				    alert("사진은 5개까지만 첨부 가능합니다.");
+				    event.target.value = "";
+				    return;
+				  }
+			
+				  for (var image of event.target.files) {
+				    var reader = new FileReader();
+				    reader.onload = function(event) {
+				      var img = document.createElement("img");
+				      img.setAttribute("src", event.target.result);
+				      previewImages.appendChild(img);
+				      if (previewImages.childElementCount >= 5) {
+				        fileLabel.style.display = "none";
+				      }
+				    };
+				    console.log(image);
+				    reader.readAsDataURL(image);
+				  }
+			}
 		</script>
 	</body>
 </html>
