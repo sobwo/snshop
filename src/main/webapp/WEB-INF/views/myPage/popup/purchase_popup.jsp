@@ -7,13 +7,15 @@
 	<link href="${pageContext.request.contextPath}/resources/css/popup/purchase_popup.css" rel="stylesheet"/>
 </head>
 <body>
-	<!-- 팝업창 -->
+	<!-- 구매페이지 진행버튼 클릭되어있을때 팝업창 -->
 	<div class="popup_wrap search_filter_popup_wrap ing_popup" style="display:none">
 		<div class="popup search_filter_popup">
+			<!-- 팝업 헤더 -->
 			<div class="popup_head">
 				<h2 class="popup_name">선택한 상태 보기</h2>
 				<div class="popup_cancel">X</div>
 			</div>
+			
 			<div class="popup_contents">
 				<ul class="status_item_list">
 					<li class="status_item"><span style="font-weight:bold">전체</span></li>
@@ -26,6 +28,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 구매페이지 종료버튼 클릭되있을때 팝업버튼 -->
 	<div class="popup_wrap search_filter_popup_wrap end_popup" style="display:none">
 		<div class="popup search_filter_popup">
 			<div class="popup_head">
@@ -45,6 +49,7 @@
 		</div>
 	</div>
 	
+	<!-- 판매페이지 종료버튼 클릭되어있을때 팝업버튼 -->
 	<div class="popup_wrap search_filter_popup_wrap sale_end_popup" style="display:none">
 		<div class="popup search_filter_popup">
 			<div class="popup_head">

@@ -22,9 +22,12 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+					<!-- 프로필정보 헤더 -->
 					<div class="content_title content_title_on">
 						<h3>프로필 정보</h3>
 					</div>
+					
+					<!-- 프로필 사진,이름 -->
 					<div class="user_profile">
 						<div class="user_thumb">
 							<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
@@ -37,6 +40,8 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 로그인정보 -->
 					<div class="profile_info">
 						<div class="profile_group">
 							<h2>로그인 정보</h2>
@@ -70,6 +75,8 @@
 								</div>
 							</div>
 						</div>
+						
+						<!-- 기타 개인정보 -->
 						<div class="profile_group">
 							<h2>개인 정보</h2>
 							<div class="profile_unit">
@@ -155,6 +162,8 @@
 								</div>
 							</div>
 						</div>
+						
+						<!-- 동의 체크 버튼 -->
 						<div class="profile_group">
 							<h2>광고성 정보 수신</h2>
 							<div class="profile_unit">

@@ -61,43 +61,8 @@
 		</form>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/member/searchId.js"></script>
 		<script>
-			$(document).ready(function(){
-				$('.searchPhone').hide();
-				$('.searchEmail').hide();
-				$("input:radio[name=searchMeasure]").click(function(){
-					if($("input[name=searchMeasure]:checked").val() == "phone"){
-						$('.searchEmail').hide();
-						$('.searchPhone').show();
-						$('.searchPhone_area').css('height','150px');
-						$('.searchEmail_area').css('height','100px');
-					}
-					else if($("input[name=searchMeasure]:checked").val() == "email"){
-						$('.searchEmail').show();
-						$('.searchPhone').hide();
-						$('.searchPhone_area').css('height','100px');
-						$('.searchEmail_area').css('height','150px');
-					}
-				});
-			});
-			
-			$('#memberName_phone, #memberPhone, #memberName_email, #memberEmail').on('input',function(){
-				var inputName_phone = $('#memberName_phone').val();
-				var inputName_email = $('#memberName_email').val();
-				var inputPhone = $('#memberPhone').val();
-				var inputEmail = $('#memberEmail').val();
-
-				if((inputName_phone != '' && inputPhone != '') || (inputName_email != '' && inputEmail != '')){
-					$('.searchBtn').prop('disabled', false);
-					$('.searchBtn').css('background-color', '#222');
-				}
-				else{ 
-					$('.searchBtn').css('background-color', '#ebebeb');
-					$('.searchBtn').prop('disabled', true);
-				}
-			});
-			
-			
 			function search(){
 				var fm = document.frm;
 				fm.action ="${pageContext.request.contextPath}/member/searchIdVal.do";

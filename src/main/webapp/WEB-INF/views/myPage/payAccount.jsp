@@ -23,12 +23,16 @@
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
 					<div class="content_title content_title_on content_title_account">
+						
+						<!-- 결제정보 헤더 -->
 						<div>
 							<h3>결제 정보</h3>
 							<span style="display:block;font-size:12px;color:rgba(34,34,34,.5);">수수료(페널티, 착불배송비 등)가 정산되지 않을 경우, 별도 고지 없이 해당 금액을 결제 시도할 수 있습니다.</span>
 						</div>
 						<input type="button" class="plus_account" value="+ 새 카드 추가하기">
 					</div>
+					
+					<!-- 결제정보 리스트 -->
 					<div class="payAccount_info_wrap">
 						<div class="payAccount_info empty_payAccount_info">추가하신 결제 정보가 없습니다.</div>
 					</div>

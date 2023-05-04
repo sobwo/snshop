@@ -10,10 +10,13 @@
 	<!-- 팝업창 -->
 	<div class="popup_wrap point_popup_wrap" style="display:none">
 		<div class="popup point_popup">
+			<!-- 포인트 헤더 -->
 			<div class="popup_head">
 				<h2 class="popup_name">포인트 적립</h2>
 				<div class="popup_cancel">X</div>
 			</div>
+			
+			<!-- 쿠폰 입력 -->
 			<div class="popup_contents">
 				<div class="input_box">
 					<h4 class="input_box_title">포인트 코드</h4>
@@ -24,6 +27,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<!-- 버튼 -->
 			<div class="popup_bottom">
 				<input type="button" class="basic_btn_1" value="취소">
 				<input type="button" class="basic_btn_2" disabled="disabled" value="저장하기">

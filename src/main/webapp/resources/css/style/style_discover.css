@@ -3,6 +3,7 @@
 #content_wrap{
 	width:1903px;
 	padding-top:131px; 
+	font-family:"GmarketSansMedium";
 }
 .tagContainer {
 	display: flex; 

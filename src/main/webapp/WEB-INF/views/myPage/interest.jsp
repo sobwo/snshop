@@ -26,9 +26,12 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+					<!-- 관심상품 헤더 -->
 					<div class="content_title content_title_on">
 						<h3>관심 상품</h3>
 					</div>
+					
+					<!-- 관심상품 컨텐츠 -->
 					<div class="purchase_contents_wrap">
 						<div class="purchase_contents purchase_contents_interest">
 							<div class="purchase_detail">

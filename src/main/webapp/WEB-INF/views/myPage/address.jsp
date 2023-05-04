@@ -23,10 +23,14 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+				
+					<!-- 주소록 헤더 -->
 					<div class="content_title">
 						<h3>주소록</h3>
 						<input type="button" class="plus_address" value="+ 새 배송지 추가">
 					</div>
+					
+					<!-- 주소록 리스트 -->
 					<div class="address_list">
 						<div class="basic_address">
 							<div class="address_contents">
