@@ -16,6 +16,7 @@
 .orderFinishBox{
 	width:700px;
 	height:601px;
+	margin-top:130px;
 	background-color: #fff;
 }
 .orderFinisTitle{
@@ -104,4 +105,5 @@
     font-size:20px;
     border-radius: 8px;
     border:none;
+    cursor:pointer;
 }

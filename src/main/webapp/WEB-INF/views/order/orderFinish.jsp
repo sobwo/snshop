@@ -10,22 +10,8 @@
 	 
 </head>
 	<body>
-		<div id="top_inner">
-			<div id="top_menu">
-				<ul>
-					<li><a>고객센터</a></li>
-					<li style='margin-left:24px'><a>관심상품</a></li>
-					<li style='margin-left:24px'><a>로그인</a></li>
-					<li><a>로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="header_main">
-			<div id="main_inner">
-				<div id="logo">
-					<h1 style='font-size:22px;'><a>로고</a></h1>
-				</div>
-			</div>
+		<div id="header_wrap" style='height:94px;border:0'>
+			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
 		<div class="orderFinishContainer">
 			<div class="orderFinishContent">
@@ -53,7 +39,6 @@
 					</div>
 					<div class="orderFinishBtn">
 						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="location.href='${pageContext.request.contextPath}/'">
-						<label for="buyContinue"></label>
 					</div>	
 				</div>
 			</div>	

@@ -58,21 +58,8 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../common/footer.jsp"></jsp:include>	
-		
-		<script>
-			var imgChange = document.getElementById("likeImageChange");
-			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
-	
-			function like(){
-			    if (currentImage === '${pageContext.request.contextPath}/resources/image/heart.png/') {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
-			    } else {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png/');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
-			    }
-			}
-		</script>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/style/style_discover.js"></script>
 	</body>
 </html>

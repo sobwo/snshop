@@ -68,23 +68,6 @@
 		</div>	
 	<jsp:include page="../common/footer.jsp"></jsp:include>	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script>
-		$(document).ready(function() {
-	
-		  var numCheckboxes = $('.checkList input[type="checkbox"]').length;
-	
-		  $('.checkList input[type="checkbox"]').on('change', function() {
-		    var numChecked = $('.checkList input[type="checkbox"]:checked').length;
-		    if (numChecked === numCheckboxes) {
-		      $('#buyContinue').prop('disabled', false);
-		      $('#buyContinue').css('background-color', '#222');
-		      $('#buyContinue').css('cursor', 'pointer');
-		    } else {
-		      $('#buyContinue').css('background-color', '#ebebeb');
-		      $('#buyContinue').prop('disabled', true);
-		    }
-		  });
-		});
-	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/order/orderAgree.js"></script>
 	</body>
 </html>
