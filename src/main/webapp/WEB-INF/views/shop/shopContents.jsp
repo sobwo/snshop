@@ -197,10 +197,6 @@
 				popup_wrap_2.hide();
 				
 			});
-			
-
-			
-
 				
 		</script>
 	</body>
