@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+#purchase{
+	text-align: center;
+	flex: 1;
+}
+.purchaseContainer{
+	width:1902px;
+	height:881px;
+	background-color: #fafafa;
+}
+.buyContent{
+	width:700px;
+	height:701px;
+	margin: 0 auto;
+    padding: 20px 40px 160px;
+    max-width: 780px;
+}
+.buyBox{
+	width:700px;
+	height:601px;
+	margin-top:130px;
+	background-color: #fff;
+}
+.buyTitle{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 38px;
+    padding: 32px 32px 40px;
+    font-size: 25px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+}
+.accentTitle{
+	color: #f15746;
+}
+.buyProduct{
+	display: flex;
+	align-items: center;
+	width: 636px;
+	height: 80px;
+	padding: 0 32px 18px;
+}
+.buyItem{
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+    image-rendering: auto;
+}
+.buyInfo{
+	width: 540px;
+	height: 80px;
+	padding-left: 16px;
+	text-align: left;
+}
+.buyCheckBox{
+	width:700px;
+	height:493px;
+}
+.checkList{
+	margin: 8px 32px;
+	padding: 0;
+	border-top: 2px solid #222;
+}
+.checkList li{
+	padding: 19px 0 20px;
+	border-top: 1px solid #ebebeb;
+	display: flex;
+	align-items: center;
+}
+.notice{
+	width: 450px;
+	
+	margin-right: 20px;
+}
+.noticeMain{
+	width:450px;
+	height:18px;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight:600;
+    letter-spacing: -.01px;
+}
+.noticeSub{
+    margin-top: 8px;
+    line-height: 16px;
+    font-size: 13px;
+    letter-spacing: -.07px;
+    letter-spacing: -.05px;
+    color: rgba(34,34,34,.5);
+}
+.checkboxWrap{
+	margin-left: auto;
+}
+#checkbox{
+	width:24px;
+	height:24px;
+}
+.confirmBtn{
+	width:636px;
+	height:52px;
+	padding:32px 32px;
+}
+#buyContinue{
+	width:636px;
+	height:52px;
+	background-color: #ebebeb;
+	color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+    font-size:20px;
+    border-radius: 8px;
+    border:none;
+}

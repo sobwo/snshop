@@ -57,7 +57,7 @@
 						</div>
 						
 						<div class="btn_area">
-							<button class="sellButton" name="buy_btn" type="button">구매</button>
+							<button class="sellButton" name="buy_btn" type="button" onclick="location.href='${pageContext.request.contextPath}/order/orderAgree.do'">구매</button>
 							<button class="buyButton" name="sell_btn">판매</button>
 							<button class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png">관심상품 123</button>
 						</div>
