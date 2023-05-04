@@ -17,6 +17,9 @@
 		<main class="main">
 			<div class="container">
 				<div class="product_area">
+				
+			<!-- 상품 이미지 표시 -->
+			
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -34,6 +37,9 @@
 							<li><img src=""></li>
 						</ul>
 					</div>
+					
+			<!-- 상품 가격 표시 -->
+			
 					<div class="productContents_area">
 						<div class="productContents">
 							<div class="brandName"><a href="#">jordan</a></div>
@@ -79,6 +85,8 @@
 								</div>
 							</div>
 						</div><!--productInfo-->
+					
+				<!-- 상품 구매시 주의사항 -->
 						<div class="confirm">
 							<h3>구매 전 꼭 확인해주세요!</h3>
 							<div>	
@@ -101,7 +109,9 @@
 						</div><!--confirm-->
 					</div><!--productContents_area-->
 				</div><!--product_area-->
-				
+			
+			<!-- 추천상품 표시 -->
+			
 				<div class="otherProduct_area">
 					<div class="o_sub">
 						<h3 class="sub_h3">추천상품</h3>
@@ -120,7 +130,9 @@
 						</div>
 					</div>
 				</div>
-					
+				
+			<!-- 상품 리뷰(후기) -->
+			
 				<div class="feed_area">
 					<h3 class="sub_h3">리뷰(스타일)<span>123</span></h3>
 					
