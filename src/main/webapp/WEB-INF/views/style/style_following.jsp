@@ -16,7 +16,7 @@
 				<p class="following_title"><strong>팔로잉</strong></p>
 				<p class="following_noti">다른 사용자를 팔로우 하면 해당 사용자의 <br>게시물이 여기에 표시됩니다</p>
 		
-				<input type="button" value="인기글 보기" class="custom-btn" />
+				<input type="button" value="인기글 보기" class="custom-btn" onclick="location.href='${pageContext.request.contextPath}/style/style_discover.do'"/>
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
