@@ -94,6 +94,11 @@
 .checkboxWrap{
 	margin-left: auto;
 }
+
+.checkboxWrap input{
+	width:24px;
+	height:24px;
+}
 #checkbox{
 	width:24px;
 	height:24px;
