@@ -72,7 +72,18 @@
 				flex-direction : row;
 				margin : 0 10px;
 			}
-			
+			.trend_list>button{
+				color: transparent;
+				width: 6px;
+				height: 6px;
+				background: #d3d3d3;
+				font-size: 0;
+				border: 6px;
+				border-color : #000;
+				border-radius: 6px;
+				margin : 0 5px;
+					
+			}
 			.product_container{
 				display : flex;
 				flex-direction: row;
@@ -153,6 +164,59 @@
 				display: flex;
 				flex-direction: column;
 				padding : 3px;
+			}
+			.size_title{
+				color: rgba(34,34,34,.8);
+				font-size: 13px;
+				font-weight: 600;
+				padding: 4px 0;
+				margin-bottom: 10px;
+			}
+			.sh_size_btn{
+				display: grid;
+				grid-template-columns: repeat(3,1fr);
+				grid-column-gap: 1px;
+				column-gap: 10px;
+				grid-row-gap: 1px;
+				row-gap: 10px;
+				padding: 10px;
+				text-align: center;
+				margin : 10px 0 ;
+			}
+			.column_menu{
+				height: 32px;
+				border: 1px solid #d3d3d3;
+				font-size: 13px;
+				line-height: 30px;
+			}
+			.more_btn{
+				font-size: 12px;
+				line-height: 14px;
+				color: rgba(34,34,34,.8);
+				cursor: pointer;
+				margin: 14px 0;
+			}
+			.ahpabet_size{
+				display: grid;
+				grid-template-columns: repeat(2,1fr);
+				grid-column-gap: 1px;
+				column-gap: 10px;
+				grid-row-gap: 1px;
+				row-gap: 10px;
+				padding: 10px;
+				text-align: center;
+				margin : 10px 0 ;
+			}
+			.number_size{
+				display: grid;
+				grid-template-columns: repeat(3,1fr);
+				grid-column-gap: 1px;
+				column-gap: 10px;
+				grid-row-gap: 1px;
+				row-gap: 10px;
+				padding: 10px;
+				text-align: center;
+				margin : 10px 0 ;
 			}
 			.filter_teg_area{
 				display: flex;
@@ -373,10 +437,10 @@
 					
 					<div class="trend_btn_area">
 						<button class="trend_pre_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
-						<ul>
-							<li>1</li>
-							<li>2</li>
-							<li>3</li>
+						<ul class="trend_btn_ul">
+							<li class="trend_list"><button>0</button></li>
+							<li class="trend_list"><button>1</button></li>
+							<li class="trend_list"><button>2</button></li>
 						</ul>
 						<button class="trend_next_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
 					</div><!-- trend_btn_area -->
@@ -408,10 +472,22 @@
 											<a href="#"><input type="checkbox" id="shoes" name="shoes" value="신발" > 신발</a>
 											<ul class="filter_child_list">
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" name="" value="" > </a>		
+													<a href="#"><input type="checkbox" class="shoes_list" name="스니커즈" value="스니커즈" > 스니커즈</a>		
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" name="" value="" > </a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="플랫" value="플랫" > 플랫</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="로퍼" value="로퍼" > 로퍼</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="더비" value="더비" > 더비</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="힐" value="힐" > 힐</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="부츠" value="부츠" > 부츠</a>
 												</li>							
 											</ul><!-- filter_child_list -->		
 										</li>
@@ -468,8 +544,63 @@
 								</div><!-- title_area -->
 								
 								<div class="filter_list_area" style="display:none;">
-									<ul class="filter_list">
-									</ul><!-- filter_list -->
+									<div class="filter_list">
+										<div class="size_title">신발</div>
+										<div class="sh_size_btn">
+											<a href="#" class="column_menu">215</a>
+											<a href="#" class="column_menu">220</a>
+											<a href="#" class="column_menu">225</a>
+											<a href="#" class="column_menu">230</a>
+											<a href="#" class="column_menu">235</a>
+											<a href="#" class="column_menu">240</a>
+											<a href="#" class="column_menu">245</a>
+											<a href="#" class="column_menu">250</a>
+											<a href="#" class="column_menu">255</a>
+											<a href="#" class="column_menu">260</a>
+											<a href="#" class="column_menu">265</a>
+											<a href="#" class="column_menu">270</a>
+											<a href="#" class="column_menu">275</a>
+											<a href="#" class="column_menu">280</a>
+											<a href="#" class="column_menu">285</a>
+											<a href="#" class="column_menu">290</a>
+											<a href="#" class="column_menu">295</a>
+											<a href="#" class="column_menu">300</a>
+											<a href="#" class="column_menu">305</a>
+											<a href="#" class="column_menu">310</a>
+											<a href="#" class="column_menu">315</a>
+											<a href="#" class="column_menu">320</a>
+											<a href="#" class="column_menu">325</a>
+											<a href="#" class="column_menu">330</a>
+										</div><!-- size_btn -->
+										
+										<div class="more_btn"><a>+ 더보기</a></div>
+										
+										<div class="size_title">의류</div>
+										
+										<div class="ch_size_btn_wrap">
+											<div class="ahpabet_size">
+												<a href="#" class="column_menu">XXS</a>
+												<a href="#" class="column_menu">XS</a>
+												<a href="#" class="column_menu">S</a>
+												<a href="#" class="column_menu">M</a>
+												<a href="#" class="column_menu">L</a>
+												<a href="#" class="column_menu">XL</a>
+												<a href="#" class="column_menu">XXL</a>
+												<a href="#" class="column_menu">XXXL</a>
+											</div><!-- ahpabet_size -->
+											<div class="number_size">
+												<a href="#" class="column_menu">28</a>
+												<a href="#" class="column_menu">29</a>
+												<a href="#" class="column_menu">30</a>
+												<a href="#" class="column_menu">31</a>
+												<a href="#" class="column_menu">32</a>
+												<a href="#" class="column_menu">33</a>
+												<a href="#" class="column_menu">34</a>
+												<a href="#" class="column_menu">35</a>
+												<a href="#" class="column_menu">36</a>
+											</div><!-- number_size -->										
+										</div><!-- ch_size_btn_wrap -->
+									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
 							
@@ -594,20 +725,72 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){});
-
-			var filter_btn = $(".filter_btn");
-			var filter_list_area = $(".filter_list_area");
 			
+			//좌측 필터
+			var filter_btn = $(".filter_btn");
+			var filter_allSelect = $(".filter_allSelect");
+			var filter_list_area = $(".filter_list_area");
+
 			for(var i=0; i<4;i++){
 				btn_filter(i);
 			}
 			
+			function btn_filter(index){
+				filter_btn.eq(index).on("click",function(){
+					if(filter_btn.eq(index).val()=="open"){
+						filter_list_area.eq(index).show();
+						filter_btn.eq(index).text("-");
+						filter_btn.eq(index).attr("value","close");
+						filter_allSelect.eq(index).hide();
+					}
+					else{
+						filter_list_area.eq(index).hide();
+						filter_btn.eq(index).text("+");
+						filter_btn.eq(index).attr("value","open");
+						filter_allSelect.eq(index).show();
+					}	
+				});
+			}
+			
+			//체크 버튼 클릭시 태그 div 생성 삭제
+
 			$("#shoes").change(function(){
 				if($("#shoes").is(":checked")){
-					$(".filter_teg_area").append("<div class='teg_item'><span>"+$("#shoes").val()+"</span><button>X</button></div>")
+					$(".shoes_list").prop("checked",false);
+					$(".filter_teg_area").text("");
+					$(".filter_teg_area").append("<div class='teg_item first'><span>"+$("#shoes").val()+"</span><button class='teg_item_btn'>X</button></div>");
 				}
 				else
 					$(".filter_teg_area").text("");
+			});
+			
+			
+			var shoes_list = $(".shoes_list");
+			
+			for(var i=0; i<shoes_list.length;i++){
+				shoes_list_check(i);
+			}
+			
+			function shoes_list_check(index){
+				shoes_list.eq(index).change(function(){
+					if(this.checked){
+						$("#shoes").prop("checked",false);
+						$(".first").remove();
+						$(".filter_teg_area").append("<div class='teg_item "+shoes_list.eq(index).val()+"' name='"+shoes_list.eq(index).val()+
+								"'><span>"+shoes_list.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}else{
+						$("div").detach("."+shoes_list.eq(index).val());
+					}
+				});
+			}
+			
+			//태그 div 버튼 클릭시 삭제 및 클릭 해제
+			$(document).on('click','.teg_item_btn',function(){
+				
+				var a = $(this).parent('div').attr('name');
+				$("input:checkbox[name='"+a+"']").prop("checked",false);
+				$(this).parent('div').detach();
+			
 			});
 			
 			//우측 필터버튼
@@ -630,22 +813,7 @@
 				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 				list.hide();
 			});
-			
-			function btn_filter(index){
-				filter_btn.eq(index).on("click",function(){
-					if(filter_btn.eq(index).val()=="open"){
-						filter_list_area.eq(index).show();
-						filter_btn.eq(index).text("-");
-						filter_btn.eq(index).attr("value","close");
-					}
-					else{
-						filter_list_area.eq(index).hide();
-						filter_btn.eq(index).text("+");
-						filter_btn.eq(index).attr("value","open");
-					}	
-				});
-			}
-			
+
 			//즐겨찾기 버튼
 			var wish_btn = $(".wish_btn");
 			var popup_wrap = $(".shopMain_popup_wrap");
