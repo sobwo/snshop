@@ -7,6 +7,12 @@
 		<meta charset="UTF-8">
 		<title>SHOP 메인페이지</title>
 		<style type="text/css">
+			input[type="checkbox"]{
+				width : 15px;
+				height: 15px;
+				margin: 3px;
+				vertical-align:-2px;
+			}
 			.inner{
 				width: 1900px;
 				display: flex;
@@ -109,6 +115,7 @@
 				width:200px;
 				flex-direction : row;
 				justify-content:space-between;
+				margin-bottom: 10px;
 			}
 			
 			.filterName{
@@ -153,12 +160,7 @@
 			.filter_list_in{
 				padding-bottom: 3px;
 			}
-			input[type="checkbox"]{
-				width : 15px;
-				height: 15px;
-				margin: 3px;
-				vertical-align:-2px;
-			}
+		
 			.filter_child_list{
 				margin-left : 22px;
 				display: flex;
@@ -168,11 +170,11 @@
 			.size_title{
 				color: rgba(34,34,34,.8);
 				font-size: 13px;
-				font-weight: 600;
-				padding: 4px 0;
+				font-weight: bold;
+				padding: 5px;
 				margin-bottom: 10px;
 			}
-			.sh_size_btn{
+			.sh_size_btn,.number_size{
 				display: grid;
 				grid-template-columns: repeat(3,1fr);
 				grid-column-gap: 1px;
@@ -181,7 +183,6 @@
 				row-gap: 10px;
 				padding: 10px;
 				text-align: center;
-				margin : 10px 0 ;
 			}
 			.column_menu{
 				height: 32px;
@@ -205,18 +206,9 @@
 				row-gap: 10px;
 				padding: 10px;
 				text-align: center;
-				margin : 10px 0 ;
 			}
-			.number_size{
-				display: grid;
-				grid-template-columns: repeat(3,1fr);
-				grid-column-gap: 1px;
-				column-gap: 10px;
-				grid-row-gap: 1px;
-				row-gap: 10px;
-				padding: 10px;
-				text-align: center;
-				margin : 10px 0 ;
+			.filter_child_list>a{
+				margin-bottom: 5px;
 			}
 			.filter_teg_area{
 				display: flex;
@@ -422,6 +414,8 @@
 		</div>
 		<div class="inner">
 			<main class="main_area">
+			
+	<!-- 상단 트랜드 상품 리스트 -->
 				<section class="trend_container">
 					<div class="trend_con_area">
 						<div class="trendContents">
@@ -445,7 +439,7 @@
 						<button class="trend_next_btn"><img src="${pageContext.request.contextPath}/resources/image/화살표.png" width="30px" height="30px"></button>
 					</div><!-- trend_btn_area -->
 				</section><!-- trend_container -->
-				
+	<!-- 좌측 필터  -->
 				<section class="product_container">
 					<aside class="aside_area">
 						<div class="filter_area">
@@ -469,42 +463,57 @@
 								<div class="filter_list_area" style="display:none;">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" id="shoes" name="shoes" value="신발" > 신발</a>
-											<ul class="filter_child_list">
+											<a href="#"><input type="checkbox" class="filter_list_top" id="" name="" value="신발" > 신발</a>
+											<ul class="filter_child_list" style="display:none;">
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="스니커즈" value="스니커즈" > 스니커즈</a>		
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="스니커즈" > 스니커즈</a>		
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="플랫" value="플랫" > 플랫</a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="플랫" > 플랫</a>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="로퍼" value="로퍼" > 로퍼</a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="로퍼" > 로퍼</a>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="더비" value="더비" > 더비</a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="더비" > 더비</a>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="힐" value="힐" > 힐</a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="힐" > 힐</a>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="부츠" value="부츠" > 부츠</a>
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="부츠" > 부츠</a>
 												</li>							
 											</ul><!-- filter_child_list -->		
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 아우터</a>
+											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="아우터" > 아우터</a>
+											<ul class="filter_child_list" style="display:none;">
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="자켓" > 자켓</a>		
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="코트" > 코트</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="패딩" > 패딩</a>
+												</li>
+												<li class="filter_list_in">
+													<a href="#"><input type="checkbox" class="shoes_list" name="" value="기타 아우터" > 기타 아우터</a>
+												</li>
+									
+											</ul><!-- filter_child_list -->		
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 상의</a>
+											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="상의" > 상의</a>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 하의</a>
+											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="하의" > 하의</a>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 가방</a>
+											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="가방" > 가방</a>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 지갑</a>
+											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="지갑" > 지갑</a>
 										</li>								
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -522,13 +531,13 @@
 								<div class="filter_list_area" style="display:none;">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 남성</a>
+											<a href="#"><input type="checkbox" class="filter_gender" name="" value="남성" > 남성</a>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 여성</a>
+											<a href="#"><input type="checkbox" class="filter_gender" name="" value="여성" > 여성</a>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" name="" value="" > 키즈</a>
+											<a href="#"><input type="checkbox" class="filter_gender" name="" value="키즈" > 키즈</a>
 										</li>
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -577,7 +586,7 @@
 										
 										<div class="size_title">의류</div>
 										
-										<div class="ch_size_btn_wrap">
+										<div class="clo_size_btn_wrap">
 											<div class="ahpabet_size">
 												<a href="#" class="column_menu">XXS</a>
 												<a href="#" class="column_menu">XS</a>
@@ -599,7 +608,7 @@
 												<a href="#" class="column_menu">35</a>
 												<a href="#" class="column_menu">36</a>
 											</div><!-- number_size -->										
-										</div><!-- ch_size_btn_wrap -->
+										</div><!-- clo_size_btn_wrap -->
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
@@ -613,9 +622,25 @@
 									<button class="filter_btn" value="open">+</button>
 								</div><!-- title_area -->
 								
-								<div class="filter_list_area" style="display:none;">
-									<ul class="filter_list">
-									</ul><!-- filter_list -->
+								<div class="filter_list_area" style="display:none;">									
+									<div class="filter_list">
+										<span>혜택</span>
+									</div>
+									<div class="filter_child_list">
+										<a href="#"><input type="checkbox" class="filter_asd" name="" value="무료배송" >무료배송</a>
+										<a href="#"><input type="checkbox" class="filter_asd" name="" value="할인" >할인</a>
+									</div><!-- filter_list -->
+									<div class="filter_list">
+										<span>가격</span>
+									</div>
+									<div class="filter_child_list">
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="10만원 이하" >10만원 이하</a>
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="10-30만원" >10-30만원</a>
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="30-50만원" >30-50만원</a>
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="50-100만원" >50-100만원</a>
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="100-300만원" >100-300만원</a>
+										<a href="#"><input type="checkbox" class="filter_price" name="" value="300만원 이상" >300만원 이상</a>
+									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
 						</div><!-- filter_area -->
@@ -623,10 +648,12 @@
 					
 					<div class="product_wrap">
 						<div class="product_top">
+						
+			<!-- 상품 개수 -->
 							<div class="product_count">
 								<span>상품수  12312</span>
 							</div><!-- product_count -->
-							
+			<!-- 상품 정렬 버튼  -->
 							<div class="product_btn_area">
 								<button onclick="btn_list();">
 									<span class="btn_title">인기순</span>
@@ -690,7 +717,7 @@
 						
 						<div class="filter_teg_area">
 						</div><!-- filter_teg_area -->
-		
+		<!-- 상품 게시 공간 -->			
 						<div class="product_area">
 							<div class="product_item_wrap">
 								<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do'">
@@ -726,7 +753,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){});
 			
-			//좌측 필터
+		//좌측 필터 + - 버튼 
 			var filter_btn = $(".filter_btn");
 			var filter_allSelect = $(".filter_allSelect");
 			var filter_list_area = $(".filter_list_area");
@@ -752,38 +779,136 @@
 				});
 			}
 			
-			//체크 버튼 클릭시 태그 div 생성 삭제
-
-			$("#shoes").change(function(){
-				if($("#shoes").is(":checked")){
-					$(".shoes_list").prop("checked",false);
-					$(".filter_teg_area").text("");
-					$(".filter_teg_area").append("<div class='teg_item first'><span>"+$("#shoes").val()+"</span><button class='teg_item_btn'>X</button></div>");
-				}
-				else
-					$(".filter_teg_area").text("");
-			});
+		//좌측 필터(카테고리) 체크 버튼 클릭시 태그 div 생성 삭제
 			
-			
+			var list_top = $(".filter_list_top");
+			var filter_child_list = $(".filter_child_list");
 			var shoes_list = $(".shoes_list");
 			
 			for(var i=0; i<shoes_list.length;i++){
 				shoes_list_check(i);
 			}
+			for(var i=0; i<list_top.length;i++){
+				list_top_check(i);
+			}
 			
-			function shoes_list_check(index){
-				shoes_list.eq(index).change(function(){
+			function list_top_check(index){
+				list_top.eq(index).change(function(){
 					if(this.checked){
-						$("#shoes").prop("checked",false);
-						$(".first").remove();
-						$(".filter_teg_area").append("<div class='teg_item "+shoes_list.eq(index).val()+"' name='"+shoes_list.eq(index).val()+
-								"'><span>"+shoes_list.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+						filter_child_list.eq(index).show();
+						shoes_list.prop("checked",false);
+						$(".teg_child").detach();
+						$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
+								"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
 					}else{
-						$("div").detach("."+shoes_list.eq(index).val());
+						$("div[name="+list_top.eq(index).val()+"]").detach();
+						filter_child_list.eq(index).hide();
 					}
 				});
 			}
 			
+			function shoes_list_check(index){
+				shoes_list.eq(index).change(function(){
+					if(this.checked){
+						
+						if(list_top.prop("checked",true))list_top.prop("checked",false);
+						
+						$(".teg_parent").detach();
+						$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+shoes_list.eq(index).val()+
+								"'><span>"+shoes_list.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}else{
+						$("div[name="+shoes_list.eq(index).val()+"]").detach();
+						
+					}
+				});
+			}
+			
+		//좌측 필터 성별
+			
+			var filter_gender = $(".filter_gender");
+			
+			for(var i=0; i<filter_gender.length;i++){
+				gender_list_check(i);
+			}
+			
+			function gender_list_check(index){
+				filter_gender.eq(index).change(function(){
+					if(this.checked){
+						$(".teg_gender").detach();
+						$("input:checkbox[class='filter_gender']").prop("checked",false);
+						$(this).prop("checked",true);
+						
+						$(".filter_teg_area").append("<div class='teg_item teg_gender' name='"+filter_gender.eq(index).val()+
+								"'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}else{
+						$("div[name="+filter_gender.eq(index).val()+"]").detach();
+						
+					}
+				});
+			}
+			
+		//좌측 필터 사이즈 
+			
+			var column_menu = $(".column_menu");
+			
+			for(var i=0; i<column_menu.length;i++){
+				click_size(i);
+			}
+			
+			function click_size(index){
+				column_menu.eq(index).click(function(){
+					
+					$("div[name='teg_size']").detach();
+					
+					$(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
+							+"</span><button class='teg_item_btn'>X</button></div>");
+					
+				});
+			}
+		//좌측 필터 혜택
+			var filter_asd = $(".filter_asd");
+
+			for(var i=0; i<filter_asd.length;i++){
+				filter_asd_check(i);
+			}
+			
+			function filter_asd_check(index){
+				filter_asd.eq(index).change(function(){
+					if(this.checked){
+						
+						$(".filter_teg_area").append("<div class='teg_item teg_asd' name='"+filter_asd.eq(index).val()+
+								"'><span>"+filter_asd.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}else{
+						$("div[name="+filter_asd.eq(index).val()+"]").detach();
+						
+					}
+				});
+			}
+		//좌측 필터 가격
+			var filter_price = $(".filter_price");
+			
+			for(var i=0; i<filter_price.length;i++){
+				filter_price_check(i);
+			}
+			
+			function filter_price_check(index){
+				filter_price.eq(index).change(function(){
+					if(this.checked){
+						
+						$(".teg_price").detach();
+						$("input:checkbox[class='filter_price']").prop("checked",false);
+						$(this).prop("checked",true);
+
+						
+						$(".filter_teg_area").append("<div class='teg_item teg_price' name='"+filter_price.eq(index).val()+
+								"'><span>"+filter_price.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}else{
+						$("div[name="+filter_price.eq(index).val()+"]").detach();
+						
+					}
+				});
+			}
+
 			//태그 div 버튼 클릭시 삭제 및 클릭 해제
 			$(document).on('click','.teg_item_btn',function(){
 				
