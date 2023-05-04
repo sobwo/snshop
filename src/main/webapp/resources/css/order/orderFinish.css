@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+.orderFinishContainer{
+	width:1902px;
+	height:881px;
+	background-color: #fafafa;
+}
+.orderFinishContent{
+	width:700px;
+	height:701px;
+	margin: 0 auto;
+    padding: 20px 40px 160px;
+    max-width: 780px;
+}
+.orderFinishBox{
+	width:700px;
+	height:601px;
+	background-color: #fff;
+}
+.orderFinisTitle{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 38px;
+    padding: 32px 32px 40px;
+    font-size: 25px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+}
+.accentTitle{
+	color: #f15746;
+}
+.pay{
+	display: flex;
+	align-items: center;
+	width: 636px;
+	height: 120px;
+	padding: 0 32px 18px;
+	justify-content:space-between;
+}
+.payText{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 38px;
+    padding: 32px 32px 40px;
+    font-size: 25px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+}
+.payTotal{}
+.payNumber{
+	display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 38px;
+    padding: 32px 32px 40px;
+    font-size: 25px;
+    letter-spacing: -.48px;
+    font-weight: 700;
+}
+.payTotalNumber{}
+
+.buyProduct{
+	display: flex;
+	align-items: center;
+	width: 636px;
+	height: 200px;
+	padding: 0 32px 18px;
+}
+.buyItem{
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+    image-rendering: auto;
+}
+.buyInfo{
+	width: 540px;
+	height: 80px;
+	padding-left: 16px;
+	text-align: left;
+}
+.modelNumber{}
+.modelName{}
+.modelSize{}
+.buyCheckBox{
+	width:700px;
+	height:493px;
+}
+.orderFinishBtn{
+	width:636px;
+	height:52px;
+	padding:32px 32px;
+}
+#orderFinish{
+	width:636px;
+	height:52px;
+	background-color: #222;
+	color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 700;
+    font-size:20px;
+    border-radius: 8px;
+    border:none;
+}
