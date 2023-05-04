@@ -65,43 +65,7 @@
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
-		<script>		
-			function resize(obj) {
-			  obj.style.height = "1px";
-			  obj.style.height = (12+obj.scrollHeight)+"px";
-			}
-			function addHashtag(hashtag) {
-			      var textarea = document.getElementById("contents");
-			      var currentText = textarea.value;
-			      var newText = currentText + " " + hashtag;
-			      textarea.value = newText;
-			}
-		
-			function readImage(event) {
-				  var previewImages = document.querySelector("div#previewImages");
-				  var fileLabel = document.querySelector("label#fileLabel");
-			
-				  // 파일 개수가 5개를 초과하는 경우 업로드를 막음
-				  if (event.target.files.length > 5) {
-				    alert("사진은 5개까지만 첨부 가능합니다.");
-				    event.target.value = "";
-				    return;
-				  }
-			
-				  for (var image of event.target.files) {
-				    var reader = new FileReader();
-				    reader.onload = function(event) {
-				      var img = document.createElement("img");
-				      img.setAttribute("src", event.target.result);
-				      previewImages.appendChild(img);
-				      if (previewImages.childElementCount >= 5) {
-				        fileLabel.style.display = "none";
-				      }
-				    };
-				    console.log(image);
-				    reader.readAsDataURL(image);
-				  }
-			}
-		</script>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
 	</body>
 </html>

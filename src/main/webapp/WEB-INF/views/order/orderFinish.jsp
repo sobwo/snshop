@@ -53,7 +53,6 @@
 					</div>
 					<div class="orderFinishBtn">
 						<input type="button" name="orderFinish" id="orderFinish" value="È® ÀÎ" onclick="location.href='${pageContext.request.contextPath}/'">
-						<label for="buyContinue"></label>
 					</div>	
 				</div>
 			</div>	
