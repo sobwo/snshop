@@ -13,6 +13,11 @@
 				margin: 3px;
 				vertical-align:-2px;
 			}
+			.item, .item_child{
+				margin-left: 5px;
+				width: 70%;
+				white-space: nowrap;
+			}
 			.inner{
 				width: 1900px;
 				display: flex;
@@ -121,8 +126,11 @@
 			.filterName{
 				font-size : 14px;
 				font-weight: 600;
-			
 			}
+			.filterName span{
+				margin-right: 5px;			
+			}
+			
 			.title_area>button{
 				border:none;
 				background-color : white;
@@ -159,6 +167,8 @@
 			}
 			.filter_list_in{
 				padding-bottom: 3px;
+				display : flex;
+				flex-direction : column;
 			}
 		
 			.filter_child_list{
@@ -448,7 +458,7 @@
 									<span>필터</span>
 									<span>1</span>
 								</div><!-- filterName -->
-								<a href="#">초기화</a>
+								<a href="#" class="reset">초기화</a>
 							</div><!-- filter_title -->
 							
 							<div class="filter_title">
@@ -463,30 +473,38 @@
 								<div class="filter_list_area" style="display:none;">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" > 신발</a>
+											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
+											<div class="item">신발</div>
 											<ul class="filter_child_list" style="display:none;">
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" > 스니커즈</a>		
+													<input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" >
+													<div class="item_child">스니커즈</div>	
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="플랫" value="플랫" > 플랫</a>
+													<input type="checkbox" class="filter_list_bottom" name="플랫" value="플랫" >
+													<div class="item_child">플랫</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="로퍼" value="로퍼" > 로퍼</a>
+													<input type="checkbox" class="filter_list_bottom" name="로퍼" value="로퍼" >
+													<div class="item_child">로퍼</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="더비" value="더비" > 더비</a>
+													<input type="checkbox" class="filter_list_bottom" name="더비" value="더비" >
+													<div class="item_child">더비</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="힐" value="힐" > 힐</a>
+													<input type="checkbox" class="filter_list_bottom" name="힐" value="힐" >
+													<div class="item_child">힐</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="filter_list_bottom" name="부츠" value="부츠" > 부츠</a>
+													<input type="checkbox" class="filter_list_bottom" name="부츠" value="부츠" >
+													<div class="item_child">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="아우터" value="아우터" > 아우터</a>
+											<input type="checkbox" class="filter_list_top" name="아우터" value="아우터" >
+											<div class="item"> 아우터</div>
 											<ul class="filter_child_list" style="display:none;">
 												<li class="filter_list_in">
 													<a href="#"><input type="checkbox" class="filter_list_bottom" name="자켓" value="자켓" > 자켓</a>		
@@ -504,16 +522,20 @@
 											</ul><!-- filter_child_list -->		
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="상의" value="상의" > 상의</a>
+											<input type="checkbox" class="filter_list_top" name="상의" value="상의" >
+											<div class="item">상의</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="하의" value="하의" > 하의</a>
+											<input type="checkbox" class="filter_list_top" name="하의" value="하의" >
+											<div class="item"> 하의</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="가방" value="가방" > 가방</a>
+											<input type="checkbox" class="filter_list_top" name="가방" value="가방" >
+											<div class="item"> 가방</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="지갑" value="지갑" > 지갑</a>
+											<input type="checkbox" class="filter_list_top" name="지갑" value="지갑" >
+											<div class="item"> 지갑</div>
 										</li>								
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -626,14 +648,14 @@
 									<div class="filter_list">
 										<span>혜택</span>
 									</div>
-									<div class="filter_child_list">
+									<div class="filter_list">
 										<a href="#"><input type="checkbox" class="filter_asd" name="" value="무료배송" >무료배송</a>
 										<a href="#"><input type="checkbox" class="filter_asd" name="" value="할인" >할인</a>
 									</div><!-- filter_list -->
 									<div class="filter_list">
 										<span>가격</span>
 									</div>
-									<div class="filter_child_list">
+									<div class="filter_list">
 										<a href="#"><input type="checkbox" class="filter_price" name="" value="10만원 이하" >10만원 이하</a>
 										<a href="#"><input type="checkbox" class="filter_price" name="" value="10-30만원" >10-30만원</a>
 										<a href="#"><input type="checkbox" class="filter_price" name="" value="30-50만원" >30-50만원</a>
@@ -779,24 +801,56 @@
 				});
 			}
 			
+		//좌측 필터 초기화
+		
+			var reset = $(".reset")
+			reset.on("click",function(){
+				location.reload();
+			});
+		
+			
 		//좌측 필터(카테고리) 체크 버튼 클릭시 태그 div 생성 삭제
 			
 			var list_top = $(".filter_list_top");
 			var filter_child_list = $(".filter_child_list");
-			var filter_list_bottom = $(".filter_list_bottom");
-			
-			for(var i=0; i<filter_list_bottom.length;i++){
-				filter_list_bottom_check(i);
+			var list_bottom = $(".filter_list_bottom");
+			var item =$(".item");
+			var item_child =$(".item_child");
+
+			for(var i=0; i<list_bottom.length;i++){
+				list_bottom_check(i);
+				item_child_click(i);
 			}
 			for(var i=0; i<list_top.length;i++){
 				list_top_check(i);
+				item_click(i);
+			}
+			
+			function item_click(index){
+				item.eq(index).click(function(){
+					if(list_top.eq(index).is(':checked')){
+						list_top.eq(index).prop("checked", false);
+						$("div[name="+list_top.eq(index).val()+"]").detach();
+						filter_child_list.eq(index).hide();
+					}
+					else{
+						list_top.eq(index).prop("checked", true);
+						filter_child_list.eq(index).show();
+						list_bottom.prop("checked",false);
+						$(".teg_child").detach();
+			 			if($(".filter_teg_area").text().indexOf(list_top.eq(index).attr('name')) == -1)
+						$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
+								"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}
+				});
 			}
 			
 			function list_top_check(index){
-				list_top.eq(index).change(function(){
+				list_top.eq(index).on("change",function(){
+					
 					if(this.checked){
 						filter_child_list.eq(index).show();
-						filter_list_bottom.prop("checked",false);
+						list_bottom.prop("checked",false);
 						$(".teg_child").detach();
 						$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
 								"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
@@ -807,17 +861,34 @@
 				});
 			}
 			
-			function filter_list_bottom_check(index){
-				filter_list_bottom.eq(index).change(function(){
+			function item_child_click(index){
+				
+				item_child.eq(index).click(function(){
+					if(list_bottom.eq(index).is(':checked')){
+						list_bottom.eq(index).prop("checked", false);
+						$("div[name="+list_bottom.eq(index).val()+"]").detach();
+					}
+					else{
+						list_bottom.eq(index).prop("checked", true);
+						list_top.prop("checked",false);
+						$(".teg_parent").detach();
+			 			/* if($(".filter_teg_area").text().indexOf(list_top.eq(index).attr('name')) == -1) */
+						$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+list_bottom.eq(index).val()+
+								"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					}
+				});
+			}
+			function list_bottom_check(index){
+				list_bottom.eq(index).change(function(){
 					if(this.checked){
 						
 						if(list_top.prop("checked",true))list_top.prop("checked",false);
 						
 						$(".teg_parent").detach();
-						$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+filter_list_bottom.eq(index).val()+
-								"'><span>"+filter_list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+						$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+list_bottom.eq(index).val()+
+								"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
 					}else{
-						$("div[name="+filter_list_bottom.eq(index).val()+"]").detach();
+						$("div[name="+list_bottom.eq(index).val()+"]").detach();
 						
 					}
 				});
