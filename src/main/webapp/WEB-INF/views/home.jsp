@@ -1,17 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
-	<html>
+<html>
 	<head>
-		<meta charset="UTF-8">
-		<title>HOME</title>
+		<meta charset="utf-8">
+		<title>home</title>
+		<style>
+			
+		</style>
 	</head>
 	<body>
-		<jsp:include page="common/header_shop.jsp"></jsp:include>
-		<!-- 임시로 넣어놈 -->
-		<div style='padding-top:191px;height:100px;'></div>
-		<jsp:include page="common/footer.jsp"></jsp:include>
+		<div>
+			<jsp:include page="common/header_style.jsp"></jsp:include>
+				
+			<jsp:include page="common/footer.jsp"></jsp:include>
+		</div>
+		<script>
+		</script>
 	</body>
-	
-	
 </html>

@@ -18,5 +18,7 @@ public class StyleController {
 		
 		return "style/style_discover";
 	}
+	
+
 
 }
