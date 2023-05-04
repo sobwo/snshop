@@ -19,6 +19,10 @@ public class StyleController {
 		return "style/style_discover";
 	}
 	
-
+	@RequestMapping(value = "/style_favorite.do")
+	public String styleFavorite() {
+		
+		return "style/style_favorite";
+	}
 
 }
