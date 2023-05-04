@@ -10,18 +10,20 @@
           	width:1902px;
           	height:2456px;
           	background-color: #fafafa;
-
         }
+        
         .content{
 			width: 700px;
            	height:2338px;
            	margin: 0 auto;
            	padding: 20px 40px 160px;
-        }
+       	}
+        
         .buy_immediate{
             width: 700px;
             height:2338px;
         }
+        
         .product_info_area{
             width: 700px;
             height:144px;
@@ -29,6 +31,7 @@
             margin: 0;/* 확인해야함*/
             box-sizing: border-box;
         }
+        
         .product_info{
             width: 636px;
             height:104px;
@@ -50,6 +53,7 @@
             background-color: black;
             position: relative
         }
+        
         .product_detail{
             width: 556px;
             height:82px;
@@ -59,6 +63,7 @@
             padding-left: 16px;
             margin: 0;
         }
+        
         .model_number{
             display: block;
             line-height: 17px;
@@ -67,6 +72,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        
         .model_title{
             overflow: hidden;
             text-overflow: ellipsis;
@@ -75,6 +81,7 @@
             margin-top: 1px;
             font-size: 14px;
         }
+        
         .model_ko{
             line-height: 16px;
             margin-top: -15px;
@@ -85,6 +92,7 @@
             white-space: nowrap;
             overflow: hidden;
         }
+        
         .model_desc{
             display: flex;
             -webkit-box-align: start;
@@ -95,7 +103,8 @@
             margin-top: 10PX;
             box-sizing: border-box;
            
-        } 
+        }
+         
         .size_txt{
             line-height: 17px;
             font-size: 14px;
@@ -103,6 +112,7 @@
             letter-spacing: 0;
             margin: 0;
         }
+        
         .section{
             width:636px;
             height:370px;
@@ -110,6 +120,7 @@
             background-color: #fff;
             border-top: 8px solid #fafafa;
         }
+        
         .section_unit{
             width:636px;
             height:441px;
@@ -118,6 +129,7 @@
             background-color: #fff;
             margin-top: 12px;
         }
+        
         .section_title{
             width:636px;
             height:34px;
@@ -127,6 +139,7 @@
             padding-bottom: 12px;
             padding: 0px 0px 12px;
         }
+        
         .title_txt{
             line-height: 22px;
             font-size: 18px;
@@ -137,6 +150,7 @@
             width:552.55px;
             height:22px;
         }
+        
         /*
         .add_more_btn{
             margin-left: auto;
@@ -153,24 +167,29 @@
             width: 636px;
             height:123px;
         }
+        
         .delivery_info{
             position: relative;
             width: 636px;
             height:63px;
         }
+        
         .address_info{
             width: 556px;
             height:63px;
         }
+        
         .info_list{
             width: 556px;
             height:63px;
         }
+        
         .info_box{
             overflow: hidden;
             line-height: 17px;
             letter-spacing: -.15px;
         }
+        
         .title{
             float: left;
             min-width: 80px;
@@ -179,11 +198,13 @@
             letter-spacing: -.07px;
             color: rgba(34,34,34,.5);
         }
+        
         .dd{
             overflow: hidden;
             font-size: 14px;
             letter-spacing: -.21px;
         }
+        
         .info_box{
             margin-top:6px;
             overflow: hidden;
@@ -197,19 +218,23 @@
             margin-top: -17px;
             right: 0;
         }
+        
         .outlinegrey{
             border: 1px solid #d3d3d3;
             color: rgba(34,34,34,.8);
         }
+        
         .small{
             font-size:12px;
             letter-spacing:-.06px;
         }
+        
         .small{
             padding: 0 14px;
             height: 34px;
             border-radius: 10px;
         }
+        
         .btn{
             display: inline-flex;
             cursor: pointer;
@@ -232,6 +257,7 @@
         
         
         }
+        
         .button_shipping_memo{
         
             width: 609.516px;
@@ -239,6 +265,7 @@
             padding: 14px 12px;
             border: 1.250px;
         }
+        
         .my-button {
             width: 636px;
             height: 48px;
@@ -265,6 +292,7 @@
         .my-button::placeholder {
             color: #fff;
         }
+        
         .my-button1{
             width: 636px;
             height: 43px;
@@ -273,21 +301,25 @@
             border: 1px solid #ebebeb;
             border-radius: 10px;
         }
+        
         .button-text1 {
             color: black;
             font-size: 13px;
             font-weight: bold;
         }
+        
         .button-text2{
             color: #2222224d;
             font-size: 8px;
         }
+        
         .point_area{
             width: 700px;
             height: 250px;
             background-color: #fff;
          
         }
+        
         .inner_point_area{
             width: 636px;
             height: 139px;
@@ -295,6 +327,7 @@
             margin-top: 12px;
             border-top: 7.5px;
         }
+        
         .all_use{
             width: 70.69px;
             height: 24px;
@@ -302,10 +335,12 @@
             font-size: 12px;
             border-radius: 12px;
         }
+        
         .have_point{
             font-size: 14px;
             
         }
+        
         .totalprice{
             background-color: #fff;
             width: 636px;
@@ -314,16 +349,15 @@
             border-top: 8px;
             margin-top: 12px;
         }
+        
         .agree_wrap{
             width: 636px;
             height: 645px; 
             padding: 32px 32px 16px;
             background-color: #fff;
-            margin-top: 12px;
-           
-
-
+            margin-top: 12px;           
         }
+        
         .point_view{
             width: 608px;
             height: 20px;
@@ -331,30 +365,35 @@
             border: 1px solid #ebebeb;
             border-radius: 10px;
         }
+        
         .Q{
             border-radius: 10px;
         }
+        
         .title_txt1{
             margin-left: -13px;
             font-size: 18px;
         }
+        
         .movespan{
-            margin-left: -112px;
-            
+            margin-left: -112px;    
         }
+        
         .movespan1{
             margin-left: -100px;
             
         }
+        
         .btnimg{
-            border-radius: 15px;
-           
+            border-radius: 15px;   
             border: 1px solid #ebebeb
         }
+        
         .btnimg2{
             border-radius: 15px;
             border: 1px solid #ebebeb
         }
+        
         .my-button5{
             width: 636.02px;
             height: 47.99px;
@@ -363,6 +402,7 @@
             border-radius: 10px;
             border: 1px solid #ebebeb   
         }
+        
         .payment-button {
             width: 100%;
             height: 51.98px;
@@ -372,47 +412,39 @@
             font-size: 16px;
         }
       
-
         button.active {
         background-color: red;
-        }/* 체크박스 3개 체크시 결제하기버튼 빨간색으로*/
-
-        
+        }/* 체크박스 3개 체크시 결제하기버튼 빨간색으로*/  
 		</style>
 	</head>
 	<body>
 		<div>
 			<jsp:include page="../common/header_style.jsp"></jsp:include>
-				    <div class="totalsize">
+		    	<div class="totalsize">
         <div class="content">
             <div class="buy_immediate">
-                <div class="product_info_area" style="background-color: #fff;">
-                    <div class="product_info">
-                        <div class="product">
-                            <img src="";
-                             style= width:80px height:80px; background>
-                        
-                        </div><!--product-->
-                            <div class="product_detail">
-                                <strong class="model_number">
-                                    "DZ5908-106"
-                                </strong>
-                                    <p class="model_title">
-                                        (TD) Jordan 1 X Travis Scott Retro Low OG SP Medium Olive
-                                    </p>
-                                        <p class="model_ko">
-                                            (TD) 조던 1 x 트래비스 스캇 레트로 로우 미디엄 올리브
-                                            
-                                        </p>
-                                       
-                                            <div class="model_desc">
-                                                <p class="size_txt">
-                                                    270
-                                                </p>
-                                            </div><!--model_desc -->
-                            </div><!--product_detail-->
-                    </div><!--product_info-->
-                </div><!--product_info_area-->
+		                <div class="product_info_area" style="background-color: #fff;">
+		                    <div class="product_info">
+		                        <div class="product">
+		                            <img src="";
+		                             style= width:80px height:80px; background>		                        
+		                        </div><!--product-->
+		                            <div class="product_detail">
+		                                <strong class="model_number"></strong>
+		                                    "DZ5908-106"
+		                                
+		                                    <p class="model_title"></p>
+		                                        (TD) Jordan 1 X Travis Scott Retro Low OG SP Medium Olive
+		                                    
+		                                        <p class="model_ko">
+		                                            (TD) 조던 1 x 트래비스 스캇 레트로 로우 미디엄 올리브  </p>
+		                                            <div class="model_desc">
+		                                                <p class="size_txt">270</p>
+
+		                                            </div><!--model_desc -->
+		                            </div><!--product_detail-->
+		                    </div><!--product_info-->
+	                	</div><!--product_info_area-->
 
                 
                 <section>
@@ -447,11 +479,10 @@
                                         <hr>
                                   
                               
-                                              <button onclick="add_address_closePopup()" style="border-radius: 10px;">확인</button>
+                                          <button onclick="add_address_closePopup()" style="border-radius: 10px;">확인</button>
                                           
-                                </div>
-                              </div>
-                        
+                               </div>
+                            </div>
                         </div><!--section_title-->
 
                             <div class="section_content">
@@ -569,25 +600,25 @@
                     <!--end포인트 - 팝업창-->
 
                 <div class="totalprice">
-                    <h3> <strong>최종 주문 정보</strong></h3>
-                        <p >총 결제금액</p>
-                        <p style="color: red; text-align: right;">436,300</p>
-                    <hr>
-                    <!--가로로-->
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <p>구매가</p>
-                        <p style="color: red; text-align: right;">436,000</p>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <p>포인트</p>
-                      <p style="color: red; text-align: right;">-</p>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <p>배송비</p>
-                      <p style="color: red; text-align: right;">3000원</p>
-                    </div>
-                    <hr>
-                    </div>
+	                    <h3> <strong>최종 주문 정보</strong></h3>
+	                        <p >총 결제금액</p>
+	                        <p style="color: red; text-align: right;">436,300</p>
+	                    <hr>
+	                    <!--가로로-->
+	                    <div style="display: flex; justify-content: space-between; align-items: center;">
+	                        <p>구매가</p>
+	                        <p style="color: red; text-align: right;">436,000</p>
+	                    </div>
+	                    <div style="display: flex; justify-content: space-between; align-items: center;">
+	                      <p>포인트</p>
+	                      <p style="color: red; text-align: right;">-</p>
+	                    </div>
+	                    <div style="display: flex; justify-content: space-between; align-items: center;">
+	                      <p>배송비</p>
+	                      <p style="color: red; text-align: right;">3000원</p>
+	                    </div>
+	                    <hr>
+                 </div>
                     <div class="agree_wrap">
                         <div class="agree">
                             <p><b>판매자의 판매거부, 배송지연, 미입고 등의 사유가 발생할 경우, 거래가 취소될 수<br> 있습니다</b></p>
