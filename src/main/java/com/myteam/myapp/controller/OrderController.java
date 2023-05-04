@@ -19,5 +19,11 @@ public class OrderController {
 		return "order/orderPage";
 	}
 	
+	@RequestMapping(value = "/orderFinish.do")
+	public String orderFinish() {
+		
+		return "order/orderFinish";
+	}
+	
 
 }
