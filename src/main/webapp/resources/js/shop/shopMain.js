@@ -260,23 +260,12 @@ $(document).ready(function(){});
 
 	//태그 div 버튼 클릭시 삭제 및 클릭 해제
 		$(document).on('click','.teg_item_btn',function(){
-
 			var name = $(this).parent('div').attr('name');
 			$("input:checkbox[name='"+name+"']").prop("checked",false);
 			$(this).parent('div').detach();
-			
 		});
 		
-		//우측 필터버튼 클릭시
-		var btn_list_item = $(".btn_list_item");
-		btn_list_item.on("click",function(){
-			$(".btn_title").text($(this).find('span.list_sub').text());
-			for(var i=0;i<5;i++){
-				$(".check_img").html("");
-			}
-			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
-			list.hide();
-		});
+
 		
 		//우측 필터버튼
 		var list = $(".product_btn_list");

@@ -24,10 +24,10 @@
 				</div>
 				<div id="nav_main">
 					<ul>
-						<li style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li>
-						<li style='margin-right:40px;'><a href='${pageContext.request.contextPath}/style/style_discover.do'>STYLE</a></li>
-						<li style='margin-right:40px;'><a href='${pageContext.request.contextPath}/shop/shopMain.do'>SHOP</a></li>
-						<li style='margin-right:40px;'><a href='${pageContext.request.contextPath}/myPage/myPageMain.do'>MY</a></li>
+						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li>
+						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/style/style_discover.do'>STYLE</a></li>
+						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/shop/shopMain.do'>SHOP</a></li>
+						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/myPage/myPageMain.do'>MY</a></li>
 						<li><a href='#'><img src='${pageContext.request.contextPath}/resources/image/search.png' style='width:27px; height:27px;'></a></li>
 					</ul>
 				</div>

@@ -395,7 +395,16 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
-
+		//우측 필터버튼 클릭시
+			var btn_list_item = $(".btn_list_item");
+			btn_list_item.on("click",function(){
+				$(".btn_title").text($(this).find('span.list_sub').text());
+				for(var i=0;i<5;i++){
+					$(".check_img").html("");
+				}
+				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
+				list.hide();
+			});
 		</script>
 	</body>
 </html>

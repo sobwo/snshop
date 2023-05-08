@@ -7,6 +7,7 @@
 		<title>프로필정보</title>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_profileInfo.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 		<style>
 			.memberInfo_list li:nth-child(1) a{
 				color:#222;

@@ -7,7 +7,15 @@
 		<title>header_style</title>
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/style/style_discover.css" rel="stylesheet">
-
+		<style>
+			.top_menu_list:nth-child(2) a{
+				font-weight:bold;
+			}
+						
+			.nav_list:nth-child(2) a{
+				font-weight:bold;
+			}
+		</style>
 	</head>
 	<body>
 		<jsp:include page="../common/header_style.jsp"></jsp:include>

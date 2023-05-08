@@ -7,6 +7,7 @@
 		<title>판매 정산 계좌</title>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_incomeAccount.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 		<style>
 			.memberInfo_list li:nth-child(4) a{
 				color:#222;

@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>마이페이지</title>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myStyle_upload.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>

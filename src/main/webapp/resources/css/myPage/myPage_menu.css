@@ -1,0 +1,5 @@
+@charset "UTF-8";
+
+.nav_list:nth-child(4) a{
+	font-weight:bold;
+}

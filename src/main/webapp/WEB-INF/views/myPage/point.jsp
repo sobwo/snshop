@@ -7,6 +7,7 @@
 		<title>포인트</title>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_point.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 		<style>
 			.memberInfo_list li:nth-child(5) a{
 				color:#222;
