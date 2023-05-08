@@ -61,12 +61,12 @@
 									<button class="filter_btn" value="open">+</button>
 								</div><!-- title_area -->
 								
-								<div class="filter_list_area" style="display:none;">
+								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
 											<div class="item">신발</div>
-											<ul class="filter_child_list" style="display:none;">
+											<ul class="filter_child_list">
 												<li class="filter_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" >
 													<div class="item_child">스니커즈</div>	
@@ -96,7 +96,7 @@
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_list_top" name="아우터" value="아우터" >
 											<div class="item"> 아우터</div>
-											<ul class="filter_child_list" style="display:none;">
+											<ul class="filter_child_list">
 												<li class="filter_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="자켓" value="자켓" >
 													<div class="item_child">자켓</div>	
@@ -144,7 +144,7 @@
 									<button class="filter_btn" value="open">+</button>
 								</div><!-- title_area -->
 								
-								<div class="filter_list_area" style="display:none;">
+								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_gender" name="남성" value="남성" >
@@ -171,7 +171,7 @@
 									<button class="filter_btn" value="open">+</button>
 								</div><!-- title_area -->
 								
-								<div class="filter_list_area" style="display:none;">
+								<div class="filter_list_area">
 									<div class="filter_list">
 										<div class="size_title">신발</div>
 										<div class="sh_size_btn">
@@ -241,7 +241,7 @@
 									<button class="filter_btn" value="open">+</button>
 								</div><!-- title_area -->
 								
-								<div class="filter_list_area" style="display:none;">									
+								<div class="filter_list_area">									
 									<div class="filter_list">
 										<span>혜택</span>
 									</div>
@@ -302,7 +302,7 @@
 									<span class="btn_title">인기순</span>
 									<img src="${pageContext.request.contextPath}/resources/image/updownfilter.png">
 								</button>
-								<ul class="product_btn_list" style="display:none;">
+								<ul class="product_btn_list">
 									<li>
 										<div class="btn_list_item">
 											<div class="list_item_info">

@@ -42,14 +42,15 @@ $(document).ready(function(){});
 		var item =$(".item");
 		var item_child =$(".item_child");
 
-		for(var i=0; i<list_bottom.length;i++){
-			list_bottom_check(i);
-			item_child_click(i);
-		}
 		for(var i=0; i<list_top.length;i++){
 			list_top_check(i);
 			item_click(i);
 		}
+		for(var i=0; i<list_bottom.length;i++){
+			list_bottom_check(i);
+			item_child_click(i);
+		}
+		
 		
 		function item_click(index){
 			item.eq(index).click(function(){
@@ -257,14 +258,16 @@ $(document).ready(function(){});
 			});
 		}
 
-		//태그 div 버튼 클릭시 삭제 및 클릭 해제
+	//태그 div 버튼 클릭시 삭제 및 클릭 해제
 		$(document).on('click','.teg_item_btn',function(){
 
 			var name = $(this).parent('div').attr('name');
 			$("input:checkbox[name='"+name+"']").prop("checked",false);
 			$(this).parent('div').detach();
-
+			
 		});
+		
+		
 		
 		//우측 필터버튼
 		var list = $(".product_btn_list");
