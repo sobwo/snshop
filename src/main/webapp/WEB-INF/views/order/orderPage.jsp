@@ -398,7 +398,7 @@
                                 </div>
                             </div><!--section_title-->
                             <div id="address_popup"
-                                style="display: none; position: absolute;z-index: 10; top: 500px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 310px; background-color: white; border: 1px solid #ccc; padding: 10px;">
+                                style="display: none; position: absolute;z-index: 10; top: 500px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 320px; background-color: white; border: 1px solid #ccc; padding: 10px;">
                                 <h3 style="text-align: center;">
                                     <b>새 주소 추가</b>
                                 </h3>
