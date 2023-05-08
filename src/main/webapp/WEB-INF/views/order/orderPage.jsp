@@ -23,6 +23,7 @@
         .buy_immediate {
             width: 700px;
             height: 2338px;
+            margin-top:145px;
         }
 
         .product_info_area {
@@ -87,7 +88,7 @@
 
         .model_ko {
             line-height: 16px;
-            margin-top: -15px;
+
             font-size: 13px;
             letter-spacing: -.05px;
             color: rgba(34, 34, 34, .5);
@@ -126,7 +127,7 @@
 
         .section_unit {
             width: 636px;
-            height: 365px;
+            height: 340px;
             margin: 0;
             padding: 32px;
             background-color: #fff;
@@ -264,6 +265,7 @@
             color: grey;
             font-size: 12px;
             border-radius: 12px;
+            margin-top:13px;
         }
 
         .have_point {
@@ -274,15 +276,19 @@
         .totalprice {
             background-color: #fff;
             width: 636px;
-            height: 300px;
+        /*    height: 300px;*/
             padding: 32px;
             border-top: 8px;
             margin-top: 12px;
         }
+        .inner_totalprice{
+        	padding:20px 0px;
+        
+        }
 
         .agree_wrap {
             width: 636px;
-            height: 645px;
+            height: 600px;
             padding: 32px 32px 16px;
             background-color: #fff;
             margin-top: 12px;
@@ -294,15 +300,18 @@
             padding: 14px 12px;
             border: 1px solid #ebebeb;
             border-radius: 10px;
+            margin-top:15px;
         }
 
         .Q {
             border-radius: 10px;
+            width:20px;
         }
 
         .title_txt1 {
             margin-left: -13px;
             font-size: 18px;
+            margin-top:10px
         }
 
         .movespan {
@@ -389,7 +398,7 @@
                                 </div>
                             </div><!--section_title-->
                             <div id="address_popup"
-                                style="display: none; position: absolute;z-index: 10; top: 500px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 500px; background-color: white; border: 1px solid #ccc; padding: 10px;">
+                                style="display: none; position: absolute;z-index: 10; top: 500px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 310px; background-color: white; border: 1px solid #ccc; padding: 10px;">
                                 <h3 style="text-align: center;">
                                     <b>새 주소 추가</b>
                                 </h3>
@@ -404,8 +413,8 @@
                                 <input type="text" placeholder=" 우편번호 검색 후, 자동 입력됩니다.">
                                 <p><b>상세주소</b></p>
                                 <input type="text" placeholder=" 건물,아파트,동/호수 입력">
-                                <hr>
-                                <button onclick="add_address_closePopup()" style="border-radius: 10px;">닫기</button>
+								<hr>
+                                <button onclick="add_address_closePopup()" style="border-radius: 10px;margin-top:40px;">닫기</button>
                             </div>
 
                             <div class="delivery_info">
@@ -463,7 +472,7 @@
                             <!--포인트 - 팝업창-->
                             <div class="point_popup">
                                 <div id="popup"
-                                    style="display: none; position: absolute; top: 955px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 350px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
+                                    style="display: none; position: absolute; top: 955px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 225px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
                                     <h3 style="text-align: center;">이용안내</h3>
                                     <p>사용 가능한 포인트 </p>
                                     <p><b>0P</b></p>
@@ -472,11 +481,11 @@
                                     <p style="font-size: 10px;">포인트 유효기간은 적립일로부터 최대 1년까지이며, 유형에 따라 달라질 수 있습니다.</p>
                                     <hr>
                                     <p style="font-size: 10px;">1,000P 이상부터 구매금액 제한 없이 사용하실 수 있습니다.<br>
-                                        입찰 삭제, 거래 취소 시 사용한 포인트는 환불됩니다.<br>
-                                        먼저 적립된 포인트부터 순서대로 사용되며, 사용하지 않으실 경우 유효기간이 지나면 자동 소멸됩니다.<br>
-                                        유효기간이 지난 후 환불받은 포인트는 다시 사용하실 수 없습니다.
+				                                        입찰 삭제, 거래 취소 시 사용한 포인트는 환불됩니다.<br>
+				                                        먼저 적립된 포인트부터 순서대로 사용되며, 사용하지 않으실 경우 유효기간이 지나면 자동 소멸됩니다.<br>
+				                                        유효기간이 지난 후 환불받은 포인트는 다시 사용하실 수 없습니다.
                                     </p>
-                                    <button onclick="closePopup()" style="border-radius: 10px;">확인</button>
+                                    <button onclick="closePopup()" style="border-radius: 10px;margin-top:40px;">확인</button>
                                 </div>
                             </div>
                         </div>
@@ -484,15 +493,15 @@
                     <!--end포인트 - 팝업창-->
                     <div class="totalprice">
                         <h3> <strong>최종 주문 정보</strong></h3>
-                        <p>총 결제금액</p>
+                        <p >총 결제금액</p>
                         <p style="color: red; text-align: right;">436,300</p>
                         <hr>
                         <!--가로로-->
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div  style="display: flex; justify-content: space-between; align-items: center;">
                             <p>구매가</p>
                             <p style="color: red; text-align: right;">436,000</p>
                         </div>
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div class="inner_totalprice" style="display: flex; justify-content: space-between; align-items: center;">
                             <p>포인트</p>
                             <p style="color: red; text-align: right;">-</p>
                         </div>
@@ -505,19 +514,25 @@
                     <div class="agree_wrap">
                         <div class="agree">
                             <p><b>판매자의 판매거부, 배송지연, 미입고 등의 사유가 발생할 경우, 거래가 취소될 수<br> 있습니다</b></p>
+                           
                             <p style="font-size:15px">앱 알림해제, 알림톡 차단, 전화번호 변경 후 미등록 시에는 거래 진행 상태 알림을 받을 수 없습니다.</p>
+                            <br>
                             <input type="checkbox" class="agree-storage" id="checkbox1">
                             <label for="agree-storage">위 내용을 모두 확인하였으며, 동의합니다.</label>
                             <!-- <p><a href="#">보관판매란?</a></p>-->
                             <hr>
                             <p><b>창고 보관을 선택한 경우, 구매자에게 배송되지 않고 (쇼핑몰 이름) 창고에 보관됩니다.</b></p>
+                            
                             <p style="font-size:15px">보관이 완료되면 창고 이용료(현재 첫 30일 무료)가 결제됩니다.</p>
+                            <br>
                             <input type="checkbox" class="agree-storage" id="checkbox2">
                             <label for="agree-storage">위 내용을 모두 확인하였으며, 창고 보관에 동의합니다.</label>
                             <hr>
                             <p><b>'바로 결제하기'를 선택하시면 즉시 결제가 진행되며, 단순 변심이나 실수에 의한 <br>취소가 불가능합니다</b></p>
+                             
                             <p style="font-size:15px">본 거래는 개인간 거래로 전자상거래법(제 17조)에 따른 철약철회(환불,교환) 규정이 적용되지 않습니다.</p>
                             <input type="checkbox" class="agree-terms" id="checkbox3">
+                            <br>
                             <label for="agree-terms"><b>위 내용을 모두 확인하였으며, 거래 진행에 동의합니다.</b></label>
                             <br>
                             <br>
