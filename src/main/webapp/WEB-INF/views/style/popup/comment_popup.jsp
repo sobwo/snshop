@@ -28,7 +28,7 @@
 			<!-- 댓글 입력창 -->
 			<div class="social_comment_input">
 				<img class="user_img" src="" alt="">
-				<input type="text" class="comment_input" name="comment" placeholder="댓글을 남기세요.">
+				<input type="text" class="comment_input" name="ccomments" placeholder="댓글을 남기세요.">
 				<button class="submit_comment">등록</button>
 			</div>
 			
