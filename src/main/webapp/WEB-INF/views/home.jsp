@@ -6,7 +6,9 @@
 		<meta charset="utf-8">
 		<title>home</title>
 		<style>
-			
+			.nav_list:nth-child(1) a{
+				font-weight:bold;
+			}
 		</style>
 	</head>
 	<body>

@@ -7,6 +7,11 @@
 	<meta charset="UTF-8">
 	<title>상품 상세 페이지</title>
 	<link href=" ${pageContext.request.contextPath}/resources/css/shop/shopContents.css" rel="stylesheet">
+	<style>	
+		.nav_list:nth-child(3) a{
+			font-weight:bold;
+		}
+	</style>
 	</head>
 	<body>
 		<jsp:include page="popup/itemSize_popup.jsp"></jsp:include>

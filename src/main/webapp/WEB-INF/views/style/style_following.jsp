@@ -7,6 +7,15 @@
 		<meta charset="utf-8">
 		<title>팔로우</title>
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
+		<style>
+			.top_menu_list:nth-child(1) a{
+				font-weight:bold;
+			}
+			
+			.nav_list:nth-child(2) a{
+				font-weight:bold;
+			}
+		</style>
 	</head>
 	<body>
 		<jsp:include page="../common/header_style.jsp"></jsp:include>
