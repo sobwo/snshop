@@ -2,12 +2,18 @@ package com.myteam.myapp.domain;
 
 public class MemberVo {
 	private int memberNo,point;
-	private String memberName, memberPw, memberEmail, memberPhone, delYn, profileImg;
+	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg;
 	public int getMemberNo() {
 		return memberNo;
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getMemberName() {
 		return memberName;
@@ -33,6 +39,12 @@ public class MemberVo {
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
+	public String getMemberGender() {
+		return memberGender;
+	}
+	public void setMemberGender(String memberGender) {
+		this.memberGender = memberGender;
+	}
 	public String getDelYn() {
 		return delYn;
 	}
@@ -51,4 +63,6 @@ public class MemberVo {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	
+	
 }

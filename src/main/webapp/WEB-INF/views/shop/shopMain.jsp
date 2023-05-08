@@ -7,6 +7,11 @@
 		<meta charset="UTF-8">
 		<title>SHOP 메인페이지</title>
 		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
+		<style>
+			.nav_list:nth-child(3) a{
+				font-weight:bold;
+			}
+		</style>
 	</head>
 	<body>
 		<jsp:include page="popup/favorite_popup.jsp"></jsp:include>

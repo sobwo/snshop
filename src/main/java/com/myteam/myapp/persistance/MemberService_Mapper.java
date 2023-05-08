@@ -1,5 +1,7 @@
 package com.myteam.myapp.persistance;
 
-public interface MemberService_Mapper {
+import com.myteam.myapp.domain.MemberVo;
 
+public interface MemberService_Mapper {
+	public int memberInsert(MemberVo mv);
 }

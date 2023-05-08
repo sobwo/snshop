@@ -24,7 +24,6 @@
 				<div class="product_area">
 				
 			<!-- 상품 이미지 표시 -->
-			
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -158,7 +157,6 @@
 								<p>#KREAM챌린지 #스타일챌린지 #하트챌린지 #빈티지 #시카고2022</p>
 							</div>
 						</div>
-						
 					</div>
 				</div>
 				<div class="more_btn_area">

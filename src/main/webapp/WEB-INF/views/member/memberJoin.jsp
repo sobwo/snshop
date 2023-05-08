@@ -78,5 +78,33 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/memberJoin.js"></script>
+		<script>
+			function IdCheck(){
+				let memberId = $("#memberId").val();
+				$.ajax({
+					url: "${pageContext.request.contextPath}/member/memberIdCheck.do",		
+					method: "POST",
+					data: {"memberId": memberId },
+					dataType: "json",
+					success : function(data){
+							if (data.value == 1){
+								$("#idMsg").text("중복된 ID 입니다.");
+								$("#memberId").focus();
+							}
+							else{
+								alert("회원가입 완료");	
+								var fm = document.frm;
+								fm.action ="${pageContext.request.contextPath}/member/memberJoinAction.do";
+								fm.method = "post";
+								fm.submit();
+								fm.reset();
+							}
+						},
+						error : function(request,status,error){
+							alert("다시 시도하시기 바랍니다.");		
+						}	
+				});	
+			}
+		</script>
 	</body>
 </html>
