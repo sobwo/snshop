@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class SaleVo {
+public class SaleVo extends OrderVo{
 	private int saleNo, orderNo, memberNo;
 
 	public int getSaleNo() {
@@ -25,7 +25,5 @@ public class SaleVo {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-	
-	
+	}	
 }

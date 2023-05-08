@@ -1,8 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class OrderVo {
-
-	
+public class OrderVo {	
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 

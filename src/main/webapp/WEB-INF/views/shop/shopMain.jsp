@@ -394,5 +394,8 @@
 		</div><!-- inner -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
+		<script>
+
+		</script>
 	</body>
 </html>

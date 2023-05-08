@@ -267,18 +267,6 @@ $(document).ready(function(){});
 			
 		});
 		
-		
-		
-		//우측 필터버튼
-		var list = $(".product_btn_list");
-		function btn_list(){
-			if ( list.css('display') === 'none'){
-				list.show();
-			}else{
-				list.hide();
-			}
-		}
-		
 		//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
 		btn_list_item.on("click",function(){
@@ -289,6 +277,16 @@ $(document).ready(function(){});
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
+		
+		//우측 필터버튼
+		var list = $(".product_btn_list");
+		function btn_list(){
+			if ( list.css('display') === 'none'){
+				list.show();
+			}else{
+				list.hide();
+			}
+		}
 
 		//즐겨찾기 버튼
 		var wish_btn = $(".wish_btn");
@@ -311,6 +309,5 @@ $(document).ready(function(){});
 		});
 		
 		//리뷰 버튼
-		
 		
 		
