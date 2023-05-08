@@ -25,7 +25,7 @@
 
         .product_info_area {
             width: 700px;
-            height: 144px;
+
             padding: 32px;
             margin: 0;
             /* 확인해야함*/
@@ -34,7 +34,6 @@
 
         .product_info {
             width: 636px;
-            height: 104px;
             display: flex;
             -webkit-box-align: center;
             align-items: center;
@@ -49,7 +48,7 @@
             width: 80px;
             height: 80px;
             padding-top: 0;
-            flex-shrink: 0;
+            flex-shrink: 0;c
             border-radius: 10px;
             background-color: black;
             position: relative
@@ -57,7 +56,7 @@
 
         .product_detail {
             width: 556px;
-            height: 82px;
+            /* height: 82px; */
             overflow: hidden;
             -webkit-box-flex: 1;
             flex: 1;
@@ -100,7 +99,7 @@
             align-items: flex-start;
             -webkit-box-pack: justify;
             justify-content: space-between;
-            margin-top: 7px;
+        
             margin-top: 10PX;
             box-sizing: border-box;
 
@@ -152,16 +151,53 @@
             height: 22px;
         }
 
+		.popup_phone{
+		
+		
+		}
 
-        .section_content {
-            width: 636px;
-            height: 123px;
-        }
 
-        .delivery_info {
-            position: relative;
-            width: 636px;
-            height: 63px;
+
+
+
+	
+
+
+
+
+
+
+
+	.popup_inner_btn{
+	width:45px;
+	height:25px;
+	border-radius:5px;
+    text-align: center;
+    color: rgba(34,34,34,.8);
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+	margin-left:165px;
+	}
+
+
+	.addressnum{
+	color:#222222cc;
+	color: rgba(34,34,34,.8);
+    background-color: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius:5px;
+    cursor:pointer;
+	}
+
+	.section_content {
+		width: 636px;
+	    height: 123px;
+    }
+
+    .delivery_info {
+	     position: relative;
+	     width: 636px;
+	     height: 63px;
         }
 
         .address_info {
@@ -210,12 +246,13 @@
 		}
 
         .btn_2 {
-            width: 150px;
+            width: 636px;
             height: 47px;
-            text-align: center;
+            text-align: left;
             border-radius: 10px;
             background-color: white;
             cursor:pointer;
+            
         }
 
         .button_shipping_memo {
@@ -250,7 +287,7 @@
 
         .point_area {
             width: 700px;
-            height: 250px;
+            
             background-color: #fff;
         }
 
@@ -265,10 +302,13 @@
         .all_use {
             width: 70.69px;
             height: 24px;
-            color: grey;
+            color: #ffffff;
+            background-color:#22222233;
             font-size: 12px;
             border-radius: 12px;
-            margin-top:13px;
+            margin-top:-1px;
+           	cursor:pointer;
+           	border:0.5px;
         }
 
         .have_point {
@@ -279,22 +319,24 @@
         .totalprice {
             background-color: #fff;
             width: 636px;
-        /*    height: 300px;*/
+      /*    height: 300px;*/
             padding: 32px;
             border-top: 8px;
             margin-top: 12px;
+            line-height: 50px;
         }
         .inner_totalprice{
         	padding:20px 0px;
-        
+            line-height: 60px;
         }
 
         .agree_wrap {
             width: 636px;
-            height: 600px;
+/*             height: 600px; */
             padding: 32px 32px 16px;
             background-color: #fff;
             margin-top: 12px;
+            line-height: 30px;
         }
 
         .point_view {
@@ -305,14 +347,30 @@
             border-radius: 10px;
             margin-top:15px;
         }
-
+        #popup{
+        display: none;
+         position: absolute; 
+         top: 740px; 
+         left: 750px;  
+         width: 400px;  
+         background-color: #fff; 
+         border: 1px solid #ccc; 
+         padding: 10px;
+         line-height:33px;
+         border-radius:15px;
+         
+		}
         .Q {
             border-radius: 10px;
             width:20px;
+            cursor:pointer;
+            margin-top:20px;
+            background-color: white;
+           
         }
 
         .title_txt1 {
-            margin-left: -13px;
+            margin-left: 1px;
             font-size: 18px;
             margin-top:10px
         }
@@ -327,21 +385,28 @@
 
         .btnimg {
             border-radius: 15px;
-            border: 1px solid #ebebeb
+            border: 1px solid #ebebeb;
+            cursor:pointer;
+          	margin-top:10px;
+            
+         
         }
 
         .btnimg2 {
             border-radius: 15px;
-            border: 1px solid #ebebeb
+            border: 1px solid #ebebeb;
+            cursor:pointer;
+            
         }
 
         .my-button5 {
             width: 636.02px;
             height: 47.99px;
             padding: 14px 2px;
-            margin-left: -12px;
+           	margin-left:0px;
             border-radius: 10px;
-            border: 1px solid #ebebeb
+            border: 1px solid #ebebeb;
+            cursor:pointer;
         }
 
         .payment-button {
@@ -351,12 +416,43 @@
             border: none;
             color: white;
             font-size: 16px;
+            cursor:pointer;
+			border-radius: 20px
         }
 
         button.active {
             background-color: red;
         }
-
+ 		.totalprice_area{
+ 		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+ 		
+ 		}
+ 		
+ 		.popup_style{
+ 		width:400px;
+ 		height:25px;
+ 		margin:15px 0;
+ 		border:0;
+ 		border-bottom:1px solid #ebebeb;
+ 		
+ 		}
+ 		
+ 		#address_popup{
+ 		 display: none;
+ 		  position: absolute;z-index: 5;
+ 		   top: 565px;
+ 		    left: 950px;
+ 		     transform: translate(-50%, -50%); 
+ 		     width: 400px; 
+ 		  border-radius:15px;
+ 		      background-color: white;
+ 		       border: 1px solid #ccc; 
+ 		 padding: 10px;
+ 		  
+ 		}
+ 		
         /* 체크박스 3개 체크시 결제하기버튼 빨간색으로*/
 		</style>
 </head>
@@ -396,28 +492,39 @@
                             <div class="section_title">
                                 <h3 class="title_txt">배송주소</h3>
                                 <div class="address_popup">
-                                    <button onclick="add_address_openPopup()" style="border:1px solid white">+새 주소
-                                        추가</button>
+                                    <button onclick="add_address_openPopup()" style="border:1px solid white;cursor:pointer;background-color: white">+새 주소
+                                 	추가</button>
                                 </div>
                             </div><!--section_title-->
-                            <div id="address_popup"
-                                style="display: none; position: absolute;z-index: 10; top: 500px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 320px; background-color: white; border: 1px solid #ccc; padding: 10px;">
-                                <h3 style="text-align: center;">
-                                    <b>새 주소 추가</b>
-                                </h3>
-                                <p><b>이름</b></p>
-                                <input type="text">
-                                <p><b>휴대폰 번호</b></p>
-                                <input type="tel" placeholder="- 없이 입력">
-                                <p><b>우편번호 검색</b></p>
-                                <input type="text">
-                                <button>우편번호</button>
-                                <p><b>주소</b></p>
-                                <input type="text" placeholder=" 우편번호 검색 후, 자동 입력됩니다.">
-                                <p><b>상세주소</b></p>
-                                <input type="text" placeholder=" 건물,아파트,동/호수 입력">
-								<hr>
-                                <button onclick="add_address_closePopup()" style="border-radius: 10px;margin-top:40px;">닫기</button>
+                            
+                            
+                            
+                            <div id="address_popup">
+                               
+	                                
+		                                <h3 style="text-align: center;">
+		                                    <b>새 주소 추가</b>
+		                                </h3>
+		                               	<p><b>이름</b></p>
+	                                	
+	                                	
+		                                	<input type="text"class="popup_style">
+		                                		                                
+		                                <p><b>휴대폰 번호</b></p>
+		                                
+		                                	<input type="tel" class="popup_style"placeholder="- 없이 입력">
+		                                
+		                                
+		                                <p><b>우편번호 검색</b></p>
+		                                <input type="text"class="popup_style">
+		                                <button class="addressnum">우편번호</button>
+		                                <p><b>주소</b></p>
+		                                <input type="text"class="popup_style" placeholder=" 우편번호 검색 후, 자동 입력됩니다.">
+		                                <p><b>상세주소</b></p>
+		                                <input type="text"class="popup_style" placeholder=" 건물,아파트,동/호수 입력">
+									
+		                                <button onclick="add_address_closePopup()" class="popup_inner_btn">닫기</button>
+                            		
                             </div>
 
                             <div class="delivery_info">
@@ -427,7 +534,7 @@
                                 </div>
                             </div><!--delivery_info-->
                             <div style="width: 636px ;height:48px ;">
-                                <div class="button_shipping_memo">
+                                <!--  button_shipping_memo -->
                                     <label for="my-select">
                                         <select class="my-button5"><!--이름 바꿀것-->
                                             <option value="option1">요청 사항을 선택해주세요</option>
@@ -438,7 +545,7 @@
                                     </label>
                                     <h3 class="title_txt1">배송방법</h3>
                                     <button class="btnimg"
-                                        style="width:636px;height:66px; display:flex; align-items:center; margin-left: -12px;background-color:white">
+                                        style="width:636px;height:66px; display:flex; align-items:center; background-color:white;">
                                         <img src="" alt="button image"
                                             style="width: 40px; height: 40px; margin-right: 10px;">
 
@@ -449,7 +556,7 @@
                                         </div>
                                     </button>
                                     <button class="btnimg2"
-                                        style="width:636px;height:66px; display:flex; align-items:center; margin-left: -12px; margin-top: 5px;background-color:white">
+                                        style="width:636px;height:66px; display:flex; align-items:center;  margin-top: 5px;background-color:white">
                                         <img src="" alt="button image"
                                             style="width: 40px; height: 40px; margin-right: 10px;">
                                         <div style="display:flex; flex-direction:column;">
@@ -458,7 +565,7 @@
                                             <span style="display:block;">배송 없이 창고에 보관 * 빠르게 판매 가능 </span>
                                         </div>
                                     </button>
-                                </div>
+                                <!--  button_shipping_memo -->
                             </div>
                         </div><!--section_unit-->
                     </section>
@@ -468,12 +575,12 @@
                             <input type="text" class="point_view" placeholder="0">
                             <button class="all_use">모두사용</button>
                             <p class="have_point"> 보유포인트:
-                                <button onclick="openPopup()" style="border-radius: 10px;" class="Q">?</button> 0p
+                                <button onclick="openPopup()"  class="Q">?</button> 0p
                             </p>
                             <!--포인트 - 팝업창-->
                             <div class="point_popup">
-                                <div id="popup"
-                                    style="display: none; position: absolute; top: 955px; left: 950px; transform: translate(-50%, -50%); width: 400px; height: 225px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
+                                <div id="popup">
+                                    
                                     <h3 style="text-align: center;">이용안내</h3>
                                     <p>사용 가능한 포인트 </p>
                                     <p><b>0P</b></p>
@@ -486,7 +593,7 @@
 				                                        먼저 적립된 포인트부터 순서대로 사용되며, 사용하지 않으실 경우 유효기간이 지나면 자동 소멸됩니다.<br>
 				                                        유효기간이 지난 후 환불받은 포인트는 다시 사용하실 수 없습니다.
                                     </p>
-                                    <button onclick="closePopup()" style="border-radius: 10px;margin-top:40px;">확인</button>
+                                    <button onclick="closePopup()" class="popup_inner_btn">확인</button>
                                 </div>
                             </div>
                         </div>
@@ -532,19 +639,17 @@
                             <p><b>'바로 결제하기'를 선택하시면 즉시 결제가 진행되며, 단순 변심이나 실수에 의한 <br>취소가 불가능합니다</b></p>
                              
                             <p style="font-size:15px">본 거래는 개인간 거래로 전자상거래법(제 17조)에 따른 철약철회(환불,교환) 규정이 적용되지 않습니다.</p>
+                          
                             <input type="checkbox" class="agree-terms" id="checkbox3">
-                            <br>
+                            
                             <label for="agree-terms"><b>위 내용을 모두 확인하였으며, 거래 진행에 동의합니다.</b></label>
-                            <br>
-                            <br>
-                            <br>
-                            <p class="end">총 결제금액</p>
-                            <p style="color: red; text-align: right;">436.300</p>
-                        </div>
-                        
-                        <button class="payment-button"id="payment-button" onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do'">결제하기</button>
-
-                        <!--<button style="width: 100%; height: 51.98px; background-color: #cccccc; border: none; color: white; font-size: 16px;">결제하기</button>-->
+							<br>
+                            <div class="totalprice_area">
+	                            <p>총 결제금액</p>
+	                            <p style="color:red;" >436.300</p>
+                        	</div>
+                        </div>                        
+                        <button class="payment-button"id="payment-button" onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do'">결제하기</button>                      
                     </div>
                 </div><!--buy_immediate-->
             </div><!-- content-->
