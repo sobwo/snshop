@@ -1,14 +1,14 @@
 package com.myteam.myapp.domain;
 
-public class purchaseVo {
-	private int purchaseNo, orderNo, memberNo;
+public class SaleVo {
+	private int saleNo, orderNo, memberNo;
 
-	public int getPurchaseNo() {
-		return purchaseNo;
+	public int getSaleNo() {
+		return saleNo;
 	}
 
-	public void setPurchaseNo(int purchaseNo) {
-		this.purchaseNo = purchaseNo;
+	public void setSaleNo(int saleNo) {
+		this.saleNo = saleNo;
 	}
 
 	public int getOrderNo() {
@@ -26,7 +26,6 @@ public class purchaseVo {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	
 	
 	
 }

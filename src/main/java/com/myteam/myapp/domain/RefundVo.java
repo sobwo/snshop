@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class refundVo {
+public class RefundVo {
 	private int refundNo, memberNo;
 	private String accountName, accountNum, accountUserName;
 	public int getRefundNo() {

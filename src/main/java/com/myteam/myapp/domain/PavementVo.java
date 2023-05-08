@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class pavementVo {
+public class PavementVo {
 	private int pavementNo, memberNo;
 	private String pardName,cardNum, userName;
 	public int getPavementNo() {
