@@ -17,6 +17,9 @@
 		<main class="main">
 			<div class="container">
 				<div class="product_area">
+				
+			<!-- 상품 이미지 표시 -->
+			
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -34,6 +37,9 @@
 							<li><img src=""></li>
 						</ul>
 					</div>
+					
+			<!-- 상품 가격 표시 -->
+			
 					<div class="productContents_area">
 						<div class="productContents">
 							<div class="brandName"><a href="#">jordan</a></div>
@@ -79,6 +85,8 @@
 								</div>
 							</div>
 						</div><!--productInfo-->
+					
+				<!-- 상품 구매시 주의사항 -->
 						<div class="confirm">
 							<h3>구매 전 꼭 확인해주세요!</h3>
 							<div>	
@@ -101,7 +109,9 @@
 						</div><!--confirm-->
 					</div><!--productContents_area-->
 				</div><!--product_area-->
-				
+			
+			<!-- 추천상품 표시 -->
+			
 				<div class="otherProduct_area">
 					<div class="o_sub">
 						<h3 class="sub_h3">추천상품</h3>
@@ -120,7 +130,9 @@
 						</div>
 					</div>
 				</div>
-					
+				
+			<!-- 상품 리뷰(후기) -->
+			
 				<div class="feed_area">
 					<h3 class="sub_h3">리뷰(스타일)<span>123</span></h3>
 					
@@ -151,57 +163,6 @@
 		</main>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){});
-			
-			
-			//사이즈버튼
-			var sizePick_btn = $(".sizePick_btn");
-			var popup_cancel = $(".popup_cancel");
-			var popup_wrap = $(".shopContent_popup_wrap");
-			var status_item_s = $(".status_item_s");
-			var size_view = $(".size_view");
-			var price_view = $(".price_view");
-			
-			popup_wrap.css('height',window.outerHeight);
-			
-			sizePick_btn.click(function(){
-				popup_wrap.show();
-			});
-			
-			status_item_s.on("click",function(){
-				size_view.text($(this).find('span.item_size_s').text());
-				price_view.text($(this).find('span.item_price_s').text());
-				popup_wrap.hide();
-			});
-			
-			//즐겨찾기 버튼
-			var wish = $(".wish");
-			var popup_wrap_2 = $(".shopMain_popup_wrap");
-			var status_item_fb = $(".status_item_fb");
-			var size_view_fb = $(".size_view_fb");
-			var price_view_fb = $(".price_view_fb");
-			
-			wish.click(function(){
-				popup_wrap_2.show();
-			});
-			
-			status_item_fb.on("click",function(){
-				popup_wrap_2.hide();
-				$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
-			});
-			
-			//공통
-			popup_cancel.click(function(){
-				popup_wrap.hide();
-				popup_wrap_2.hide();
-				
-			});
-			
-
-			
-
-				
-		</script>
+		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
 	</body>
 </html>

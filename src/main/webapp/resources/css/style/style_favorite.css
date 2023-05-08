@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+.content_wrap{
+	width:1902px;
+	padding-top:131px;
+	font-family:"GmarketSansMedium";
+}
+
+.content_inner_wrap{
+	width:1200px;
+	margin:0 auto;
+	padding:0 40px;
+}
+
+.content_area{
+	width:640px;
+	margin:0 auto;
+	padding-top:50px;
+}
+
+.content{
+	width:100%;
+	padding-bottom:40px;
+}
+
+.header_container{
+	width:100%;
+	height:44px;
+	display:flex;
+	justify-content:space-between;
+}
+
+.user_profile{
+	height:100%;
+	display:flex;
+}
+
+.user_img{
+	width:44px;
+	height:44px;
+}
+
+.user_id_wrap{
+	padding-left:10px;
+}
+
+.user_id{
+	font-size:16px;
+	font-weight:bold;
+}
+
+.write_date{
+	font-size:14px;
+	color:rgba(34,34,34,.5);
+}
+
+.button_wrap{
+	height:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.follow-button{
+	width:100px;
+	height:30px;
+	background:#fff;
+	border:1px solid #ebebeb;
+	border-radius:12px;
+	cursor:pointer;
+}
+
+.content_img_wrap{
+	width:100%;
+	height:640px;
+}
+
+.content_img{
+	width:100%;
+	height:100%;
+}
+
+.social_product{
+	width:100%;
+}
+
+.product_title{
+	width:100%;
+	height:24px;
+	padding:12px 0 8px 0;
+}
+
+.product_title span{
+	font-size:15px;
+}
+
+.product_list_area{
+	width:100%;
+}
+
+.product_list{
+	width:112px;
+}
+
+.product{
+	width:112px;
+}
+
+.product_img{
+	width:112px;
+	height:112px;
+}
+
+.product_name{
+	width:100%;
+	height:32px;
+	padding-top:6px;
+	font-size:15px;
+	overflow:hidden;
+}
+
+.product_price{
+	width:100%;
+	height:22px;
+	padding-top:6px;
+	font-size:13px;
+}
+
+.social_btn{
+	display:flex;
+	justify-content:space-between;
+}
+
+.social_btn img{
+	cursor:pointer;
+}
+
+.like_btn{
+	width:30px;
+	height:30px;
+}
+
+.comment_btn{
+	width:28px;
+	height:28px;
+	margin-left:20px;
+}
+
+.share_btn{
+	width:35px;
+	height:35px;
+}
+
+.social_count{
+	width:100%;
+	height:21px;
+	padding-top:12px;
+	font-size:14px;
+}
+
+.social_text{
+	width:100%;
+	height:25px;
+	padding-top:16px;
+}

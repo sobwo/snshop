@@ -58,9 +58,10 @@
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../common/footer.jsp"></jsp:include>	
-		
+		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
+			//하트 클릭 시 이미지 변경
 			var imgChange = document.getElementById("likeImageChange");
 			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
 	

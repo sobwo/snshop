@@ -6,406 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>SHOP 메인페이지</title>
-		<style type="text/css">
-			input[type="checkbox"]{
-				width : 15px;
-				height: 15px;
-				margin: 3px;
-				vertical-align:-2px;
-			}
-			.inner{
-				width: 1900px;
-				display: flex;
-				flex-direction: column;
-				flex-wrap: wrap;
-				padding-top: 191px;
-			}
-			.main_area{
-				width: 1280px;
-				margin: 0 auto;
-				display : flex;
-				flex-direction: row;
-				flex-wrap : wrap;
-				justify-content: space-around;
-			}
-			.trend_container{
-				width : 1200px;
-				height : 190px;
-				margin : 40px;
-				display : flex;
-				flex-direction : column;
-				justify-content: center;
-				border-bottom: 1px solid #ebebeb;
-			}
-			.trend_con_area{
-				display : flex;
-				flex-direction: row;
-				
-			}
-			.trendContents{
-				width:134px;
-				height:109px;
-				display : flex;
-				flex-direction : column;
-				justify-content: center;
-			}
-			.trendImg,.trendName{
-				display : flex;
-				justify-content: center;
-			}
-			
-			.trend_btn_area{
-				width : 1200px;
-				height : 30px;
-				margin-top : 16px;
-				display : flex;
-				justify-content:center;
-				flex-direction: row;
-			}
-			
-			.trend_btn_area>button{
-				border: none;
-				width : 30px;
-				height : 30px;
-				margin : 0 15px;
-			}
-			.trend_pre_btn>img{
-				transform:rotate(180deg);
-			}
-			
-			.trend_btn_area>ul{
-				display : flex;
-				flex-direction : row;
-				margin : 0 10px;
-			}
-			.trend_list>button{
-				color: transparent;
-				width: 6px;
-				height: 6px;
-				background: #d3d3d3;
-				font-size: 0;
-				border: 6px;
-				border-color : #000;
-				border-radius: 6px;
-				margin : 0 5px;
-					
-			}
-			.product_container{
-				display : flex;
-				flex-direction: row;
-				justify-content:space-between;
-			}
-			
-			.aside_area{
-				width:220px;
-			}
-			.filter_title{
-				width:200px;
-				padding : 12px 0px;
-				display:flex;
-				flex-direction : column;
-				justify-content:space-between;
-				border-bottom: 1px solid #ebebeb;
-			}
-			.title_first{
-				flex-direction : row;
-			}
-			.title_area{
-				display:flex;
-				width:200px;
-				flex-direction : row;
-				justify-content:space-between;
-				margin-bottom: 10px;
-			}
-			
-			.filterName{
-				font-size : 14px;
-				font-weight: 600;
-			
-			}
-			.title_area>button{
-				border:none;
-				background-color : white;
-				width:20px;
-				height:20px;
-			}
-			.filterName1{
-				display:flex;
-				flex-direction : column;
-			}
-			
-			.filterName1 span:first-child{
-				font-size:14px;
-				font-weight:bold;
-			}
-			
-			.filtername1 span:last-child{
-				font-size:15px;
-			}
-			
-			.filter_allSelect{
-				font-size : 16px;
-				color : rgba(34,34,34,.5);
-				margin : 3px;
-			}
-			.filter_list_area{
-				width:200px;
-
-			}
-			.filter_list{
-				display: flex;
-				flex-direction: column;
-				padding : 3px;
-			}
-			.filter_list_in{
-				padding-bottom: 3px;
-			}
-		
-			.filter_child_list{
-				margin-left : 22px;
-				display: flex;
-				flex-direction: column;
-				padding : 3px;
-			}
-			.size_title{
-				color: rgba(34,34,34,.8);
-				font-size: 13px;
-				font-weight: bold;
-				padding: 5px;
-				margin-bottom: 10px;
-			}
-			.sh_size_btn,.number_size{
-				display: grid;
-				grid-template-columns: repeat(3,1fr);
-				grid-column-gap: 1px;
-				column-gap: 10px;
-				grid-row-gap: 1px;
-				row-gap: 10px;
-				padding: 10px;
-				text-align: center;
-			}
-			.column_menu{
-				height: 32px;
-				border: 1px solid #d3d3d3;
-				font-size: 13px;
-				line-height: 30px;
-			}
-			.more_btn{
-				font-size: 12px;
-				line-height: 14px;
-				color: rgba(34,34,34,.8);
-				cursor: pointer;
-				margin: 14px 0;
-			}
-			.ahpabet_size{
-				display: grid;
-				grid-template-columns: repeat(2,1fr);
-				grid-column-gap: 1px;
-				column-gap: 10px;
-				grid-row-gap: 1px;
-				row-gap: 10px;
-				padding: 10px;
-				text-align: center;
-			}
-			.filter_child_list>a{
-				margin-bottom: 5px;
-			}
-			.filter_teg_area{
-				display: flex;
-				flex-direction: row;
-				padding: 12px;
-			}
-			.teg_item{
-				height : 20px;
-				display :inline-flex;
-				border:1px solid #ebebeb;
-				align-items: center;
-				margin: 4px 9px 0 0;
-				padding: 4px 2px 6px 10px;
-				background-color: #f4f4f4;
-				border-radius: 6px;
-			}
-			.teg_item>span{
-				margin-right:5px;
-				font-size: 14px;
-			}
-			.teg_item>button{
-				width : 24px;
-				height : 24px;
-				border:none;
-				background-color: #f4f4f4;
-				
-			}
-			
-			.product_wrap{
-				width : 980px;
-				display: flex;
-				flex-direction: column;
-				
-			}
-			.product_top{
-				display : flex;
-				height : 30px;
-				flex-direction : row;
-				justify-content : space-between;
-				padding : 12px 16px;
-				
-			}
-			.product_count >span{
-				font-size: 13px;
-				color: rgba(34,34,34,.8);	
-				vertical-align:middle;
-				text-align:center;
-			}
-			
-			.product_btn_area{
-				width: 100px;
-				position: relative;
-			}
-			.product_btn_area button{
-				border:0;
-				background:#fff;
-				cursor:pointer;
-				display:flex;
-				align-items:center;
-			}
-			.product_btn_area img{
-				width:15px;
-				height:15px;
-				margin-left:3px;
-			}
-			
-			.product_btn_list{
-				position: relative;
-				width: 278px;
-				right: 235px;
-				padding:10px;
-				border:1px solid #ebebeb;
-				border-radius:5px;
-				box-shadow:.5px .5px gray;
-			}
-			.list_sub{
-				font-size: 14px ;
-				font-weight: 700;
-			}
-			.list_con{
-				padding: 8px 12px;
-				font-size: 12px;
-				letter-spacing: -.06px;
-				color: rgba(34,34,34,.5);
-			}
-			.btn_list_item{
-				width:100%;
-				display: flex;
-				padding-top:10px;
-				cursor:pointer;
-			}
-			.btn_list_item:hover{
-				background:#fafafa;
-			}
-			
-			.list_item_info{
-				width:80%;
-			}
-			
-			.list_item_info span{
-				display:block;
-			}
-			
-			.check_img{
-				width:20%;
-				height:100%;
-				margin-top:15px;
-				text-align:center;
-			}
-			
-			.check_img img{
-				width:25px;
-				height:25px;
-			}
-			
-			.product_area{
-				width:100%;
-				display : grid;
-				grid-template-columns: repeat(4,minmax(0,1fr));
-				grid-column-gap: 20px;
-				column-gap: 20px;
-				grid-row-gap: 40px;
-				row-gap: 30px;
-				padding:0 10px;
-			}
-			
-			.product_item{
-				display : flex;
-				flex-direction : column;
-				cursor:pointer;
-			}
-			.pro_img_area{
-				margin-bottom: 5px;
-
-			
-			}
-			.pro_img{
-				width : 230px;
-				height : 230px;
-			
-			}
-			.pro_name_area{
-				padding : 6px;
-				
-			}
-			.pro_brand{
-				line-height: 16px;
-				font-size: 13px;
-				letter-spacing: -.07px;
-				font-weight: 700;
-				color: #333;
-			
-			}
-			.pro_name1{
-				margin: 4px 0;
-				line-height: 16px;
-				font-size: 13px;
-			}
-			.pro_name2{
-				margin: 2px 0;
-				line-height: 13px;
-				margin-top: 2px;
-				font-size: 11px;
-				color: rgba(34,34,34,.5);
-			}
-			.pro_price{
-				line-height: 17px;
-				font-size: 14px;
-				font-weight: 700;
-				margin-bottom : 3px;
-			}
-			.pro_icon_area{
-				display : flex;
-				flex-direction : row;
-				justify-content : flex-start;
-			
-			}
-			.pro_icon_area>span{
-				color: rgba(34,34,34,.5);
-				font-size: 15px;
-				margin-right: 10px;
-				display:flex;
-				align-items:center;
-			}	
-			
-			.wish_img{
-				width:16px;
-				height:13px;
-				cursor:pointer;
-			}
-			.review_btn img{
-				width:16px;
-				height:13px;
-				cursor:pointer;
-			}
-			
-		</style>
+		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
 	</head>
 	<body>
 		<jsp:include page="popup/favorite_popup.jsp"></jsp:include>
@@ -448,7 +49,7 @@
 									<span>필터</span>
 									<span>1</span>
 								</div><!-- filterName -->
-								<a href="#">초기화</a>
+								<a href="#" class="reset">초기화</a>
 							</div><!-- filter_title -->
 							
 							<div class="filter_title">
@@ -463,57 +64,72 @@
 								<div class="filter_list_area" style="display:none;">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" id="" name="" value="신발" > 신발</a>
+											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
+											<div class="item">신발</div>
 											<ul class="filter_child_list" style="display:none;">
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="스니커즈" > 스니커즈</a>		
+													<input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" >
+													<div class="item_child">스니커즈</div>	
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="플랫" > 플랫</a>
+													<input type="checkbox" class="filter_list_bottom" name="플랫" value="플랫" >
+													<div class="item_child">플랫</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="로퍼" > 로퍼</a>
+													<input type="checkbox" class="filter_list_bottom" name="로퍼" value="로퍼" >
+													<div class="item_child">로퍼</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="더비" > 더비</a>
+													<input type="checkbox" class="filter_list_bottom" name="더비" value="더비" >
+													<div class="item_child">더비</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="힐" > 힐</a>
+													<input type="checkbox" class="filter_list_bottom" name="힐" value="힐" >
+													<div class="item_child">힐</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="부츠" > 부츠</a>
+													<input type="checkbox" class="filter_list_bottom" name="부츠" value="부츠" >
+													<div class="item_child">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="아우터" > 아우터</a>
+											<input type="checkbox" class="filter_list_top" name="아우터" value="아우터" >
+											<div class="item"> 아우터</div>
 											<ul class="filter_child_list" style="display:none;">
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="자켓" > 자켓</a>		
+													<input type="checkbox" class="filter_list_bottom" name="자켓" value="자켓" >
+													<div class="item_child">자켓</div>	
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="코트" > 코트</a>
+													<input type="checkbox" class="filter_list_bottom" name="코트" value="코트" >
+													<div class="item_child">코트</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="패딩" > 패딩</a>
+													<input type="checkbox" class="filter_list_bottom" name="패딩" value="패딩" >
+													<div class="item_child">패딩</div>
 												</li>
 												<li class="filter_list_in">
-													<a href="#"><input type="checkbox" class="shoes_list" name="" value="기타 아우터" > 기타 아우터</a>
-												</li>
-									
-											</ul><!-- filter_child_list -->		
+													<input type="checkbox" class="filter_list_bottom" name="기타 아우터" value="기타 아우터" >
+													<div class="item_child">기타 아우터</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="상의" > 상의</a>
+											<input type="checkbox" class="filter_list_top" name="상의" value="상의" >
+											<div class="item">상의</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="하의" > 하의</a>
+											<input type="checkbox" class="filter_list_top" name="하의" value="하의" >
+											<div class="item"> 하의</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="가방" > 가방</a>
+											<input type="checkbox" class="filter_list_top" name="가방" value="가방" >
+											<div class="item"> 가방</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_list_top" name="" value="지갑" > 지갑</a>
+											<input type="checkbox" class="filter_list_top" name="지갑" value="지갑" >
+											<div class="item"> 지갑</div>
 										</li>								
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -531,13 +147,16 @@
 								<div class="filter_list_area" style="display:none;">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_gender" name="" value="남성" > 남성</a>
+											<input type="checkbox" class="filter_gender" name="남성" value="남성" >
+											<div class="item_gender">남성</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_gender" name="" value="여성" > 여성</a>
+											<input type="checkbox" class="filter_gender" name="여성" value="여성" >
+											<div class="item_gender"> 여성</div>
 										</li>
 										<li class="filter_list_in">
-											<a href="#"><input type="checkbox" class="filter_gender" name="" value="키즈" > 키즈</a>
+											<input type="checkbox" class="filter_gender" name="키즈" value="키즈" >
+											<div class="item_gender"> 키즈</div>
 										</li>
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -626,20 +245,44 @@
 									<div class="filter_list">
 										<span>혜택</span>
 									</div>
-									<div class="filter_child_list">
-										<a href="#"><input type="checkbox" class="filter_asd" name="" value="무료배송" >무료배송</a>
-										<a href="#"><input type="checkbox" class="filter_asd" name="" value="할인" >할인</a>
+									<div class="filter_list">
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_benefit" name="" value="무료배송" >
+											<div class="item_benefit">무료배송</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_benefit" name="" value="할인" >
+											<div class="item_benefit">할인</div>
+										</div>
 									</div><!-- filter_list -->
 									<div class="filter_list">
 										<span>가격</span>
 									</div>
-									<div class="filter_child_list">
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="10만원 이하" >10만원 이하</a>
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="10-30만원" >10-30만원</a>
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="30-50만원" >30-50만원</a>
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="50-100만원" >50-100만원</a>
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="100-300만원" >100-300만원</a>
-										<a href="#"><input type="checkbox" class="filter_price" name="" value="300만원 이상" >300만원 이상</a>
+									<div class="filter_list">
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="10만원 이하" >
+											<div class="item_price">10만원 이하</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="10-30만원" >
+											<div class="item_price">10-30만원</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="30-50만원" >
+											<div class="item_price">30-50만원</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="50-100만원" >
+											<div class="item_price">50-100만원</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="100-300만원" >
+											<div class="item_price">100-300만원</div>
+										</div>
+										<div class="filter_list_in">
+											<input type="checkbox" class="filter_price" name="" value="300만원 이상" >
+											<div class="item_price">300만원 이상</div>
+										</div>
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
@@ -750,219 +393,6 @@
 			
 		</div><!-- inner -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function(){});
-			
-		//좌측 필터 + - 버튼 
-			var filter_btn = $(".filter_btn");
-			var filter_allSelect = $(".filter_allSelect");
-			var filter_list_area = $(".filter_list_area");
-
-			for(var i=0; i<4;i++){
-				btn_filter(i);
-			}
-			
-			function btn_filter(index){
-				filter_btn.eq(index).on("click",function(){
-					if(filter_btn.eq(index).val()=="open"){
-						filter_list_area.eq(index).show();
-						filter_btn.eq(index).text("-");
-						filter_btn.eq(index).attr("value","close");
-						filter_allSelect.eq(index).hide();
-					}
-					else{
-						filter_list_area.eq(index).hide();
-						filter_btn.eq(index).text("+");
-						filter_btn.eq(index).attr("value","open");
-						filter_allSelect.eq(index).show();
-					}	
-				});
-			}
-			
-		//좌측 필터(카테고리) 체크 버튼 클릭시 태그 div 생성 삭제
-			
-			var list_top = $(".filter_list_top");
-			var filter_child_list = $(".filter_child_list");
-			var shoes_list = $(".shoes_list");
-			
-			for(var i=0; i<shoes_list.length;i++){
-				shoes_list_check(i);
-			}
-			for(var i=0; i<list_top.length;i++){
-				list_top_check(i);
-			}
-			
-			function list_top_check(index){
-				list_top.eq(index).change(function(){
-					if(this.checked){
-						filter_child_list.eq(index).show();
-						shoes_list.prop("checked",false);
-						$(".teg_child").detach();
-						$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
-								"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-					}else{
-						$("div[name="+list_top.eq(index).val()+"]").detach();
-						filter_child_list.eq(index).hide();
-					}
-				});
-			}
-			
-			function shoes_list_check(index){
-				shoes_list.eq(index).change(function(){
-					if(this.checked){
-						
-						if(list_top.prop("checked",true))list_top.prop("checked",false);
-						
-						$(".teg_parent").detach();
-						$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+shoes_list.eq(index).val()+
-								"'><span>"+shoes_list.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-					}else{
-						$("div[name="+shoes_list.eq(index).val()+"]").detach();
-						
-					}
-				});
-			}
-			
-		//좌측 필터 성별
-			
-			var filter_gender = $(".filter_gender");
-			
-			for(var i=0; i<filter_gender.length;i++){
-				gender_list_check(i);
-			}
-			
-			function gender_list_check(index){
-				filter_gender.eq(index).change(function(){
-					if(this.checked){
-						$(".teg_gender").detach();
-						$("input:checkbox[class='filter_gender']").prop("checked",false);
-						$(this).prop("checked",true);
-						
-						$(".filter_teg_area").append("<div class='teg_item teg_gender' name='"+filter_gender.eq(index).val()+
-								"'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-					}else{
-						$("div[name="+filter_gender.eq(index).val()+"]").detach();
-						
-					}
-				});
-			}
-			
-		//좌측 필터 사이즈 
-			
-			var column_menu = $(".column_menu");
-			
-			for(var i=0; i<column_menu.length;i++){
-				click_size(i);
-			}
-			
-			function click_size(index){
-				column_menu.eq(index).click(function(){
-					
-					$("div[name='teg_size']").detach();
-					
-					$(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
-							+"</span><button class='teg_item_btn'>X</button></div>");
-					
-				});
-			}
-		//좌측 필터 혜택
-			var filter_asd = $(".filter_asd");
-
-			for(var i=0; i<filter_asd.length;i++){
-				filter_asd_check(i);
-			}
-			
-			function filter_asd_check(index){
-				filter_asd.eq(index).change(function(){
-					if(this.checked){
-						
-						$(".filter_teg_area").append("<div class='teg_item teg_asd' name='"+filter_asd.eq(index).val()+
-								"'><span>"+filter_asd.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-					}else{
-						$("div[name="+filter_asd.eq(index).val()+"]").detach();
-						
-					}
-				});
-			}
-		//좌측 필터 가격
-			var filter_price = $(".filter_price");
-			
-			for(var i=0; i<filter_price.length;i++){
-				filter_price_check(i);
-			}
-			
-			function filter_price_check(index){
-				filter_price.eq(index).change(function(){
-					if(this.checked){
-						
-						$(".teg_price").detach();
-						$("input:checkbox[class='filter_price']").prop("checked",false);
-						$(this).prop("checked",true);
-
-						
-						$(".filter_teg_area").append("<div class='teg_item teg_price' name='"+filter_price.eq(index).val()+
-								"'><span>"+filter_price.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-					}else{
-						$("div[name="+filter_price.eq(index).val()+"]").detach();
-						
-					}
-				});
-			}
-
-			//태그 div 버튼 클릭시 삭제 및 클릭 해제
-			$(document).on('click','.teg_item_btn',function(){
-				
-				var a = $(this).parent('div').attr('name');
-				$("input:checkbox[name='"+a+"']").prop("checked",false);
-				$(this).parent('div').detach();
-			
-			});
-			
-			//우측 필터버튼
-			var list = $(".product_btn_list");
-			function btn_list(){
-				if ( list.css('display') === 'none'){
-					list.show();
-				}else{
-					list.hide();
-				}
-			}
-			
-			//우측 필터버튼 클릭시
-			var btn_list_item = $(".btn_list_item");
-			btn_list_item.on("click",function(){
-				$(".btn_title").text($(this).find('span.list_sub').text());
-				for(var i=0;i<5;i++){
-					$(".check_img").html("");
-				}
-				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
-				list.hide();
-			});
-
-			//즐겨찾기 버튼
-			var wish_btn = $(".wish_btn");
-			var popup_wrap = $(".shopMain_popup_wrap");
-			var popup_cancel = $(".popup_cancel");
-			var status_item = $(".status_item_fb");
-			
-			popup_wrap.css('height',window.outerHeight);
-			
-			wish_btn.on("click",function(){
-				popup_wrap.show();
-			});
-			
-			popup_cancel.click(function(){
-				popup_wrap.hide();
-			});
-			
-			status_item.on("click",function(){
-				popup_wrap.hide();
-			});
-			
-			//리뷰 버튼
-			
-			
-			
-		</script>
+		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 	</body>
 </html>

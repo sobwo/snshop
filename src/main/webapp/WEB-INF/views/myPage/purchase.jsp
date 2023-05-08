@@ -24,9 +24,12 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+					<!-- 구매내역 헤더 -->
 					<div class="content_title">
 						<h3>구매 내역</h3>
 					</div>
+					
+					<!-- 구매내역 메뉴 -->
 					<div class="purchase_category">
 						<div class="tab_category category_first">
 							<div class="tab_count count_first">0</div>
@@ -41,6 +44,8 @@
 							<div class="tab_title">종료</div>
 						</div>
 					</div>
+					
+					<!-- 기간별 설정 -->
 					<div class="period_search">
 						<ul class="month_btn_area">
 							<li><input type="button" class="month_link" value="최근 2개월"></li>
@@ -69,6 +74,8 @@
 							<span class="price_txt">구매 금액&nbsp;<img class="price_btn_img" src="${pageContext.request.contextPath}/resources/image/triangle.png"></span>
 						</div>
 					</div>
+					
+					<!--  구매내역 리스트 -->
 					<div class="purchase_contents_wrap">
 						<div class="purchase_contents">
 							<div class="purchase_detail">

@@ -35,28 +35,15 @@
 		</form>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/member/searchIdVal.js"></script>
 		<script>
-			$(document).ready(function(){});
-			
-			$('input[name=searchId]').on('click',function(){
-				
-				if($('#searchId').is(':checked')){
-					$('.searchBtn').prop('disabled', false);
-					$('.searchBtn').css('background-color', '#222');
-				}
-				else{ 
-					$('.searchBtn').css('background-color', '#ebebeb');
-					$('.searchBtn').prop('disabled', true);
-				}
-			});
-			
 			function login(){
 				var fm = document.frm;
 				fm.action ="${pageContext.request.contextPath}/member/memberLogin.do";
 				fm.method = "post";
 				fm.submit();
 			}
-			
+	
 			function searchPw(){
 				var fm = document.frm;
 				fm.action ="${pageContext.request.contextPath}/member/searchPw.do";

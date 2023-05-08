@@ -6,131 +6,12 @@
 	<meta charset="EUC-KR">
 	<title>Insert title here</title>
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
-		<style> 
-			.orderFinishContainer{
-				width:1902px;
-				height:881px;
-				background-color: #fafafa;
-			}
-			.orderFinishContent{
-				width:700px;
-				height:701px;
-				margin: 0 auto;
-			    padding: 20px 40px 160px;
-			    max-width: 780px;
-			}
-			.orderFinishBox{
-				width:700px;
-				height:601px;
-				background-color: #fff;
-			}
-			.orderFinisTitle{
-				display: flex;
-			    -webkit-box-align: center;
-			    align-items: center;
-			    line-height: 38px;
-			    padding: 32px 32px 40px;
-			    font-size: 25px;
-			    letter-spacing: -.48px;
-			    font-weight: 700;
-			}
-			.accentTitle{
-				color: #f15746;
-			}
-			.pay{
-				display: flex;
-				align-items: center;
-				width: 636px;
-				height: 120px;
-				padding: 0 32px 18px;
-				justify-content:space-between;
-			}
-			.payText{
-				display: flex;
-			    -webkit-box-align: center;
-			    align-items: center;
-			    line-height: 38px;
-			    padding: 32px 32px 40px;
-			    font-size: 25px;
-			    letter-spacing: -.48px;
-			    font-weight: 700;
-			}
-			.payTotal{}
-			.payNumber{
-				display: flex;
-			    -webkit-box-align: center;
-			    align-items: center;
-			    line-height: 38px;
-			    padding: 32px 32px 40px;
-			    font-size: 25px;
-			    letter-spacing: -.48px;
-			    font-weight: 700;
-			}
-			.payTotalNumber{}
-			
-			.buyProduct{
-				display: flex;
-				align-items: center;
-				width: 636px;
-				height: 200px;
-				padding: 0 32px 18px;
-			}
-			.buyItem{
-				width: 80px;
-				height: 80px;
-				object-fit: cover;
-			    image-rendering: auto;
-			}
-			.buyInfo{
-				width: 540px;
-				height: 80px;
-				padding-left: 16px;
-				text-align: left;
-			}
-			.modelNumber{}
-			.modelName{}
-			.modelSize{}
-			.buyCheckBox{
-				width:700px;
-				height:493px;
-			}
-			.orderFinishBtn{
-				width:636px;
-				height:52px;
-				padding:32px 32px;
-			}
-			#orderFinish{
-				width:636px;
-				height:52px;
-				background-color: #222;
-				color: #fff;
-			    vertical-align: middle;
-			    text-align: center;
-			    font-weight: 700;
-			    font-size:20px;
-			    border-radius: 8px;
-			    border:none;
-			}
-			
-		</style>   
+		<link href=" ${pageContext.request.contextPath}/resources/css/order/orderFinish.css" rel="stylesheet">
+	 
 </head>
 	<body>
-		<div id="top_inner">
-			<div id="top_menu">
-				<ul>
-					<li><a>고객센터</a></li>
-					<li style='margin-left:24px'><a>관심상품</a></li>
-					<li style='margin-left:24px'><a>로그인</a></li>
-					<li><a>로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="header_main">
-			<div id="main_inner">
-				<div id="logo">
-					<h1 style='font-size:22px;'><a>로고</a></h1>
-				</div>
-			</div>
+		<div id="header_wrap" style='height:94px;border:0'>
+			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
 		<div class="orderFinishContainer">
 			<div class="orderFinishContent">
@@ -157,8 +38,7 @@
 						</div>				
 					</div>
 					<div class="orderFinishBtn">
-						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="">
-						<label for="buyContinue"></label>
+						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="location.href='${pageContext.request.contextPath}/'">
 					</div>	
 				</div>
 			</div>	

@@ -17,16 +17,18 @@
 				<div class="uploadContainer">
 					<div class="uploadBox">
 						<div id="previewImages"></div>
-						<input type="file" multiple="multiple" id="fileatt" name="filename" onchange="readImage(event)">
+						<input type="file" multiple="multiple" id="fileatt" name="contentsImg" onchange="readImage(event)">
+	
 						<label for="fileatt" id="fileLabel"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
-						<textarea id="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
+						<textarea id="contents" name="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
 								onkeydown="resize(this)" onkeyup="resize(this)"
 						></textarea>
 					</div>
 					<div class="hashtagContainer">
 						<button onclick="addHashtag('#하이라이트챌린지')">#하이라이트챌린지</button>
 						<button onclick="addHashtag('#스타일컬렉터')">#스타일컬렉터</button>
-					</div>
+					</div>   
+					
 				</div>
 				<div class="tagSelectContainer">
 					<div class="tagSelectBox">
@@ -65,43 +67,7 @@
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
-		<script>		
-			function resize(obj) {
-			  obj.style.height = "1px";
-			  obj.style.height = (12+obj.scrollHeight)+"px";
-			}
-			function addHashtag(hashtag) {
-			      var textarea = document.getElementById("contents");
-			      var currentText = textarea.value;
-			      var newText = currentText + " " + hashtag;
-			      textarea.value = newText;
-			}
-		
-			function readImage(event) {
-				  var previewImages = document.querySelector("div#previewImages");
-				  var fileLabel = document.querySelector("label#fileLabel");
-			
-				  // 파일 개수가 5개를 초과하는 경우 업로드를 막음
-				  if (event.target.files.length > 5) {
-				    alert("사진은 5개까지만 첨부 가능합니다.");
-				    event.target.value = "";
-				    return;
-				  }
-			
-				  for (var image of event.target.files) {
-				    var reader = new FileReader();
-				    reader.onload = function(event) {
-				      var img = document.createElement("img");
-				      img.setAttribute("src", event.target.result);
-				      previewImages.appendChild(img);
-				      if (previewImages.childElementCount >= 5) {
-				        fileLabel.style.display = "none";
-				      }
-				    };
-				    console.log(image);
-				    reader.readAsDataURL(image);
-				  }
-			}
-		</script>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
 	</body>
 </html>

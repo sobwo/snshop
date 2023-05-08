@@ -18,6 +18,8 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+				
+					<!-- 유저 프로필 정보 -->
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
@@ -43,10 +45,14 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 구매내역 -->
 					<div class="myHome_title_wrap">
 						<h3 class="myHomeTitle">구매 내역</h3>
 						<a href='${pageContext.request.contextPath}/myPage/purchase.do'><span>더보기 &rarr;</span></a>
 					</div>
+					
+					<!-- 구매내역 메뉴 -->
 					<div class="recent_purchase">
 						<div class="purchase_list_wrap">
 							<div class="purchase_item">
@@ -68,6 +74,8 @@
 								</a>
 							</div>
 						</div>
+						
+						<!-- 구매내역 리스트 -->
 						<div class="purchase_contents_wrap">
 							<div class="purchase_contents">
 								<div class="purchase_detail">
@@ -85,10 +93,14 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 판매내역 -->
 					<div class="myHome_title_wrap">
 						<h3 class="myHomeTitle">판매 내역</h3>
 						<a href='${pageContext.request.contextPath}/myPage/sale.do'><span>더보기 &rarr;</span></a>
 					</div>
+					
+					<!-- 판매내역 메뉴 -->
 					<div class="recent_purchase">
 						<div class="purchase_list_wrap">
 							<div class="purchase_item">
@@ -110,6 +122,8 @@
 								</a>
 							</div>
 						</div>
+						
+						<!-- 판매내역 리스트 -->
 						<div class="purchase_contents_wrap">
 							<div class="purchase_contents">
 								<div class="purchase_detail">
@@ -127,10 +141,14 @@
 							</div>
 						</div>
 					</div>
+					
+					<!-- 관심상품 -->
 					<div class="myHome_title_wrap">
 						<h3 class="myHomeTitle">관심 상품</h3>
 						<a href='${pageContext.request.contextPath}/myPage/interest.do'><span>더보기 &rarr;</span></a>
 					</div>
+					
+					<!-- 관심상품 리스트 -->
 					<div class="recent_purchase" style="display:flex; justify-content:space-between">
 						<div class="product_item" onclick="location.href='/shop/shopMain.do'">
 							<div class="item_thumb">

@@ -10,6 +10,7 @@
 	<!-- 팝업창 -->
 	<div class="popup_wrap basic_popup_wrap" style="display:none">
 		<div class="popup basic_popup">
+			<!-- 팝업 헤드 -->
 			<div class="popup_head">
 				<h2 class="popup_name">새 주소 추가</h2>
 				<div class="popup_cancel">X</div>

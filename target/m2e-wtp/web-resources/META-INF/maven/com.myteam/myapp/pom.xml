@@ -145,6 +145,13 @@
 			<version>12.1.0.2</version>
 		</dependency>
 		
+		<!-- MySQL -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.5</version>
+        </dependency>
+		
 		<!-- mybatis : 스프링 프레임워크 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

@@ -540,7 +540,9 @@
                             <p class="end">총 결제금액</p>
                             <p style="color: red; text-align: right;">436.300</p>
                         </div>
-                        <button class="payment-button" id="payment-button">결제하기</button>
+                        
+                        <button class="payment-button"id="payment-button" onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do'">결제하기</button>
+
                         <!--<button style="width: 100%; height: 51.98px; background-color: #cccccc; border: none; color: white; font-size: 16px;">결제하기</button>-->
                     </div>
                 </div><!--buy_immediate-->

@@ -8,6 +8,7 @@
 	width:1902px;
 	height:881px;
 	background-color: #fafafa;
+	font-family:"GmarketSansMedium";
 }
 .buyContent{
 	width:700px;
@@ -92,6 +93,11 @@
 }
 .checkboxWrap{
 	margin-left: auto;
+}
+
+.checkboxWrap input{
+	width:24px;
+	height:24px;
 }
 #checkbox{
 	width:24px;

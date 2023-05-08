@@ -22,9 +22,11 @@
 			<div class="myPage_inner_wrap">
 				<jsp:include page="../common\myPage_menu.jsp"></jsp:include>
 				<div class="content_wrap">
+					<!-- 판매정산계좌 헤더 -->
 					<div class="content_title">
 						<h3>판매 정산 계좌</h3>
 					</div>
+					
 					<!-- 은행명 -->
 					<div class="account_registration">
 						<div class="account_registration_wrap">
