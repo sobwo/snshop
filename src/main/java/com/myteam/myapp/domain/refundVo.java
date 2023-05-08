@@ -32,7 +32,5 @@ public class refundVo {
 	}
 	public void setAccountUserName(String accountUserName) {
 		this.accountUserName = accountUserName;
-	}
-
-	
+	}	
 }

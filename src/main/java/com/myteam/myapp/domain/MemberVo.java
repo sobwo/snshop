@@ -1,7 +1,7 @@
 package com.myteam.myapp.domain;
 
 public class MemberVo {
-	private int memberNo;
+	private int memberNo,point;
 	private String memberName, memberPw, memberEmail, memberPhone, delYn, profileImg;
 	public int getMemberNo() {
 		return memberNo;
@@ -45,6 +45,10 @@ public class MemberVo {
 	public void setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
 	}
-	
-	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 }
