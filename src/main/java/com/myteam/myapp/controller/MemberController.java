@@ -27,31 +27,33 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 	
-//	@RequestMapping(value = "/memberIdCheck.do")
-//	public String memberIdCheck() {
-//		String str = null;
-//		int value = 0;
-//		str = "{\"value\":\""+value+"\"}";
-//		return str;
-//	}
-	
-//	@RequestMapping(value = "/memberJoinAction.do")
-//	public String memberJoinAction(
-//			@RequestParam("memberId") String memberId,
-//			@RequestParam("memberPw") String memberPw,
-//			@RequestParam("memberName") String memberName,
-//			@RequestParam("memberEmail") String memberEmail,
-//			@RequestParam("memberPhone") String memberPhone,
-//			@RequestParam("memberGender") String memberGender) {
-//		
-//		int value = ms.memberInsert(memberId, memberPw, memberName, memberEmail, memberPhone, memberGender);
-//		
-//		if(value == 1)
-//			return "member/memberLogin";
-//		else
-//			return "member/memberJoin";
-//		
-//	}
+	/*
+	 * @RequestMapping(value = "/memberIdCheck.do") public String memberIdCheck() {
+	 * String str = null; int value = 0; str = "{\"value\":\""+value+"\"}"; return
+	 * str; }
+	 * 
+	 * @RequestMapping(value = "/memberJoinAction.do") public String
+	 * memberJoinAction(
+	 * 
+	 * @RequestParam("memberId") String memberId,
+	 * 
+	 * @RequestParam("memberPw") String memberPw,
+	 * 
+	 * @RequestParam("memberName") String memberName,
+	 * 
+	 * @RequestParam("memberEmail") String memberEmail,
+	 * 
+	 * @RequestParam("memberPhone") String memberPhone,
+	 * 
+	 * @RequestParam("memberGender") String memberGender) {
+	 * 
+	 * int value = ms.memberInsert(memberId, memberPw, memberName, memberEmail,
+	 * memberPhone, memberGender);
+	 * 
+	 * if(value == 1) return "member/memberLogin"; else return "member/memberJoin";
+	 * 
+	 * }
+	 */
 	
 	@RequestMapping(value = "/searchId.do")
 	public String searchId() {
