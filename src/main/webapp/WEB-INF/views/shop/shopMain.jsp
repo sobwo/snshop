@@ -66,7 +66,7 @@
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
 											<div class="item">신발</div>
-											<ul class="filter_child_list">
+											<ul class="filter_child_list" id="신발">
 												<li class="filter_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" >
 													<div class="item_child">스니커즈</div>	
@@ -96,7 +96,7 @@
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_list_top" name="아우터" value="아우터" >
 											<div class="item"> 아우터</div>
-											<ul class="filter_child_list">
+											<ul class="filter_child_list" id="아우터">
 												<li class="filter_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="자켓" value="자켓" >
 													<div class="item_child">자켓</div>	

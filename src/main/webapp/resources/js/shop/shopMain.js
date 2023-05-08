@@ -265,6 +265,10 @@ $(document).ready(function(){});
 			$("input:checkbox[name='"+name+"']").prop("checked",false);
 			$(this).parent('div').detach();
 			
+			$("#"+name).css('display','none');
+			
+			
+			
 		});
 		
 		//우측 필터버튼 클릭시
