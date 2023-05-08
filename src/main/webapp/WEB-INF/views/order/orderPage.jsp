@@ -8,21 +8,18 @@
 		<style>
         .totalsize {
             width: 1902px;
-            height: 2456px;
             background-color: #fafafa;
-
+            font-family:"GmarketSansMedium";
         }
 
         .content {
             width: 700px;
-            height: 2338px;
             margin: 0 auto;
             padding: 20px 40px 160px;
         }
 
         .buy_immediate {
             width: 700px;
-            height: 2338px;
             margin-top:145px;
         }
 
@@ -205,14 +202,20 @@
             line-height: 17px;
             letter-spacing: -.15px;
         }
-
+		
+		.address_plus_wrap{
+			width:100%;
+			display:flex;
+			justify-content:center;
+		}
 
         .btn_2 {
-            width: 636px;
+            width: 150px;
             height: 47px;
-            text-align: left;
+            text-align: center;
             border-radius: 10px;
             background-color: white;
+            cursor:pointer;
         }
 
         .button_shipping_memo {
@@ -418,7 +421,7 @@
                             </div>
 
                             <div class="delivery_info">
-                                <div class="address_popup">
+                                <div class="address_popup address_plus_wrap">
                                     <button class="btn_2 " style="border: 1px solid #ebebeb"
                                         onclick="add_address_openPopup()">주소를 추가해주세요</button>
                                 </div>
@@ -433,7 +436,6 @@
                                             <option value="option3">파손 위험 상품입니다. 배송 시 주의해주세요</option>
                                         </select>
                                     </label>
-                                    <hr>
                                     <h3 class="title_txt1">배송방법</h3>
                                     <button class="btnimg"
                                         style="width:636px;height:66px; display:flex; align-items:center; margin-left: -12px;background-color:white">
@@ -455,7 +457,6 @@
                                             </span>
                                             <span style="display:block;">배송 없이 창고에 보관 * 빠르게 판매 가능 </span>
                                         </div>
-                                    </button>
                                     </button>
                                 </div>
                             </div>
