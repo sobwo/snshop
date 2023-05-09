@@ -3,12 +3,12 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myezen.myapp.persistance.BoardService_Mapper">
-
+<!-- 
 <insert id="boardInsert" parameterType="bv">
 		INSERT INTO board(boardNo, contentsImg, contents,)
 		VALUES(bidx_seq.nextval, #{contentsImg}, #{contents})
 </insert>
-
+ -->
 
 
 

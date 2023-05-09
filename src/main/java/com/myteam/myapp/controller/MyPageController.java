@@ -4,17 +4,23 @@ import java.net.InetAddress;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myteam.myapp.domain.BoardVo;
+//import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.util.UploadFileUtiles;
 
 @Controller
 @RequestMapping(value = "/myPage")
 public class MyPageController {
+	
+	@Autowired  
+//	BoardService bs; 
+
 	
 	@RequestMapping(value = "/myPageMain.do")
 	public String memberLogin() {
@@ -57,9 +63,9 @@ public class MyPageController {
 		
 		return "myPage/myStyle_upload";
 	}
-
+/*
 	@RequestMapping(value="/myStyle_uploadeAction.do")
-	public String boardWirteAction(
+	public String myStyleUploadeAction(
 			@RequestParam("contentsImg") MultipartFile contentsImg,
 			@RequestParam("contents") String contents,
 			HttpSession session
@@ -71,9 +77,9 @@ public class MyPageController {
 		if(!file.getOriginalFilename().equals("")) {
 			
 			uploadedFileName = UploadFileUtiles.uploadFile(
-					uploadPath, 
-					file.getOriginalFilename(),
-					file.getBytes());
+				"${uploadPath}", 
+				file.getOriginalFilename(),
+				file.getBytes());
 		}
 		
 		String ip = InetAddress.getLocalHost().getHostAddress();
@@ -87,13 +93,11 @@ public class MyPageController {
 		bv.setContentsImg(uploadedFileName);
 		bv.setContents(contents);
 		
-		
-		
 		int value = bs.boardInsert(bv);
 
 		return"redirect:/myPage/myStyle.do";
 	}	
-
+*/
 	@RequestMapping(value = "/address.do")
 	public String address() {
 		
