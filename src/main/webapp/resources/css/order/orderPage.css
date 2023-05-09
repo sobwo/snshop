@@ -1,0 +1,428 @@
+@charset "EUC-KR";
+
+.totalsize {
+	width: 1902px;
+	background-color: #fafafa;
+	font-family: "GmarketSansMedium";
+}
+
+.content {
+	width: 700px;
+	margin: 0 auto;
+	padding: 20px 40px 160px;
+}
+
+.buy_immediate {
+	width: 700px;
+	margin-top: 145px;
+}
+
+.product_info_area {
+	width: 700px;
+	padding: 32px;
+	margin: 0;
+	/* 확인해야함*/
+	box-sizing: border-box;
+}
+
+.product_info {
+	width: 636px;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	width: 100%;
+	background-color: #fff;
+	margin-top: -10px;
+	/* 확인해야함*/
+}
+
+.product {
+	width: 80px;
+	height: 80px;
+	padding-top: 0;
+	flex-shrink: 0;
+	c border-radius: 10px;
+	background-color: black;
+	position: relative
+}
+
+.product_detail {
+	width: 556px;
+	/* height: 82px; */
+	overflow: hidden;
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding-left: 16px;
+	margin: 0;
+}
+
+.model_number {
+	display: block;
+	line-height: 17px;
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.model_title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 17px;
+	margin-top: 1px;
+	font-size: 14px;
+}
+
+.model_ko {
+	line-height: 16px;
+	font-size: 13px;
+	letter-spacing: -.05px;
+	color: rgba(34, 34, 34, .5);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.model_desc {
+	display: flex;
+	-webkit-box-align: start;
+	align-items: flex-start;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	margin-top: 10PX;
+	box-sizing: border-box;
+}
+
+.size_txt {
+	line-height: 17px;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0;
+	margin: 0;
+}
+
+.section {
+	width: 636px;
+	height: 370px;
+	padding: 32px;
+	background-color: #fff;
+	border-top: 8px solid #fafafa;
+}
+
+.section_unit {
+	width: 636px;
+	height: 340px;
+	margin: 0;
+	padding: 32px;
+	background-color: #fff;
+	margin-top: 12px;
+}
+
+.section_title {
+	width: 636px;
+	height: 34px;
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	padding-bottom: 12px;
+	padding: 0px 0px 12px;
+}
+
+.title_txt {
+	line-height: 22px;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: -.15px;
+	-webkit-box-flex: 1;
+	flex: 1;
+	width: 552.55px;
+	height: 22px;
+}
+
+.popup_inner_btn {
+	width: 45px;
+	height: 25px;
+	border-radius: 5px;
+	text-align: center;
+	color: rgba(34, 34, 34, .8);
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	margin-left: 165px;
+	cursor: pointer
+}
+
+.addressnum {
+	color: #222222cc;
+	color: rgba(34, 34, 34, .8);
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 25px;
+}
+
+.section_content {
+	width: 636px;
+	height: 123px;
+}
+
+.delivery_info {
+	position: relative;
+	width: 636px;
+	height: 63px;
+}
+
+.address_info {
+	width: 556px;
+	height: 63px;
+	margin-top: -55px;
+}
+
+.info_list {
+	width: 556px;
+	height: 63px;
+}
+
+.info_box {
+	overflow: hidden;
+	line-height: 17px;
+	letter-spacing: -.15px;
+}
+
+.title {
+	float: left;
+	min-width: 80px;
+	font-size: 13px;
+	letter-spacing: -.07px;
+	color: rgba(34, 34, 34, .5);
+}
+
+.dd {
+	overflow: hidden;
+	font-size: 14px;
+	letter-spacing: -.21px;
+}
+
+.info_box {
+	margin-top: 6px;
+	overflow: hidden;
+	line-height: 17px;
+	letter-spacing: -.15px;
+}
+
+.address_plus_wrap {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.btn_2 {
+	width: 636px;
+	height: 47px;
+	text-align: left;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+}
+
+.button_shipping_memo {
+	width: 609.516px;
+	height: 17.488px;
+	padding: 14px 12px;
+	border: 1.250px;
+	margin-top: -16px;
+}
+
+.button-text {
+	color: #2222224d;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.button-text1 {
+	color: black;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.button-text2 {
+	color: #2222224d;
+	font-size: 8px;
+}
+
+.point_area {
+	width: 700px;
+	background-color: #fff;
+}
+
+.inner_point_area {
+	width: 636px;
+	height: 139px;
+	padding: 32px;
+	margin-top: 12px;
+	border-top: 7.5px;
+}
+
+.all_use {
+	width: 70.69px;
+	height: 24px;
+	color: #ffffff;
+	background-color: #22222233;
+	font-size: 12px;
+	border-radius: 12px;
+	margin-top: -1px;
+	cursor: pointer;
+	border: 0.5px;
+}
+
+.have_point {
+	font-size: 14px;
+}
+
+.totalprice {
+	background-color: #fff;
+	width: 636px;
+	/*    height: 300px;*/
+	padding: 32px;
+	border-top: 8px;
+	margin-top: 12px;
+	line-height: 50px;
+}
+
+.inner_totalprice {
+	padding: 20px 0px;
+	line-height: 60px;
+}
+
+.agree_wrap {
+	width: 636px;
+	/*             height: 600px; */
+	padding: 32px 32px 16px;
+	background-color: #fff;
+	margin-top: 12px;
+	line-height: 30px;
+}
+
+.point_view {
+	width: 608px;
+	height: 20px;
+	padding: 14px 12px;
+	border: 1px solid #ebebeb;
+	border-radius: 10px;
+	margin-top: 15px;
+}
+
+#popup {
+	display: none;
+	position: absolute;
+	top: 740px;
+	left: 750px;
+	width: 400px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+	line-height: 33px;
+	border-radius: 15px;
+}
+
+.Q {
+	border-radius: 10px;
+	width: 20px;
+	cursor: pointer;
+	margin-top: 20px;
+	background-color: white;
+}
+
+.title_txt1 {
+	margin-left: 1px;
+	font-size: 18px;
+	margin-top: 10px
+}
+
+.movespan {
+	margin-left: -112px;
+}
+
+.movespan1 {
+	margin-left: -100px;
+}
+
+.btnimg {
+	border-radius: 15px;
+	border: 1px solid #ebebeb;
+	cursor: pointer;
+	margin-top: 10px;
+	width: 636px;
+	height: 66px;
+	display: flex;
+	align-items: center;
+	background-color: white;
+}
+
+.btnimg2 {
+	border-radius: 15px;
+	border: 1px solid #ebebeb;
+	cursor: pointer;
+	width: 636px;
+	height: 66px;
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+	background-color: white;
+}
+
+.my-button5 {
+	width: 636.02px;
+	height: 47.99px;
+	padding: 14px 2px;
+	margin-left: 0px;
+	border-radius: 10px;
+	border: 1px solid #ebebeb;
+	cursor: pointer;
+}
+
+.payment-button {
+	width: 100%;
+	height: 51.98px;
+	background-color: #cccccc;
+	border: none;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 20px
+}
+
+button.active {
+	background-color: red;
+}
+
+.totalprice_area {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.popup_style {
+	width: 400px;
+	height: 25px;
+	margin: 15px 0;
+	border: 0;
+	border-bottom: 1px solid #ebebeb;
+}
+
+#address_popup {
+	display: none;
+	position: absolute;
+	z-index: 5;
+	top: 565px;
+	left: 950px;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	border-radius: 15px;
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+/* 체크박스 3개 체크시 결제하기버튼 빨간색으로*/
