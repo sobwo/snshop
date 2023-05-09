@@ -3,6 +3,6 @@
  
 <configuration> 
 <typeAliases>
-
+	<typeAlias alias="bv" type="com.myteam.myapp.domain.BoardVo"/>
 </typeAliases>
 </configuration>

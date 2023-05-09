@@ -1,14 +1,14 @@
-//package com.myteam.myapp.service;
+package com.myteam.myapp.service;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
-//import com.myteam.myapp.domain.BoardVo;
-//import com.myteam.myapp.domain.SearchCriteria;
+import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.SearchCriteria;
 
-//public interface BoardService {
+public interface BoardService {
 
-//	public ArrayList<BoardVo> boardList(SearchCriteria scri);
+	public ArrayList<BoardVo> boardList(SearchCriteria scri);
 
-//	public int boardInsert(BoardVo bv);
+	public int boardInsert(BoardVo bv);
 
-//}
+}

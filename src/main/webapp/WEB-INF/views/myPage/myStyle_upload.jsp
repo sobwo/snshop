@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +11,7 @@
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 	</head>
 	<body>
-	<form name="frm">
+	<form name="frm" id="frm" enctype="multipart/form-data">
 		<div id="header_wrap" style='height:94px;border:0'>
 			<jsp:include page="../common/header_common.jsp"></jsp:include>
 		</div>
@@ -65,12 +66,27 @@
 				</div>
 			</div>
 			<div class="uploadBtn_area">
-				<input type="button" id="uploadBtn" name="uploadBtn" value="등록" disabled="disabled" onclick="check();">
+				<input type="button" id="uploadBtn" name="uploadBtn" value="등록" onclick="check();">
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
+		<script>
+		$(document).ready(function(){
+			
+		});
+
+		function check(){
+			
+			var fm = document.frm;
+			fm.action ="<%=request.getContextPath()%>/myPage/myStyle_uploadeAction.do";
+			fm.method="post";
+			fm.enctype ="multipart/form-data";
+			fm.submit();
+			return;
+		}
+		</script>
 	</form>
 	</body>
 </html>
