@@ -35,3 +35,13 @@ function readImage(event) {
 	    reader.readAsDataURL(image);
 	  }
 }
+
+function check(){
+	
+	var fm = document.frm;
+	fm.action ="<%=request.getContextPath()%>/myPage/myStyle_uploadeAction.do";
+	fm.method="post";
+	fm.enctype ="multipart/form-data";
+	fm.submit();
+	return;
+}
