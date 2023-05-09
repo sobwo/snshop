@@ -19,6 +19,12 @@ public class StyleController {
 		return "style/style_discover";
 	}
 	
+	@RequestMapping(value = "/style_discover_newest.do")
+	public String styleDiscoverNewest() {
+		
+		return "style/style_discover_newest";
+	}
+	
 	@RequestMapping(value = "/style_favorite.do")
 	public String styleFavorite() {
 		

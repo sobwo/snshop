@@ -15,7 +15,7 @@
 			.nav_list:nth-child(2) a{
 				font-weight:bold;
 			}
-			.socialSorting li:nth-child(1) a{
+			.socialSorting li:nth-child(3) a{
 				color:#222;
 				font-weight:bold;
 			}
@@ -35,11 +35,11 @@
 			<div class="sortingContainer">
 				<ul class="socialSorting">
 					<li>
-						<a href="#" class="choiceActive">인기순</a>
+						<a href="${pageContext.request.contextPath}/style/style_discover.do" class="choiceActive">인기순</a>
 					</li>		
 					<li>|</li>
 					<li>
-						<a href="#" class="choice">최신순</a>
+						<a href="${pageContext.request.contextPath}/style/style_discover_newest.do" class="choice">최신순</a>
 					</li>
 				</ul>
 			</div>
