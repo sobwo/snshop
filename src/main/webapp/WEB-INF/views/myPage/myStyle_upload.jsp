@@ -86,15 +86,6 @@
 			fm.submit();
 			return;
 		}
-
-		  // 파일 선택 시 파일 개수를 구하여 hidden input의 value로 설정
-		  const fileInput = document.querySelector('input[name="contentsImg"]');
-		  const viewCntInput = document.querySelector('#viewCntInput');
-		  
-		  fileInput.addEventListener('change', () => {
-		    viewCntInput.value = fileInput.files.length;
-		  });
-		
 		</script>
 	</form>
 	</body>
