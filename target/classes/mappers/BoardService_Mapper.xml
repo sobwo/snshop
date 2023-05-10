@@ -5,8 +5,8 @@
 <mapper namespace="com.myteam.myapp.persistance.BoardService_Mapper">
 
 <insert id="boardInsert" parameterType="bv">
-		INSERT INTO board(boardNo, contentsImg, contents,)
-		VALUES(bidx_seq.nextval, #{contentsImg}, #{contents})
+		INSERT INTO board(boardNo, contentsImg, contents, memberNo)
+		VALUES(#{boardNo}, #{contentsImg}, #{contents}, #{memberNo})
 </insert>
 
 
