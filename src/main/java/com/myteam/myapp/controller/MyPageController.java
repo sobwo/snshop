@@ -69,6 +69,7 @@ public class MyPageController {
 	public String myStyleUploadeAction(
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
+			@RequestParam("viewCnt") String viewCnt,
 			HttpSession session
 			) throws Exception {
 		
@@ -87,6 +88,7 @@ public class MyPageController {
 		BoardVo bv = new BoardVo();
 		bv.setContentsImg(String.join(",", uploadedFileNames));
 		bv.setContents(contents);
+		bv.setViewCnt(viewCnt);
 				
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {

@@ -21,7 +21,7 @@
 					<div class="uploadBox">
 						<div id="previewImages"></div>
 						<input type="file" multiple="multiple" id="fileatt" name="contentsImg" onchange="readImage(event)">
-	
+						<input type="hidden" name="viewCnt" id="viewCntInput" value="">
 						<label for="fileatt" id="fileLabel"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
 						<textarea id="contents" name="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
 								onkeydown="resize(this)" onkeyup="resize(this)"
@@ -86,6 +86,15 @@
 			fm.submit();
 			return;
 		}
+
+		  // 파일 선택 시 파일 개수를 구하여 hidden input의 value로 설정
+		  const fileInput = document.querySelector('input[name="contentsImg"]');
+		  const viewCntInput = document.querySelector('#viewCntInput');
+		  
+		  fileInput.addEventListener('change', () => {
+		    viewCntInput.value = fileInput.files.length;
+		  });
+		
 		</script>
 	</form>
 	</body>
