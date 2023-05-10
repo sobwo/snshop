@@ -4,5 +4,6 @@
 <configuration> 
 <typeAliases>
 	<typeAlias alias="bv" type="com.myteam.myapp.domain.BoardVo"/>
+	<typeAlias alias="mv" type="com.myteam.myapp.domain.MemberVo"/>
 </typeAliases>
 </configuration>

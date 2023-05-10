@@ -56,7 +56,7 @@
 					<div id="joinPhone_area">
 						<h3>핸드폰 번호</h3>
 						<div class="input_item">
-							<input type="text" id="memberPhone" name="memberPhone" placeholder="EX)010-1234-1234" />
+							<input type="text" id="memberPhone" name="memberPhone" placeholder="EX)01012341234" />
 						</div>			
 						<span id="phoneMsg"></span>			
 					</div>

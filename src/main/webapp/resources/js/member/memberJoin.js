@@ -31,6 +31,7 @@ function check(){
 	let memberPw = $("#memberPw").val();
 	let memberPw2 = $("#memberPw2").val();
 	let memberPhone = $("#memberPhone").val();
+	let memberEmail = $("#memberEmail").val();
 	
 	$("#pw2Msg").text("");
 	$("#phoneMsg").text("");
@@ -38,6 +39,12 @@ function check(){
 	if(memberPw!=memberPw2){
 		$("#pw2Msg").text("비밀번호가 일치하지 않습니다."); 
 		$("#memberPw2").focus();
+		isYN = 0;
+	}
+	
+	if(memberEmail.indexOf("@") == -1) {
+		$("#emailMsg").text("올바른 형식으로 작성해주세요.");
+		$("#memberEmail").focus();
 		isYN = 0;
 	}
 
