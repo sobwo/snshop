@@ -1,8 +1,10 @@
-// 사진 업로드 개수 제한, n개 초과 시 첨부버튼 숨김
+// textarea 입력 칸 만큼 높이 증가 
 function resize(obj) {
   obj.style.height = "1px";
   obj.style.height = (12+obj.scrollHeight)+"px";
 }
+
+// hashTag 클릭 시 contents에 텍스트 추가
 function addHashtag(hashtag) {
       var textarea = document.getElementById("contents");
       var currentText = textarea.value;
@@ -10,6 +12,7 @@ function addHashtag(hashtag) {
       textarea.value = newText;
 }
 
+// 사진 업로드 개수 제한, n개 초과 시 첨부버튼 숨김
 function readImage(event) {
 	  var previewImages = document.querySelector("div#previewImages");
 	  var fileLabel = document.querySelector("label#fileLabel");
@@ -36,4 +39,10 @@ function readImage(event) {
 	  }
 }
 
-
+// 파일 선택 시 파일 개수를 구하여 hidden input의 value로 설정
+const fileInput = document.querySelector('input[name="contentsImg"]');
+const viewCntInput = document.querySelector('#viewCntInput');
+  
+fileInput.addEventListener('change', () => {
+	viewCntInput.value = fileInput.files.length;
+});

@@ -1,5 +1,8 @@
 package com.myteam.myapp.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,35 +113,39 @@ public class MyPageController {
 
 	@RequestMapping(value="/myStyle_uploadeAction.do")
 	public String myStyleUploadeAction(
-			@RequestParam("contentsImg") MultipartFile contentsImg,
+			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
+			@RequestParam("viewCnt") String viewCnt,
 			HttpSession session
 			) throws Exception {
 		
-		MultipartFile file = contentsImg;
-		
-		String uploadedFileName="";
-		if(!file.getOriginalFilename().equals("")) {
-			
-			uploadedFileName = UploadFileUtiles.uploadFile(
-				"D:/dav1230/uploadFiles", 
-				file.getOriginalFilename(),
-				file.getBytes());
+		String uploadPath = "D:/dav1230/uploadFiles"; // �ӽ�
+		List<String> uploadedFileNames = new ArrayList<>();
+		for (MultipartFile file : contentsImg) {
+			if (!file.getOriginalFilename().equals("")) {
+				String uploadedFileName = UploadFileUtiles.uploadFile(
+						uploadPath, 
+						file.getOriginalFilename(),
+						file.getBytes());
+				uploadedFileNames.add(uploadedFileName);
+			}
 		}
+		
+		BoardVo bv = new BoardVo();
+		bv.setContentsImg(String.join(",", uploadedFileNames));
+		bv.setContents(contents);
+		bv.setViewCnt(viewCnt);
 				
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
-		
-		BoardVo bv = new BoardVo();
-		bv.setContentsImg(uploadedFileName);
-		bv.setContents(contents);
+		bv.setMemberNo(memberNo);
 		
 		int value = bs.boardInsert(bv);
 
-		return"redirect:/myPage/myStyle.do";
-	}	
+		return "redirect:/myPage/myStyle.do";
+	}
 
 	@RequestMapping(value = "/address.do")
 	public String address() {
