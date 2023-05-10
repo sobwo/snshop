@@ -24,12 +24,19 @@
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
-								<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+								<c:choose>
+									<c:when test="${mv.profileImg != null}">
+										<img src="#">
+									</c:when>
+									<c:otherwise>
+										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="user_info">
-								<strong class="user_name">이름</strong>
-								<p class="user_id">ID</p>
-								<input type="button" class="myPageBtn" value="프로필 수정">
+								<strong class="user_name">${mv.memberName}</strong>
+								<p class="user_id">${mv.memberId}</p>
+								<input type="button" class="myPageBtn" value="프로필 수정" onclick="location.href='${pageContext.request.contextPath}/myPage/profileInfo.do'">
 								<input type="button" class="myPageBtn" value="내 스타일" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle.do'">
 							</div>
 						</div>

@@ -9,4 +9,6 @@ public interface MemberService {
 	public String searchId(String searchMeasure,String memberName_phone, String memberName_email, String memberPhone, String memberEmail);
 	public int searchPw(String searchMeasure, String memberId_phone, String memberId_email, String memberName_phone, String memberName_email, String memberPhone,String memberEmail);
 	public int memberPwChange(String memberId, String memberPw);
+	public MemberVo memberInfo(int memberNo);
+	public int updateProfileImg(MemberVo mv);
 }

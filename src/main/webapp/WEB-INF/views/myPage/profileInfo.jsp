@@ -36,7 +36,8 @@
 						<div class="user_info user_info_profile">
 							<strong class="user_name user_name_profile">이름</strong>
 							<div class="imgBtn_wrap">
-								<input type="button" class="myPageBtn" value="이미지 변경">
+									<label for="profileImg"><div class="myPageBtn" id="myPageBtn">이미지 변경</div></label>
+									<input type="file" multiple="multiple" name="profileImg" id="profileImg" onchange="inputImg()">
 								<input type="button" class="myPageBtn" value="삭제">
 							</div>
 						</div>
@@ -189,6 +190,24 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/profileInfo.js"></script>
 		<script>
+			function inputImg(){
+				var formdata = new FormData();
+				formdata.append('profileImg', $('#profileImg')[0].files[0]);
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myPage/profileImgChange.do",		
+					method: "POST",
+					data: formdata,
+					processData : false,
+			        contentType : false,
+					success : function(data){
+							if(data.value==1)
+								alert("성공");
+						},
+						error : function(request,status,error){
+							alert("다시 시도하시기 바랍니다.");		
+						}	
+				});	
+			}
 		</script>
 	</body>
 </html>

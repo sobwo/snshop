@@ -35,4 +35,12 @@
 	<update id="memberPwChange" parameterType="String">
 		UPDATE MEMBER SET MEMBERPW=#{1} WHERE MEMBERID=#{0}
 	</update>
+	
+	<select id="memberInfo" parameterType="Integer" resultType="mv">
+		SELECT * FROM MEMBER WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="updateProfileImg" parameterType="mv">
+		UPDATE MEMBER SET PROFILEIMG = #{profileImg} WHERE MEMBERNO = #{memberNo}
+	</update>
 </mapper>

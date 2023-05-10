@@ -4,12 +4,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.service.BoardService;
+import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.util.UploadFileUtiles;
 
 @Controller
@@ -19,9 +22,23 @@ public class MyPageController {
 	@Autowired  
 	BoardService bs; 
 
+	@Autowired
+	MemberService ms;
 	
 	@RequestMapping(value = "/myPageMain.do")
-	public String memberLogin() {
+	public String myPageMain(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		model.addAttribute("mv", mv);
 		
 		return "myPage/myPageMain";
 	}
@@ -48,6 +65,35 @@ public class MyPageController {
 	public String profileInfo() {
 		
 		return "myPage/profileInfo";
+	}
+	
+	@RequestMapping(value = "/profileImgChange.do")
+	public int profileImgChange(
+			@RequestParam("profileImg") MultipartFile profileImg,
+			HttpSession session
+			) throws Exception, Exception{
+		
+		String str = null;
+		
+		MultipartFile file = profileImg;
+		
+		String uploadedFileName="";
+		if(!file.getOriginalFilename().equals("")) {	
+			uploadedFileName = UploadFileUtiles.uploadFile(
+				"D:/snshop/uploadFiles", 
+				file.getOriginalFilename(),
+				file.getBytes());
+		}
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+
+		MemberVo mv = new MemberVo();
+		mv.setMemberNo(memberNo);
+		mv.setProfileImg(uploadedFileName);
+		
+		int value = ms.updateProfileImg(mv);
+		
+		return value; 
 	}
 	
 	@RequestMapping(value = "/myStyle.do")

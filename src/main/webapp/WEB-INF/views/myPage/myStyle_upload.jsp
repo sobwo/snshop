@@ -78,7 +78,6 @@
 		});
 
 		function check(){
-			
 			var fm = document.frm;
 			fm.action ="<%=request.getContextPath()%>/myPage/myStyle_uploadeAction.do";
 			fm.method="post";

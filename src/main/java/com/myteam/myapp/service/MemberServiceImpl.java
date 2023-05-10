@@ -81,4 +81,18 @@ public class MemberServiceImpl implements MemberService{
 		return value;
 	}
 
+	@Override
+	public MemberVo memberInfo(int memberNo) {
+		MemberVo mv = msm.memberInfo(memberNo);
+		
+		return mv;
+	}
+
+	@Override
+	public int updateProfileImg(MemberVo mv){
+		int value = msm.updateProfileImg(mv);
+		
+		return value;
+	}
+
 }
