@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -299,7 +301,8 @@
 						
 			<!-- 상품 개수 -->
 							<div class="product_count">
-								<span>상품수  12312</span>
+								<span>상품수</span>
+								<span><fmt:formatNumber type="number" maxFractionDigits="3" value="1231231" /></span>
 							</div><!-- product_count -->
 			<!-- 상품 정렬 버튼  -->
 							<div class="product_btn_area">
@@ -367,27 +370,29 @@
 						</div><!-- filter_teg_area -->
 		<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-							<div class="product_item_wrap">
-								<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do'">
-									<div class="pro_img_area">
-										<img class="pro_img" src="">
+							<c:forEach var="goodsList" items="${goodsList}">
+								<div class="product_item_wrap">
+									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
+										<div class="pro_img_area">
+											<img class="pro_img" src="">
+										</div>
+										<div class="pro_name_area">
+											<ul>
+												<li class="pro_brand"></li>
+												<li class="pro_name1" >${goodsList.goodsName}</li>
+												<li class="pro_name2" >애플 아이패드 에어 5세대 와이파이 64기가 스페이스 그레이 (국내 정식 발매 제품)</li>
+												<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
+											</ul>
+										</div>
+									</div><!-- product_item -->
+									<div class="pro_icon_area">
+										<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+										<span>${goodsList.interestNum}</span>
+										<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
+										<span>123</span>
 									</div>
-									<div class="pro_name_area">
-										<ul>
-											<li class="pro_brand">apple</li>
-											<li class="pro_name1" >Apple iPad Air 5th Gen Wifi 64GB Space Gray (Korean Ver.)</li>
-											<li class="pro_name2" >애플 아이패드 에어 5세대 와이파이 64기가 스페이스 그레이 (국내 정식 발매 제품)</li>
-											<li class="pro_price">825,000원</li>
-										</ul>
-									</div>
-								</div><!-- product_item -->
-								<div class="pro_icon_area">
-									<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-									<span>123</span>
-									<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
-									<span>123</span>
-								</div>
-							</div><!-- product_item_wrap -->				
+								</div><!-- product_item_wrap -->
+							</c:forEach>				
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -410,6 +415,8 @@
 				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 				list.hide();
 			});
+			
+			
 		</script>
 	</body>
 </html>

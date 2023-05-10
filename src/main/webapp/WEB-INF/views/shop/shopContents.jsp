@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,9 +22,8 @@
 		</div>
 		<main class="main">
 			<div class="container">
-				<div class="product_area">
-				
-			<!-- 상품 이미지 표시 -->
+				<form class="product_area">
+				<!-- 상품 이미지 표시 -->
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -40,15 +40,13 @@
 							<li><img src=""></li>
 							<li><img src=""></li>
 						</ul>
-					</div>
-					
+					</div>	
 			<!-- 상품 가격 표시 -->
-			
 					<div class="productContents_area">
 						<div class="productContents">
 							<div class="brandName"><a href="#">jordan</a></div>
 							<div class="productName">
-								<p>Jordan 1 Retro High OG Chicago</p> 
+								<input name="goodsName" type="text" value="${gv.goodsName}" readonly>
 								<p>2022조던 1 레트로 하이 OG 시카고 2022</p>
 							</div>
 							<div class="sizePick">
@@ -61,35 +59,43 @@
 								</div>
 							</div>
 							<div class="price_area">
-								<div class="priceTitle"><span>가격</span></div>
-								<div class="price"><span class="price_view">123123</span></div>
+								<div class="priceTitle">
+									<span>가격</span>
+								</div>
+								<div class="price">
+									<input type="text" value="<fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}' />" readonly>
+								</div>
 							</div>
-						</div>
-						
+						</div><!-- productContents -->
 						<div class="btn_area">
 							<button class="sellButton" name="buy_btn" type="button" onclick="location.href='${pageContext.request.contextPath}/order/orderAgree.do'">구매</button>
 							<button class="buyButton" name="sell_btn">판매</button>
-							<button class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png">관심상품 123</button>
-						</div>
+							<button class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
+						</div><!-- btn_area -->
 						
 						<div class="productInfo">
 							<h3 class="product_sub">상품 정보</h3>
 							<div class="productInfo_con">
 								<div class="productInfo_1">
 									<p>모델 번호</p>
-									<span>123123</span>
+									<span>
+										<input type="text" value="${gv.modelNum}" readonly>
+									</span>
 								</div>
 								<div class="productInfo_1 productInfo_day">
 									<p>출시일</p>
-									<span>123123</span>
+									<span>
+										<input type="text" value="${gv.releaseDate}" readonly>
+									</span>
 								</div>
 								<div class="productInfo_1">
 									<p>컬러</p>
-									<span>123123</span>
+									<span>
+										<input type="text" value="${gv.color}" readonly>
+									</span>
 								</div>
 							</div>
 						</div><!--productInfo-->
-					
 				<!-- 상품 구매시 주의사항 -->
 						<div class="confirm">
 							<h3>구매 전 꼭 확인해주세요!</h3>
@@ -112,8 +118,7 @@
 							</div>
 						</div><!--confirm-->
 					</div><!--productContents_area-->
-				</div><!--product_area-->
-			
+				</form><!--product_area-->
 			<!-- 추천상품 표시 -->
 			
 				<div class="otherProduct_area">
@@ -167,5 +172,9 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
+		<script type="text/javascript">
+		
+		
+		</script>
 	</body>
 </html>
