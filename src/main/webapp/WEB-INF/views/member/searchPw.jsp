@@ -28,10 +28,10 @@
 							</div>
 							<div class="searchPhone">
 								<div class="input_item">
-									<input type="text" id="memberId_phone" name="memberId" placeholder="ID를 입력해주세요.">
+									<input type="text" id="memberId_phone" name="memberId_phone" value="${memberId}" placeholder="ID를 입력해주세요.">
 								</div>		
 								<div class="input_item">
-									<input type="text" id="memberName_phone" name="memberName" placeholder="이름을 입력해주세요.">
+									<input type="text" id="memberName_phone" name="memberName_phone" placeholder="이름을 입력해주세요.">
 								</div>	
 								<div class="input_item">
 									<input type="text" id="memberPhone" name="memberPhone" placeholder="휴대폰번호를 입력해주세요.">
@@ -47,10 +47,10 @@
 							</div>
 							<div class="searchEmail">
 								<div class="input_item">
-									<input type="text" id="memberId_email" name="memberId" placeholder="ID를 입력해주세요.">
+									<input type="text" id="memberId_email" name="memberId_email" value="${memberId}" placeholder="ID를 입력해주세요.">
 								</div>
 								<div class="input_item">
-									<input type="text" id="memberName_email" name="memberName" placeholder="이름을 입력해주세요.">
+									<input type="text" id="memberName_email" name="memberName_email" placeholder="이름을 입력해주세요.">
 								</div>
 								<div class="input_item">
 									<input type="text" id="memberEmail" name="memberEmail" placeholder="이메일을 입력해주세요.">
@@ -68,9 +68,13 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/searchPw.js"></script>
 		<script>
+			$(document).ready(function(){
+				var msg = "${msg}"
+				if(msg!="") alert(msg);
+			});
 			function search(){
 				var fm = document.frm;
-				fm.action ="${pageContext.request.contextPath}/member/searchPwVal.do";
+				fm.action ="${pageContext.request.contextPath}/member/searchPwAction.do";
 				fm.method = "post";
 				fm.submit();
 				fm.reset();

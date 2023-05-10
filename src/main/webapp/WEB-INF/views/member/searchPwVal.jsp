@@ -24,15 +24,15 @@
 							<div id="searchPwVal">
 								<div class="input_item">
 									<p>ID</p>
-									<input type="text" id="searchId" name="searchId" placeholder="ID를 입력해주세요.">
+									<input type="text" id="searchId" name="memberId" value="${memberId}" placeholder="ID를 입력해주세요.">
 								</div>
 								<div class="input_item">
 									<p>비밀번호</p>
-									<input type="password" id="searchPw" name="searchPw" placeholder="비밀번호를 입력해주세요.">
+									<input type="password" id="searchPw" name="memberPw" placeholder="비밀번호를 입력해주세요.">
 								</div>
 								<div class="input_item">
 									<p>비밀번호 확인</p>
-									<input type="password" id="searchPw2" placeholder="비밀번호를 입력해주세요.">
+									<input type="password" id="searchPw2" name="memberPw2" placeholder="비밀번호를 입력해주세요.">
 								</div>
 							</div>
 						</div>
@@ -47,6 +47,11 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/searchPwVal.js"></script>
 		<script>
+			$(document).ready(function(){
+				var msg = "${msg}"
+				if(msg!="") alert(msg);
+			});
+			
 			function change(){
 				var searchPw = $('#searchPw').val();
 				var searchPw2 = $('#searchPw2').val();
@@ -58,7 +63,7 @@
 				
 				else{
 					var fm = document.frm;
-					fm.action ="${pageContext.request.contextPath}/member/searchPwAction.do";
+					fm.action ="${pageContext.request.contextPath}/member/searchPwValAction.do";
 					fm.method = "post";
 					fm.submit();
 				}

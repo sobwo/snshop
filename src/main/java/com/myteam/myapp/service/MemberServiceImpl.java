@@ -39,4 +39,46 @@ public class MemberServiceImpl implements MemberService{
 		return value;
 	}
 
+	@Override
+	public MemberVo memberLogin(String memberId) {
+		MemberVo mv = msm.memberLogin(memberId);
+		return mv;
+	}
+
+	@Override
+	public String searchId(String searchMeasure,String memberName_phone, String memberName_email, String memberPhone, String memberEmail) {
+		String memberId = null;
+		if(searchMeasure.equals("phone")) {
+			memberId = msm.searchIdPhone(memberName_phone, memberPhone);
+		}
+		else if(searchMeasure.equals("email")) {
+			memberId = msm.searchIdEmail(memberName_email, memberEmail);
+		}
+		
+		return memberId;
+	}
+
+	@Override
+	public int searchPw(String searchMeasure, String memberId_phone, String memberId_email, String memberName_phone, String memberName_email, String memberPhone,
+			String memberEmail) {
+		
+		int value=0;
+		
+		if(searchMeasure.equals("phone")) {
+			value = msm.searchPwPhone(memberId_phone, memberName_phone, memberPhone);
+		}
+		else if(searchMeasure.equals("email")) {
+			value = msm.searchPwEmail(memberId_email, memberName_email, memberEmail);
+		}
+		
+		return value;
+	}
+
+	@Override
+	public int memberPwChange(String memberId, String memberPw) {
+		int value = msm.memberPwChange(memberId, memberPw);
+		
+		return value;
+	}
+
 }

@@ -7,6 +7,11 @@
 		<title>구매 동의</title>
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/order/orderAgree.css" rel="stylesheet">
+		<style>
+			.nav_list:nth-child(3) a{
+				font-weight:bold;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>

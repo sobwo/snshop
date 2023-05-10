@@ -34,8 +34,9 @@
  -->
 	<beans:bean id="loginInterceptor" class="com.myteam.myapp.interceptor.LoginInterceptor">
 	</beans:bean>
-
-	 
+	
+	<beans:bean id="authInterceptor" class="com.myteam.myapp.interceptor.AuthInterceptor">
+	</beans:bean>
 	 
 	<!-- 인터셉터 -->
 	<interceptors>
@@ -43,6 +44,13 @@
 			<mapping path="/member/memberLoginAction.do"/>
 			<beans:ref bean="loginInterceptor"></beans:ref>
 		</interceptor>
+		<interceptor>
+			<mapping path="/order/orderAgree.do"/>
+			<mapping path="/myPage/myPageMain.do"/>
+			<mapping path="/myPage/interest.do"/>
+			<beans:ref bean="authInterceptor"></beans:ref>
+		</interceptor>
+		
 	</interceptors>
 	
 	

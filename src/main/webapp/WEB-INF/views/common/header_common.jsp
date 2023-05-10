@@ -12,8 +12,14 @@
 				<ul>
 					<li><a href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'>고객센터</a></li>
 					<li style='margin-left:24px'><a href='${pageContext.request.contextPath}/myPage/interest.do'>관심상품</a></li>
-					<li style='margin-left:24px'><a href='${pageContext.request.contextPath}/member/memberLogin.do'>로그인</a></li>
-					<li><a>로그아웃</a></li>
+					<c:choose>
+						<c:when test="${sessionScope.memberNo == null}">
+							<li style='margin-left:24px'><a href='${pageContext.request.contextPath}/member/memberLogin.do'>로그인</a></li>
+						</c:when>
+						<c:otherwise>
+							<li style='margin-left:24px'><a href='${pageContext.request.contextPath}/member/memberLogOut.do'>로그아웃</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 		</div>

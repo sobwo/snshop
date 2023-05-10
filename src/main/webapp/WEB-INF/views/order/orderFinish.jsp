@@ -6,7 +6,12 @@
 	<meta charset="EUC-KR">
 	<title>Insert title here</title>
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
-		<link href=" ${pageContext.request.contextPath}/resources/css/order/orderFinish.css" rel="stylesheet">	 
+		<link href=" ${pageContext.request.contextPath}/resources/css/order/orderFinish.css" rel="stylesheet">
+	<style>
+		.nav_list:nth-child(3) a{
+			font-weight:bold;
+		}
+	</style>		 
 </head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>

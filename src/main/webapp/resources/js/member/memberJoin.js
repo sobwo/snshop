@@ -18,16 +18,14 @@ $('#memberId, #memberPw, #memberPw2, #memberName, #memberPhone, #memberEmail').o
 	}
 });
 
-//memberJoin 로그인 버튼
 joinBtn = $("#joinBtn");
 
 joinBtn.click(function(){
 	check();
 });
 
+
 function check(){
-	var isYN;
-	
 	let memberPw = $("#memberPw").val();
 	let memberPw2 = $("#memberPw2").val();
 	let memberPhone = $("#memberPhone").val();
@@ -39,20 +37,19 @@ function check(){
 	if(memberPw!=memberPw2){
 		$("#pw2Msg").text("비밀번호가 일치하지 않습니다."); 
 		$("#memberPw2").focus();
-		isYN = 0;
 	}
 	
-	if(memberEmail.indexOf("@") == -1) {
+	if(memberEmail.indexOf('@') == -1) {
 		$("#emailMsg").text("올바른 형식으로 작성해주세요.");
 		$("#memberEmail").focus();
-		isYN = 0;
 	}
 
 	else if(isNaN(memberPhone)){
 		$("#phoneMsg").text("숫자를 입력해주세요."); 
 		$("#memberPhone").focus();
-		isYN = 0;
 	}
- 	else IdCheck();
+
+	else IdCheck();
+
 }
 

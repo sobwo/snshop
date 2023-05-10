@@ -6,6 +6,11 @@
 		<meta charset="utf-8">
 		<title>home</title>
 			<link href=" ${pageContext.request.contextPath}/resources/css/order/orderPage.css" rel="stylesheet">
+		<style>
+		.nav_list:nth-child(3) a{
+			font-weight:bold;
+		}
+		</style>
 	</head>
 	<body>
 	    <div>

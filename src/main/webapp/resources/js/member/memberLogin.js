@@ -1,6 +1,3 @@
-
-$(document).ready(function(){});
-
 $('#memberId,#memberPw').on('input',function(){
 	var inputId = $('#memberId').val();
 	var inputPw = $('#memberPw').val();
@@ -14,7 +11,3 @@ $('#memberId,#memberPw').on('input',function(){
 		$('#loginBtn').prop('disabled', true);
 	}
 });
-
-function login(){
-	alert("로그인");
-}

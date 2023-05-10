@@ -22,7 +22,7 @@
 						</h2>
 						<div id="searchIdVal_area">
 							<div id="searchIdVal">
-								<input type="radio" id="searchId" name="searchId"><input type="text" id="memberId" name="memberId" value="ID" readonly>
+								<input type="radio" id="searchId" name="searchId"><input type="text" id="memberId" name="memberId" value="${memberId}" readonly>
 							</div>
 						</div>
 						<div id="searchIdValBtn_area">
