@@ -3,13 +3,16 @@ package com.myteam.myapp.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myteam.myapp.domain.BoardVo;
@@ -27,6 +30,9 @@ public class MyPageController {
 
 	@Autowired
 	MemberService ms;
+	
+	@Autowired
+	HttpServletRequest request;
 	
 	@RequestMapping(value = "/myPageMain.do")
 	public String myPageMain(
@@ -65,28 +71,39 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/profileInfo.do")
-	public String profileInfo() {
+	public String profileInfo(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		model.addAttribute("mv", mv);
 		
 		return "myPage/profileInfo";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/profileImgChange.do")
-	public int profileImgChange(
+	public String profileImgChange(
 			@RequestParam("profileImg") MultipartFile profileImg,
-			HttpSession session
+			HttpSession session,
+			HttpServletRequest request
 			) throws Exception, Exception{
 		
 		String str = null;
-		
 		MultipartFile file = profileImg;
-		
+		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		System.out.println("uploadedpath"+uploadedPath);
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadFileUtiles.uploadFile(
-				"D:/snshop/uploadFiles", 
+				uploadedPath, 
 				file.getOriginalFilename(),
 				file.getBytes());
 		}
+
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 
@@ -96,8 +113,26 @@ public class MyPageController {
 		
 		int value = ms.updateProfileImg(mv);
 		
-		return value; 
+		str = "{\"value\":\""+value+"\"}";
+		
+		return str; 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/profileImgShow.do")
+	public String profileImgShow(
+			HttpSession session) {
+		String result = null;
+		
+		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		String str = ms.profileImgShow(memberNo);
+		
+		result = "{\"value\":\""+str+"\"}";
+
+		return result; 
+	}
+	
 	
 	@RequestMapping(value = "/myStyle.do")
 	public String myStyle() {

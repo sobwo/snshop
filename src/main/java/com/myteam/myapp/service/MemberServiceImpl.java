@@ -95,4 +95,10 @@ public class MemberServiceImpl implements MemberService{
 		return value;
 	}
 
+	@Override
+	public String profileImgShow(int memberNo) {
+		String str = msm.profileImgShow(memberNo);
+		return str;
+	}
+
 }

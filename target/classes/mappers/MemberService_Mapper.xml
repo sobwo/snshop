@@ -43,4 +43,8 @@
 	<update id="updateProfileImg" parameterType="mv">
 		UPDATE MEMBER SET PROFILEIMG = #{profileImg} WHERE MEMBERNO = #{memberNo}
 	</update>
+	
+	<select id="profileImgShow" parameterType="Integer" resultType="String">
+		SELECT PROFILEIMG FROM MEMBER WHERE MEMBERNO = #{0}
+	</select>
 </mapper>
