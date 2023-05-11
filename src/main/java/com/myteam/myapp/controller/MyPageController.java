@@ -1,22 +1,35 @@
 package com.myteam.myapp.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.SearchCriteria;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
+import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping(value = "/myPage")
@@ -27,7 +40,7 @@ public class MyPageController {
 
 	@Autowired
 	MemberService ms;
-	
+
 	@RequestMapping(value = "/myPageMain.do")
 	public String myPageMain(
 			Model model,
@@ -100,11 +113,28 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/myStyle.do")
-	public String myStyle() {
+	public String myStyle(
+			Model model,
+			HttpSession session) {
+				
+		int memberNo = 0;
 		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<BoardVo> blist = bs.boardList(memberNo);
+
+		model.addAttribute("mv", mv);
+		model.addAttribute("blist", blist);
+
+
+
 		return "myPage/myStyle";
 	}
-	
+
 	@RequestMapping(value = "/myStyle_upload.do")
 	public String myStyle_upload() {
 		
@@ -119,7 +149,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "D:/dav1230/uploadFiles"; // О©╫с╫О©╫
+		String uploadPath = "D:/dav1230/uploadFiles"; // юс╫ц
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {
