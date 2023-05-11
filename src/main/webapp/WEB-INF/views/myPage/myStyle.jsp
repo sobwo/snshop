@@ -69,9 +69,16 @@
 											</c:otherwise>
 										</c:choose>	
 									</div>	
-									<div class="imageCnt" onclick="location.href='#'">
-										<span class="imageCount">+${bv.viewCnt}</span>
-									</div>
+									<c:choose>
+										<c:when test="${bv.viewCnt == 1}">
+											<div class="imageCnt" style="display:none"></div>
+										</c:when>
+										<c:otherwise>
+											<div class="imageCnt" onclick="location.href='#'">
+												<span class="imageCount">+${bv.viewCnt-1}</span>
+											</div>
+										</c:otherwise>
+									</c:choose>
 									<div class="feedPostUser">
 										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
 										<p class="userName">${mv.memberId}</p>
