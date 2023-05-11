@@ -52,7 +52,6 @@ public class MemberController {
 		}
 		
 		else {
-			System.out.println("실패");
 			rttr.addFlashAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
 			path="redirect:/member/memberLogin.do";
 		}

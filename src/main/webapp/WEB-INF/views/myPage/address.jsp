@@ -57,7 +57,14 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/address.js"></script>
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
+			function submit_address() {
+				var fm = document.frm;
+				fm.action = "${pageContext.request.contextPath}/myPage/addressAction.do";
+				fm.method = "POST";
+				fm.submit();
+			}
 		</script>
 	</body>
 </html>

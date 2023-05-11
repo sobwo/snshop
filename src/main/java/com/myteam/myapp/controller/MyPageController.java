@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
+import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
 
@@ -32,6 +34,9 @@ public class MyPageController {
 
 	@Autowired
 	MemberService ms;
+	
+	@Autowired
+	OrderService os;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -252,6 +257,30 @@ public class MyPageController {
 	public String address() {
 		
 		return "myPage/address";
+	}
+	
+	@RequestMapping(value = "/addressAction.do")
+	public String addressAction(
+			HttpSession session,
+			RedirectAttributes rttr,
+			@RequestParam("basicName") String basicName,
+			@RequestParam("basicPhone") String basicPhone,
+			@RequestParam("basicAddrNum") String basicAddrNum,
+			@RequestParam("basicAddr") String basicAddr,
+			@RequestParam("basicAddrDetail") String basicAddrDetail,
+			@RequestParam("basic_check") String basic_check) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int value = os.addressInsert(basicName, basicPhone, basicAddrNum, basicAddr, basicAddrDetail, basic_check, memberNo);
+		
+		if(value==1) {
+			return "myPage/address";
+		}
+		else {
+			rttr.addFlashAttribute("msg", "주소를 다시 입력해 주세요.");
+			return "redirect:/myPage/address.do";
+		}
 	}
 	
 	@RequestMapping(value = "/incomeAccount.do")
