@@ -35,4 +35,11 @@ public class OrderServiceImpl implements OrderService{
 		return value;
 	}
 
+	@Override
+	public AddressVo addressSelect(int memberNo) {
+		AddressVo av = osm.addressSelect(memberNo);
+		
+		return av;
+	}
+
 }

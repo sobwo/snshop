@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.service.BoardService;
@@ -298,7 +299,15 @@ public class MyPageController {
 	}
 
 	@RequestMapping(value = "/address.do")
-	public String address() {
+	public String address(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		AddressVo av = os.addressSelect(memberNo);
+		
+		model.addAttribute("av",av);
 		
 		return "myPage/address";
 	}
