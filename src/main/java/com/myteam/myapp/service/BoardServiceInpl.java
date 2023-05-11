@@ -1,6 +1,8 @@
 package com.myteam.myapp.service;
 
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +29,15 @@ public class BoardServiceInpl implements BoardService{
 
 		return value;
 	}
+
+
+	@Override
+	public ArrayList<BoardVo> boardList(int memberNo) {
+		
+		ArrayList<BoardVo> blist = bsm.boardList(memberNo);
+		
+		return blist;
+	}
+
 
 }

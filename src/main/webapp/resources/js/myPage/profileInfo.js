@@ -98,3 +98,16 @@ modify_phone.on("input",function(){
 		phone_msg.text("숫자를 입력해주세요.");
 	}
 });
+
+// 이미지 파일 필터링을 위한 함수
+function imageFilter(input) {
+// 선택한 파일 가져오기
+	var file = input.files[0];
+	// 파일의 확장자 가져오기
+	var ext = file.name.split('.').pop().toLowerCase();
+	// 확장자가 이미지 파일인지 확인
+	if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+		alert("이미지 파일만 선택 가능합니다.");
+		input.value = "";
+	}
+}

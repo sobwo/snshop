@@ -65,8 +65,8 @@
 							<h3>성별(선택)</h3>
 								<div id="joinGender_inner_area">
 								<div class="input_item">
-									<div id="man">남성<input type="radio" name="memberGender"/></div>
-									<div id="woman">여성<input type="radio" name="memberGender"/></div>
+									<div id="man">남성<input type="radio" name="memberGender" value="man"/></div>
+									<div id="woman">여성<input type="radio" name="memberGender" value="woman"/></div>
 								</div>
 							</div>						
 						</div>

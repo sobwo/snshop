@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/myteam/myapp/controller/MyPageController.java=UTF-8
+encoding//src/main/java/com/myteam/myapp/persistance/OrderService_Mapper.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/header_style.jsp=UTF-8

@@ -59,6 +59,14 @@ basic_phone.on("input",function(){
 	}
 });
 
-
+$("#basic_AddrNum").click(function(){
+    new daum.Postcode({
+        oncomplete: function(data) { //선택시 입력값 세팅
+        	$("#basic_AddrNum").val(data.zonecode); //우편번호
+            $("#basic_Addr").val(data.address) // 주소 넣기
+           	$("#basic_AddrDetail").focus(); //상세입력 포커싱
+        }
+    }).open();
+});
 
 		

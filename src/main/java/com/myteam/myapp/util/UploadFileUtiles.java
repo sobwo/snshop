@@ -125,6 +125,7 @@ public class UploadFileUtiles {
 	
 	//	System.out.println("destImg"+destImg);
 		boolean flag = ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+		System.out.println("���翩�� flag"+flag);
 		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}	
 }

@@ -25,8 +25,8 @@
 						<div class="user_detail">
 							<div class="user_thumb">
 								<c:choose>
-									<c:when test="${mv.profileImg != null}">
-										<img src="#">
+									<c:when test="${mv.profileImg != ''}">
+										<img src="${pageContext.request.contextPath}/resources/uploadFiles/${mv.profileImg}">
 									</c:when>
 									<c:otherwise>
 										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">

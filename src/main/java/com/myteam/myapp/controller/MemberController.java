@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,7 +52,6 @@ public class MemberController {
 		}
 		
 		else {
-			System.out.println("실패");
 			rttr.addFlashAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
 			path="redirect:/member/memberLogin.do";
 		}
