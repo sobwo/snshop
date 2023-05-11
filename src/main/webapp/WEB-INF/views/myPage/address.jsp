@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -36,13 +37,16 @@
 						<div class="basic_address">
 							<div class="address_contents">
 								<div class="basic_title">
-									<span class="addr_name">이름</span><span class="basic_mark">기본 배송지</span>
+									<span class="addr_name">${av.userName}</span>
+									<c:if test="${av.mainAddress=='Y'}">
+										<span class="basic_mark">기본 배송지</span>
+									</c:if>
 								</div>
 								<div class="basic_title">
-									<span class="addr_phone">010-0000-0000</span>
+									<span class="addr_phone">${av.addressPhone}</span>
 								</div>
 								<div class="basic_title">
-									<span class="addr_address">주소</span>
+								<span class="addr_address">${av.zipCode}&nbsp;&nbsp;${av.address}&nbsp;&nbsp;${detailAddress}</span>
 								</div>
 							</div>
 							<div class="address_btn_area">

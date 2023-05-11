@@ -8,4 +8,8 @@
 		INSERT INTO ADDRESS(USERNAME,ADDRESSPHONE,ZIPCODE,ADDRESS,DETAILADDRESS,MAINADDRESS,MEMBERNO)
 		VALUES(#{userName},#{addressPhone},#{zipCode},#{address},#{detailAddress},#{mainAddress},#{memberNo})
 	</insert>
+		
+	<select id ="addressSelect" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0}
+	</select>
 </mapper>
