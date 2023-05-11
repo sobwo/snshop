@@ -55,18 +55,10 @@ $(document).ready(function(){});
 		function item_click(index){
 			item.eq(index).click(function(){
 				if(list_top.eq(index).is(':checked')){
-					list_top.eq(index).prop("checked", false);
-					$("div[name="+list_top.eq(index).val()+"]").detach();
-					filter_child_list.eq(index).hide();
+					list_top.eq(index).prop("checked", false).change();
 				}
 				else{
-					list_top.eq(index).prop("checked", true);
-					filter_child_list.eq(index).show();
-					list_bottom.prop("checked",false);
-					$(".teg_child").detach();
-		 			if($(".filter_teg_area").text().indexOf(list_top.eq(index).attr('name')) == -1)
-					$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
-							"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					list_top.eq(index).prop("checked", true).change();
 				}
 			});
 		}
@@ -91,18 +83,14 @@ $(document).ready(function(){});
 			
 			item_child.eq(index).click(function(){
 				if(list_bottom.eq(index).is(':checked')){
-					list_bottom.eq(index).prop("checked", false);
-					$("div[name="+list_bottom.eq(index).val()+"]").detach();
+					list_bottom.eq(index).prop("checked", false).change();
 				}
 				else{
-					list_bottom.eq(index).prop("checked", true);
-					list_top.prop("checked",false);
-					$(".teg_parent").detach();
-					$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+list_bottom.eq(index).val()+
-							"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					list_bottom.eq(index).prop("checked", true).change();
 				}
 			});
 		}
+		
 		function list_bottom_check(index){
 			list_bottom.eq(index).change(function(){
 				if(this.checked){
@@ -133,15 +121,10 @@ $(document).ready(function(){});
 		function item_gender_click(index){
 			item_gender.eq(index).click(function(){
 				if(filter_gender.eq(index).is(':checked')){
-					filter_gender.eq(index).prop("checked", false);
-					$("div[name="+filter_gender.eq(index).val()+"]").detach();
+					filter_gender.eq(index).prop("checked", false).change();
 				}
 				else{
-					filter_gender.prop("checked",false);
-					filter_gender.eq(index).prop("checked", true);
-		 			$(".teg_gender").detach();
-		 			$(".filter_teg_area").append("<div class='teg_item teg_gender' name='"+filter_gender.eq(index).val()+
-						"'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					filter_gender.prop("checked",false).change();
 				}
 			});
 		}
@@ -192,13 +175,10 @@ $(document).ready(function(){});
 		function item_benefit_click(index){
 			item_benefit.eq(index).click(function(){
 				if(filter_benefit.eq(index).is(':checked')){
-					filter_benefit.eq(index).prop("checked", false);
-					$("div[name="+filter_benefit.eq(index).val()+"]").detach();
+					filter_benefit.eq(index).prop("checked", false).change();
 				}
 				else{
-					filter_benefit.eq(index).prop("checked", true);
-					$(".filter_teg_area").append("<div class='teg_item teg_benefit' name='"+filter_benefit.eq(index).val()+
-							"'><span>"+filter_benefit.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					filter_benefit.eq(index).prop("checked", true).change();
 				}
 			});
 		}
@@ -206,7 +186,6 @@ $(document).ready(function(){});
 		function filter_benefit_check(index){
 			filter_benefit.eq(index).change(function(){
 				if(this.checked){
-					
 					$(".filter_teg_area").append("<div class='teg_item teg_benefit' name='"+filter_benefit.eq(index).val()+
 							"'><span>"+filter_benefit.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
 				}else{
@@ -225,17 +204,13 @@ $(document).ready(function(){});
 		}
 		
 		function item_price_click(index){
-			item_price.eq(index).click(function(){
+			
+		item_price.eq(index).click(function(){
 				if(filter_price.eq(index).is(':checked')){
-					filter_price.eq(index).prop("checked", false);
-					$("div[name="+filter_price.eq(index).val()+"]").detach();
+					filter_price.eq(index).prop("checked", false).change();
 				}
 				else{
-					filter_price.prop("checked",false);
-					filter_price.eq(index).prop("checked", true);
-		 			$(".teg_price").detach();
-					$(".filter_teg_area").append("<div class='teg_item teg_price' name='"+filter_price.eq(index).val()+
-							"'><span>"+filter_price.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+					filter_price.eq(index).prop("checked", true).change();
 				}
 			});
 		}
@@ -243,11 +218,9 @@ $(document).ready(function(){});
 		function filter_price_check(index){
 			filter_price.eq(index).change(function(){
 				if(this.checked){
-					
 					$(".teg_price").detach();
 					$("input:checkbox[class='filter_price']").prop("checked",false);
 					$(this).prop("checked",true);
-
 					
 					$(".filter_teg_area").append("<div class='teg_item teg_price' name='"+filter_price.eq(index).val()+
 							"'><span>"+filter_price.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
@@ -261,9 +234,8 @@ $(document).ready(function(){});
 	//태그 div 버튼 클릭시 삭제 및 클릭 해제
 		$(document).on('click','.teg_item_btn',function(){
 			var name = $(this).parent('div').attr('name');
-			$("input:checkbox[name='"+name+"']").prop("checked",false);
+			$("input:checkbox[name='"+name+"']").prop("checked",false).change();
 			$(this).parent('div').detach();
-			$("#"+name).css('display','none');
 
 		});
 		

@@ -3,8 +3,14 @@ package com.myteam.myapp.domain;
 public class GoodsVo {
 	
 	private int goodsNo, price, interestNum;
-	private String goodsName, modelNum, releaseDate, color, category, categoryName;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName;
 	
+	public String getGoodsBrandName() {
+		return goodsBrandName;
+	}
+	public void setGoodsBrandName(String goodsBrandName) {
+		this.goodsBrandName = goodsBrandName;
+	}
 	public int getGoodsNo() {
 		return goodsNo;
 	}

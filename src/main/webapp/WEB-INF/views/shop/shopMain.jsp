@@ -267,8 +267,8 @@
 									</div>
 									<div class="filter_list">
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="10만원 이하" >
-											<div class="item_price">10만원 이하</div>
+											<input type="checkbox" class="filter_price" name="" value="10만원이하" >
+											<div class="item_price">10만원이하</div>
 										</div>
 										<div class="filter_list_in">
 											<input type="checkbox" class="filter_price" name="" value="10-30만원" >
@@ -287,8 +287,8 @@
 											<div class="item_price">100-300만원</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="300만원 이상" >
-											<div class="item_price">300만원 이상</div>
+											<input type="checkbox" class="filter_price" name="" value="300만원이상" >
+											<div class="item_price">300만원이상</div>
 										</div>
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
