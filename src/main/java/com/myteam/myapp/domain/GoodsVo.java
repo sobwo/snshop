@@ -2,15 +2,8 @@ package com.myteam.myapp.domain;
 
 public class GoodsVo {
 	
-	private int goodsNo;
-	private String goodsName;
-	private int price;
-	private String modelNum;
-	private int interestNum;
-	private String releaseDate;
-	private String color;
-	private String category;
-	private String categoryName;
+	private int goodsNo, price, interestNum;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName;
 	
 	public int getGoodsNo() {
 		return goodsNo;

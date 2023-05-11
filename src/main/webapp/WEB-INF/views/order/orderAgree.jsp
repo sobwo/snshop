@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,7 +32,7 @@
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
 							<strong class="modelNumber">123456789</strong>
-							<p class="modelName">조던 1 레트로 하이 OG 시카고</p>
+							<p class="modelName">${gv.goodsName}</p>
 							<p class="modelSize">230</p>
 						</div>				
 					</div>

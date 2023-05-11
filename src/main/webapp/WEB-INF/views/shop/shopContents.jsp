@@ -22,8 +22,9 @@
 		</div>
 		<main class="main">
 			<div class="container">
-				<form class="product_area">
+				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
+					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -46,16 +47,16 @@
 						<div class="productContents">
 							<div class="brandName"><a href="#">jordan</a></div>
 							<div class="productName">
-								<input name="goodsName" type="text" value="${gv.goodsName}" readonly>
+								<p>${gv.goodsName}</p>
 								<p>2022조던 1 레트로 하이 OG 시카고 2022</p>
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-									<a>
-										<span class="size_view">사이즈 표시</span>
-										<button class="sizePick_btn" name="sizePick"><img src="${pageContext.request.contextPath}/resources/image/downside.png"></button>
-									</a>
+									<span class="size_view">사이즈 표시</span>
+									<button class="sizePick_btn" name="sizePick">
+										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
+									</button>
 								</div>
 							</div>
 							<div class="price_area">
@@ -63,13 +64,13 @@
 									<span>가격</span>
 								</div>
 								<div class="price">
-									<input type="text" value="<fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}' />" readonly>
+									<span class="price_view"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}' /></span>
 								</div>
 							</div>
 						</div><!-- productContents -->
 						<div class="btn_area">
-							<button class="sellButton" name="buy_btn" type="button" onclick="location.href='${pageContext.request.contextPath}/order/orderAgree.do'">구매</button>
-							<button class="buyButton" name="sell_btn">판매</button>
+							<button class="buyButton" name="buy_btn" type="button" onclick="buyButton();">구매</button>
+							<button class="sellButton" name="sell_btn">판매</button>
 							<button class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
 						</div><!-- btn_area -->
 						
@@ -78,21 +79,15 @@
 							<div class="productInfo_con">
 								<div class="productInfo_1">
 									<p>모델 번호</p>
-									<span>
-										<input type="text" value="${gv.modelNum}" readonly>
-									</span>
+									<span>${gv.modelNum}</span>
 								</div>
 								<div class="productInfo_1 productInfo_day">
 									<p>출시일</p>
-									<span>
-										<input type="text" value="${gv.releaseDate}" readonly>
-									</span>
+									<span>${gv.releaseDate}</span>
 								</div>
 								<div class="productInfo_1">
 									<p>컬러</p>
-									<span>
-										<input type="text" value="${gv.color}" readonly>
-									</span>
+									<span>${gv.color}</span>
 								</div>
 							</div>
 						</div><!--productInfo-->
@@ -173,7 +168,16 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
 		<script type="text/javascript">
-		
+		function buyButton(){	
+
+			var fm = document.frm;	
+			
+			fm.action = "${pageContext.request.contextPath}/order/orderAgree.do";
+			fm.enctype ="multipart/form-data";
+			fm.method= "get";
+			fm.submit();
+			return;
+		};
 		
 		</script>
 	</body>
