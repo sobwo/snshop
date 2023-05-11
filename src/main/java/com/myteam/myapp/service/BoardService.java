@@ -11,9 +11,4 @@ public interface BoardService {
 
 	public ArrayList<BoardVo> boardList(int memberNo);
 
-
-//	public int boardlikeCnt(int bidx);
-	
-//	public BoardVo boardSelectOne(int boardNo);
-
 }

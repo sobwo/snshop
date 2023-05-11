@@ -107,6 +107,7 @@
 }
 .feedContainer{
  	display: flex;
+ 	 flex-wrap: wrap;
     padding: 12px 16px;
 	margin: 0 auto;
 	width: 1200px;
@@ -114,11 +115,19 @@
 	justify-content:space-between;
 	align-items: center;
 }
+.feedRow{
+	display:flex;
+}
+.feeds{
+	display:inline-block;
+	margin:10px 10px 20px 10px; 
+}
 .feedPost{
 	width:279px;
 	height:458px;
 	cursor:pointer;
 	position:relative;
+	float:left;
 }
 .feedPostImage{
 	width:279px;

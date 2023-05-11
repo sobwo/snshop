@@ -9,6 +9,4 @@ public interface BoardService_Mapper {
 	public int boardInsert(BoardVo bv);
 
 	public ArrayList<BoardVo> boardList(int memberNo);
-
-
 }

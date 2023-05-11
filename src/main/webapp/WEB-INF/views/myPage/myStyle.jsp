@@ -50,31 +50,47 @@
 			<c:choose>
 				<c:when test="${not empty blist}">
 					<div class="feedContainer">
-						<c:forEach var="blist" items="${blist}">
-							<div class="feeds">
+						<c:forEach var="bv" items="${blist}" varStatus="status">
+						<c:if test="${status.count % 4 == 1}">
+			                <div class="feedRow">
+			            </c:if>
+							<div class="feeds" >
 								<div class="feedPost">
 									<div class="feedPostImage" onclick="location.href='#'">
-										<img class="postImage" src="" />
+										<c:choose>
+											<c:when test ="${bv.contentsImg==null}">
+											</c:when><c:otherwise>
+											
+											<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
+											
+											<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+												<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${bv.contentsImg}">
+											</c:if>
+											</c:otherwise>
+										</c:choose>	
 									</div>	
 									<div class="imageCnt" onclick="location.href='#'">
-										<span class="imageCount">+${viewCnt}</span>
+										<span class="imageCount">+${bv.viewCnt}</span>
 									</div>
 									<div class="feedPostUser">
-										<img class="userProfileImage" src="" />
-										<p class="userName">${memberId}</p>
+										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
+										<p class="userName">${mv.memberId}</p>
 										
 										<span class="likeBox" onclick="like();">
 										<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
-										<span class="likeCount">${likeCnt}</span>
+										<span class="likeCount">${bv.likeCnt}</span>
 										</span>
 									</div>
 									
 									<div class="feedPostContent" onclick="location.href='#'">
-										<p>${contents}</p>
+										<p>${bv.contents}</p>
 									</div>
 								</div>
 							</div>
-						</c:forEach>	
+						<c:if test="${status.count % 4 == 0}">
+		              		</div>
+		           		</c:if>	
+						</c:forEach>
 					</div>
 				</c:when>
 				<c:otherwise>
@@ -90,5 +106,21 @@
 			</c:choose>		
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script>
+			//하트 클릭 시 이미지 변경
+			var imgChange = document.getElementById("likeImageChange");
+			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
+	
+			function like(){
+			    if (currentImage === '${pageContext.request.contextPath}/resources/image/heart.png/') {
+			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
+			        currentImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
+			    } else {
+			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png/');
+			        currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
+			    }
+			}
+		</script>
 	</body>
 </html>
