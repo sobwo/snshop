@@ -165,7 +165,7 @@ button{
 .buyButton{
 	width:48%; 
 	height:60px; 
-	background-color:#41b979; 	
+	background-color:#ef6253;
 	border:none;
 	border-radius: 10px;
 	font-size:18px; 
@@ -176,7 +176,7 @@ button{
 .sellButton{
 	width:48%; 
 	height:60px; 
-	background-color:#ef6253;
+	background-color:#41b979;
 	border:none;
 	border-radius: 10px;
 	font-size:18px;

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,8 +31,8 @@
 					<div class="buyProduct">
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
-							<strong class="modelNumber">123456789</strong>
-							<p class="modelName">조던 1 레트로 하이 OG 시카고</p>
+							<strong class="modelNumber"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/></strong>
+							<p class="modelName">${gv.goodsName}</p>
 							<p class="modelSize">230</p>
 						</div>				
 					</div>
@@ -65,7 +67,7 @@
 						</li>
 					</ul>
 					<div class="confirmBtn">
-						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do'">
+						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do?goodsNo=${gv.goodsNo}'">
 					</div>
 				</div>
 				</div>	

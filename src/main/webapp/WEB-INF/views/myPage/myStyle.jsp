@@ -18,11 +18,11 @@
 		</div>
 		
 		<div class="myStyleContainer">
-			<div class="userProfile">
+			<div class="userProfileTop">
 				<div>
-					<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-					<span class="userName">이름</span>
-					<span class="userId">아이디</span>
+					<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+					<span class="userNameTop">${mv.memberName}</span>
+					<span class="userIdTop">${mv.memberId}</span>
 				</div>
 			</div>
 			<div class="socialTab">
@@ -47,14 +47,47 @@
 					</li>
 				</ul>
 			</div>
-			<div class="feedEmpty">
-				<div>
-					<img class="feedEmptyImage" src="${pageContext.request.contextPath}/resources/image/camera.png">
-					<strong class="EmptyTxt">게시물 없음</strong>
-					<p class="EmptySubTxt">사진을 공유하면 내 프로필에 표시됩니다.</p>
+			<c:choose>
+				<c:when test="${not empty blist}">
+					<div class="feedContainer">
+						<c:forEach var="blist" items="${blist}">
+							<div class="feeds">
+								<div class="feedPost">
+									<div class="feedPostImage" onclick="location.href='#'">
+										<img class="postImage" src="" />
+									</div>	
+									<div class="imageCnt" onclick="location.href='#'">
+										<span class="imageCount">+${viewCnt}</span>
+									</div>
+									<div class="feedPostUser">
+										<img class="userProfileImage" src="" />
+										<p class="userName">${memberId}</p>
+										
+										<span class="likeBox" onclick="like();">
+										<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
+										<span class="likeCount">${likeCnt}</span>
+										</span>
+									</div>
+									
+									<div class="feedPostContent" onclick="location.href='#'">
+										<p>${contents}</p>
+									</div>
+								</div>
+							</div>
+						</c:forEach>	
+					</div>
+				</c:when>
+				<c:otherwise>
+				<div class="feedEmpty">
+					<div>
+						<img class="feedEmptyImage" src="${pageContext.request.contextPath}/resources/image/camera.png">
+						<strong class="EmptyTxt">게시물 없음</strong>
+						<p class="EmptySubTxt">사진을 공유하면 내 프로필에 표시됩니다.</p>
+					</div>
+					<input type="button" class="feedFirstShare" value="첫 사진 공유" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle_upload.do'">
 				</div>
-				<input type="button" class="feedFirstShare" value="첫 사진 공유" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle_upload.do'">
-			</div>			
+				</c:otherwise>	
+			</c:choose>		
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</body>

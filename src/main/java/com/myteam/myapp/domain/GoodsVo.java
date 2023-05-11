@@ -2,15 +2,8 @@ package com.myteam.myapp.domain;
 
 public class GoodsVo {
 	
-	private int goodsNo;
-	private String goodsName;
-	private int price;
-	private int modelNum;
-	private int interestNum;
-	private String releaseDate;
-	private String color;
-	private String category;
-	private String categoryName;
+	private int goodsNo, price, interestNum;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName;
 	
 	public int getGoodsNo() {
 		return goodsNo;
@@ -30,10 +23,11 @@ public class GoodsVo {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getModelNum() {
+
+	public String getModelNum() {
 		return modelNum;
 	}
-	public void setModelNum(int modelNum) {
+	public void setModelNum(String modelNum) {
 		this.modelNum = modelNum;
 	}
 	public int getInterestNum() {

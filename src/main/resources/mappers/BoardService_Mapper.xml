@@ -9,7 +9,9 @@
 		VALUES(#{boardNo}, #{contentsImg}, #{contents}, #{memberNo}, #{viewCnt})
 </insert>
 
-
+<select id="boardList" parameterType="int" resultType="bv">
+	select*from board where delyn='N' and memberNo=#{memberNo}
+</select>
 
 
 
