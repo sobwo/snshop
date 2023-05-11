@@ -193,7 +193,12 @@
 }
 
 .modify_btn_2{
+	width:105px;
+	height:45px;
 	background:#ebebeb;
 	border:0;
+	font-size:14px;
 	color:#fff;
+	border-radius:12px;
+	cursor:pointer;
 }

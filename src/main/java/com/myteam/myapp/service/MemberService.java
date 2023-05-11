@@ -12,4 +12,6 @@ public interface MemberService {
 	public MemberVo memberInfo(int memberNo);
 	public int updateProfileImg(MemberVo mv);
 	public String profileImgShow(int memberNo);
+	public int profileImgDelete(int memberNo);
+	public int modifyProfile(String index, String value, int memberNo);
 }

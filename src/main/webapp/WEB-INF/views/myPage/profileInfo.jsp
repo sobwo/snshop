@@ -32,21 +32,14 @@
 					<!-- 프로필 사진,이름 -->
 					<div class="user_profile">
 						<div class="user_thumb">
-							<c:choose>
-								<c:when test="${mv.profileImg != null}">
-									<img src="" id="profileImg_show">
-								</c:when>
-								<c:otherwise>
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-								</c:otherwise>
-							</c:choose>
+							<img src="" id="profileImg_show">
 						</div>
 						<div class="user_info user_info_profile">
 							<strong class="user_name user_name_profile">${mv.memberName}</strong>
 							<div class="imgBtn_wrap">
 									<label for="profileImg"><div class="myPageBtn" id="myPageBtn">이미지 변경</div></label>
 									<input type="file" multiple="multiple" name="profileImg" id="profileImg">
-								<input type="button" class="myPageBtn" value="삭제">
+								<input type="button" class="myPageBtn" value="삭제" onclick="deleteImg()">
 							</div>
 						</div>
 					</div>
@@ -74,13 +67,13 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status modify_password_area">
 										<h6 class="modify_info_title">새로운 비밀번호</h6>
-										<input type="password" class="modify_info_status_1" id="modify_pw" name="modify_name" placeholder="비밀번호를 입력하세요.">
+										<input type="password" class="modify_info_status_1" id="modify_pw" name="modify_pw" placeholder="비밀번호를 입력하세요.">
 										<input type="password" class="modify_info_status" id="modify_pw2" placeholder="비밀번호를 다시 입력하세요.">
 										<span class="msg" id="pw_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
-										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+										<button class="modify_btn_2" disabled="disabled" value="pw">변경</button>
 									</div>
 								</div>
 							</div>
@@ -105,7 +98,7 @@
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
-										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+										<button class="modify_btn_2" disabled="disabled" value="name">변경</button>
 									</div>
 								</div>
 							</div>
@@ -120,12 +113,12 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status">
 										<h6 class="modify_info_title">이메일 주소</h6>
-										<input type="text" class="modify_info_status" id="modify_email" name="modify_name" placeholder="이메일 주소을 입력하세요.">
+										<input type="text" class="modify_info_status" id="modify_email" name="modify_email" placeholder="이메일 주소을 입력하세요.">
 										<span class="msg" id="email_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
-										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+										<button class="modify_btn_2" disabled="disabled" value="email">변경</button>
 									</div>
 								</div>
 							</div>
@@ -140,12 +133,12 @@
 								<div class="profile_modify_info" style="display:none">
 									<div class="profile_modify_info_status">
 										<h6 class="modify_info_title">휴대폰 번호</h6>
-										<input type="text" class="modify_info_status" id="modify_phone" name="modify_name" placeholder="휴대폰 번호를 입력하세요.">
+										<input type="text" class="modify_info_status" id="modify_phone" name="modify_phone" placeholder="휴대폰 번호를 입력하세요.">
 										<span class="msg"  id="phone_msg"></span>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
-										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+										<button class="modify_btn_2" disabled="disabled" value="phone">변경</button>
 									</div>
 								</div>
 							</div>
@@ -161,13 +154,13 @@
 									<div class="profile_modify_info_status modify_gender_area">
 										<h6 class="modify_info_title">새로운 성별</h6>
 										<div class="modifyGender_area">
-											<div id="man">남성<input type="radio" class="modifyGender" name="modifyGender"/></div>
-											<div id="woman">여성<input type="radio" class="modifyGender" name="modifyGender"/></div>
+											<div id="man">남성<input type="radio" class="modifyGender" name="modifyGender" value="man"/></div>
+											<div id="woman">여성<input type="radio" class="modifyGender" name="modifyGender" value="woman"/></div>
 										</div>
 									</div>
 									<div class="modify_btn_box">	
 										<input type="button" class="modify_btn_1" value="취소">
-										<input type="button" class="modify_btn_2" disabled="disabled" value="저장">
+										<button class="modify_btn_2" disabled="disabled" value="gender">변경</button>
 									</div>
 								</div>
 							</div>
@@ -217,13 +210,12 @@
 			        contentType : false,
 					success : function(data){
 							var result = JSON.parse(data);
-							alert(result.value);
 							if(result.value==1){
 								showImg();
 							}
 						},
 						error : function(request,status,error){
-							alert("다시 시도하시기 바랍니다.1");	
+							alert("다시 시도하시기 바랍니다.");	
 							console.log("code: " + request.status);
 					        console.log("message: " + request.responseText);
 					        console.log("error: " + error);
@@ -232,18 +224,24 @@
 			}
 			
 			function showImg(){
+				var src;
 				$.ajax({
 					url: "${pageContext.request.contextPath}/myPage/profileImgShow.do",		
-					method: "POST",
+					method: "GET",
 					dataType: "json",
 					success : function(data){
-						if(data.value!=""){
-							var src = "${pageContext.request.contextPath}/resources/uploadFiles"+data.value;
+						if(data.value != ""){
+							src = "${pageContext.request.contextPath}/resources/uploadFiles"+data.value;
 							$("#profileImg_show").attr("src",src);
 						}
+						else{
+							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
+							$("#profileImg_show").attr("src",src);
+						}
+						
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.2");	
+						alert("다시 시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
@@ -262,6 +260,62 @@
 					alert("이미지 파일만 선택 가능합니다.");
 					input.value = "";
 				}
+			}
+			
+			function deleteImg(){
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myPage/profileImgDelete.do",		
+					method: "POST",
+					dataType: "json",
+					success : function(data){
+						if(data.value==1){
+							showImg();
+						}
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
+			
+			
+			$(".modify_btn_2").on("click",function(){
+				var value;
+				if($(this).val() == "pw") value=$("#modify_pw").val();
+				else if($(this).val()=="name") value=$("#modify_name").val();
+				else if($(this).val()=="email") value=$("#modify_email").val();
+				else if($(this).val()=="phone") value=$("#modify_phone").val();
+				else if($(this).val()=="gender") value=$('input[name=modifyGender]:checked').val();
+				
+				infoChange($(this).val(), (value));
+			});
+			
+			function infoChange(index,value){
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myPage/infoChange.do",		
+					method: "POST",
+					data: {"index":index, "value":value},
+					dataType: "json",
+					success : function(data){
+						alert(data.result);
+						if(data.result==1){
+						    location.reload();
+						}
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
+			
+			function showInfo(){
+				
 			}
 			
 		</script>

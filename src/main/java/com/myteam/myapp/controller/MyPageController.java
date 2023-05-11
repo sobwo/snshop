@@ -1,40 +1,28 @@
 package com.myteam.myapp.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.File;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-
-=======
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.MemberVo;
-import com.myteam.myapp.domain.SearchCriteria;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
-import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
-
-import oracle.jdbc.proxy.annotation.Post;
+import com.myteam.myapp.util.UploadProfile;
 
 @Controller
 @RequestMapping(value = "/myPage")
@@ -45,14 +33,13 @@ public class MyPageController {
 
 	@Autowired
 	MemberService ms;
-<<<<<<< HEAD
 	
 	@Autowired
 	HttpServletRequest request;
 	
-=======
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/myPageMain.do")
 	public String myPageMain(
 			Model model,
@@ -114,10 +101,10 @@ public class MyPageController {
 		String str = null;
 		MultipartFile file = profileImg;
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-		System.out.println("uploadedpath"+uploadedPath);
+
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
-			uploadedFileName = UploadFileUtiles.uploadFile(
+			uploadedFileName = UploadProfile.uploadFile(
 				uploadedPath, 
 				file.getOriginalFilename(),
 				file.getBytes());
@@ -146,12 +133,58 @@ public class MyPageController {
 		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		String str = ms.profileImgShow(memberNo);
-		
 		result = "{\"value\":\""+str+"\"}";
 
 		return result; 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/profileImgDelete.do")
+	public String profileImgDelete(
+			HttpSession session) throws Exception {
+		
+		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		
+		int value = ms.profileImgDelete(memberNo);
+		
+		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		
+		File directory = new File(uploadedPath);
+		File[] files = directory.listFiles();
+		for(File file : files) {
+		    if(file.delete()) {
+		        System.out.println(file.getName() + " 삭제 성공");
+		    } else {
+		        System.out.println(file.getName() + " 삭제 실패");
+		    }
+		}
+		
+		String str = "{\"value\":\""+value+"\"}";
+
+		return str; 
+	}
+	@ResponseBody
+	@RequestMapping(value = "/infoChange.do")
+	public String infoChange(
+			HttpSession session,
+			@RequestParam("index") String index,
+			@RequestParam("value") String value) {
+		
+		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		if(index.equals("pw"))
+			value = bcryptPasswordEncoder.encode(value);
+		
+
+		int result = ms.modifyProfile(index, value, memberNo);
+		
+		System.out.println("result:"+result);
+		
+		String str = "{\"result\":\""+result+"\"}";
+		
+		return str;
+	}
 	
 	@RequestMapping(value = "/myStyle.do")
 	public String myStyle(
@@ -171,8 +204,6 @@ public class MyPageController {
 		model.addAttribute("mv", mv);
 		model.addAttribute("blist", blist);
 
-
-
 		return "myPage/myStyle";
 	}
 
@@ -190,7 +221,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "D:/dav1230/uploadFiles"; // �ӽ�
+		String uploadPath = "D:/dav1230/uploadFiles"; // �ӽ�
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {

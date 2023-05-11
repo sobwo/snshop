@@ -1,5 +1,7 @@
 package com.myteam.myapp.service;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,7 +100,41 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String profileImgShow(int memberNo) {
 		String str = msm.profileImgShow(memberNo);
+		
 		return str;
+	}
+
+	@Override
+	public int profileImgDelete(int memberNo) {
+		int value = msm.profileImgDelete(memberNo);
+		
+		return value;
+	}
+
+	@Override
+	public int modifyProfile(String index, String value, int memberNo) {
+		HashMap<String, Object> map = new HashMap<>();
+		int result=0;
+		map.put("memberNo", memberNo);
+		map.put("modifyValue", value);
+		
+		if(index.equals("pw")) {
+			result=msm.modifyPw(map);
+		}
+		else if(index.equals("name")) {
+			result=msm.modifyName(map);
+		}
+		else if(index.equals("email")) {
+			result=msm.modifyEmail(map);
+		}
+		else if(index.equals("phone")) {
+			result=msm.modifyPhone(map);
+		}
+		else if(index.equals("gender")) {
+			result=msm.modifyGender(map);
+		}
+		
+		return result;
 	}
 
 }
