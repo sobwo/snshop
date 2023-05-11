@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+	<meta charset="UTF-8">
 	<title>Insert title here</title>
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/order/orderFinish.css" rel="stylesheet">
@@ -22,27 +24,29 @@
 				<div class="orderFinishBox">
 					<div class="orderFinisTitle">
 						<h2>
-							ÁÖ¹® °áÁ¦°¡ <span class="accentTitle">¿Ï·á</span> µÇ¾ú½À´Ï´Ù.				
+							ì£¼ë¬¸ ê²°ì œê°€ <span class="accentTitle">ì™„ë£Œ</span> ë˜ì—ˆìŠµë‹ˆë‹¤.				
 						</h2>
 					</div>
 					<div class="pay">
 						<div class="payText">
-							<p class="payTotal">°áÁ¦ ±Ý¾×</p>
+							<p class="payTotal">ê²°ì œ ê¸ˆì•¡</p>
 						</div>	
 						<div class="payNumber">
-							<p class="payTotalNumber">¿ø</p>
+							<p class="payTotalNumber">	<fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/>ì›</p>
 						</div>		
 					</div>
 					<div class="buyProduct">
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
-							<strong class="modelNumber">123456789</strong>
-							<p class="modelName">Á¶´ø 1 ·¹Æ®·Î ÇÏÀÌ OG ½ÃÄ«°í</p>
+							<strong class="modelNumber">${gv.modelNum} </strong>
+							
+							<p class="modelName">  	${gv.goodsName}
+	                                   <!--    ì¡°ë˜ 1 ë ˆíŠ¸ë¡œ í•˜ì´ OG ì‹œì¹´ê³  --></p>
 							<p class="modelSize">230</p>
 						</div>				
 					</div>
 					<div class="orderFinishBtn">
-						<input type="button" name="orderFinish" id="orderFinish" value="È® ÀÎ" onclick="location.href='${pageContext.request.contextPath}/'">
+						<input type="button" name="orderFinish" id="orderFinish" value="í™• ì¸" onclick="location.href='${pageContext.request.contextPath}/'">
 					</div>	
 				</div>
 			</div>	

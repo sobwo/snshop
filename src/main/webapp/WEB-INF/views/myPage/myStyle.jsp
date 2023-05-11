@@ -55,7 +55,7 @@
 			                <div class="feedRow">
 			            </c:if>
 							<div class="feeds" >
-								<div class="feedPost">
+								<div class="feedPost" id="feedPost${bv.boardNo}">
 									<div class="feedPostImage" onclick="location.href='#'">
 										<c:choose>
 											<c:when test ="${bv.contentsImg==null}">
@@ -69,15 +69,22 @@
 											</c:otherwise>
 										</c:choose>	
 									</div>	
-									<div class="imageCnt" onclick="location.href='#'">
-										<span class="imageCount">+${bv.viewCnt}</span>
-									</div>
+									<c:choose>
+										<c:when test="${bv.viewCnt == 1}">
+											<div class="imageCnt" style="display:none"></div>
+										</c:when>
+										<c:otherwise>
+											<div class="imageCnt" onclick="location.href='#'">
+												<span class="imageCount">+${bv.viewCnt-1}</span>
+											</div>
+										</c:otherwise>
+									</c:choose>
 									<div class="feedPostUser">
 										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
 										<p class="userName">${mv.memberId}</p>
 										
 										<span class="likeBox" onclick="like();">
-										<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/'>
+										<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/' onclick="like('feedPost${bv.boardNo}')">
 										<span class="likeCount">${bv.likeCnt}</span>
 										</span>
 									</div>
@@ -109,17 +116,15 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
 			//하트 클릭 시 이미지 변경
-			var imgChange = document.getElementById("likeImageChange");
-			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
-	
-			function like(){
-			    if (currentImage === '${pageContext.request.contextPath}/resources/image/heart.png/') {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
-			    } else {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png/');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
-			    }
+			function like(feedId) {
+			var imgChange = document.getElementById(feedId).querySelector(".likeImage");
+			var currentImage = imgChange.getAttribute("src");
+			
+				if (currentImage === '${pageContext.request.contextPath}/resources/image/heart2.png') {
+				  imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png');
+				} else {
+				  imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
+				}
 			}
 		</script>
 	</body>

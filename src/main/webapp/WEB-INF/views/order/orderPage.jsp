@@ -28,13 +28,17 @@
 	
 	                            <div class="product_detail">
 	                                <strong class="model_number">
-	                                    ${gv.modelNum}
+                                      	${gv.modelNum}
+                                     
+	                        
+	                                    
 	                                </strong>
 	                                <p class="model_title">
 	                                    (TD) Jordan 1 X Travis Scott Retro Low OG SP Medium Olive
 	                                </p>
 	                                <p class="model_ko">
-	                                    ${gv.goodsName}
+	                                   
+                                      ${gv.goodsName}
 	                                </p>
 	                                <div class="model_desc">
 	                                    <p class="size_txt">
@@ -194,7 +198,9 @@
 		                            <p style="color:red;" >436.300</p>
 	                        	</div>
 	                        </div>                        
-	                        <button class="payment-button"id="payment-button" onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do'">결제하기</button>                      
+	                        <button class="payment-button"id="payment-button" onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do?goodsNo=${gv.goodsNo}'">결제하기</button>   
+
+	                                           
 	                    </div>
 	                </div><!--buy_immediate-->
 	            </div><!-- content-->

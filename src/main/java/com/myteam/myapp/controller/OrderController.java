@@ -42,10 +42,35 @@ public class OrderController {
 		return "order/orderPage";
 	}
 	
+	
+	
+	/*
+	 * @RequestMapping(value = "/orderFinish.do") public String orderFinish(
+	 * 
+	 * @RequestParam("goodsNo")int goodsNo, Model model) {
+	 * 
+	 * Goods gv = ss.goodsSelectOne(goodsNo); model.addAll) }
+	 * 
+	 * )
+	 * 
+	 * 
+	 * 
+	 */
+	
+	
+	
 	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish() {
+	public String orderFinish( 
+		@RequestParam("goodsNo")int goodsNo,
+		Model model ){
 		
-		return "order/orderFinish";
+			GoodsVo gv = ss.goodsSelectOne(goodsNo);
+			
+			model.addAttribute("gv",gv);
+			
+			return "order/orderFinish";
+		
+
 	}
 	
 
