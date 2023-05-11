@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,13 +28,13 @@
 	
 	                            <div class="product_detail">
 	                                <strong class="model_number">
-	                                    "DZ5908-106"
+	                                    ${gv.modelNum}
 	                                </strong>
 	                                <p class="model_title">
 	                                    (TD) Jordan 1 X Travis Scott Retro Low OG SP Medium Olive
 	                                </p>
 	                                <p class="model_ko">
-	                                    (TD) 조던 1 x 트래비스 스캇 레트로 로우 미디엄 올리브
+	                                    ${gv.goodsName}
 	                                </p>
 	                                <div class="model_desc">
 	                                    <p class="size_txt">
@@ -148,7 +150,9 @@
 	                        <!--가로로-->
 	                        <div  style="display: flex; justify-content: space-between; align-items: center;">
 	                            <p>구매가</p>
-	                            <p style="color: red; text-align: right;">436,000</p>
+	                            <p style="color: red; text-align: right;">
+	                            	<fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/>
+	                            </p>
 	                        </div>
 	                        <div class="inner_totalprice" style="display: flex; justify-content: space-between; align-items: center;">
 	                            <p>포인트</p>

@@ -30,7 +30,14 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/orderPage.do")
-	public String orderPage() {
+	public String orderPage(
+			@RequestParam("goodsNo") int goodsNo,
+			Model model) {
+		
+		GoodsVo gv = ss.goodsSelectOne(goodsNo);
+		
+		model.addAttribute("gv", gv);
+		
 		
 		return "order/orderPage";
 	}

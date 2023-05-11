@@ -31,7 +31,7 @@
 					<div class="buyProduct">
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
-							<strong class="modelNumber">123456789</strong>
+							<strong class="modelNumber"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/></strong>
 							<p class="modelName">${gv.goodsName}</p>
 							<p class="modelSize">230</p>
 						</div>				
@@ -67,7 +67,7 @@
 						</li>
 					</ul>
 					<div class="confirmBtn">
-						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do'">
+						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do?goodsNo=${gv.goodsNo}'">
 					</div>
 				</div>
 				</div>	
