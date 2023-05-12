@@ -12,4 +12,12 @@
 	<select id ="addressSelect" parameterType="Integer" resultType="av">
 		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0}
 	</select>
+	
+	<select id ="addressSelectOne" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE ADDRESSNO = #{0}
+	</select>
+	
+	<delete id ="addressDelete" parameterType="Integer">
+		DELETE FROM ADDRESS WHERE ADDRESSNO = #{0}
+	</delete>
 </mapper>

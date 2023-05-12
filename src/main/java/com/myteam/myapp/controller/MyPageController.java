@@ -4,12 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -305,9 +307,9 @@ public class MyPageController {
 		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		AddressVo av = os.addressSelect(memberNo);
+		ArrayList<AddressVo> alist = os.addressSelect(memberNo);
 		
-		model.addAttribute("av",av);
+		model.addAttribute("alist",alist);
 		
 		return "myPage/address";
 	}
@@ -321,19 +323,49 @@ public class MyPageController {
 			@RequestParam("basicAddrNum") String basicAddrNum,
 			@RequestParam("basicAddr") String basicAddr,
 			@RequestParam("basicAddrDetail") String basicAddrDetail,
-			@RequestParam("basic_check") String basic_check) {
+			@RequestParam(value="basic_check", defaultValue="N") String basic_check) {
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		int value = os.addressInsert(basicName, basicPhone, basicAddrNum, basicAddr, basicAddrDetail, basic_check, memberNo);
 		
 		if(value==1) {
-			return "myPage/address";
+			return "redirect:/myPage/address.do";
 		}
 		else {
 			rttr.addFlashAttribute("msg", "주소를 다시 입력해 주세요.");
 			return "redirect:/myPage/address.do";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/showAddress.do")
+	public JSONObject showAddress(
+			@RequestParam("index") int index) {
+		HashMap<String,Object> map = new HashMap<>();
+		AddressVo av = os.addressSelectOne(index);
+		
+		map.put("av", av);
+		
+		JSONObject js = new JSONObject(map);
+		
+//		JSONObject js = new JSONObject();
+//		
+//		js.put("av", av);
+		
+		return js;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteAddress.do")
+	public String deleteAddress(
+			@RequestParam("index") int index) {
+		
+		int value = os.addressDelete(index);
+		
+		String str = "{\"value\":\""+value+"\"}";
+
+		return str;
 	}
 	
 	@RequestMapping(value = "/incomeAccount.do")

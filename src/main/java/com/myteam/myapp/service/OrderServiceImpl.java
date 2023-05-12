@@ -1,5 +1,7 @@
 package com.myteam.myapp.service;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,10 +38,25 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public AddressVo addressSelect(int memberNo) {
-		AddressVo av = osm.addressSelect(memberNo);
+	public ArrayList<AddressVo> addressSelect(int memberNo) {
+		ArrayList<AddressVo> alist = osm.addressSelect(memberNo);
+		
+		return alist;
+	}
+
+	@Override
+	public AddressVo addressSelectOne(int addressNo) {
+
+		AddressVo av = osm.addressSelectOne(addressNo);
 		
 		return av;
+	}
+
+	@Override
+	public int addressDelete(int addressNo) {
+		int value = osm.addressDelete(addressNo);
+		
+		return value;
 	}
 
 }

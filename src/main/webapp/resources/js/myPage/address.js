@@ -18,6 +18,7 @@ cancel_bottom.click(function(){
 	popup_wrap.hide();
 });
 
+
 //유효성검사
 var basic_name = $("#basic_name");
 var basic_phone = $("#basic_phone");
@@ -68,5 +69,6 @@ $("#basic_AddrNum").click(function(){
         }
     }).open();
 });
+
 
 		
