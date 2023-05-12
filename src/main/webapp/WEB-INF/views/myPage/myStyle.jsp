@@ -45,6 +45,10 @@
 							<span class="socialMenuCnt">0</span>
 						</a>
 					</li>
+					
+					<li>
+						<a href="${pageContext.request.contextPath}/myPage/myStyle_upload.do">+</a>
+					</li>
 				</ul>
 			</div>
 			<c:choose>
