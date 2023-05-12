@@ -3,6 +3,7 @@ package com.myteam.myapp.persistance;
 import java.util.HashMap;
 
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.RefundVo;
 
 public interface MemberService_Mapper {
 	//로그인,회원가입
@@ -30,5 +31,7 @@ public interface MemberService_Mapper {
 	public int modifyPhone(HashMap<String, Object> map);
 	public int modifyGender(HashMap<String, Object> map);
 	
+	//회원별 판매계좌
+	public int insertAccount(RefundVo rv);
 
 }

@@ -349,10 +349,6 @@ public class MyPageController {
 		
 		JSONObject js = new JSONObject(map);
 		
-//		JSONObject js = new JSONObject();
-//		
-//		js.put("av", av);
-		
 		return js;
 	}
 	
@@ -372,6 +368,20 @@ public class MyPageController {
 	public String incomeAccount() {
 		
 		return "myPage/incomeAccount";
+	}
+	
+	@RequestMapping(value = "/incomeAccountAction.do")
+	public String incomeAccountAction(
+			@RequestParam("ar_bankName") String ar_bankName,
+			@RequestParam("ar_accountNum") String ar_accountNum,
+			@RequestParam("ar_name") String ar_name,
+			HttpSession session){
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		
+		
+		return "redirect:/myPage/incomeAccount.do";
 	}
 	
 	@RequestMapping(value = "/point.do")

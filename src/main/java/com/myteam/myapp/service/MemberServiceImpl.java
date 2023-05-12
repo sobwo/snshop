@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.persistance.MemberService_Mapper;
 
 @Service("memberServiceImpl")
@@ -135,6 +136,13 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return result;
+	}
+
+	@Override
+	public int insertAccount(RefundVo rv) {
+		int value = msm.insertAccount(rv);
+		
+		return value;
 	}
 
 }

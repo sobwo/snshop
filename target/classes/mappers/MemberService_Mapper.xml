@@ -71,4 +71,8 @@
 	<update id="modifyGender" parameterType="java.util.HashMap">
 		UPDATE MEMBER SET MEMBERGENDER = #{modifyValue} WHERE MEMBERNO = #{memberNo}
 	</update>
+	
+	<insert id="insertAccount" parameterType="rv">
+		INSERT INTO REFUND(ACCOUNTNAME,ACCOUNTNUM,ACCOUNTUSERNAME,MEMBERNO) VALUES(#{accountName},#{accountNum},#{accountUserName},#{memberNo})
+	</insert>
 </mapper>

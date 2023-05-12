@@ -96,11 +96,8 @@
 					dataType: "json",
 					cache : false,
 					success : function(data){
-						$("#basic_name").val(data.av.userName);
-						$("#basic_phone").val(data.av.addressPhone);
 						$("#basic_AddrNum").val(data.av.zipCode);
 						$("#basic_Addr").val(data.av.address);
-						$("#basic_AddrDetail").val(data.av.detailAddress);
 					},
 					error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	

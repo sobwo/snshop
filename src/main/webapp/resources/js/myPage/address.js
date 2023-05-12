@@ -3,6 +3,13 @@ var popup_wrap = $(".basic_popup_wrap");
 var cancel = $(".popup_cancel");
 var cancel_bottom = $(".basic_btn_1");
 
+
+var basic_name = $("#basic_name");
+var basic_phone = $("#basic_phone");
+var basic_AddrNum = $("#basic_AddrNum");
+var basic_Addr = $("#basic_Addr");
+var basic_AddrDetail = $("#basic_AddrDetail");
+
 //팝업창
 popup_wrap.css('height',window.outerHeight);
 
@@ -12,20 +19,15 @@ plusBtn.eq(0).click(function(){
 
 cancel.click(function(){
 	popup_wrap.hide();
+	changeCss();
 });
 
 cancel_bottom.click(function(){
 	popup_wrap.hide();
+	changeCss();
 });
 
-
 //유효성검사
-var basic_name = $("#basic_name");
-var basic_phone = $("#basic_phone");
-var basic_AddrNum = $("#basic_AddrNum");
-var basic_Addr = $("#basic_Addr");
-var basic_AddrDetail = $("#basic_AddrDetail");
-
 basic_name.on("input",function(){
 	if(basic_name.val()=='' || basic_name.val().length<3 || basic_name.val().length>10) {
 		basic_name.css('border-bottom','2px solid #f00');
@@ -70,5 +72,15 @@ $("#basic_AddrNum").click(function(){
     }).open();
 });
 
+function changeCss() {
+	basic_name.val("");
+	basic_name.css('border-bottom','1px solid #ebebeb');
+	basic_phone.val("");
+	basic_phone.css('border-bottom','1px solid #ebebeb');
+	basic_AddrDetail.val("");
+	basic_AddrDetail.css('border-bottom','1px solid #ebebeb');
+	$('.basic_btn_2').eq(0).css('background-color', '#ebebeb');
+	$('.basic_btn_2').eq(0).prop('disabled', true);
+}
 
 		

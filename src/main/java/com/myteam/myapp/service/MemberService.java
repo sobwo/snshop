@@ -1,6 +1,7 @@
 package com.myteam.myapp.service;
 
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.RefundVo;
 
 public interface MemberService {
 	public int memberInsert(String memberId, String memberPw, String memberName, String memberEmail, String memberPhone, String memberGender);
@@ -14,4 +15,5 @@ public interface MemberService {
 	public String profileImgShow(int memberNo);
 	public int profileImgDelete(int memberNo);
 	public int modifyProfile(String index, String value, int memberNo);
+	public int insertAccount(RefundVo rv);
 }

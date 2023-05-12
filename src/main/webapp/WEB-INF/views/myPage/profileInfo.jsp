@@ -287,10 +287,8 @@
 					data: {"index":index, "value":value},
 					dataType: "json",
 					success : function(data){
-						alert(data.result);
 						if(data.result==1){
 						    location.reload();
-						    alert("변경 완료");
 						}
 					},
 					error : function(request,status,error){
