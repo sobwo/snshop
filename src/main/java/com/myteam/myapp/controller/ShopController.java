@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -22,8 +23,10 @@ public class ShopController {
 	public String shopMain(Model model) {
 		
 		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
+		ArrayList<ProductImgVo> imgList = ss.imgSelectAll();
 		
 		model.addAttribute("goodsList", goodsList);
+		model.addAttribute("imgList", imgList);
 		
 		return "shop/shopMain";
 	}
@@ -34,9 +37,10 @@ public class ShopController {
 			Model model) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
+		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
 		
 		model.addAttribute("gv", gv);
-		
+		model.addAttribute("pivList", pivList);
 
 		return "shop/shopContents";
 	}

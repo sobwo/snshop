@@ -4,11 +4,19 @@
 <mapper namespace="com.myteam.myapp.persistance.ShopService_Mapper">
 
 	<select id="goodsSelectAll" resultType="gv">
-		select * from goods order by goodsNo desc
+		select * from goods order by goodsNo desc 
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
 		select * from goods where goodsNo = #{goodsNo}
+	</select>
+	
+	<select id="imgSelectAll" resultType="piv">
+		select imgfileName,a.goodsNo from productimg a inner join (select goodsNo,min(imgNo) as imgNo from productimg group by goodsNo) b on a.imgNo = b.imgNo order by a.goodsNo desc
+	</select>
+	
+	<select id="imgSelectOne" parameterType="int" resultType="piv">
+		select * from productimg where goodsNo = #{goodsNo} order by imgNo asc
 	</select>
 
 </mapper>
