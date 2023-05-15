@@ -139,8 +139,37 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int insertAccount(RefundVo rv) {
+	public int insertAccount(String ar_bankName, String ar_accountNum, String ar_name, int memberNo) {
+		RefundVo rv = new RefundVo();
+		
+		rv.setAccountName(ar_bankName);
+		rv.setAccountNum(ar_accountNum);
+		rv.setAccountUserName(ar_name);
+		rv.setMemberNo(memberNo);
+		
 		int value = msm.insertAccount(rv);
+		
+		return value;
+	}
+
+	@Override
+	public RefundVo selectAccount(int memberNo) {
+		RefundVo rv = msm.selectAccount(memberNo);
+		
+		return rv;
+	}
+
+	@Override
+	public int modifyAccount(String ar_bankName, String ar_accountNum, String ar_name, int memberNo) {
+		
+		RefundVo rv = new RefundVo();
+		
+		rv.setAccountName(ar_bankName);
+		rv.setAccountNum(ar_accountNum);
+		rv.setAccountUserName(ar_name);
+		rv.setMemberNo(memberNo);
+		
+		int value = msm.modifyAccount(rv);
 		
 		return value;
 	}

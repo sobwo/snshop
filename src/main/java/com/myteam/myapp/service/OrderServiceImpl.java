@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.AddressVo;
+import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
 
 @Service("orderServiceImpl")
@@ -57,6 +58,39 @@ public class OrderServiceImpl implements OrderService{
 		int value = osm.addressDelete(addressNo);
 		
 		return value;
+	}
+
+	@Override
+	public int addressModify(int addressNo, String basicName, String basicPhone, String basicAddrNum, String basicAddr,
+			String basicAddrDetail, String basic_check) {
+		
+		AddressVo av = new AddressVo();
+		
+		av.setAddressNo(addressNo);
+		av.setUserName(basicName);
+		av.setAddressPhone(basicPhone);
+		av.setZipCode(basicAddrNum);
+		av.setAddress(basicAddr);
+		av.setDetailAddress(basicAddrDetail);
+		av.setMainAddress(basic_check);
+		
+		int value = osm.addressModify(av);
+		
+		return value;
+	}
+
+	@Override
+	public ArrayList<OrderVo> selectOrderAll(int memberNo) {
+		ArrayList<OrderVo> alist = osm.selectOrderAll(memberNo);
+		
+		return alist;
+	}
+
+	@Override
+	public ArrayList<OrderVo> selectOrderIng(int memberNo) {
+		ArrayList<OrderVo> alist = osm.selectOrderIng(memberNo);
+		
+		return alist;
 	}
 
 }

@@ -75,4 +75,12 @@
 	<insert id="insertAccount" parameterType="rv">
 		INSERT INTO REFUND(ACCOUNTNAME,ACCOUNTNUM,ACCOUNTUSERNAME,MEMBERNO) VALUES(#{accountName},#{accountNum},#{accountUserName},#{memberNo})
 	</insert>
+		
+	<select id="selectAccount" parameterType="Integer" resultType="rv">
+		SELECT * FROM REFUND WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="modifyAccount" parameterType="rv">
+		UPDATE REFUND SET ACCOUNTNAME=#{accountName}, ACCOUNTNUM=#{accountNum},ACCOUNTUSERNAME=#{accountUserName} WHERE MEMBERNO=#{memberNo}
+	</update>
 </mapper>

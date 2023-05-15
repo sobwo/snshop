@@ -16,6 +16,7 @@
 				<div class="popup_cancel">X</div>
 			</div>
 			<form name="frm">
+				<input type="hidden" id="addressNo" />
 				<div class="popup_contents">
 					<!-- 이름 -->
 					<div class="basic_wrap">
@@ -77,7 +78,7 @@
 				</div>
 				<div class="popup_bottom">
 					<input type="button" class="basic_btn_1" value="취소">
-					<input type="button" class="basic_btn_2" disabled="disabled" value="저장하기" onclick="submit_address()">
+					<button class="basic_btn_2" name="modifyBtn_p" disabled="disabled" value="1">등록</button>
 				</div>
 			</form>
 		</div>

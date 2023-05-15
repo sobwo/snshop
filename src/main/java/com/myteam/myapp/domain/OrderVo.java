@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class OrderVo {	
+public class OrderVo extends GoodsVo{	
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 
@@ -8,6 +8,9 @@ public class OrderVo {
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
+	private String orderDays;
+	private String size;
+	private String pors;
 	
 	public int getOrderNo() {
 		return orderNo;
@@ -51,5 +54,22 @@ public class OrderVo {
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	
+	public String getOrderDays() {
+		return orderDays;
+	}
+	public void setOrderDays(String orderDays) {
+		this.orderDays = orderDays;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getPors() {
+		return pors;
+	}
+	public void setPors(String pors) {
+		this.pors = pors;
+	}
 }

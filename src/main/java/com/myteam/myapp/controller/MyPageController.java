@@ -30,6 +30,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
@@ -75,7 +77,29 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/purchase.do")
-	public String purchase() {
+	public String purchase(
+			HttpSession session,
+			Model model) {
+		
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		ArrayList<OrderVo> alist = os.selectOrderAll(memberNo);
+		
+		model.addAttribute("alist", alist);
+		
+		return "myPage/purchase";
+	}
+	
+	@RequestMapping(value = "/purchaseIng.do")
+	public String purchaseIng(
+			HttpSession session,
+			Model model) {
+		
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		ArrayList<OrderVo> alist = os.selectOrderIng(memberNo);
+		
+		model.addAttribute("alist", alist);
 		
 		return "myPage/purchase";
 	}
@@ -195,8 +219,6 @@ public class MyPageController {
 
 		int result = ms.modifyProfile(index, value, memberNo);
 		
-		System.out.println("result:"+result);
-		
 		String str = "{\"result\":\""+result+"\"}";
 		
 		return str;
@@ -314,7 +336,7 @@ public class MyPageController {
 		return "myPage/address";
 	}
 	
-	@RequestMapping(value = "/addressAction.do")
+	@RequestMapping(value = "/addressInsert.do")
 	public String addressAction(
 			HttpSession session,
 			RedirectAttributes rttr,
@@ -336,6 +358,24 @@ public class MyPageController {
 			rttr.addFlashAttribute("msg", "주소를 다시 입력해 주세요.");
 			return "redirect:/myPage/address.do";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/addressModify.do")
+	public String addressModify(
+			@RequestParam("index") int index,
+			@RequestParam("basicName") String basicName,
+			@RequestParam("basicPhone") String basicPhone,
+			@RequestParam("basicAddrNum") String basicAddrNum,
+			@RequestParam("basicAddr") String basicAddr,
+			@RequestParam("basicAddrDetail") String basicAddrDetail,
+			@RequestParam(value="basic_check", defaultValue="N") String basic_check) {
+		
+		int value = os.addressModify(index, basicName, basicPhone, basicAddrNum, basicAddr, basicAddrDetail, basic_check);
+		
+		String str = "{\"value\":\""+value+"\"}";
+		
+		return str;
 	}
 	
 	@ResponseBody
@@ -365,7 +405,15 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/incomeAccount.do")
-	public String incomeAccount() {
+	public String incomeAccount(
+			HttpSession session,
+			Model model) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		RefundVo rv = ms.selectAccount(memberNo);
+		
+		model.addAttribute("rv", rv);
 		
 		return "myPage/incomeAccount";
 	}
@@ -379,9 +427,28 @@ public class MyPageController {
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
+		int value = ms.insertAccount(ar_bankName,ar_accountNum,ar_name,memberNo);
 		
+		if(value==1)
+			return "redirect:/myPage/incomeAccount.do";
+		else
+			return "myPage/incomeAccount";
+	}
+	
+	@RequestMapping(value = "/incomeAccountModify.do")
+	public String incomeAccountModify(
+			@RequestParam("ar_bankName") String ar_bankName,
+			@RequestParam("ar_accountNum") String ar_accountNum,
+			@RequestParam("ar_name") String ar_name,
+			HttpSession session) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		ms.modifyAccount(ar_bankName, ar_accountNum, ar_name, memberNo);
 		
 		return "redirect:/myPage/incomeAccount.do";
+		
+		
 	}
 	
 	@RequestMapping(value = "/point.do")

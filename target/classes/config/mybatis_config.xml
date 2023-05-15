@@ -8,5 +8,6 @@
 	<typeAlias alias="gv" type="com.myteam.myapp.domain.GoodsVo"/>
 	<typeAlias alias="av" type="com.myteam.myapp.domain.AddressVo"/>
 	<typeAlias alias="rv" type="com.myteam.myapp.domain.RefundVo"/>
+	<typeAlias alias="ov" type="com.myteam.myapp.domain.OrderVo"/>
 </typeAliases>
 </configuration>

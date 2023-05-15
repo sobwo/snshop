@@ -20,4 +20,15 @@
 	<delete id ="addressDelete" parameterType="Integer">
 		DELETE FROM ADDRESS WHERE ADDRESSNO = #{0}
 	</delete>
+	
+	<update id ="addressModify" parameterType="av">
+		UPDATE ADDRESS
+		SET USERNAME=#{userName}, ADDRESSPHONE=#{addressPhone}, ZIPCODE=#{zipCode}, ADDRESS=#{address}, 
+			DETAILADDRESS=#{detailAddress}, MAINADDRESS=#{mainAddress} 
+		WHERE ADDRESSNO=#{addressNo}
+	</update>
+	
+	<select id="selectOrderAll" parameterType="Integer" resultType="ov">
+		SELECT * FROM ORDERS WHERE MEMBERNO = #{0} AND PORS = 'P' AND ORDERDAYS >= DATE_SUB(NOW(), INTERVAL 6 MONTH);
+	</select>
 </mapper>

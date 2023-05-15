@@ -33,5 +33,7 @@ public interface MemberService_Mapper {
 	
 	//회원별 판매계좌
 	public int insertAccount(RefundVo rv);
+	public RefundVo selectAccount(int memberNo);
+	public int modifyAccount(RefundVo rv);
 
 }

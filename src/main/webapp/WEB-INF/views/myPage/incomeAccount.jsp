@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -35,7 +36,14 @@
 									<h3 class="ar_title">은행명</h3>
 								</div>
 								<div class="ar_input_wrap">
-									<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" placeholder="은행명을 입력하세요.">
+									<c:choose>
+										<c:when test="${rv.refundNo == null}">
+											<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" placeholder="은행명을 입력하세요.">
+										</c:when>
+										<c:otherwise>
+											<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" value="${rv.accountName}">
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
@@ -47,8 +55,15 @@
 									<h3 class="ar_title">계좌번호</h3>
 								</div>
 								<div class="ar_input_wrap">
-									<input type="text" class="ar_input" id="ar_accountNum" name="ar_accountNum" placeholder="- 없이 입력하세요.">
-									<span class="ar_msg" style="display:none">-빼고 숫자를 입력해주세요.</span>
+									<c:choose>
+										<c:when test="${rv.refundNo == null}">
+											<input type="text" class="ar_input" id="ar_accountNum" name="ar_accountNum" placeholder="- 없이 입력하세요.">
+											<span class="ar_msg" style="display:none">-빼고 숫자를 입력해주세요.</span>
+										</c:when>
+										<c:otherwise>
+											<input type="text" class="ar_input" id="ar_accountNum" name="ar_accountNum" value="${rv.accountNum}">
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
@@ -60,14 +75,29 @@
 									<h3 class="ar_title">예금주명</h3>
 								</div>
 								<div class="ar_input_wrap">
-									<input type="text" class="ar_input" id="ar_name" name="ar_name" placeholder="예금주 명을 정확히 입력하세요.">
+									<c:choose>
+											<c:when test="${rv.refundNo == null}">
+												<input type="text" class="ar_input" id="ar_name" name="ar_name" placeholder="예금주 명을 정확히 입력하세요.">
+											</c:when>
+											<c:otherwise>
+												<input type="text" class="ar_input" id="ar_name" name="ar_name" value="${rv.accountUserName}">
+											</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
 						
 						<!-- 저장하기버튼 -->
 						<div class="ar_btn_area">
-							<input type="button" class="ar_btn" disabled="disabled" value="저장하기" onclick="accountAdd()">
+							<c:choose>
+								<c:when test="${rv.refundNo == null}">
+									<input type="button" class="ar_btn" disabled="disabled" value="저장하기" onclick="accountAdd()">
+								</c:when>
+								<c:otherwise>
+									<input type="button" class="ar_btn" value="수정하기" onclick="accountModify()"
+									style="background:#222">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</form>
 				</div>
@@ -80,6 +110,12 @@
 			function accountAdd(){
 				var fm = document.frm;
 				fm.action="${pageContext.request.contextPath}/myPage/incomeAccountAction.do";
+				fm.submit();
+			}
+			
+			function accountModify(){
+				var fm = document.frm;
+				fm.action="${pageContext.request.contextPath}/myPage/incomeAccountModify.do";
 				fm.submit();
 			}
 		</script>

@@ -149,5 +149,6 @@
 .purchase_contents_wrap{
 	width:1000px;
 	display:flex;
-	justify-content:center;
+	align-items:center;
+	flex-direction:column;
 }

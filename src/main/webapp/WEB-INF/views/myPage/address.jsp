@@ -65,17 +65,18 @@
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/address.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
-			function submit_address() {
-				var fm = document.frm;
-				fm.action = "${pageContext.request.contextPath}/myPage/addressAction.do";
-				fm.method = "POST";
-				fm.submit();
-			}
-			
 			$("button[name=modifyBtn]").on("click",function() {
+				submit_button.val("1");
 				popup_wrap.show();
+				changeCss();
 				var index = $(this).val();
+				$("#addressNo").val(index);
 				showAddress(index);
+			});
+			
+			$("button[name=modifyBtn_p]").on("click",function(){
+				if(submit_button.val()==2) submit_address();
+				else if(submit_button.val()==1) modifyAddress($("#addressNo").val());
 			});
 			
 			$("button[name=deleteBtn]").on("click",function(){
@@ -88,6 +89,13 @@
 				}
 			});
 			
+			function submit_address() {
+				var fm = document.frm;
+				fm.action = "${pageContext.request.contextPath}/myPage/addressInsert.do";
+				fm.method = "POST";
+				fm.submit();
+			}
+			
 			function showAddress(index){
 				$.ajax({
 					url: "${pageContext.request.contextPath}/myPage/showAddress.do",		
@@ -98,6 +106,39 @@
 					success : function(data){
 						$("#basic_AddrNum").val(data.av.zipCode);
 						$("#basic_Addr").val(data.av.address);
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
+			
+			function modifyAddress(index){
+				var basicName = $("input[name=basicName]").val();
+				var basicPhone = $("input[name=basicPhone").val();
+				var basicAddrNum = $("input[name=basicAddrNum]").val();
+				var basicAddr = $("input[name=basicAddr]").val();
+				var basicAddrDetail = $("input[name=basicAddrDetail]").val();
+				var basic_check = $("input[name=basic_check]").val();
+				
+				$.ajax({
+					url: "${pageContext.request.contextPath}/myPage/addressModify.do",		
+					method: "POST",
+					data: {"index" : index,
+						   "basicName" : basicName,
+						   "basicPhone" : basicPhone,
+						   "basicAddrNum" : basicAddrNum,
+						   "basicAddr" : basicAddr,
+						   "basicAddrDetail" : basicAddrDetail,
+						   "basic_check" : basic_check},
+					dataType: "json",
+					cache : false,
+					success : function(data){
+						if(data.value==1)
+							location.reload();
 					},
 					error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	

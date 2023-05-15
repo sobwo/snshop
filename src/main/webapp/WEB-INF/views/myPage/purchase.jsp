@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -78,21 +79,24 @@
 					
 					<!--  구매내역 리스트 -->
 					<div class="purchase_contents_wrap">
-						<div class="purchase_contents">
-							<div class="purchase_detail">
-								<div class="purchase_thumb">
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+						<c:forEach var="alist" items="${alist}">
+							<div class="purchase_contents">
+								<div class="purchase_detail">
+									<div class="purchase_thumb">
+										<!-- 이미지 파일(수정해야될곳) -->
+										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+									</div>
+									<div class="purchase_info">
+										<strong class="purchase_name">${alist.goodsName}</strong>
+										<p class="purchase_price">${alist.totalPrice}</p>
+										<p class="purchase_size">${alist.size}</p>
+									</div>
 								</div>
-								<div class="purchase_info">
-									<strong class="purchase_name">제품 이름</strong>
-									<p class="purchase_price">결제 가격</p>
-									<p class="purchase_size">250</p>
+								<div class="delivery_info">
+									<p class="delivery_status">대기중</p>
 								</div>
 							</div>
-							<div class="delivery_info">
-								<p class="delivery_status">대기중</p>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>
@@ -102,6 +106,9 @@
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
+			$(".tab_category").eq(1).click(function(){
+				
+			});
 		</script>
 	</body>
 </html>
