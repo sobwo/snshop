@@ -77,15 +77,4 @@
 		<include refid="search_detail"/>
 		<include refid="search_price"/>
 	</select>
-<<<<<<< HEAD
-	
-	<select id="cntHistoryAll" parameterType="Integer" resultType="Integer">
-		SELECT COUNT(*) FROM ORDERS WHERE MEMBERNO = #{1}
-		<include refid="search_pors"/>
-		<include refid="search_status"/>
-	</select>
-
 </mapper>
-=======
-</mapper>
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
