@@ -18,5 +18,14 @@
 	<select id="imgSelectOne" parameterType="int" resultType="piv">
 		select * from productimg where goodsNo = #{goodsNo} order by imgNo asc
 	</select>
-
+	
+	<select id="filterList" parameterType="org.json.simple.JSONArray" resultType="gv">
+	
+		select * from goods where categoryname in 
+		<foreach collection="js" item="type" separator="," open="(" close=")">
+			#{type}
+		</foreach>
+	
+	</select>
+	
 </mapper>

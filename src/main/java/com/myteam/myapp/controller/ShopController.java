@@ -1,7 +1,10 @@
 package com.myteam.myapp.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,5 +46,19 @@ public class ShopController {
 		model.addAttribute("pivList", pivList);
 
 		return "shop/shopContents";
+	}
+	
+	@RequestMapping(value="/categoryFilter")
+	public JSONArray shopMainfilter(
+			@RequestParam(value="filter[]") List<String> filter) {
+		
+		JSONArray js = new JSONArray();
+	
+		js.add(filter);
+		ArrayList<GoodsVo> filterList = ss.filterList(js);
+		JSONArray filterja = new JSONArray();
+		filterja.add(filterList);
+		
+		return filterja;
 	}
 }

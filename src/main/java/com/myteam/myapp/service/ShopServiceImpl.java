@@ -1,8 +1,10 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.GoodsVo;
@@ -56,6 +58,14 @@ public class ShopServiceImpl implements ShopService {
 			ArrayList<ProductImgVo> pivList = ssm.imgSelectOne(goodsNo);
 			
 			return pivList;
+		}
+		
+		@Override
+		public ArrayList<GoodsVo>filterList(ArrayList filter){
+
+			ArrayList<GoodsVo> filterResult = ssm.filterList(filter);
+		
+			return filterResult;
 		}
 
 }

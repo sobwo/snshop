@@ -406,6 +406,50 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
+		var list_top = $(".filter_list_top");
+		
+		var total_cnt = 0;
+		var filter = [];
+		
+		$(document).on('change','.filter_list_top',function(){
+			
+			if($(this).is(':checked')==true){
+				
+				filter.push($(this).val());
+				alert(filter);
+				
+				$.ajax({
+					type : 'post',
+					url : "${pageContext.request.contextPath}/shop/categoryFilter.do",
+					tranditional : true,
+					dataType : 'json',
+					data : filter,
+					success : function(data){
+						console.log(data);
+						alert("성공");
+					},
+					error : function(){
+
+						alert("실패");
+					}
+					
+				});
+				
+				
+			}else{
+				
+				for(var i =0; i<filter.length; i++){
+					if(filter[i]==$(this).val()){
+						filter.splice(i,1);
+						i--;
+					}
+				}
+				
+				alert(filter);
+			}
+
+		});
+		
 		//우측 필터버튼 클릭시
 			var btn_list_item = $(".btn_list_item");
 			btn_list_item.on("click",function(){

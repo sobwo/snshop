@@ -1,6 +1,10 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.ProductImgVo;
@@ -14,5 +18,7 @@ public interface ShopService {
 	public ArrayList<ProductImgVo> imgSelectAll();
 	
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
+	
+	public ArrayList<GoodsVo>filterList(ArrayList filter);
 	
 }
