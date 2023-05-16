@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var today = new Date();
 	today = today.toISOString().slice(0, 10);
 	$(".calander").eq(1).val(today);
-	monthAgo(2);
+	monthAgo(6);
 	
 	var month = $(".month_link");
 	

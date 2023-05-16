@@ -4,6 +4,46 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myteam.myapp.persistance.OrderService_Mapper">
+	<sql id="search_pors">
+		<choose>
+			<when test="index=='buying'">
+				AND PORS = '구매'
+			</when>
+			<when test="index=='selling'">
+				AND PORS = '판매'
+			</when>
+		</choose>
+	</sql>
+	<sql id="search_status">
+		<choose>
+			<when test="value == 0">
+			AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+			</when>
+			<when test="value == 1">
+	 			AND orderStatus = '진행중' AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+	 		</when>
+			<when test="value == 2">
+			 	AND orderStatus = '종료' AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+			</when>
+		</choose>
+	</sql>
+	<sql id="search_detail">
+		<if test="filter != '전체'">
+			AND statusDetail = #{filter}
+		</if>
+	</sql>
+	<sql id="search_price">
+		<if test="price != 'initial'">
+			<choose>
+				<when test="price == 'up'">
+					ORDER BY TOTALPRICE DESC
+				</when>
+				<otherwise>
+					ORDER BY TOTALPRICE ASC
+				</otherwise>
+			</choose>
+		</if>
+	</sql>
 	<insert id="addressInsert" parameterType="av">
 		INSERT INTO ADDRESS(USERNAME,ADDRESSPHONE,ZIPCODE,ADDRESS,DETAILADDRESS,MAINADDRESS,MEMBERNO)
 		VALUES(#{userName},#{addressPhone},#{zipCode},#{address},#{detailAddress},#{mainAddress},#{memberNo})
@@ -28,7 +68,20 @@
 		WHERE ADDRESSNO=#{addressNo}
 	</update>
 	
-	<select id="selectOrderAll" parameterType="Integer" resultType="ov">
-		SELECT * FROM ORDERS WHERE MEMBERNO = #{0} AND PORS = 'P' AND ORDERDAYS >= DATE_SUB(NOW(), INTERVAL 6 MONTH);
+	<select id="selectHistoryAll" parameterType="Integer" resultType="ov">
+		SELECT b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
+		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
+		WHERE MEMBERNO = #{1} 
+		<include refid="search_pors"/>
+		<include refid="search_status"/>
+		<include refid="search_detail"/>
+		<include refid="search_price"/>
 	</select>
+	
+	<select id="cntHistoryAll" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM ORDERS WHERE MEMBERNO = #{1}
+		<include refid="search_pors"/>
+		<include refid="search_status"/>
+	</select>
+
 </mapper>

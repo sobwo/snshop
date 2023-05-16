@@ -80,17 +80,17 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public ArrayList<OrderVo> selectOrderAll(int memberNo) {
-		ArrayList<OrderVo> alist = osm.selectOrderAll(memberNo);
+	public ArrayList<OrderVo> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
+		ArrayList<OrderVo> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
 		
 		return alist;
 	}
 
 	@Override
-	public ArrayList<OrderVo> selectOrderIng(int memberNo) {
-		ArrayList<OrderVo> alist = osm.selectOrderIng(memberNo);
+	public int cntHistoryAll(String index, int memberNo, int value, String startDate, String endDate) {
+		int cnt = osm.cntHistoryAll(index, memberNo, value, startDate, endDate);
 		
-		return alist;
+		return cnt;
 	}
 
 }

@@ -14,6 +14,6 @@ public interface OrderService {
 	public int addressModify(int addressNo, String basicName, String basicPhone, String basicAddrNum, 
 			String basicAddr, String basicAddrDetail, String basic_check);
 	
-	public ArrayList<OrderVo> selectOrderAll(int memberNo);
-	public ArrayList<OrderVo> selectOrderIng(int memberNo); 
+	public int cntHistoryAll(String index, int memberNo,int value,String startDate, String EndDate);
+	public ArrayList<OrderVo> selectHistoryAll(String index, int memberNo, int value,String startDate, String EndDate, String filter,String price);
 }

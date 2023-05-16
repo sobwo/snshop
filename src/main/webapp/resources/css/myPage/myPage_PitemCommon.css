@@ -7,6 +7,7 @@
 	border-top:1px solid #ebebeb;
 	border-bottom:1px solid #ebebeb;
 	margin:0 auto;
+	margin-bottom:10px;
 }
 
 .purchase_detail{
@@ -34,10 +35,12 @@
 	flex-direction:column;
 }
 .purchase_name{
+	width:100%;
 	font-size:18px;
 	color:#000;
+	text-align:left;
 }
-.purchase_size, .purchase_price{
+.purchase_size, .purchase_price, .purchase_date{
 	width:100%;
 	text-align:left;
 	font-size:14px;

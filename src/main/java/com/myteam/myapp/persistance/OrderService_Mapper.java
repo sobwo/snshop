@@ -2,6 +2,8 @@ package com.myteam.myapp.persistance;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderVo;
 
@@ -16,6 +18,20 @@ public interface OrderService_Mapper {
 	public int addressModify(AddressVo av);
 	
 	//날짜별 주문조회
-	public ArrayList<OrderVo> selectOrderAll(int memberNo);
-	public ArrayList<OrderVo> selectOrderIng(int memberNo);
+	public int cntHistoryAll(
+			@Param("index") String index,
+			int memberNo,
+			@Param("value") int value,
+			@Param("startDate") String startDate,
+			@Param("endDate") String endDate);
+	
+	public ArrayList<OrderVo> selectHistoryAll(
+			@Param("index") String index,
+			int memberNo, 
+			@Param("value") int value,
+			@Param("startDate") String startDate,
+			@Param("endDate") String endDate,
+			@Param("filter") String filter,
+			@Param("price") String price);
+			
 }

@@ -3,6 +3,8 @@ package com.myteam.myapp.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,38 +78,49 @@ public class MyPageController {
 		return "myPage/myPageMain";
 	}
 	
-	@RequestMapping(value = "/purchase.do")
+	@RequestMapping(value = "/orderHistory.do")
 	public String purchase(
 			HttpSession session,
-			Model model) {
+			Model model,
+			@RequestParam("index") String index,
+			@RequestParam(value="value",defaultValue="0") int value,
+			@RequestParam(value="filter",defaultValue="전체") String filter,
+			@RequestParam(value="price",defaultValue="initial") String price,
+			@RequestParam(value="startDate",required = false) String startDate,
+			@RequestParam(value="endDate",required = false) String endDate) {
 		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		ArrayList<OrderVo> alist = os.selectOrderAll(memberNo);
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
+		LocalDate sixMonthsAgo = now.minusMonths(6);
+		
+		String formatedEnd = now.format(formatter);
+		String formatedStart = sixMonthsAgo.format(formatter);
+		
+		if(startDate == null) startDate = formatedStart;
+		if(endDate == null) endDate = formatedEnd;
+		
+		ArrayList<OrderVo> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
+		int cntAll = os.cntHistoryAll(index,memberNo,0,startDate,endDate);
+		int cntIng = os.cntHistoryAll(index,memberNo,1,startDate,endDate);
+		int cntEnd = os.cntHistoryAll(index,memberNo,2,startDate,endDate);
+		 
 		model.addAttribute("alist", alist);
+		model.addAttribute("cntAll", cntAll);
+		model.addAttribute("cntIng", cntIng);
+		model.addAttribute("cntEnd", cntEnd);
+		model.addAttribute("filter", filter);
+		model.addAttribute("value", value);
+		model.addAttribute("price", price);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		
-		return "myPage/purchase";
-	}
-	
-	@RequestMapping(value = "/purchaseIng.do")
-	public String purchaseIng(
-			HttpSession session,
-			Model model) {
-		
-		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		ArrayList<OrderVo> alist = os.selectOrderIng(memberNo);
-		
-		model.addAttribute("alist", alist);
-		
-		return "myPage/purchase";
-	}
-	
-	@RequestMapping(value = "/sale.do")
-	public String sale() {
-		
-		return "myPage/sale";
+		if(index.equals("buying"))
+			return "myPage/purchase";
+		else
+			return "myPage/sale";
 	}
 	
 	@RequestMapping(value = "/interest.do")

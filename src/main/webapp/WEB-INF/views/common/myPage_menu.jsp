@@ -46,8 +46,8 @@
 			<div class="snb_list">
 				<strong class="snb_title">쇼핑 정보</strong>
 				<ul class="shopping_info_list">
-					<li><a href='${pageContext.request.contextPath}/myPage/purchase.do'>구매 내역</a></li>
-					<li><a href='${pageContext.request.contextPath}/myPage/sale.do'>판매 내역</a></li>
+					<li><a href='${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying'>구매 내역</a></li>
+					<li><a href='${pageContext.request.contextPath}/myPage/orderHistory.do?index=selling'>판매 내역</a></li>
 					<li><a href='${pageContext.request.contextPath}/myPage/interest.do'>관심 상품</a></li>
 				</ul>
 			</div>

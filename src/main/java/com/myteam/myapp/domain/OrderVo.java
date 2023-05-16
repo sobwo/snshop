@@ -11,6 +11,8 @@ public class OrderVo extends GoodsVo{
 	private String orderDays;
 	private String size;
 	private String pors;
+	private String orderStatus;
+	private String statusDetail;
 	
 	public int getOrderNo() {
 		return orderNo;
@@ -72,4 +74,17 @@ public class OrderVo extends GoodsVo{
 	public void setPors(String pors) {
 		this.pors = pors;
 	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public String getStatusDetail() {
+		return statusDetail;
+	}
+	public void setStatusDetail(String statusDetail) {
+		this.statusDetail = statusDetail;
+	}
+	
 }
