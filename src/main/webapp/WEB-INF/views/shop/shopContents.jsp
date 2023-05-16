@@ -69,9 +69,9 @@
 							</div>
 						</div><!-- productContents -->
 						<div class="btn_area">
-							<button class="buyButton" name="buy_btn" type="button" onclick="buyButton();">구매</button>
-							<button class="sellButton" name="sell_btn">판매</button>
-							<button class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
+							<button type="button" class="buyButton" name="buy_btn" onclick="buyButton();">구매</button>
+							<button type="button" class="sellButton" name="sell_btn">판매</button>
+							<button type="button" class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
 						</div><!-- btn_area -->
 						
 						<div class="productInfo">

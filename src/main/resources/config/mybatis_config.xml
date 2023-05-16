@@ -6,8 +6,10 @@
 	<typeAlias alias="bv" type="com.myteam.myapp.domain.BoardVo"/>
 	<typeAlias alias="mv" type="com.myteam.myapp.domain.MemberVo"/>
 	<typeAlias alias="gv" type="com.myteam.myapp.domain.GoodsVo"/>
+	<typeAlias alias="piv" type="com.myteam.myapp.domain.ProductImgVo"/>
 	<typeAlias alias="av" type="com.myteam.myapp.domain.AddressVo"/>
 	<typeAlias alias="rv" type="com.myteam.myapp.domain.RefundVo"/>
 	<typeAlias alias="ov" type="com.myteam.myapp.domain.OrderVo"/>
+	<typeAlias alias="lv" type="com.myteam.myapp.domain.LikesVo"/>
 </typeAliases>
 </configuration>

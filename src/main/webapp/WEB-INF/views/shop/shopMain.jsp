@@ -254,11 +254,11 @@
 									</div>
 									<div class="filter_list">
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_benefit" name="" value="무료배송" >
+											<input type="checkbox" class="filter_benefit" name="무료배송" value="무료배송" >
 											<div class="item_benefit">무료배송</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_benefit" name="" value="할인" >
+											<input type="checkbox" class="filter_benefit" name="할인" value="할인" >
 											<div class="item_benefit">할인</div>
 										</div>
 									</div><!-- filter_list -->
@@ -267,27 +267,27 @@
 									</div>
 									<div class="filter_list">
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="10만원이하" >
+											<input type="checkbox" class="filter_price" name="10만원이하" value="10만원이하" >
 											<div class="item_price">10만원이하</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="10-30만원" >
+											<input type="checkbox" class="filter_price" name="10-30만원" value="10-30만원" >
 											<div class="item_price">10-30만원</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="30-50만원" >
+											<input type="checkbox" class="filter_price" name="30-50만원" value="30-50만원" >
 											<div class="item_price">30-50만원</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="50-100만원" >
+											<input type="checkbox" class="filter_price" name="50-100만원" value="50-100만원" >
 											<div class="item_price">50-100만원</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="100-300만원" >
+											<input type="checkbox" class="filter_price" name="100-300만원" value="100-300만원" >
 											<div class="item_price">100-300만원</div>
 										</div>
 										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="" value="300만원이상" >
+											<input type="checkbox" class="filter_price" name="300만원이상" value="300만원이상" >
 											<div class="item_price">300만원이상</div>
 										</div>
 									</div><!-- filter_list -->
@@ -370,10 +370,11 @@
 						</div><!-- filter_teg_area -->
 		<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-							<c:forEach var="goodsList" items="${goodsList}">
+							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
 								<div class="product_item_wrap">
 									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 										<div class="pro_img_area">
+										${imgList[status.index].imgFileName}
 											<img class="pro_img" src="">
 										</div>
 										<div class="pro_name_area">
