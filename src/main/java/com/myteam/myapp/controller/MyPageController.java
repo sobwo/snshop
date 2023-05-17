@@ -31,8 +31,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
-import com.myteam.myapp.domain.CouponVo;
 import com.myteam.myapp.domain.MemberPointVo;
+import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.RefundVo;
@@ -289,6 +289,18 @@ public class MyPageController {
 
 
 		return "myPage/myStyle";
+	}
+	
+	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
+	public JSONObject like_check(LikesVo lv) throws Exception{
+			
+		int value = bs.like_check(lv);
+		int totalCnt = bs.boardNoTotalCnt(lv.getBoardNo());  // boardNo Cnt
+			
+		JSONObject js = new JSONObject();
+		js.put("value", value);
+			
+		return js;
 	}
 	
 	@ResponseBody
