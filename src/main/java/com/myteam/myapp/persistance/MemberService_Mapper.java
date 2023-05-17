@@ -35,5 +35,4 @@ public interface MemberService_Mapper {
 	public int insertAccount(RefundVo rv);
 	public RefundVo selectAccount(int memberNo);
 	public int modifyAccount(RefundVo rv);
-
 }

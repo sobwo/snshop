@@ -31,12 +31,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.CouponVo;
+import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
@@ -53,6 +56,9 @@ public class MyPageController {
 	
 	@Autowired
 	OrderService os;
+	
+	@Autowired
+	PointService ps;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -491,10 +497,50 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/point.do")
-	public String point() {
+	public String point(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
+		
+		String str = ps.selectExpriation(memberNo);
+		
+		model.addAttribute("mpv", mpv);
 		
 		return "myPage/point";
 	}
+	
+	@RequestMapping(value = "/couponAction.do")
+	public String couponAction(
+			@RequestParam("coupon") String coupon,
+			HttpSession session,
+			Model model,
+			RedirectAttributes rttr
+			) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int cnt = ps.checkCoupon(coupon);
+		
+		if(cnt==1) {
+			int value = ps.insertPoint(memberNo,coupon);
+			if(value==2) {
+				rttr.addFlashAttribute("msg", "쿠폰이 등록되었습니다.");
+				return "redirect:/myPage/point.do";
+			}
+			else {
+				rttr.addFlashAttribute("msg", "쿠폰등록이 취소되었습니다(오류)");
+				return "redirect:/myPage/point.do";
+			}	
+		}	
+		else {
+			rttr.addFlashAttribute("msg", "쿠폰번호가 일치하지 않습니다.");
+			return "redirect:/myPage/point.do";
+		}
+	}
+	
 	
 	@RequestMapping(value = "/payAccount.do")
 	public String payAccount() {

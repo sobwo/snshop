@@ -11,5 +11,8 @@
 	<typeAlias alias="rv" type="com.myteam.myapp.domain.RefundVo"/>
 	<typeAlias alias="ov" type="com.myteam.myapp.domain.OrderVo"/>
 	<typeAlias alias="lv" type="com.myteam.myapp.domain.LikesVo"/>
+	<typeAlias alias="cv" type="com.myteam.myapp.domain.CouponVo"/>
+	<typeAlias alias="pv" type="com.myteam.myapp.domain.PointVo"/>
+	<typeAlias alias="mpv" type="com.myteam.myapp.domain.MemberPointVo"/>
 </typeAliases>
 </configuration>

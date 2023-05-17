@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myteam.myapp.persistance.PointService_Mapper">
+	<select id="checkCoupon" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM COUPON WHERE COUPONNUM=#{0}
+	</select>
+	
+	<select id="selectCoupon" parameterType="String" resultType="cv">
+		SELECT * FROM COUPON WHERE COUPONNUM=#{0}
+	</select>
+
+	<insert id="insertPoint" parameterType="pv">
+		INSERT INTO POINT(point,expiration,useStatus,memberNo) VALUES(#{point},#{expiration},'적립',#{memberNo})  
+	</insert>
+		
+	<select id="selectPointNew" parameterType="Integer" resultType="pv">
+		SELECT * FROM POINT WHERE MEMBERNO=#{0} ORDER BY POINTNO DESC LIMIT 1
+	</select>
+	
+	<insert id="insertMemberPoint" parameterType="Integer">
+		INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO,TOTALPOINT,AVAPOINT,EXPPOINT)
+		VALUES(#{0},#{1},#{2},#{2},0)
+	</insert>
+		
+	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
+		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY POINTNO DESC LIMIT 1
+	</select>
+	
+	<update id="updateMemberPoint" parameterType="Integer">
+		UPDATE MEMBERPOINT 
+		SET TOTALPOINT=TOTALPOINT+#{1}, AVAPOINT=AVAPOINT+#{1}
+		WHERE MEMBERNO = #{0}
+	</update>
+	
+	<select id="selectMemberPointAll" parameterType="Integer" resultType="mpv">
+		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0}
+	</select>
+	
+	<select id="selectExpiration" parameterType="Integer" resultType="String">
+		SELECT DATE_FORMAT(b.EXPIRATION,"%Y-%m-%d") AS EXPIRATION 
+		from MEMBERPOINT a INNER JOIN POINT b on a.POINTNO = b.POINTNO 
+		WHERE a.MEMBERNO = #{0}
+	</select>
+</mapper>

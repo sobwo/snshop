@@ -33,7 +33,7 @@
 						<div class="point_summery">
 							<div class="point point_p">
 								<span class="point_title">사용 가능 포인트</span>
-								<span class="point_content">0P</span>
+								<span class="point_content">${mpv.avaPoint}P</span>
 							</div>
 							<div class="point point_n">
 								<span class="point_title">이번달 소멸예정 포인트</span>
@@ -69,6 +69,19 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/point_popup.js"></script>
 		<script>
+			$(document).ready(function(){
+				var msg = "${msg}";
+				if(msg != "")
+					alert(msg);
+			});
+			
+			function submitCoupon(){
+				var fm = document.frm;
+				fm.action = "${pageContext.request.contextPath}/myPage/couponAction.do";
+				fm.method = "post";
+				fm.submit();
+			}
+			
 		</script>
 	</body>
 </html>
