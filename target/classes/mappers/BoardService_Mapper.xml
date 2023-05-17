@@ -13,6 +13,13 @@
 	select*from board where delyn='N' and memberNo=#{memberNo} ORDER BY boardNo DESC
 </select>
 
+<insert id="like_checkInsert" parameterType="lv">
+	INSERT INTO likes(boardNo, memberNo, like_check)
+	VALUES(#{boardNo}, #{memberNo}, 1);
+</insert>
 
+<select id="boardNoTotalCnt" parameterType="Integer" resultType="Integer">
+	SELECT COUNT(*) AS cnt FROM likes WHERE like_check = 1 AND boardNo = #{boardNo};
+</select>
 
 </mapper>

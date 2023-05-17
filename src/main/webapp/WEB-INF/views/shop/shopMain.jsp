@@ -407,10 +407,6 @@
 		});
 		
 		
-	
-
-		
-		
 	//좌측 필터 카테고리 ajax
 		$(document).on('change','.filter_list_top',function(){
 			if($(this).is(':checked')==true){

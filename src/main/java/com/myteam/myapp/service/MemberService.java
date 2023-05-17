@@ -21,4 +21,5 @@ public interface MemberService {
 	public int insertAccount(String ar_bankName, String ar_accountNum, String ar_name, int memberNo);
 	public RefundVo selectAccount(int memberNo);
 	public int modifyAccount(String ar_bankName, String ar_accountNum, String ar_name, int memberNo);
+	
 }

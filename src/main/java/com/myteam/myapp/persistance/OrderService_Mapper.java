@@ -17,6 +17,10 @@ public interface OrderService_Mapper {
 	public int addressDelete(int addressNo);
 	public int addressModify(AddressVo av);
 	
+	//전체 주문 검색
+	public OrderVo purchaseInfo(int memberNo);
+	public OrderVo saleInfo(int memberNo);
+	
 	//날짜별 주문조회
 	public int cntHistoryAll(
 			@Param("index") String index,

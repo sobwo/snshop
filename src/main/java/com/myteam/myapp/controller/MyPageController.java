@@ -31,12 +31,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.MemberPointVo;
+import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
@@ -55,6 +58,9 @@ public class MyPageController {
 	OrderService os;
 	
 	@Autowired
+	PointService ps;
+	
+	@Autowired
 	HttpServletRequest request;
 	
 	@Autowired
@@ -71,9 +77,33 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
+		String str[] = date_format();
+		String startDate = str[0];
+		String endDate = str[1];
+		
 		MemberVo mv = ms.memberInfo(memberNo);
+		ArrayList<OrderVo> ov_purchase = os.selectHistoryAll("buying", memberNo, 0, startDate, endDate, "전체", "up");
+		ArrayList<OrderVo> ov_sale = os.selectHistoryAll("selling", memberNo, 0, startDate, endDate, "전체", "up");
+		
+		int purchaseCntAll = os.cntHistoryAll("buying",memberNo,0,startDate,endDate);
+		int purchaseCntIng = os.cntHistoryAll("buying",memberNo,1,startDate,endDate);
+		int purchaseCntEnd = os.cntHistoryAll("buying",memberNo,2,startDate,endDate);
+		
+		int saleCntAll = os.cntHistoryAll("selling",memberNo,0,startDate,endDate);
+		int saleCntIng = os.cntHistoryAll("selling",memberNo,1,startDate,endDate);
+		int saleCntEnd = os.cntHistoryAll("selling",memberNo,2,startDate,endDate);
+		
+		model.addAttribute("purchaseCntAll", purchaseCntAll);
+		model.addAttribute("purchaseCntIng", purchaseCntIng);
+		model.addAttribute("purchaseCntEnd", purchaseCntEnd);
+		
+		model.addAttribute("saleCntAll", saleCntAll);
+		model.addAttribute("saleCntIng", saleCntIng);
+		model.addAttribute("saleCntEnd", saleCntEnd);
 		
 		model.addAttribute("mv", mv);
+		model.addAttribute("ov_purchase", ov_purchase);
+		model.addAttribute("ov_sale", ov_sale);
 		
 		return "myPage/myPageMain";
 	}
@@ -91,16 +121,18 @@ public class MyPageController {
 		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		LocalDate now = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		LocalDate now = LocalDate.now();
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		
+//		LocalDate sixMonthsAgo = now.minusMonths(6);
+//		
+//		String formatedEnd = now.format(formatter);
+//		String formatedStart = sixMonthsAgo.format(formatter);
 		
-		LocalDate sixMonthsAgo = now.minusMonths(6);
+		String str[] = date_format();
 		
-		String formatedEnd = now.format(formatter);
-		String formatedStart = sixMonthsAgo.format(formatter);
-		
-		if(startDate == null) startDate = formatedStart;
-		if(endDate == null) endDate = formatedEnd;
+		if(startDate == null) startDate = str[0];
+		if(endDate == null) endDate = str[1];
 		
 		ArrayList<OrderVo> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
 		int cntAll = os.cntHistoryAll(index,memberNo,0,startDate,endDate);
@@ -257,6 +289,18 @@ public class MyPageController {
 
 
 		return "myPage/myStyle";
+	}
+	
+	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
+	public JSONObject like_check(LikesVo lv) throws Exception{
+			
+		int value = bs.like_check(lv);
+		int totalCnt = bs.boardNoTotalCnt(lv.getBoardNo());  // boardNo Cnt
+			
+		JSONObject js = new JSONObject();
+		js.put("value", value);
+			
+		return js;
 	}
 	
 	@ResponseBody
@@ -465,14 +509,68 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/point.do")
-	public String point() {
+	public String point(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
+		
+		String str = ps.selectExpriation(memberNo);
+		
+		model.addAttribute("mpv", mpv);
 		
 		return "myPage/point";
 	}
+	
+	@RequestMapping(value = "/couponAction.do")
+	public String couponAction(
+			@RequestParam("coupon") String coupon,
+			HttpSession session,
+			Model model,
+			RedirectAttributes rttr
+			) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int cnt = ps.checkCoupon(coupon);
+		
+		if(cnt==1) {
+			int value = ps.insertPoint(memberNo,coupon);
+			if(value==2) {
+				rttr.addFlashAttribute("msg", "쿠폰이 등록되었습니다.");
+				return "redirect:/myPage/point.do";
+			}
+			else {
+				rttr.addFlashAttribute("msg", "쿠폰등록이 취소되었습니다(오류)");
+				return "redirect:/myPage/point.do";
+			}	
+		}	
+		else {
+			rttr.addFlashAttribute("msg", "쿠폰번호가 일치하지 않습니다.");
+			return "redirect:/myPage/point.do";
+		}
+	}
+	
 	
 	@RequestMapping(value = "/payAccount.do")
 	public String payAccount() {
 		
 		return "myPage/payAccount";
+	}
+	
+	public String[] date_format() {
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		LocalDate sixMonthsAgo = now.minusMonths(6);
+		
+		String formatedEnd = now.format(formatter);
+		String formatedStart = sixMonthsAgo.format(formatter);
+		
+		String str[] = {formatedStart,formatedEnd};
+		
+		return str;
 	}
 }

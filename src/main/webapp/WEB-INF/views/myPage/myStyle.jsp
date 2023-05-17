@@ -87,9 +87,10 @@
 										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
 										<p class="userName">${mv.memberId}</p>
 										
-										<span class="likeBox" onclick="like();">
-										<img class="likeImage" id="likeImageChange" src='${pageContext.request.contextPath}/resources/image/heart.png/' onclick="like('feedPost${bv.boardNo}')">
-										<span class="likeCount">${bv.likeCnt}</span>
+										<span class="likeBox">
+											<button type="button" class="likeImage" id="likeImageChange" value=1><img src="${pageContext.request.contextPath}/resources/image/heart.png/"></button>
+											<span class="likeCount">${bv.likeCnt}</span>
+										</span>
 										</span>
 									</div>
 									
@@ -119,17 +120,37 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
-			//하트 클릭 시 이미지 변경
-			function like(feedId) {
-			var imgChange = document.getElementById(feedId).querySelector(".likeImage");
-			var currentImage = imgChange.getAttribute("src");
-			
-				if (currentImage === '${pageContext.request.contextPath}/resources/image/heart2.png') {
-				  imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png');
-				} else {
-				  imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
-				}
-			}
+			$(".likeImage").click(function(){
+		
+				var boardNo = ${lv.boardNo};
+				var memberNo = ${session.getAttribute("memberNo")};
+				var value = $(this).val();
+					
+				$.ajax({
+					type: "post",
+					url: "${pageContext.request.contextPath}/myPage/like_check.do" ,
+					dataType: "json",
+					data: {
+						"boardNo": boardNo,
+						"value" : value,
+						"memberNo": memberNo
+						},
+					cache: false,
+					success: function(data) {
+					if (data.value === 1) {
+					$(".likeImage").attr("src", "heart2.png");
+					data.value = 0; // Toggle the value
+					} else {
+					$(".likeImage").attr("src", "heart.png");
+					data.value = 1; // Toggle the value
+					}
+					alert("좋아요");
+					},
+					error: function() {
+					alert("실패");
+					}
+				});
+			});
 		</script>
 	</body>
 </html>

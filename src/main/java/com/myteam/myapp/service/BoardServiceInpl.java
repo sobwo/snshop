@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
 
 @Service("boardServiceInpl")
@@ -38,6 +39,23 @@ public class BoardServiceInpl implements BoardService{
 		
 		return blist;
 	}
+	
+	@Override
+	public int like_check(LikesVo lv) {
 
+		int value = bsm.like_checkInsert(lv);
+		
+		return value;
+
+	}
+
+	@Override
+	public int boardNoTotalCnt(int boardNo) {
+
+		int value = bsm.boardNoTotalCnt(boardNo);
+		
+		return value;
+
+	}
 
 }

@@ -17,21 +17,22 @@
 			</div>
 			
 			<!-- 쿠폰 입력 -->
-			<div class="popup_contents">
-				<div class="input_box">
-					<h4 class="input_box_title">포인트 코드</h4>
-					<input type="text" class="input_item" id="coupon" name="coupon" placeholder="쿠폰 코드를 입력하세요.">
-					<div class="description">
-						<span> • 유효기간이 지난 쿠폰 코드는 등록이 불가합니다.</span>
-						<span> • 쿠폰에 따라 발급 수량 및 계정당 사용 횟수가 제한될 수 있습니다. </span>
+			<form name="frm">
+				<div class="popup_contents">
+					<div class="input_box">
+						<h4 class="input_box_title">포인트 코드</h4>
+						<input type="text" class="input_item" id="coupon" name="coupon" placeholder="쿠폰 코드를 입력하세요.">
+						<div class="description">
+							<span> • 유효기간이 지난 쿠폰 코드는 등록이 불가합니다.</span>
+							<span> • 쿠폰에 따라 발급 수량 및 계정당 사용 횟수가 제한될 수 있습니다. </span>
+						</div>
 					</div>
 				</div>
-			</div>
-			
+			</form>
 			<!-- 버튼 -->
 			<div class="popup_bottom">
 				<input type="button" class="basic_btn_1" value="취소">
-				<input type="button" class="basic_btn_2" disabled="disabled" value="저장하기">
+				<input type="button" class="basic_btn_2" disabled="disabled" value="저장하기" onclick="submitCoupon()">
 			</div>
 		</div>
 	</div>
