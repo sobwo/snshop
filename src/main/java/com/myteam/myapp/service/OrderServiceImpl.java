@@ -78,6 +78,19 @@ public class OrderServiceImpl implements OrderService{
 		
 		return value;
 	}
+	
+	@Override
+	public OrderVo purchaseInfo(int memberNo) {
+		OrderVo ov = osm.purchaseInfo(memberNo);
+		return ov;
+	}
+
+	@Override
+	public OrderVo saleInfo(int memberNo) {
+		OrderVo ov = osm.saleInfo(memberNo);
+		return ov;
+	}
+
 
 	@Override
 	public ArrayList<OrderVo> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {

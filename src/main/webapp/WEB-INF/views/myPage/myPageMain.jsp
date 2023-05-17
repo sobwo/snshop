@@ -66,39 +66,46 @@
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">전체</span>
-									<span class="purchase_cnt_1">0</span>
+									<span class="purchase_cnt_1">${purchaseCntAll}</span>
 								</a>
 							</div>
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">진행중</span>
-									<span class="purchase_cnt">0</span>
+									<span class="purchase_cnt">${purchaseCntIng}</span>
 								</a>
 							</div>
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">종료</span>
-									<span class="purchase_cnt">0</span>
+									<span class="purchase_cnt">${purchaseCntEnd}</span>
 								</a>
 							</div>
 						</div>
 						
 						<!-- 구매내역 리스트 -->
 						<div class="purchase_contents_wrap">
-							<div class="purchase_contents">
-								<div class="purchase_detail">
-									<div class="purchase_thumb">
-										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+							<c:forEach var="purchase" items="${ov_purchase}" begin="0" end="3" step="1">
+								<div class="purchase_contents">
+									<div class="purchase_detail">
+										<div class="purchase_thumb">
+											<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</div>
+										<div class="purchase_info">
+											<strong class="purchase_name">${purchase.goodsName}</strong>
+											<p class="purchase_size">${purchase.size}</p>
+										</div>
 									</div>
-									<div class="purchase_info">
-										<strong class="purchase_name">제품 이름</strong>
-										<p class="purchase_size">250</p>
+									<div class="delivery_info">
+										<p class="delivery_status">${purchase.statusDetail}</p>
 									</div>
 								</div>
-								<div class="delivery_info">
-									<p class="delivery_status">대기중</p>
+							</c:forEach>
+							<c:if test="${purchaseCntAll > 4}">
+								<div class="dotImage_wrap">
+									<img class="dotImage" src="${pageContext.request.contextPath}/resources/image/dot.png"/>
 								</div>
-							</div>
+							</c:if>
 						</div>
 					</div>
 					
@@ -114,39 +121,46 @@
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">전체</span>
-									<span class="purchase_cnt_1">0</span>
+									<span class="purchase_cnt_1">${saleCntAll}</span>
 								</a>
 							</div>
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">진행중</span>
-									<span class="purchase_cnt">0</span>
+									<span class="purchase_cnt">${saleCntIng}</span>
 								</a>
 							</div>
 							<div class="purchase_item">
 								<a>
 									<span class="purchase_title">종료</span>
-									<span class="purchase_cnt">0</span>
+									<span class="purchase_cnt">${saleCntEnd}</span>
 								</a>
 							</div>
 						</div>
 						
 						<!-- 판매내역 리스트 -->
 						<div class="purchase_contents_wrap">
-							<div class="purchase_contents">
-								<div class="purchase_detail">
-									<div class="purchase_thumb">
-										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+							<c:forEach var="sale" items="${ov_sale}" begin="0" end="3" step="1">
+								<div class="purchase_contents">
+									<div class="purchase_detail">
+										<div class="purchase_thumb">
+											<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</div>
+										<div class="purchase_info">
+											<strong class="purchase_name">${sale.goodsName}</strong>
+											<p class="purchase_size">${sale.size}</p>
+										</div>
 									</div>
-									<div class="purchase_info">
-										<strong class="purchase_name">제품 이름</strong>
-										<p class="purchase_size">250</p>
+									<div class="delivery_info">
+										<p class="delivery_status">${sale.statusDetail}</p>
 									</div>
 								</div>
-								<div class="delivery_info">
-									<p class="delivery_status">대기중</p>
+							</c:forEach>
+							<c:if test="${saleCntAll > 4}">
+								<div class="dotImage_wrap">
+									<img class="dotImage" src="${pageContext.request.contextPath}/resources/image/dot.png"/>
 								</div>
-							</div>
+							</c:if>
 						</div>
 					</div>
 					

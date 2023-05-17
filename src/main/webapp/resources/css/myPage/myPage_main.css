@@ -148,3 +148,16 @@
 	font-size:14px;
 	font-weight:bold;
 }
+
+.dotImage_wrap{
+	margin-top:20px;
+	width:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.dotImage{
+	width:50px;
+	height:50px;
+}

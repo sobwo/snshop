@@ -71,9 +71,33 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
+		String str[] = date_format();
+		String startDate = str[0];
+		String endDate = str[1];
+		
 		MemberVo mv = ms.memberInfo(memberNo);
+		ArrayList<OrderVo> ov_purchase = os.selectHistoryAll("buying", memberNo, 0, startDate, endDate, "전체", "up");
+		ArrayList<OrderVo> ov_sale = os.selectHistoryAll("selling", memberNo, 0, startDate, endDate, "전체", "up");
+		
+		int purchaseCntAll = os.cntHistoryAll("buying",memberNo,0,startDate,endDate);
+		int purchaseCntIng = os.cntHistoryAll("buying",memberNo,1,startDate,endDate);
+		int purchaseCntEnd = os.cntHistoryAll("buying",memberNo,2,startDate,endDate);
+		
+		int saleCntAll = os.cntHistoryAll("selling",memberNo,0,startDate,endDate);
+		int saleCntIng = os.cntHistoryAll("selling",memberNo,1,startDate,endDate);
+		int saleCntEnd = os.cntHistoryAll("selling",memberNo,2,startDate,endDate);
+		
+		model.addAttribute("purchaseCntAll", purchaseCntAll);
+		model.addAttribute("purchaseCntIng", purchaseCntIng);
+		model.addAttribute("purchaseCntEnd", purchaseCntEnd);
+		
+		model.addAttribute("saleCntAll", saleCntAll);
+		model.addAttribute("saleCntIng", saleCntIng);
+		model.addAttribute("saleCntEnd", saleCntEnd);
 		
 		model.addAttribute("mv", mv);
+		model.addAttribute("ov_purchase", ov_purchase);
+		model.addAttribute("ov_sale", ov_sale);
 		
 		return "myPage/myPageMain";
 	}
@@ -91,16 +115,18 @@ public class MyPageController {
 		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		LocalDate now = LocalDate.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		LocalDate now = LocalDate.now();
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		
+//		LocalDate sixMonthsAgo = now.minusMonths(6);
+//		
+//		String formatedEnd = now.format(formatter);
+//		String formatedStart = sixMonthsAgo.format(formatter);
 		
-		LocalDate sixMonthsAgo = now.minusMonths(6);
+		String str[] = date_format();
 		
-		String formatedEnd = now.format(formatter);
-		String formatedStart = sixMonthsAgo.format(formatter);
-		
-		if(startDate == null) startDate = formatedStart;
-		if(endDate == null) endDate = formatedEnd;
+		if(startDate == null) startDate = str[0];
+		if(endDate == null) endDate = str[1];
 		
 		ArrayList<OrderVo> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
 		int cntAll = os.cntHistoryAll(index,memberNo,0,startDate,endDate);
@@ -474,5 +500,19 @@ public class MyPageController {
 	public String payAccount() {
 		
 		return "myPage/payAccount";
+	}
+	
+	public String[] date_format() {
+		LocalDate now = LocalDate.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		LocalDate sixMonthsAgo = now.minusMonths(6);
+		
+		String formatedEnd = now.format(formatter);
+		String formatedStart = sixMonthsAgo.format(formatter);
+		
+		String str[] = {formatedStart,formatedEnd};
+		
+		return str;
 	}
 }
