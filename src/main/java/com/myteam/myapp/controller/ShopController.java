@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.ProductImgVo;
@@ -48,17 +49,16 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
-	@RequestMapping(value="/categoryFilter")
-	public JSONArray shopMainfilter(
-			@RequestParam(value="filter[]") List<String> filter) {
+	@RequestMapping(value="/categoryFilter.do")
+	public String categoryFilter(
+			@RequestParam(value="filter[]") List<String> filter,
+			@RequestParam(value="value") int value,
+			Model model
+			) {
 		
-		JSONArray js = new JSONArray();
-	
-		js.add(filter);
-		ArrayList<GoodsVo> filterList = ss.filterList(js);
-		JSONArray filterja = new JSONArray();
-		filterja.add(filterList);
-		
-		return filterja;
+		ArrayList<GoodsVo> filterList = ss.filterList(filter,value);
+
+		model.addAttribute("goodsList", filterList);
+		return "shop/shopMain_item";
 	}
 }

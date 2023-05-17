@@ -41,6 +41,7 @@ $(document).ready(function(){});
 		var list_bottom = $(".filter_list_bottom");
 		var item =$(".item");
 		var item_child =$(".item_child");
+	
 
 		for(var i=0; i<list_top.length;i++){
 			list_top_check(i);
@@ -49,9 +50,9 @@ $(document).ready(function(){});
 		for(var i=0; i<list_bottom.length;i++){
 			list_bottom_check(i);
 			item_child_click(i);
+			
 		}
-		
-		
+	//상위 카테고리
 		function item_click(index){
 			item.eq(index).click(function(){
 				if(list_top.eq(index).is(':checked')){
@@ -65,20 +66,20 @@ $(document).ready(function(){});
 		
 		function list_top_check(index){
 			list_top.eq(index).on("change",function(){
-				
 				if(this.checked){
 					filter_child_list.eq(index).show();
 					list_bottom.prop("checked",false);
 					$(".teg_child").detach();
 					$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
 							"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+
 				}else{
 					$("div[name="+list_top.eq(index).val()+"]").detach();
 					filter_child_list.eq(index).hide();
 				}
 			});
 		}
-		
+	//하위 카테고리
 		function item_child_click(index){
 			
 			item_child.eq(index).click(function(){
@@ -93,16 +94,16 @@ $(document).ready(function(){});
 		
 		function list_bottom_check(index){
 			list_bottom.eq(index).change(function(){
+				
 				if(this.checked){
-					
 					if(list_top.prop("checked",true))list_top.prop("checked",false);
-					
 					$(".teg_parent").detach();
 					$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+list_bottom.eq(index).val()+
-							"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+						"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
+
 				}else{
 					$("div[name="+list_bottom.eq(index).val()+"]").detach();
-					
+				
 				}
 			});
 		}
@@ -140,7 +141,7 @@ $(document).ready(function(){});
 							"'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
 				}else{
 					$("div[name="+filter_gender.eq(index).val()+"]").detach();
-					
+				
 				}
 			});
 		}
