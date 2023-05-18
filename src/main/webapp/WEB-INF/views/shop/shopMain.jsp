@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@
 							<div class="filter_title title_first">
 								<div class="filterName">
 									<span>필터</span>
-									<span>1</span>
+									<span id="total_cnt"></span>
 								</div><!-- filterName -->
 								<a href="#" class="reset">초기화</a>
 							</div><!-- filter_title -->
@@ -71,31 +72,31 @@
 								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
+											<input type="checkbox" class="filter_list_top filter_shoese" id="" name="신발" value="신발" >
 											<div class="item">신발</div>
 											<ul class="filter_child_list" id="신발">
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="스니커즈" value="스니커즈" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="스니커즈" value="스니커즈" >
 													<div class="item_child">스니커즈</div>	
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="플랫" value="플랫" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="플랫" value="플랫" >
 													<div class="item_child">플랫</div>
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="로퍼" value="로퍼" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="로퍼" value="로퍼" >
 													<div class="item_child">로퍼</div>
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="더비" value="더비" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="더비" value="더비" >
 													<div class="item_child">더비</div>
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="힐" value="힐" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="힐" value="힐" >
 													<div class="item_child">힐</div>
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="부츠" value="부츠" >
+													<input type="checkbox" class="filter_list_bottom shoese_child" name="부츠" value="부츠" >
 													<div class="item_child">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
@@ -160,10 +161,6 @@
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_gender" name="여성" value="여성" >
 											<div class="item_gender"> 여성</div>
-										</li>
-										<li class="filter_list_in">
-											<input type="checkbox" class="filter_gender" name="키즈" value="키즈" >
-											<div class="item_gender"> 키즈</div>
 										</li>
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -366,34 +363,13 @@
 							</div><!-- product_btn_area -->
 						</div><!-- product_top -->
 						
+						<form name="frm">
 						<div class="filter_teg_area">
 						</div><!-- filter_teg_area -->
+						</form>
 		<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
-								<div class="product_item_wrap">
-									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
-										<div class="pro_img_area">
-										${imgList[status.index].imgFileName}
-											<img class="pro_img" src="">
-										</div>
-										<div class="pro_name_area">
-											<ul>
-												<li class="pro_brand"></li>
-												<li class="pro_name1" >${goodsList.goodsName}</li>
-												<li class="pro_name2" >애플 아이패드 에어 5세대 와이파이 64기가 스페이스 그레이 (국내 정식 발매 제품)</li>
-												<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
-											</ul>
-										</div>
-									</div><!-- product_item -->
-									<div class="pro_icon_area">
-										<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-										<span>${goodsList.interestNum}</span>
-										<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
-										<span>123</span>
-									</div>
-								</div><!-- product_item_wrap -->
-							</c:forEach>				
+						
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -406,62 +382,74 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
-		var list_top = $(".filter_list_top");
-		
-		var total_cnt = 0;
-		var filter = [];
-		
-		$(document).on('change','.filter_list_top',function(){
-			
-			if($(this).is(':checked')==true){
-				
-				filter.push($(this).val());
-				alert(filter);
-				
-				$.ajax({
-					type : 'post',
-					url : "${pageContext.request.contextPath}/shop/categoryFilter.do",
-					tranditional : true,
-					dataType : 'json',
-					data : filter,
-					success : function(data){
-						console.log(data);
-						alert("성공");
-					},
-					error : function(){
-
-						alert("실패");
-					}
-					
-				});
-				
-				
-			}else{
-				
-				for(var i =0; i<filter.length; i++){
-					if(filter[i]==$(this).val()){
-						filter.splice(i,1);
-						i--;
-					}
-				}
-				
-				alert(filter);
-			}
+		$(document).ready(function(){
+			filter.push("1");
+			filter_ajax(filter,0);
+			filter.pop();
 
 		});
 		
-		//우측 필터버튼 클릭시
-			var btn_list_item = $(".btn_list_item");
-			btn_list_item.on("click",function(){
-				$(".btn_title").text($(this).find('span.list_sub').text());
-				for(var i=0;i<5;i++){
-					$(".check_img").html("");
+		var total_cnt = 0;
+		var filter = [];
+		var value=0;
+		
+		var list_top = $(".filter_list_top");
+		
+	//우측 필터버튼 클릭시
+		var btn_list_item = $(".btn_list_item");
+		btn_list_item.on("click",function(){
+			$(".btn_title").text($(this).find('span.list_sub').text());
+			for(var i=0;i<5;i++){
+				$(".check_img").html("");
+			}
+			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
+			list.hide();
+		});
+		
+		
+	//좌측 필터 카테고리 ajax
+		$(document).on('change','.filter_list_top',function(){
+			if($(this).is(':checked')==true){
+				
+				filter.push($(this).val());
+				total_cnt++;
+				$("#total_cnt").text(total_cnt);
+				
+				if(filter.length > 0) value = 1;
+				else value =0;
+				
+				filter_ajax(filter,value);
+				
+			}else{
+				total_cnt--;
+				$("#total_cnt").text(total_cnt);
+				for(var i =0; i<filter.length; i++){
+					if(filter[i]==$(this).val()){
+						filter.splice(i,1);
+// 						i--;
+					}
 				}
-				$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
-				list.hide();
-			});
-			
-			
+			}
+		});
+
+			function filter_ajax(filter,value){
+				$.ajax({
+					url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
+					method: "POST",
+					data: {filter:filter,
+						   "value":value},
+					cache : false,
+					success : function(data){
+						$(".product_area").html(data);
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
 		</script>
 	</body>
 </html>

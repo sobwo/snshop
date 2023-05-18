@@ -19,7 +19,7 @@
 </insert>
 
 <select id="boardNoTotalCnt" parameterType="Integer" resultType="Integer">
-	SELECT COUNT(*) AS cnt FROM likes WHERE like_check = 1 AND boardNo = #{boardNo};
+	SELECT COUNT(*) AS likecnt FROM likes WHERE like_check = 1 AND boardNo = #{boardNo};
 </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,9 +60,9 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<GoodsVo>filterList(ArrayList<String> filter){
+		public ArrayList<GoodsVo>filterList(List<String> filter,int value){
 
-			ArrayList<GoodsVo> filterResult = ssm.filterList(filter);
+			ArrayList<GoodsVo> filterResult = ssm.filterList(filter,value);
 		
 			return filterResult;
 		}
