@@ -37,7 +37,7 @@
 							</div>
 							<div class="point point_n">
 								<span class="point_title">이번달 소멸예정 포인트</span>
-								<span class="point_content">0P</span>
+								<span class="point_content">${mpv.expPoint}P</span>
 							</div>
 						</div>
 						<div class="register_btn">

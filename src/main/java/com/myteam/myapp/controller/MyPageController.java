@@ -511,13 +511,11 @@ public class MyPageController {
 	@RequestMapping(value = "/point.do")
 	public String point(
 			Model model,
-			HttpSession session) {
+			HttpSession session) throws Exception {
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
-		
-		String str = ps.selectExpriation(memberNo);
 		
 		model.addAttribute("mpv", mpv);
 		
@@ -530,7 +528,7 @@ public class MyPageController {
 			HttpSession session,
 			Model model,
 			RedirectAttributes rttr
-			) {
+			) throws Exception{
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		

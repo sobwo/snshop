@@ -21,8 +21,8 @@
 	</select>
 	
 	<insert id="insertMemberPoint" parameterType="Integer">
-		INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO,TOTALPOINT,AVAPOINT,EXPPOINT)
-		VALUES(#{0},#{1},#{2},#{2},0)
+		INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO,TOTALPOINT,AVAPOINT)
+		VALUES(#{0},#{1},#{2},#{2})
 	</insert>
 		
 	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
@@ -40,8 +40,18 @@
 	</select>
 	
 	<select id="selectExpiration" parameterType="Integer" resultType="String">
-		SELECT DATE_FORMAT(b.EXPIRATION,"%Y-%m-%d") AS EXPIRATION 
+		SELECT DATEDIFF(b.EXPIRATION,NOW()) AS EXPIRATION 
 		from MEMBERPOINT a INNER JOIN POINT b on a.POINTNO = b.POINTNO 
 		WHERE a.MEMBERNO = #{0}
 	</select>
+	
+	<update id="updateExpPoint" parameterType="Integer">
+		update memberPoint 
+		set expPoint =  IFNULL((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0}),0) 
+		where memberNo = #{0};
+	</update>
+	
+	<delete id="deletePoint" parameterType="Integer">
+		DELETE FROM POINT WHERE  MEMBERNO = #{0}
+	</delete>
 </mapper>

@@ -1,7 +1,10 @@
 package com.myteam.myapp.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,7 @@ public class PointServiceImpl implements PointService{
 	}
 
 	@Override
-	public int insertPoint(int memberNo,String coupon) {
+	public int insertPoint(int memberNo,String coupon) throws Exception{
 		PointVo pv = new PointVo();
 		CouponVo cv = psm.selectCoupon(coupon);
 		
@@ -51,7 +54,7 @@ public class PointServiceImpl implements PointService{
 		//memberPoint 테이블 생성(기존에 존재할 시 update, 없을시 insert)
 		PointVo pv2 = psm.selectPointNew(memberNo);
 		MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
-		
+        	
 		if(mpv==null)
 			value2=psm.insertMemberPoint(pv2.getPointNo(),memberNo,pv2.getPoint());
 		else {
@@ -64,18 +67,7 @@ public class PointServiceImpl implements PointService{
 	@Override
 	public MemberPointVo selectMemberPointAll(int memberNo) {
 		MemberPointVo mpv = psm.selectMemberPointAll(memberNo);
-		
+
 		return mpv;
 	}
-
-	@Override
-	public String selectExpriation(int memberNo) {
-		String str = psm.selectExpiration(memberNo);
-		
-		System.out.println("str : "+str);
-		
-		return str;
-	}
-
-
 }

@@ -13,5 +13,6 @@ public interface PointService_Mapper {
 	public MemberPointVo selectMemberPointNew(int memberNo);
 	public int updateMemberPoint(int memberNo, int pointNo);
 	public MemberPointVo selectMemberPointAll(int memberNo);
-	public String selectExpiration(int memberNo);
+	public int updateExpPoint(int memberNo);
+	public int deletePoint(int memberNo,int pointNo);
 }
