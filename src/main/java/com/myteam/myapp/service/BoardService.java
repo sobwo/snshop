@@ -12,7 +12,7 @@ public interface BoardService {
 
 	public ArrayList<BoardVo> boardList(int memberNo);
 	
-	public int like_check(LikesVo lv);
+	public int like_checkInsert(LikesVo lv);
 
 	public int boardNoTotalCnt(int boardNo);
 
