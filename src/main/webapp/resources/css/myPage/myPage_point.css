@@ -67,6 +67,9 @@
 	margin-top:40px;
 	width:1000px;
 }
+.point_history_title{
+	border-bottom:2px solid #222;
+}
 
 .point_history_header{
 	font-size:13px;
@@ -74,10 +77,25 @@
 	padding:15px 0;
 	border-bottom:1px solid #ebebeb;
 }
-
+.point_history_header_tr td:nth-child(1){
+	width:100px;	
+}
+.point_history_header_tr td:nth-child(2){
+	width:150px;	
+}
+.point_history_header_tr td:nth-child(4){
+	width:140px;	
+}
+.point_history_header_tr td:nth-child(5){
+	width:100px;	
+}
 .empty_point{
 	padding-top:150px;
 	font-size:14px;
 	color:rgba(34,34,34,.5);
+	text-align:center;
+}
+
+.point_history_body{
 	text-align:center;
 }
