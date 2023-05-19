@@ -296,7 +296,7 @@ public class MyPageController {
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
 	public JSONObject like_check(LikesVo lv) throws Exception{
 			
-		int value = bs.like_check(lv);
+		int value = bs.like_checkInsert(lv);
 		int totalCnt = bs.boardNoTotalCnt(lv.getBoardNo());  // boardNo Cnt
 			
 		JSONObject js = new JSONObject();

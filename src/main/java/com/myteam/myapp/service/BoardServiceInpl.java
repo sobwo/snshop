@@ -41,7 +41,7 @@ public class BoardServiceInpl implements BoardService{
 	}
 	
 	@Override
-	public int like_check(LikesVo lv) {
+	public int like_checkInsert(LikesVo lv) {
 
 		int value = bsm.like_checkInsert(lv);
 		
