@@ -36,19 +36,17 @@
 							</div>
 						</div>
 						<ul>
-							<li><img src=""></li>
-							<li><img src=""></li>
-							<li><img src=""></li>
-							<li><img src=""></li>
+							<c:forEach var="pivList" items="${pivList}">
+								<li><img src="">${pivList.imgFileName}</li>
+						</c:forEach>
 						</ul>
 					</div>	
 			<!-- 상품 가격 표시 -->
 					<div class="productContents_area">
 						<div class="productContents">
-							<div class="brandName"><a href="#">jordan</a></div>
+							<div class="brandName"><a href="#">${gv.goodsBrandName}</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
-								<p>2022조던 1 레트로 하이 OG 시카고 2022</p>
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>

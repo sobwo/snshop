@@ -3,8 +3,15 @@ package com.myteam.myapp.domain;
 public class GoodsVo {
 	
 	private int goodsNo, price, interestNum;
-	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName,imgFileName;
 	
+	
+	public String getImgFileName() {
+		return imgFileName;
+	}
+	public void setImgFileName(String imgFileName) {
+		this.imgFileName = imgFileName;
+	}
 	public String getGoodsBrandName() {
 		return goodsBrandName;
 	}

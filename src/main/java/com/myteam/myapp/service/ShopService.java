@@ -9,10 +9,8 @@ import com.myteam.myapp.domain.ProductImgVo;
 public interface ShopService {
 	
 	public ArrayList<GoodsVo> goodsSelectAll();
-
-	public GoodsVo goodsSelectOne(int goodsNo);
 	
-	public ArrayList<ProductImgVo> imgSelectAll();
+	public GoodsVo goodsSelectOne(int goodsNo);
 	
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 	

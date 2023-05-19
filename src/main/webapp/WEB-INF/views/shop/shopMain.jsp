@@ -72,31 +72,31 @@
 								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<input type="checkbox" class="filter_list_top filter_shoese" id="" name="신발" value="신발" >
+											<input type="checkbox" class="filter_list_top" id="" name="신발" value="신발" >
 											<div class="item">신발</div>
-											<ul class="filter_child_list" id="신발">
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="스니커즈" value="스니커즈" >
+											<ul class="filter_child_list" id="a">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="스니커즈" value="스니커즈" >
 													<div class="item_child">스니커즈</div>	
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="플랫" value="플랫" >
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="플랫" value="플랫" >
 													<div class="item_child">플랫</div>
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="로퍼" value="로퍼" >
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="로퍼" value="로퍼" >
 													<div class="item_child">로퍼</div>
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="더비" value="더비" >
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="더비" value="더비" >
 													<div class="item_child">더비</div>
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="힐" value="힐" >
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="힐" value="힐" >
 													<div class="item_child">힐</div>
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom shoese_child" name="부츠" value="부츠" >
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom a" name="부츠" value="부츠" >
 													<div class="item_child">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
@@ -105,20 +105,20 @@
 											<input type="checkbox" class="filter_list_top" name="아우터" value="아우터" >
 											<div class="item"> 아우터</div>
 											<ul class="filter_child_list" id="아우터">
-												<li class="filter_list_in">
+												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="자켓" value="자켓" >
 													<div class="item_child">자켓</div>	
 												</li>
-												<li class="filter_list_in">
+												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="코트" value="코트" >
 													<div class="item_child">코트</div>
 												</li>
-												<li class="filter_list_in">
+												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom" name="패딩" value="패딩" >
 													<div class="item_child">패딩</div>
 												</li>
 												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom" name="기타 아우터" value="기타 아우터" >
+													<input type="checkbox" class="filter_list_bottom" name="기타아우터" value="기타아우터" >
 													<div class="item_child">기타 아우터</div>
 												</li>		
 											</ul><!-- filter_child_list -->
@@ -367,9 +367,31 @@
 						<div class="filter_teg_area">
 						</div><!-- filter_teg_area -->
 						</form>
-		<!-- 상품 게시 공간 -->			
+					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-						
+							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
+								<div class="product_item_wrap">
+									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
+										<div class="pro_img_area">
+											${goodsList.imgFileName}
+											<img class="pro_img" src="">
+										</div>
+										<div class="pro_name_area">
+											<ul>
+												<li class="pro_brand" >"${goodsList.goodsBrandName}"</li>
+												<li class="pro_name1" >${goodsList.goodsName}"</li>
+												<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
+											</ul>
+										</div>
+									</div><!-- product_item -->
+								<div class="pro_icon_area">
+										<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+									<span>${goodsList.interestNum}</span>
+									<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
+										<span>123</span>
+								</div>
+								</div><!-- product_item_wrap -->
+							</c:forEach>
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -382,19 +404,11 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
-		$(document).ready(function(){
-			filter.push("1");
-			filter_ajax(filter,0);
-			filter.pop();
-
-		});
+		$(document).ready(function(){});
 		
-		var total_cnt = 0;
 		var filter = [];
 		var value=0;
-		
-		var list_top = $(".filter_list_top");
-		
+	
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
 		btn_list_item.on("click",function(){
@@ -408,48 +422,70 @@
 		
 		
 	//좌측 필터 카테고리 ajax
-		$(document).on('change','.filter_list_top',function(){
+		$('.filter_list_top').on('change',function(){
+			
+			
 			if($(this).is(':checked')==true){
 				
-				filter.push($(this).val());
-				total_cnt++;
-				$("#total_cnt").text(total_cnt);
+				var a =$(this).find('.filter_child_list');
+				alert(a);
+// 				filter.push($(this).val());
+// 				if(filter.length > 0) value = 1;
+// 				else value =0;
+// 				filter_ajax(filter,value);
 				
-				if(filter.length > 0) value = 1;
-				else value =0;
-				
-				filter_ajax(filter,value);
 				
 			}else{
-				total_cnt--;
-				$("#total_cnt").text(total_cnt);
-				for(var i =0; i<filter.length; i++){
-					if(filter[i]==$(this).val()){
-						filter.splice(i,1);
-// 						i--;
-					}
-				}
+// 				for(var i =0; i<filter.length; i++){
+// 					if(filter[i]==$(this).val()){
+// 						filter.splice(i,1);
+// // 						i--;
+// 					}
+// 				};
+// 				if(filter.length > 0){
+// 					filter_ajax(filter,value);
+// 				}else{
+// 					filter.push("1");
+// 					value =0;
+// 					filter_ajax(filter,value);
+// 					filter.pop();
+// 				}
 			}
 		});
+	
+		$('.filter_list_bottom').on('change',function(){
+			
+			
+		})
+		
+		
+		
 
-			function filter_ajax(filter,value){
-				$.ajax({
-					url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
-					method: "POST",
-					data: {filter:filter,
-						   "value":value},
-					cache : false,
-					success : function(data){
-						$(".product_area").html(data);
-					},
-					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
-					}	
-				});	
-			}
+		function filter_ajax(filter,value){
+			/*
+				예) 신발 상위 카테고리 선택 경우 - filter 에 신발에 대한 하위 카테고리 값 전부 담기
+			               아우터 상위 카테고리 선택 경우 - filter 에 아우터에 대한 하위 카테고리 값 전부 담기
+			*/
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
+				method: "POST",
+				data: {filter:filter,
+					   "value":value},
+				cache : false,
+				success : function(data){
+					$(".product_area").empty();
+					$(".product_area").html(data);
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});	
+		}
+			
+				
 		</script>
 	</body>
 </html>

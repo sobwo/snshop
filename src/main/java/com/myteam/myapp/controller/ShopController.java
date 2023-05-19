@@ -25,12 +25,10 @@ public class ShopController {
 	
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
-		
+
 		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
-		ArrayList<ProductImgVo> imgList = ss.imgSelectAll();
 		
 		model.addAttribute("goodsList", goodsList);
-		model.addAttribute("imgList", imgList);
 		
 		return "shop/shopMain";
 	}
