@@ -31,10 +31,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.CouponVo;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
@@ -517,26 +519,29 @@ public class MyPageController {
 		
 		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
 		
+		ArrayList<PointVo> plist = ps.selectPointAll(memberNo);
+		
 		model.addAttribute("mpv", mpv);
+		model.addAttribute("plist", plist);
 		
 		return "myPage/point";
 	}
 	
 	@RequestMapping(value = "/couponAction.do")
 	public String couponAction(
-			@RequestParam("coupon") String coupon,
+			@RequestParam("couponNum") String couponNum,
+			@RequestParam(value="index") String index,
 			HttpSession session,
 			Model model,
 			RedirectAttributes rttr
 			) throws Exception{
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		int cnt = ps.checkCoupon(coupon);
-		
-		if(cnt==1) {
-			int value = ps.insertPoint(memberNo,coupon);
-			if(value==2) {
+		int resultUse = ps.checkCouponUse(couponNum);
+
+		if(resultUse==3) {
+			int value = ps.insertPoint(memberNo,index,couponNum);
+			if(value==1) {
 				rttr.addFlashAttribute("msg", "쿠폰이 등록되었습니다.");
 				return "redirect:/myPage/point.do";
 			}
@@ -544,11 +549,23 @@ public class MyPageController {
 				rttr.addFlashAttribute("msg", "쿠폰등록이 취소되었습니다(오류)");
 				return "redirect:/myPage/point.do";
 			}	
-		}	
-		else {
-			rttr.addFlashAttribute("msg", "쿠폰번호가 일치하지 않습니다.");
+		}
+		
+		else if(resultUse==2) {
+			rttr.addFlashAttribute("msg", "만료된 쿠폰입니다.");
 			return "redirect:/myPage/point.do";
 		}
+		
+		else if(resultUse==1) {
+			rttr.addFlashAttribute("msg", "이미 사용한 쿠폰번호 입니다.");
+			return "redirect:/myPage/point.do";
+		}
+		
+		else {
+			rttr.addFlashAttribute("msg", "쿠폰 번호가 일치하지 않습니다.");
+			return "redirect:/myPage/point.do";
+		}
+		
 	}
 	
 	
@@ -558,6 +575,38 @@ public class MyPageController {
 		return "myPage/payAccount";
 	}
 	
+	
+	//관리자 페이지
+	@RequestMapping(value = "/couponAddAction.do")
+	public String couponAddAction(
+			HttpSession session,
+			RedirectAttributes rttr,
+			@RequestParam("couponName") String couponName,
+			@RequestParam("couponNum") String couponNum,
+			@RequestParam("point") int point,
+			@RequestParam("usePeriod") String usePeriod) {
+		
+		int value = ps.insertCoupon(couponName, couponNum, point, usePeriod);
+		
+		if(value > 0) {
+			rttr.addFlashAttribute("msg", "쿠폰 등록 완료");
+			return "redirect:/myPage/point.do";
+		}
+		else {
+			rttr.addFlashAttribute("msg", "쿠폰 등록 실패");
+			return "redirect:/myPage/point.do";
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//기타 공용 함수
 	public String[] date_format() {
 		LocalDate now = LocalDate.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -571,4 +620,9 @@ public class MyPageController {
 		
 		return str;
 	}
+	
+	
+
+	
+	
 }

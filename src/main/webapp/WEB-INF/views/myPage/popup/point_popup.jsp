@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- 팝업창 -->
-	<div class="popup_wrap point_popup_wrap" style="display:none">
+	<div id="point_popup_wrap" class="popup_wrap point_popup_wrap" style="display:none">
 		<div class="popup point_popup">
 			<!-- 포인트 헤더 -->
 			<div class="popup_head">
@@ -21,7 +21,7 @@
 				<div class="popup_contents">
 					<div class="input_box">
 						<h4 class="input_box_title">포인트 코드</h4>
-						<input type="text" class="input_item" id="coupon" name="coupon" placeholder="쿠폰 코드를 입력하세요.">
+						<input type="text" class="input_item" id="coupon" name="couponNum" placeholder="쿠폰 코드를 입력하세요.">
 						<div class="description">
 							<span> • 유효기간이 지난 쿠폰 코드는 등록이 불가합니다.</span>
 							<span> • 쿠폰에 따라 발급 수량 및 계정당 사용 횟수가 제한될 수 있습니다. </span>

@@ -2,7 +2,7 @@ package com.myteam.myapp.domain;
 
 public class MemberPointVo{
 	private int pointNo, memberNo; 
-	private int totalPoint,avaPoint,expPoint;
+	private int avaPoint,expPoint;
 	public int getPointNo() {
 		return pointNo;
 	}
@@ -14,12 +14,6 @@ public class MemberPointVo{
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-	public int getTotalPoint() {
-		return totalPoint;
-	}
-	public void setTotalPoint(int totalPoint) {
-		this.totalPoint = totalPoint;
 	}
 	public int getAvaPoint() {
 		return avaPoint;

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.persistance.PointService_Mapper;
 
 public class PointInterceptor extends HandlerInterceptorAdapter{
@@ -24,7 +25,15 @@ public class PointInterceptor extends HandlerInterceptorAdapter{
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
+		MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
+		
+		psm.updatePointDel(memberNo);
+		
+		if(mpv != null)
+			psm.updateAvaPoint(memberNo);
+		
 		psm.updateExpPoint(memberNo);
+
         
 		return true;
 	}
