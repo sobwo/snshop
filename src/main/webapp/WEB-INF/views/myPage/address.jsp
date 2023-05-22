@@ -33,6 +33,11 @@
 					</div>
 					
 					<!-- 주소록 리스트 -->
+					<c:if test="${empty alist}">
+						<div class="address_list" style="text-align:center;padding-top:100px;">
+							<span >등록된 주소가 없습니다.</span>
+						</div>
+					</c:if>
 					<c:forEach var="alist" items="${alist}">
 						<div class="address_list">
 							<div class="basic_address">

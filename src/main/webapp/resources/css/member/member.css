@@ -3,7 +3,6 @@
 /* 로그인,회원가입,아이디찾기,결과, 비밀번호찾기,결과 공통 css*/
 #login_wrap, #join_wrap, .search_wrap{
 	width:1902px;
-	height:600px;
 	animation: fadein 0.5s;
 	padding-top:94px; 
 }

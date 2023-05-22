@@ -35,6 +35,23 @@ public class MemberServiceImpl implements MemberService{
 		
 		return value;
 	}
+	
+	@Override
+	public int memberInsertSocial(String memberId, String memberName, String memberEmail, String memberPhone, String memberGender) {
+		int cnt = msm.memberSelectSocialCnt(memberId,"social");
+		int value = 0;
+		MemberVo mv = new MemberVo();
+		mv.setMemberId(memberId);
+		mv.setMemberName(memberName);
+		mv.setMemberEmail(memberEmail);
+		mv.setMemberPhone(memberPhone);
+		mv.setMemberGender(memberGender);
+		
+		if(cnt==0)
+			value = msm.memberInsertSocial(mv);
+		
+		return value;
+	}
 
 	@Override
 	public int memberIdCheck(String memberId) {

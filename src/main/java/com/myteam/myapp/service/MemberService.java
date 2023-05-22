@@ -5,6 +5,7 @@ import com.myteam.myapp.domain.RefundVo;
 
 public interface MemberService {
 	public int memberInsert(String memberId, String memberPw, String memberName, String memberEmail, String memberPhone, String memberGender);
+	public int memberInsertSocial(String memberId, String memberName, String memberEmail, String memberPhone, String memberGender);
 	public int memberIdCheck(String memberId);
 	public MemberVo memberLogin(String memberId);
 	

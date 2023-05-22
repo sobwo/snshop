@@ -32,6 +32,11 @@
 <!-- 		<beans:constructor-arg value="D:/uploadFiles"/> -->
 <!-- 	</beans:bean> -->
 
+	<!-- api 로그인 -->
+	<beans:bean id="naverLoginService" class="com.myteam.myapp.service.NaverLoginService"/>
+	<beans:bean id="kakaoLoginService" class="com.myteam.myapp.service.KakaoLoginService"/>
+	
+	<!-- 인터프리터 -->
 	
 	<beans:bean id="loginInterceptor" class="com.myteam.myapp.interceptor.LoginInterceptor">
 	</beans:bean>

@@ -31,7 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
-import com.myteam.myapp.domain.CouponVo;
+import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -42,6 +42,7 @@ import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.service.PointService;
+import com.myteam.myapp.service.ShopService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
@@ -61,6 +62,9 @@ public class MyPageController {
 	
 	@Autowired
 	PointService ps;
+	
+	@Autowired
+	ShopService ss;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -158,9 +162,30 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value = "/interest.do")
-	public String interest() {
+	public String interest(
+			HttpSession session,
+			Model model) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		ArrayList<InterestVo> ilist = ss.selectInterestAll(memberNo);
+		
+		model.addAttribute("ilist",ilist);
 		
 		return "myPage/interest";
+	}
+	
+	@RequestMapping(value = "/interestAction.do")
+	public String interestAction(
+			HttpSession session,
+			@RequestParam("goodsNo") int goodsNo,
+			@RequestParam("size") String size) {
+		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int value = ss.interestCheck(memberNo, goodsNo, size);
+		
+		return null;
 	}
 	
 	@RequestMapping(value = "/profileInfo.do")
@@ -221,7 +246,7 @@ public class MyPageController {
 		
 		String str = ms.profileImgShow(memberNo);
 		result = "{\"value\":\""+str+"\"}";
-
+		
 		return result; 
 	}
 	
@@ -597,14 +622,6 @@ public class MyPageController {
 			return "redirect:/myPage/point.do";
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//기타 공용 함수
 	public String[] date_format() {

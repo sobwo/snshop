@@ -29,7 +29,10 @@ $("#man,#woman").on("click",function(){
 //변경버튼 클릭시 이벤트
 function modify(index){
 	modify_btn.eq(index).click(function(){
-		modify_info.eq(index).show();
+		if(social == 'other')
+			modify_info.eq(index).show();
+		else if(social == 'social')
+			alert("소셜 로그인은 수정이 불가능 합니다.");
 	});
 	
 	cancel.eq(index).click(function(){

@@ -7,6 +7,15 @@
 		INSERT INTO member(memberId,memberPw,memberName,memberPhone,memberEmail,memberGender)
 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},#{memberGender})
 	</insert>
+	
+	<select id="memberSelectSocialCnt" parameterType="String" resultType="Integer">
+		select count(*) from member where memberId=#{0} and social=#{1}
+	</select>
+		
+	<insert id="memberInsertSocial" parameterType="mv">
+		INSERT INTO member(memberId,memberName,memberPhone,memberEmail,memberGender,social)
+		VALUES(#{memberId},#{memberName},#{memberPhone},#{memberEmail},#{memberGender},'social')
+	</insert>	
 		
 	<select id="memberIdCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID=#{memberId}
