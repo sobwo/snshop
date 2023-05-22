@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class ProductImgVo {
+public class ProductImgVo extends GoodsVo{
 	private int imgNo, goodsNo;
 	private String imgFileName;
 	

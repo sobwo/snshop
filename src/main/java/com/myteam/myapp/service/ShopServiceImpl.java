@@ -20,8 +20,7 @@ public class ShopServiceImpl implements ShopService {
 		this.ssm = sqlSession.getMapper(ShopService_Mapper.class);
 		
 	}
-	
-	//상품 전체 리스트 출력
+
 		@Override
 		public ArrayList<GoodsVo> goodsSelectAll() {
 			
@@ -29,8 +28,8 @@ public class ShopServiceImpl implements ShopService {
 			
 			return goodsList;
 		}
-
-			//상품 개별 선택
+		
+		//상품 개별 선택
 		@Override
 		public GoodsVo goodsSelectOne(int goodsNo) {
 			
@@ -41,16 +40,8 @@ public class ShopServiceImpl implements ShopService {
 			return gv;
 		}
 			
-			//상품 이미지 전체 출력
-		@Override
-		public ArrayList<ProductImgVo> imgSelectAll() {
-			
-			ArrayList<ProductImgVo> imgList = ssm.imgSelectAll();
-			
-			return imgList;
-		}
-			
-			//상품 개별 이미지
+
+		//상품 개별 이미지
 		@Override
 		public ArrayList<ProductImgVo> imgSelectOne(int goodsNo) {
 			
@@ -66,4 +57,6 @@ public class ShopServiceImpl implements ShopService {
 		
 			return filterResult;
 		}
+
+
 }

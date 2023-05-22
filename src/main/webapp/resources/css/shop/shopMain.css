@@ -173,6 +173,14 @@
 		padding : 3px;
 		display : none;
 	}
+	.filter_child_list_in{
+		padding-bottom: 3px;
+		display : flex;
+		flex-direction : row;
+		flex-wrap: nowrap;
+		margin-bottom: 5px;
+		
+	}
 
 	.size_title{
 		color: rgba(34,34,34,.8);

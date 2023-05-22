@@ -42,7 +42,6 @@ $(document).ready(function(){});
 		var item =$(".item");
 		var item_child =$(".item_child");
 	
-
 		for(var i=0; i<list_top.length;i++){
 			list_top_check(i);
 			item_click(i);
@@ -50,8 +49,16 @@ $(document).ready(function(){});
 		for(var i=0; i<list_bottom.length;i++){
 			list_bottom_check(i);
 			item_child_click(i);
-			
 		}
+
+		function filter_cnt(){
+			var total_cnt = 0;
+			top_check_cnt = $('.filter_list_top:checked').length;
+			bottom_check_cnt = $('.filter_list_bottom:checked').length;
+			total_cnt = top_check_cnt + bottom_check_cnt;
+			$("#total_cnt").text(total_cnt);
+		}
+		
 	//상위 카테고리
 		function item_click(index){
 			item.eq(index).click(function(){
@@ -68,18 +75,24 @@ $(document).ready(function(){});
 			list_top.eq(index).on("change",function(){
 				if(this.checked){
 					filter_child_list.eq(index).show();
-					list_bottom.prop("checked",false);
-					$(".teg_child").detach();
+					var a = filter_child_list.eq(index);
+					var b = a.prop('id');
+					$('.'+b+':checked').prop("checked", false).change();
+
 					$(".filter_teg_area").append("<div class='teg_item teg_parent' name='"+list_top.eq(index).val()+
 							"'><span>"+list_top.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-
+					filter_cnt();
 				}else{
 					$("div[name="+list_top.eq(index).val()+"]").detach();
 					filter_child_list.eq(index).hide();
+					filter_cnt();
 				}
 			});
 		}
 	//하위 카테고리
+		
+		
+		
 		function item_child_click(index){
 			
 			item_child.eq(index).click(function(){
@@ -94,17 +107,24 @@ $(document).ready(function(){});
 		
 		function list_bottom_check(index){
 			list_bottom.eq(index).change(function(){
-				
+
 				if(this.checked){
-					if(list_top.prop("checked",true))list_top.prop("checked",false);
-					$(".teg_parent").detach();
+					var a = $(this).closest('.filter_list_in');	
+					var b = a.children(list_top);
+					if(b.prop("checked",true)){
+						b.prop("checked",false);
+						$("div[name="+b.val()+"]").detach();
+						}
 					$(".filter_teg_area").append("<div class='teg_item teg_child' name='"+list_bottom.eq(index).val()+
 						"'><span>"+list_bottom.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-
+					filter_cnt();
+		
 				}else{
 					$("div[name="+list_bottom.eq(index).val()+"]").detach();
-				
+					filter_cnt();
+					
 				}
+				
 			});
 		}
 		
@@ -135,7 +155,7 @@ $(document).ready(function(){});
 			filter_gender.eq(index).change(function(){
 				if(this.checked){
 					$(".teg_gender").detach();
-					$("input:checkbox[class='filter_gender']").prop("checked",false);
+					$(".teg_gender").prop("checked",false);
 					$(this).prop("checked",true);
 					$(".filter_teg_area").append("<div class='teg_item teg_gender' name='"+filter_gender.eq(index).val()+
 							"'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
