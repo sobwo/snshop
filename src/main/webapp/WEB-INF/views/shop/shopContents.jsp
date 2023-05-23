@@ -38,7 +38,7 @@
 						<ul>
 							<c:forEach var="pivList" items="${pivList}">
 								<li><img src="">${pivList.imgFileName}</li>
-						</c:forEach>
+							</c:forEach>
 						</ul>
 					</div>	
 			<!-- 상품 가격 표시 -->
@@ -119,17 +119,19 @@
 						<h3 class="sub_h3">추천상품</h3>
 					</div>
 					<div class="o_contents">
-						<div class="o_product">
-							<div class="o_product_img">
-								<img src="" width="224px" height="224px">
+						<c:forEach var ="reList" items="${recommentList}">
+							<div class="o_product">
+								<div class="o_product_img">
+									<img src="${reList.imgFileName}" width="224px" height="224px">
+								</div>
+								<div class="o_info">
+									<span>${reList.goodsName}</span>
+								</div>
+								<div class="o_price">
+									<span>${reList.price} 원</span>
+								</div>
 							</div>
-							<div class="o_info">
-								<span>Jordan 1 Retro High OG Chicago 2022</span>
-							</div>
-							<div class="o_price">
-								<span>420,000원</span>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				

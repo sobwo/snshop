@@ -103,7 +103,7 @@
 										</li>
 										<li class="filter_list_in">
 											<input type="checkbox" class="filter_list_top f_div" name="아우터" value="아우터" >
-											<div class="item"> 아우터</div>
+											<div class="item">아우터</div>
 											<ul class="filter_child_list" id="outer">
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div outer" name="자켓" value="자켓" >
@@ -299,7 +299,9 @@
 			<!-- 상품 개수 -->
 							<div class="product_count">
 								<span>상품수</span>
-								<span><fmt:formatNumber type="number" maxFractionDigits="3" value="1231231" /></span>
+								<span id="productNum">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="" />
+								</span>
 							</div><!-- product_count -->
 			<!-- 상품 정렬 버튼  -->
 							<div class="product_btn_area">
@@ -309,9 +311,9 @@
 								</button>
 								<ul class="product_btn_list">
 									<li>
-										<div class="btn_list_item">
+										<div class="btn_list_item" >
 											<div class="list_item_info">
-												<span class="list_sub">인기순</span>
+												<span class="list_sub">판매순</span>
 												<span class="list_con">많이 판매된 순서대로 정렬합니다.</span>
 											</div>
 											<div class="check_img">
@@ -370,6 +372,7 @@
 					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
 							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
+								<input class ="count_pro" type="hidden" value = "${status.count}">
 								<div class="product_item_wrap">
 									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 										<div class="pro_img_area">
@@ -404,11 +407,15 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
-		$(document).ready(function(){});
+		$(document).ready(function(){
+
+		});
 		
 		var filter = [];
-		var filter_child = [];
 		var value=0;
+		var index = 0;
+		
+		
 	
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
@@ -429,12 +436,10 @@
 			if($(this).is(':checked')==true){
 				
 				filter.push($(this).val());
-				alert(filter);
 				if(filter.length > 0) value = 1;
 				else value =0;
 				filter_ajax(filter,value);
-				
-				
+
 			}else{
 				for(var i =0; i<filter.length; i++){
 					if(filter[i]==$(this).val()){
@@ -453,51 +458,54 @@
 				}
 			}
 		});
-	
-// 		$('.filter_list_bottom').on('change',function(){
-			
-// 			if($(this).is(':checked')==true){
-				
-// 				filter_child.push($(this).val());
-// 				if(filter_child.length > 0) value = 2;
-// 				else value =0;
-// 				filter_ajax(filter,filter_child,value);
-				
-				
-// 			}else{
-// 				for(var i =0; i<filter_child.length; i++){
-// 					if(filter_child[i]==$(this).val()){
-// 						filter_child.splice(i,1);
-// // 						i--;
-// 					}
-// 				};
-// 				if(filter_child.length > 0){
-// 					filter_ajax(filter,filter_child,value);
-// 				}else{
-// 					filter_child.push("1");
-// 					value =0;
-// 					filter_ajax(filter,filter_child,value);
-// 					filter_child.pop();
-// 				}
-// 			}
-			
-			
-// 		})
-		
-		
-		
 
 		function filter_ajax(filter,value){
-			/*
-				예) 신발 상위 카테고리 선택 경우 - filter 에 신발에 대한 하위 카테고리 값 전부 담기
-			               아우터 상위 카테고리 선택 경우 - filter 에 아우터에 대한 하위 카테고리 값 전부 담기
-			*/
+
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
 				data: {filter:filter,
-// 					filter_child : filter_child,
 					   "value":value},
+				cache : false,
+				success : function(data){
+					$(".product_area").empty();
+					$(".product_area").html(data);
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});
+		}
+		
+	//정렬 ajax
+		
+		$('.btn_list_item').on('click',function(){
+			
+			
+			index = $('.btn_list_item').index(this);
+			
+			if(filter.length > 0) {value = 1;
+				align_ajax(filter,value,index);
+			}else{filter.push("1");
+			value =0;
+			align_ajax(filter,value,index);
+			filter.pop();
+			}
+			
+
+		});
+	
+		function align_ajax(filter,value,index){
+
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/itemAlign.do",		
+				method: "POST",
+				data: {filter:filter,
+					   "value":value,
+					   "index":index},
 				cache : false,
 				success : function(data){
 					$(".product_area").empty();
@@ -511,8 +519,7 @@
 				}	
 			});	
 		}
-			
-				
+		
 		</script>
 	</body>
 </html>

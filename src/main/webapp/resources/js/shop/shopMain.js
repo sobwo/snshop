@@ -28,6 +28,9 @@ $(document).ready(function(){
 			});
 		}
 		
+	//상품개수 
+		
+		
 	//좌측 필터 초기화
 	
 		var reset = $(".reset")
@@ -36,7 +39,7 @@ $(document).ready(function(){
 		});
 	
 	
-	//	필터 갯수 세기
+	//	필터 개수 세기
 		function filter_cnt(){
 			var total_cnt = $('.f_div:checked').length;
 			$("#total_cnt").text(total_cnt);
