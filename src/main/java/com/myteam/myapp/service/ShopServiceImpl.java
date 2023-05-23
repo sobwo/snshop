@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.persistance.ShopService_Mapper;
 
@@ -57,5 +58,31 @@ public class ShopServiceImpl implements ShopService {
 		
 			return filterResult;
 		}
+
+		@Override
+		public int interestCheck(int memberNo, int goodsNo, String size) {
+			int cnt = ssm.interestCnt(memberNo,goodsNo);
+			int value = 0;
+			
+			if(cnt == 0) {
+				value=ssm.insertInterest(memberNo, goodsNo, size);
+				ssm.updateInterest(goodsNo,1);
+			}
+			else {
+				value=ssm.deleteInterest(memberNo, goodsNo);
+				ssm.updateInterest(goodsNo,2);
+			}
+			
+			return value;
+		}
+
+		@Override
+		public ArrayList<InterestVo> selectInterestAll(int memberNo) {
+			
+			ArrayList<InterestVo> ilist = ssm.selectInterestAll(memberNo);
+			
+			return ilist;
+		}
+
 
 }
