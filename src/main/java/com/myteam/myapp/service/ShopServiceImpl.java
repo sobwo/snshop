@@ -1,6 +1,7 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -58,6 +59,14 @@ public class ShopServiceImpl implements ShopService {
 		
 			return filterResult;
 		}
+		
+		@Override
+		public ArrayList<GoodsVo> alignList(List<String> filter, int value, int index) {
+			
+			ArrayList<GoodsVo> alignList = ssm.alignList(filter, value, index);
+			
+			return alignList;
+		}
 
 		@Override
 		public int interestCheck(int memberNo, int goodsNo, String size) {
@@ -72,10 +81,9 @@ public class ShopServiceImpl implements ShopService {
 				value=ssm.deleteInterest(memberNo, goodsNo);
 				ssm.updateInterest(goodsNo,2);
 			}
-			
 			return value;
 		}
-
+		
 		@Override
 		public ArrayList<InterestVo> selectInterestAll(int memberNo) {
 			
@@ -83,6 +91,16 @@ public class ShopServiceImpl implements ShopService {
 			
 			return ilist;
 		}
+
+		@Override
+		public ArrayList<GoodsVo> recommentList(HashMap<Integer, Object> hashMap) {
+			
+			ArrayList<GoodsVo>recommentList = ssm.recommentList(hashMap);
+			
+			return recommentList;
+		}
+
+
 
 
 }

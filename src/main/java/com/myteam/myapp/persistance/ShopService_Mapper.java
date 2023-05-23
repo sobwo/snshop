@@ -1,6 +1,7 @@
 package com.myteam.myapp.persistance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -19,7 +20,9 @@ public interface ShopService_Mapper {
 	
 	public ArrayList<GoodsVo> filterList(@Param("filter") List<String> filter,@Param("value") int value);
 	
+	public ArrayList<GoodsVo>alignList(@Param("filter") List<String> filter,@Param("value") int value,@Param("index") int index);
 	
+	public ArrayList<GoodsVo>recommentList(HashMap<Integer, Object> hashMap);
 	//관심품목
 	
 	public int interestCnt(int memberNo, int goodsNo);

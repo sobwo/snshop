@@ -5,23 +5,42 @@
 	<sql id="searchCategory">
 		<choose>
 			<when test="value==0">
-				order by a.goodsNo desc 
+				 
 			</when>
 			<when test="value==1">
-				AND categoryname in 
+				AND category in 
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
+				OR categoryName in 
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				
+			</when>
+		</choose>
+	</sql>	
+	
+	<sql id="align">
+		<choose>
+			<when test="index==0">
+				order by a.goodsNo desc 
+			</when>
+			<when test="index==1">
+				order by a.price desc
+			</when>
+			<when test="index==2">
+				order by a.price asc
+			</when>
+			<when test="index==3">
+				order by a.interestNum desc
+			</when>
+			<when test="index==4">
 				order by a.goodsNo desc 
 			</when>
 		</choose>
-		<!-- 
-			하위 카테고리
-			- 상위 카테고리 선택시 전체 하위 카테고리 in절 생성
-			
-			
-		 -->
-	</sql>	
+	</sql>
+	
 	
 	<sql id="setInterest">
 		<choose>
@@ -37,7 +56,6 @@
 	<select id="goodsSelectAll" resultType="gv">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
- 
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
@@ -45,18 +63,30 @@
 	</select>
 
 	<select id="imgSelectOne" parameterType="int" resultType="piv">
-		
 		select * from productImg where goodsNo = #{goodsNo} order by imgNo asc
-	
 	</select>
 	
 	<select id="filterList" parameterType="java.util.List" resultType="piv">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
  
-		<include refid="searchCategory"></include>
+		<include refid="searchCategory" />
 	</select>
 	
+	<select id="alignList" parameterType="java.util.List" resultType="piv">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		<include refid="searchCategory" />
+		<include refid="align" />
+	</select>
+	
+	<select id="recommentList" parameterType="HashMap" resultType="piv">
+		
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		and categoryname = #{0} and a.goodsNo not in(#{1}) order by a.interestNum desc limit 10
+	</select>
+
 	<!-- interest -->
 	<select id="interestCnt" parameterType="Integer" resultType="Integer">
 		select COUNT(*) from interest where memberNo = #{0} and goodsNo=#{1}
@@ -78,4 +108,5 @@
 	<select id="selectInterestAll" parameterType="Integer" resultType="iv">
 	select a.goodsNo, a.goodsName, a.price, b.size from goods a inner join interest b on a.goodsNo = b.goodsNo where b.memberNo = #{0}
 	</select>
+
 </mapper>

@@ -277,6 +277,7 @@
 	.product_btn_area{
 		width: 100px;
 		position: relative;
+
 	}
 	.product_btn_area button{
 		border:0;
@@ -300,6 +301,8 @@
 		border-radius:5px;
 		box-shadow:.5px .5px gray;
 		display:none;
+		z-index: 10;
+		background-color: #fff;
 	}
 	.list_sub{
 		font-size: 14px ;
