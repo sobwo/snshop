@@ -48,7 +48,7 @@
 							<div class="brandName"><a href="#">jordan</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
-								<p>2022조던 1 레트로 하이 OG 시카고 2022</p>
+								<p>${gv.goodsEng}</p>
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>

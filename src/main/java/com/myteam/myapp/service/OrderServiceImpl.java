@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderVo;
@@ -17,6 +18,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	public OrderServiceImpl(SqlSession sqlSession) {
+		
 		this.osm = sqlSession.getMapper(OrderService_Mapper.class);
 	}
 
@@ -33,10 +35,19 @@ public class OrderServiceImpl implements OrderService{
 		av.setMainAddress(basic_check);
 		av.setMemberNo(memberNo);
 		
-		int value = osm.addressInsert(av);
+		int value = osm.addressCheckReset(memberNo);
+		int value2 = osm.addressInsert(av);
 		
-		return value;
+		return value+value2;
+		
+		/*
+		 * int value = osm.addressInsert(av);
+		 * 
+		 * return value;
+		 */
 	}
+	
+	
 
 	@Override
 	public ArrayList<AddressVo> addressSelect(int memberNo) {
@@ -59,6 +70,13 @@ public class OrderServiceImpl implements OrderService{
 		
 		return value;
 	}
+
+	@Override
+	public AddressVo addressOrderPage(int memberNo) {
+		AddressVo av = osm.addressOrderPage(memberNo);
+		return av;
+	}
+
 
 	@Override
 	public int addressModify(int addressNo, String basicName, String basicPhone, String basicAddrNum, String basicAddr,
@@ -106,4 +124,20 @@ public class OrderServiceImpl implements OrderService{
 		return cnt;
 	}
 
+	@Override
+	public int orderInsert(int goodsNo, int memberNo, int addressNo, int totalPrice, String payInfo) {
+		OrderVo ov = new OrderVo();
+		ov.setGoodsNo(goodsNo);
+		ov.setMemberNo(memberNo);
+		ov.setAddressNo(addressNo);
+		ov.setTotalPrice(totalPrice);
+		ov.setPayInfo(payInfo);
+		
+		int value = osm.orderInsert(ov);
+		
+		return value;
+	}
+
 }
+
+
