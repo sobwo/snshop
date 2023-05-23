@@ -42,8 +42,47 @@
 		</div>	
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage/payAccount.js"></script>
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<%-- 	    <script src="${pageContext.request.contextPath}/resources/js/myPage/payAccount.js"></script> --%>
 		<script>
+			$('.plus_account').click(function () {
+		        // getter
+		        IMP.init('imp23228257');
+	
+		        IMP.request_pay({
+		            pg: 'kakaopay.TC0ONETIME',
+		            merchant_uid: 'merchant_' + new Date().getTime(),
+		            name: 'test1 : test1',
+		            amount: '10000',
+		            buyer_email: 'so_bw74@naver.com',
+		            buyer_name: 'test1',
+		            buyer_tel: '0101',
+		            buyer_addr: '전주',
+		            buyer_postcode: '123-456'
+		        }, function (rsp) {
+		            console.log(rsp);
+		            if (rsp.success) {
+		                var msg = '결제가 완료되었습니다.';
+// 		                msg += '고유ID : ' + rsp.imp_uid;
+// 		                msg += '상점 거래ID : ' + rsp.merchant_uid;
+// 		                msg += '결제 금액 : ' + rsp.paid_amount;
+// 		                msg += '카드 승인번호 : ' + rsp.apply_num;
+// 		                $.ajax({
+// 		                    type: "GET", 
+// 		                    url: "/user/mypage/charge/point", //충전 금액값을 보낼 url 설정
+// 		                    data: {
+// 		                        "amount" : money
+// 		                    },
+// 		                });
+		            } else {
+		                var msg = '결제에 실패하였습니다.';
+		                msg += '에러내용 : ' + rsp.error_msg;
+		            }
+		            alert(msg);
+		            document.location.href="${pageContext.request.contextPath}/myPage/payAccount.do"; //alert창 확인 후 이동할 url 설정
+		        });
+		    });
 		</script>
 	</body>
 </html>

@@ -8,6 +8,14 @@
 		<title>LogIn</title>
 		<link href="${pageContext.request.contextPath}/resources/css/member/member.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/member/memberLogin.css" rel="stylesheet"/>
+		<style>
+		#naverLogin{
+			background-image:url("${pageContext.request.contextPath}/resources/image/naver.png");
+		}
+		#kakaoLogin{
+			background-image:url("${pageContext.request.contextPath}/resources/image/kakao_login.png");
+		}
+		</style>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>
@@ -43,7 +51,10 @@
 						</ul>
 						<div id="socialLogin_area">
 							<div id="naverLogin_area">
-								<input type="button" id="naverLogin" name="naverLogin" value="네이버로 로그인">
+								<input type="button" id="naverLogin" name="naverLogin" value="네이버로 로그인" onclick="location.href='${urlNaver}'">
+							</div>
+							<div id="kakaoLogin_area">
+								<input type="button" id="kakaoLogin" name="kakaoLogin" value="카카오로 로그인" onclick="location.href='${urlKakao}'">
 							</div>
 						</div>
 					</div>
@@ -53,6 +64,7 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/memberLogin.js"></script>
+		<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 		<script>
 			$(document).ready(function(){
 				var msg = "${msg}";

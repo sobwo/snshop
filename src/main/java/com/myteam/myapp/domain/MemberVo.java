@@ -2,7 +2,7 @@ package com.myteam.myapp.domain;
 
 public class MemberVo {
 	private int memberNo,point;
-	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg;
+	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social;
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -63,6 +63,10 @@ public class MemberVo {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	
-	
+	public String getSocial() {
+		return social;
+	}
+	public void setSocial(String social) {
+		this.social = social;
+	}
 }

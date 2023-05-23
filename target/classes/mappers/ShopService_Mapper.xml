@@ -19,13 +19,18 @@
 				order by a.category desc ,a.goodsNo desc  
 			</when>
 		</choose>
-		<!-- 
-			하위 카테고리
-			- 상위 카테고리 선택시 전체 하위 카테고리 in절 생성
-			
-			
-		 -->
 	</sql>	
+	
+	<sql id="setInterest">
+		<choose>
+			<when test="value==1">
+				set interestNum = interestNum + 1
+			</when>
+			<when test="value==2">
+				set interestNum = interestNum - 1
+			</when>
+		</choose>
+	</sql>
 	
 	<select id="goodsSelectAll" resultType="gv">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -49,5 +54,27 @@
  
 		<include refid="searchCategory" />
 	</select>
+
+	<!-- interest -->
+	<select id="interestCnt" parameterType="Integer" resultType="Integer">
+		select COUNT(*) from interest where memberNo = #{0} and goodsNo=#{1}
+	</select>
 	
+	<insert id="insertInterest" parameterType="Integer">
+		insert into interest(memberNo,goodsNo) values(#{0},#{1});
+	</insert>
+	
+	<delete id="deleteInterest" parameterType="Integer">
+		delete from interest where memberNo={0} and goodsNo=#{1}
+	</delete>
+	
+	<update id="updateInterest" parameterType="Integer">
+		update goods
+		<include refid="setInterest"></include>
+	</update>
+	
+	<select id="selectInterestAll" parameterType="Integer" resultType="iv">
+	select a.goodsNo, a.goodsName, a.price, b.size from goods a inner join interest b on a.goodsNo = b.goodsNo where b.memberNo = #{0}
+	</select>
+
 </mapper>
