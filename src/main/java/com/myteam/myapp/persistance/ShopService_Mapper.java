@@ -19,5 +19,5 @@ public interface ShopService_Mapper {
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 	
 	public ArrayList<GoodsVo> filterList(@Param("filter") List<String> filter,@Param("value") int value);
-	
+		
 }

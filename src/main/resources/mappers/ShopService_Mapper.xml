@@ -8,11 +8,15 @@
 				order by a.goodsNo desc 
 			</when>
 			<when test="value==1">
-				AND categoryname in 
+				AND category in 
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
-				order by a.goodsNo desc 
+				OR categoryName in 
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				order by a.category desc ,a.goodsNo desc  
 			</when>
 		</choose>
 		<!-- 
@@ -43,6 +47,12 @@
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
  
-		<include refid="searchCategory"></include>
+		<include refid="searchCategory" />
 	</select>
+	
+	<select id="category" resultType="gv">
+		select category from goods group by category
+		
+	</select>
+	
 </mapper>

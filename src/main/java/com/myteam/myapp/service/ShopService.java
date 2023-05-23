@@ -15,5 +15,5 @@ public interface ShopService {
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 	
 	public ArrayList<GoodsVo>filterList(List<String> filter,int value);
-	
+		
 }
