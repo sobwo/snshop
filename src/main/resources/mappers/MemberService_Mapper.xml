@@ -25,6 +25,10 @@
 		SELECT * FROM MEMBER WHERE MEMBERID = #{memberId}
 	</select>
 	
+	<select id="searchEmailCheck" parameterType="String" resultType="String">
+		select memberEmail from member where membername=#{0} and social='other'
+	</select>
+	
 	<select id="searchIdPhone" parameterType="String" resultType="String">
 		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBERPHONE = #{1} 
 	</select>

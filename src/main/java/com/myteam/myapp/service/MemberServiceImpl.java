@@ -66,6 +66,13 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	public String searchEmailCheck(String memberName) {
+		String memberEmail = msm.searchEmailCheck(memberName);
+		
+		return memberEmail;
+	}
+	
+	@Override
 	public String searchId(String searchMeasure,String memberName_phone, String memberName_email, String memberPhone, String memberEmail) {
 		String memberId = null;
 		if(searchMeasure.equals("phone")) {

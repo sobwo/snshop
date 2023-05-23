@@ -18,6 +18,7 @@ import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.service.KakaoLoginService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.NaverLoginService;
+import com.myteam.myapp.service.RegisterMail;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -25,7 +26,6 @@ public class MemberController {
 
 	private NaverLoginService naverLoginService;
 	private String apiResult = null;
-	
 	
 	@Autowired
 	MemberService ms;
