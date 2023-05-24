@@ -1,7 +1,9 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
@@ -19,5 +21,10 @@ public interface ShopService {
 	
 	public int interestCheck(int memberNo, int goodsNo,String size);
 	
+	public ArrayList<GoodsVo>alignList(List<String> filter, int value, int index);
+	
 	public ArrayList<InterestVo> selectInterestAll(int memberNo);
+	
+	public ArrayList<GoodsVo>recommentList(HashMap<Integer, Object> hashMap);
+	
 }

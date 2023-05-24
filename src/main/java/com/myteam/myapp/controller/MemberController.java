@@ -26,7 +26,6 @@ public class MemberController {
 	private NaverLoginService naverLoginService;
 	private String apiResult = null;
 	
-	
 	@Autowired
 	MemberService ms;
 	
@@ -108,8 +107,13 @@ public class MemberController {
 		String memberEmail = null;
 		String memberPhone = null;
 		String memberGender = null;
+<<<<<<< HEAD
 		MemberVo mv = new MemberVo();
 		//�꽕�씠踰�
+=======
+
+		//네이버
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		if(index.equals("naver")) {
 		OAuth2AccessToken oauthToken_naver;
 		oauthToken_naver = naverLoginService.getAccessToken(session, code, state);

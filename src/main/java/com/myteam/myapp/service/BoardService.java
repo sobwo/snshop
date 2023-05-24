@@ -22,4 +22,6 @@ public interface BoardService {
 
 	public int likesList(LikesVo lv);
 
+	/* public ArrayList<BoardVo> boardList(); */
+
 }

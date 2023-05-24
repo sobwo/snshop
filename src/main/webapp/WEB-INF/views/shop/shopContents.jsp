@@ -25,6 +25,7 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
+					<!-- <input type="hidden" name="size" value="" -->
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -38,7 +39,7 @@
 						<ul>
 							<c:forEach var="pivList" items="${pivList}">
 								<li><img src="">${pivList.imgFileName}</li>
-						</c:forEach>
+							</c:forEach>
 						</ul>
 					</div>	
 			<!-- 상품 가격 표시 -->
@@ -47,11 +48,17 @@
 							<div class="brandName"><a href="#">${gv.goodsBrandName}</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
+
+								<p>${gv.goodsEng}</p>
+
+
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-									<span class="size_view">사이즈 표시</span>
+									<span class="size_view">사이즈 표시
+									 
+									</span>
 									<button class="sizePick_btn" name="sizePick">
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
@@ -119,17 +126,19 @@
 						<h3 class="sub_h3">추천상품</h3>
 					</div>
 					<div class="o_contents">
-						<div class="o_product">
-							<div class="o_product_img">
-								<img src="" width="224px" height="224px">
+						<c:forEach var ="reList" items="${recommentList}">
+							<div class="o_product">
+								<div class="o_product_img">
+									<img src="${reList.imgFileName}" width="224px" height="224px">
+								</div>
+								<div class="o_info">
+									<span>${reList.goodsName}</span>
+								</div>
+								<div class="o_price">
+									<span>${reList.price} 원</span>
+								</div>
 							</div>
-							<div class="o_info">
-								<span>Jordan 1 Retro High OG Chicago 2022</span>
-							</div>
-							<div class="o_price">
-								<span>420,000원</span>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				

@@ -1,5 +1,7 @@
 package com.myteam.myapp.domain;
 
+import oracle.sql.TIMESTAMP;
+
 public class OrderVo extends GoodsVo{	
 	private int orderNo;
 	private String payInfo ;
@@ -8,12 +10,55 @@ public class OrderVo extends GoodsVo{
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
-	private String orderDays;
+	
+
+	
+	
+
+
+	private TIMESTAMP orderDays;
 	private String size;
 	private String pors;
 	private String orderStatus;
 	private String statusDetail;
+	private String orderstatus;
 	
+	public TIMESTAMP getOrderDays() {
+		return orderDays;
+	}
+	public void setOrderDays(TIMESTAMP orderDays) {
+		this.orderDays = orderDays;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getPors() {
+		return pors;
+	}
+	public void setPors(String pors) {
+		this.pors = pors;
+	}
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public String getStatusDetail() {
+		return statusDetail;
+	}
+	public void setStatusDetail(String statusDetail) {
+		this.statusDetail = statusDetail;
+	}
+	public String getOrderstatus() {
+		return orderstatus;
+	}
+	public void setOrderstatus(String orderstatus) {
+		this.orderstatus = orderstatus;
+	}
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -55,36 +100,6 @@ public class OrderVo extends GoodsVo{
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-	public String getOrderDays() {
-		return orderDays;
-	}
-	public void setOrderDays(String orderDays) {
-		this.orderDays = orderDays;
-	}
-	public String getSize() {
-		return size;
-	}
-	public void setSize(String size) {
-		this.size = size;
-	}
-	public String getPors() {
-		return pors;
-	}
-	public void setPors(String pors) {
-		this.pors = pors;
-	}
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-	public String getStatusDetail() {
-		return statusDetail;
-	}
-	public void setStatusDetail(String statusDetail) {
-		this.statusDetail = statusDetail;
 	}
 	
 }

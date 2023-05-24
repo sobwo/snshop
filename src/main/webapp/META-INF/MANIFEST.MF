@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: 503-5
+=======
+Built-By: 503-16
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 Build-Jdk: 13.0.2
 Created-By: Maven Integration for Eclipse
 
