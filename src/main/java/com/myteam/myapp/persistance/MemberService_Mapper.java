@@ -14,6 +14,7 @@ public interface MemberService_Mapper {
 	public MemberVo memberLogin(String memberId);
 	
 	//찾기
+	public String searchPhoneCheck(String memberName);
 	public String searchEmailCheck(String memberName);
 	public String searchIdPhone(String memberName, String memberPhone);
 	public String searchIdEmail(String memberName, String memberEmail);
@@ -21,6 +22,7 @@ public interface MemberService_Mapper {
 	public int searchPwEmail(String memberId, String memberName, String memberEmail);
 	public int memberPwChange(String memberId, String memberPw);
 	public MemberVo memberInfo(int memberNo);
+	
 	
 	//프로필사진
 	public int updateProfileImg(MemberVo mv);

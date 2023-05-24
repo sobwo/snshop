@@ -27,8 +27,6 @@ public class MailController {
     		@RequestParam("email") String email) throws Exception{
     	
     	String code = null;
-    	System.out.println("memberName : "+memberName);
-    	
     	
     	if(index.equals("join")) {
     		code = registerMail.sendSimpleMessage(email);

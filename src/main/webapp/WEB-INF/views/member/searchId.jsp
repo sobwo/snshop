@@ -33,6 +33,12 @@
 								<div class="input_item">
 									<input type="text" id="memberPhone" name="memberPhone" placeholder="휴대폰번호를 입력해주세요.">
 								</div>
+								<div class="input_item input_item_phone">
+									<input type="text" id="memberPhoneCode" name="memberPhoneCode" placeholder="인증 번호를 입력해주세오."/>
+								</div>
+									<input type="button" id="memberPhoneBtn" value="인증 메세지 받기" onclick="phoneRegister()"/>
+									<button id="memberCodeBtn_phone" value="no" style="display:none">인증 코드 확인</button>
+								<span id="phoneMsg"></span>
 							</div>				
 						</div>
 						<div class="searchEmail_area">
@@ -68,25 +74,63 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/searchId.js"></script>
 		<script>
-		
+			//이메일 버튼 변수
 			var email_code_wrap =  $(".input_item_email");
 			var memberEmailBtn = $("#memberEmailBtn");
 			var memberCodeBtn = $("#memberCodeBtn");
 			var memberEmailCode = $("#memberEmailCode");
 			
-			$(document).ready(function(){
-				var msg = "${msg}";
-				if(msg != "") alert(msg);
-			});
 			
-			function search(){
-				var fm = document.frm;
-				fm.action ="${pageContext.request.contextPath}/member/searchIdAction.do";
-				fm.method = "post";
-				fm.submit();
-				fm.reset();
+			//문자 버튼 변수
+			var phone_code_wrap = $(".input_item_phone");
+			var memberPhoneBtn = $("#memberPhoneBtn");
+			var memberCodeBtn_phone = $("#memberCodeBtn_phone");
+			var memberPhoneCode = $("#memberPhoneCode")
+			
+			//핸드폰 문자 전송
+			function phoneRegister(){
+				var memberName_phone = $("#memberName_phone").val();
+				var memberPhone = $("#memberPhone").val();
+				$.ajax({
+					url: "${pageContext.request.contextPath}/message/sendSMS.do",		
+					method: "POST",
+					data: {"phone" : memberPhone,
+						   "memberName" : memberName_phone},
+					success : function(data){
+							if(data != "no"){
+								alert("인증 문자가 전송되었습니다.");
+								phone_code_wrap.show();
+								memberPhoneBtn.hide();
+								memberCodeBtn_phone.show();
+								codeCheck_phone(data);
+							}
+							else
+								alert("등록된 휴대폰 번호가 아닙니다.");
+						},
+						error : function(request,status,error){
+							alert("다시 시도하시기 바랍니다.");		
+						}	
+				});
 			}
 			
+			function codeCheck_phone(data){
+				memberCodeBtn_phone.click(function(){
+					if(memberPhoneCode.val() == data){
+						$('#memberPhone').attr('readonly', true);
+						memberPhoneCode.prop('disabled', true);
+						memberCodeBtn_phone.prop('disabled', true);
+						$("#phoneMsg").text("인증 완료 되었습니다.");
+						memberCodeBtn_phone.val("yes");
+					}
+					else{
+						$("#phoneMsg").text("인증코드가 일치하지 않습니다.");
+						$("#memberPhone").focus();
+						memberCodeBtn_phone.val("no");
+					}
+				});
+			}
+			
+			//이메일
 			function emailRegister(){
 				var memberEmail = $("#memberEmail").val();
 				var memberName_email = $("#memberName_email").val();
@@ -131,6 +175,19 @@
 						memberCodeBtn.val("no");
 					}
 				});
+			}
+			
+			$(document).ready(function(){
+				var msg = "${msg}";
+				if(msg != "") alert(msg);
+			});
+			
+			function search(){
+				var fm = document.frm;
+				fm.action ="${pageContext.request.contextPath}/member/searchIdAction.do";
+				fm.method = "post";
+				fm.submit();
+				fm.reset();
 			}
 		</script>
 	</body>

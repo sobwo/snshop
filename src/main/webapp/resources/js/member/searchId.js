@@ -7,13 +7,13 @@ $(document).ready(function(){
 		if($("input[name=searchMeasure]:checked").val() == "phone"){
 			$('.searchEmail').hide();
 			$('.searchPhone').show();
-			$('.searchPhone_area').css('height','150px');
+			$('.searchPhone_area').css('height','250px');
 			$('.searchEmail_area').css('height','150px');
 		}
 		else if($("input[name=searchMeasure]:checked").val() == "email"){
 			$('.searchEmail').show();
 			$('.searchPhone').hide();
-			$('.searchPhone_area').css('height','100px');
+			$('.searchPhone_area').css('height','150px');
 			$('.searchEmail_area').css('height','250px');
 		}
 	});
