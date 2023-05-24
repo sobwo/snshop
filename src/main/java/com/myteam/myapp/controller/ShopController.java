@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.ProductImgVo;
+import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -24,35 +25,30 @@ public class ShopController {
 	@Autowired
 	ShopService ss;
 	
+//硫붿씤 珥덇린 �긽�뭹 由ъ뒪�듃
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
-
-		ArrayList<GoodsVo> goodsList  = ss.goodsSelectAll();
 		
-		int cnt = goodsList.size();
+		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
 		
-		model.addAttribute("cnt", cnt);
 		model.addAttribute("goodsList", goodsList);
-		
+
 		return "shop/shopMain";
 	}
-	
+
 	@RequestMapping(value = "/shopContents.do")
-	public String shopcontents(
+	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
+			/* @RequestParam("sizeNo")int sizeNo, */
 			Model model) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
+
+		ArrayList<GoodsVo> recommentList = ss.recommentList(gv);
+		ArrayList<SizeVo>sizeList = ss.sizeList(goodsNo);
 		
-		
-		
-		HashMap<Integer, Object> hashMap = new HashMap();
-		
-		hashMap.put(0,gv.getCategoryName());
-		hashMap.put(1, goodsNo);
-		
-		ArrayList<GoodsVo> recommentList = ss.recommentList(hashMap);
+		model.addAttribute("sizeList",sizeList);
 		
 		model.addAttribute("recommentList", recommentList);
 		model.addAttribute("gv", gv);
@@ -61,6 +57,7 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
+//醫뚯륫 移댄뀒怨좊━ �븘�꽣 ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -68,14 +65,14 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> filterList = new ArrayList<GoodsVo>();
-		filterList = ss.filterList(filter,value);
+		ArrayList<GoodsVo> filterList = ss.filterList(filter,value);
 
 		model.addAttribute("goodsList", filterList);
 		
 		return "shop/shopMain_item";
 	}
 	
+//�긽�뭹 由ъ뒪�듃 �젙�젹 ajax	
 	@RequestMapping(value="/itemAlign.do")
 	public String itemAlign(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -84,11 +81,9 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> alignList = new ArrayList<GoodsVo>();
-		alignList = ss.alignList(filter, value, index);
+		ArrayList<GoodsVo> alignList = ss.alignList(filter, value, index);
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";
 	}
-	
 }

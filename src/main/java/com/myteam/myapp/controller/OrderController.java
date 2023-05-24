@@ -40,7 +40,7 @@ public class OrderController {
 			) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-		
+			
 		model.addAttribute("gv", gv);
 		
 		return "order/orderAgree";
@@ -77,6 +77,7 @@ public class OrderController {
 		@RequestParam("payInfo") String payInfo,
 		@RequestParam("addressNo") int addressNo,
 		@RequestParam("goodsNo") int goodsNo, 
+			/* @RequestParam("sizeNo")int sizeNo, */
 		HttpSession session,
 		Model model) {
 		

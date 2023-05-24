@@ -80,13 +80,19 @@
 		<include refid="align" />
 	</select>
 	
-	<select id="recommentList" parameterType="HashMap" resultType="piv">
+	<select id="recommentList" parameterType="hashMap" resultType="piv">
 		
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
-		and categoryname = #{0} and a.goodsNo not in(#{1}) order by a.interestNum desc limit 10
+		and categoryname = #{categoryName} and a.goodsNo not in(#{goodsNo}) order by a.interestNum desc limit 10
+	
 	</select>
-
+	
+	<select id="sizeList" parameterType="int" resultType="sv">
+		select * from size a inner join inventory b on a.sizeNo = b.sizeNo 
+		where a.goodsNo = #{goodsNo}
+	</select>
+	
 	<!-- interest -->
 	<select id="interestCnt" parameterType="Integer" resultType="Integer">
 		select COUNT(*) from interest where memberNo = #{0} and goodsNo=#{1}

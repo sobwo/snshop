@@ -19,7 +19,7 @@
 	<body>
 		<jsp:include page="popup/favorite_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:191px;border:0'>
-			<jsp:include page="../common/header_shop.jsp"></jsp:include>
+		<jsp:include page="../common/header_shop.jsp"></jsp:include>
 		</div>
 		<div class="inner">
 			<main class="main_area">
@@ -408,7 +408,7 @@
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
 		$(document).ready(function(){
-
+			
 		});
 		
 		var filter = [];
@@ -436,8 +436,11 @@
 			if($(this).is(':checked')==true){
 				
 				filter.push($(this).val());
-				if(filter.length > 0) value = 1;
-				else value =0;
+				
+					
+					if(filter.length > 0) value = 1;
+					else value =0;
+				
 				filter_ajax(filter,value);
 
 			}else{

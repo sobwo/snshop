@@ -11,6 +11,11 @@ public class OrderVo extends GoodsVo{
 	private int goodsNo; 
 	private int memberNo;
 	
+
+	
+	
+
+
 	private TIMESTAMP orderDays;
 	private String size;
 	private String pors;
