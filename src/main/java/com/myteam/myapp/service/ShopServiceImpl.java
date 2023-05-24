@@ -1,12 +1,14 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.persistance.ShopService_Mapper;
 
@@ -20,8 +22,7 @@ public class ShopServiceImpl implements ShopService {
 		this.ssm = sqlSession.getMapper(ShopService_Mapper.class);
 		
 	}
-	
-	//상품 전체 리스트 출력
+
 		@Override
 		public ArrayList<GoodsVo> goodsSelectAll() {
 			
@@ -29,8 +30,8 @@ public class ShopServiceImpl implements ShopService {
 			
 			return goodsList;
 		}
-
-			//상품 개별 선택
+		
+		//상품 개별 선택
 		@Override
 		public GoodsVo goodsSelectOne(int goodsNo) {
 			
@@ -41,16 +42,8 @@ public class ShopServiceImpl implements ShopService {
 			return gv;
 		}
 			
-			//상품 이미지 전체 출력
-		@Override
-		public ArrayList<ProductImgVo> imgSelectAll() {
-			
-			ArrayList<ProductImgVo> imgList = ssm.imgSelectAll();
-			
-			return imgList;
-		}
-			
-			//상품 개별 이미지
+
+		//상품 개별 이미지
 		@Override
 		public ArrayList<ProductImgVo> imgSelectOne(int goodsNo) {
 			
@@ -66,4 +59,48 @@ public class ShopServiceImpl implements ShopService {
 		
 			return filterResult;
 		}
+		
+		@Override
+		public ArrayList<GoodsVo> alignList(List<String> filter, int value, int index) {
+			
+			ArrayList<GoodsVo> alignList = ssm.alignList(filter, value, index);
+			
+			return alignList;
+		}
+
+		@Override
+		public int interestCheck(int memberNo, int goodsNo, String size) {
+			int cnt = ssm.interestCnt(memberNo,goodsNo);
+			int value = 0;
+			
+			if(cnt == 0) {
+				value=ssm.insertInterest(memberNo, goodsNo, size);
+				ssm.updateInterest(goodsNo,1);
+			}
+			else {
+				value=ssm.deleteInterest(memberNo, goodsNo);
+				ssm.updateInterest(goodsNo,2);
+			}
+			return value;
+		}
+		
+		@Override
+		public ArrayList<InterestVo> selectInterestAll(int memberNo) {
+			
+			ArrayList<InterestVo> ilist = ssm.selectInterestAll(memberNo);
+			
+			return ilist;
+		}
+
+		@Override
+		public ArrayList<GoodsVo> recommentList(HashMap<Integer, Object> hashMap) {
+			
+			ArrayList<GoodsVo>recommentList = ssm.recommentList(hashMap);
+			
+			return recommentList;
+		}
+
+
+
+
 }

@@ -32,7 +32,7 @@
 					<!-- 프로필 사진,이름 -->
 					<div class="user_profile">
 						<div class="user_thumb">
-							<img src="" id="profileImg_show">
+							<img id="profileImg_show">
 						</div>
 						<div class="user_info user_info_profile">
 							<strong class="user_name user_name_profile">${mv.memberName}</strong>
@@ -53,7 +53,14 @@
 									<h3>ID</h3>		
 								</div>
 								<div class="profile_user_info">
-									<input type="text" class="profile_contents" value="${mv.memberId}" readonly>
+									<c:choose>
+										<c:when test="${mv.social=='social'}">
+											<input type="text" class="profile_contents" value="${mv.memberEmail}" readonly>
+										</c:when>
+										<c:otherwise>
+											<input type="text" class="profile_contents" value="${mv.memberId}" readonly>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<div class="profile_unit">
@@ -191,6 +198,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/profileInfo.js"></script>
 		<script>
+			var social = "${mv.social}";
 			$(document).ready(function(){
 				$('input[type="file"]').change(function() {
 				    imageFilter(this); // 이미지 파일 필터링
@@ -230,15 +238,14 @@
 					method: "GET",
 					dataType: "json",
 					success : function(data){
-						if(data.value != ""){
-							src = "${pageContext.request.contextPath}/resources/uploadFiles"+data.value;
-							$("#profileImg_show").attr("src",src);
+						if(data.value === "" || data.value === "null"){
+							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
 						}
 						else{
-							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
-							$("#profileImg_show").attr("src",src);
+							src = "${pageContext.request.contextPath}/resources/uploadFiles"+data.value;
 						}
 						
+						$("#profileImg_show").attr("src",src);
 					},
 					error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	

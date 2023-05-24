@@ -1,11 +1,24 @@
-var register = $(".register");
-var popup_wrap = $(".point_popup_wrap");
+var register = $("#register");
+var popup_wrap = $("#point_popup_wrap");
+
 var cancel = $(".popup_cancel");
 var cancel_bottom = $(".basic_btn_1");
+
+var admin_register = $("#admin_register");
+var admin_popup_wrap = $("#admin_point_popup_wrap")
+
+//관리자 팝업창
+admin_popup_wrap.css('height',window.outerHeight);
+
+admin_register.click(function(){
+	admin_popup_wrap.show();
+});
+
+
 //팝업창
 popup_wrap.css('height',window.outerHeight);
 
-register.eq(0).click(function(){
+register.click(function(){
 	popup_wrap.show();
 });
 

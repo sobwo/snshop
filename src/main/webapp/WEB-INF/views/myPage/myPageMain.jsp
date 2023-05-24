@@ -25,17 +25,24 @@
 						<div class="user_detail">
 							<div class="user_thumb">
 								<c:choose>
-									<c:when test="${mv.profileImg != ''}">
-										<img src="${pageContext.request.contextPath}/resources/uploadFiles/${mv.profileImg}">
+									<c:when test="${empty mv.profileImg}">
+									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
 									</c:when>
 									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										<img src="${pageContext.request.contextPath}/resources/uploadFiles/${mv.profileImg}">
 									</c:otherwise>
 								</c:choose>
 							</div>
 							<div class="user_info">
 								<strong class="user_name">${mv.memberName}</strong>
-								<p class="user_id">${mv.memberId}</p>
+								<c:choose>
+									<c:when test="${mv.social == 'other'}">
+										<p class="user_id">${mv.memberId}</p>
+									</c:when>
+									<c:when test="${mv.social == 'social'}">
+										<p class="user_id">${mv.memberEmail}</p>
+									</c:when>
+								</c:choose>
 								<input type="button" class="myPageBtn" value="프로필 수정" onclick="location.href='${pageContext.request.contextPath}/myPage/profileInfo.do'">
 								<input type="button" class="myPageBtn" value="내 스타일" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle.do'">
 							</div>

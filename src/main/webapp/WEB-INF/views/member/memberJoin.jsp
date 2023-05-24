@@ -52,6 +52,11 @@
 							<div class="input_item">
 								<input type="text" id="memberEmail" name="memberEmail" placeholder="EX)snshop@naver.com" />
 							</div>
+							<div class="input_item input_item_email">
+								<input type="text" id="memberEmailCode" name="memberEmailCode" placeholder="인증 번호를 입력해주세오."/>
+							</div>
+							<input type="button" id="memberEmailBtn" value="인증 이메일 받기" onclick="emailRegister()"/>
+							<input type="button" id="memberCodeBtn" value="인증코드 확인" style="display:none"/>
 							<span id="emailMsg"></span>						
 						</div>
 						<div id="joinPhone_area">
@@ -65,8 +70,8 @@
 							<h3>성별(선택)</h3>
 								<div id="joinGender_inner_area">
 								<div class="input_item">
-									<div id="man">남성<input type="radio" name="memberGender" value="man"/></div>
-									<div id="woman">여성<input type="radio" name="memberGender" value="woman"/></div>
+									<div id="man">남성<input type="radio" name="memberGender" value="male"/></div>
+									<div id="woman">여성<input type="radio" name="memberGender" value="female"/></div>
 								</div>
 							</div>						
 						</div>
@@ -81,6 +86,10 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/member/memberJoin.js"></script>
 		<script>
+			var email_code_wrap =  $(".input_item_email");
+			var memberEmailBtn = $("#memberEmailBtn");
+			var memberCodeBtn = $("#memberCodeBtn");
+			var memberEmailCode = $("#memberEmailCode");
 			//memberJoin 로그인 버튼
 	
 			function IdCheck(){
@@ -110,6 +119,43 @@
 				});	
 			}
 			
+			function emailRegister(){
+				var memberEmail = $("#memberEmail").val();
+				var index = "join";
+				$.ajax({
+					url: "${pageContext.request.contextPath}/email/registerEmailAction.do",		
+					method: "POST",
+					data: {"email" : memberEmail,
+						   "index" : index},
+					success : function(data){
+							alert("메일이 전송되었습니다.");
+							email_code_wrap.show();
+							memberEmailBtn.hide();
+							memberCodeBtn.show();
+							$("#joinEmail_area").css("height","150px");
+							codeCheck(data);	
+						},
+						error : function(request,status,error){
+							alert("다시 시도하시기 바랍니다.");		
+						}	
+				});
+			}
+			
+			function codeCheck(data){
+				memberCodeBtn.click(function(){
+					alert(data);
+					if(memberEmailCode.val() == data){
+						$('#memberEmail').prop('disabled', true);
+						memberEmailCode.prop('disabled', true);
+						memberCodeBtn.prop('disabled', true);
+						$("#emailMsg").text("인증 완료 되었습니다.");
+					}
+					else{
+						$("#emailMsg").text("인증코드가 일치하지 않습니다.");
+						$("#memberEmail").focus();
+					}
+				});
+			}
 		</script>
 	</body>
 </html>

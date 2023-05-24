@@ -21,11 +21,10 @@
 
 #socialLogin_area{
 	width:400px;
-	height:52px;
 	margin-top:40px;
 }
 
-#naverLogin{
+#naverLogin, #kakaoLogin{
 	width:100%;
 	height:52px;
 	background:#fff;
@@ -33,9 +32,11 @@
 	border-radius:12px;
 	font-size:18px;
 	font-weight:bold;
-	background-image:url("${pageContext.request.contextPath}/resources/image/naver.png");
 	background-position: 15px center;
 	background-size: 30px;
 	background-repeat:no-repeat;
 	cursor:pointer;
+}
+#kakaoLogin_area{
+	margin-top:10px;
 }

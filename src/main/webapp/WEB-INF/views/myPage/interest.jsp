@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,24 +35,33 @@
 					
 					<!-- 관심상품 컨텐츠 -->
 					<div class="purchase_contents_wrap">
-						<div class="purchase_contents purchase_contents_interest">
-							<div class="purchase_detail">
-								<div class="purchase_thumb">
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-								</div>
-								<div class="purchase_info">
-									<strong class="purchase_name">제품 이름</strong>
-									<p class="purchase_price purchase_price_interest">제품 내용</p>
-									<p class="purchase_size purchase_size_interest">250</p>
-								</div>
-							</div>
-							<div class="interest_btn_wrap">
-								<div class="interest_btn">
-									<div class="btn_left">구매</div>
-									<div class="btn_right">가격</div>
-								</div>
-							</div>
-						</div>
+						<c:choose>
+							<c:when test="${empty ilist}">
+								<span style="padding-top:100px">등록된 관심상품이 없습니다.</span>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="ilist" items="${ilist}">
+									<div class="purchase_contents purchase_contents_interest">
+										<div class="purchase_detail">
+											<div class="purchase_thumb">
+												<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+											</div>
+											<div class="purchase_info">
+												<strong class="purchase_name">${ilist.goodsName}</strong>
+												<p class="purchase_price purchase_price_interest">제품 내용</p>
+												<p class="purchase_size purchase_size_interest">${ilist.size}</p>
+											</div>
+										</div>
+										<div class="interest_btn_wrap">
+											<div class="interest_btn">
+												<div class="btn_left">구매</div>
+												<div class="btn_right">${ilist.price}</div>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>

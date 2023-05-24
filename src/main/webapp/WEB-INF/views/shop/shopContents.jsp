@@ -36,19 +36,21 @@
 							</div>
 						</div>
 						<ul>
-							<li><img src=""></li>
-							<li><img src=""></li>
-							<li><img src=""></li>
-							<li><img src=""></li>
+							<c:forEach var="pivList" items="${pivList}">
+								<li><img src="">${pivList.imgFileName}</li>
+							</c:forEach>
 						</ul>
 					</div>	
 			<!-- 상품 가격 표시 -->
 					<div class="productContents_area">
 						<div class="productContents">
-							<div class="brandName"><a href="#">jordan</a></div>
+							<div class="brandName"><a href="#">${gv.goodsBrandName}</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
+<<<<<<< HEAD
 								<p>${gv.goodsEng}</p>
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
@@ -121,17 +123,19 @@
 						<h3 class="sub_h3">추천상품</h3>
 					</div>
 					<div class="o_contents">
-						<div class="o_product">
-							<div class="o_product_img">
-								<img src="" width="224px" height="224px">
+						<c:forEach var ="reList" items="${recommentList}">
+							<div class="o_product">
+								<div class="o_product_img">
+									<img src="${reList.imgFileName}" width="224px" height="224px">
+								</div>
+								<div class="o_info">
+									<span>${reList.goodsName}</span>
+								</div>
+								<div class="o_price">
+									<span>${reList.price} 원</span>
+								</div>
 							</div>
-							<div class="o_info">
-								<span>Jordan 1 Retro High OG Chicago 2022</span>
-							</div>
-							<div class="o_price">
-								<span>420,000원</span>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
 				</div>
 				
