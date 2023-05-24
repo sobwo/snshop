@@ -48,6 +48,10 @@
 		INSERT INTO ADDRESS(USERNAME,ADDRESSPHONE,ZIPCODE,ADDRESS,DETAILADDRESS,MAINADDRESS,MEMBERNO)
 		VALUES(#{userName},#{addressPhone},#{zipCode},#{address},#{detailAddress},#{mainAddress},#{memberNo})
 	</insert>
+
+	<update id="addressCheckReset" parameterType="Integer">
+		update address set mainAddress = 'N' where memberNo= #{0}
+	</update>
 		
 	<select id ="addressSelect" parameterType="Integer" resultType="av">
 		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0}
@@ -60,6 +64,11 @@
 	<delete id ="addressDelete" parameterType="Integer">
 		DELETE FROM ADDRESS WHERE ADDRESSNO = #{0}
 	</delete>
+	
+	<select id ="addressOrderPage" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0} and MAINADDRESS = 'Y'
+	</select>
+	
 	
 	<update id ="addressModify" parameterType="av">
 		UPDATE ADDRESS
@@ -97,4 +106,13 @@
 		<include refid="search_pors"/>
 		<include refid="search_status"/>
 	</select>
+<!-- 	<insert id ="saveTotalPrice"parameterType="double">
+			INSERT INTO orders(totalPrice)values(#{totalPrice})
+	</insert> -->
+	
+	
+		<insert id="orderInsert" parameterType="ov">
+			INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
+			VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
+		</insert>
 </mapper>

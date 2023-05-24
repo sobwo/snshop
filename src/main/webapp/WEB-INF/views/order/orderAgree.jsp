@@ -31,7 +31,7 @@
 					<div class="buyProduct">
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
-							<strong class="modelNumber">${gv.modelNum} </strong>
+							<strong class="modelNumber">${gv.goodsEng} </strong>
 							<%-- <strong class="modelNumber"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/></strong> --%>
 							<p class="modelName">${gv.goodsName}</p>
 							<%-- <p class="modelName">${gv.price}</p> --%>

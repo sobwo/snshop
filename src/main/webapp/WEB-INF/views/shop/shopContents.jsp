@@ -47,6 +47,10 @@
 							<div class="brandName"><a href="#">${gv.goodsBrandName}</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
+<<<<<<< HEAD
+								<p>${gv.goodsEng}</p>
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
