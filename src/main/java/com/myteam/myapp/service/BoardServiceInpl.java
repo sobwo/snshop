@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.LikesVo;
+import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
 
 @Service("boardServiceInpl")
@@ -41,21 +42,44 @@ public class BoardServiceInpl implements BoardService{
 	}
 	
 	@Override
-	public int like_checkInsert(LikesVo lv) {
+	public ArrayList<LikesVo> likesInfo(int memberNo) {
+		 
+		ArrayList<LikesVo> llist = bsm.likesInfo(memberNo);
+		
+		 return llist;
+	}
 
-		int value = bsm.like_checkInsert(lv);
+	@Override
+	public int insertLike(LikesVo lv) {
+		
+		int value = bsm.insertLike(lv);
+		
+		return value;
+	}
+	
+	@Override
+	public int updateLike(LikesVo lv) {
+		
+		int value = bsm.updateLike(lv);
+		
+		return value;
+	}
+	
+	@Override
+	public int likesTotalCnt(int boardNo) {
+
+		int value = bsm.likesTotalCnt(boardNo);
 		
 		return value;
 
 	}
 
 	@Override
-	public int boardNoTotalCnt(int boardNo) {
-
-		int value = bsm.boardNoTotalCnt(boardNo);
+	public int likesList(LikesVo lv) {
+		
+		int value = bsm.likesList(lv);
 		
 		return value;
-
 	}
 
 }

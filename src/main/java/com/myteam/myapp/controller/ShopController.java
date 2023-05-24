@@ -28,18 +28,28 @@ public class ShopController {
 //메인 초기 상품 리스트
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
-
-		ArrayList<GoodsVo> goodsList  = ss.goodsSelectAll();
 		
+<<<<<<< HEAD
+=======
+		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
+		
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		model.addAttribute("goodsList", goodsList);
+
 		
 		return "shop/shopMain";
 	}
+<<<<<<< HEAD
 
 //상품 클릭시 개별 상품 정보	
+=======
+	
+	
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/shopContents.do")
 	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
+			/* @RequestParam("sizeNo")int sizeNo, */
 			Model model) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);

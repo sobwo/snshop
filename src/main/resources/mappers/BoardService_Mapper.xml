@@ -12,13 +12,27 @@
 <select id="boardList" parameterType="int" resultType="bv">
 	select*from board where delyn='N' and memberNo=#{memberNo} ORDER BY boardNo DESC
 </select>
+ 
+<select id="likesInfo" parameterType="Int" resultType="lv">
+	SELECT * FROM likes WHERE memberNo=#{memberNo}
+</select>
 
-<insert id="like_checkInsert" parameterType="lv">
+
+<select id="likesList" parameterType="lv" resultType="int">
+	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
+</select>
+
+<insert id="insertLike" parameterType="lv"> 
+
 	INSERT INTO likes(boardNo, memberNo, like_check)
 	VALUES(#{boardNo}, #{memberNo}, 1);
 </insert>
 
-<select id="boardNoTotalCnt" parameterType="Integer" resultType="Integer">
+<update id="updateLike" parameterType="int">
+	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}
+</update>
+
+<select id="likesTotalCnt" parameterType="Integer" resultType="Integer">
 	SELECT COUNT(*) AS likecnt FROM likes WHERE like_check = 1 AND boardNo = #{boardNo};
 </select>
 

@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 	$('.searchPhone').hide();
 	$('.searchEmail').hide();
@@ -5,33 +7,26 @@ $(document).ready(function(){
 		if($("input[name=searchMeasure]:checked").val() == "phone"){
 			$('.searchEmail').hide();
 			$('.searchPhone').show();
-			$('.searchPhone_area').css('height','200px');
-			$('.searchEmail_area').css('height','100px');
+			$('.searchPhone_area').css('height','300px');
+			$('.searchEmail_area').css('height','150px');
 		}
 		else if($("input[name=searchMeasure]:checked").val() == "email"){
 			$('.searchEmail').show();
 			$('.searchPhone').hide();
-			$('.searchPhone_area').css('height','100px');
-			$('.searchEmail_area').css('height','200px');
+			$('.searchPhone_area').css('height','150px');
+			$('.searchEmail_area').css('height','300px');
 			}
 		});
 });
 	
-$('#memberId_phone, #memberName_phone, #memberPhone,#memberId_email #memberName_email, #memberEmail').on('input',function(){
-	var inputId_phone = $('#memberId_phone').val();
-	var inputId_email = $('#memberId_email').val();
-	var inputName_phone = $('#memberName_phone').val();
-	var inputName_email = $('#memberName_email').val();
-	var inputPhone = $('#memberPhone').val();
-	var inputEmail = $('#memberEmail').val();
-	
-	if((inputId_phone != '' && inputName_phone != '' && inputPhone != '') || (inputId_email != '' && inputName_email != '' && inputEmail != '')){
+function btnCheck() {
+	if($("#memberCodeBtn_phone").val() == 'yes' || $("#memberCodeBtn").val() == 'yes'){
 		$('.searchBtn').prop('disabled', false);
 		$('.searchBtn').css('background-color', '#222');
 	}
 	else{ 
 		$('.searchBtn').css('background-color', '#ebebeb');
 		$('.searchBtn').prop('disabled', true);
-		}
-});
+	}
+}
 	

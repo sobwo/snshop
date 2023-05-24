@@ -9,6 +9,8 @@ public interface MemberService {
 	public int memberIdCheck(String memberId);
 	public MemberVo memberLogin(String memberId);
 	
+	public String searchPhoneCheck(String memberName);
+	public String searchEmailCheck(String memberName);
 	public String searchId(String searchMeasure,String memberName_phone, String memberName_email, String memberPhone, String memberEmail);
 	public int searchPw(String searchMeasure, String memberId_phone, String memberId_email, String memberName_phone, String memberName_email, String memberPhone,String memberEmail);
 	public int memberPwChange(String memberId, String memberPw);

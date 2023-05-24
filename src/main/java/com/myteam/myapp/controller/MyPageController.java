@@ -300,7 +300,7 @@ public class MyPageController {
 	public String myStyle(
 			Model model,
 			HttpSession session) {
-				
+		
 		int memberNo = 0;
 		
 		if(session.getAttribute("memberNo") != null) {
@@ -309,25 +309,47 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
+		ArrayList<LikesVo> llist = bs.likesInfo(memberNo);
+				
 		ArrayList<BoardVo> blist = bs.boardList(memberNo);
 		
 		model.addAttribute("mv", mv);
+		model.addAttribute("llist", llist);
 		model.addAttribute("blist", blist);
-
-
+	
 		return "myPage/myStyle";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
-	public JSONObject like_check(LikesVo lv) throws Exception{
-			
-		int value = bs.like_checkInsert(lv);
-		int totalCnt = bs.boardNoTotalCnt(lv.getBoardNo());  // boardNo Cnt
-			
-		JSONObject js = new JSONObject();
-		js.put("value", value);
-			
-		return js;
+	public JSONObject like_check(
+			@RequestParam("boardNo")int boardNo,
+			@RequestParam("like_check")int like_check,
+			LikesVo lv,
+			HttpSession session) throws Exception{
+
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		lv.setBoardNo(boardNo);
+		lv.setMemberNo(memberNo);
+		lv.setLike_check(like_check);
+		
+	    int value = bs.likesList(lv);
+	    
+	    // value 값에 따라 INSERT 또는 DELETE 작업 수행
+	    if (value == 0) {
+	        // INSERT 작업 수행
+	    	bs.insertLike(lv);
+	    } else if (value != 0) {
+	        // DELETE 작업 수행
+	        bs.updateLike(lv);
+	    }
+		
+		int totalCnt = bs.likesTotalCnt(lv.getBoardNo());  // boardNo Cnt
+		
+		JSONObject json = new JSONObject();
+	    json.put("value", value);
+	    return json;
 	}
 	
 	@ResponseBody

@@ -100,7 +100,7 @@
 										</div>
 										<div class="purchase_info">
 											<strong class="purchase_name">${purchase.goodsName}</strong>
-											<p class="purchase_size">${purchase.size}</p>
+										 	<p class="purchase_size">${purchase.size}</p> 
 										</div>
 									</div>
 									<div class="delivery_info">

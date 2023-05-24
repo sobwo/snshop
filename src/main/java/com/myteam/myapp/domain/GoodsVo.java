@@ -3,7 +3,11 @@ package com.myteam.myapp.domain;
 public class GoodsVo {
 	
 	private int goodsNo, price, interestNum;
-	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName,imgFileName;
+
+	
+
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, imgFileName;
+
 	
 	
 	public String getImgFileName() {
@@ -37,6 +41,12 @@ public class GoodsVo {
 		this.price = price;
 	}
 
+	public String getGoodsEng() {
+		return goodsEng;
+	}
+	public void setGoodsEng(String goodsEng) {
+		this.goodsEng = goodsEng;
+	}
 	public String getModelNum() {
 		return modelNum;
 	}
@@ -73,6 +83,7 @@ public class GoodsVo {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	
 	
 	
 }

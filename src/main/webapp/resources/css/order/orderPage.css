@@ -112,7 +112,7 @@
 
 .section_unit {
 	width: 636px;
-	height: 340px;
+	height: 370px;
 	margin: 0;
 	padding: 32px;
 	background-color: #fff;
@@ -130,7 +130,7 @@
 }
 
 .title_txt {
-	line-height: 22px;
+	line-height: 0px;
 	font-size: 18px;
 	font-weight: 700;
 	letter-spacing: -.15px;
@@ -152,7 +152,30 @@
 	cursor: pointer
 }
 
-.addressnum {
+.popup_inner_btn2 {
+	width: 45px;
+	height: 25px;
+	border-radius: 5px;
+	text-align: center;
+	color: rgba(34, 34, 34, .8);
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	margin-left: 150px;
+	cursor: pointer
+}
+
+/* .addressSave{
+	width:45px;
+	height:25px;
+	border-radius:5px;
+	text-align:center;
+	color:rgba(34,34,34,.8);
+	background-color:#fff;
+	border :1px; solid # d3d3d3;
+	cursor:ponter;
+}
+ */
+/* .addressnum {
 	color: #222222cc;
 	color: rgba(34, 34, 34, .8);
 	background-color: #fff;
@@ -160,8 +183,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 	margin-bottom: 25px;
-}
-
+} */
 .section_content {
 	width: 636px;
 	height: 123px;
@@ -213,15 +235,18 @@
 
 .address_plus_wrap {
 	width: 100%;
-	display: flex;
+	/* 	display: flex; */
 	justify-content: center;
 }
 
 .btn_2 {
 	width: 636px;
 	height: 47px;
-	text-align: left;
-	border-radius: 10px;
+	text-align: center;
+	line-height: 47px;
+	/* 	border:1px solid #ebebeb; */
+	font-size: 14px;
+	/* 	border-radius:12px;	 */
 	background-color: white;
 	cursor: pointer;
 }
@@ -264,7 +289,7 @@
 	border-top: 7.5px;
 }
 
-.all_use {
+.all_use, .apply {
 	width: 70.69px;
 	height: 24px;
 	color: #ffffff;
@@ -310,7 +335,12 @@
 	padding: 14px 12px;
 	border: 1px solid #ebebeb;
 	border-radius: 10px;
-	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 #popup {
@@ -337,46 +367,42 @@
 .title_txt1 {
 	margin-left: 1px;
 	font-size: 18px;
-	margin-top: 10px
+	padding: 25px 0;
 }
 
 .movespan {
-	margin-left: -112px;
+	margin-left: -144px;
 }
 
-.movespan1 {
+.movespan2 {
 	margin-left: -100px;
 }
 
-.btnimg {
+.btnimg, .btnimg2 {
+	width: 636px;
+	height: 66px;
 	border-radius: 15px;
 	border: 1px solid #ebebeb;
 	cursor: pointer;
 	margin-top: 10px;
-	width: 636px;
-	height: 66px;
 	display: flex;
 	align-items: center;
 	background-color: white;
 }
 
-.btnimg2 {
-	border-radius: 15px;
-	border: 1px solid #ebebeb;
-	cursor: pointer;
-	width: 636px;
-	height: 66px;
-	display: flex;
-	align-items: center;
-	margin-top: 5px;
-	background-color: white;
+.btnimg-img {
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	padding: 0 10px 0 10px;
 }
 
-.my-button5 {
+.payInfo {
 	width: 636.02px;
 	height: 47.99px;
 	padding: 14px 2px;
 	margin-left: 0px;
+	margin-top: 50px;
 	border-radius: 10px;
 	border: 1px solid #ebebeb;
 	cursor: pointer;
@@ -401,6 +427,7 @@ button.active {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	padding: 70px 0;
 }
 
 .popup_style {
@@ -425,4 +452,48 @@ button.active {
 	padding: 10px;
 }
 
-/* 체크박스 3개 체크시 결제하기버튼 빨간색으로*/
+.addressSave {
+	width: 45px;
+	height: 25px;
+	border-radius: 5px;
+	text-align: center;
+	color: rgba(34, 34, 34, .8);
+	background-color: #fff;
+	border: 1px solid #d3d3d3;
+	cursor: pointer;
+}
+
+.agree-terms2 {
+	margin-top: 30px;
+}
+
+.address_Box {
+	width: 636px;
+}
+
+.title {
+	float: left;
+	min-width: 80px;
+	font-size: 13px;
+	letter-spacing: -.07px;
+	color: rgba(34, 34, 34, .5);
+	/* 	line-height: 22px; */
+}
+
+.info_box {
+	overflow: hidden;
+	letter-spacing: -.15px;
+	margin-top: 6px;
+	/* 	padding:10px 0px; */
+	font-size: 14px;
+	line-height: 30px;
+}
+
+.basic_check {
+	width: 300px;
+	margin-bottom: 50px;
+}
+
+.basic_checkTitle {
+	font-size: 15px;
+}

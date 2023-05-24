@@ -12,7 +12,10 @@
 	<bean id="db" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 <!-- 		<property name="url" value="jdbc:log4jdbc:oracle:thin://@127.0.0.1:1521:XE"></property> -->
+<<<<<<< HEAD
 <!-- 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/mysql"></property> -->
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		<property name="url" value="jdbc:log4jdbc:mysql://@192.168.0.117:3306/mysql"></property>
 		<property name="username" value="test"></property>
 		<property name="password" value="123456qwe!@#"></property>
