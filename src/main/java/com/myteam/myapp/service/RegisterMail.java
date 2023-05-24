@@ -25,17 +25,17 @@ public class RegisterMail implements MailServiceInter{
 		 MimeMessage message = emailSender.createMimeMessage();
 
         message.addRecipients(RecipientType.TO, to); // 메일 받을 사용자
-        message.setSubject("[Fligent] 회원가입을 위한 이메일 인증코드 입니다");
+        message.setSubject("[snshop] 이메일 인증코드 입니다");
         
         String msgg = "";
         msgg += "<h1>안녕하세요</h1>";
         msgg += "<h1>SNS 및 쇼핑몰 플랫폼 snshop 입니다</h1>";
         msgg += "<br>";
-        msgg += "<p>아래 인증코드를 회원가입 페이지에 입력해주세요</p>";
+        msgg += "<p>아래 인증코드를 해당 페이지에 입력해주세요</p>";
         msgg += "<br>";
         msgg += "<br>";
         msgg += "<div align='center' style='border:1px solid black'>";
-        msgg += "<h3 style='color:blue'>회원가입 인증코드 입니다</h3>";
+        msgg += "<h3 style='color:blue'>인증코드 입니다</h3>";
         msgg += "<div style='font-size:130%'>";
         msgg += "<strong>" + ePw + "</strong></div><br/>" ; // 메일에 인증번호 ePw 넣기
         msgg += "</div>";
