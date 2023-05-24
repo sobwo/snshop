@@ -64,16 +64,16 @@ public class StyleController {
 	public String styleFavorite(
 			@RequestParam("contents")String contents,
 			@RequestParam("contentsImg")String contentsImg,
-			@RequestParam("delyn") String delyn;
-			@RequestParam("likeCnt")String likeCnt;
-			@RequestParam("viewCnt")String viewCnt;
-			@RequestParam("memberNo")int memberNo;
-		
-			HttpSession session, Model model{
+			@RequestParam("delyn") String delyn,
+			@RequestParam("likeCnt")String likeCnt,
+			@RequestParam("viewCnt")String viewCnt,
+			@RequestParam("memberNo")int memberNo,
+			HttpSession session, 
+			Model model){
 				
-			}
 			
-			)  {
+			
+		
 		
 	
 		

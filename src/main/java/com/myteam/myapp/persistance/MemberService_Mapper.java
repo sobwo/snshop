@@ -13,12 +13,8 @@ public interface MemberService_Mapper {
 	public int memberIdCheck(String memberId);
 	public MemberVo memberLogin(String memberId);
 	
-<<<<<<< HEAD
-	//李얘린
-=======
 	//찾기
 	public String searchPhoneCheck(String memberName);
-
 	public String searchEmailCheck(String memberName);
 	public String searchIdPhone(String memberName, String memberPhone);
 	public String searchIdEmail(String memberName, String memberEmail);
