@@ -18,7 +18,6 @@ import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.service.KakaoLoginService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.NaverLoginService;
-import com.myteam.myapp.service.RegisterMail;
 
 @Controller
 @RequestMapping(value = "/member")
@@ -108,7 +107,7 @@ public class MemberController {
 		String memberEmail = null;
 		String memberPhone = null;
 		String memberGender = null;
-		MemberVo mv = new MemberVo();
+
 		//네이버
 		if(index.equals("naver")) {
 		OAuth2AccessToken oauthToken_naver;

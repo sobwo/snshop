@@ -34,23 +34,23 @@
 	</select>
 	
 	<select id="searchIdPhone" parameterType="String" resultType="String">
-		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBERPHONE = #{1} 
+		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBERPHONE = #{1} and social='other'
 	</select>
 	
 	<select id="searchIdEmail" parameterType="String" resultType="String">
-		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBEREMAIL = #{1} 
+		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBEREMAIL = #{1} and social='other'
 	</select>
 	
 	<select id="searchPwPhone" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBERPHONE = #{2}
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBERPHONE = #{2} and social='other'
 	</select>
 	
 	<select id="searchPwEmail" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBEREMAIL = #{2}
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBEREMAIL = #{2} and social='other'
 	</select>
 	
 	<update id="memberPwChange" parameterType="String">
-		UPDATE MEMBER SET MEMBERPW=#{1} WHERE MEMBERID=#{0}
+		UPDATE MEMBER SET MEMBERPW=#{1} WHERE MEMBERID=#{0} and social='other'
 	</update>
 	
 	<select id="memberInfo" parameterType="Integer" resultType="mv">

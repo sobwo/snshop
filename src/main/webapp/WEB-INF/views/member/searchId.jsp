@@ -127,6 +127,7 @@
 						$("#memberPhone").focus();
 						memberCodeBtn_phone.val("no");
 					}
+					btnCheck()
 				});
 			}
 			
@@ -161,9 +162,8 @@
 			
 			function codeCheck(data){
 				memberCodeBtn.click(function(){
-					alert(data);
 					if(memberEmailCode.val() == data){
-						$('#memberEmail').prop('disabled', true);
+						$('#memberEmail').attr('readonly', true);
 						memberEmailCode.prop('disabled', true);
 						memberCodeBtn.prop('disabled', true);
 						$("#emailMsg").text("인증 완료 되었습니다.");
@@ -174,6 +174,7 @@
 						$("#memberEmail").focus();
 						memberCodeBtn.val("no");
 					}
+					btnCheck()
 				});
 			}
 			

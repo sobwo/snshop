@@ -1,4 +1,4 @@
-var memberCodeBtn = $("#memberCodeBtn");
+
 
 $(document).ready(function(){
 	$('.searchPhone').hide();
@@ -19,21 +19,14 @@ $(document).ready(function(){
 		});
 });
 	
-$('#memberId_phone, #memberName_phone, #memberPhone,#memberId_email #memberName_email, #memberEmail').on('input',function(){
-	var inputId_phone = $('#memberId_phone').val();
-	var inputId_email = $('#memberId_email').val();
-	var inputName_phone = $('#memberName_phone').val();
-	var inputName_email = $('#memberName_email').val();
-	var inputPhone = $('#memberPhone').val();
-	var inputEmail = $('#memberEmail').val();
-	
-	if((inputId_phone != '' && inputName_phone != '' && inputPhone != '') || (inputId_email != '' && inputName_email != '' && inputEmail != '' && memberCodeBtn.val() == 'yes')){
+function btnCheck() {
+	if($("#memberCodeBtn_phone").val() == 'yes' || $("#memberCodeBtn").val() == 'yes'){
 		$('.searchBtn').prop('disabled', false);
 		$('.searchBtn').css('background-color', '#222');
 	}
 	else{ 
 		$('.searchBtn').css('background-color', '#ebebeb');
 		$('.searchBtn').prop('disabled', true);
-		}
-});
+	}
+}
 	

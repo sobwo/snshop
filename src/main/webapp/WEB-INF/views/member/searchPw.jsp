@@ -133,6 +133,7 @@
 						$("#memberPhone").focus();
 						memberCodeBtn_phone.val("no");
 					}
+					btnCheck();
 				});
 			}
 			
@@ -178,9 +179,10 @@
 						$("#memberEmail").focus();
 						memberCodeBtn.val("no");
 					}
+					
+					btnCheck();
 				});
 			}
-			
 			
 			
 			//기타
