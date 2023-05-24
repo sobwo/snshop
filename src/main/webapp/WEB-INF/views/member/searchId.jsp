@@ -127,7 +127,7 @@
 						$("#memberPhone").focus();
 						memberCodeBtn_phone.val("no");
 					}
-					btnCheck()
+					btnCheck();
 				});
 			}
 			
@@ -174,7 +174,7 @@
 						$("#memberEmail").focus();
 						memberCodeBtn.val("no");
 					}
-					btnCheck()
+					btnCheck();
 				});
 			}
 			
