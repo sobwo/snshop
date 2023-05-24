@@ -46,8 +46,8 @@
 				    				<li class="product_list">
 				    					<div class="product">
 				    						<img class="product_img" src="#">
-				    						<div class="product_name">${gv.goodsName}</div>
-				    						<div class="product_price">${gv.price} </div>
+				    						<div class="product_name"><%-- ${gv.goodsName} --%></div>
+				    						<div class="product_price"><%-- ${gv.price}  --%></div>
 				    					</div>
 				    				</li>
 				    			</ul>

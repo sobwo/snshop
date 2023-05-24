@@ -6,7 +6,7 @@ public class GoodsVo {
 
 	
 
-	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng,imgFileName;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, imgFileName;
 
 	
 	

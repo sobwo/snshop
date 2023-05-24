@@ -26,20 +26,20 @@ public class ShopController {
 	
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
-
-		ArrayList<GoodsVo> goodsList  = ss.goodsSelectAll();
 		
-		int cnt = goodsList.size();
+		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
 		
-		model.addAttribute("cnt", cnt);
 		model.addAttribute("goodsList", goodsList);
+
 		
 		return "shop/shopMain";
 	}
 	
+	
 	@RequestMapping(value = "/shopContents.do")
 	public String shopcontents(
 			@RequestParam("goodsNo") int goodsNo,
+			/* @RequestParam("sizeNo")int sizeNo, */
 			Model model) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);

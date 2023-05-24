@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.SizeVo;
 
 public interface OrderService {
 	//二쇱냼
@@ -29,6 +30,6 @@ public interface OrderService {
 	
 	
 	public int orderInsert(int goodsNo, int memberNo, int addressNo, int totalPrice, String payInfo);
-
+	/* public SizeVo sizeSelectOne(int sizeVo); */
 }
 

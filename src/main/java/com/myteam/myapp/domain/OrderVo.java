@@ -2,7 +2,7 @@ package com.myteam.myapp.domain;
 
 import oracle.sql.TIMESTAMP;
 
-public class OrderVo {	
+public class OrderVo extends GoodsVo{	
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 
@@ -11,6 +11,11 @@ public class OrderVo {
 	private int goodsNo; 
 	private int memberNo;
 	
+
+	
+	
+
+
 	private TIMESTAMP orderDays;
 	private String size;
 	private String pors;
