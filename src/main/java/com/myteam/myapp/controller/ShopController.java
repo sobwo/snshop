@@ -25,27 +25,17 @@ public class ShopController {
 	@Autowired
 	ShopService ss;
 	
-//메인 초기 상품 리스트
+//硫붿씤 珥덇린 �긽�뭹 由ъ뒪�듃
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
 		
-<<<<<<< HEAD
-=======
 		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
 		
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		model.addAttribute("goodsList", goodsList);
 
-		
 		return "shop/shopMain";
 	}
-<<<<<<< HEAD
 
-//상품 클릭시 개별 상품 정보	
-=======
-	
-	
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/shopContents.do")
 	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
@@ -67,7 +57,7 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
-//좌측 카테고리 필터 ajax	
+//醫뚯륫 移댄뀒怨좊━ �븘�꽣 ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -82,7 +72,7 @@ public class ShopController {
 		return "shop/shopMain_item";
 	}
 	
-//상품 리스트 정렬 ajax	
+//�긽�뭹 由ъ뒪�듃 �젙�젹 ajax	
 	@RequestMapping(value="/itemAlign.do")
 	public String itemAlign(
 			@RequestParam(value="filter[]") List<String> filter,

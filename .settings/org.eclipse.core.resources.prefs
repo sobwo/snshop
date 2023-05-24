@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/myteam/myapp/controller/MemberController.java=UTF-8
 encoding//src/main/java/com/myteam/myapp/controller/MyPageController.java=UTF-8
+encoding//src/main/java/com/myteam/myapp/controller/ShopController.java=UTF-8
 encoding//src/main/java/com/myteam/myapp/persistance/MemberService_Mapper.java=UTF-8
 encoding//src/main/java/com/myteam/myapp/persistance/OrderService_Mapper.java=UTF-8
 encoding//src/main/java/com/myteam/myapp/service/OrderService.java=UTF-8

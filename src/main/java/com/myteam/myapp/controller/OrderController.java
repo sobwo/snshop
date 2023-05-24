@@ -69,32 +69,6 @@ public class OrderController {
 		model.addAttribute("point",point);
 		
 		return "order/orderPage"; 
-<<<<<<< HEAD
-	}
-	
-	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish(
-		@RequestParam("price") int totalPrice, 
-		@RequestParam("payInfo") String payInfo,
-		@RequestParam("addressNo") int addressNo,
-		@RequestParam("goodsNo") int goodsNo, 
-			/* @RequestParam("sizeNo")int sizeNo, */
-		HttpSession session,
-		Model model) {
-		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		//db ���� ����
-		int value = os.orderInsert(goodsNo, memberNo, addressNo, totalPrice, payInfo);
-		
-		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-		model.addAttribute("gv", gv);
-		model.addAttribute("totalPrice",totalPrice);
-		model.addAttribute("payInfo",payInfo);
-		
-		return "order/orderPage";
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	}
 	
 	@RequestMapping(value = "/orderFinish.do")
