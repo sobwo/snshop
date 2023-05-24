@@ -107,9 +107,21 @@ public class MemberController {
 		String memberEmail = null;
 		String memberPhone = null;
 		String memberGender = null;
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+		MemberVo mv = new MemberVo();
+		//�꽕�씠踰�
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
+<<<<<<< HEAD
 		//네이버
+=======
+		//네이버
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		if(index.equals("naver")) {
 		OAuth2AccessToken oauthToken_naver;
 		oauthToken_naver = naverLoginService.getAccessToken(session, code, state);

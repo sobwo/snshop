@@ -253,7 +253,7 @@ button{
 	width : 1200px;
 	display : flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	overflow: hidden;
 	flex-wrap: nowrap;
  			overflow-x: auto;
@@ -299,7 +299,7 @@ button{
 	display : flex;
 	flex-wrap : wrap;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-content: flex-start;
 	
 }

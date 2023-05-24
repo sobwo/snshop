@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductImgVo;
+import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.ShopService_Mapper;
 
 @Service("ShopServiceImpl")
@@ -93,11 +94,24 @@ public class ShopServiceImpl implements ShopService {
 		}
 
 		@Override
-		public ArrayList<GoodsVo> recommentList(HashMap<Integer, Object> hashMap) {
+		public ArrayList<GoodsVo> recommentList(GoodsVo gv) {
+
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+
+			hashMap.put("categoryName", gv.getCategoryName());
+			hashMap.put("goodsNo", gv.getGoodsNo());
 			
 			ArrayList<GoodsVo>recommentList = ssm.recommentList(hashMap);
-			
+
 			return recommentList;
+		}
+
+		@Override
+		public ArrayList<SizeVo> sizeList(int goodsNo) {
+			
+			ArrayList<SizeVo> sizeList = ssm.sizeList(goodsNo);
+			return sizeList;
+			
 		}
 
 
