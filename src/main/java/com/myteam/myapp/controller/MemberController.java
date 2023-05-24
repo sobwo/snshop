@@ -87,7 +87,7 @@ public class MemberController {
 		}
 		
 		else {
-			rttr.addFlashAttribute("msg", "아이디와 비밀번호가 일치하지 않습니다.");
+			rttr.addFlashAttribute("msg", "�븘�씠�뵒�� 鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
 			path="redirect:/member/memberLogin.do";
 		}
 			
@@ -109,7 +109,7 @@ public class MemberController {
 		String memberPhone = null;
 		String memberGender = null;
 		MemberVo mv = new MemberVo();
-		//네이버
+		//�꽕�씠踰�
 		if(index.equals("naver")) {
 		OAuth2AccessToken oauthToken_naver;
 		oauthToken_naver = naverLoginService.getAccessToken(session, code, state);
@@ -130,7 +130,7 @@ public class MemberController {
 		}
 		
 		else if(index.equals("kakao")) {
-		//카카오
+		//移댁뭅�삤
 		OAuth2AccessToken oauthToken_kakao;
 		oauthToken_kakao = kakaoLoginService.getAccessToken(session, code, state);
 		apiResult = kakaoLoginService.getuserProfile(oauthToken_kakao);
@@ -236,8 +236,8 @@ public class MemberController {
 			return "member/searchIdVal";
 		
 		else {
-			System.out.println("실패");
-			rttr.addFlashAttribute("msg", "정보가 일치하지 않습니다.");
+			System.out.println("�떎�뙣");
+			rttr.addFlashAttribute("msg", "�젙蹂닿� �씪移섑븯吏� �븡�뒿�땲�떎.");
 			return "redirect:/member/searchId.do";
 		}
 			
@@ -277,8 +277,8 @@ public class MemberController {
 			return "redirect:/member/searchPwVal.do?memberId="+memberId;
 		
 		else {
-			System.out.println("실패");
-			rttr.addFlashAttribute("msg", "정보가 일치하지 않습니다.");
+			System.out.println("�떎�뙣");
+			rttr.addFlashAttribute("msg", "�젙蹂닿� �씪移섑븯吏� �븡�뒿�땲�떎.");
 			return "redirect:/member/searchPw.do?memberId="+memberId;
 		}
 	}
@@ -308,12 +308,12 @@ public class MemberController {
 		model.addAttribute("memberId", memberId);
 		
 		if(value==1) {
-			rttr.addFlashAttribute("msg", "패스워드가 변경되었습니다.");
+			rttr.addFlashAttribute("msg", "�뙣�뒪�썙�뱶媛� 蹂�寃쎈릺�뿀�뒿�땲�떎.");
 			return "redirect:/member/memberLogin.do";
 		}
 		
 		else {
-			System.out.println("실패");	
+			System.out.println("�떎�뙣");	
 			return "redirect:/member/searchPwVal.do?memberId="+memberId;
 		}
 	}

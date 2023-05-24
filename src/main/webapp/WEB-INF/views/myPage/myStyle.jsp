@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>마이페이지</title>
+		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_PitemCommon.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_main.css" rel="stylesheet"/>
@@ -63,8 +64,9 @@
 									<div class="feedPostImage" onclick="location.href='#'">
 										<c:choose>
 											<c:when test ="${bv.contentsImg==null}">
-											</c:when><c:otherwise>
+											</c:when>
 											
+											<c:otherwise>											
 											<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
 											
 											<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
@@ -87,13 +89,25 @@
 										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
 										<p class="userName">${mv.memberId}</p>
 										
-										<span class="likeBox">
-											<button type="button" class="likeImage" id="likeImageChange" value=1><img src="${pageContext.request.contextPath}/resources/image/heart.png/"></button>
-											<span class="likeCount">${bv.likeCnt}</span>
-										</span>
-										</span>
-									</div>
+									<c:choose>
 									
+										<c:when test="${not empty sessionScope.memberNo}">  <!-- 로그인 상태일 때 하트 클릭 가능 -->
+											<span class="likeBox">
+												<button type="button" class="likeImage" value="${bv.boardNo}"><img src="${pageContext.request.contextPath}/resources/image/heart${lv.like_check}.png/"></button>
+						 						<input type="hidden" id="like_check${bv.boardNo}" value="${lv.like_check}">	
+												<span class="likeCount">${lv.like_check}</span>
+											</span>
+									 	</c:when>
+										
+										<c:otherwise>
+											<span class="likeBox">  <!-- 버튼 클릭 시 로그인 페이지로  -->
+												<button type="button" class="likeImageLogin" value="${bv.boardNo}"><img src="${pageContext.request.contextPath}/resources/image/heart.png/"></button>	
+												<span class="likeCount">${bv.likeCnt}</span>
+											</span>
+										</c:otherwise>
+										
+									</c:choose>					
+									</div>
 									<div class="feedPostContent" onclick="location.href='#'">
 										<p>${bv.contents}</p>
 									</div>
@@ -120,37 +134,45 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
-			$(".likeImage").click(function(){
-		
-				var boardNo = ${lv.boardNo};
-				var memberNo = ${session.getAttribute("memberNo")};
-				var value = $(this).val();
+		$(document).ready(function() {
+			
+			  $(".likeImage").click(function() {
+					var clickImage = $(this);
+					var boardNo = $(this).val();
+					var memberNo = <%= session.getAttribute("memberNo") %>;
+					var value = $("#like_check"+boardNo).val();
 					
-				$.ajax({
-					type: "post",
-					url: "${pageContext.request.contextPath}/myPage/like_check.do" ,
-					dataType: "json",
-					data: {
+					value = value === "0" ? 1 : 0;
+
+			    $.ajax({
+			        type: "POST",
+			        url: "${pageContext.request.contextPath}/myPage/like_check.do",
+			        dataType: "json",
+			        data: {
 						"boardNo": boardNo,
-						"value" : value,
-						"memberNo": memberNo
-						},
-					cache: false,
-					success: function(data) {
-					if (data.value === 1) {
-					$(".likeImage").attr("src", "heart2.png");
-					data.value = 0; // Toggle the value
-					} else {
-					$(".likeImage").attr("src", "heart.png");
-					data.value = 1; // Toggle the value
-					}
-					alert("좋아요");
-					},
-					error: function() {
-					alert("실패");
-					}
-				});
-			});
+						"like_check": value,
+			    	    "memberNo": memberNo
+			        	},
+			        cache: false,
+			        success: function(data) {	
+			        	console.log(data);
+			        	
+						if (data.like_check == 1) {
+			            	clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
+			          
+			         	}else {
+			         		clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart.png/");
+			          
+			         	}
+			          
+			          alert("좋아요");
+			        },
+			        error: function() {
+			          alert("실패");
+			        }
+			      });
+			    });
+			  });
 		</script>
 	</body>
 </html>
