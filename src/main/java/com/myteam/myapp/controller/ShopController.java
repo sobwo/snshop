@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.ProductImgVo;
+import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -24,35 +25,30 @@ public class ShopController {
 	@Autowired
 	ShopService ss;
 	
+//메인 초기 상품 리스트
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
 
 		ArrayList<GoodsVo> goodsList  = ss.goodsSelectAll();
 		
-		int cnt = goodsList.size();
-		
-		model.addAttribute("cnt", cnt);
 		model.addAttribute("goodsList", goodsList);
 		
 		return "shop/shopMain";
 	}
-	
+
+//상품 클릭시 개별 상품 정보	
 	@RequestMapping(value = "/shopContents.do")
-	public String shopcontents(
+	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
 			Model model) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
+
+		ArrayList<GoodsVo> recommentList = ss.recommentList(gv);
+		ArrayList<SizeVo>sizeList = ss.sizeList(goodsNo);
 		
-		
-		
-		HashMap<Integer, Object> hashMap = new HashMap();
-		
-		hashMap.put(0,gv.getCategoryName());
-		hashMap.put(1, goodsNo);
-		
-		ArrayList<GoodsVo> recommentList = ss.recommentList(hashMap);
+		model.addAttribute("sizeList",sizeList);
 		
 		model.addAttribute("recommentList", recommentList);
 		model.addAttribute("gv", gv);
@@ -61,6 +57,7 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
+//좌측 카테고리 필터 ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -68,14 +65,14 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> filterList = new ArrayList<GoodsVo>();
-		filterList = ss.filterList(filter,value);
+		ArrayList<GoodsVo> filterList = ss.filterList(filter,value);
 
 		model.addAttribute("goodsList", filterList);
 		
 		return "shop/shopMain_item";
 	}
 	
+//상품 리스트 정렬 ajax	
 	@RequestMapping(value="/itemAlign.do")
 	public String itemAlign(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -84,11 +81,9 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> alignList = new ArrayList<GoodsVo>();
-		alignList = ss.alignList(filter, value, index);
+		ArrayList<GoodsVo> alignList = ss.alignList(filter, value, index);
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";
 	}
-	
 }

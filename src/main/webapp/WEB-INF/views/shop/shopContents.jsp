@@ -25,14 +25,15 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
+					<input type="hidden" name="sizeName" class="sizeName" value="">
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
 							<div class="pre_btn">
-								<button name="pre_btn">&#60;</button>
+								<button type="button" name="pre_btn">&#60;</button>
 							</div>
 							<div class="next_btn">
-								<button name="next_btn">&#62;</button>
+								<button type="button" name="next_btn">&#62;</button>
 							</div>
 						</div>
 						<ul>
@@ -52,7 +53,7 @@
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
 									<span class="size_view">사이즈 표시</span>
-									<button class="sizePick_btn" name="sizePick">
+									<button type="button" class="sizePick_btn" name="sizePick">
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
 								</div>
@@ -168,6 +169,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
 		<script type="text/javascript">
+		
 		function buyButton(){	
 
 			var fm = document.frm;	
@@ -178,6 +180,7 @@
 			fm.submit();
 			return;
 		};
+		
 	//즐겨찾기 버튼
 		var wish = $(".wish");
 		var popup_wrap_2 = $(".shopMain_popup_wrap");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +17,11 @@
 			</div>
 			<div class="popup_contents">
 				<ul class="status_item_list">
-					<li class="status_item_s">
-						<span class="item_size_s" style="font-size:14px">모든사이즈</span>
-						<span class="item_price_s" style="color:#f00;font-size:12px">가격</span>
-					</li>
+					<c:forEach var="sizeList" items="${sizeList}">
+						<li class="status_item_s">
+							<span class="item_size_s" style="font-size:14px">${sizeList.sizeName}</span>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>

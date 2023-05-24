@@ -9,21 +9,24 @@ import org.apache.ibatis.annotations.Param;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductImgVo;
+import com.myteam.myapp.domain.SizeVo;
 
 public interface ShopService_Mapper {
-	
+		//상품 전체
 	public ArrayList<GoodsVo> goodsSelectAll();
-	
+		//상품 개별 선택
 	public GoodsVo goodsSelectOne(int goodsNo);
-	
+		//개별 상품 이미지
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
-	
+		//카테고리 필터
 	public ArrayList<GoodsVo> filterList(@Param("filter") List<String> filter,@Param("value") int value);
-	
+		//상품정렬필터
 	public ArrayList<GoodsVo>alignList(@Param("filter") List<String> filter,@Param("value") int value,@Param("index") int index);
-	
-	public ArrayList<GoodsVo>recommentList(HashMap<Integer, Object> hashMap);
-	//관심품목
+		//추천상품 
+	public ArrayList<GoodsVo>recommentList(HashMap<String, Object> hashMap);
+		//개별 상품 사이즈
+	public ArrayList<SizeVo>sizeList(int goodsNo);
+		//관심품목
 	
 	public int interestCnt(int memberNo, int goodsNo);
 	
