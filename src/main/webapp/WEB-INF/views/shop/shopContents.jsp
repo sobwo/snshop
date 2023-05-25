@@ -25,11 +25,8 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
-<<<<<<< HEAD
 					<input type="hidden" name="sizeName" class="sizeName" value="">
-=======
-					<!-- <input type="hidden" name="size" value="" -->
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -60,15 +57,10 @@
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-<<<<<<< HEAD
 									<span class="size_view">사이즈 표시</span>
 									<button type="button" class="sizePick_btn" name="sizePick">
-=======
-									<span class="size_view">사이즈 표시
-									 
-									</span>
+									</button>
 									<button class="sizePick_btn" name="sizePick">
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
 								</div>
