@@ -10,23 +10,18 @@ public class OrderVo extends GoodsVo{
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
-	
 
-	
-	
-
-
-	private TIMESTAMP orderDays;
+	private String orderDays;
 	private String size;
 	private String pors;
 	private String orderStatus;
 	private String statusDetail;
 	private String orderstatus;
 	
-	public TIMESTAMP getOrderDays() {
+	public String getOrderDays() {
 		return orderDays;
 	}
-	public void setOrderDays(TIMESTAMP orderDays) {
+	public void setOrderDays(String orderDays) {
 		this.orderDays = orderDays;
 	}
 	public String getSize() {

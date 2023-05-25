@@ -14,6 +14,7 @@ import com.myteam.myapp.domain.SizeVo;
 public interface ShopService_Mapper {
 		//상품 전체
 	public ArrayList<GoodsVo> goodsSelectAll();
+	
 		//상품 개별 선택
 	public GoodsVo goodsSelectOne(int goodsNo);
 		//개별 상품 이미지
