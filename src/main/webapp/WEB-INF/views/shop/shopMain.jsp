@@ -371,30 +371,7 @@
 						</form>
 					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
-								<input class ="count_pro" type="hidden" value = "${status.count}">
-								<div class="product_item_wrap">
-									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
-										<div class="pro_img_area">
-											${goodsList.imgFileName}
-											<img class="pro_img" src="">
-										</div>
-										<div class="pro_name_area">
-											<ul>
-												<li class="pro_brand" >"${goodsList.goodsBrandName}"</li>
-												<li class="pro_name1" >${goodsList.goodsName}"</li>
-												<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
-											</ul>
-										</div>
-									</div><!-- product_item -->
-								<div class="pro_icon_area">
-										<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-									<span>${goodsList.interestNum}</span>
-									<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
-										<span>123</span>
-								</div>
-								</div><!-- product_item_wrap -->
-							</c:forEach>
+
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -408,6 +385,10 @@
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
 		$(document).ready(function(){
+			filter.push("1");
+			value =0;
+			filter_ajax(filter,value);
+			filter.pop();
 			
 		});
 		
@@ -436,22 +417,18 @@
 			if($(this).is(':checked')==true){
 				
 				filter.push($(this).val());
-				
-					
-					if(filter.length > 0) value = 1;
-					else value =0;
-				
+				value = 1;	
 				filter_ajax(filter,value);
 
 			}else{
 				for(var i =0; i<filter.length; i++){
 					if(filter[i]==$(this).val()){
 						filter.splice(i,1);
-						alert(filter);
 // 						i--;
 					}
 				};
 				if(filter.length > 0){
+					value = 1;
 					filter_ajax(filter,value);
 				}else{
 					filter.push("1");
@@ -471,7 +448,6 @@
 					   "value":value},
 				cache : false,
 				success : function(data){
-					$(".product_area").empty();
 					$(".product_area").html(data);
 				},
 				error : function(request,status,error){
@@ -486,19 +462,16 @@
 	//정렬 ajax
 		
 		$('.btn_list_item').on('click',function(){
-			
-			
-			index = $('.btn_list_item').index(this);
-			
-			if(filter.length > 0) {value = 1;
+			index = $('.btn_list_item').index(this);			
+			if(filter.length > 0){
+				value = 1;
 				align_ajax(filter,value,index);
-			}else{filter.push("1");
-			value =0;
-			align_ajax(filter,value,index);
-			filter.pop();
+			}else{
+				filter.push("1");
+				value =0;
+				align_ajax(filter,value,index);
+				filter.pop();
 			}
-			
-
 		});
 	
 		function align_ajax(filter,value,index){
@@ -511,7 +484,6 @@
 					   "index":index},
 				cache : false,
 				success : function(data){
-					$(".product_area").empty();
 					$(".product_area").html(data);
 				},
 				error : function(request,status,error){

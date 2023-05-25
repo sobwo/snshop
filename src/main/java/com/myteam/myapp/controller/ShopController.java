@@ -25,13 +25,10 @@ public class ShopController {
 	@Autowired
 	ShopService ss;
 	
-//硫붿씤 珥덇린 �긽�뭹 由ъ뒪�듃
+
 	@RequestMapping(value = "/shopMain.do")
 	public String shopMain(Model model) {
 		
-		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
-		
-		model.addAttribute("goodsList", goodsList);
 
 		return "shop/shopMain";
 	}
@@ -57,7 +54,7 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
-//醫뚯륫 移댄뀒怨좊━ �븘�꽣 ajax	
+//좌측 필터버튼  ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -72,7 +69,7 @@ public class ShopController {
 		return "shop/shopMain_item";
 	}
 	
-//�긽�뭹 由ъ뒪�듃 �젙�젹 ajax	
+//상품 정렬  ajax	
 	@RequestMapping(value="/itemAlign.do")
 	public String itemAlign(
 			@RequestParam(value="filter[]") List<String> filter,

@@ -49,18 +49,13 @@
 							<div class="brandName"><a href="#">${gv.goodsBrandName}</a></div>
 							<div class="productName">
 								<p>${gv.goodsName}</p>
-
 								<p>${gv.goodsEng}</p>
-
-
 							</div>
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
 									<span class="size_view">사이즈 표시</span>
 									<button type="button" class="sizePick_btn" name="sizePick">
-									</button>
-									<button class="sizePick_btn" name="sizePick">
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
 								</div>
