@@ -194,9 +194,30 @@
 			popup_wrap_2.show();
 		});
 		
-		status_item_fb.on("click",function(){
-			popup_wrap_2.hide();
-			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
+// 		status_item_fb.on("click",function(){
+// 			popup_wrap_2.hide();
+// 			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
+// 		});
+		
+		$(".status_item_fb").on("click",function(){
+			var sizeNo = $(this).children("input[name=sizeNo]").val();
+			var goodsNo = $("input[name=goodsNo]").val();
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/favoriteAction.do",		
+				method: "POST",
+				data: {"goodsNo":goodsNo,
+					   "sizeNo":sizeNo},
+				cache : false,
+				success : function(data){
+					alert("성공");
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});	
 		});
 		
 		</script>

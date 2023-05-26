@@ -72,31 +72,33 @@
 								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<input type="checkbox" class="filter_list_top f_div" id="" name="신발" value="신발" >
-											<div class="item">신발</div>
+											<div class ="item_top">
+												<input type="checkbox" class="filter_list_top f_div" id="shoese" name="신발" value="신발" >
+												<span class="item">신발</span>
+											</div>
 											<ul class="filter_child_list" id="shoese">
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="스니커즈" value="스니커즈" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="스니커즈" >
 													<div class="item">스니커즈</div>	
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="플랫" value="플랫" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="플랫" >
 													<div class="item">플랫</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="로퍼" value="로퍼" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="로퍼" >
 													<div class="item">로퍼</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="더비" value="더비" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="더비" >
 													<div class="item">더비</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="힐" value="힐" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="힐" >
 													<div class="item">힐</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="부츠" value="부츠" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="부츠" >
 													<div class="item">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
@@ -408,39 +410,42 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
-		
+	
 		
 	//좌측 필터 카테고리 ajax
 		$('.f_div').on('change',function(){
-			
-			
 			if($(this).is(':checked')==true){
-				
+// 				alert($(this).val());
 				filter.push($(this).val());
 				value = 1;	
-				filter_ajax(filter,value);
-
-			}else{
+			}
+			
+			else{
 				for(var i =0; i<filter.length; i++){
 					if(filter[i]==$(this).val()){
 						filter.splice(i,1);
 // 						i--;
 					}
-				};
-				if(filter.length > 0){
-					value = 1;
-					filter_ajax(filter,value);
-				}else{
-					filter.push("1");
-					value =0;
-					filter_ajax(filter,value);
-					filter.pop();
-				}
+				}	
 			}
+			if(filter.length > 0){
+				value = 1;
+			}else{
+				value =0;
+			}
+			
+// 			filter_ajax(filter,value);
 		});
+		
+		
+		
+		
 
 		function filter_ajax(filter,value){
-
+// 			var filter = new Array();
+// 			var item = $(".teg_item_btn");
+// 			for(var i=0;i<item.length;i++)
+// 				filter.push(item.val());
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
@@ -475,7 +480,6 @@
 		});
 	
 		function align_ajax(filter,value,index){
-
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/itemAlign.do",		
 				method: "POST",

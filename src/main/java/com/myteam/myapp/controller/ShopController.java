@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,8 @@ public class ShopController {
 	
 
 	@RequestMapping(value = "/shopMain.do")
-	public String shopMain(Model model) {
+	public String shopMain() {
 		
-
 		return "shop/shopMain";
 	}
 
@@ -57,7 +58,7 @@ public class ShopController {
 //좌측 필터버튼  ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
-			@RequestParam(value="filter[]") List<String> filter,
+			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			Model model
 			) {
@@ -82,5 +83,21 @@ public class ShopController {
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/favoriteAction.do")
+	public JSONObject favoriteAction(
+			@RequestParam("goodsNo") int goodsNo,
+			@RequestParam("sizeNo") int sizeNo,
+			HttpSession session) {
+		
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		
+		JSONObject obj = new JSONObject();
+		
+		
+		return null;
 	}
 }

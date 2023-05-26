@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +26,13 @@
 					</div>
 				</div>
 				<ul class="status_item_list">
-					<li class="status_item_fb">
-						<span class="item_size_fb" style="font-size:14px">사이즈</span>
-						<span class="item_price_fb"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-					</li>
+					<c:forEach var="sizeList" items="${sizeList}">
+						<li class="status_item_fb">
+							<input type="hidden" name="sizeNo" value="${sizeList.sizeNo}"/>
+							<span class="item_size_fb" style="font-size:14px">${sizeList.sizeName}</span>
+							<span class="item_price_fb"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
