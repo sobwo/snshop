@@ -106,13 +106,10 @@
 		<include refid="search_pors"/>
 		<include refid="search_status"/>
 	</select>
-<!-- 	<insert id ="saveTotalPrice"parameterType="double">
-			INSERT INTO orders(totalPrice)values(#{totalPrice})
-	</insert> -->
+
 	
-	
-		<insert id="orderInsert" parameterType="ov">
-			INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
-			VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
-		</insert>
+	<insert id="orderInsert" parameterType="ov">
+		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
+		VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
+	</insert>
 </mapper>
