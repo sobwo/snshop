@@ -1,13 +1,14 @@
-$(document).ready(function(){});
-			
-			
 //사이즈버튼
-	var sizePick_btn = $(".sizePick_btn");
-	var popup_cancel = $(".popup_cancel");
-	var popup_wrap = $(".shopContent_popup_wrap");
-	var status_item_s = $(".status_item_s");
-	var size_view = $(".size_view");
-	var price_view = $(".price_view");
+var sizePick_btn = $(".sizePick_btn");
+var popup_cancel = $(".popup_cancel");
+var popup_wrap = $(".shopContent_popup_wrap");
+var status_item_s = $(".status_item_s");
+var size_view = $(".size_view");
+var price_view = $(".price_view");
+
+$(document).ready(function(){});
+					
+
 
 popup_wrap.css('height',window.outerHeight);
 
