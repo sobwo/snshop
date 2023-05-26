@@ -53,7 +53,7 @@
 		</choose>
 	</sql>
 	
-	<select id="goodsSelectAll" resultType="gv">
+	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
 	</select>
@@ -66,21 +66,21 @@
 		select * from productImg where goodsNo = #{goodsNo} order by imgNo asc
 	</select>
 	
-	<select id="filterList" parameterType="java.util.List" resultType="piv">
+	<select id="filterList" parameterType="java.util.List" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
  
 		<include refid="searchCategory" />
 	</select>
 	
-	<select id="alignList" parameterType="java.util.List" resultType="piv">
+	<select id="alignList" parameterType="java.util.List" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
 		<include refid="searchCategory" />
 		<include refid="align" />
 	</select>
 	
-	<select id="recommentList" parameterType="hashMap" resultType="piv">
+	<select id="recommentList" parameterType="hashMap" resultType="pd">
 		
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
@@ -111,7 +111,7 @@
 		<include refid="setInterest"></include>
 	</update>
 	
-	<select id="selectInterestAll" parameterType="Integer" resultType="iv">
+	<select id="selectInterestAll" parameterType="Integer" resultType="id">
 	select a.goodsNo, a.goodsName, a.price, b.size from goods a inner join interest b on a.goodsNo = b.goodsNo where b.memberNo = #{0}
 	</select>
 

@@ -72,31 +72,33 @@
 								<div class="filter_list_area">
 									<ul class="filter_list">
 										<li class="filter_list_in">
-											<input type="checkbox" class="filter_list_top f_div" id="" name="신발" value="신발" >
-											<div class="item">신발</div>
+											<div class ="item_top">
+												<input type="checkbox" class="filter_list_top f_div" id="shoese" name="신발" value="신발" >
+												<span class="item">신발</span>
+											</div>
 											<ul class="filter_child_list" id="shoese">
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="스니커즈" value="스니커즈" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="스니커즈" >
 													<div class="item">스니커즈</div>	
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="플랫" value="플랫" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="플랫" >
 													<div class="item">플랫</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="로퍼" value="로퍼" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="로퍼" >
 													<div class="item">로퍼</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="더비" value="더비" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="더비" >
 													<div class="item">더비</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="힐" value="힐" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="힐" >
 													<div class="item">힐</div>
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="부츠" value="부츠" >
+													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="부츠" >
 													<div class="item">부츠</div>
 												</li>							
 											</ul><!-- filter_child_list -->		
@@ -371,30 +373,7 @@
 						</form>
 					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
-							<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
-								<input class ="count_pro" type="hidden" value = "${status.count}">
-								<div class="product_item_wrap">
-									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
-										<div class="pro_img_area">
-											${goodsList.imgFileName}
-											<img class="pro_img" src="">
-										</div>
-										<div class="pro_name_area">
-											<ul>
-												<li class="pro_brand" >"${goodsList.goodsBrandName}"</li>
-												<li class="pro_name1" >${goodsList.goodsName}"</li>
-												<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
-											</ul>
-										</div>
-									</div><!-- product_item -->
-								<div class="pro_icon_area">
-										<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-									<span>${goodsList.interestNum}</span>
-									<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
-										<span>123</span>
-								</div>
-								</div><!-- product_item_wrap -->
-							</c:forEach>
+
 						</div><!-- product_area -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
@@ -408,6 +387,10 @@
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
 		$(document).ready(function(){
+			filter.push("1");
+			value =0;
+			filter_ajax(filter,value);
+			filter.pop();
 			
 		});
 		
@@ -427,43 +410,42 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
-		
+	
 		
 	//좌측 필터 카테고리 ajax
 		$('.f_div').on('change',function(){
-			
-			
 			if($(this).is(':checked')==true){
-				
+// 				alert($(this).val());
 				filter.push($(this).val());
-				
-					
-					if(filter.length > 0) value = 1;
-					else value =0;
-				
-				filter_ajax(filter,value);
-
-			}else{
+				value = 1;	
+			}
+			
+			else{
 				for(var i =0; i<filter.length; i++){
 					if(filter[i]==$(this).val()){
 						filter.splice(i,1);
-						alert(filter);
 // 						i--;
 					}
-				};
-				if(filter.length > 0){
-					filter_ajax(filter,value);
-				}else{
-					filter.push("1");
-					value =0;
-					filter_ajax(filter,value);
-					filter.pop();
-				}
+				}	
 			}
+			if(filter.length > 0){
+				value = 1;
+			}else{
+				value =0;
+			}
+			
+// 			filter_ajax(filter,value);
 		});
+		
+		
+		
+		
 
 		function filter_ajax(filter,value){
-
+// 			var filter = new Array();
+// 			var item = $(".teg_item_btn");
+// 			for(var i=0;i<item.length;i++)
+// 				filter.push(item.val());
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
@@ -471,7 +453,6 @@
 					   "value":value},
 				cache : false,
 				success : function(data){
-					$(".product_area").empty();
 					$(".product_area").html(data);
 				},
 				error : function(request,status,error){
@@ -486,23 +467,19 @@
 	//정렬 ajax
 		
 		$('.btn_list_item').on('click',function(){
-			
-			
-			index = $('.btn_list_item').index(this);
-			
-			if(filter.length > 0) {value = 1;
+			index = $('.btn_list_item').index(this);			
+			if(filter.length > 0){
+				value = 1;
 				align_ajax(filter,value,index);
-			}else{filter.push("1");
-			value =0;
-			align_ajax(filter,value,index);
-			filter.pop();
+			}else{
+				filter.push("1");
+				value =0;
+				align_ajax(filter,value,index);
+				filter.pop();
 			}
-			
-
 		});
 	
 		function align_ajax(filter,value,index){
-
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/itemAlign.do",		
 				method: "POST",
@@ -511,7 +488,6 @@
 					   "index":index},
 				cache : false,
 				success : function(data){
-					$(".product_area").empty();
 					$(".product_area").html(data);
 				},
 				error : function(request,status,error){

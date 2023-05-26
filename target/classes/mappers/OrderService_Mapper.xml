@@ -77,20 +77,20 @@
 		WHERE ADDRESSNO=#{addressNo}
 	</update>
 	
-	<select id="purchaseInfo" parameterType="Integer" resultType="ov">
+	<select id="purchaseInfo" parameterType="Integer" resultType="od">
 		SELECT * 
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
 		WHERE MEMBERNO = #{0} AND PORS = '구매'
 	</select>
 		
-	<select id="saleInfo" parameterType="Integer" resultType="ov">
+	<select id="saleInfo" parameterType="Integer" resultType="od">
 		SELECT * 
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
 		WHERE MEMBERNO = #{0} AND PORS = '판매'
 	</select>
 	
 	
-	<select id="selectHistoryAll" parameterType="Integer" resultType="ov">
+	<select id="selectHistoryAll" parameterType="Integer" resultType="od">
 		SELECT b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
 		WHERE MEMBERNO = #{1} 
@@ -106,13 +106,10 @@
 		<include refid="search_pors"/>
 		<include refid="search_status"/>
 	</select>
-<!-- 	<insert id ="saveTotalPrice"parameterType="double">
-			INSERT INTO orders(totalPrice)values(#{totalPrice})
-	</insert> -->
+
 	
-	
-		<insert id="orderInsert" parameterType="ov">
-			INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
-			VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
-		</insert>
+	<insert id="orderInsert" parameterType="ov">
+		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
+		VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
+	</insert>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.AddressVo;
+import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
@@ -99,21 +100,21 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public OrderVo purchaseInfo(int memberNo) {
-		OrderVo ov = osm.purchaseInfo(memberNo);
-		return ov;
+	public OrderDto purchaseInfo(int memberNo) {
+		OrderDto od = osm.purchaseInfo(memberNo);
+		return od;
 	}
 
 	@Override
-	public OrderVo saleInfo(int memberNo) {
-		OrderVo ov = osm.saleInfo(memberNo);
-		return ov;
+	public OrderDto saleInfo(int memberNo) {
+		OrderDto od = osm.saleInfo(memberNo);
+		return od;
 	}
 
 
 	@Override
-	public ArrayList<OrderVo> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
-		ArrayList<OrderVo> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
+	public ArrayList<OrderDto> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
+		ArrayList<OrderDto> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
 		
 		return alist;
 	}

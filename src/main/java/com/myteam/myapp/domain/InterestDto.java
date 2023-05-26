@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class InterestVo{
+public class InterestDto extends GoodsVo{
 	private int memberNo, goodsNo;
 	private String size;
 	

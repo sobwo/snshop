@@ -21,62 +21,66 @@ import com.myteam.myapp.service.StyleService;
 @Controller
 @RequestMapping(value = "/style")
 public class StyleController {
-	
+
 	@Autowired
 	ShopService ss;
 	@Autowired
 	MemberService ms;
 	@Autowired
 	StyleService ss1;
-	
+/*
 	@RequestMapping(value = "/style_following.do")
-	public String styleFollowing(	HttpSession session) {
-		
-//		ArrayList<BoardVo> blist = select ÇÔ¼ö
-		/*
+	public String styleFollowing(Model model) {
+
+
+		 * ArrayList<BoardVo> blist= ss1.boardSelectAll();
+		 * 
+		 * 
 		 * int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		 */
+		 * 
+		 * model.addAttribute("blist", blist);
+		 * 
+		 * return "style/style_following";
 		
-		
-	
-		 ArrayList<BoardVo> blist = ss1.boardSelectAll();
-		 
-			/* model.addAttribute("blist",blist);*/
-		 
-		 return "style/style_following";
 	}
-	
+*/
 	@RequestMapping(value = "/style_discover.do")
 	public String styleMain() {
-		
+
 		return "style/style_discover";
 	}
-	
+
 	@RequestMapping(value = "/style_discover_newest.do")
 	public String styleDiscoverNewest() {
-		
+
 		return "style/style_discover_newest";
 	}
-	
 
-	
 	@RequestMapping(value = "/style_favorite.do")
-	public String styleFavorite(
-			@RequestParam("contents")String contents,
-			@RequestParam("contentsImg")String contentsImg,
-			@RequestParam("delyn") String delyn,
-			@RequestParam("likeCnt")String likeCnt,
-			@RequestParam("viewCnt")String viewCnt,
-			@RequestParam("memberNo")int memberNo,
-			HttpSession session, 
-			Model model){
-				
-			
-			
-		
-		
-	
-		
+	public String styleFavorite(@RequestParam("boardNo") int boardNo, Model model) {
+
+		/* BoardVo bv = ss1.boardSelectAll(boardNo); */
+
+		/*
+		 * @RequestParam("boardNo") String boardNo,
+		 * 
+		 * @RequestParam("contents")String contents,
+		 * 
+		 * @RequestParam("contentsImg")String contentsImg,
+		 * 
+		 * @RequestParam("delyn") String delyn,
+		 * 
+		 * @RequestParam("likeCnt")String likeCnt,
+		 * 
+		 * @RequestParam("viewCnt")String viewCnt,
+		 * 
+		 * @RequestParam("memberNo")int memberNo, HttpSession session, Model model){
+		 * 
+		 * int member = Integer.parseInt(session.getAttribute("memberNo").toString());
+		 * 
+		 * ss1.boardSelectAll()
+		 */
+
 		return "style/style_favorite";
 	}
 

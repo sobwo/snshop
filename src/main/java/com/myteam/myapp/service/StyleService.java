@@ -9,5 +9,4 @@ public interface StyleService {
 
 	public ArrayList<BoardVo> boardSelectAll();
 
-
 }

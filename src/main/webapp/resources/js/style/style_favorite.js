@@ -40,3 +40,6 @@ reply_comment_btn = $(".reply_comment_btn");
 reply_comment_btn.on("click",function(){
 comment.val("#"+$(this).parent('div').siblings('a').text());
 });
+
+
+

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
@@ -25,14 +28,10 @@ public class ShopController {
 	@Autowired
 	ShopService ss;
 	
-//硫붿씤 珥덇린 �긽�뭹 由ъ뒪�듃
-	@RequestMapping(value = "/shopMain.do")
-	public String shopMain(Model model) {
-		
-		ArrayList<GoodsVo> goodsList = ss.goodsSelectAll();
-		
-		model.addAttribute("goodsList", goodsList);
 
+	@RequestMapping(value = "/shopMain.do")
+	public String shopMain() {
+		
 		return "shop/shopMain";
 	}
 
@@ -45,7 +44,7 @@ public class ShopController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
 
-		ArrayList<GoodsVo> recommentList = ss.recommentList(gv);
+		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
 		ArrayList<SizeVo>sizeList = ss.sizeList(goodsNo);
 		
 		model.addAttribute("sizeList",sizeList);
@@ -57,22 +56,22 @@ public class ShopController {
 		return "shop/shopContents";
 	}
 	
-//醫뚯륫 移댄뀒怨좊━ �븘�꽣 ajax	
+//좌측 필터버튼  ajax	
 	@RequestMapping(value="/categoryFilter.do")
 	public String categoryFilter(
-			@RequestParam(value="filter[]") List<String> filter,
+			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> filterList = ss.filterList(filter,value);
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value);
 
 		model.addAttribute("goodsList", filterList);
 		
 		return "shop/shopMain_item";
 	}
 	
-//�긽�뭹 由ъ뒪�듃 �젙�젹 ajax	
+//상품 정렬  ajax	
 	@RequestMapping(value="/itemAlign.do")
 	public String itemAlign(
 			@RequestParam(value="filter[]") List<String> filter,
@@ -81,9 +80,25 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> alignList = ss.alignList(filter, value, index);
+		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index);
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/favoriteAction.do")
+	public JSONObject favoriteAction(
+			@RequestParam("goodsNo") int goodsNo,
+			@RequestParam("sizeNo") int sizeNo,
+			HttpSession session) {
+		
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		
+		JSONObject obj = new JSONObject();
+		
+		
+		return null;
 	}
 }
