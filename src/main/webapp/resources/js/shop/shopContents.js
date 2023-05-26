@@ -15,7 +15,7 @@ sizePick_btn.click(function(){
 });
 
 status_item_s.on("click",function(){
-	size_view.text($(this).find('span.item_size_s').text());
+	size_view.val($(this).find('span.item_size_s').text());
 	popup_wrap_1.hide();
 });
 

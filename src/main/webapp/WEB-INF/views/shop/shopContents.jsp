@@ -25,7 +25,6 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
-					<input type="hidden" name="sizeName" class="sizeName" value="">
 					<!-- <input type="hidden" name="size" value="" -->
 					<div class="productImg_area">
 						<div class="productImage">
@@ -54,8 +53,7 @@
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-									<span class="size_view">사이즈 표시
-									</span>
+									<input type="text" class="size_view" name="sizeName" class="sizeName" value="사이즈 표시">
 									<button type="button" class="sizePick_btn" name="sizePick">
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>

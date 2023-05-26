@@ -10,11 +10,21 @@
 <link
 	href=" ${pageContext.request.contextPath}/resources/css/order/orderPage.css"
 	rel="stylesheet">
-<style>
-.nav_list:nth-child(3) a {
-	font-weight: bold;
-}
-</style>
+	<style>
+	.nav_list:nth-child(3) a {
+		font-weight: bold;
+	}
+	
+	#card{
+		background-image:url("${pageContext.request.contextPath}/resources/image/card.png");
+	}
+	#kakaopay{
+		background-image:url("${pageContext.request.contextPath}/resources/image/kakaopay.png");
+	}
+	#vBank{
+		background-image:url("${pageContext.request.contextPath}/resources/image/bankBook.png");
+	}
+	</style>
 </head>
 <body>
 	<c:set var="total" value="${total}" />
@@ -26,7 +36,7 @@
 					<div class="product_info_area" style="background-color: #fff;">
 						<div class="product_info">
 							<div class="product">
-								<img src="" ; style="width: 80px" height:80px; background>
+								<img src="" style="width: 80px;height:80px;">
 							</div>
 							<div class="product_detail">
 
@@ -34,7 +44,7 @@
 								<p class="model_title"> ${gv.goodsName}</p>
 								<p class="model_ko">${gv.modelNum}</p>
 								<div class="model_desc">
-									<p class="size_txt">270</p>
+									<p class="size_txt">${sizeName}</p>
 								</div>
 							</div>
 						</div>
@@ -254,6 +264,22 @@
 						</div> 
 						<hr>
 					</div>
+					
+					<div class="payMethod">
+						<h3 class="title_txt1 title_pay">결제 방법</h3>
+						<div class="method_title">
+							<div class="pay_box" id="card">신용카드
+								<input type="hidden" class="method" value="off">
+							</div>
+							<div class="pay_box" id="kakaopay">카카오페이
+								<input type="hidden" class="method" value="off">
+							</div>
+							<div class="pay_box" id="vBank">무통장입금
+								<input type="hidden" class="method" value="off">
+							</div>
+						</div>
+					</div>
+					
 					<div class="agree_wrap">
 						<div class="agree">
 							<p>
@@ -290,9 +316,7 @@
 							</div>
 						</div>
 									
- 						<button class="payment-button" id="payment-button" disabled onclick="orderInsert()">결제하기
-<%-- 							onclick="location.href='${pageContext.request.contextPath}/order/orderFinish.do?goodsNo=${gv.goodsNo}&t_Total=${t_Total}'">결제하기--%>
-							
+ 						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기
 						</button>					
 					</div>
 				</div>
@@ -301,11 +325,16 @@
 	</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/order/orderPage.js"></script>
-	<script>	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/order/orderPage.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+    <script>
+    
+	    var total = ${total};
+		var btnimg = document.querySelector('.btnimg');
+		var btnimg2 = document.querySelector('.btnimg2');
+		
  		$(document).ready(function() {
  			var price = "${price}";
  			
@@ -319,6 +348,47 @@
 				del2Element.text("3,000");
 			}
 		});
+ 		
+ 		document.getElementById("all_use").addEventListener("click",function() {
+			var pointCost = ${mv.point};
+
+			var goodsNo = ${gv.goodsNo};
+			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+pointCost);
+		});
+ 		
+
+		$("button[name=modifyBtn]").on("click", function() {
+			popup_wrap.show();
+			var index = $(this).val();
+			showAddress(index);
+		});
+		
+		$(".pay_box").on("click",function(){
+			payCntCheck();
+			var method = $(this).children(".method");
+			
+			if(method.val() == "off"){
+				$(this).css("border","2px solid #222");
+				method.val("on");
+			}
+			else{
+				$(this).css("border","1px solid #ebebeb");
+				method.val("off");
+			}
+       	});
+		
+		$(".point_view").on("propertychange change keyup paste input", function() {
+			const maxPoint = parseInt('${mv.point}');
+
+			let inputValue = parseInt($(this).val());
+
+			if (inputValue < 0) {
+				$(this).val(0);
+			} else if (inputValue > maxPoint) {
+				$(this).val(maxPoint);
+			}
+
+		});
 		
 		function submit_address() {
 			var fm = document.frm;
@@ -327,17 +397,6 @@
 			fm.submit();
 		}
 		
-
-
-
-
-
-		$("button[name=modifyBtn]").on("click", function() {
-			popup_wrap.show();
-			var index = $(this).val();
-			showAddress(index);
-		});
-
 		function showAddress(index) {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/order/order_showAddress.do",
@@ -359,16 +418,6 @@
 			});
 		}
 		
-		var total = ${total};
-		var btnimg = document.querySelector('.btnimg');
-		var btnimg2 = document.querySelector('.btnimg2');
-		
-		document.getElementById("all_use").addEventListener("click",function() {
-			var pointCost = ${mv.point};
-
-			var goodsNo = ${gv.goodsNo};
-			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+pointCost);
-		});
 
 		function applyDirectInput() {
 			var result = document.getElementById("result").value;
@@ -377,40 +426,164 @@
 			var goodsNo = ${gv.goodsNo};
 			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result);
 		}
-
-		$(".point_view").on("propertychange change keyup paste input", function() {
-			const maxPoint = parseInt('${mv.point}');
-
-			let inputValue = parseInt($(this).val());
-
-			if (inputValue < 0) {
-				$(this).val(0);
-			} else if (inputValue > maxPoint) {
-				$(this).val(maxPoint);
-			}
-
-		});
 		
-	/* 	function payInfoChangeValue(){
+		function orderPay(){
+			var goodsNo = "${gv.goodsNo}";
+			var goodsName = "${gv.goodsName}";
+			var name = "${av.userName}";
+			var phone = "${av.addressPhone}";
+			var price = "${price}";
 			
-			var value_str = document.getElementById('payInfo_value');
-			alert("value:"+value_str.options[value_str.selectedIndex].value +
-		"text:"+ value_str.options[value_str.selectedIndex].text);
+			
+			
+			for(var i=0; i<$(".method").length; i++){
+				if($(".method").eq(i).val() == "on"){
+					if($(".method").eq(i).closest(".pay_box").attr("id") == "card")
+						nicePay(goodsNo,goodsName,name,phone,price);
+					else if($(".method").eq(i).closest(".pay_box").attr("id") == "kakaopay")
+						kakaoPay(goodsNo,goodsName,name,phone,price);
+					else
+						vPay(goodsNo,goodsName,name,phone,price);
+				}
 			}
+		}
 		
-		 */
-		 var selectedValue;
-		 docment.getElementById("payInfo_value").addEventListener("change",function(){
-			 selectedValue = this.value;
-			 console.log("선택한 값: " + selectedValue);
-		 });
-		
-
 		function orderInsert(){
 			var info = document.info;
 			info.method = "POST";
-			info.action = "${pageContext.request.contextPath}/order/orderFinish.do";
+			info.action = "${pageContext.request.contextPath}/order/orderFinish.do?sizeName=${sizeName}";
 			info.submit();
+		}
+		
+		function kakaoPay(goodsNo,goodsName,name,phone,price) {
+	        // getter
+	        IMP.init('imp23228257');
+
+	        IMP.request_pay({
+	            pg: 'kakaopay.TC0ONETIME',
+	            merchant_uid: goodsNo + new Date().getTime(),
+	            name: goodsName,
+	            amount: price,
+	            buyer_name: name,
+	            buyer_tel: phone,
+	        }, function (rsp) {
+	            console.log(rsp);
+	            if (rsp.success) {
+	                var msg = '결제가 완료되었습니다.';
+	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            } else {
+	                var msg = '결제에 실패하였습니다.';
+	                msg += '에러내용 : ' + rsp.error_msg;
+	            }
+	            alert(msg);
+	        
+	        });
+	    }
+		
+		function nicePay(goodsNo,goodsName,name,phone,price){
+	        IMP.init('imp23228257');
+	    	
+	        IMP.request_pay({
+	            pg: 'nice.nictest00m',
+	            pay_method: 'card',
+	            merchant_uid: goodsNo + new Date().getTime(),
+	            name: goodsName,
+	            amount: price,
+	            buyer_name: name,
+	            buyer_tel: phone,
+	        }, function (rsp) {
+	            console.log(rsp);
+	            if (rsp.success) {
+	                var msg = '결제가 완료되었습니다.';
+	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            } else {
+	                var msg = '결제에 실패하였습니다.';
+	                msg += '에러내용 : ' + rsp.error_msg;
+	            }
+	            alert(msg);
+	        });
+	    }
+		
+		function vPay(goodsNo,goodsName,name,phone,price){
+			var today = new Date();   
+
+			var year = today.getFullYear().toString(); // 년도
+			var month = (today.getMonth() + 1).toString();  // 월
+			var date = (today.getDate()+3).toString();  // 날짜
+			
+			var vday = year+month+date;
+	        IMP.init('imp23228257');
+	    	
+	        IMP.request_pay({
+	            pg: 'nice',
+	            pay_method: 'vbank',
+// 	            vbank_due: vday,
+// 	            vbank_holder : '소병운',
+// 	            vbank_num : '50108456179234',
+	            merchant_uid: goodsNo + new Date().getTime(),
+	            name: goodsName,
+	            amount: price,
+	            buyer_name: name,
+	            buyer_tel: phone,
+	        }, function (rsp) {
+	            if (rsp.success) {
+	            	var msg = '결제가 완료되었습니다.';
+	            	payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            } else {
+	                var msg = '결제에 실패하였습니다.';
+	                msg += '에러내용 : ' + rsp.error_msg;
+	            }
+	            alert(msg);
+	        });
+	    }
+		
+		function payCntCheck(){
+			var cnt = 0;
+			var length = $(".pay_box").length;
+			var method_val = $(".pay_box").children(".method");
+			for(var i=0;i<length;i++){
+				if(method_val.eq(i).val() == "on")
+					cnt++;
+			}
+			
+			if(cnt>0){
+				for(var i=0;i<length;i++){
+					method_val.eq(i).val("off");
+					$(".pay_box").eq(i).css("border","1px solid #ebebeb");
+				}
+			}
+		}
+		
+		function payAjax(merchant_uid,paid_amount,phone){
+			var payInfo = $("#payInfo_value").val();
+			var addressNo = $("input[name=addressNo]").val();
+			var goodsNo = $("input[name=goodsNo]").val();
+			var sizeName = "${sizeName}";
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/order/orderInsert.do",		
+				method: "POST",
+				data: {"orderNum" : merchant_uid,
+					   "totalPrice" : paid_amount, 
+					   "payInfo" : payInfo,
+					   "addressNo" : addressNo,
+					   "goodsNo" : goodsNo,
+					   "sizeName" : sizeName,
+					   "memberPhone" : phone
+					  },
+				dataType : "json",
+				success : function(data){
+					if(data.value==1){
+					    location.href="${pageContext.request.contextPath}/order/orderFinish.do";
+					}
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});	
 		}
 	</script>
 </body>

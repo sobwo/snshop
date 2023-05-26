@@ -91,10 +91,6 @@
 					$("#phone_msg").hide();
 				}
 			});
-		    
-
-	        
-	        
 	        
 	        /* 주소추가*/
        	$("#basic_AddrNum").click(function(){
@@ -106,7 +102,7 @@
        			}
        		}).open();
        	});
-	    
+       	
 
 
 	    
