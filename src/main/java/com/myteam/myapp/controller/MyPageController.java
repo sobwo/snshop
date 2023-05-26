@@ -276,6 +276,7 @@ public class MyPageController {
 
 		return str; 
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/infoChange.do")
 	public String infoChange(
@@ -309,13 +310,13 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<LikesVo> llist = bs.likesInfo(memberNo);
-				
 		ArrayList<BoardVo> blist = bs.boardList(memberNo);
-		
+				
 		model.addAttribute("mv", mv);
-		model.addAttribute("llist", llist);
 		model.addAttribute("blist", blist);
+		
+		for(BoardVo bv : blist)
+			System.out.println(bv.getLike_check());
 	
 		return "myPage/myStyle";
 	}
@@ -324,7 +325,6 @@ public class MyPageController {
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
 	public JSONObject like_check(
 			@RequestParam("boardNo")int boardNo,
-			@RequestParam("like_check")int like_check,
 			LikesVo lv,
 			HttpSession session) throws Exception{
 
@@ -332,7 +332,6 @@ public class MyPageController {
 		
 		lv.setBoardNo(boardNo);
 		lv.setMemberNo(memberNo);
-		lv.setLike_check(like_check);
 		
 	    int value = bs.likesList(lv);
 	    
@@ -345,10 +344,30 @@ public class MyPageController {
 	        bs.updateLike(lv);
 	    }
 		
-		int totalCnt = bs.likesTotalCnt(lv.getBoardNo());  // boardNo Cnt
+	    int cnt = bs.likesCnt(memberNo, boardNo);
+	    
+		int totalCntUpdate = bs.likesTotalCntUpdate(lv.getBoardNo());
 		
 		JSONObject json = new JSONObject();
 	    json.put("value", value);
+	    json.put("cnt", cnt);
+	    json.put("totalCntUpdate", totalCntUpdate);
+	    
+	    return json;
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/likeTotalCnt.do" , method=RequestMethod.GET)
+	public JSONObject likeTotalCnt(
+			@RequestParam("boardNo")int boardNo,
+			BoardVo bv,
+			HttpSession session) throws Exception{
+	    
+		int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
+
+		JSONObject json = new JSONObject();
+	    json.put("totalCntUpdate", totalCntUpdate);
+	    
 	    return json;
 	}
 	

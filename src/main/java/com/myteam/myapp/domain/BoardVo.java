@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class BoardVo {
+public class BoardVo extends LikesVo{
 	private int boardNo;
 	private String contents; 
 	private String contentsImg; 

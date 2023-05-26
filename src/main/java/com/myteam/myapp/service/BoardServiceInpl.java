@@ -42,13 +42,20 @@ public class BoardServiceInpl implements BoardService{
 	}
 	
 	@Override
-	public ArrayList<LikesVo> likesInfo(int memberNo) {
-		 
-		ArrayList<LikesVo> llist = bsm.likesInfo(memberNo);
+	public int likesList(LikesVo lv) {
 		
-		 return llist;
+		int value = bsm.likesList(lv);
+		
+		return value;
 	}
 
+	@Override
+	public int likesCnt(int memberNo, int boardNo) {
+		
+		int value = bsm.likesCnt(memberNo, boardNo);
+		
+		return value;
+	}
 	@Override
 	public int insertLike(LikesVo lv) {
 		
@@ -64,20 +71,20 @@ public class BoardServiceInpl implements BoardService{
 		
 		return value;
 	}
-	
+
+	@Override
+	public int likesTotalCntUpdate(int boardNo) {
+
+		int value = bsm.likesTotalCntUpdate(boardNo);
+		
+		return value;
+	}
+
+
 	@Override
 	public int likesTotalCnt(int boardNo) {
 
 		int value = bsm.likesTotalCnt(boardNo);
-		
-		return value;
-
-	}
-
-	@Override
-	public int likesList(LikesVo lv) {
-		
-		int value = bsm.likesList(lv);
 		
 		return value;
 	}

@@ -16,5 +16,6 @@
 	<typeAlias alias="pv" type="com.myteam.myapp.domain.PointVo"/>
 	<typeAlias alias="mpv" type="com.myteam.myapp.domain.MemberPointVo"/>
 	<typeAlias alias="iv" type="com.myteam.myapp.domain.InterestVo"/>
+	<typeAlias alias="ld" type="com.myteam.myapp.domain.LikesDto"/>
 </typeAliases>
 </configuration>
