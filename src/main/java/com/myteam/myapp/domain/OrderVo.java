@@ -1,32 +1,26 @@
 package com.myteam.myapp.domain;
 
-import oracle.sql.TIMESTAMP;
-
-public class OrderVo extends GoodsVo{	
+public class OrderVo{	
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 
-	private int orderNum; 
+	private String orderNum; 
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
-	
-
-	
-	
-
-
-	private TIMESTAMP orderDays;
+	private String orderDays;
 	private String size;
 	private String pors;
 	private String orderStatus;
 	private String statusDetail;
 	private String orderstatus;
+	private String memberPhone;
 	
-	public TIMESTAMP getOrderDays() {
+
+	public String getOrderDays() {
 		return orderDays;
 	}
-	public void setOrderDays(TIMESTAMP orderDays) {
+	public void setOrderDays(String orderDays) {
 		this.orderDays = orderDays;
 	}
 	public String getSize() {
@@ -77,10 +71,10 @@ public class OrderVo extends GoodsVo{
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public int getAddressNo() {
@@ -100,6 +94,12 @@ public class OrderVo extends GoodsVo{
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+	public String getMemberPhone() {
+		return memberPhone;
+	}
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
 	}
 	
 }

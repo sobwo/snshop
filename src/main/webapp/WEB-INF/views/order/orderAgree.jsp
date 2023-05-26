@@ -35,7 +35,7 @@
 							<%-- <strong class="modelNumber"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/></strong> --%>
 							<p class="modelName">${gv.goodsName}</p>
 							<%-- <p class="modelName">${gv.price}</p> --%>
-							<p class="modelSize">230</p>
+							<p class="modelSize">${sizeName}</p>
 						</div>				
 					</div>
 					<div class="buyCheckBox">
@@ -69,7 +69,7 @@
 						</li>
 					</ul>
 					<div class="confirmBtn">
-						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do?goodsNo=${gv.goodsNo}'">
+						<input type="button" name="buyContinue" id="buyContinue" value="구매 계속" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/order/orderPage.do?goodsNo=${gv.goodsNo}&sizeName=${sizeName}'">
 					</div>
 				</div>
 				</div>	

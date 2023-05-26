@@ -11,14 +11,15 @@ public interface BoardService_Mapper {
 
 	public ArrayList<BoardVo> boardList(int memberNo);
 	
-	public ArrayList<LikesVo> likesInfo(int memberNo);
+	public int likesList(LikesVo lv);
+
+	public int likesCnt(int memberNo, int boardNo);
 
 	public int insertLike(LikesVo lv);
 	
 	public int updateLike(LikesVo lv);
 	
-	public int likesTotalCnt(int boardNo);
+	public int likesTotalCntUpdate(int boardNo);
 
-	public int likesList(LikesVo lv);
-	
+	public int likesTotalCnt(int boardNo);
 }

@@ -52,13 +52,13 @@
 					</li>
 				</ul>
 			</div>
-			<c:choose>
-				<c:when test="${not empty blist}">
-					<div class="feedContainer">
+			
+			<div class="feedContainer">
+				<c:choose>
+					<c:when test="${not empty blist}">
+						<div class="feed_wrap">
 						<c:forEach var="bv" items="${blist}" varStatus="status">
-						<c:if test="${status.count % 4 == 1}">
-			                <div class="feedRow">
-			            </c:if>
+						
 							<div class="feeds" >
 								<div class="feedPost" id="feedPost${bv.boardNo}">
 									<div class="feedPostImage" onclick="location.href='#'">
@@ -88,91 +88,101 @@
 									<div class="feedPostUser">
 										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
 										<p class="userName">${mv.memberId}</p>
-										
-									<c:choose>
-									
-										<c:when test="${not empty sessionScope.memberNo}">  <!-- 로그인 상태일 때 하트 클릭 가능 -->
-											<span class="likeBox">
-												<button type="button" class="likeImage" value="${bv.boardNo}"><img src="${pageContext.request.contextPath}/resources/image/heart${lv.like_check}.png/"></button>
-						 						<input type="hidden" id="like_check${bv.boardNo}" value="${lv.like_check}">	
-												<span class="likeCount">${lv.like_check}</span>
-											</span>
-									 	</c:when>
-										
-										<c:otherwise>
-											<span class="likeBox">  <!-- 버튼 클릭 시 로그인 페이지로  -->
-												<button type="button" class="likeImageLogin" value="${bv.boardNo}"><img src="${pageContext.request.contextPath}/resources/image/heart.png/"></button>	
-												<span class="likeCount">${bv.likeCnt}</span>
-											</span>
-										</c:otherwise>
-										
-									</c:choose>					
+										<span class="likeBox">
+											<button type="button" class="likeImage" value="${bv.boardNo}">
+												<c:choose>
+													<c:when test="${bv.like_check == 0}">
+														<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart.png/">
+													</c:when>
+													<c:when test="${bv.like_check eq 1}">
+														<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart2.png/">
+													</c:when>
+													<c:otherwise>
+														<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart.png/">
+													</c:otherwise>
+												</c:choose>
+											</button>
+											<span class="likeCount">${bv.likeCnt}</span>
+										</span>					
 									</div>
 									<div class="feedPostContent" onclick="location.href='#'">
 										<p>${bv.contents}</p>
 									</div>
 								</div>
 							</div>
-						<c:if test="${status.count % 4 == 0}">
-		              		</div>
-		           		</c:if>	
 						</c:forEach>
-					</div>
-				</c:when>
+						</div>
+					</c:when>
+				
 				<c:otherwise>
-				<div class="feedEmpty">
-					<div>
-						<img class="feedEmptyImage" src="${pageContext.request.contextPath}/resources/image/camera.png">
-						<strong class="EmptyTxt">게시물 없음</strong>
-						<p class="EmptySubTxt">사진을 공유하면 내 프로필에 표시됩니다.</p>
+					<div class="feedEmpty">
+						<div>
+							<img class="feedEmptyImage" src="${pageContext.request.contextPath}/resources/image/camera.png">
+							<strong class="EmptyTxt">게시물 없음</strong>
+							<p class="EmptySubTxt">사진을 공유하면 내 프로필에 표시됩니다.</p>
+						</div>
+						<input type="button" class="feedFirstShare" value="첫 사진 공유" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle_upload.do'">
 					</div>
-					<input type="button" class="feedFirstShare" value="첫 사진 공유" onclick="location.href='${pageContext.request.contextPath}/myPage/myStyle_upload.do'">
+				</c:otherwise>
+				</c:choose>		
 				</div>
-				</c:otherwise>	
-			</c:choose>		
-		</div>
+			</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
 		$(document).ready(function() {
-			
-			  $(".likeImage").click(function() {
-					var clickImage = $(this);
-					var boardNo = $(this).val();
-					var memberNo = <%= session.getAttribute("memberNo") %>;
-					var value = $("#like_check"+boardNo).val();
-					
-					value = value === "0" ? 1 : 0;
+			 
+		});
+		
+		 $(".likeImage").click(function() {
+				var boardNo = $(this).val();
+				var clickImage = $(this).children("#likeImageChange");
 
-			    $.ajax({
-			        type: "POST",
-			        url: "${pageContext.request.contextPath}/myPage/like_check.do",
-			        dataType: "json",
-			        data: {
-						"boardNo": boardNo,
-						"like_check": value,
-			    	    "memberNo": memberNo
-			        	},
-			        cache: false,
-			        success: function(data) {	
-			        	console.log(data);
-			        	
-						if (data.like_check == 1) {
-			            	clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
-			          
-			         	}else {
-			         		clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart.png/");
-			          
-			         	}
-			          
-			          alert("좋아요");
-			        },
-			        error: function() {
-			          alert("실패");
-			        }
-			      });
-			    });
-			  });
+		    $.ajax({
+		        type: "POST",
+		        url: "${pageContext.request.contextPath}/myPage/like_check.do",
+		        dataType: "json",
+		        data: {
+					"boardNo": boardNo,
+		        	},
+		        cache: false,
+		        success: function(data) {	
+		        	
+					if (data.cnt == 1) {
+						clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
+		          
+		         	}else {
+		         		clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart.png/");
+		          
+		         	}
+		        },
+		        error: function() {
+		        }
+		      });
+    
+		    $.ajax({
+		        type: "GET",
+		        url: "${pageContext.request.contextPath}/myPage/likeTotalCnt.do",
+		        dataType: "json",
+		        data: {
+					"boardNo": boardNo,
+		        	},
+		        cache: false,
+		        success: function(data) {	
+		        	
+					alert("Cnt 성공")
+					
+					likeTotalCnt(data.totalCnt);
+					$(".likeCount").text(data.totalCnt);
+		        },
+		        error: function() {
+
+		            alert("Cnt 실패");
+		        }
+		      });
+		    
+		    });
+
 		</script>
 	</body>
 </html>
