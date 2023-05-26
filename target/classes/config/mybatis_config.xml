@@ -16,14 +16,11 @@
 	<typeAlias alias="pv" type="com.myteam.myapp.domain.PointVo"/>
 	<typeAlias alias="mpv" type="com.myteam.myapp.domain.MemberPointVo"/>
 	<typeAlias alias="iv" type="com.myteam.myapp.domain.InterestVo"/>
-<<<<<<< HEAD
+	
+	
 	<typeAlias alias="ld" type="com.myteam.myapp.domain.LikesDto"/>
-=======
-	
-	
 	<typeAlias alias="od" type="com.myteam.myapp.domain.OrderDto"/>
 	<typeAlias alias="pd" type="com.myteam.myapp.domain.ProductDto"/>
 	<typeAlias alias="id" type="com.myteam.myapp.domain.InterestDto"/>
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 </typeAliases>
 </configuration>

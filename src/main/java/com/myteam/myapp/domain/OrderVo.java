@@ -8,34 +8,20 @@ public class OrderVo{
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
-<<<<<<< HEAD
-	
-//	private TIMESTAMP orderDays;
-=======
-
 	private String orderDays;
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	private String size;
 	private String pors;
 	private String orderStatus;
 	private String statusDetail;
 	private String orderstatus;
 	
-<<<<<<< HEAD
-//	public TIMESTAMP getOrderDays() {
-//		return orderDays;
-//	}
-//	public void setOrderDays(TIMESTAMP orderDays) {
-//		this.orderDays = orderDays;
-//	}
-=======
+
 	public String getOrderDays() {
 		return orderDays;
 	}
 	public void setOrderDays(String orderDays) {
 		this.orderDays = orderDays;
 	}
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	public String getSize() {
 		return size;
 	}
