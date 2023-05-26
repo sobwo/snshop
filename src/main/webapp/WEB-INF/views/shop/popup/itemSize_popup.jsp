@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-- 팝업창 -->
-	<div class="popup_wrap shopContent_popup_wrap" style="display:none">
+	<div class="popup_wrap shopContent_popup_wrap" style="display:none;">
 		<div class="popup shopContent_popup">
 			<div class="popup_head">
 				<h2 class="popup_name">사이즈</h2>
@@ -19,7 +19,7 @@
 				<ul class="status_item_list">
 					<c:forEach var="sizeList" items="${sizeList}">
 						<li class="status_item_s">
-							<span class="item_size_s" style="font-size:14px">${sizeList.sizeName}</span>
+							<span class="item_size_s">${sizeList.sizeName}</span>
 						</li>
 					</c:forEach>
 				</ul>

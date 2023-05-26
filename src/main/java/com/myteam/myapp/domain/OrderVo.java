@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class OrderVo extends GoodsVo{	
+public class OrderVo{	
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 

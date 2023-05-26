@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
@@ -43,7 +44,7 @@ public class ShopController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
 
-		ArrayList<GoodsVo> recommentList = ss.recommentList(gv);
+		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
 		ArrayList<SizeVo>sizeList = ss.sizeList(goodsNo);
 		
 		model.addAttribute("sizeList",sizeList);
@@ -63,7 +64,7 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> filterList = ss.filterList(filter,value);
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value);
 
 		model.addAttribute("goodsList", filterList);
 		
@@ -79,7 +80,7 @@ public class ShopController {
 			Model model
 			) {
 		
-		ArrayList<GoodsVo> alignList = ss.alignList(filter, value, index);
+		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index);
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";
