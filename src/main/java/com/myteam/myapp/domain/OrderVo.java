@@ -8,7 +8,6 @@ public class OrderVo{
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
-
 	private String orderDays;
 	private String size;
 	private String pors;
@@ -17,6 +16,7 @@ public class OrderVo{
 	private String orderstatus;
 	private String memberPhone;
 	
+
 	public String getOrderDays() {
 		return orderDays;
 	}
