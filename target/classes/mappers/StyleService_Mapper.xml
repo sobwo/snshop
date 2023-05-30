@@ -5,18 +5,10 @@
 
 
 <select id="boardSelectAll" parameterType="int" resultType="bv">
-	<!-- select * from Board innerjoin where memberNo not in {memberNo} and memberNo and memberNo=  -->
-<!-- select * from board (조인 sql) where memberNo not in {로그인시 memberNo(나)} and memberNo = (select followingMemberNo from following where memberNo = {})		 -->
-	SELECT * FROM board where memberNo = (select followingMemberNo from following where memberNo = 27)
-
-
-<!-- SELECT * FROM board ORDER BY boardNo ASC; -->
-<!--    select boardNo,contents,CONTENTSIMG,delyn,writeday,likecnt,viewCnt from board -->
-
-
-
+	select * from board a join member b on a.memberNo = b.memberNo where a.memberNo in (select followingMemberNo from following where memberNo = #{memberNo})
+									<!-- = -> in -->
 </select>
-
+<!-- <select id="" -->
 
 
 

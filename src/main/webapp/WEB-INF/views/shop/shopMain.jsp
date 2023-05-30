@@ -36,94 +36,6 @@
 								<span>반팔</span>
 							</div><!-- trendName -->
 						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
 					</div><!-- trend_con_area -->
 				</section><!-- trend_container -->
 	<!-- 좌측 필터  -->
@@ -153,29 +65,54 @@
 												<input type="checkbox" class="filter_list_top f_div" id="shoese" name="신발" value="신발" >
 												<span class="item">신발</span>
 											</div>
+<<<<<<< HEAD
 											<ul class="filter_child_list" id="shoese">
+=======
+											<ul class="filter_child_list">
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 												<li class="filter_child_list_in">
+<<<<<<< HEAD
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="스니커즈" >
 													<div class="item">스니커즈</div>	
+=======
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="스니커즈" >
+													<div class="item">스니커즈</div>   
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 												</li>
 												<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="플랫" >
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="플랫" >
 													<div class="item">플랫</div>
 												</li>
 												<li class="filter_child_list_in">
+<<<<<<< HEAD
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="로퍼" >
+=======
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="로퍼" >
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">로퍼</div>
 													</li>
 												<li class="filter_child_list_in">
+<<<<<<< HEAD
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="더비" >
+=======
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="더비" >
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">더비</div>
 												</li>
 												<li class="filter_child_list_in">
+<<<<<<< HEAD
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="힐" >
+=======
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="힐" >
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">힐</div>
 												</li>
 												<li class="filter_child_list_in">
+<<<<<<< HEAD
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="부츠" >
+=======
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="부츠" >
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">부츠</div>
 												</li>                     
 											</ul><!-- filter_child_list -->      
@@ -458,8 +395,8 @@
 						</div><!-- product_top -->
 						
 						<form name="frm">
-						<div class="filter_teg_area">
-						</div><!-- filter_teg_area -->
+							<div class="filter_teg_area">
+							</div><!-- filter_teg_area -->
 						</form>
 					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
@@ -493,15 +430,12 @@
 				slidesToShow : 8,		// 한 화면에 보여질 컨텐츠 개수
 				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
 				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-				arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-				dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
+				arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
+				dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
 				autoplay : true,			// 자동 스크롤 사용 여부
 				autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
 				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 				vertical : false,		// 세로 방향 슬라이드 옵션
-				prevArrow : "<button type='button' class='trend_pre_btn'>Previous</button>",		// 이전 화살표 모양 설정
-				nextArrow : "<button type='button' class='trend_next_btn'>Next</button>",		// 다음 화살표 모양 설정
-				dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
 				draggable : true, 	//드래그 가능 여부 
 			});
 		});
@@ -522,6 +456,7 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
+<<<<<<< HEAD
 	
 		
 	//좌측 필터 카테고리 ajax
@@ -553,11 +488,11 @@
 		
 		
 
+=======
+		
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		function filter_ajax(filter,value){
-// 			var filter = new Array();
-// 			var item = $(".teg_item_btn");
-// 			for(var i=0;i<item.length;i++)
-// 				filter.push(item.val());
+
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
@@ -576,6 +511,7 @@
 			});
 		}
 		
+
 	//정렬 ajax
 		
 		$('.btn_list_item').on('click',function(){

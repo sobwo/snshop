@@ -8,11 +8,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -349,61 +351,53 @@ public class MyPageController {
 	    
 		int totalCntUpdate = bs.likesTotalCntUpdate(lv.getBoardNo());
 		
+		int totalCnt = bs.likesTotalCnt(lv.getBoardNo());
+		
 		JSONObject json = new JSONObject();
 	    json.put("value", value);
 	    json.put("cnt", cnt);
-	    json.put("totalCntUpdate", totalCntUpdate);
-	    
-	    return json;
-	}
-
-	@ResponseBody
-	@RequestMapping(value="/likeTotalCnt.do" , method=RequestMethod.GET)
-	public JSONObject likeTotalCnt(
-			@RequestParam("boardNo")int boardNo,
-			BoardVo bv,
-			HttpSession session) throws Exception{
-	    
-		int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
-
-		JSONObject json = new JSONObject();
-	    json.put("totalCntUpdate", totalCntUpdate);
+	    json.put("totalCnt", totalCnt);
 	    
 	    return json;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/displayFile.do", method=RequestMethod.GET)
-	public ResponseEntity<byte[]> displayFile(String contentsImg) throws Exception {
+	public ResponseEntity<byte[]> displayFile(@RequestParam("contentsImg") List<String> contentsImgs) throws Exception {
 	    InputStream in = null;
-	    ResponseEntity<byte[]> entity = null;
+	    List<ResponseEntity<byte[]>> entities = new ArrayList<>();
 
 	    try {
-	        String formatName = contentsImg.substring(contentsImg.lastIndexOf(".") + 1);
-	        MediaType mediaType = MediaUtils.getMediaType(formatName);
-
 	        HttpHeaders headers = new HttpHeaders();
+	        String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
 
-	        String uploadPath = "D:/dav1230/uploadFiles"; // 임시
-	        in = new FileInputStream(uploadPath + contentsImg);
+	        for (String contentsImg : contentsImgs) {
+	            in = new FileInputStream(uploadPath + contentsImg);
 
-	        if (mediaType != null) {
-	            headers.setContentType(mediaType);
-	        } else {
-	            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-	            headers.add("Content-Disposition", "attachment; filename=\"" +
-	                    new String(contentsImg.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+	            String formatName = contentsImg.substring(contentsImg.lastIndexOf(".") + 1);
+	            MediaType mediaType = MediaUtils.getMediaType(formatName);
+
+	            if (mediaType != null) {
+	                headers.setContentType(mediaType);
+	            } else {
+	                headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	                headers.add("Content-Disposition", "attachment; filename=\"" +
+	                        new String(contentsImg.getBytes("UTF-8"), "ISO-8859-1") + "\"");
+	            }
+
+	            entities.add(new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED));
+
+	            in.close();
 	        }
-
-	        entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-	    } finally {
-	        in.close();
+	        return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 	    }
 
-	    return entity;
+	    return ResponseEntity.status(HttpStatus.OK)
+	            .contentType(MediaType.APPLICATION_JSON)
+	            .body(entities.stream().flatMap((ResponseEntity<byte[]> entity) ->
+	                    Stream.ofNullable(entity.getBody())).reduce(new byte[0], ArrayUtils::addAll));
 	}
 
 	@RequestMapping(value = "/myStyle_upload.do")
@@ -420,7 +414,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "D:/dav1230/uploadFiles"; // 임시
+		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {

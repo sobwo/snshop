@@ -1,13 +1,21 @@
 package com.myteam.myapp.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.maven.model.Model;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myteam.myapp.domain.BoardVo;
@@ -17,6 +25,7 @@ import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.ShopService;
 import com.myteam.myapp.service.StyleService;
+import com.myteam.myapp.util.MediaUtils;
 
 @Controller
 @RequestMapping(value = "/style")
@@ -28,22 +37,30 @@ public class StyleController {
 	MemberService ms;
 	@Autowired
 	StyleService ss1;
-/*
-	@RequestMapping(value = "/style_following.do")
-	public String styleFollowing(Model model) {
 
-
-		 * ArrayList<BoardVo> blist= ss1.boardSelectAll();
-		 * 
-		 * 
-		 * int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		 * 
-		 * model.addAttribute("blist", blist);
-		 * 
-		 * return "style/style_following";
+	/*
+	 * @RequestMapping(value = "/style_following.do") public String
+	 * styleFollowing(HttpSession session) {
+	 
+	 * ArrayList<BoardVo> blist= ss1.boardSelectAll(); 
+	 * int memberNo = Integer.parseInt(model.getAttribute("memberNo").toString());
+	 * 
+	 * return "style/style_following";
+	 * 
+	 * }
+	 */
+	@RequestMapping(value = "/style_following.do",method=RequestMethod.GET)
+	
+	public String styleFollowing(HttpSession session,Model model) {
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		 ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
+		 model.addAttribute("blist", blist);
 		
+
+		 return "style/style_following";
+	    
 	}
-*/
+
 	@RequestMapping(value = "/style_discover.do")
 	public String styleMain() {
 
@@ -56,32 +73,17 @@ public class StyleController {
 		return "style/style_discover_newest";
 	}
 
-	@RequestMapping(value = "/style_favorite.do")
-	public String styleFavorite(@RequestParam("boardNo") int boardNo, Model model) {
-
-		/* BoardVo bv = ss1.boardSelectAll(boardNo); */
-
-		/*
-		 * @RequestParam("boardNo") String boardNo,
-		 * 
-		 * @RequestParam("contents")String contents,
-		 * 
-		 * @RequestParam("contentsImg")String contentsImg,
-		 * 
-		 * @RequestParam("delyn") String delyn,
-		 * 
-		 * @RequestParam("likeCnt")String likeCnt,
-		 * 
-		 * @RequestParam("viewCnt")String viewCnt,
-		 * 
-		 * @RequestParam("memberNo")int memberNo, HttpSession session, Model model){
-		 * 
-		 * int member = Integer.parseInt(session.getAttribute("memberNo").toString());
-		 * 
-		 * ss1.boardSelectAll()
-		 */
-
-		return "style/style_favorite";
-	}
-
+//	@RequestMapping(value = "/style_favorite.do")
+//	public String styleFavorite( 
+//		@RequestParam("boardNo")int boardNo,Model model) { 
+//			BoardVo bv = ss1.boardSelectOne(boardNo);
+//
+//	
+//		return "style/style_favorite";
+//	}
+	/*
+	 * @RequestMapping(value = "/style_comment.do") public String style_comment(
+	 * 
+	 * @RequestParam(""){ }
+	 */
 }
