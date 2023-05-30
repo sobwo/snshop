@@ -1,10 +1,10 @@
 package com.myteam.myapp.domain;
 
-<<<<<<< HEAD
+
 public class BoardVo extends MemberVo{
-=======
-public class BoardVo extends LikesVo{
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
+	/* public class BoardVo extends LikesVo{ */
+
 	private int boardNo;
 	private String contents; 
 	private String contentsImg; 
@@ -62,4 +62,7 @@ public class BoardVo extends LikesVo{
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-}
+
+	 }
+
+

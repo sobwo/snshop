@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>팔로우</title>
+		<title>팔로잉</title>
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
 		<style>
@@ -48,13 +48,13 @@
 					            	<!--상단 프로필 사진 -->
 					            	<img class="user_img" src="" alt="">
 					            	<div class="user_id_wrap">
-					            		<a class="user_id" href="#">${blist.memberId}</a>
-						                <p class="write_date"> ${blist.writeday} </p>
+					            		<a class="user_id" href="#"> ${blist.memberId} </a>
+						                <p class="write_date">  ${blist.writeday}  </p>
 									</div>
 					            </div>
 					            <!-- 팔로우 버튼 -->
 					            <div class="button_wrap">
-									<button class="follow-button" class="btn">팔로우</button>
+									<button class="follow-button" class="btn">팔로잉</button>
 								</div>        
 							</div>
 							
@@ -87,17 +87,29 @@
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
 					    		<div class="social_btn_left">
-					    			<img class="like_btn" src="${pageContext.request.contextPath}/resources/image/heart3.png">
-					    			<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick="comment_btn('${blist.memberId}', '${blist.contents}')">
+				    			
+				    				
+					    		 <span class="likeBox" onclick="like();">
+  										<img class="like_btn" id="like_btn" src='${pageContext.request.contextPath}/resources/image/heart.png'>
+								</span> 
+									<span class="commentBox">
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick="comment_btn('${blist.memberId}', '${blist.contents}')">	
+									</span>
+	
+					    				
+			    				<!-- 	</button> -->	
 					    		</div>
+					
+						
 					    		<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png">
+					    		
 					    	</div>
 					    	
+					    
 					    	<!-- 좋아요 카운트 -->
 					    	<div class="social_count">
-					    		<span>좋아요&nbsp;<strong>${blist.likeCnt}</strong>개</span>
-					    	</div>
-					    	
+					    		<span >좋아요&nbsp;<strong> ${blist.likeCnt} </strong>개</span>                        
+               			 	</div>
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
@@ -114,6 +126,86 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
+		<script>
+ 		var imgChange = document.getElementById("like_btn");
+		var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png';
+		var toggleImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
+
+		function like() {
+		  if (imgChange.getAttribute('src') === currentImage) {
+		    imgChange.setAttribute('src', toggleImage);
+		  } else {
+		    imgChange.setAttribute('src', currentImage);
+		  }
+		}
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/* 		$(document).ready(function(){
+			
+		});
+			${".likeImage2"}.click(function(){
+				var boardNo = $(this)val();
+				var clickImage = $(this).children("#like_btn");
+			
+		$.ajax({
+			type:"POST"
+			url: "${pageContext.request.contextPath}/style/likebtn_check.do",
+			dataType:"json",
+			data:{
+				"boardNo":boardNo,
+			},
+			cache:false,
+			success:function(data){
+				if(data.cnt == 1){
+					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart2.png/");
+				}else{
+					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart.png/");
+				}
+			},
+			error:function(){
+				
+			}
+		});
+		$.ajax({
+			type:"GET",
+			url:${pageContext.request.contextPath}/style/like_TotalCnt.do",
+			dataType:"json",
+			data:{
+				"boardNo":boardNo,
+		},
+		cache:false,
+		success: function(data){
+			alert("1")
+			likeTotalCnt(data.totalCnt);
+			${".likeCount"}.text(data.totalCnt);
+		},
+		error:function(){
+			alert("Cnt 실패");
+		}
+		
+		
+		});
+		});
+		 */
+
+			
+			
+			
+		</script>
 	</body>
 </html>
 

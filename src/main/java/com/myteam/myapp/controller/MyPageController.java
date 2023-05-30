@@ -317,7 +317,8 @@ public class MyPageController {
 		model.addAttribute("blist", blist);
 		
 		for(BoardVo bv : blist)
-			System.out.println(bv.getLike_check());
+		/*	System.out.println(bv.getLike_check());*/
+			System.out.println(bv.getLikeCnt());
 	
 		return "myPage/myStyle";
 	}
