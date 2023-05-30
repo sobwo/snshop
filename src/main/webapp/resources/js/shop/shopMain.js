@@ -1,7 +1,7 @@
 $(document).ready(function(){
-   filter_cnt();
+   filter_cnt()
 });
-
+      
    //좌측 필터 + - 버튼 
       var filter_btn = $(".filter_btn");
       var filter_allSelect = $(".filter_allSelect");
@@ -39,46 +39,51 @@ $(document).ready(function(){
       });
    
    
-	//필터 개수 세기
-		function filter_cnt(){
-			var total_cnt = $('.f_div:checked').length;
-			$("#total_cnt").text(total_cnt);
+   //   필터 개수 세기
+      function filter_cnt(){
+         var total_cnt = $('.f_div:checked').length;
+         $("#total_cnt").text(total_cnt);
       }
-	//상위 카테고리 체크
+		
+	//상위 카테고리 클릭
       $(".item_top").on("click",function(){
          var plist_check = $(this).children(".filter_list_top");
-         
+         var childList = $(this).siblings(".filter_child_list");
+
          if(plist_check.is(":checked")==true) {
-            $(this).siblings(".filter_child_list").show();
-            $(this).siblings(".filter_child_list").find(".f_div").prop('checked',false);
-            
+            childList.show();
+           	childList.find(".f_div").prop('checked',false);
          }
          else {
             plist_check.prop('checked',false);
-            $(this).siblings(".filter_child_list").hide();
+            childList.hide();
          }
          
-         addList($(this));
+		addList($(this));
+		filterList();
       });
-     
-	//하위 카테고리 체크
+      
+    //하위 카테고리 클릭
       $(".filter_child_list_in").on("click",function(){
 		var clist_check = $(this).children(".f_div");
 		var category = clist_check.prop('name');
-		var child_cnt = $('.'+category+':checked').length;
+		var child_list = $(this).parent('.filter_child_list');
+		var item_top = child_list.siblings('.item_top');
 		
          if(clist_check.is(":checked")==true) {
             $("#"+category).prop('checked',false);
          }
-         else if(child_cnt==0){
-            $(this).closest(".filter_child_list").hide();
-         }
-
-<<<<<<< HEAD
+         else{
+         	if($("."+category+':checked').length==0)$(this).closest(".filter_child_list").hide();
+         };
+         
+		addList(item_top);
 		addList($(this));
-
+		filterList();
       });
-           
+      
+      
+      
       function addList(index) {
          var value;
          var name_div = index.children(".f_div");
@@ -91,7 +96,7 @@ $(document).ready(function(){
             }
             
             if(check==0) {
-            value = "<div class='teg_item' name='" + name_div.val() + "'>" + name_div.val() + "</span>";
+            value = "<div class='teg_item' name='" + name_div.val() + "'><span>" + name_div.val()+"</span>";
             value += "<button class='teg_item_btn'>X</button></div>";
             $(".filter_teg_area").append(value);
             }
@@ -100,137 +105,42 @@ $(document).ready(function(){
             $("div[name="+name_div.val()+"]").detach();
          }
       }
-      
-
-      
+   
+	//클릭시 filter배열 추가	
+		function filterList(){
+			var teg = $(".teg_item");
+			filter= [];
+			
+			for(var i =1;i<teg.length+1;i++){
+				var f_div = $(".teg_item:nth-child("+i+")");
+				var span = f_div.children('span').text();		
+				filter.push(span);
+			}
+			alert(filter);
+		}
+		
+   
    // 체크박스 옆 글자 클릭시
       
       $('.item').on('click',function(){
          
          var checkbox = $(this).siblings('.f_div');
+         
          if(checkbox.is(':checked') == true){
-            checkbox.prop("checked", false).change();
+            checkbox.prop("checked", false);
          }else{
-            checkbox.prop("checked", true).change();
+            checkbox.prop("checked", true);
          }
       });
+      
       
    //태그 div 버튼 클릭시 삭제 및 클릭 해제
       $(document).on('click','.teg_item_btn',function(){
          var name = $(this).parent('div').attr('name');
-         $("input:checkbox[name='"+name+"']").prop("checked",false).change();
+         $("input:checkbox[value='"+name+"']").prop("checked",false);
          $(this).parent('div').detach();
       });
       
-=======
-//	// 상위 카테고리 체크시
-//		$('.filter_list_top').on('change',function(){
-//			
-//			var child_list = $(this).siblings('.filter_child_list');
-//			var child_id = child_list.prop('id');
-//			if($(this).is(':checked')==true) {
-//				child_list.show();
-//				$('.'+child_id).prop('checked',false).change();
-//			}else if($('.'+child_id+':checked').length > 0){
-//			}else { child_list.hide();
-//			}
-//		});
-//	//하위 카테고리 체크시 	
-//		$('.filter_list_bottom').on('change',function(){
-//			var child_list = $(this).parents('.filter_child_list');
-//			var filter_top = child_list.siblings('.filter_list_top');
-//			var child_id = child_list.prop('id');
-//			if($(this).is(':checked')==true) {
-//				filter_top.prop('checked',false).change();
-//			}else{}
-//		});
-		
-		$(".item_top").on("click",function(){
-			var plist_check = $(this).children(".filter_list_top");
-			
-			if(plist_check.is(":checked")==true) {
-				$(this).siblings(".filter_child_list").show();
-				$(this).siblings(".filter_child_list").find(".f_div").prop('checked',false);
-				
-			}
-			else {
-				plist_check.prop('checked',false);
-				$(this).siblings(".filter_child_list").hide();
-			}
-			
-			addList($(this));
-		});
-		
-		$(".filter_child_list_in").on("click",function(){
-			var clist_check = $(this).children(".f_div");
-			var category = clist_check.prop('name')
-			if(clist_check.is(":checked")==true) {
-				$("#"+category).prop('checked',false);
-			}
-			else {
-				$(this).closest(".filter_child_list").hide();
-			}
-			addList($(this));
-		});
-		
-		
-		function addList(index) {
-			var value;
-			var name_div = index.children(".f_div");
-			var check = 0;
-			
-			if(name_div.is(':checked')==true) {
-				for(var i=0;i<=$(".teg_item").length;i++) {
-					if(name_div.val()==$(".teg_item").eq(i).attr('name'))
-						check = 1;
-				}
-				
-				if(check==0) {
-				value = "<div class='teg_item' name='" + name_div.val() + "'>" + name_div.val() + "</span>";
-				value += "<button class='teg_item_btn'>X</button></div>";
-				$(".filter_teg_area").append(value);
-				}
-			}
-			else {
-				$("div[name="+name_div.val()+"]").detach();
-			}
-		}
-		
-//	//체크시 div 생성
-//		$('.f_div').on('change',function(){
-//			
-//			if($(this).is(':checked')==true) {
-//				var value = "<div class='teg_item' name='"+$(this).prop('name')+"'>"+$(this).prop('name')+"</span>";
-//				value = value + "<button class='teg_item_btn'>X</button></div>";
-//				$(".filter_teg_area").append(value);
-//			}else {
-//				$("div[name="+$(this).prop('name')+"]").detach();
-//			}
-//			
-//			filter_cnt();
-//		});
-		
-	// 체크박스 옆 글자 클릭시
-		
-		$('.item').on('click',function(){
-			
-			var checkbox = $(this).siblings('.f_div');
-			
-			if(checkbox.is(':checked') == true){
-				checkbox.prop("checked", false).change();
-			}else{
-				checkbox.prop("checked", true).change();
-			}
-		});
-		
-	//태그 div 버튼 클릭시 삭제 및 클릭 해제
-		$(document).on('click','.teg_item_btn',function(){
-			var name = $(this).parent('div').attr('name');
-			$("input:checkbox[name='"+name+"']").prop("checked",false).change();
-			$(this).parent('div').detach();
-		});
-		
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 
 //   //좌측 필터 성별
