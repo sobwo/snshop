@@ -7,19 +7,33 @@ follow_button.on("click",function(){
 });
 
 //팝업버튼
-var comment_btn = $(".comment_btn");
+/*var comment_btn = $(".comment_btn");*/
 var popup_wrap = $(".popup_wrap");
 var cancel_popup = $(".cancel_popup");
 
 popup_wrap.css('height',window.outerHeight);
-
+/*
 comment_btn.on("click",function(){
 	popup_wrap.show();
 });
-
+*/
 cancel_popup.click(function(){
 	popup_wrap.hide();
 });
+/*
+function comment_btn(id,content){
+	popup_wrap.show();
+	$(".user_id").text(id);
+	${".content_top").text(content);
+	
+}
+*/
+function comment_btn(id, content) {
+    popup_wrap.show();
+    $(".user_id").text(id);
+    $(".content_top").text(content);
+}
+
 
 //댓글쓸때 css변경
 var comment = $(".comment_input");
@@ -41,5 +55,7 @@ reply_comment_btn.on("click",function(){
 comment.val("#"+$(this).parent('div').siblings('a').text());
 });
 
+
+/* 하트색상?*/
 
 
