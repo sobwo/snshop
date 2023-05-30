@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "utf-8";
 
 .totalsize {
 	width: 1902px;
@@ -21,7 +21,7 @@
 	width: 700px;
 	padding: 32px;
 	margin: 0;
-	/* È®ÀÎÇØ¾ßÇÔ*/
+	/* í™•ì¸í•´ì•¼í•¨*/
 	box-sizing: border-box;
 }
 
@@ -33,7 +33,7 @@
 	width: 100%;
 	background-color: #fff;
 	margin-top: -10px;
-	/* È®ÀÎÇØ¾ßÇÔ*/
+	/* í™•ì¸í•´ì•¼í•¨*/
 }
 
 .product {
@@ -496,4 +496,43 @@ button.active {
 
 .basic_checkTitle {
 	font-size: 15px;
+}
+
+.payMethod{
+	padding: 32px;
+	background:#fff;
+	margin-top:12px;
+}
+
+.title_pay{
+	padding:0;
+}
+
+.method_title{
+	display:flex;
+	justify-content:space-between;
+	padding-top:32px;
+}
+
+.pay_box{
+	width:170px;
+	height:43px;
+	padding:7px 7px 8px 11px;
+	border:1px solid #ebebeb;
+	border-radius:12px;
+	font-size:14px;
+	font-weight:normal;
+	display:flex;
+	align-items:center;
+	background-position: 90% center;
+	background-size: 45px;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+#card{
+	background-size: 35px;
+}
+
+#kakaopay{
+	background-size: 50px;
 }

@@ -4,7 +4,7 @@ public class OrderDto extends GoodsVo{
 	private int orderNo;
 	private String payInfo ;
 	private int totalPrice; 
-	private int orderNum; 
+	private String orderNum; 
 	private int addressNo ;
 	private int goodsNo; 
 	private int memberNo;
@@ -15,6 +15,7 @@ public class OrderDto extends GoodsVo{
 	private String orderStatus;
 	private String statusDetail;
 	private String orderstatus;
+	private String memberPhone;
 	
 	public String getOrderDays() {
 		return orderDays;
@@ -70,10 +71,10 @@ public class OrderDto extends GoodsVo{
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getOrderNum() {
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(int orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
 	public int getAddressNo() {
@@ -94,5 +95,10 @@ public class OrderDto extends GoodsVo{
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
-	
+	public String getMemberPhone() {
+		return memberPhone;
+	}
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
+	}
 }

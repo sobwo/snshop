@@ -25,8 +25,19 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
+<<<<<<< HEAD
+
 					<input type="hidden" name="sizeName" class="sizeName" value="">
+
+
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					<!-- <input type="hidden" name="size" value="" -->
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -54,9 +65,24 @@
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-									<span class="size_view">사이즈 표시
-									</span>
+<<<<<<< HEAD
+
+									<span class="size_view">사이즈 표시</span>
+=======
+									<input type="text" class="size_view" name="sizeName" class="sizeName" value="사이즈 표시">
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 									<button type="button" class="sizePick_btn" name="sizePick">
+<<<<<<< HEAD
+
+
+									<span class="size_view">사이즈 표시
+									 
+									</span>
+									<button class="sizePick_btn" name="sizePick">
+
+
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
 								</div>
@@ -172,36 +198,13 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
 		<script>
-		
 
-		
 		status_item_fb.on("click",function(){
 			popup_wrap_2.hide();
 			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
 		});
-		
-// 		$(".status_item_fb").on("click",function(){
-// 			var sizeNo = $(this).children("input[name=sizeNo]").val();
-// 			var goodsNo = $("input[name=goodsNo]").val();
-// 			$.ajax({
-// 				url: "${pageContext.request.contextPath}/shop/favoriteAction.do",		
-// 				method: "POST",
-// 				data: {"goodsNo":goodsNo,
-// 					   "sizeNo":sizeNo},
-// 				cache : false,
-// 				success : function(data){
-// 					alert("성공");
-// 				},
-// 				error : function(request,status,error){
-// 					alert("다시 시도하시기 바랍니다.");	
-// 					console.log("code: " + request.status);
-// 			        console.log("message: " + request.responseText);
-// 			        console.log("error: " + error);
-// 				}	
-// 			});	
-// 		});
 
-		function buyButton(){	
+		function buyButton(){
 			var fm = document.frm;	
 			fm.action = "${pageContext.request.contextPath}/order/orderAgree.do";
 			fm.enctype ="multipart/form-data";

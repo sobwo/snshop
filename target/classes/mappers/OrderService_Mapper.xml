@@ -109,7 +109,12 @@
 
 	
 	<insert id="orderInsert" parameterType="ov">
-		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS)
-		VALUES(#{payInfo},#{totalPrice},'1',#{addressNo},#{goodsNo},#{memberNo},#{size},'구매')
+		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS,orderstatus,memberPhone)
+		VALUES(#{payInfo},#{totalPrice},#{orderNum},#{addressNo},#{goodsNo},#{memberNo},#{size},'구매','진행중',#{memberPhone})
 	</insert>
+		
+	<select id="orderSelectNew" parameterType="Integer" resultType="od">
+	SELECT * FROM orders a inner join goods b on a.goodsNo = b.goodsNo 
+	where memberNo = 16 ORDER BY orderNo DESC LIMIT 1
+	</select>
 </mapper>

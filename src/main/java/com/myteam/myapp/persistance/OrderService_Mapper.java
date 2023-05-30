@@ -39,7 +39,9 @@ public interface OrderService_Mapper {
 			@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("filter") String filter,
 			@Param("price") String price);
 
-	public int orderInsert(OrderVo ov);  
+	public int orderInsert(OrderVo ov); 
+	
+	public OrderDto orderSelectNew(int memberNo);
 	
 	/* public SizeVo sizeSelectOne(int sizeNo); */
 

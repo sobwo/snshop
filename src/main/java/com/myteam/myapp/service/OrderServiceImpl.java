@@ -127,23 +127,27 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public int orderInsert(int goodsNo, int memberNo, int addressNo, int totalPrice, String payInfo) {
+	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String memberPhone) {
 		OrderVo ov = new OrderVo();
 		ov.setGoodsNo(goodsNo);
 		ov.setMemberNo(memberNo);
 		ov.setAddressNo(addressNo);
 		ov.setTotalPrice(totalPrice);
 		ov.setPayInfo(payInfo);
+		ov.setSize(size);
+		ov.setOrderNum(orderNum);
+		ov.setMemberPhone(memberPhone);
 		
 		int value = osm.orderInsert(ov);
 		
 		return value;
 	}
 
-
-
-
-	
+	@Override
+	public OrderDto orderSelectNew(int memberNo) {
+		OrderDto od = osm.orderSelectNew(memberNo);
+		return od;
+	}
 }
 
 

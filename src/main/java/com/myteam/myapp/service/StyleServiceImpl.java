@@ -12,7 +12,7 @@ import com.myteam.myapp.persistance.StyleService_Mapper;
 @Service("StyleServiceImpl")
 public class StyleServiceImpl implements StyleService {
 
-	/* private StyleService_Mapper ssm; */
+	
 	private StyleService_Mapper ssm1;
 	
 	@Autowired
@@ -22,14 +22,23 @@ public class StyleServiceImpl implements StyleService {
 	
 	}
 	@Override
-	public ArrayList<BoardVo> boardSelectAll() {
+	public ArrayList<BoardVo> boardSelectAll(int memberNo) {
 
-		ArrayList<BoardVo> blist = ssm1.boardSelectAll();
+		ArrayList<BoardVo> blist = ssm1.boardSelectAll(memberNo);
 		
 		return  blist;
 	}
+	@Override
+	public BoardVo boardSelectOne(int boardNo) {
+			
+		 BoardVo bv = new BoardVo();
+		 
+		 bv = ssm1.boardSelectOne(boardNo);
+		return bv;
+	}
 
-
+	
+	
 
 
 
