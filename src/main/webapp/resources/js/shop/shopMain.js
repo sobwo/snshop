@@ -74,7 +74,6 @@ $(document).ready(function(){
             $(this).closest(".filter_child_list").hide();
          }
 
-<<<<<<< HEAD
 		addList($(this));
 
       });
@@ -122,7 +121,6 @@ $(document).ready(function(){
          $(this).parent('div').detach();
       });
       
-=======
 //	// 상위 카테고리 체크시
 //		$('.filter_list_top').on('change',function(){
 //			
@@ -230,7 +228,6 @@ $(document).ready(function(){
 			$(this).parent('div').detach();
 		});
 		
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 
 //   //좌측 필터 성별

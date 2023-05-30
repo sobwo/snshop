@@ -10,6 +10,7 @@ public interface PointService {
 	public int checkCouponUse(String couponNum);
 	public CouponVo selectCoupon(String coupon);
 	public int insertPoint(int memberNo, String index, String coupon) throws Exception;
+	public int usePoint(int memberNo, int point, String useStatus, String useDetail);
 	
 	public ArrayList<PointVo> selectPointAll(int memberNo);
 	public MemberPointVo selectMemberPointAll(int memberNo);

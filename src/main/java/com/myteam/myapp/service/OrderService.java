@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PayVo;
 
 public interface OrderService {
 	//二쇱냼
@@ -27,11 +28,8 @@ public interface OrderService {
 	public int cntHistoryAll(String index, int memberNo,int value,String startDate, String EndDate);
 	public ArrayList<OrderDto> selectHistoryAll(String index, int memberNo, int value,String startDate, String EndDate, String filter,String price);
 
-	
-	
-	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String memberPhone);
+	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String statusDetail, String memberPhone);
 	
 	public OrderDto orderSelectNew(int memberNo);
-	/* public SizeVo sizeSelectOne(int sizeVo); */
 }
 

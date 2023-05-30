@@ -61,6 +61,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/myPage/point.do"/>
+			<mapping path="/order/orderPage.do"/>
 			<beans:ref bean="pointInterceptor"></beans:ref>
 		</interceptor>
 	</interceptors>

@@ -199,12 +199,16 @@
 // 			});	
 // 		});
 
-		function buyButton(){	
-			var fm = document.frm;	
-			fm.action = "${pageContext.request.contextPath}/order/orderAgree.do";
-			fm.enctype ="multipart/form-data";
-			fm.method= "get";
-			fm.submit();
+		function buyButton(){
+			if($(".size_view").val() == "사이즈 표시")
+				alert("사이즈를 선택해주세요.");
+			else{
+				var fm = document.frm;	
+				fm.action = "${pageContext.request.contextPath}/order/orderAgree.do";
+				fm.enctype ="multipart/form-data";
+				fm.method= "get";
+				fm.submit();
+			}
 		};
 		</script>
 	</body>

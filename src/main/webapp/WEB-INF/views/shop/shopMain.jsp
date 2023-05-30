@@ -153,59 +153,29 @@
 												<input type="checkbox" class="filter_list_top f_div" id="shoese" name="신발" value="신발" >
 												<span class="item">신발</span>
 											</div>
-<<<<<<< HEAD
-											<ul class="filter_child_list">
-=======
 											<ul class="filter_child_list" id="shoese">
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 												<li class="filter_child_list_in">
-<<<<<<< HEAD
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="스니커즈" >
-													<div class="item">스니커즈</div>   
-=======
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="스니커즈" >
 													<div class="item">스니커즈</div>	
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 												</li>
-<<<<<<< HEAD
-													<li class="filter_child_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="플랫" >
-												<div class="item">플랫</div>
-													</li>
-													<li class="filter_child_list_in">
-												<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="로퍼" >
-=======
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="플랫" >
 													<div class="item">플랫</div>
 												</li>
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="로퍼" >
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">로퍼</div>
 													</li>
 												<li class="filter_child_list_in">
-<<<<<<< HEAD
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="더비" >
-=======
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="더비" >
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">더비</div>
 												</li>
 												<li class="filter_child_list_in">
-<<<<<<< HEAD
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="힐" >
-=======
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="힐" >
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">힐</div>
 												</li>
 												<li class="filter_child_list_in">
-<<<<<<< HEAD
-													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="부츠" >
-=======
 													<input type="checkbox" class="filter_list_bottom f_div" name="shoese" value="부츠" >
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 													<div class="item">부츠</div>
 												</li>                     
 											</ul><!-- filter_child_list -->      
@@ -552,13 +522,6 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
-<<<<<<< HEAD
-		
-		$('.filter_list_top').on('change',function(){
-			
-			
-			
-=======
 	
 		
 	//좌측 필터 카테고리 ajax
@@ -584,7 +547,6 @@
 			}
 			
 // 			filter_ajax(filter,value);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		});
 		
 		

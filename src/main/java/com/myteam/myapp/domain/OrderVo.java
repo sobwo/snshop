@@ -14,8 +14,7 @@ public class OrderVo{
 	private String orderStatus;
 	private String statusDetail;
 	private String orderstatus;
-	private String memberPhone;
-	
+	private String memberPhone;	
 
 	public String getOrderDays() {
 		return orderDays;
@@ -101,5 +100,4 @@ public class OrderVo{
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
-	
 }
