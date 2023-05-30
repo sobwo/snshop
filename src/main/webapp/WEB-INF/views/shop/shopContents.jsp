@@ -182,7 +182,8 @@
 				alert("사이즈를 선택해주세요.");
 			else{
 				var fm = document.frm;			
-				fm.ectype ="multipart/form-data;
+				fm.ectype ="multipart/form-data";
+				fm.action ="${pageContext.request.contextPath}/order/orderAgree.do";
 				fm.method= "get";
 				fm.submit();
 			}
