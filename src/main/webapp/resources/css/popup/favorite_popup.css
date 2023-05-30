@@ -45,13 +45,13 @@
 	width:400px;
 	padding:10px 20px;
 	display:flex;
-	justify-content:center;
+	justify-content:space-between;
 	align-items:center;
 	flex-wrap: wrap;
 }
 
 .status_item_fb{
-	width:120px;
+	width:110px;
 	height:52px;
 	margin:6px;
 	border:1px solid #ebebeb;

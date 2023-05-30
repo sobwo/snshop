@@ -8,7 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.GoodsVo;
-import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.InterestDto;
+import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.ShopService_Mapper;
@@ -54,17 +55,17 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<GoodsVo>filterList(List<String> filter,int value){
+		public ArrayList<ProductDto>filterList(List<String> filter,int value){
 
-			ArrayList<GoodsVo> filterResult = ssm.filterList(filter,value);
+			ArrayList<ProductDto> filterResult = ssm.filterList(filter,value);
 		
 			return filterResult;
 		}
 		
 		@Override
-		public ArrayList<GoodsVo> alignList(List<String> filter, int value, int index) {
+		public ArrayList<ProductDto> alignList(List<String> filter, int value, int index) {
 			
-			ArrayList<GoodsVo> alignList = ssm.alignList(filter, value, index);
+			ArrayList<ProductDto> alignList = ssm.alignList(filter, value, index);
 			
 			return alignList;
 		}
@@ -86,22 +87,22 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<InterestVo> selectInterestAll(int memberNo) {
+		public ArrayList<InterestDto> selectInterestAll(int memberNo) {
 			
-			ArrayList<InterestVo> ilist = ssm.selectInterestAll(memberNo);
+			ArrayList<InterestDto> ilist = ssm.selectInterestAll(memberNo);
 			
 			return ilist;
 		}
 
 		@Override
-		public ArrayList<GoodsVo> recommentList(GoodsVo gv) {
+		public ArrayList<ProductDto> recommentList(GoodsVo gv) {
 
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 
 			hashMap.put("categoryName", gv.getCategoryName());
 			hashMap.put("goodsNo", gv.getGoodsNo());
 			
-			ArrayList<GoodsVo>recommentList = ssm.recommentList(hashMap);
+			ArrayList<ProductDto>recommentList = ssm.recommentList(hashMap);
 
 			return recommentList;
 		}

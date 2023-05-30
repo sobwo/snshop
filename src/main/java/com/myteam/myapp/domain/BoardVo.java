@@ -1,6 +1,10 @@
 package com.myteam.myapp.domain;
 
+<<<<<<< HEAD
 public class BoardVo extends MemberVo{
+=======
+public class BoardVo extends LikesVo{
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	private int boardNo;
 	private String contents; 
 	private String contentsImg; 

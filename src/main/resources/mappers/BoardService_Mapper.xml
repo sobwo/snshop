@@ -10,20 +10,18 @@
 </insert>
 
 <select id="boardList" parameterType="int" resultType="bv">
-	select*from board where delyn='N' and memberNo=#{memberNo} ORDER BY boardNo DESC
+	select * from board a left outer join likes b on a.boardNo = b.boardNo where a.memberNo = #{memberNo} and a.delYn = 'N' ORDER BY a.boardNo DESC;
 </select>
- 
-<select id="likesInfo" parameterType="Int" resultType="lv">
-	SELECT * FROM likes WHERE memberNo=#{memberNo}
-</select>
-
 
 <select id="likesList" parameterType="lv" resultType="int">
 	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
 </select>
 
-<insert id="insertLike" parameterType="lv"> 
+<select id="likesCnt" parameterType="Integer" resultType="Integer">
+	select like_check from likes where memberNo = #{0} and boardNo = #{1} 
+</select>
 
+<insert id="insertLike" parameterType="lv"> 
 	INSERT INTO likes(boardNo, memberNo, like_check)
 	VALUES(#{boardNo}, #{memberNo}, 1);
 </insert>
@@ -31,9 +29,13 @@
 <update id="updateLike" parameterType="int">
 	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}
 </update>
+ 
+<update id="likesTotalCntUpdate" parameterType="Integer">
+	update board SET likeCnt = (select count(*) from likes WHERE like_check = 1 AND boardNo = #{boardNo})where boardNo = #{boardNo}
+</update>
 
 <select id="likesTotalCnt" parameterType="Integer" resultType="Integer">
-	SELECT COUNT(*) AS likecnt FROM likes WHERE like_check = 1 AND boardNo = #{boardNo};
+	select likeCnt from board where boardNo=#{boardNo}
 </select>
 
 </mapper>

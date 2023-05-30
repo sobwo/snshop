@@ -115,13 +115,21 @@
 	justify-content:space-between;
 	align-items: center;
 }
-.feedRow{
-	display:flex;
+
+.feed_wrap{
+	display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    column-gap: 30px;
+	grid-row-gap: 1px;
+	row-gap: 10px;
 }
+
 .feeds{
+	width:250px;
 	display:inline-block;
 	margin:10px 10px 20px 10px; 
 }
+
 .feedPost{
 	width:279px;
 	height:458px;

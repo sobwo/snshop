@@ -32,17 +32,16 @@
 							<p class="payTotal">결제 금액</p>
 						</div>	
 						<div class="payNumber">
-							<p class="payTotalNumber">	<fmt:formatNumber type='number' maxFractionDigits='3' value='${totalPrice}'/>원</p>
+							<p class="payTotalNumber">	<fmt:formatNumber type='number' maxFractionDigits='3' value='${od.totalPrice}'/>원</p>
 						</div>		
 					</div>
 					<div class="buyProduct">
 						<img class="buyItem" src=""/>
 						<div class="buyInfo">
-							<strong class="modelNumber">${gv.goodsEng} </strong>
+							<strong class="modelNumber">${od.goodsEng} </strong>
 							
-							<p class="modelName">  	${gv.goodsName}
-	                                   <!--    조던 1 레트로 하이 OG 시카고 --></p>
-							<p class="modelSize">${sv.sizeNo} </p>
+							<p class="modelName">  	${od.goodsName}</p>
+							<p class="modelSize">${od.size} </p>
 						</div>				
 					</div>
 					<div class="orderFinishBtn">

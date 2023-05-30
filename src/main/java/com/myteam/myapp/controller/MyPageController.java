@@ -31,11 +31,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.InterestDto;
 import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
-import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
@@ -88,8 +89,8 @@ public class MyPageController {
 		String endDate = str[1];
 		
 		MemberVo mv = ms.memberInfo(memberNo);
-		ArrayList<OrderVo> ov_purchase = os.selectHistoryAll("buying", memberNo, 0, startDate, endDate, "전체", "up");
-		ArrayList<OrderVo> ov_sale = os.selectHistoryAll("selling", memberNo, 0, startDate, endDate, "전체", "up");
+		ArrayList<OrderDto> ov_purchase = os.selectHistoryAll("buying", memberNo, 0, startDate, endDate, "전체", "up");
+		ArrayList<OrderDto> ov_sale = os.selectHistoryAll("selling", memberNo, 0, startDate, endDate, "전체", "up");
 		
 		int purchaseCntAll = os.cntHistoryAll("buying",memberNo,0,startDate,endDate);
 		int purchaseCntIng = os.cntHistoryAll("buying",memberNo,1,startDate,endDate);
@@ -140,7 +141,7 @@ public class MyPageController {
 		if(startDate == null) startDate = str[0];
 		if(endDate == null) endDate = str[1];
 		
-		ArrayList<OrderVo> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
+		ArrayList<OrderDto> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
 		int cntAll = os.cntHistoryAll(index,memberNo,0,startDate,endDate);
 		int cntIng = os.cntHistoryAll(index,memberNo,1,startDate,endDate);
 		int cntEnd = os.cntHistoryAll(index,memberNo,2,startDate,endDate);
@@ -168,7 +169,7 @@ public class MyPageController {
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		ArrayList<InterestVo> ilist = ss.selectInterestAll(memberNo);
+		ArrayList<InterestDto> ilist = ss.selectInterestAll(memberNo);
 		
 		model.addAttribute("ilist",ilist);
 		
@@ -276,6 +277,7 @@ public class MyPageController {
 
 		return str; 
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/infoChange.do")
 	public String infoChange(
@@ -309,13 +311,13 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<LikesVo> llist = bs.likesInfo(memberNo);
-				
 		ArrayList<BoardVo> blist = bs.boardList(memberNo);
-		
+				
 		model.addAttribute("mv", mv);
-		model.addAttribute("llist", llist);
 		model.addAttribute("blist", blist);
+		
+		for(BoardVo bv : blist)
+			System.out.println(bv.getLike_check());
 	
 		return "myPage/myStyle";
 	}
@@ -324,7 +326,6 @@ public class MyPageController {
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
 	public JSONObject like_check(
 			@RequestParam("boardNo")int boardNo,
-			@RequestParam("like_check")int like_check,
 			LikesVo lv,
 			HttpSession session) throws Exception{
 
@@ -332,7 +333,6 @@ public class MyPageController {
 		
 		lv.setBoardNo(boardNo);
 		lv.setMemberNo(memberNo);
-		lv.setLike_check(like_check);
 		
 	    int value = bs.likesList(lv);
 	    
@@ -345,10 +345,30 @@ public class MyPageController {
 	        bs.updateLike(lv);
 	    }
 		
-		int totalCnt = bs.likesTotalCnt(lv.getBoardNo());  // boardNo Cnt
+	    int cnt = bs.likesCnt(memberNo, boardNo);
+	    
+		int totalCntUpdate = bs.likesTotalCntUpdate(lv.getBoardNo());
 		
 		JSONObject json = new JSONObject();
 	    json.put("value", value);
+	    json.put("cnt", cnt);
+	    json.put("totalCntUpdate", totalCntUpdate);
+	    
+	    return json;
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/likeTotalCnt.do" , method=RequestMethod.GET)
+	public JSONObject likeTotalCnt(
+			@RequestParam("boardNo")int boardNo,
+			BoardVo bv,
+			HttpSession session) throws Exception{
+	    
+		int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
+
+		JSONObject json = new JSONObject();
+	    json.put("totalCntUpdate", totalCntUpdate);
+	    
 	    return json;
 	}
 	

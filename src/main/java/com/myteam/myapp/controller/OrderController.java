@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberVo;
+import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.service.ShopService;
@@ -36,11 +38,13 @@ public class OrderController {
 	@RequestMapping(value = "/orderAgree.do")
 	public String orderAgree(
 			@RequestParam("goodsNo") int goodsNo,
+			@RequestParam("sizeName") String sizeName,
 			Model model
 			) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-			
+		
+		model.addAttribute("sizeName",sizeName);
 		model.addAttribute("gv", gv);
 		
 		return "order/orderAgree";
@@ -49,6 +53,7 @@ public class OrderController {
 	@RequestMapping(value = "/orderPage.do")
 	public String orderPage(
 			@RequestParam("goodsNo") int goodsNo,
+			@RequestParam("sizeName") String sizeName,
 			@RequestParam(value="point", defaultValue="0") int point,
 			HttpSession session,
 			Model model) {
@@ -67,35 +72,47 @@ public class OrderController {
 		model.addAttribute("av", av);
 		model.addAttribute("total",total);
 		model.addAttribute("point",point);
+		model.addAttribute("sizeName",sizeName);
+		
 		
 		return "order/orderPage"; 
 	}
 	
-	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish(
-		@RequestParam("price") int totalPrice, 
+	@ResponseBody
+	@RequestMapping(value = "/orderInsert.do")
+	public String orderInsert(
+		@RequestParam("orderNum") String orderNum,
+		@RequestParam("totalPrice") int totalPrice, 
 		@RequestParam("payInfo") String payInfo,
 		@RequestParam("addressNo") int addressNo,
 		@RequestParam("goodsNo") int goodsNo, 
-			/* @RequestParam("sizeNo")int sizeNo, */
+		@RequestParam("sizeName") String sizeName,
+		@RequestParam("memberPhone") String memberPhone,
 		HttpSession session,
 		Model model) {
+
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int value = os.orderInsert(goodsNo, memberNo,orderNum, addressNo, totalPrice, payInfo, sizeName,memberPhone);
+		
+		String str = "{\"value\":\""+value+"\"}";
+		
+		return str;
+	}
+	
+	@RequestMapping(value = "/orderFinish.do")
+	public String orderFinish(
+			Model model,
+			HttpSession session) {
+		
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		//db 관련 로직
-		int value = os.orderInsert(goodsNo, memberNo, addressNo, totalPrice, payInfo);
+		OrderDto od = os.orderSelectNew(memberNo);
 		
-		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-		model.addAttribute("gv", gv);
-		model.addAttribute("totalPrice",totalPrice);
-		model.addAttribute("payInfo",payInfo);
+		model.addAttribute("od",od);
 		
-	
-		if(value==1) 
-			return "order/orderFinish";
-		else
-			return "redirect:/order/orderPage.do";
+		return "order/orderFinish";
 	}
 	
 	@RequestMapping(value = "/order_addressAction.do")

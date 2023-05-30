@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.AddressVo;
+import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
@@ -99,21 +100,21 @@ public class OrderServiceImpl implements OrderService{
 	}
 	
 	@Override
-	public OrderVo purchaseInfo(int memberNo) {
-		OrderVo ov = osm.purchaseInfo(memberNo);
-		return ov;
+	public OrderDto purchaseInfo(int memberNo) {
+		OrderDto od = osm.purchaseInfo(memberNo);
+		return od;
 	}
 
 	@Override
-	public OrderVo saleInfo(int memberNo) {
-		OrderVo ov = osm.saleInfo(memberNo);
-		return ov;
+	public OrderDto saleInfo(int memberNo) {
+		OrderDto od = osm.saleInfo(memberNo);
+		return od;
 	}
 
 
 	@Override
-	public ArrayList<OrderVo> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
-		ArrayList<OrderVo> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
+	public ArrayList<OrderDto> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
+		ArrayList<OrderDto> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
 		
 		return alist;
 	}
@@ -126,23 +127,27 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public int orderInsert(int goodsNo, int memberNo, int addressNo, int totalPrice, String payInfo) {
+	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String memberPhone) {
 		OrderVo ov = new OrderVo();
 		ov.setGoodsNo(goodsNo);
 		ov.setMemberNo(memberNo);
 		ov.setAddressNo(addressNo);
 		ov.setTotalPrice(totalPrice);
 		ov.setPayInfo(payInfo);
+		ov.setSize(size);
+		ov.setOrderNum(orderNum);
+		ov.setMemberPhone(memberPhone);
 		
 		int value = osm.orderInsert(ov);
 		
 		return value;
 	}
 
-
-
-
-	
+	@Override
+	public OrderDto orderSelectNew(int memberNo) {
+		OrderDto od = osm.orderSelectNew(memberNo);
+		return od;
+	}
 }
 
 
