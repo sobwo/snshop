@@ -164,6 +164,10 @@
 		        },
 		        error: function() {
 		        }
+
+		      });
+		     
+
 		      });		    
 		    });
 		 
@@ -199,6 +203,7 @@
 		        $(".feedPostImg .PostImage").eq(imgOn).css("opacity", 1);
 		        $(".feedPostImg .PostImage").eq(imgOn).addClass("on");
 		      }
+
 
 		    });
 

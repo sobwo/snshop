@@ -73,11 +73,19 @@ $(document).ready(function(){
          if(clist_check.is(":checked")==true) {
             $("#"+category).prop('checked',false);
          }
+
+         else if(child_cnt==0){
+            $(this).closest(".filter_child_list").hide();
+         }
+
+
+
          else{
          	if($("."+category+':checked').length==0)$(this).closest(".filter_child_list").hide();
          };
          
 		addList(item_top);
+
 		addList($(this));
 		filterList();
       });
@@ -141,8 +149,33 @@ $(document).ready(function(){
          $(this).parent('div').detach();
       });
       
+
+
+//	// 상위 카테고리 체크시
+//		$('.filter_list_top').on('change',function(){
+//			
+//			var child_list = $(this).siblings('.filter_child_list');
+//			var child_id = child_list.prop('id');
+//			if($(this).is(':checked')==true) {
+//				child_list.show();
+//				$('.'+child_id).prop('checked',false).change();
+//			}else if($('.'+child_id+':checked').length > 0){
+//			}else { child_list.hide();
+//			}
+//		});
+//	//하위 카테고리 체크시 	
+//		$('.filter_list_bottom').on('change',function(){
+//			var child_list = $(this).parents('.filter_child_list');
+//			var filter_top = child_list.siblings('.filter_list_top');
+//			var child_id = child_list.prop('id');
+//			if($(this).is(':checked')==true) {
+//				filter_top.prop('checked',false).change();
+//			}else{}
+//		});
+
 	$(".item_top").on("click",function(){
 		var plist_check = $(this).children(".filter_list_top");
+
 		
 		if(plist_check.is(":checked")==true) {
 			$(this).siblings(".filter_child_list").show();
@@ -213,6 +246,10 @@ $(document).ready(function(){
 			$(this).parent('div').detach();
 		});
 		
+
+
+
+
 
 
 //   //좌측 필터 성별
