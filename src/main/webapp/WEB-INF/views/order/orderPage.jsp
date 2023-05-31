@@ -11,19 +11,19 @@
 	href=" ${pageContext.request.contextPath}/resources/css/order/orderPage.css"
 	rel="stylesheet">
 	<style>
-	.nav_list:nth-child(3) a {
-		font-weight: bold;
-	}
+		.nav_list:nth-child(3) a {
+			font-weight: bold;
+		}
 	
-	#card{
-		background-image:url("${pageContext.request.contextPath}/resources/image/card.png");
-	}
-	#kakaopay{
-		background-image:url("${pageContext.request.contextPath}/resources/image/kakaopay.png");
-	}
-	#vBank{
-		background-image:url("${pageContext.request.contextPath}/resources/image/bankBook.png");
-	}
+		#card{
+			background-image:url("${pageContext.request.contextPath}/resources/image/card.png");
+		}
+		#kakaopay{
+			background-image:url("${pageContext.request.contextPath}/resources/image/kakaopay.png");
+		}
+		#vBank{
+			background-image:url("${pageContext.request.contextPath}/resources/image/bankBook.png");
+		}
 	</style>
 </head>
 <body>
@@ -469,13 +469,6 @@
 			}
 		}
 		
-		function orderInsert(){
-			var info = document.info;
-			info.method = "POST";
-			info.action = "${pageContext.request.contextPath}/order/orderFinish.do?sizeName=${sizeName}";
-			info.submit();
-		}
-		
 		function kakaoPay(goodsNo,goodsName,name,phone,price) {
 	        // getter
 	        IMP.init('imp23228257');
@@ -494,12 +487,12 @@
 	    				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
 	    				method: "POST",
 	    				data: {
-	    						"imp_uid" : rsp.imp_uid
+	    						"imp_uid" : rsp.imp_uid,
+	    						"amount" : rsp.paid_amount
 	    					  },
 	    				dataType : "json",
 	    				success : function(data){
 	    					var msg = '결제가 완료되었습니다.';
-	    	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone,rsp.pay_method,rsp.status);
 	    				},
 	    				error : function(request,status,error){
 	    					alert("다시 시도하시기 바랍니다.");	
@@ -535,12 +528,13 @@
 	    				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
 	    				method: "POST",
 	    				data: {
-	    						"imp_uid" : rsp.imp_uid
+	    						"imp_uid" : rsp.imp_uid,
+	    						"amount" : rsp.paid_amount
 	    					  },
 	    				dataType : "json",
 	    				success : function(data){
 	    					var msg = '결제가 완료되었습니다.';
-	    	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone,rsp.pay_method,rsp.status);
+	    	                
 	    				},
 	    				error : function(request,status,error){
 	    					alert("다시 시도하시기 바랍니다.");	
@@ -579,7 +573,7 @@
 	            amount: price,
 	            buyer_name: name,
 	            buyer_tel: phone,
-	            notice_url : "${pageContext.request.contextPath}/order/payCheck.do"
+	            
 	        }, function (rsp) {
 	            if (rsp.success) {
 	            	$.ajax({
@@ -591,8 +585,7 @@
 	    					  },
 	    				dataType : "json",
 	    				success : function(data){
-	    					alert(data.response);
-// 	    					payAjax_vBank(rsp.merchant_uid,rsp.paid_amount,phone,rsp.pay_method,rsp.status,rsp.vbank_name,rsp.vbank_num,rsp.vbank_holder,rsp.vbank_date);
+	    					alert("성공");
 	    				},
 	    				error : function(request,status,error){
 	    					alert("다시 시도하시기 바랍니다.");	
@@ -626,82 +619,6 @@
 				}
 			}
 		}
-		
-		function payAjax(merchant_uid,paid_amount,phone,pay_method,status){
-			var payInfo = $("#payInfo_value").val();
-			var addressNo = $("input[name=addressNo]").val();
-			var goodsNo = $("input[name=goodsNo]").val();
-			var sizeName = "${sizeName}";
-			var point = $("#inner_point").text();
-			
-			$.ajax({
-				url: "${pageContext.request.contextPath}/order/orderInsert.do",		
-				method: "POST",
-				data: {"orderNum" : merchant_uid,
-					   "totalPrice" : paid_amount, 
-					   "payInfo" : payInfo,
-					   "addressNo" : addressNo,
-					   "goodsNo" : goodsNo,
-					   "sizeName" : sizeName,
-					   "memberPhone" : phone,
-					   "point" : point,
-					   "status" : status
-					  },
-				dataType : "json",
-				success : function(data){
-					if(data.value>=1 && data.value<=2){
-					    location.href="${pageContext.request.contextPath}/order/orderFinish.do";
-					}
-				},
-				error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
-					console.log("code: " + request.status);
-			        console.log("message: " + request.responseText);
-			        console.log("error: " + error);
-				}	
-			});	
-		}
-		
-		function payAjax_vBank(merchant_uid,paid_amount,phone,pay_method,status,vBankName,vBankNum,vholder,vdate){
-			var payInfo = $("#payInfo_value").val();
-			var addressNo = $("input[name=addressNo]").val();
-			var goodsNo = $("input[name=goodsNo]").val();
-			var sizeName = "${sizeName}";
-			var point = $("#inner_point").text();
-			
-			$.ajax({
-				url: "${pageContext.request.contextPath}/order/orderInsert.do",		
-				method: "POST",
-				data: {"orderNum" : merchant_uid,
-					   "totalPrice" : paid_amount, 
-					   "payInfo" : payInfo,
-					   "addressNo" : addressNo,
-					   "goodsNo" : goodsNo,
-					   "sizeName" : sizeName,
-					   "memberPhone" : phone,
-					   "point" : point,
-					   "pay_method" : pay_method,
-					   "status" : status,
-					   "vBankName" : vBankName,
-					   "vBankNum" : vBankNum,
-					   "vHolder" : vholder,
-					   "vdate" : vdate
-					  },
-				dataType : "json",
-				success : function(data){
-					if(data.value>=1 && data.value<=2){
-					    location.href="${pageContext.request.contextPath}/order/orderFinish.do?vIndex=vbank";
-					}
-				},
-				error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
-					console.log("code: " + request.status);
-			        console.log("message: " + request.responseText);
-			        console.log("error: " + error);
-				}	
-			});	
-		}
-		
 		
 	</script>
 </body>

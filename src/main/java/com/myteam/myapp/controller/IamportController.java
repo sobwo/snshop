@@ -42,7 +42,7 @@ public class IamportController {
     
     @ResponseBody
     @RequestMapping(value="/verifyIamport.do")
-    public IamportResponse<Payment> paymentByImpUid(
+    public int paymentByImpUid(
             Model model
             , Locale locale
             , HttpSession session,
@@ -51,6 +51,18 @@ public class IamportController {
     	
     	IamportResponse<Payment> irsp = api.paymentByImpUid(imp_uid); 
     	
-        return api.paymentByImpUid(imp_uid);
+    	int value = 0;
+    	
+    	int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+    	String orderNum = irsp.getResponse().getMerchantUid();
+    	 
+    	
+    	
+    	if(irsp.getResponse().getAmount().equals(amount))
+    		os.orderInsert(goodsNo, memberNo, orderNum, addressNo, totalPrice, payInfo, size, statusDetail, memberPhone);
+    	
+    	
+    	
+        return 0;
     }
 }

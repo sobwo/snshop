@@ -5,8 +5,8 @@
 
 <mapper namespace="com.myteam.myapp.persistance.PayService_Mapper">
 	<insert id="payInsert" parameterType="pmv">
-		insert into vBank(vBankName,vBankNum,price,vdate,vholder,orderNo)
-		values(#{vBankName},#{vBankNum},#{price},#{vdate},#{vholder},#{orderNo})
+		insert into vBank(vBankName,vBankNum,price,date,holder,orderNo)
+		values(#{bankName},#{bankNum},#{price},#{date},#{holder},#{orderNo})
 	</insert>
 		
 	<select id="paySelectNew" parameterType="Integer" resultType="pmv">
