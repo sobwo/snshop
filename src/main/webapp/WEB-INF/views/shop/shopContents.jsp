@@ -71,7 +71,17 @@
 						<div class="btn_area">
 							<button type="button" class="buyButton" name="buy_btn" onclick="buyButton();">구매</button>
 							<button type="button" class="sellButton" name="sell_btn">판매</button>
-							<button type="button" class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
+							<button type="button" class="wish">
+								<c:choose>
+									<c:when test="${interestGoodsCheck >= 1}">
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png"/>관심상품 
+									</c:when>
+									<c:otherwise>
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품
+									</c:otherwise>
+								</c:choose>
+								<p class="interestNum">${gv.interestNum}</p>
+							</button>
 						</div><!-- btn_area -->
 						
 						<div class="productInfo">
@@ -187,6 +197,49 @@
 				fm.submit();
 			}
 		};
+		
+		$(".status_item_fb").on("click",function(){
+			var memberNo = "${sessionScope.memberNo}";
+			var sizeNo = $(this).children("input[name=sizeNo]").val();
+			var goodsNo = $("input[name=goodsNo]").val();
+			var interestImg = $(this).find(".interestImg");
+			if(memberNo == null || memberNo == ""){
+				alert("로그인이 필요합니다.");
+				$(location).attr("href","${pageContext.request.contextPath}/member/memberLogin.do");
+			}
+			
+			else{
+				$.ajax({
+			        type: "POST",
+			        url: "${pageContext.request.contextPath}/shop/interest_check.do",
+			        dataType: "json",
+			        data: {
+						"goodsNo" : goodsNo,
+						"sizeNo" : sizeNo
+			        	},
+			        cache: false,
+			        success: function(data) {
+			        	
+			        	if(data.value == 1){
+			        		if(data.interestCheck == 1){
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
+			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png")
+			        		}
+			        		else{
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png");
+			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png")
+			        		}
+			        		
+			        		$(".interestNum").text(data.interestCnt);
+			        	}
+						
+			        },
+			        error: function() {
+			        }
+	
+				});
+			}
+		});
 		</script>
 	</body>
 </html>

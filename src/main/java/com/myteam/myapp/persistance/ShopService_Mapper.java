@@ -6,11 +6,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
-import com.myteam.myapp.domain.InterestDto;
+import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
-import com.myteam.myapp.domain.SizeVo;
+import com.myteam.myapp.domain.SizeDto;
 
 public interface ShopService_Mapper {
 		//상품 전체
@@ -27,16 +28,14 @@ public interface ShopService_Mapper {
 		//추천상품 
 	public ArrayList<ProductDto>recommentList(HashMap<String, Object> hashMap);
 		//개별 상품 사이즈
-	public ArrayList<SizeVo>sizeList(int goodsNo);
-		//관심품목
+	public ArrayList<SizeDto>sizeList(int goodsNo);
 	
-	public int interestCnt(int memberNo, int goodsNo);
-	
-	public int deleteInterest(int memberNo, int goodsNo);
-	
-	public int insertInterest(int memberNo, int goodsNo, String size);
-	
-	public int updateInterest(int goodsNo, @Param("value") int value);
-	
-	public ArrayList<InterestDto> selectInterestAll(int memberNo);
+	//관심품목
+	public int interestListCnt(InterestVo iv);
+	public int insertInterest(InterestVo iv);
+	public int updateInterest(InterestVo iv);
+	public int updateGoodsInterest(int goodsNo);
+	public int interestCheck(InterestVo iv);
+	public int interestGoodsCheck(int goodsNo, int memberNo);
+	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
 }

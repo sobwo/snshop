@@ -88,31 +88,38 @@
 	
 	</select>
 	
-	<select id="sizeList" parameterType="int" resultType="sv">
-		select * from size a inner join inventory b on a.sizeNo = b.sizeNo 
+	<select id="sizeList" parameterType="int" resultType="sd">
+		select * from size a inner join interest b on a.sizeNo = b.sizeNo  
 		where a.goodsNo = #{goodsNo}
 	</select>
 	
 	<!-- interest -->
-	<select id="interestCnt" parameterType="Integer" resultType="Integer">
-		select COUNT(*) from interest where memberNo = #{0} and goodsNo=#{1}
+	<select id="interestListCnt" parameterType="iv" resultType="Integer">
+		select count(*) from interest where sizeNo = #{sizeNo} and goodsNo = #{goodsNo} and memberNo = #{memberNo}
 	</select>
 	
-	<insert id="insertInterest" parameterType="Integer">
-		insert into interest(memberNo,goodsNo) values(#{0},#{1});
+	<insert id="insertInterest" parameterType="iv">
+		insert into interest(memberNo,sizeNo,goodsNo) values(#{memberNo},#{sizeNo},#{goodsNo})
 	</insert>
-	
-	<delete id="deleteInterest" parameterType="Integer">
-		delete from interest where memberNo={0} and goodsNo=#{1}
-	</delete>
-	
-	<update id="updateInterest" parameterType="Integer">
-		update goods
-		<include refid="setInterest"></include>
+
+	<update id="updateInterest" parameterType="iv">
+		update interest set interestCheck = (CASE interestCheck WHEN 0 THEN 1 ELSE 0 END) where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
 	</update>
 	
-	<select id="selectInterestAll" parameterType="Integer" resultType="id">
-	select a.goodsNo, a.goodsName, a.price, b.size from goods a inner join interest b on a.goodsNo = b.goodsNo where b.memberNo = #{0}
+	<update id="updateGoodsInterest" parameterType="Integer">
+		update goods set interestNum = (select count(*) from interest where goodsNo = #{0} and interestCheck = 1) where goodsNo = #{0}
+	</update>
+	
+	<select id="interestCheck" parameterType="iv" resultType="Integer">
+		select interestCheck from interest where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
 	</select>
-
+	
+	<select id="interestGoodsCheck" parameterType="Integer" resultType="Integer">
+		select count(interestCheck) from interest where memberNo=#{1} and goodsNo = #{0} and interestCheck = 1
+	</select>
+	
+	<select id="selectInterestAll" parameterType="Integer" resultType="gid">
+		select * from interest a inner join goods b on a.goodsNo = b.goodsNo inner join size c on a.sizeNo = c.sizeNo 
+		where a.interestCheck = 1 and a.memberNo = #{0}
+	</select>
 </mapper>
