@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.myteam.myapp.domain.MemberPointVo;
@@ -25,6 +26,12 @@ public class PointInterceptor extends HandlerInterceptorAdapter{
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
+		updatePoint(memberNo);
+
+		return true;
+	}
+	
+	public void updatePoint(int memberNo) {
 		MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
 		
 		psm.updatePointDel(memberNo);
@@ -33,8 +40,5 @@ public class PointInterceptor extends HandlerInterceptorAdapter{
 			psm.updateAvaPoint(memberNo);
 		
 		psm.updateExpPoint(memberNo);
-
-        
-		return true;
 	}
 }

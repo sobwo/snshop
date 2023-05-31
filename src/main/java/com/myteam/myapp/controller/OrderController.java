@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
-import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PayVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+import com.myteam.myapp.service.PaymentService;
+import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -31,9 +34,10 @@ public class OrderController {
 	OrderService os;
 	@Autowired
 	MemberService ms;
-
-	
-
+	@Autowired
+	PointService ps;
+	@Autowired
+	PaymentService pms;
 
 	@RequestMapping(value = "/orderAgree.do")
 	public String orderAgree(
@@ -64,6 +68,11 @@ public class OrderController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		AddressVo av = os.addressOrderPage(memberNo);
 		MemberVo mv = ms.memberInfo(memberNo);
+		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
+		
+		int totalPoint = mpv.getAvaPoint();
+		int Avapoint = totalPoint;
+		Avapoint -= point;
 		
 		int total=gv.getPrice()-point;
 		
@@ -72,6 +81,8 @@ public class OrderController {
 		model.addAttribute("av", av);
 		model.addAttribute("total",total);
 		model.addAttribute("point",point);
+		model.addAttribute("Avapoint",Avapoint);
+		model.addAttribute("totalPoint", totalPoint);
 		model.addAttribute("sizeName",sizeName);
 		
 		
@@ -88,20 +99,39 @@ public class OrderController {
 		@RequestParam("goodsNo") int goodsNo, 
 		@RequestParam("sizeName") String sizeName,
 		@RequestParam("memberPhone") String memberPhone,
+		@RequestParam("point") int point,
+		@RequestParam(value = "pay_method", required=false) String pay_method,
+		@RequestParam(value = "status", required=false) String status,
+		@RequestParam(value = "vBankName", required=false) String vBankName,
+		@RequestParam(value = "vBankNum", required=false) String vBankNum,
+		@RequestParam(value = "vHolder", required=false) String vHolder,
+		@RequestParam(value = "vdate", required=false) String vdate,
 		HttpSession session,
-		Model model) {
+		Model model) throws Exception {
 
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		int value = os.orderInsert(goodsNo, memberNo,orderNum, addressNo, totalPrice, payInfo, sizeName,memberPhone);
 		
-		String str = "{\"value\":\""+value+"\"}";
+		String statusDetail = null;
+		if(status.equals("ready")) statusDetail = "입금대기";
+		else statusDetail = "입금완료";
+		
+		int value = os.orderInsert(goodsNo, memberNo,orderNum, addressNo, totalPrice, payInfo, sizeName,statusDetail,memberPhone);
+		
+		int value2 = 0;
+		if(point != 0)
+			 value2 = ps.usePoint(memberNo ,point, "사용", orderNum);
+		
+		int result = value+value2;
+		
+		String str = "{\"value\":\""+result+"\"}";
 		
 		return str;
 	}
 	
 	@RequestMapping(value = "/orderFinish.do")
 	public String orderFinish(
+			@RequestParam(value="vIndex",required = false) String vIndex,
 			Model model,
 			HttpSession session) {
 		
@@ -109,8 +139,15 @@ public class OrderController {
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		OrderDto od = os.orderSelectNew(memberNo);
-		
 		model.addAttribute("od",od);
+		
+		
+		int orderNo = od.getOrderNo();
+		
+		PayVo vv = pms.paySelectNew(orderNo);
+		
+		model.addAttribute("vIndex",vIndex);
+		model.addAttribute("vv",vv);
 		
 		return "order/orderFinish";
 	}
@@ -155,18 +192,9 @@ public class OrderController {
 	
 	
 	
-//	@ResponseBody
-//	@RequestMapping(value = "/order_orderPayInfo.do", method = RequestMethod.POST)
-//	public String order_orderPayInfo(HttpServletRequest )
-//	
-//	
-	
-	
-	
 	@ResponseBody
-	@RequestMapping(value = "/order_point.do")
-	public JSONObject order_point(
-			@RequestParam("index") int index) {
+	@RequestMapping(value = "/payCheck.do")
+	public JSONObject payCheck() {
 
 
 		JSONObject js = new JSONObject();

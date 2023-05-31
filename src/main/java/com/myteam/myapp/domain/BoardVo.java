@@ -1,9 +1,13 @@
 package com.myteam.myapp.domain;
 
 
+
 public class BoardVo extends MemberVo{
 
 	/* public class BoardVo extends LikesVo{ */
+
+/*public class BoardVo extends LikesVo{*/
+
 
 	private int boardNo;
 	private String contents; 
@@ -63,6 +67,11 @@ public class BoardVo extends MemberVo{
 		this.memberNo = memberNo;
 	}
 
-	 }
+	 
 
+/*public int getBoardNo() {
+	// TODO Auto-generated method stub
+	return 0;
+}*/
 
+}

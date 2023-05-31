@@ -23,7 +23,7 @@
 	</select>
 		
 	<insert id="insertPoint" parameterType="pv">
-		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{memberNo})  
+		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,delYn,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{delYn},#{memberNo})  
 	</insert>
 		
 	<select id="selectPointNew" parameterType="Integer" resultType="pv">
@@ -45,7 +45,8 @@
 		
 	<update id="updateAvaPoint" parameterType="Integer">
 		UPDATE MEMBERPOINT 
-		SET AVAPOINT = IFNULL((select sum(point) from point where delYn='N' and memberNo = #{0}),0)
+		SET AVAPOINT = ifnull((select sum(point) from point where memberNo = #{0} and useStatus='적립'),0)-
+						ifnull((select sum(point) from point where memberNo = #{0} and useStatus='사용'),0)
 		WHERE MEMBERNO = #{0}
 	</update>
 	
@@ -61,13 +62,14 @@
 	
 	<update id="updateExpPoint" parameterType="Integer">
 		update memberPoint 
-		set expPoint =  IFNULL((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0}),0) 
+		set expPoint =  ifnull((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0} and useStatus='적립'),0)
+		 				 - ifnull((select sum(point) from point where month(useDate) = month(curdate()) and memberNo = #{0} and useStatus='사용'),0)
 		where memberNo = #{0};
 	</update>
 	
 	<update id="updatePointDel" parameterType="Integer">
 		<![CDATA[
-			update point set delYn='Y' where memberNo = #{0} and expiration < curdate()
+			update point set useStatus='만료' where memberNo = #{0} and expiration < curdate()
 		]]>
 	</update>
 

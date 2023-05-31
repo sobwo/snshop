@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myteam.myapp.persistance.PayService_Mapper">
+	<insert id="payInsert" parameterType="pmv">
+		insert into vBank(vBankName,vBankNum,price,vdate,vholder,orderNo)
+		values(#{vBankName},#{vBankNum},#{price},#{vdate},#{vholder},#{orderNo})
+	</insert>
+		
+	<select id="paySelectNew" parameterType="Integer" resultType="pmv">
+		select * from vBank where orderNo=#{0} ORDER BY vBankNo DESC LIMIT 1
+	</select>
+</mapper>

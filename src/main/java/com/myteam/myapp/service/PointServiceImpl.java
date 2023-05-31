@@ -52,7 +52,7 @@ public class PointServiceImpl implements PointService{
 		
 		int value = psm.insertPoint(pv);
 		
-		if(value==1) {
+		if(value==1 && couponNum != null) {
 			value = psm.updateUsage(cv.getCouponNo());
 		}
 		
@@ -69,7 +69,30 @@ public class PointServiceImpl implements PointService{
 			
 		return value;
 	}
-
+	
+	@Override
+	public int usePoint(int memberNo, int point, String useStatus, String useDetail) {
+		PointVo pv = new PointVo();
+		
+		useDetail = useDetail+" 상품";
+		
+		pv.setPoint(point);
+		pv.setUseStatus(useStatus);
+		pv.setUseHistory("구매");
+		pv.setUseDetail(useDetail);
+		pv.setMemberNo(memberNo);
+		
+		if(useStatus.equals("사용"))
+			pv.setDelYn("U");
+		
+		int value = psm.insertPoint(pv);
+		int result = 0;
+		if(value == 1)
+			result = psm.updateAvaPoint(memberNo);
+		
+		return result;
+	}
+	
 	@Override
 	public MemberPointVo selectMemberPointAll(int memberNo) {
 		MemberPointVo mpv = psm.selectMemberPointAll(memberNo);
