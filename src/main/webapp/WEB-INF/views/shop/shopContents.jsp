@@ -25,7 +25,6 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
-					<input type="hidden" name="sizeName" class="sizeName" value="">
 
 					<div class="productImg_area">
 						<div class="productImage">

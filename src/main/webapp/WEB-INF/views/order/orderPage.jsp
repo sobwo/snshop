@@ -336,11 +336,17 @@
 		var btnimg = document.querySelector('.btnimg');
 		var btnimg2 = document.querySelector('.btnimg2');
 		
- 		$(document).ready(function() {
- 			var price = "${price}";
- 			
- 			$("input[name=price]").val(price);
- 			
+		
+		//pay관련 변수
+		var goodsNo = "${gv.goodsNo}";
+		var goodsName = "${gv.goodsName}";
+		var name = "${av.userName}";
+		var phone = "${av.addressPhone}";
+		var price = "${price}";
+		
+		$(document).ready(function() {
+			$("input[name=price]").val(price);
+			
 			var del2Element = $("#del2");
 			
 			if (total >= 200000) {
@@ -348,8 +354,9 @@
 			} else {
 				del2Element.text("3,000");
 			}
-		});
- 		
+		}); 
+		
+		//포인트 전체 사용
  		$("#all_use").click(function() {
 			var point = ${totalPoint};
 			
@@ -363,6 +370,7 @@
 			}
 		});
  		
+		//포인트 취소
  		$(".cancel").click(function(){
  			var pointCost = 0;
 
@@ -371,27 +379,8 @@
 			var sizeName = "${sizeName}";
 			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+pointCost+"&sizeName="+sizeName);
  		});
-
-		$("button[name=modifyBtn]").on("click", function() {
-			popup_wrap.show();
-			var index = $(this).val();
-			showAddress(index);
-		});
 		
-		$(".pay_box").on("click",function(){
-			payCntCheck();
-			var method = $(this).children(".method");
-			
-			if(method.val() == "off"){
-				$(this).css("border","2px solid #222");
-				method.val("on");
-			}
-			else{
-				$(this).css("border","1px solid #ebebeb");
-				method.val("off");
-			}
-       	});
-		
+		//포인트 입력창
 		$(".point_view").on("propertychange change keyup paste input", function() {
 			const maxPoint = parseInt('${Avapoint}');
 
@@ -405,9 +394,10 @@
 
 		});
 		
+		//주소
 		function submit_address() {
 			var fm = document.frm;
-			fm.action = "${pageContext.request.contextPath}/order/order_addressAction.do";
+			fm.action = "${pageContext.request.contextPath}/order/order_addressAction.do?sizeName="+${sizeName};
 			fm.method = "POST";
 			fm.submit();
 		}
@@ -448,28 +438,22 @@
 				$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result+"&sizeName="+sizeName);
 			}
 		}
+
 		
 		function orderPay(){
-			var goodsNo = "${gv.goodsNo}";
-			var goodsName = "${gv.goodsName}";
-			var name = "${av.userName}";
-			var phone = "${av.addressPhone}";
-			var price = "${price}";
-			
-			
 			for(var i=0; i<$(".method").length; i++){
 				if($(".method").eq(i).val() == "on"){
 					if($(".method").eq(i).closest(".pay_box").attr("id") == "card")
-						nicePay(goodsNo,goodsName,name,phone,price);
+						nicePay();
 					else if($(".method").eq(i).closest(".pay_box").attr("id") == "kakaopay")
-						kakaoPay(goodsNo,goodsName,name,phone,price);
+						kakaoPay();
 					else
-						vPay(goodsNo,goodsName,name,phone,price);
+						vPay();
 				}
 			}
 		}
 		
-		function kakaoPay(goodsNo,goodsName,name,phone,price) {
+		function kakaoPay() {
 	        // getter
 	        IMP.init('imp23228257');
 
@@ -479,28 +463,11 @@
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	            	$.ajax({
-	    				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
-	    				method: "POST",
-	    				data: {
-	    						"imp_uid" : rsp.imp_uid,
-	    						"amount" : rsp.paid_amount
-	    					  },
-	    				dataType : "json",
-	    				success : function(data){
-	    					var msg = '결제가 완료되었습니다.';
-	    				},
-	    				error : function(request,status,error){
-	    					alert("다시 시도하시기 바랍니다.");	
-	    					console.log("code: " + request.status);
-	    			        console.log("message: " + request.responseText);
-	    			        console.log("error: " + error);
-	    				}	
-	    			});
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -510,7 +477,7 @@
 	        });
 	    }
 		
-		function nicePay(goodsNo,goodsName,name,phone,price){
+		function nicePay(){
 	        IMP.init('imp23228257');
 	    	
 	        IMP.request_pay({
@@ -520,30 +487,11 @@
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	            	$.ajax({
-	    				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
-	    				method: "POST",
-	    				data: {
-	    						"imp_uid" : rsp.imp_uid,
-	    						"amount" : rsp.paid_amount
-	    					  },
-	    				dataType : "json",
-	    				success : function(data){
-	    					var msg = '결제가 완료되었습니다.';
-	    	                
-	    				},
-	    				error : function(request,status,error){
-	    					alert("다시 시도하시기 바랍니다.");	
-	    					console.log("code: " + request.status);
-	    			        console.log("message: " + request.responseText);
-	    			        console.log("error: " + error);
-	    				}	
-	    			});
-	                
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -552,7 +500,7 @@
 	        });
 	    }
 		
-		function vPay(goodsNo,goodsName,name,phone,price){
+		function vPay(){
 			var today = new Date();   
 
 			var year = today.getFullYear().toString(); // 년도
@@ -565,36 +513,14 @@
 	        IMP.request_pay({
 	            pg: 'nice',
 	            pay_method: 'vbank',
-// 	            vbank_due: vday,
-// 	            vbank_holder : '소병운',
-// 	            vbank_num : '50108456179234',
 	            merchant_uid: goodsNo + new Date().getTime(),
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
-	            
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            if (rsp.success) {
-	            	$.ajax({
-	    				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
-	    				method: "POST",
-	    				data: {
-	    						"imp_uid" : rsp.imp_uid,
-	    						"amount" : rsp.paid_amount
-	    					  },
-	    				dataType : "json",
-	    				success : function(data){
-	    					alert("성공");
-	    				},
-	    				error : function(request,status,error){
-	    					alert("다시 시도하시기 바랍니다.");	
-	    					console.log("code: " + request.status);
-	    			        console.log("message: " + request.responseText);
-	    			        console.log("error: " + error);
-	    				}	
-	    			});
-	            	
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -603,21 +529,38 @@
 	        });
 	    }
 		
-		function payCntCheck(){
-			var cnt = 0;
-			var length = $(".pay_box").length;
-			var method_val = $(".pay_box").children(".method");
-			for(var i=0;i<length;i++){
-				if(method_val.eq(i).val() == "on")
-					cnt++;
-			}
+		
+		function pay_ajax(imp_uid,price){
+			var addressNo = "${av.addressNo}";
+			var size = "${sizeName}";
+			var pay_info = $("#payInfo_value").val();
+			var point = $("#inner_point").text();
 			
-			if(cnt>0){
-				for(var i=0;i<length;i++){
-					method_val.eq(i).val("off");
-					$(".pay_box").eq(i).css("border","1px solid #ebebeb");
-				}
-			}
+			$.ajax({
+				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
+				method: "POST",
+				data: {
+						"imp_uid" : imp_uid,
+						"price" : price,
+						"goodsNo" : goodsNo,
+						"size" : size,
+						"addressNo" : addressNo,
+						"pay_info" : pay_info,
+						"point" : point
+					  },
+				dataType : "json",
+				success : function(data){
+					if(data.result == 2){
+						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
+					}
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});
 		}
 		
 	</script>
