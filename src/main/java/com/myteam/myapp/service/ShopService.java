@@ -17,6 +17,8 @@ public interface ShopService {
 	public GoodsVo goodsSelectOne(int goodsNo);
 		//개별 상품 이미지	
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
+	//트렌드 상품 리스트
+	public ArrayList<ProductDto> trandList();
 		//카테고리 필터	
 	public ArrayList<ProductDto>filterList(List<String> filter,int value);
 		//상품정렬필터

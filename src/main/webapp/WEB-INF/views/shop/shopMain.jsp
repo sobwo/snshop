@@ -28,14 +28,16 @@
 	<!-- 상단 트랜드 상품 리스트 -->
 				<section class="trend_container">
 					<div class="trend_con_area">
-						<div class="trendContents">
-							<div class="trendImg">
-								<img src="" width="90px" height="90px">
-							</div><!-- trendImg -->
-							<div class="trendName">
-								<span>반팔</span>
-							</div><!-- trendName -->
-						</div>
+						<c:forEach var="tl" items="${trandList}">
+							<div class="trendContents">
+								<div class="trendImg">
+									<img src="${tl.imgFileName}" width="90px" height="90px">
+								</div><!-- trendImg -->
+								<div class="trendName">
+									<span>${tl.categoryName}</span>
+								</div><!-- trendName -->
+							</div>
+						</c:forEach>
 					</div><!-- trend_con_area -->
 				</section><!-- trend_container -->
 	<!-- 좌측 필터  -->

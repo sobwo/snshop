@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myteam.myapp.persistance.StyleService_Mapper">
+
+
+<select id="boardSelectAll" parameterType="int" resultType="bv">
+	select * from board a join member b on a.memberNo = b.memberNo where a.memberNo in (select followingMemberNo from following where memberNo = #{memberNo})
+													<!-- = -> in -->
+</select>
+<select id="likesCnt" parameterType="Integer" resultType="Integer">
+	select like_check from likes where memberNo = #{0} and boardNo = #{1} 
+</select>
+
+<!-- <select id="" -->
+<!-- 
+<select id="likesList" parameterType="lv" resultType="int">
+	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
+</select>
+
+<select id="likesCnt" parameterType="Integer" resultType="Integer">
+	select like_check from likes where memberNo = #{0} and boardNo = #{1} 
+</select>
+
+<insert id="insertLike" parameterType="lv"> 
+	INSERT INTO likes(boardNo, memberNo, like_check)
+	VALUES(#{boardNo}, #{memberNo}, 1);
+</insert>
+
+<update id="updateLike" parameterType="int">
+	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}
+</update>
+ 
+<update id="likesTotalCntUpdate" parameterType="Integer">
+	update board SET likeCnt = (select count(*) from likes WHERE like_check = 1 AND boardNo = #{boardNo})where boardNo = #{boardNo}
+</update>
+
+<select id="likesTotalCnt" parameterType="Integer" resultType="Integer">
+	select likeCnt from board where boardNo=#{boardNo}
+</select> -->
+
+</mapper>

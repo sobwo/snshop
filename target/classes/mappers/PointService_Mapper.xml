@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myteam.myapp.persistance.PointService_Mapper">
+	<select id="checkCouponUse" parameterType="String" resultType="Integer">
+		<![CDATA[
+			SELECT IFNULL((
+				case
+					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='N') THEN 3
+					WHEN (a.usePeriod < CURDATE()) THEN 2
+					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='Y') THEN 1
+				END 
+				),0) AS RESULT
+			FROM COUPON a INNER JOIN COUPONUSAGE b ON a.COUPONNO = b.COUPONNO 
+			WHERE a.COUPONNUM=#{0} 
+		]]>
+	</select>
+	
+	<select id="selectCoupon" parameterType="String" resultType="cv">
+		SELECT * FROM COUPON WHERE COUPONNUM=#{0}
+	</select>
+		
+	<insert id="insertPoint" parameterType="pv">
+		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{memberNo})  
+	</insert>
+		
+	<select id="selectPointNew" parameterType="Integer" resultType="pv">
+		SELECT * FROM POINT WHERE MEMBERNO=#{0} ORDER BY POINTNO DESC LIMIT 1
+	</select>
+	
+	<insert id="insertMemberPoint" parameterType="mpv">
+		INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO)
+		VALUES(#{pointNo},#{memberNo})
+	</insert>
+		
+	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
+		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY POINTNO DESC LIMIT 1
+	</select>
+	
+	<update id="updateUsage" parameterType="Integer">
+		UPDATE COUPONUSAGE SET USAGECHECK = 'Y' WHERE COUPONNO = #{0}
+	</update>
+		
+	<update id="updateAvaPoint" parameterType="Integer">
+		UPDATE MEMBERPOINT 
+		SET AVAPOINT = ifnull((select sum(point) from point where memberNo = #{0} and useStatus='적립'),0)-
+						ifnull((select sum(point) from point where memberNo = #{0} and useStatus='사용'),0)
+		WHERE MEMBERNO = #{0}
+	</update>
+	
+	<select id="selectMemberPointAll" parameterType="Integer" resultType="mpv">
+		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0}
+	</select>
+	
+	<select id="selectPointAll" parameterType="Integer" resultType="pv">
+		SELECT point,date_format(expiration,'%Y-%m-%d') as expiration,useStatus,useHistory,useDetail,date_format(useDate,'%Y-%m-%d') as useDate 
+		FROM POINT 
+		WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="updateExpPoint" parameterType="Integer">
+		update memberPoint 
+		set expPoint =  ifnull((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0} and useStatus='적립'),0)
+		 				 - ifnull((select sum(point) from point where month(useDate) = month(curdate()) and memberNo = #{0} and useStatus='사용'),0)
+		where memberNo = #{0};
+	</update>
+	
+	<update id="updatePointDel" parameterType="Integer">
+		<![CDATA[
+			update point set useStatus='만료' where memberNo = #{0} and expiration < curdate()
+		]]>
+	</update>
+
+	<insert id="insertCoupon" parameterType="cv">
+		insert into coupon(couponName,couponNum,point,usePeriod)
+		values(#{couponName},#{couponNum},#{point},#{usePeriod})
+	</insert>
+		
+	<select id="selectMemberNoAll" resultType="mv">
+		select memberNo from member where memberNo not in (1)
+	</select>
+		
+	<insert id="insertCouponUsage" parameterType="Integer">
+		insert into couponUsage(couponNo,memberNo) values(#{0},#{1})
+	</insert>
+</mapper>
