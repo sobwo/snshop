@@ -223,8 +223,10 @@ public class MyPageController {
 			uploadedFileName = UploadProfile.uploadFile(
 				uploadedPath, 
 				file.getOriginalFilename(),
+				file.getBytes(),
 				"upload");
 		}
+
 		
 		int memberNo = 0;
 		
@@ -235,6 +237,7 @@ public class MyPageController {
 		MemberVo mv = new MemberVo();
 		mv.setMemberNo(memberNo);
 		mv.setProfileImg(uploadedFileName);
+		mv.setProfileImgData(file.getBytes());
 		
 		int value = ms.updateProfileImg(mv);
 		
@@ -256,32 +259,32 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath(); 
-		String str = ms.profileImgShow(memberNo);
-//		String originalName = str.substring(str.indexOf("-")+1);
+		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		MemberVo mv = ms.profileImgShow(memberNo);
+		
 		File dir = new File(uploadedPath);
-		System.out.println("파일 리스트 : "+dir.list());
 		
 		File[] fileNameCheck = dir.listFiles(new FilenameFilter() { 
 		    @Override 
 		    public boolean accept(File dir, String name) { 
-		         return name.contains(str); 
+		         return name.contains("/"+mv.getProfileImg()); 
 		        }
 		});
 		
-		String uploadedFileName = null;
-		
+		String uploadedFileName = mv.getProfileImg();
 		for(File file : fileNameCheck) {
-			if(file.isFile() == false) {
+			if(!file.getName().equals(mv.getProfileImg()))
 				uploadedFileName = UploadProfile.uploadFile(
-						uploadedPath, 
-						str,
-						"show");
-			}
+					uploadedPath, 
+					mv.getProfileImg(),
+					mv.getProfileImgData(),
+					"show");
 		}
-		result = "{\"value\":\""+str+"\"}";
+
+					
+		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
-		return result;
+		return result; 
 	}
 	
 	@ResponseBody
@@ -356,6 +359,10 @@ public class MyPageController {
 				
 		model.addAttribute("mv", mv);
 		model.addAttribute("blist", blist);
+		
+		for(BoardVo bv : blist)
+		/*	System.out.println(bv.getLike_check());*/
+			System.out.println(bv.getLikeCnt());
 	
 		return "myPage/myStyle";
 	}
@@ -377,13 +384,13 @@ public class MyPageController {
 		lv.setMemberNo(memberNo);
 		
 	    int value = bs.likesList(lv);
-
+	    
+	    // value 값에 따라 INSERT 또는 DELETE 작업 수행
 	    if (value == 0) {
-
+	        // INSERT 작업 수행
 	    	bs.insertLike(lv);
-	    	
 	    } else if (value != 0) {
-
+	        // DELETE 작업 수행
 	        bs.updateLike(lv);
 	    }
 		
@@ -409,9 +416,8 @@ public class MyPageController {
 
 	    try {
 	        HttpHeaders headers = new HttpHeaders();
-//	        String uploadPath = "D:/DAV1230/uploadFiles"; //임시
-	        String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath(); 
-	        
+	        String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
+
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
 
@@ -452,12 +458,10 @@ public class MyPageController {
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
 			@RequestParam("viewCnt") String viewCnt,
-			@RequestParam(name = "boardCnt", required = false) String boardCnt,
 			HttpSession session
 			) throws Exception {
 		
-//		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
-		String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {
@@ -481,11 +485,11 @@ public class MyPageController {
 		bv.setMemberNo(memberNo);
 		
 		int value = bs.boardInsert(bv);
-		int bCnt = bs.boardCnt(memberNo);
 
 		return "redirect:/myPage/myStyle.do";
 	}
 
+<<<<<<< HEAD
 	
 	
 	
@@ -527,6 +531,8 @@ public class MyPageController {
 	
 	
 
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

@@ -12,6 +12,7 @@ public class UploadProfile {
 
 	public static String uploadFile(String uploadPath,
 									String originalName,
+									byte[] fileData,
 									String index)	
 	throws Exception{
 		
@@ -25,18 +26,16 @@ public class UploadProfile {
 		    }
 		}
 		
-		System.out.println("uploadPath"+uploadPath);
-		
 		UUID uid = UUID.randomUUID();
 		String savedName = null;
 		if(index.equals("show")) {
 			savedName = originalName;
 		}
-		else
-			savedName= uid.toString() + "_" + originalName;
-	    
+		else {
+			savedName = uid.toString() + "_" + originalName;
+		}
 	    File target = new File(uploadPath,savedName);
-		target.createNewFile();
+		FileCopyUtils.copy(fileData,target);
 		String uploadedFileName = null;
 		uploadedFileName = makeThumbnail(uploadPath,savedName);
 	    File originalFile = new File(uploadPath, savedName);
