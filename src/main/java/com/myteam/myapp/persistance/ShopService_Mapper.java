@@ -30,6 +30,8 @@ public interface ShopService_Mapper {
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
 	
+	public ArrayList<ProductDto> trandList();
+	
 	//관심품목
 	public int interestListCnt(InterestVo iv);
 	public int insertInterest(InterestVo iv);

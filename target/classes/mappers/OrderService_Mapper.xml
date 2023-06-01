@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -118,3 +119,125 @@
 		where orderNum = #{0} 
 	</select>
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myteam.myapp.persistance.OrderService_Mapper">
+	<sql id="search_pors">
+		<choose>
+			<when test="index=='buying'">
+				AND PORS = '구매'
+			</when>
+			<when test="index=='selling'">
+				AND PORS = '판매'
+			</when>
+		</choose>
+	</sql>
+	<sql id="search_status">
+		<choose>
+			<when test="value == 0">
+			AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+			</when>
+			<when test="value == 1">
+	 			AND orderStatus = '진행중' AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+	 		</when>
+			<when test="value == 2">
+			 	AND orderStatus = '종료' AND ORDERDAYS BETWEEN date(#{startDate}) and date(#{endDate})+1
+			</when>
+		</choose>
+	</sql>
+	<sql id="search_detail">
+		<if test="filter != '전체'">
+			AND statusDetail = #{filter}
+		</if>
+	</sql>
+	<sql id="search_price">
+		<if test="price != 'initial'">
+			<choose>
+				<when test="price == 'up'">
+					ORDER BY TOTALPRICE DESC
+				</when>
+				<otherwise>
+					ORDER BY TOTALPRICE ASC
+				</otherwise>
+			</choose>
+		</if>
+	</sql>
+	<insert id="addressInsert" parameterType="av">
+		INSERT INTO ADDRESS(USERNAME,ADDRESSPHONE,ZIPCODE,ADDRESS,DETAILADDRESS,MAINADDRESS,MEMBERNO)
+		VALUES(#{userName},#{addressPhone},#{zipCode},#{address},#{detailAddress},#{mainAddress},#{memberNo})
+	</insert>
+
+	<update id="addressCheckReset" parameterType="Integer">
+		update address set mainAddress = 'N' where memberNo= #{0}
+	</update>
+		
+	<select id ="addressSelect" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0}
+	</select>
+	
+	<select id ="addressSelectOne" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE ADDRESSNO = #{0}
+	</select>
+	
+	<delete id ="addressDelete" parameterType="Integer">
+		DELETE FROM ADDRESS WHERE ADDRESSNO = #{0}
+	</delete>
+	
+	<select id ="addressOrderPage" parameterType="Integer" resultType="av">
+		SELECT * FROM ADDRESS WHERE MEMBERNO = #{0} and MAINADDRESS = 'Y'
+	</select>
+	
+	
+	<update id ="addressModify" parameterType="av">
+		UPDATE ADDRESS
+		SET USERNAME=#{userName}, ADDRESSPHONE=#{addressPhone}, ZIPCODE=#{zipCode}, ADDRESS=#{address}, 
+			DETAILADDRESS=#{detailAddress}, MAINADDRESS=#{mainAddress} 
+		WHERE ADDRESSNO=#{addressNo}
+	</update>
+	
+	<select id="purchaseInfo" parameterType="Integer" resultType="od">
+		SELECT * 
+		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
+		WHERE MEMBERNO = #{0} AND PORS = '구매'
+	</select>
+		
+	<select id="saleInfo" parameterType="Integer" resultType="od">
+		SELECT * 
+		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
+		WHERE MEMBERNO = #{0} AND PORS = '판매'
+	</select>
+	
+	
+	<select id="selectHistoryAll" parameterType="Integer" resultType="od">
+		SELECT b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
+		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
+		WHERE MEMBERNO = #{1} 
+		<include refid="search_pors"/>
+		<include refid="search_status"/>
+		<include refid="search_detail"/>
+		<include refid="search_price"/>
+	</select>
+	<select id="cntHistoryAll" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*)
+		FROM ORDERS
+		WHERE MEMBERNO = #{1} 
+		<include refid="search_pors"/>
+		<include refid="search_status"/>
+	</select>
+
+	
+	<insert id="orderInsert" parameterType="ov">
+		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS,orderstatus,statusDetail,memberPhone)
+		VALUES(#{payInfo},#{totalPrice},#{orderNum},#{addressNo},#{goodsNo},#{memberNo},#{size},'구매','진행중',#{statusDetail},#{memberPhone})
+	</insert>
+		
+	<select id="orderSelectNew" parameterType="String" resultType="od">
+		SELECT * FROM orders a inner join goods b on a.goodsNo = b.goodsNo 
+		where orderNum = #{0} 
+	</select>
+</mapper>
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
