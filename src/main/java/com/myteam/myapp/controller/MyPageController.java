@@ -264,24 +264,17 @@ public class MyPageController {
 		
 		File dir = new File(uploadedPath);
 		
-		File[] fileNameCheck = dir.listFiles(new FilenameFilter() { 
-		    @Override 
-		    public boolean accept(File dir, String name) { 
-		         return name.contains("/"+mv.getProfileImg()); 
-		        }
-		});
-		
 		int check = 0;
 		String uploadedFileName = mv.getProfileImg();
 		String[] fileList = dir.list();
 		for(String file : fileList) {
-			if(!("/"+file).equals(mv.getProfileImg())) {
+			System.out.println("fileList : " +file);
+			System.out.println("mv.getProfileImg"+mv.getProfileImg());
+			if(!mv.getProfileImg().contains(file)) {
 				check++;
-				System.out.println("fileList : " +file);
+				
 			}
 		}
-		
-		System.out.println("check : "+check);
 		
 		if(check>0) {
 			uploadedFileName = UploadProfile.uploadFile(
@@ -501,7 +494,6 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 
-<<<<<<< HEAD
 
 	
 	
@@ -513,8 +505,7 @@ public class MyPageController {
 	
 	
 	
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
 			Model model,
@@ -533,7 +524,6 @@ public class MyPageController {
 		return "myPage/style_discover.do";
 	}
 	
-<<<<<<< HEAD
 	
 	
 	
@@ -547,8 +537,6 @@ public class MyPageController {
 	
 
 
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
