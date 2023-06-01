@@ -100,9 +100,9 @@ public class BoardServiceInpl implements BoardService{
 
 
 	@Override
-	public ArrayList<BoardVo> boardTotalList(int memberNo) {
+	public ArrayList<BoardVo> boardTotalList() {
 		
-		ArrayList<BoardVo> blist = bsm.boardTotalList(memberNo);
+		ArrayList<BoardVo> blist = bsm.boardTotalList();
 		
 		return blist;
 	}

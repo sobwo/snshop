@@ -68,9 +68,6 @@
 	float:left;
 	margin:0 6px;
 }
-.socialSorting{}
-.choiceActive{}
-.choice{}
 .feedContainer{
  	display: flex;
  	flex-wrap: wrap;

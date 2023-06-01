@@ -26,6 +26,6 @@ public interface BoardService {
 
 	public int boardCnt(int memberNo);
 
-	public ArrayList<BoardVo> boardTotalList(int memberNo);
+	public ArrayList<BoardVo> boardTotalList();
 	
 }

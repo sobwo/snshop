@@ -364,11 +364,7 @@ public class MyPageController {
 				
 		model.addAttribute("mv", mv);
 		model.addAttribute("blist", blist);
-		
-		for(BoardVo bv : blist)
-		/*	System.out.println(bv.getLike_check());*/
-			System.out.println(bv.getLikeCnt());
-	
+
 		return "myPage/myStyle";
 	}
 	
@@ -389,13 +385,12 @@ public class MyPageController {
 		lv.setMemberNo(memberNo);
 		
 	    int value = bs.likesList(lv);
-	    
-	    // value 값에 따라 INSERT 또는 DELETE 작업 수행
+
 	    if (value == 0) {
-	        // INSERT 작업 수행
 	    	bs.insertLike(lv);
+	    	
 	    } else if (value != 0) {
-	        // DELETE 작업 수행
+	    	
 	        bs.updateLike(lv);
 	    }
 		
@@ -421,7 +416,7 @@ public class MyPageController {
 
 	    try {
 	        HttpHeaders headers = new HttpHeaders();
-	        String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
+	        String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
 
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
@@ -466,7 +461,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
+		String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {
@@ -493,8 +488,18 @@ public class MyPageController {
 
 		return "redirect:/myPage/myStyle.do";
 	}
+<<<<<<< HEAD
 
+=======
 
+<<<<<<< HEAD
+
+	
+=======
+<<<<<<< HEAD
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	
 	
 
@@ -511,14 +516,12 @@ public class MyPageController {
 			Model model,
 			HttpSession session) {
 		
-		int memberNo = 0;
 		
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}	
+		
+		
 
-		ArrayList<BoardVo> blist = bs.boardTotalList(memberNo);
-				
+		ArrayList<BoardVo> blist = bs.boardTotalList();
+				System.out.println("blist"+ blist);
 		model.addAttribute("blist", blist);
 		
 		return "myPage/style_discover.do";
@@ -535,8 +538,17 @@ public class MyPageController {
 	
 	
 	
+<<<<<<< HEAD
+
+=======
 
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
