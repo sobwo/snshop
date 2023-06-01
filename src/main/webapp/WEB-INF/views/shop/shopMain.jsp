@@ -112,9 +112,9 @@
 													<input type="checkbox" class="filter_list_bottom f_div outer" name="outer" value="패딩" >
 													<div class="item">패딩</div>
 												</li>
-												<li class="filter_list_in">
-													<input type="checkbox" class="filter_list_bottom f_div outer" name="outer" value="기타아우터" >
-													<div class="item">기타 아우터</div>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div outer" name="outer" value="기타" >
+													<div class="item">기타</div>
 												</li>		
 											</ul><!-- filter_child_list -->
 										</li>
@@ -163,11 +163,11 @@
 								
 								<div class="filter_list_area">
 									<ul class="filter_list">
-										<li class="filter_list_in">
+										<li class="filter_child_list_in">
 											<input type="checkbox" class="filter_gender f_div" name="남성" value="남성" >
 											<div class="item">남성</div>
 										</li>
-										<li class="filter_list_in">
+										<li class="filter_child_list_in">
 											<input type="checkbox" class="filter_gender f_div" name="여성" value="여성" >
 											<div class="item"> 여성</div>
 										</li>
@@ -256,12 +256,12 @@
 										<span>혜택</span>
 									</div>
 									<div class="filter_list">
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_benefit" name="무료배송" value="무료배송" >
+										<div class="filter_child_list_in">
+											<input type="checkbox" class="filter_benefit f_div" name="무료배송" value="무료배송" >
 											<div class="item">무료배송</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_benefit" name="할인" value="할인" >
+										<div class="filter_child_list_in">
+											<input type="checkbox" class="filter_benefit f_div" name="할인" value="할인" >
 											<div class="item">할인</div>
 										</div>
 									</div><!-- filter_list -->
@@ -269,28 +269,28 @@
 										<span>가격</span>
 									</div>
 									<div class="filter_list">
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="10만원이하" value="10만원이하" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="10만원이하" >
 											<div class="item item_price">10만원이하</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="10-30만원" value="10-30만원" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="10-30만원" >
 											<div class="item item_price">10-30만원</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="30-50만원" value="30-50만원" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="30-50만원" >
 											<div class="item item_price">30-50만원</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="50-100만원" value="50-100만원" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="50-100만원" >
 											<div class="item item_price">50-100만원</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="100-300만원" value="100-300만원" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="100-300만원" >
 											<div class="item item_price">100-300만원</div>
 										</div>
-										<div class="filter_list_in">
-											<input type="checkbox" class="filter_price" name="300만원이상" value="300만원이상" >
+										<div class="filter_child_list_in filter_price_list">
+											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="300만원이상" >
 											<div class="item item_price">300만원이상</div>
 										</div>
 									</div><!-- filter_list -->
@@ -434,6 +434,7 @@
 			list.hide();
 		});
 		
+		
 		function filter_ajax(filter,value){
 
 			$.ajax({
@@ -489,6 +490,7 @@
 				}	
 			});	
 		}
+
 		
 		</script>
 	</body>
