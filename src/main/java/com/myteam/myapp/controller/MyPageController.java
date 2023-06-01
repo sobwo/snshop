@@ -407,8 +407,9 @@ public class MyPageController {
 
 	    try {
 	        HttpHeaders headers = new HttpHeaders();
-	        String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
-
+//	        String uploadPath = "D:/DAV1230/uploadFiles"; //임시
+	        String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath(); 
+	        
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
 
@@ -453,7 +454,8 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
+//		String uploadPath = "D:/DAV1230/uploadFiles"; // 임시
+		String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {
