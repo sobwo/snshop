@@ -166,7 +166,13 @@
 		        }
 
 		      });
+<<<<<<< HEAD
+		     
+
+		      });		    
+=======
 		   });		    
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		 
 		 
 		 

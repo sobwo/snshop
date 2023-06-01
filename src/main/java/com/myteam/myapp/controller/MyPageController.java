@@ -43,8 +43,11 @@ import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+
+
 import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.service.ShopService;
+import com.myteam.myapp.service.StyleService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
@@ -67,6 +70,9 @@ public class MyPageController {
 	
 	@Autowired
 	ShopService ss;
+	
+	@Autowired
+	StyleService ss1;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -314,10 +320,12 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
 	public JSONObject like_check(
-			@RequestParam("boardNo")int boardNo,
+			@RequestParam("boardNo") int boardNo,
 			LikesVo lv,
 			HttpSession session) throws Exception{
-
+		
+		System.out.println("boardNo" + boardNo);
+		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		lv.setBoardNo(boardNo);

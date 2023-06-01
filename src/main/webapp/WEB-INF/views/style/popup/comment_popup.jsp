@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -58,6 +59,45 @@
 			info.action = "${pageContext.request.contextPath}/style/style_comment.do";
 			info.submit();
 		} */
+		
+<!-- 
+<script>
+		$(document).ready(function() {
+		  $('.submit_comment').click(function() {
+		    var comment = $('.comment_input').val(); // 댓글 입력값 가져오기
+
+		    $.ajax({
+		      url: "${pageContext.request.contextPath}/style/style_comment.do", // 요청을 보낼 경로
+		      method: 'POST', // HTTP 요청 메서드 (POST 또는 GET)
+		      data: { ccomments: comment }, // 전송할 데이터
+		      success: function(response) {
+		        // 요청이 성공적으로 처리된 후 실행할 동작
+		        console.log('댓글 등록 성공');
+		        // 추가적인 동작이 필요한 경우 여기에 작성
+		      },
+		      error: function(xhr, status, error) {
+		        // 요청 처리 중 에러가 발생한 경우 실행할 동작
+		        console.error('댓글 등록 실패:', error);
+		        // 에러 처리에 대한 추가적인 동작이 필요한 경우 여기에 작성
+		      }
+		    });
+		  });
+		}); -->
+	
+/* $(document).ready(function(){
+	$('.submit_comment').click(function(){
+		var comment = $('.comment_input').val();
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/style/style_comment.do",
+			method:'POST', 
+		})
+		
+	})
+	
+})
+		 */
+		
 	</script>
 	</body>
 </html>
