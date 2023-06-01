@@ -74,6 +74,10 @@ $(document).ready(function(){
 	         }
 			addList($(this));
 			filterList();
+			
+			if(filter.length>0)value = 1;
+			else value = 0;
+			filter_ajax(filter,value);
 	      });
 
     //하위 카테고리 클릭
@@ -95,6 +99,10 @@ $(document).ready(function(){
 		addList(item_top);
 		addList($(this));
 		filterList();
+		
+		if(filter.length>0)value = 1;
+		else value = 0;
+		filter_ajax(filter,value);
       });
 
 	//태그 생성 삭제 관리
@@ -123,12 +131,9 @@ $(document).ready(function(){
 	//클릭시 filter배열 추가	
 		function filterList(){
 			var teg = $(".teg_item");
-			filter= [];
-			
-			for(var i =1;i<teg.length+1;i++){
-				var f_div = $(".teg_item:nth-child("+i+")");
-				var span = f_div.children('span').text();		
-				filter.push(span);
+			filter= [];		
+			for(var i =0; i<teg.length;i++){	
+				filter.push(teg.eq(i).children('span').text());
 			}
 		}
 

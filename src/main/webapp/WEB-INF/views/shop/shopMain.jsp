@@ -269,28 +269,30 @@
 										<span>가격</span>
 									</div>
 									<div class="filter_list">
+<!-- 										<input type="text" class=""> -->
+<!-- 										<button>검색</button> -->
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="10만원이하" >
+											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="100000" >
 											<div class="item item_price">10만원이하</div>
 										</div>
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="10-30만원" >
+											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="300000" >
 											<div class="item item_price">10-30만원</div>
 										</div>
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="30-50만원" >
+											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="500000" >
 											<div class="item item_price">30-50만원</div>
 										</div>
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="50-100만원" >
+											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="10000000" >
 											<div class="item item_price">50-100만원</div>
 										</div>
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="100-300만원" >
+											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="3000000" >
 											<div class="item item_price">100-300만원</div>
 										</div>
 										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="300만원이상" >
+											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="3000001" >
 											<div class="item item_price">300만원이상</div>
 										</div>
 									</div><!-- filter_list -->
@@ -490,7 +492,6 @@
 				}	
 			});	
 		}
-
 		
 		</script>
 	</body>

@@ -501,6 +501,7 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 
+<<<<<<< HEAD
 
 	
 	
@@ -512,6 +513,8 @@ public class MyPageController {
 	
 	
 	
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
 			Model model,
@@ -530,6 +533,7 @@ public class MyPageController {
 		return "myPage/style_discover.do";
 	}
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -543,6 +547,8 @@ public class MyPageController {
 	
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

@@ -8,7 +8,7 @@
 				 
 			</when>
 			<when test="value==1">
-				AND category in 
+				AND (category in 
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
@@ -16,7 +16,11 @@
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
-				
+				OR goodsgender in
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				)
 			</when>
 		</choose>
 	</sql>	
