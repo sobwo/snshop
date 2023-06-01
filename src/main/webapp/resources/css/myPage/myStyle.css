@@ -140,6 +140,7 @@
 .feedPostImage{
 	width:279px;
 	height:376px;
+	display: flex;
 }
 .postImage{
 	object-fit: cover;
@@ -189,6 +190,21 @@
 	font-size: 13px;
     font-weight: 600;
 	color: #fff;
+}
+.imageBtn{	
+	display: flex;
+	align-items: center;
+	width:279px;
+	height:18px;
+	position:absolute;
+	top:188px;
+    justify-content:space-between;
+    font-size:20px;
+    color:rgba(34,34,34,.5);
+}
+
+.imageBtn button{
+	all: unset;
 }
 .userProfileImage{
 	object-fit: cover;

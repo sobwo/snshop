@@ -27,10 +27,7 @@ $(document).ready(function(){
             }   
          });
       }
-      
-   //상품개수 
-      
-      
+  
    //좌측 필터 초기화
    
       var reset = $(".reset")
@@ -39,31 +36,48 @@ $(document).ready(function(){
       });
    
    
-   //   필터 개수 세기
-      function filter_cnt(){
-         var total_cnt = $('.f_div:checked').length;
-         $("#total_cnt").text(total_cnt);
-      }
+	//   필터 개수 세기
+		function filter_cnt(){
+			var total_cnt = $('.f_div:checked').length;
+			$("#total_cnt").text(total_cnt);
+		}
+      
+	// 체크박스 옆 글자 클릭시
+      
+      $('.item_top, .filter_child_list_in, .filter_price_list').on('click',function(){
+         var checkbox = $(this).find('.f_div');
+         
+         if(checkbox.is(':checked') == true){
+            checkbox.prop("checked", false);
+         }else{
+            checkbox.prop("checked", true);
+         }
+      });
 		
 	//상위 카테고리 클릭
-      $(".item_top").on("click",function(){
-         var plist_check = $(this).children(".filter_list_top");
-         var childList = $(this).siblings(".filter_child_list");
+	
+		$(".item_top").on("click",function(){
+			var plist_check = $(this).children(".filter_list_top");
+			var childList = $(this).siblings(".filter_child_list");
+			var bottom_check = childList.children(".filter_child_list_in");		
+			
+			if(plist_check.is(":checked")==true) {
+				childList.show();
+				childList.find(".f_div").prop('checked',false);
+	           	for(var i =0;i<bottom_check.length;i++){
+	           	 	addList(bottom_check.eq(i));
+	            }
+	         }
+	         else {
+				plist_check.prop('checked',false);
+	            childList.hide();
+	         }
+			addList($(this));
+			filterList();
+	      });
 
-         if(plist_check.is(":checked")==true) {
-            childList.show();
-           	childList.find(".f_div").prop('checked',false);
-         }
-         else {
-            plist_check.prop('checked',false);
-            childList.hide();
-         }
-         
-		addList($(this));
-		filterList();
-      });
-      
     //하위 카테고리 클릭
+    
       $(".filter_child_list_in").on("click",function(){
 		var clist_check = $(this).children(".f_div");
 		var category = clist_check.prop('name');
@@ -73,25 +87,17 @@ $(document).ready(function(){
          if(clist_check.is(":checked")==true) {
             $("#"+category).prop('checked',false);
          }
-
-         else if(child_cnt==0){
-            $(this).closest(".filter_child_list").hide();
-         }
-
-
-
          else{
-         	if($("."+category+':checked').length==0)$(this).closest(".filter_child_list").hide();
+         	if($("."+category+':checked').length==0)
+         		$(this).closest(".filter_child_list").hide();
          };
          
 		addList(item_top);
-
 		addList($(this));
 		filterList();
       });
-      
-      
-      
+
+	//태그 생성 삭제 관리
       function addList(index) {
          var value;
          var name_div = index.children(".f_div");
@@ -124,24 +130,8 @@ $(document).ready(function(){
 				var span = f_div.children('span').text();		
 				filter.push(span);
 			}
-			alert(filter);
 		}
-		
-   
-   // 체크박스 옆 글자 클릭시
-      
-      $('.item').on('click',function(){
-         
-         var checkbox = $(this).siblings('.f_div');
-         
-         if(checkbox.is(':checked') == true){
-            checkbox.prop("checked", false);
-         }else{
-            checkbox.prop("checked", true);
-         }
-      });
-      
-      
+
    //태그 div 버튼 클릭시 삭제 및 클릭 해제
       $(document).on('click','.teg_item_btn',function(){
          var name = $(this).parent('div').attr('name');
@@ -149,147 +139,6 @@ $(document).ready(function(){
          $(this).parent('div').detach();
       });
       
-
-
-//	// 상위 카테고리 체크시
-//		$('.filter_list_top').on('change',function(){
-//			
-//			var child_list = $(this).siblings('.filter_child_list');
-//			var child_id = child_list.prop('id');
-//			if($(this).is(':checked')==true) {
-//				child_list.show();
-//				$('.'+child_id).prop('checked',false).change();
-//			}else if($('.'+child_id+':checked').length > 0){
-//			}else { child_list.hide();
-//			}
-//		});
-//	//하위 카테고리 체크시 	
-//		$('.filter_list_bottom').on('change',function(){
-//			var child_list = $(this).parents('.filter_child_list');
-//			var filter_top = child_list.siblings('.filter_list_top');
-//			var child_id = child_list.prop('id');
-//			if($(this).is(':checked')==true) {
-//				filter_top.prop('checked',false).change();
-//			}else{}
-//		});
-
-	$(".item_top").on("click",function(){
-		var plist_check = $(this).children(".filter_list_top");
-
-		
-		if(plist_check.is(":checked")==true) {
-			$(this).siblings(".filter_child_list").show();
-			$(this).siblings(".filter_child_list").find(".f_div").prop('checked',false);
-			
-		}
-		else {
-			plist_check.prop('checked',false);
-			$(this).siblings(".filter_child_list").hide();
-		}
-		
-		addList($(this));
-	});
-	
-	$(".filter_child_list_in").on("click",function(){
-		var clist_check = $(this).children(".f_div");
-		var category = clist_check.prop('name')
-		if(clist_check.is(":checked")==true) {
-			$("#"+category).prop('checked',false);
-		}
-		else {
-			$(this).closest(".filter_child_list").hide();
-		}
-		addList($(this));
-	});
-	
-	
-	function addList(index) {
-		var value;
-		var name_div = index.children(".f_div");
-		var check = 0;
-		
-		if(name_div.is(':checked')==true) {
-			for(var i=0;i<=$(".teg_item").length;i++) {
-				if(name_div.val()==$(".teg_item").eq(i).attr('name'))
-					check = 1;
-			}
-			
-			if(check==0) {
-			value = "<div class='teg_item' name='" + name_div.val() + "'>" + name_div.val() + "</span>";
-			value += "<button class='teg_item_btn'>X</button></div>";
-			$(".filter_teg_area").append(value);
-			}
-		}
-		else {
-			$("div[name="+name_div.val()+"]").detach();
-		}
-	}
-		
-		
-	// 체크박스 옆 글자 클릭시
-		
-		$('.item').on('click',function(){
-			
-			var checkbox = $(this).siblings('.f_div');
-			
-			if(checkbox.is(':checked') == true){
-				checkbox.prop("checked", false).change();
-			}else{
-				checkbox.prop("checked", true).change();
-			}
-		});
-		
-	//태그 div 버튼 클릭시 삭제 및 클릭 해제
-		$(document).on('click','.teg_item_btn',function(){
-			var name = $(this).parent('div').attr('name');
-			$("input:checkbox[name='"+name+"']").prop("checked",false).change();
-			$(this).parent('div').detach();
-		});
-		
-
-
-
-
-
-
-//   //좌측 필터 성별
-//      
-//      var filter_gender = $(".filter_gender");
-//      var item_gender = $(".item_gender");
-//            
-//      for(var i=0; i<filter_gender.length;i++){
-//         gender_list_check(i);
-//         item_gender_click(i);
-//      }
-//      
-//      
-//      function item_gender_click(index){
-//         item_gender.eq(index).click(function(){
-//            if(filter_gender.eq(index).is(':checked')){
-//               filter_gender.eq(index).prop("checked", false).change();
-//            }
-//            else{
-//               filter_gender.prop("checked",false).change();
-//            }
-//         });
-//      }
-//      
-//      
-//      function gender_list_check(index){
-//         filter_gender.eq(index).change(function(){
-//            if(this.checked){
-//               $(".teg_gender").detach();
-//               $(".teg_gender").prop("checked",false);
-//               $(this).prop("checked",true);
-//               $(".filter_teg_area").append("<div class='teg_item teg_gender' name='"+filter_gender.eq(index).val()+
-//                     "'><span>"+filter_gender.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-//            }else{
-//               $("div[name="+filter_gender.eq(index).val()+"]").detach();
-//            
-//            }
-//         });
-//      }
-//      
    //좌측 필터 사이즈 
       
       var column_menu = $(".column_menu");
@@ -308,44 +157,7 @@ $(document).ready(function(){
             
          });
       }
-
-//   //좌측 필터 가격
-//      var filter_price = $(".filter_price");
-//      var item_price = $(".item_price");
-//      
-//      for(var i=0; i<filter_price.length;i++){
-//         item_price_click(i);
-//         filter_price_check(i);
-//      }
-//      
-//      function item_price_click(index){
-//         
-//      item_price.eq(index).click(function(){
-//            if(filter_price.eq(index).is(':checked')){
-//               filter_price.eq(index).prop("checked", false).change();
-//            }
-//            else{
-//               filter_price.eq(index).prop("checked", true).change();
-//            }
-//         });
-//      }
-//      
-//      function filter_price_check(index){
-//         filter_price.eq(index).change(function(){
-//            if(this.checked){
-//               $(".teg_price").detach();
-//               $("input:checkbox[class='filter_price']").prop("checked",false);
-//               $(this).prop("checked",true);
-//               
-//               $(".filter_teg_area").append("<div class='teg_item teg_price' name='"+filter_price.eq(index).val()+
-//                     "'><span>"+filter_price.eq(index).val()+"</span><button class='teg_item_btn'>X</button></div>");
-//            }else{
-//               $("div[name="+filter_price.eq(index).val()+"]").detach();
-//               
-//            }
-//         });
-//      }
-
+      
       //우측 필터버튼
       var list = $(".product_btn_list");
       function btn_list(){

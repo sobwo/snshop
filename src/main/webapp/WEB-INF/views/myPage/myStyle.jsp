@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -61,17 +62,19 @@
 						
 							<div class="feeds" >
 								<div class="feedPost" id="feedPost${bv.boardNo}">
-									<div class="feedPostImage" onclick="location.href='#'">
+									<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${bv.boardNo}">
 										<c:choose>
 											<c:when test ="${bv.contentsImg==null}">
 											</c:when>
 											
 											<c:otherwise>
 											<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
+											<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
+											
 											<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
-											<c:forEach var="img" items="${bv.contentsImg}">
-												<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${bv.contentsImg}">
-											</c:forEach>											
+											<c:forEach var="img" items="${imgList}">
+												<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+											</c:forEach>										
 											</c:if>
 											</c:otherwise>
 										</c:choose>
@@ -86,8 +89,10 @@
 												<span class="imageCount">+${bv.viewCnt-1}</span>
 											</div>
 											
-											<a class="prev" >&#10094;</a>
-											<a class="next" >&#10095;</a>
+											<div class="imageBtn">
+												<button type="button" class="prev" value="${bv.boardNo}">&#10094;</button>
+												<button type="button" class="next" value="${bv.boardNo}">&#10095;</button>
+											</div>
 										</c:otherwise>
 									</c:choose>
 												
@@ -136,7 +141,8 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
-		 $(".likeImage").click(function() {
+		
+			$(".likeImage").click(function() {
 				var boardNo = $(this).val();
 				var clickImage = $(this).children("#likeImageChange");
 				var likeCountChange = $(this).siblings(".likeCount");
@@ -162,87 +168,52 @@
 					likeCountChange.text(data.totalCnt);
 					
 		        },
-		        error: function() {
-		        }
-
-		      });
-<<<<<<< HEAD
-		     
-
+			        error: function() {
+			        }
+	
+			      });
 		      });		    
-=======
-		   });		    
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-		 
-		 
-		 
-		 
-		 
-		 
-		 $(".prev").on("click", function (e) {
-		      e.preventDefault();
 
-		      // 이미지 현재의 위치
-		      var imgOn = $(".feedPostImg").find(".on").index();
-		      // 이미지 총 개수 
-		      var imgLen = $(".feedPostImg .PostImage").length;
-		      console.log(imgOn)
-		      
-		      // imgBox안의 img 중 imgOn 번째의 on 클래스 삭제 
-		      $(".feedPostImg .PostImage").eq(imgOn).removeClass("on");
-		      // imgBox안의 img 중 imgOn 번째 숨기기 
-		      $(".feedPostImg .PostImage").eq(imgOn).css("opacity", 0);
-		      
-		      //  이전의 위치로 돌아가야함으로
-		      imgOn = imgOn -1;
-
-		      if( imgOn < 0 ){
-		        // 돌아가 위치가 -1일 경우 
-		        // 이미지의 마지막으로 돌아간다
-		        $(".feedPostImg .PostImage").eq(imgLen -1).css("opacity", 1);
-		        $(".feedPostImg .PostImage").eq(imgLen -1).addClass("on");
-		      }else{
-		        // 돌아갈 위치가 -1이 아닌 경우
-		        $(".feedPostImg .PostImage").eq(imgOn).css("opacity", 1);
-		        $(".feedPostImg .PostImage").eq(imgOn).addClass("on");
-		      }
-
-
-		    });
-
-		    $(".next").on("click", function (e) {
-		      e.preventDefault();
-		      // 위에 동일 
-		      var imgOn = $(".feedPostImg").find(".on").index();
-		      var imgLen = $(".feedPostImg .PostImage").length;
-
-		      // 위에 동일
-		      $(".feedPostImg .PostImage").eq(imgOn).removeClass("on");
-		      $(".feedPostImg .PostImage").eq(imgOn).css("opacity", 0);
-		      
-		      // 다음의 위치로 알아야 되기 때문에 
-		      imgOn = imgOn + 1;
-		      
-		      if( imgOn === imgLen ){
-		        // 다음의 위치가 총 개수보다 클 경우
-		        // 처음의 위치로 돌아간다
-		        $(".feedPostImg .PostImage").eq(0).css("opacity", 1);
-		        $(".feedPostImg .PostImage").eq(0).addClass("on");
-		      }else{
-		        // 다음 위치가 있는 경우 
-		        $(".feedPostImg .PostImage").eq(imgOn).css("opacity", 1);
-		        $(".feedPostImg .PostImage").eq(imgOn).addClass("on");
-		      }
-		    });
 		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+			var imagesMap = {}; 
+			
+			$(".prev").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				currentImageIndex--;
+				if (currentImageIndex < 0) {
+				  currentImageIndex = images.length - 1;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex,images);
+			});
+			
+			$(".next").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				
+				currentImageIndex++;
+				if (currentImageIndex >= images.length) {
+				  currentImageIndex = 0;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex, images);
+			});
+			
+			function updateDisplayedImage(boardNo, currentImageIndex,images) {
+				
+				for (var i = 0; i < images.length; i++) {
+				  images[i].style.display = "none";
+				}
+				images[currentImageIndex].style.display = "block";
+			}
+			
 		</script>
 	</body>
 </html>
