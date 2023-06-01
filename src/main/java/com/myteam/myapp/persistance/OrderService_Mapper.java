@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
-import com.myteam.myapp.domain.SizeVo;
 
 public interface OrderService_Mapper {
 	// 정보 입력
@@ -41,8 +40,5 @@ public interface OrderService_Mapper {
 
 	public int orderInsert(OrderVo ov); 
 	
-	public OrderDto orderSelectNew(int memberNo);
-	
-	/* public SizeVo sizeSelectOne(int sizeNo); */
-
+	public OrderDto orderSelectNew(String OrderNum);
 }

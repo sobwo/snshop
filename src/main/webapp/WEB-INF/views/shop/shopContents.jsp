@@ -25,19 +25,7 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
-<<<<<<< HEAD
 
-					<input type="hidden" name="sizeName" class="sizeName" value="">
-
-
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-					<!-- <input type="hidden" name="size" value="" -->
-<<<<<<< HEAD
-
-
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -65,24 +53,8 @@
 							<div class="sizePick">
 								<div class="sizeTitle"><span>사이즈</span></div>
 								<div class="size">
-<<<<<<< HEAD
-
-									<span class="size_view">사이즈 표시</span>
-=======
 									<input type="text" class="size_view" name="sizeName" class="sizeName" value="사이즈 표시">
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 									<button type="button" class="sizePick_btn" name="sizePick">
-<<<<<<< HEAD
-
-
-									<span class="size_view">사이즈 표시
-									 
-									</span>
-									<button class="sizePick_btn" name="sizePick">
-
-
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 										<img src="${pageContext.request.contextPath}/resources/image/downside.png">
 									</button>
 								</div>
@@ -99,7 +71,17 @@
 						<div class="btn_area">
 							<button type="button" class="buyButton" name="buy_btn" onclick="buyButton();">구매</button>
 							<button type="button" class="sellButton" name="sell_btn">판매</button>
-							<button type="button" class="wish"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품 <fmt:formatNumber type="number" maxFractionDigits="3" value="${gv.interestNum}" /></button>
+							<button type="button" class="wish">
+								<c:choose>
+									<c:when test="${interestGoodsCheck >= 1}">
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png"/>관심상품 
+									</c:when>
+									<c:otherwise>
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"/>관심상품
+									</c:otherwise>
+								</c:choose>
+								<p class="interestNum">${gv.interestNum}</p>
+							</button>
 						</div><!-- btn_area -->
 						
 						<div class="productInfo">
@@ -205,12 +187,59 @@
 		});
 
 		function buyButton(){
-			var fm = document.frm;	
-			fm.action = "${pageContext.request.contextPath}/order/orderAgree.do";
-			fm.enctype ="multipart/form-data";
-			fm.method= "get";
-			fm.submit();
+			if($(".size_view").val() == "사이즈 표시")
+				alert("사이즈를 선택해주세요.");
+			else{
+				var fm = document.frm;			
+				fm.ectype ="multipart/form-data";
+				fm.action ="${pageContext.request.contextPath}/order/orderAgree.do";
+				fm.method= "get";
+				fm.submit();
+			}
 		};
+		
+		$(".status_item_fb").on("click",function(){
+			var memberNo = "${sessionScope.memberNo}";
+			var sizeNo = $(this).children("input[name=sizeNo]").val();
+			var goodsNo = $("input[name=goodsNo]").val();
+			var interestImg = $(this).find(".interestImg");
+			if(memberNo == null || memberNo == ""){
+				alert("로그인이 필요합니다.");
+				$(location).attr("href","${pageContext.request.contextPath}/member/memberLogin.do");
+			}
+			
+			else{
+				$.ajax({
+			        type: "POST",
+			        url: "${pageContext.request.contextPath}/shop/interest_check.do",
+			        dataType: "json",
+			        data: {
+						"goodsNo" : goodsNo,
+						"sizeNo" : sizeNo
+			        	},
+			        cache: false,
+			        success: function(data) {
+			        	
+			        	if(data.value == 1){
+			        		if(data.interestCheck == 1){
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
+			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png")
+			        		}
+			        		else{
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png");
+			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png")
+			        		}
+			        		
+			        		$(".interestNum").text(data.interestCnt);
+			        	}
+						
+			        },
+			        error: function() {
+			        }
+	
+				});
+			}
+		});
 		</script>
 	</body>
 </html>

@@ -170,8 +170,27 @@
 		        },
 		        error: function() {
 		        }
+
+		      });
+<<<<<<< HEAD
+		     
+
 		      });		    
+<<<<<<< HEAD
 		    });	
+=======
+=======
+		   });		    
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+		 
+		 
+		 
+		 
+		 
+		 
+		 $(".prev").on("click", function (e) {
+		      e.preventDefault();
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 		 
 		 // boardNo 값 받아오기?
@@ -186,6 +205,7 @@
 		    updateDisplayedImage();
 		  }
 
+<<<<<<< HEAD
 		  function showNextImage() {
 		    currentImageIndex++;
 		    if (currentImageIndex >= images.length) {
@@ -193,6 +213,10 @@
 		    }
 		    updateDisplayedImage();
 		  }
+=======
+
+		    });
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 		  function updateDisplayedImage() {
 		    for (var i = 0; i < images.length; i++) {

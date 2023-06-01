@@ -16,10 +16,13 @@
 	<typeAlias alias="pv" type="com.myteam.myapp.domain.PointVo"/>
 	<typeAlias alias="mpv" type="com.myteam.myapp.domain.MemberPointVo"/>
 	<typeAlias alias="iv" type="com.myteam.myapp.domain.InterestVo"/>
+	<typeAlias alias="pmv" type="com.myteam.myapp.domain.PayVo"/>
 	
 	<typeAlias alias="ld" type="com.myteam.myapp.domain.LikesDto"/>
 	<typeAlias alias="od" type="com.myteam.myapp.domain.OrderDto"/>
 	<typeAlias alias="pd" type="com.myteam.myapp.domain.ProductDto"/>
-	<typeAlias alias="id" type="com.myteam.myapp.domain.InterestDto"/>
+	<typeAlias alias="sd" type="com.myteam.myapp.domain.SizeDto"/>
+	<typeAlias alias="gid" type="com.myteam.myapp.domain.GoodsInterestDto"/>
+	
 </typeAliases>
 </configuration>

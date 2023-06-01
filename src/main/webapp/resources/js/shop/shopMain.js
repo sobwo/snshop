@@ -73,11 +73,19 @@ $(document).ready(function(){
          if(clist_check.is(":checked")==true) {
             $("#"+category).prop('checked',false);
          }
+
+         else if(child_cnt==0){
+            $(this).closest(".filter_child_list").hide();
+         }
+
+
+
          else{
          	if($("."+category+':checked').length==0)$(this).closest(".filter_child_list").hide();
          };
          
 		addList(item_top);
+
 		addList($(this));
 		filterList();
       });
@@ -141,6 +149,107 @@ $(document).ready(function(){
          $(this).parent('div').detach();
       });
       
+
+
+//	// 상위 카테고리 체크시
+//		$('.filter_list_top').on('change',function(){
+//			
+//			var child_list = $(this).siblings('.filter_child_list');
+//			var child_id = child_list.prop('id');
+//			if($(this).is(':checked')==true) {
+//				child_list.show();
+//				$('.'+child_id).prop('checked',false).change();
+//			}else if($('.'+child_id+':checked').length > 0){
+//			}else { child_list.hide();
+//			}
+//		});
+//	//하위 카테고리 체크시 	
+//		$('.filter_list_bottom').on('change',function(){
+//			var child_list = $(this).parents('.filter_child_list');
+//			var filter_top = child_list.siblings('.filter_list_top');
+//			var child_id = child_list.prop('id');
+//			if($(this).is(':checked')==true) {
+//				filter_top.prop('checked',false).change();
+//			}else{}
+//		});
+
+	$(".item_top").on("click",function(){
+		var plist_check = $(this).children(".filter_list_top");
+
+		
+		if(plist_check.is(":checked")==true) {
+			$(this).siblings(".filter_child_list").show();
+			$(this).siblings(".filter_child_list").find(".f_div").prop('checked',false);
+			
+		}
+		else {
+			plist_check.prop('checked',false);
+			$(this).siblings(".filter_child_list").hide();
+		}
+		
+		addList($(this));
+	});
+	
+	$(".filter_child_list_in").on("click",function(){
+		var clist_check = $(this).children(".f_div");
+		var category = clist_check.prop('name')
+		if(clist_check.is(":checked")==true) {
+			$("#"+category).prop('checked',false);
+		}
+		else {
+			$(this).closest(".filter_child_list").hide();
+		}
+		addList($(this));
+	});
+	
+	
+	function addList(index) {
+		var value;
+		var name_div = index.children(".f_div");
+		var check = 0;
+		
+		if(name_div.is(':checked')==true) {
+			for(var i=0;i<=$(".teg_item").length;i++) {
+				if(name_div.val()==$(".teg_item").eq(i).attr('name'))
+					check = 1;
+			}
+			
+			if(check==0) {
+			value = "<div class='teg_item' name='" + name_div.val() + "'>" + name_div.val() + "</span>";
+			value += "<button class='teg_item_btn'>X</button></div>";
+			$(".filter_teg_area").append(value);
+			}
+		}
+		else {
+			$("div[name="+name_div.val()+"]").detach();
+		}
+	}
+		
+		
+	// 체크박스 옆 글자 클릭시
+		
+		$('.item').on('click',function(){
+			
+			var checkbox = $(this).siblings('.f_div');
+			
+			if(checkbox.is(':checked') == true){
+				checkbox.prop("checked", false).change();
+			}else{
+				checkbox.prop("checked", true).change();
+			}
+		});
+		
+	//태그 div 버튼 클릭시 삭제 및 클릭 해제
+		$(document).on('click','.teg_item_btn',function(){
+			var name = $(this).parent('div').attr('name');
+			$("input:checkbox[name='"+name+"']").prop("checked",false).change();
+			$(this).parent('div').detach();
+		});
+		
+
+
+
+
 
 
 //   //좌측 필터 성별

@@ -138,12 +138,30 @@
 .like_btn{
 	width:30px;
 	height:30px;
-}
 
+}
+.likeImage{
+	border:0;
+	outline:0;
+	width:28px;
+	height:28px;
+	cursor: pointer;
+}
+#likeImageChange{
+	width:29px;
+	height:29px;
+}
+.likeBox{
+	margin-right:10px;
+}
 .comment_btn{
 	width:28px;
 	height:28px;
-	margin-left:20px;
+
+}
+
+.commentBox{
+	margin-left:5px;
 }
 
 .share_btn{

@@ -7,11 +7,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
-import com.myteam.myapp.domain.InterestDto;
+import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
-import com.myteam.myapp.domain.SizeVo;
+import com.myteam.myapp.domain.SizeDto;
 import com.myteam.myapp.persistance.ShopService_Mapper;
 
 @Service("ShopServiceImpl")
@@ -71,30 +73,6 @@ public class ShopServiceImpl implements ShopService {
 		}
 
 		@Override
-		public int interestCheck(int memberNo, int goodsNo, String size) {
-			int cnt = ssm.interestCnt(memberNo,goodsNo);
-			int value = 0;
-			
-			if(cnt == 0) {
-				value=ssm.insertInterest(memberNo, goodsNo, size);
-				ssm.updateInterest(goodsNo,1);
-			}
-			else {
-				value=ssm.deleteInterest(memberNo, goodsNo);
-				ssm.updateInterest(goodsNo,2);
-			}
-			return value;
-		}
-		
-		@Override
-		public ArrayList<InterestDto> selectInterestAll(int memberNo) {
-			
-			ArrayList<InterestDto> ilist = ssm.selectInterestAll(memberNo);
-			
-			return ilist;
-		}
-
-		@Override
 		public ArrayList<ProductDto> recommentList(GoodsVo gv) {
 
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
@@ -108,14 +86,54 @@ public class ShopServiceImpl implements ShopService {
 		}
 
 		@Override
-		public ArrayList<SizeVo> sizeList(int goodsNo) {
+		public ArrayList<SizeDto> sizeList(int goodsNo) {
 			
-			ArrayList<SizeVo> sizeList = ssm.sizeList(goodsNo);
+			ArrayList<SizeDto> sizeList = ssm.sizeList(goodsNo);
 			return sizeList;
 			
 		}
 
+		@Override
+		public int interestAction(InterestVo iv) {
+			int value = ssm.interestListCnt(iv);
+			int value2 = 0;
+			int result = 0;
+			
+			if(value == 0)
+				value2 = ssm.insertInterest(iv);
+			else
+				value2 = ssm.updateInterest(iv);
+			
+			if(value2 == 1)
+				result = ssm.updateGoodsInterest(iv.getGoodsNo());
+			
+			return result;
+		}
 
+		@Override
+		public int interestCheck(InterestVo iv) {
+			int value = ssm.interestCheck(iv);
+			
+			return value;
+		}
 
+		@Override
+		public int interestGoodsCheck(int goodsNo, int memberNo) {
+			int value = ssm.interestGoodsCheck(goodsNo, memberNo);
+			
+			return value;
+		}
 
+		@Override
+		public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo) {
+			ArrayList<GoodsInterestDto> glist = ssm.selectInterestAll(memberNo);
+			
+			return glist;
+		}
+
+//		@Override
+//		public int interestCnt(int goodsNo) {
+//			int value = ssm.interestCnt(goodsNo);
+//			return value;
+//		}
 }

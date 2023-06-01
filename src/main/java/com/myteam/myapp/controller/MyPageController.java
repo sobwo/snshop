@@ -33,8 +33,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
-import com.myteam.myapp.domain.InterestDto;
-import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -44,8 +43,11 @@ import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+
+
 import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.service.ShopService;
+import com.myteam.myapp.service.StyleService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
 import com.myteam.myapp.util.UploadProfile;
@@ -68,6 +70,9 @@ public class MyPageController {
 	
 	@Autowired
 	ShopService ss;
+	
+	@Autowired
+	StyleService ss1;
 	
 	@Autowired
 	HttpServletRequest request;
@@ -171,24 +176,11 @@ public class MyPageController {
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		ArrayList<InterestDto> ilist = ss.selectInterestAll(memberNo);
+		ArrayList<GoodsInterestDto> glist = ss.selectInterestAll(memberNo);
 		
-		model.addAttribute("ilist",ilist);
+		model.addAttribute("glist",glist);
 		
 		return "myPage/interest";
-	}
-	
-	@RequestMapping(value = "/interestAction.do")
-	public String interestAction(
-			HttpSession session,
-			@RequestParam("goodsNo") int goodsNo,
-			@RequestParam("size") String size) {
-		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		int value = ss.interestCheck(memberNo, goodsNo, size);
-		
-		return null;
 	}
 	
 	@RequestMapping(value = "/profileInfo.do")
@@ -319,7 +311,8 @@ public class MyPageController {
 		model.addAttribute("blist", blist);
 		
 		for(BoardVo bv : blist)
-			System.out.println(bv.getLike_check());
+		/*	System.out.println(bv.getLike_check());*/
+			System.out.println(bv.getLikeCnt());
 	
 		return "myPage/myStyle";
 	}
@@ -327,10 +320,12 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)
 	public JSONObject like_check(
-			@RequestParam("boardNo")int boardNo,
+			@RequestParam("boardNo") int boardNo,
 			LikesVo lv,
 			HttpSession session) throws Exception{
-
+		
+		System.out.println("boardNo" + boardNo);
+		
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
 		lv.setBoardNo(boardNo);

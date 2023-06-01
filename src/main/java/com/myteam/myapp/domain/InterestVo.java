@@ -1,8 +1,8 @@
 package com.myteam.myapp.domain;
 
 public class InterestVo{
-	private int memberNo, goodsNo;
-	private String size;
+	private int memberNo, goodsNo, sizeNo;
+	private String interestCheck;
 	
 	public int getMemberNo() {
 		return memberNo;
@@ -16,12 +16,19 @@ public class InterestVo{
 	public void setGoodsNo(int goodsNo) {
 		this.goodsNo = goodsNo;
 	}
-	public String getSize() {
-		return size;
+	public int getSizeNo() {
+		return sizeNo;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setSizeNo(int sizeNo) {
+		this.sizeNo = sizeNo;
 	}
+	public String getInterestCheck() {
+		return interestCheck;
+	}
+	public void setInterestCheck(String interestCheck) {
+		this.interestCheck = interestCheck;
+	}
+	
 	
 	
 }

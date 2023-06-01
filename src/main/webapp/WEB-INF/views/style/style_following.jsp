@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>팔로우</title>
+		<title>팔로잉</title>
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
 		<style>
@@ -48,13 +48,13 @@
 					            	<!--상단 프로필 사진 -->
 					            	<img class="user_img" src="" alt="">
 					            	<div class="user_id_wrap">
-					            		<a class="user_id" href="#">${blist.memberId}</a>
-						                <p class="write_date"> ${blist.writeday} </p>
+					            		<a class="user_id" href="#"> ${blist.memberId} </a>
+						                <p class="write_date">  ${blist.writeday}  </p>
 									</div>
 					            </div>
 					            <!-- 팔로우 버튼 -->
 					            <div class="button_wrap">
-									<button class="follow-button" class="btn">팔로우</button>
+									<button class="follow-button" class="btn">팔로잉</button>
 								</div>        
 							</div>
 							
@@ -86,18 +86,50 @@
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
-					    		<div class="social_btn_left">
-					    			<img class="like_btn" src="${pageContext.request.contextPath}/resources/image/heart3.png">
-					    			<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick="comment_btn('${blist.memberId}', '${blist.contents}')">
+					    		<div class="social_btn_left">				    				
+
+								
+								<!-- 5-31 like 버튼  -->
+								<span class="likeBox">
+									<button type="button" class="likeImage" value="${blist.boardNo}">
+										<c:choose>
+											<c:when test="${blist.like_check == 0}">
+												<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart.png/">
+											</c:when>
+											
+											<c:when test="${blist.like_check eq 1}">
+												<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart2.png/">
+											</c:when>
+											<c:otherwise>
+												<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart.png/">
+											</c:otherwise>
+										</c:choose>
+									</button>
+<%-- 									<span class="likeCount">${blist.likeCnt}</span> --%>
+								</span>	
+		    					<!-- 5-31 like 버튼  -->	
+	    						<span class="commentBox"> 
+									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}')">	
+								</span> 	 		    			
 					    		</div>
-					    		<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png">
+					
+								
+					    		<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
+					    		
 					    	</div>
 					    	
+					    
 					    	<!-- 좋아요 카운트 -->
-					    	<div class="social_count">
-					    		<span>좋아요&nbsp;<strong>${blist.likeCnt}</strong>개</span>
-					    	</div>
-					    	
+					   <%--  	<div class="social_count" onclick="openPopup()">
+					    		<span>좋아요&nbsp;<strong> ${blist.likeCnt} ${bv.likeCnt} </strong>개</span> 
+					    		                    
+               			 	</div> --%>
+               			 	
+               			 	<div class="social_count" onclick="openPopup()">
+  								<span>좋아요&nbsp;<strong>${blist.likeCnt} <%-- ${bv.likeCnt} --%></strong>개</span>
+							</div>
+               			 	
+               			 	
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
@@ -106,14 +138,141 @@
 					</c:forEach>
 		    	</div>
 		    	<jsp:include page="popup/comment_popup.jsp"></jsp:include>
+		    		<jsp:include page="popup/likepush.jsp"></jsp:include>
+
 		    
 			</div>
 		</div>
 		</c:otherwise>
 		</c:choose>
+
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
+		<script>
+		
+		$(".likeImage").click(function(){
+			var boardNo = $(this).val();
+			var clickImage = $(this).children("#likeImageChange");
+			var likeCountChange = $(this).siblings(".likeCount");
+			
+			 $.ajax({
+			        type: "POST",
+			        url: "${pageContext.request.contextPath}/myPage/like_check.do",
+			        dataType: "json",
+			        data: {
+						"boardNo": boardNo,
+			        	},
+			        cache: false,
+			        success: function(data) {	
+			        	
+						if (data.cnt == 1) {
+							clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
+			          
+			         	}else {
+			         		clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart.png/");
+			          
+			         	}
+						
+						likeCountChange.text(data.totalCnt);
+						
+			        },
+			        error: function() {
+			        }
+
+			      });
+			     
+
+			      });		
+		
+		
+		
+		
+/* /* /* 		좋아요누른사람 
+		
+        function openPopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+        }
+		
+/* 		좋아요누른사람 */		
+		
+		
+		
+		
+		
+		
+/*  		var imgChange = document.getElementById("like_btn");
+		var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png';
+		var toggleImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
+
+		function like() {
+		  if (imgChange.getAttribute('src') === currentImage) {
+		    imgChange.setAttribute('src', toggleImage);
+		  } else {
+		    imgChange.setAttribute('src', currentImage);
+		  }
+		}
+		
+		 */		
+		
+/* 		$(document).ready(function(){
+			
+		});
+			${".likeImage2"}.click(function(){
+				var boardNo = $(this)val();
+				var clickImage = $(this).children("#like_btn");
+			
+		$.ajax({
+			type:"POST"
+			url: "${pageContext.request.contextPath}/style/likebtn_check.do",
+			dataType:"json",
+			data:{
+				"boardNo":boardNo,
+			},
+			cache:false,
+			success:function(data){
+				if(data.cnt == 1){
+					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart2.png/");
+				}else{
+					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart.png/");
+				}
+			},
+			error:function(){
+				
+			}
+		});
+		$.ajax({
+			type:"GET",
+			url:${pageContext.request.contextPath}/style/like_TotalCnt.do",
+			dataType:"json",
+			data:{
+				"boardNo":boardNo,
+		},
+		cache:false,
+		success: function(data){
+			alert("1")
+			likeTotalCnt(data.totalCnt);
+			${".likeCount"}.text(data.totalCnt);
+		},
+		error:function(){
+			alert("Cnt 실패");
+		}
+		
+		
+		});
+		});
+		 */
+
+			
+			
+			
+		</script>
 	</body>
 </html>
 

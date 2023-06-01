@@ -10,7 +10,7 @@
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_incomeAccount.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 		<style>
-			.memberInfo_list li:nth-child(4) a{
+			.memberInfo_list li:nth-child(3) a{
 				color:#222;
 				font-weight:bold;
 			}

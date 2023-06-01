@@ -6,18 +6,21 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
+import com.myteam.myapp.domain.SizeDto;
 import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
 
@@ -39,16 +42,24 @@ public class ShopController {
 	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
 			/* @RequestParam("sizeNo")int sizeNo, */
-			Model model) {
+			Model model,
+			HttpSession session) {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
 
 		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
-		ArrayList<SizeVo>sizeList = ss.sizeList(goodsNo);
+		ArrayList<SizeDto>sizeList = ss.sizeList(goodsNo);
 		
+		int memberNo = 0;
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		int interestGoodsCheck = ss.interestGoodsCheck(goodsNo, memberNo);
+		
+		model.addAttribute("interestGoodsCheck", interestGoodsCheck);
 		model.addAttribute("sizeList",sizeList);
-		
 		model.addAttribute("recommentList", recommentList);
 		model.addAttribute("gv", gv);
 		model.addAttribute("pivList", pivList);
@@ -87,18 +98,33 @@ public class ShopController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/favoriteAction.do")
-	public JSONObject favoriteAction(
-			@RequestParam("goodsNo") int goodsNo,
+	@RequestMapping(value="/interest_check.do" , method=RequestMethod.POST)
+	public JSONObject interest_check(
+			@RequestParam("goodsNo")int goodsNo,
 			@RequestParam("sizeNo") int sizeNo,
-			HttpSession session) {
-		
+			InterestVo iv,
+			GoodsVo gv,
+			HttpSession session) throws Exception{
+
 		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
+		iv.setGoodsNo(goodsNo);
+		iv.setSizeNo(sizeNo);
+		iv.setMemberNo(memberNo);
+	    
+	    int value = ss.interestAction(iv);
 		
-		JSONObject obj = new JSONObject();
-		
-		
-		return null;
+	    int interestCheck = ss.interestCheck(iv);
+	    gv = ss.goodsSelectOne(goodsNo);
+	    int interestCnt = gv.getInterestNum();
+
+	    HashMap<String,Object> hm = new HashMap<>();
+	    hm.put("interestCheck",interestCheck);
+	    hm.put("interestCnt",interestCnt);
+	    hm.put("value",value);
+	    
+		JSONObject json = new JSONObject(hm);
+	    
+	    return json;
 	}
 }

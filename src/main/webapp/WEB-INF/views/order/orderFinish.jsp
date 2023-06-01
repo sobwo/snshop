@@ -42,8 +42,22 @@
 							
 							<p class="modelName">  	${od.goodsName}</p>
 							<p class="modelSize">${od.size} </p>
-						</div>				
+						</div>			
 					</div>
+					<c:if test="${pv.payMethod eq 'vbank'}">
+						<div class="vBankInfo">
+							<div>
+								<span>입금 은행</span>
+								<p class="vBankName">${pv.bankName}</p>
+							</div>
+							<div>
+								<span>입금 계좌번호</span><p class="vBankNum">${pv.bankNum}</p>
+							</div>
+							<div>
+								<span>입금 기한</span><p class="vBankDate">${pv.date} 까지</p>
+							</div>
+						</div>
+					</c:if>	
 					<div class="orderFinishBtn">
 						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="location.href='${pageContext.request.contextPath}/'">
 					</div>	

@@ -1,7 +1,14 @@
 package com.myteam.myapp.domain;
 
+public class BoardVo extends MemberVo{
 
-public class BoardVo extends LikesVo{
+	/* public class BoardVo extends LikesVo{ */
+	/* public class BoardVo extends LikesVo{ */
+
+/* public class BoardVo implements MemberVo, LikesVo { */
+	
+
+
 
 	private int boardNo;
 	private String contents; 
@@ -12,6 +19,24 @@ public class BoardVo extends LikesVo{
 	private String viewCnt;
 	private int memberNo;
 	
+	/*
+	 * private int likes;
+	 * 
+	 * 
+	 * public int getLikes() { return likes; } public void setLikes(int likes) {
+	 * this.likes = likes; }
+	 * 
+	 */
+	
+	private int like_check;
+
+	
+	public int getLike_check() {
+		return like_check;
+	}
+	public void setLike_check(int like_check) {
+		this.like_check = like_check;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -60,4 +85,8 @@ public class BoardVo extends LikesVo{
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
+
+	 
+
+
 }

@@ -30,7 +30,16 @@
 						<li class="status_item_fb">
 							<input type="hidden" name="sizeNo" value="${sizeList.sizeNo}"/>
 							<span class="item_size_fb" style="font-size:14px">${sizeList.sizeName}</span>
-							<span class="item_price_fb"><img src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
+							<span class="item_price_fb">
+								<c:choose>
+									<c:when test="${sizeList.interestCheck == 1 && sizeList.memberNo == sessionScope.memberNo}">
+										<img class="interestImg" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
+									</c:when>
+									<c:otherwise>
+										<img class="interestImg" src="${pageContext.request.contextPath}/resources/image/favorites2.png">
+									</c:otherwise>
+								</c:choose>
+							</span>
 						</li>
 					</c:forEach>
 				</ul>

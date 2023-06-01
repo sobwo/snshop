@@ -11,19 +11,19 @@
 	href=" ${pageContext.request.contextPath}/resources/css/order/orderPage.css"
 	rel="stylesheet">
 	<style>
-	.nav_list:nth-child(3) a {
-		font-weight: bold;
-	}
+		.nav_list:nth-child(3) a {
+			font-weight: bold;
+		}
 	
-	#card{
-		background-image:url("${pageContext.request.contextPath}/resources/image/card.png");
-	}
-	#kakaopay{
-		background-image:url("${pageContext.request.contextPath}/resources/image/kakaopay.png");
-	}
-	#vBank{
-		background-image:url("${pageContext.request.contextPath}/resources/image/bankBook.png");
-	}
+		#card{
+			background-image:url("${pageContext.request.contextPath}/resources/image/card.png");
+		}
+		#kakaopay{
+			background-image:url("${pageContext.request.contextPath}/resources/image/kakaopay.png");
+		}
+		#vBank{
+			background-image:url("${pageContext.request.contextPath}/resources/image/bankBook.png");
+		}
 	</style>
 </head>
 <body>
@@ -190,13 +190,14 @@
 						<div class="inner_point_area">
 							<h3 class="title_txt">포인트</h3>
 							<input type="number" class="point_view" id="result" placeholder="0(또는 직접입력)">							
-							<button class="all_use"id="all_use" onclick="applyAll(); addPrice()">모두 사용</button>
+							<button class="all_use"id="all_use">모두 사용</button>
 							<button class="apply"id="apply" onclick="applyDirectInput()">적용</button>
+							<button class="cancel" id="cancel">적용 취소</button>
 							<p id="output"></p>
 							<p class="have_point">
 								보유포인트:
 								<button onclick="openPopup()" class="Q">?</button>
-								${mv.point} P						
+								${Avapoint} P						
 							</p>
 							<!--포인트 - 팝업창-->
 							<div class="point_popup">
@@ -205,7 +206,7 @@
 									<h3 style="text-align: center;">이용안내</h3>
 									<p>사용 가능한 포인트</p>
 									<p>
-										<b>${mv.point}P</b>
+										<b>${totalPoint}P</b>
 									</p>
 									<hr>
 									<!-- <p>이번달 소멸 예정 포인트 0P</p> -->
@@ -236,8 +237,8 @@
 									<c:set var="price" value="${total}"></c:set>
 								</c:when>
 								<c:otherwise>
-									<fmt:formatNumber value="${total-3000}" pattern="#,##0" var="t_Total" />
-									<c:set var="price" value="${total-3000}"></c:set>
+									<fmt:formatNumber value="${total+3000}" pattern="#,##0" var="t_Total" />
+									<c:set var="price" value="${total+3000}"></c:set>
 								</c:otherwise>
 							</c:choose>
 						<c:out value="${t_Total}" /> 												
@@ -335,11 +336,17 @@
 		var btnimg = document.querySelector('.btnimg');
 		var btnimg2 = document.querySelector('.btnimg2');
 		
- 		$(document).ready(function() {
- 			var price = "${price}";
- 			
- 			$("input[name=price]").val(price);
- 			
+		
+		//pay관련 변수
+		var goodsNo = "${gv.goodsNo}";
+		var goodsName = "${gv.goodsName}";
+		var name = "${av.userName}";
+		var phone = "${av.addressPhone}";
+		var price = "${price}";
+		
+		$(document).ready(function() {
+			$("input[name=price]").val(price);
+			
 			var del2Element = $("#del2");
 			
 			if (total >= 200000) {
@@ -347,38 +354,35 @@
 			} else {
 				del2Element.text("3,000");
 			}
+		}); 
+		
+		//포인트 전체 사용
+ 		$("#all_use").click(function() {
+			var point = ${totalPoint};
+			
+			if(point<1000)
+				alert("1000 포인트 이상부터 사용 가능합니다.");
+			else{
+				var goodsNo = ${gv.goodsNo};
+				
+				var sizeName = "${sizeName}";
+				$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+point+"&sizeName="+sizeName);
+			}
 		});
  		
- 		document.getElementById("all_use").addEventListener("click",function() {
-			var pointCost = ${mv.point};
+		//포인트 취소
+ 		$(".cancel").click(function(){
+ 			var pointCost = 0;
 
 			var goodsNo = ${gv.goodsNo};
-			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+pointCost);
-		});
- 		
-
-		$("button[name=modifyBtn]").on("click", function() {
-			popup_wrap.show();
-			var index = $(this).val();
-			showAddress(index);
-		});
-		
-		$(".pay_box").on("click",function(){
-			payCntCheck();
-			var method = $(this).children(".method");
 			
-			if(method.val() == "off"){
-				$(this).css("border","2px solid #222");
-				method.val("on");
-			}
-			else{
-				$(this).css("border","1px solid #ebebeb");
-				method.val("off");
-			}
-       	});
+			var sizeName = "${sizeName}";
+			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+pointCost+"&sizeName="+sizeName);
+ 		});
 		
+		//포인트 입력창
 		$(".point_view").on("propertychange change keyup paste input", function() {
-			const maxPoint = parseInt('${mv.point}');
+			const maxPoint = parseInt('${Avapoint}');
 
 			let inputValue = parseInt($(this).val());
 
@@ -390,9 +394,10 @@
 
 		});
 		
+		//주소
 		function submit_address() {
 			var fm = document.frm;
-			fm.action = "${pageContext.request.contextPath}/order/order_addressAction.do";
+			fm.action = "${pageContext.request.contextPath}/order/order_addressAction.do?sizeName="+${sizeName};
 			fm.method = "POST";
 			fm.submit();
 		}
@@ -420,42 +425,35 @@
 		
 
 		function applyDirectInput() {
-			var result = document.getElementById("result").value;
-			document.getElementById("inner_point").textContent = result;
+			var point = ${totalPoint};
 			
-			var goodsNo = ${gv.goodsNo};
-			$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result);
+			if(point<1000)
+				alert("1000 포인트 이상부터 사용 가능합니다.");
+			else{
+				var result = document.getElementById("result").value;
+				document.getElementById("inner_point").textContent = result;
+				
+				var goodsNo = ${gv.goodsNo};
+				var sizeName = "${sizeName}";
+				$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result+"&sizeName="+sizeName);
+			}
 		}
+
 		
 		function orderPay(){
-			var goodsNo = "${gv.goodsNo}";
-			var goodsName = "${gv.goodsName}";
-			var name = "${av.userName}";
-			var phone = "${av.addressPhone}";
-			var price = "${price}";
-			
-			
-			
 			for(var i=0; i<$(".method").length; i++){
 				if($(".method").eq(i).val() == "on"){
 					if($(".method").eq(i).closest(".pay_box").attr("id") == "card")
-						nicePay(goodsNo,goodsName,name,phone,price);
+						nicePay();
 					else if($(".method").eq(i).closest(".pay_box").attr("id") == "kakaopay")
-						kakaoPay(goodsNo,goodsName,name,phone,price);
+						kakaoPay();
 					else
-						vPay(goodsNo,goodsName,name,phone,price);
+						vPay();
 				}
 			}
 		}
 		
-		function orderInsert(){
-			var info = document.info;
-			info.method = "POST";
-			info.action = "${pageContext.request.contextPath}/order/orderFinish.do?sizeName=${sizeName}";
-			info.submit();
-		}
-		
-		function kakaoPay(goodsNo,goodsName,name,phone,price) {
+		function kakaoPay() {
 	        // getter
 	        IMP.init('imp23228257');
 
@@ -465,12 +463,11 @@
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	                var msg = '결제가 완료되었습니다.';
-	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -480,7 +477,7 @@
 	        });
 	    }
 		
-		function nicePay(goodsNo,goodsName,name,phone,price){
+		function nicePay(){
 	        IMP.init('imp23228257');
 	    	
 	        IMP.request_pay({
@@ -490,12 +487,11 @@
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	                var msg = '결제가 완료되었습니다.';
-	                payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -504,7 +500,7 @@
 	        });
 	    }
 		
-		function vPay(goodsNo,goodsName,name,phone,price){
+		function vPay(){
 			var today = new Date();   
 
 			var year = today.getFullYear().toString(); // 년도
@@ -517,64 +513,45 @@
 	        IMP.request_pay({
 	            pg: 'nice',
 	            pay_method: 'vbank',
-// 	            vbank_due: vday,
-// 	            vbank_holder : '소병운',
-// 	            vbank_num : '50108456179234',
 	            merchant_uid: goodsNo + new Date().getTime(),
 	            name: goodsName,
 	            amount: price,
 	            buyer_name: name,
-	            buyer_tel: phone,
+	            buyer_tel: phone
 	        }, function (rsp) {
 	            if (rsp.success) {
-	            	var msg = '결제가 완료되었습니다.';
-	            	payAjax(rsp.merchant_uid,rsp.paid_amount,phone);
+	            	pay_ajax(rsp.imp_uid,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
 	            }
-	            alert(msg);
+// 	            alert(msg);
 	        });
 	    }
 		
-		function payCntCheck(){
-			var cnt = 0;
-			var length = $(".pay_box").length;
-			var method_val = $(".pay_box").children(".method");
-			for(var i=0;i<length;i++){
-				if(method_val.eq(i).val() == "on")
-					cnt++;
-			}
-			
-			if(cnt>0){
-				for(var i=0;i<length;i++){
-					method_val.eq(i).val("off");
-					$(".pay_box").eq(i).css("border","1px solid #ebebeb");
-				}
-			}
-		}
 		
-		function payAjax(merchant_uid,paid_amount,phone){
-			var payInfo = $("#payInfo_value").val();
-			var addressNo = $("input[name=addressNo]").val();
-			var goodsNo = $("input[name=goodsNo]").val();
-			var sizeName = "${sizeName}";
+		function pay_ajax(imp_uid,price){
+			var addressNo = "${av.addressNo}";
+			var size = "${sizeName}";
+			var pay_info = $("#payInfo_value").val();
+			var point = $("#inner_point").text();
 			
 			$.ajax({
-				url: "${pageContext.request.contextPath}/order/orderInsert.do",		
+				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
 				method: "POST",
-				data: {"orderNum" : merchant_uid,
-					   "totalPrice" : paid_amount, 
-					   "payInfo" : payInfo,
-					   "addressNo" : addressNo,
-					   "goodsNo" : goodsNo,
-					   "sizeName" : sizeName,
-					   "memberPhone" : phone
+				data: {
+						"imp_uid" : imp_uid,
+						"price" : price,
+						"goodsNo" : goodsNo,
+						"size" : size,
+						"addressNo" : addressNo,
+						"pay_info" : pay_info,
+						"point" : point
 					  },
 				dataType : "json",
 				success : function(data){
-					if(data.value==1){
-					    location.href="${pageContext.request.contextPath}/order/orderFinish.do";
+					if(data.result == 2){
+						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
 					}
 				},
 				error : function(request,status,error){
@@ -583,8 +560,9 @@
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);
 				}	
-			});	
+			});
 		}
+		
 	</script>
 </body>
 </html>

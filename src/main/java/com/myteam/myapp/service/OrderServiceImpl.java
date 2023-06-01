@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
-import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
 
 @Service("orderServiceImpl")
@@ -127,7 +125,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String memberPhone) {
+	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String statusDetail, String memberPhone) {
 		OrderVo ov = new OrderVo();
 		ov.setGoodsNo(goodsNo);
 		ov.setMemberNo(memberNo);
@@ -137,6 +135,7 @@ public class OrderServiceImpl implements OrderService{
 		ov.setSize(size);
 		ov.setOrderNum(orderNum);
 		ov.setMemberPhone(memberPhone);
+		ov.setStatusDetail(statusDetail);
 		
 		int value = osm.orderInsert(ov);
 		
@@ -144,8 +143,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderDto orderSelectNew(int memberNo) {
-		OrderDto od = osm.orderSelectNew(memberNo);
+	public OrderDto orderSelectNew(String OrderNum) {
+		OrderDto od = osm.orderSelectNew(OrderNum);
 		return od;
 	}
 }

@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.GoodsVo;
+import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
-import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PayVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
+import com.myteam.myapp.service.PaymentService;
+import com.myteam.myapp.service.PointService;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -31,9 +34,10 @@ public class OrderController {
 	OrderService os;
 	@Autowired
 	MemberService ms;
-
-	
-
+	@Autowired
+	PointService ps;
+	@Autowired
+	PaymentService pms;
 
 	@RequestMapping(value = "/orderAgree.do")
 	public String orderAgree(
@@ -44,7 +48,7 @@ public class OrderController {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		
-		model.addAttribute("sizeName",sizeName);
+		model.addAttribute("sizeName", sizeName);
 		model.addAttribute("gv", gv);
 		
 		return "order/orderAgree";
@@ -64,6 +68,11 @@ public class OrderController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		AddressVo av = os.addressOrderPage(memberNo);
 		MemberVo mv = ms.memberInfo(memberNo);
+		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
+		
+		int totalPoint = mpv.getAvaPoint();
+		int Avapoint = totalPoint;
+		Avapoint -= point;
 		
 		int total=gv.getPrice()-point;
 		
@@ -72,7 +81,9 @@ public class OrderController {
 		model.addAttribute("av", av);
 		model.addAttribute("total",total);
 		model.addAttribute("point",point);
-		model.addAttribute("sizeName",sizeName);
+		model.addAttribute("Avapoint",Avapoint);
+		model.addAttribute("totalPoint", totalPoint);
+		model.addAttribute("sizeName", sizeName);
 		
 		
 		return "order/orderPage"; 
@@ -88,46 +99,63 @@ public class OrderController {
 		@RequestParam("goodsNo") int goodsNo, 
 		@RequestParam("sizeName") String sizeName,
 		@RequestParam("memberPhone") String memberPhone,
+		@RequestParam("point") int point,
+		@RequestParam(value = "pay_method", required=false) String pay_method,
+		@RequestParam(value = "status", required=false) String status,
+		@RequestParam(value = "vBankName", required=false) String vBankName,
+		@RequestParam(value = "vBankNum", required=false) String vBankNum,
+		@RequestParam(value = "vHolder", required=false) String vHolder,
+		@RequestParam(value = "vdate", required=false) String vdate,
 		HttpSession session,
-		Model model) {
+		Model model) throws Exception {
 
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		int value = os.orderInsert(goodsNo, memberNo,orderNum, addressNo, totalPrice, payInfo, sizeName,memberPhone);
 		
-		String str = "{\"value\":\""+value+"\"}";
+		String statusDetail = null;
+		if(status.equals("ready")) statusDetail = "입금대기";
+		else statusDetail = "입금완료";
+		
+		int value = os.orderInsert(goodsNo, memberNo,orderNum, addressNo, totalPrice, payInfo, sizeName,statusDetail,memberPhone);
+		
+		int value2 = 0;
+		if(point != 0)
+			 value2 = ps.usePoint(memberNo ,point, orderNum);
+		
+		int result = value+value2;
+		
+		String str = "{\"value\":\""+result+"\"}";
 		
 		return str;
 	}
 	
 	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish(
+	public String orderFinish( 
+			String vIndex,
 			Model model,
-			HttpSession session) {
+			@RequestParam(value = "payMethod", defaultValue="card") String payMethod,
+			@RequestParam(value = "orderNum") String orderNum) {
 		
+		OrderDto od = os.orderSelectNew(orderNum);
+		PayVo pv = pms.paySelectNew(od.getOrderNo());
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		OrderDto od = os.orderSelectNew(memberNo);
-		
-		model.addAttribute("od",od);
+		model.addAttribute("od", od);
+		model.addAttribute("pv", pv);
 		
 		return "order/orderFinish";
 	}
 	
 	@RequestMapping(value = "/order_addressAction.do")
 	public String order_addressAction(HttpSession session,
-	
 			@RequestParam("basicName") String basicName,
 			@RequestParam("basicPhone") String basicPhone,
-	
 			@RequestParam("basicAddrNum") String basicAddrNum,
-	
 			@RequestParam("basicAddr") String basicAddr,
-	
 			@RequestParam("basicAddrDetail") String basicAddrDetail,
 			@RequestParam(value = "basic_check", defaultValue = "N") String basic_check,
-			@RequestParam("goodsNo") int goodsNo, Model model) {
+			@RequestParam("goodsNo") int goodsNo, 
+			@RequestParam("sizeName") String sizeName,
+			Model model) {
 	
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
@@ -136,6 +164,7 @@ public class OrderController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		model.addAttribute("gv", gv);
 		model.addAttribute("goodsNo", goodsNo);
+		model.addAttribute("sizeName", sizeName);
 	
 		return "redirect:/order/orderPage.do";
 	
@@ -152,26 +181,4 @@ public class OrderController {
 
 		return js;
 	}
-	
-	
-	
-//	@ResponseBody
-//	@RequestMapping(value = "/order_orderPayInfo.do", method = RequestMethod.POST)
-//	public String order_orderPayInfo(HttpServletRequest )
-//	
-//	
-	
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/order_point.do")
-	public JSONObject order_point(
-			@RequestParam("index") int index) {
-
-
-		JSONObject js = new JSONObject();
-
-		return js;
-	}
-
 }
