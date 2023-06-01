@@ -23,8 +23,6 @@ public class BoardServiceInpl implements BoardService{
 		this.bsm = sqlSession.getMapper(BoardService_Mapper.class);
 	}
 	
-	
-
 
 	@Override
 	public int boardInsert(BoardVo bv) {
@@ -87,6 +85,15 @@ public class BoardServiceInpl implements BoardService{
 	public int likesTotalCnt(int boardNo) {
 
 		int value = bsm.likesTotalCnt(boardNo);
+		
+		return value;
+	}
+
+
+	@Override
+	public int boardCnt(int memberNo) {
+		
+		int value = bsm.boardCnt(memberNo);
 		
 		return value;
 	}

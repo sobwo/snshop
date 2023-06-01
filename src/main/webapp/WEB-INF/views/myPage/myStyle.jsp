@@ -32,7 +32,7 @@
 					<li class="socialItem">
 						<a class="menuLink" href="#">
 							<span class="socialMenu">게시물</span>
-							<span class="socialMenuCnt">0</span>
+							<span class="socialMenuCnt">${mv.boardCnt}</span>
 						</a>
 					</li>
 					<li class="socialItem">
