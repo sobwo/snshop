@@ -143,8 +143,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderDto orderSelectNew(int memberNo) {
-		OrderDto od = osm.orderSelectNew(memberNo);
+	public OrderDto orderSelectNew(String OrderNum) {
+		OrderDto od = osm.orderSelectNew(OrderNum);
 		return od;
 	}
 }

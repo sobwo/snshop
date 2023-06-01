@@ -44,17 +44,17 @@
 							<p class="modelSize">${od.size} </p>
 						</div>			
 					</div>
-					<c:if test="${vIndex eq	 'vbank'}">
+					<c:if test="${pv.payMethod eq 'vbank'}">
 						<div class="vBankInfo">
 							<div>
 								<span>입금 은행</span>
-								<p class="vBankName">${vv.vBankName}</p>
+								<p class="vBankName">${pv.bankName}</p>
 							</div>
 							<div>
-								<span>입금 계좌번호</span><p class="vBankNum">${vv.vBankNum}</p>
+								<span>입금 계좌번호</span><p class="vBankNum">${pv.bankNum}</p>
 							</div>
 							<div>
-								<span>입금 기한</span><p class="vBankDate">${vv.vdate} 까지</p>
+								<span>입금 기한</span><p class="vBankDate">${pv.date} 까지</p>
 							</div>
 						</div>
 					</c:if>	

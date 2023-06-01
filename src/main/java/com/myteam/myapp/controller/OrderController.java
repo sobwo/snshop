@@ -48,7 +48,7 @@ public class OrderController {
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		
-		model.addAttribute("sizeName",sizeName);
+		model.addAttribute("sizeName", sizeName);
 		model.addAttribute("gv", gv);
 		
 		return "order/orderAgree";
@@ -83,7 +83,7 @@ public class OrderController {
 		model.addAttribute("point",point);
 		model.addAttribute("Avapoint",Avapoint);
 		model.addAttribute("totalPoint", totalPoint);
-		model.addAttribute("sizeName",sizeName);
+		model.addAttribute("sizeName", sizeName);
 		
 		
 		return "order/orderPage"; 
@@ -120,7 +120,7 @@ public class OrderController {
 		
 		int value2 = 0;
 		if(point != 0)
-			 value2 = ps.usePoint(memberNo ,point, "사용", orderNum);
+			 value2 = ps.usePoint(memberNo ,point, orderNum);
 		
 		int result = value+value2;
 		
@@ -130,41 +130,32 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish(
-			@RequestParam(value="vIndex",required = false) String vIndex,
+	public String orderFinish( 
+			String vIndex,
 			Model model,
-			HttpSession session) {
+			@RequestParam(value = "payMethod", defaultValue="card") String payMethod,
+			@RequestParam(value = "orderNum") String orderNum) {
 		
+		OrderDto od = os.orderSelectNew(orderNum);
+		PayVo pv = pms.paySelectNew(od.getOrderNo());
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		OrderDto od = os.orderSelectNew(memberNo);
-		model.addAttribute("od",od);
-		
-		
-		int orderNo = od.getOrderNo();
-		
-		PayVo vv = pms.paySelectNew(orderNo);
-		
-		model.addAttribute("vIndex",vIndex);
-		model.addAttribute("vv",vv);
+		model.addAttribute("od", od);
+		model.addAttribute("pv", pv);
 		
 		return "order/orderFinish";
 	}
 	
 	@RequestMapping(value = "/order_addressAction.do")
 	public String order_addressAction(HttpSession session,
-	
 			@RequestParam("basicName") String basicName,
 			@RequestParam("basicPhone") String basicPhone,
-	
 			@RequestParam("basicAddrNum") String basicAddrNum,
-	
 			@RequestParam("basicAddr") String basicAddr,
-	
 			@RequestParam("basicAddrDetail") String basicAddrDetail,
 			@RequestParam(value = "basic_check", defaultValue = "N") String basic_check,
-			@RequestParam("goodsNo") int goodsNo, Model model) {
+			@RequestParam("goodsNo") int goodsNo, 
+			@RequestParam("sizeName") String sizeName,
+			Model model) {
 	
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
@@ -173,6 +164,7 @@ public class OrderController {
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		model.addAttribute("gv", gv);
 		model.addAttribute("goodsNo", goodsNo);
+		model.addAttribute("sizeName", sizeName);
 	
 		return "redirect:/order/orderPage.do";
 	
@@ -189,17 +181,4 @@ public class OrderController {
 
 		return js;
 	}
-	
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/payCheck.do")
-	public JSONObject payCheck() {
-
-
-		JSONObject js = new JSONObject();
-
-		return js;
-	}
-
 }

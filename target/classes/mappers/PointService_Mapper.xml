@@ -23,7 +23,7 @@
 	</select>
 		
 	<insert id="insertPoint" parameterType="pv">
-		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,delYn,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{delYn},#{memberNo})  
+		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{memberNo})  
 	</insert>
 		
 	<select id="selectPointNew" parameterType="Integer" resultType="pv">

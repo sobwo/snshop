@@ -5,11 +5,11 @@
 
 <mapper namespace="com.myteam.myapp.persistance.PayService_Mapper">
 	<insert id="payInsert" parameterType="pmv">
-		insert into vBank(vBankName,vBankNum,price,vdate,vholder,orderNo)
-		values(#{vBankName},#{vBankNum},#{price},#{vdate},#{vholder},#{orderNo})
+		insert into pay(bankName,bankNum,price,date,holder,orderNo,payMethod)
+		values(#{bankName},#{bankNum},#{price},#{date},#{holder},#{orderNo},#{payMethod})
 	</insert>
 		
 	<select id="paySelectNew" parameterType="Integer" resultType="pmv">
-		select * from vBank where orderNo=#{0} ORDER BY vBankNo DESC LIMIT 1
+		select * from pay where orderNo=#{0} ORDER BY payNo DESC LIMIT 1
 	</select>
 </mapper>

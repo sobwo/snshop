@@ -2,7 +2,7 @@ package com.myteam.myapp.domain;
 
 public class PointVo {
 	private int pointNo, memberNo, point;
-	private String expiration, pointInfo,useStatus,useHistory,useDetail,useDate,delYn;
+	private String expiration, pointInfo,useStatus,useHistory,useDetail,useDate;
 	
 	public int getPointNo() {
 		return pointNo;
@@ -57,11 +57,5 @@ public class PointVo {
 	}
 	public void setUseDate(String useDate) {
 		this.useDate = useDate;
-	}
-	public String getDelYn() {
-		return delYn;
-	}
-	public void setDelYn(String delYn) {
-		this.delYn = delYn;
 	}
 }

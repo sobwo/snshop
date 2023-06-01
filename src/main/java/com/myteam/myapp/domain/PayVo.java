@@ -1,7 +1,7 @@
 package com.myteam.myapp.domain;
 
 public class PayVo {
-	private String bankNum,bankName,date, holder;
+	private String bankNum,bankName,date, holder, payMethod;
 	private int payNo, price,orderNo;
 	public String getBankNum() {
 		return bankNum;
@@ -45,6 +45,10 @@ public class PayVo {
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
 	}
-	
-	
+	public String getPayMethod() {
+		return payMethod;
+	}
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
 }

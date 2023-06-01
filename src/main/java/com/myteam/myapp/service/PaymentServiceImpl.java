@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.PayVo;
-import com.myteam.myapp.persistance.OrderService_Mapper;
 import com.myteam.myapp.persistance.PayService_Mapper;
 
 @Service("PaymentServiceImpl")
@@ -20,7 +19,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 	
 	@Override
-	public int payInsert(String bankName,String bankNum, int totalPrice, String date, String holder, int orderNo) {
+	public int payInsert(String bankName,String bankNum, int totalPrice, String date, String holder, int orderNo,String payMethod) {
 		PayVo vv = new PayVo();
 		vv.setBankName(bankName);
 		vv.setBankNum(bankNum);
@@ -28,6 +27,7 @@ public class PaymentServiceImpl implements PaymentService{
 		vv.setDate(date);
 		vv.setHolder(holder);
 		vv.setOrderNo(orderNo);
+		vv.setPayMethod(payMethod);
 		
 		int value = psm.payInsert(vv);
 		

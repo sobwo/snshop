@@ -36,26 +36,27 @@
 					<!-- 관심상품 컨텐츠 -->
 					<div class="purchase_contents_wrap">
 						<c:choose>
-							<c:when test="${empty ilist}">
+							<c:when test="${empty glist}">
 								<span style="padding-top:100px">등록된 관심상품이 없습니다.</span>
 							</c:when>
 							<c:otherwise>
-								<c:forEach var="ilist" items="${ilist}">
+								<c:forEach var="glist" items="${glist}">
+									<input type="hidden" name="goodsNo" value="${glist.goodsNo}">
 									<div class="purchase_contents purchase_contents_interest">
 										<div class="purchase_detail">
 											<div class="purchase_thumb">
 												<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
 											</div>
 											<div class="purchase_info">
-												<strong class="purchase_name">${ilist.goodsName}</strong>
-												<p class="purchase_price purchase_price_interest">제품 내용</p>
-												<p class="purchase_size purchase_size_interest">${ilist.size}</p>
+												<strong class="purchase_name">${glist.goodsName}</strong>
+												<p class="purchase_price purchase_price_interest">${glist.categoryName} ${glist.goodsBrandName} ${glist.goodsEng}</p>
+												<p class="purchase_size purchase_size_interest">${glist.sizeName}</p>
 											</div>
 										</div>
 										<div class="interest_btn_wrap">
 											<div class="interest_btn">
 												<div class="btn_left">구매</div>
-												<div class="btn_right">${ilist.price}</div>
+												<div class="btn_right">${glist.price}</div>
 											</div>
 										</div>
 									</div>
@@ -71,6 +72,10 @@
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
+			$(".interest_btn").click(function(){
+				var goodsNo = $("input[name=goodsNo]").val();
+				$(location).attr('href',"${pageContext.request.contextPath}/shop/shopContents.do?goodsNo="+goodsNo);
+			})
 		</script>
 	</body>
 </html>

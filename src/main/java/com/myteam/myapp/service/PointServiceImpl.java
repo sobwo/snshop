@@ -71,19 +71,16 @@ public class PointServiceImpl implements PointService{
 	}
 	
 	@Override
-	public int usePoint(int memberNo, int point, String useStatus, String useDetail) {
+	public int usePoint(int memberNo, int point, String useDetail) {
 		PointVo pv = new PointVo();
 		
 		useDetail = useDetail+" 상품";
 		
 		pv.setPoint(point);
-		pv.setUseStatus(useStatus);
+		pv.setUseStatus("사용");
 		pv.setUseHistory("구매");
 		pv.setUseDetail(useDetail);
 		pv.setMemberNo(memberNo);
-		
-		if(useStatus.equals("사용"))
-			pv.setDelYn("U");
 		
 		int value = psm.insertPoint(pv);
 		int result = 0;
