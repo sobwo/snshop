@@ -63,22 +63,14 @@
 							<div class="feeds" >
 								<div class="feedPost" id="feedPost${bv.boardNo}">
 									<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${bv.boardNo}">
-										<c:choose>
-											<c:when test ="${bv.contentsImg==null}">
-											</c:when>
-											
-											<c:otherwise>
-											<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
-											<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
-											
-											<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
-											<c:forEach var="img" items="${imgList}">
-												<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
-											</c:forEach>										
-											</c:if>
-											</c:otherwise>
-										</c:choose>
+										<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
+										<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
 										
+										<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+										<c:forEach var="img" items="${imgList}">
+											<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+										</c:forEach>										
+										</c:if>
 									</div>	
 									<c:choose>
 										<c:when test="${bv.viewCnt == 1}">

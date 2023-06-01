@@ -489,6 +489,10 @@ public class MyPageController {
 	
 	
 	
+
+	
+	
+	
 	
 	
 	
@@ -502,13 +506,12 @@ public class MyPageController {
 		
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
-		
-		ArrayList<BoardVo> blist = bs.boardList(memberNo);
+		}	
+
+		ArrayList<BoardVo> blist = bs.boardTotalList(memberNo);
 				
 		model.addAttribute("blist", blist);
 		
-	
 		return "myPage/style_discover.do";
 	}
 	

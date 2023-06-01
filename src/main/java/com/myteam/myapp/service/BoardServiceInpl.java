@@ -98,4 +98,13 @@ public class BoardServiceInpl implements BoardService{
 		return value;
 	}
 
+
+	@Override
+	public ArrayList<BoardVo> boardTotalList(int memberNo) {
+		
+		ArrayList<BoardVo> blist = bsm.boardTotalList(memberNo);
+		
+		return blist;
+	}
+
 }
