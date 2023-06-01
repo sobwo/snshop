@@ -271,16 +271,28 @@ public class MyPageController {
 		        }
 		});
 		
+		int check = 0;
 		String uploadedFileName = mv.getProfileImg();
-		for(File file : fileNameCheck) {
-			if(!file.getName().equals(mv.getProfileImg()))
-				uploadedFileName = UploadProfile.uploadFile(
-					uploadedPath, 
-					mv.getProfileImg(),
-					mv.getProfileImgData(),
-					"show");
+		String[] fileList = dir.list();
+		for(String file : fileList) {
+			if(!("/"+file).equals(mv.getProfileImg())) {
+				check++;
+				System.out.println("fileList : " +file);
+			}
 		}
+		
+		System.out.println("check : "+check);
+		
+		if(check>0) {
+			uploadedFileName = UploadProfile.uploadFile(
+								uploadedPath, 
+								mv.getProfileImg(),
+								mv.getProfileImgData(),
+								"show");
+		}
+		
 
+		System.out.println("zzzdata : "+mv.getProfileImgData());
 					
 		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
@@ -489,8 +501,7 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 
-<<<<<<< HEAD
-	
+
 	
 	
 
@@ -531,8 +542,7 @@ public class MyPageController {
 	
 	
 
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
