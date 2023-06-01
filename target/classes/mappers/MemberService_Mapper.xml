@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myteam.myapp.persistance.MemberService_Mapper">
+	<insert id="memberInsert" parameterType="mv">
+		INSERT INTO member(memberId,memberPw,memberName,memberPhone,memberEmail,memberGender)
+		VALUES(#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},#{memberGender})
+	</insert>
+	
+	<select id="memberSelectSocialCnt" parameterType="String" resultType="Integer">
+		select count(*) from member where memberId=#{0} and social=#{1}
+	</select>
+		
+	<insert id="memberInsertSocial" parameterType="mv">
+		INSERT INTO member(memberId,memberName,memberPhone,memberEmail,memberGender,social)
+		VALUES(#{memberId},#{memberName},#{memberPhone},#{memberEmail},#{memberGender},'social')
+	</insert>	
+		
+	<select id="memberIdCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID=#{memberId}
+	</select>
+	
+	<select id="memberLogin" parameterType="String" resultType="mv">
+		SELECT * FROM MEMBER WHERE MEMBERID = #{memberId}
+	</select>
+	
+	<select id="searchPhoneCheck" parameterType="String" resultType="String">
+		select memberPhone from member where memberName=#{0} and social='other'
+	</select>
+	
+	<select id="searchEmailCheck" parameterType="String" resultType="String">
+		select memberEmail from member where membername=#{0} and social='other'
+	</select>
+	
+	<select id="searchIdPhone" parameterType="String" resultType="String">
+		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBERPHONE = #{1} and social='other'
+	</select>
+	
+	<select id="searchIdEmail" parameterType="String" resultType="String">
+		SELECT MEMBERID FROM MEMBER WHERE MEMBERNAME=#{0} AND MEMBEREMAIL = #{1} and social='other'
+	</select>
+	
+	<select id="searchPwPhone" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBERPHONE = #{2} and social='other'
+	</select>
+	
+	<select id="searchPwEmail" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMBERID = #{0} AND MEMBERNAME=#{1} AND MEMBEREMAIL = #{2} and social='other'
+	</select>
+	
+	<update id="memberPwChange" parameterType="String">
+		UPDATE MEMBER SET MEMBERPW=#{1} WHERE MEMBERID=#{0} and social='other'
+	</update>
+	
+	<select id="memberInfo" parameterType="Integer" resultType="mv">
+		SELECT * FROM MEMBER WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="updateProfileImg" parameterType="mv">
+		UPDATE MEMBER SET PROFILEIMG = #{profileImg} WHERE MEMBERNO = #{memberNo}
+	</update>
+	
+	<select id="profileImgShow" parameterType="Integer" resultType="String">
+		SELECT PROFILEIMG FROM MEMBER WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="profileImgDelete" parameterType="Integer">
+		UPDATE MEMBER SET PROFILEIMG = "" WHERE MEMBERNO = #{0}
+	</update>
+	
+	<update id="modifyPw" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET MEMBERPW = #{modifyValue} WHERE MEMBERNO = #{memberNo}
+	</update>
+	
+	<update id="modifyName" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET MEMBERNAME = #{modifyValue} WHERE MEMBERNO = #{memberNo}
+	</update>
+	
+	<update id="modifyEmail" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET MEMBEREMAIL = #{modifyValue} WHERE MEMBERNO = #{memberNo}
+	</update>
+
+	<update id="modifyPhone" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET MEMBERPHONE = #{modifyValue} WHERE MEMBERNO = #{memberNo}
+	</update>
+
+	<update id="modifyGender" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET MEMBERGENDER = #{modifyValue} WHERE MEMBERNO = #{memberNo}
+	</update>
+	
+	<insert id="insertAccount" parameterType="rv">
+		INSERT INTO REFUND(ACCOUNTNAME,ACCOUNTNUM,ACCOUNTUSERNAME,MEMBERNO) VALUES(#{accountName},#{accountNum},#{accountUserName},#{memberNo})
+	</insert>
+		
+	<select id="selectAccount" parameterType="Integer" resultType="rv">
+		SELECT * FROM REFUND WHERE MEMBERNO = #{0}
+	</select>
+	
+	<update id="modifyAccount" parameterType="rv">
+		UPDATE REFUND SET ACCOUNTNAME=#{accountName}, ACCOUNTNUM=#{accountNum},ACCOUNTUSERNAME=#{accountUserName} WHERE MEMBERNO=#{memberNo}
+	</update>
+</mapper>

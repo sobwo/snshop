@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myteam.myapp.persistance.ShopService_Mapper">
+	<sql id="searchCategory">
+		<choose>
+			<when test="value==0">
+				 
+			</when>
+			<when test="value==1">
+				AND category in 
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				OR categoryName in 
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				
+			</when>
+		</choose>
+	</sql>	
+	
+	<sql id="align">
+		<choose>
+			<when test="index==0">
+				order by a.goodsNo desc 
+			</when>
+			<when test="index==1">
+				order by a.price desc
+			</when>
+			<when test="index==2">
+				order by a.price asc
+			</when>
+			<when test="index==3">
+				order by a.interestNum desc
+			</when>
+			<when test="index==4">
+				order by a.goodsNo desc 
+			</when>
+		</choose>
+	</sql>
+	
+	
+	<sql id="setInterest">
+		<choose>
+			<when test="value==1">
+				set interestNum = interestNum + 1
+			</when>
+			<when test="value==2">
+				set interestNum = interestNum - 1
+			</when>
+		</choose>
+	</sql>
+	
+	<select id="goodsSelectAll" resultType="pd">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
+	</select>
+	
+	<select id="goodsSelectOne" parameterType="int" resultType="gv">
+		select * from goods where goodsNo = #{goodsNo}
+	</select>
+
+	<select id="imgSelectOne" parameterType="int" resultType="piv">
+		select * from productImg where goodsNo = #{goodsNo} order by imgNo asc
+	</select>
+	
+	<select id="filterList" parameterType="java.util.List" resultType="pd">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+ 
+		<include refid="searchCategory" />
+	</select>
+	
+	<select id="alignList" parameterType="java.util.List" resultType="pd">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		<include refid="searchCategory" />
+		<include refid="align" />
+	</select>
+	
+	<select id="recommentList" parameterType="hashMap" resultType="pd">
+		
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		and categoryname = #{categoryName} and a.goodsNo not in(#{goodsNo}) order by a.interestNum desc limit 10
+	
+	</select>
+	
+	<select id="sizeList" parameterType="int" resultType="sd">
+		select * from size a inner join interest b on a.sizeNo = b.sizeNo  
+		where a.goodsNo = #{goodsNo}
+	</select>
+	
+	<!-- interest -->
+	<select id="interestListCnt" parameterType="iv" resultType="Integer">
+		select count(*) from interest where sizeNo = #{sizeNo} and goodsNo = #{goodsNo} and memberNo = #{memberNo}
+	</select>
+	
+	<insert id="insertInterest" parameterType="iv">
+		insert into interest(memberNo,sizeNo,goodsNo) values(#{memberNo},#{sizeNo},#{goodsNo})
+	</insert>
+
+	<update id="updateInterest" parameterType="iv">
+		update interest set interestCheck = (CASE interestCheck WHEN 0 THEN 1 ELSE 0 END) where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
+	</update>
+	
+	<update id="updateGoodsInterest" parameterType="Integer">
+		update goods set interestNum = (select count(*) from interest where goodsNo = #{0} and interestCheck = 1) where goodsNo = #{0}
+	</update>
+	
+	<select id="interestCheck" parameterType="iv" resultType="Integer">
+		select interestCheck from interest where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
+	</select>
+	
+	<select id="interestGoodsCheck" parameterType="Integer" resultType="Integer">
+		select count(interestCheck) from interest where memberNo=#{1} and goodsNo = #{0} and interestCheck = 1
+	</select>
+	
+	<select id="selectInterestAll" parameterType="Integer" resultType="gid">
+		select * from interest a inner join goods b on a.goodsNo = b.goodsNo inner join size c on a.sizeNo = c.sizeNo 
+		where a.interestCheck = 1 and a.memberNo = #{0}
+	</select>
+</mapper>
