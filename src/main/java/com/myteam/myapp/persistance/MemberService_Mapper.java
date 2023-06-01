@@ -24,7 +24,7 @@ public interface MemberService_Mapper {
 	public MemberVo memberInfo(int memberNo);
 	
 	public int updateProfileImg(MemberVo mv);
-	public String profileImgShow(int memberNo);
+	public MemberVo profileImgShow(int memberNo);
 	public int profileImgDelete(int memberNo);
 	
 	//�쉶�썝�젙蹂대�寃�

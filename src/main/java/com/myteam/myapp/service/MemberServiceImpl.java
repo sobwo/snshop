@@ -132,8 +132,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public String profileImgShow(int memberNo) {
-		String str = msm.profileImgShow(memberNo);
+	public MemberVo profileImgShow(int memberNo) {
+		MemberVo str = msm.profileImgShow(memberNo);
 		
 		return str;
 	}
