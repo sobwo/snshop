@@ -222,7 +222,8 @@ public class MyPageController {
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
 				uploadedPath, 
-				file.getOriginalFilename());
+				file.getOriginalFilename(),
+				"upload");
 		}
 		
 		int memberNo = 0;
@@ -257,7 +258,7 @@ public class MyPageController {
 		
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath(); 
 		String str = ms.profileImgShow(memberNo);
-		String originalName = str.substring(str.indexOf("-")+1);
+//		String originalName = str.substring(str.indexOf("-")+1);
 		File dir = new File(uploadedPath);
 		System.out.println("파일 리스트 : "+dir.list());
 		
@@ -274,7 +275,8 @@ public class MyPageController {
 			if(file.isFile() == false) {
 				uploadedFileName = UploadProfile.uploadFile(
 						uploadedPath, 
-						originalName);
+						str,
+						"show");
 			}
 		}
 		result = "{\"value\":\""+str+"\"}";
