@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.PayVo;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.persistance.PayService_Mapper;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
@@ -123,17 +124,9 @@ public class PaymentServiceImpl implements PaymentService{
     	
 		return hm;
 	}
-
-	@Override
-	public HashMap<String, Object> cancelPayment(IamportResponse<Payment> irsp, Map<String, String> map) {
-		CancelData data = cancelData(irsp,map);
-//		IamportResponse<Payment> cancel = irsp.cancelPaymentByImpUid(data);
-		HashMap<String, Object> hm = new HashMap<String, Object>();
-		return hm;
-	}
 	
+	@Override
 	public CancelData cancelData(IamportResponse<Payment> irsp, Map<String, String> map) {
-		
 		CancelData data = new CancelData(irsp.getResponse().getImpUid(),true);
 		data.setReason(map.get("reason"));
 		data.setChecksum(new BigDecimal(map.get("checksum")));
@@ -145,9 +138,37 @@ public class PaymentServiceImpl implements PaymentService{
 	
 	public String code(String bankName) {
 		String code="";
-		if(bankName.equals("우리은행")||bankName.equals("우리")) code="20";
-		else if(bankName.equals("국민은행")||bankName.equals("국민")) code="04";
+		if(bankName.contains("국민")) code="004";
+		else if(bankName.contains("SC")|| bankName.contains("SC제일")) code="023";
+		else if(bankName.contains("경남")) code="039";
+		else if(bankName.contains("광주")) code="034";
+		else if(bankName.contains("기업")) code="003";
+		else if(bankName.contains("농협")) code="011";
+		else if(bankName.contains("대구")) code="031";
+		else if(bankName.contains("부산")) code="032";
+		else if(bankName.contains("산업")) code="002";
+		else if(bankName.contains("새마을금고")) code="045";
+		else if(bankName.contains("수협")) code="007";
+		else if(bankName.contains("신한")) code="088";
+		else if(bankName.contains("신협")) code="048";
+		else if(bankName.contains("외환")) code="081";
+		else if(bankName.contains("우리")) code="020";
+		else if(bankName.contains("우체국")) code="071";
+		else if(bankName.contains("전북")) code="037";
+		else if(bankName.contains("축협")) code="012";
+		else if(bankName.contains("카카오")) code="090";
+		else if(bankName.contains("케이")) code="089";
+		else if(bankName.contains("하나")) code="081";
+		else if(bankName.contains("한국씨티")) code="027";
+		else if(bankName.contains("토스")) code="092";
+
 		return code;
+	}
+
+	@Override
+	public RefundVo refundSelect(int memberNo) {
+		RefundVo rv = psm.refundSelect(memberNo);
+		return rv;
 	}
 	
 }

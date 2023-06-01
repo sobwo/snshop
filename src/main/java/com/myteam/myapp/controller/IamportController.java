@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.service.PaymentService;
 import com.myteam.myapp.service.PointService;
@@ -65,19 +67,37 @@ public class IamportController {
     }
     
     @RequestMapping(value="/cancelIamport.do")
-    public JSONObject cancelIamport(
-    		@RequestBody Map<String,String> map) throws IamportResponseException, Exception {
+    public String cancelIamport(
+    		@RequestBody Map<String,String> map,
+    		RefundVo rv,
+    		HttpSession session,
+    		RedirectAttributes rttr) throws IamportResponseException, Exception {
 
 		IamportResponse<Payment> irsp = paymentLookup(map.get("impUid"));
+		String payMethod = irsp.getResponse().getPayMethod();
+		String buyerName = irsp.getResponse().getBuyerName();
+		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		
-		HashMap<String, Object> hm = ps.cancelPayment(irsp,map);
+		rv = ps.refundSelect(memberNo);
 		
-		JSONObject json = new JSONObject(hm);
+		if(payMethod.equals("vbank")) {
+			if(rv == null) {
+				rttr.addFlashAttribute("msg", "환불 정산 계좌가 등록되지 않았습니다.");
+				return "redirect:/myPage/incomeAccount";
+			}
+			
+			else if(buyerName.equals(rv.getAccountUserName())) {
+				map.put("bank_name", rv.getAccountName());
+				map.put("refund_account", rv.getAccountNum());
+			}	
+		}
 		
-		return json;
-    	
-    }
-    
-    	
-    
+		CancelData data = ps.cancelData(irsp,map);
+		IamportResponse<Payment> cancel = api.cancelPaymentByImpUid(data);
+		
+		if(cancel != null) 
+			return "success";
+		else
+			return "fail";
+    } 	
 }
