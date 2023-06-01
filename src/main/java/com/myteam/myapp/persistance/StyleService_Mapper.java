@@ -12,23 +12,25 @@ public interface StyleService_Mapper {
 
 	public BoardVo boardSelectOne(int boardNo);
 	
+	public int likesCnt(int memberNo, int boardNo);
 	
 	
-	
-	
+	 public int likesTotalCnt(int boardNo);
 	
 	
 	
 	/*시도*/
-	public int likesList(LikesVo lv);
-
-	public int likesCnt(int memberNo, int boardNo);
-
-	public int insertLike(LikesVo lv);
-	
-	public int updateLike(LikesVo lv);
-	
-	public int likesTotalCntUpdate(int boardNo);
-
-	public int likesTotalCnt(int boardNo);
+	/*
+	 * public int likesList(LikesVo lv);
+	 * 
+	 * public int likesCnt(int memberNo, int boardNo);
+	 * 
+	 * public int insertLike(LikesVo lv);
+	 * 
+	 * public int updateLike(LikesVo lv);
+	 * 
+	 * public int likesTotalCntUpdate(int boardNo);
+	 * 
+	 * public int likesTotalCnt(int boardNo);
+	 */
 }

@@ -22,6 +22,8 @@ public class BoardServiceInpl implements BoardService{
 	public BoardServiceInpl (SqlSession sqlSession) {
 		this.bsm = sqlSession.getMapper(BoardService_Mapper.class);
 	}
+	
+	
 
 
 	@Override

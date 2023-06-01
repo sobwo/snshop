@@ -16,11 +16,11 @@
 <select id="likesList" parameterType="lv" resultType="int">
 	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
 </select>
-
+<!-- 이거 -->
 <select id="likesCnt" parameterType="Integer" resultType="Integer">
 	select like_check from likes where memberNo = #{0} and boardNo = #{1} 
 </select>
-
+<!-- 이거 -->
 <insert id="insertLike" parameterType="lv"> 
 	INSERT INTO likes(boardNo, memberNo, like_check)
 	VALUES(#{boardNo}, #{memberNo}, 1);

@@ -140,6 +140,17 @@
 	height:30px;
 
 }
+.likeImage{
+	border:0;
+	outline:0;
+	width:28px;
+	height:28px;
+	cursor: pointer;
+}
+#likeImageChange{
+	width:29px;
+	height:29px;
+}
 .likeBox{
 	margin-right:10px;
 }
@@ -148,6 +159,7 @@
 	height:28px;
 
 }
+
 .commentBox{
 	margin-left:5px;
 }

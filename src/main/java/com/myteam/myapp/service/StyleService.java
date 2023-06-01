@@ -11,8 +11,11 @@ public interface StyleService {
 	public ArrayList<BoardVo> boardSelectAll(int memberNo);
 	
 	public BoardVo boardSelectOne(int boardNo);
+	public int likesCnt(int memberNo,int boardNo);
 
-
+	/* 임시 */
+	 public int likesTotalCnt(int boardNo);
+	 /* 임시 */
 	/*
 	 * 
 	 * public int likeList(LikesVo lv);

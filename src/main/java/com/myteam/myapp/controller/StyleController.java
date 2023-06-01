@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.LikesVo;
+import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
@@ -54,73 +55,76 @@ public class StyleController {
 	 * 
 	 * }
 	 */
-	@RequestMapping(value = "/style_following.do",method=RequestMethod.GET)
 	
-	public String styleFollowing(HttpSession session,Model model) {
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		 ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
-		 model.addAttribute("blist", blist);
+		@RequestMapping(value = "/style_following.do",method=RequestMethod.GET)
+	  
+		public String styleFollowing(
+				HttpSession session,
+				Model model) {
+			int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
 		
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
 
-		 return "style/style_following";
-	    
-	}
-
-	@RequestMapping(value = "/style_discover.do")
-	public String styleMain() {
-
-		return "style/style_discover";
-	}
-
-	@RequestMapping(value = "/style_discover_newest.do")
-	public String styleDiscoverNewest() {
-
-		return "style/style_discover_newest";
-	}
-
-	@ResponseBody
-	@RequestMapping(value="/likebtn_check.do" , method=RequestMethod.POST)
-	public JSONObject likebtn_check(
-			@RequestParam("boardNo")int boardNo,
-			LikesVo lv,
-			HttpSession session	) throws Exception{
-		int memberNo =  Integer.parseInt(session.getAttribute("memberNo").toString());
-		
-		lv.setBoardNo(boardNo);
-		lv.setMemberNo(memberNo);
-		
-		int value = bs.likesList(lv);
-		
-		if(value ==0) {
-			bs.insertLike(lv);
-		}else if(value != 0 ) {
-			bs.updateLike(lv);
-		}
-		int cnt = bs.likesCnt(memberNo, boardNo);
-		int totalCntUpdate = bs.likesTotalCntUpdate(lv.getBoardNo());
-		
-		JSONObject json = new JSONObject();
-		json.put("value", value);
-		json.put("cnt",cnt);
-		json.put("totalCntUpdate", totalCntUpdate);
-		
-		return json;
-		
-	}
-	@ResponseBody
-	@RequestMapping(value="like_TotalCnt.do",method=RequestMethod.GET)
-	public JSONObject like_TotalCnt(
-			@RequestParam("boardNo")int boardNo,
-			BoardVo bv,
-			HttpSession session) throws Exception{
-		
-		int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
-		
-		JSONObject json = new JSONObject();
-		json.put("totalCntUpdate",totalCntUpdate);
-		
-		return json;
-	}
+		model.addAttribute("blist", blist);
+		/* model.addAttribute("memberName", memberName); */
+		model.addAttribute("mv",mv);
+	  
+		return "style/style_following";
+	 
+	 }
+	  
+	  @RequestMapping(value = "/style_discover.do") public String styleMain() {
+	  
+	  return "style/style_discover"; }
+	  
+	  @RequestMapping(value = "/style_discover_newest.do") public String
+	  styleDiscoverNewest() {
+	  
+	  return "style/style_discover_newest"; }
+	 
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="/likebtn_check.do" , method=RequestMethod.POST) public
+	 * JSONObject likebtn_check(
+	 * 
+	 * @RequestParam("boardNo")int boardNo, LikesVo lv, HttpSession session ) throws
+	 * Exception{ int memberNo =
+	 * Integer.parseInt(session.getAttribute("memberNo").toString());
+	 * 
+	 * lv.setBoardNo(boardNo); lv.setMemberNo(memberNo);
+	 * 
+	 * int value = bs.likesList(lv);
+	 * 
+	 * if(value ==0) { bs.insertLike(lv); }else if(value != 0 ) { bs.updateLike(lv);
+	 * } int cnt = bs.likesCnt(memberNo, boardNo); int totalCntUpdate =
+	 * bs.likesTotalCntUpdate(lv.getBoardNo());
+	 * 
+	 * JSONObject json = new JSONObject(); json.put("value", value);
+	 * json.put("cnt",cnt); json.put("totalCntUpdate", totalCntUpdate);
+	 * 
+	 * return json;
+	 * 
+	 * }
+	 */
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="like_TotalCnt.do",method=RequestMethod.GET) public
+	 * JSONObject like_TotalCnt(
+	 * 
+	 * @RequestParam("boardNo")int boardNo, BoardVo bv, HttpSession session) throws
+	 * Exception{
+	 * 
+	 * int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
+	 * 
+	 * JSONObject json = new JSONObject();
+	 * json.put("totalCntUpdate",totalCntUpdate);
+	 * 
+	 * return json; }
+	 */
 	
 	
 	

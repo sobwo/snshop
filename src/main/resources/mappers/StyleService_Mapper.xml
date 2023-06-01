@@ -8,6 +8,10 @@
 	select * from board a join member b on a.memberNo = b.memberNo where a.memberNo in (select followingMemberNo from following where memberNo = #{memberNo})
 													<!-- = -> in -->
 </select>
+<select id="likesCnt" parameterType="Integer" resultType="Integer">
+	select like_check from likes where memberNo = #{0} and boardNo = #{1} 
+</select>
+
 <!-- <select id="" -->
 <!-- 
 <select id="likesList" parameterType="lv" resultType="int">

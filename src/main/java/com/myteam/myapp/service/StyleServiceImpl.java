@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.LikesVo;
+import com.myteam.myapp.persistance.BoardService_Mapper;
 import com.myteam.myapp.persistance.StyleService_Mapper;
 
 @Service("StyleServiceImpl")
@@ -15,12 +16,19 @@ import com.myteam.myapp.persistance.StyleService_Mapper;
 public class StyleServiceImpl implements StyleService {
 
 	private StyleService_Mapper ssm1;
+	private BoardService_Mapper bsm;
 
 	@Autowired
 	public StyleServiceImpl(SqlSession sqlSession) {
 
 		this.ssm1 = sqlSession.getMapper(StyleService_Mapper.class);
 
+	}
+
+	/* 임시 */
+	@Autowired
+	public void BoardServiceInpl(SqlSession sqlSession) {
+		this.bsm = sqlSession.getMapper(BoardService_Mapper.class);
 	}
 
 	@Override
@@ -38,6 +46,20 @@ public class StyleServiceImpl implements StyleService {
 
 		bv = ssm1.boardSelectOne(boardNo);
 		return bv;
+	}
+
+	@Override
+	public int likesCnt(int memberNo, int boardNo) {
+
+		int value = bsm.likesCnt(memberNo, boardNo);
+
+		return value;
+	}
+
+	@Override
+	public int likesTotalCnt(int boardNo) {
+		int value = bsm.likesTotalCnt(boardNo);
+		return value;
 	}
 
 	/*
@@ -88,5 +110,10 @@ public class StyleServiceImpl implements StyleService {
 	 * return value;
 	 * 
 	 * }
+	 */
+	/* 임시 */
+	/*
+	 * @Override public int likesTotalCnt(int boardNo) { int value =
+	 * bsm.likesTotalCnt(boardNo); return value; } 임시
 	 */
 }
