@@ -2,7 +2,9 @@ package com.myteam.myapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -132,8 +134,11 @@ public class MyPageController {
 			@RequestParam(value="price",defaultValue="initial") String price,
 			@RequestParam(value="startDate",required = false) String startDate,
 			@RequestParam(value="endDate",required = false) String endDate) {
+		int memberNo = 0;
 		
-		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 //		LocalDate now = LocalDate.now();
 //		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -174,7 +179,11 @@ public class MyPageController {
 			HttpSession session,
 			Model model) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		ArrayList<GoodsInterestDto> glist = ss.selectInterestAll(memberNo);
 		
@@ -214,15 +223,21 @@ public class MyPageController {
 			uploadedFileName = UploadProfile.uploadFile(
 				uploadedPath, 
 				file.getOriginalFilename(),
-				file.getBytes());
+				file.getBytes(),
+				"upload");
 		}
 
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 
 		MemberVo mv = new MemberVo();
 		mv.setMemberNo(memberNo);
 		mv.setProfileImg(uploadedFileName);
+		mv.setProfileImgData(file.getBytes());
 		
 		int value = ms.updateProfileImg(mv);
 		
@@ -234,13 +249,40 @@ public class MyPageController {
 	@ResponseBody
 	@RequestMapping(value = "/profileImgShow.do")
 	public String profileImgShow(
-			HttpSession session) {
+			HttpSession session,
+			HttpServletRequest request) throws Exception {
 		String result = null;
 		
-		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
 		
-		String str = ms.profileImgShow(memberNo);
-		result = "{\"value\":\""+str+"\"}";
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		MemberVo mv = ms.profileImgShow(memberNo);
+		
+		File dir = new File(uploadedPath);
+		
+		File[] fileNameCheck = dir.listFiles(new FilenameFilter() { 
+		    @Override 
+		    public boolean accept(File dir, String name) { 
+		         return name.contains("/"+mv.getProfileImg()); 
+		        }
+		});
+		
+		String uploadedFileName = mv.getProfileImg();
+		for(File file : fileNameCheck) {
+			if(!file.getName().equals(mv.getProfileImg()))
+				uploadedFileName = UploadProfile.uploadFile(
+					uploadedPath, 
+					mv.getProfileImg(),
+					mv.getProfileImgData(),
+					"show");
+		}
+
+					
+		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
 		return result; 
 	}
@@ -250,7 +292,11 @@ public class MyPageController {
 	public String profileImgDelete(
 			HttpSession session) throws Exception {
 		
-		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		
 		int value = ms.profileImgDelete(memberNo);
@@ -261,9 +307,9 @@ public class MyPageController {
 		File[] files = directory.listFiles();
 		for(File file : files) {
 		    if(file.delete()) {
-		        System.out.println(file.getName() + " �궘�젣 �꽦怨�");
+		        System.out.println(file.getName() + "삭제");
 		    } else {
-		        System.out.println(file.getName() + " �궘�젣 �떎�뙣");
+		        System.out.println(file.getName() + "삭제 불가");
 		    }
 		}
 		
@@ -279,7 +325,11 @@ public class MyPageController {
 			@RequestParam("index") String index,
 			@RequestParam("value") String value) {
 		
-		int memberNo=  Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		if(index.equals("pw"))
 			value = bcryptPasswordEncoder.encode(value);
@@ -324,9 +374,11 @@ public class MyPageController {
 			LikesVo lv,
 			HttpSession session) throws Exception{
 		
-		System.out.println("boardNo" + boardNo);
+		int memberNo = 0;
 		
-		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		lv.setBoardNo(boardNo);
 		lv.setMemberNo(memberNo);
@@ -437,12 +489,60 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 
+<<<<<<< HEAD
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/style_discover.do")
+	public String style_discover(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}	
+
+		ArrayList<BoardVo> blist = bs.boardTotalList(memberNo);
+				
+		model.addAttribute("blist", blist);
+		
+		return "myPage/style_discover.do";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
 			HttpSession session) {
 		
-		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		ArrayList<AddressVo> alist = os.addressSelect(memberNo);
 		
@@ -462,7 +562,11 @@ public class MyPageController {
 			@RequestParam("basicAddrDetail") String basicAddrDetail,
 			@RequestParam(value="basic_check", defaultValue="N") String basic_check) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		int value = os.addressInsert(basicName, basicPhone, basicAddrNum, basicAddr, basicAddrDetail, basic_check, memberNo);
 		
@@ -524,7 +628,11 @@ public class MyPageController {
 			HttpSession session,
 			Model model) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		RefundVo rv = ms.selectAccount(memberNo);
 		
@@ -540,7 +648,11 @@ public class MyPageController {
 			@RequestParam("ar_name") String ar_name,
 			HttpSession session){
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		int value = ms.insertAccount(ar_bankName,ar_accountNum,ar_name,memberNo);
 		
@@ -557,7 +669,11 @@ public class MyPageController {
 			@RequestParam("ar_name") String ar_name,
 			HttpSession session) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		ms.modifyAccount(ar_bankName, ar_accountNum, ar_name, memberNo);
 		
@@ -571,7 +687,11 @@ public class MyPageController {
 			Model model,
 			HttpSession session) throws Exception {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
 		
@@ -592,7 +712,12 @@ public class MyPageController {
 			RedirectAttributes rttr
 			) throws Exception{
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
 		int resultUse = ps.checkCouponUse(couponNum);
 
 		if(resultUse==3) {

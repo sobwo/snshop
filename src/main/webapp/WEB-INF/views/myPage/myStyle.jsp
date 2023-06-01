@@ -32,7 +32,7 @@
 					<li class="socialItem">
 						<a class="menuLink" href="#">
 							<span class="socialMenu">게시물</span>
-							<span class="socialMenuCnt">0</span>
+							<span class="socialMenuCnt">${mv.boardCnt}</span>
 						</a>
 					</li>
 					<li class="socialItem">
@@ -62,23 +62,15 @@
 						
 							<div class="feeds" >
 								<div class="feedPost" id="feedPost${bv.boardNo}">
-									<div class="feedPostImage" onclick="location.href='#'">
-										<c:choose>
-											<c:when test ="${bv.contentsImg==null}">
-											</c:when>
-											
-											<c:otherwise>
-											<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
-											<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
-											
-											<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
-											<c:forEach var="img" items="${imgList}">
-												<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
-											</c:forEach>										
-											</c:if>
-											</c:otherwise>
-										</c:choose>
+									<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${bv.boardNo}">
+										<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
+										<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
 										
+										<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+										<c:forEach var="img" items="${imgList}">
+											<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+										</c:forEach>										
+										</c:if>
 									</div>	
 									<c:choose>
 										<c:when test="${bv.viewCnt == 1}">
@@ -90,8 +82,8 @@
 											</div>
 											
 											<div class="imageBtn">
-												<a class="prev" onclick="showPreviousImage()">&#10094;</a>
-												<a class="next" onclick="showNextImage()">&#10095;</a>
+												<button type="button" class="prev" value="${bv.boardNo}">&#10094;</button>
+												<button type="button" class="next" value="${bv.boardNo}">&#10095;</button>
 											</div>
 										</c:otherwise>
 									</c:choose>
@@ -142,7 +134,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
 		
-		 $(".likeImage").click(function() {
+			$(".likeImage").click(function() {
 				var boardNo = $(this).val();
 				var clickImage = $(this).children("#likeImageChange");
 				var likeCountChange = $(this).siblings(".likeCount");
@@ -168,63 +160,52 @@
 					likeCountChange.text(data.totalCnt);
 					
 		        },
-		        error: function() {
-		        }
-
-		      });
-<<<<<<< HEAD
-		     
-
+			        error: function() {
+			        }
+	
+			      });
 		      });		    
-<<<<<<< HEAD
-		    });	
-=======
-=======
-		   });		    
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-		 
-		 
-		 
-		 
-		 
-		 
-		 $(".prev").on("click", function (e) {
-		      e.preventDefault();
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 		 
-		 // boardNo 값 받아오기?
-		  var currentImageIndex = 0;
-		  var images = document.getElementsByClassName("postImage");
-
-		  function showPreviousImage() {
-		    currentImageIndex--;
-		    if (currentImageIndex < 0) {
-		      currentImageIndex = images.length - 1;
-		    }
-		    updateDisplayedImage();
-		  }
-
-<<<<<<< HEAD
-		  function showNextImage() {
-		    currentImageIndex++;
-		    if (currentImageIndex >= images.length) {
-		      currentImageIndex = 0;
-		    }
-		    updateDisplayedImage();
-		  }
-=======
-
-		    });
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-
-		  function updateDisplayedImage() {
-		    for (var i = 0; i < images.length; i++) {
-		      images[i].style.display = "none";
-		    }
-		    images[currentImageIndex].style.display = "block";
-		  }
-
+			var imagesMap = {}; 
+			
+			$(".prev").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				currentImageIndex--;
+				if (currentImageIndex < 0) {
+				  currentImageIndex = images.length - 1;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex,images);
+			});
+			
+			$(".next").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				
+				currentImageIndex++;
+				if (currentImageIndex >= images.length) {
+				  currentImageIndex = 0;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex, images);
+			});
+			
+			function updateDisplayedImage(boardNo, currentImageIndex,images) {
+				
+				for (var i = 0; i < images.length; i++) {
+				  images[i].style.display = "none";
+				}
+				images[currentImageIndex].style.display = "block";
+			}
+			
 		</script>
 	</body>
 </html>

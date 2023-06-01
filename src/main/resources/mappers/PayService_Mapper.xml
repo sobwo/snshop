@@ -12,4 +12,8 @@
 	<select id="paySelectNew" parameterType="Integer" resultType="pmv">
 		select * from pay where orderNo=#{0} ORDER BY payNo DESC LIMIT 1
 	</select>
+	
+	<select id="refundSelect" parameterType="Integer" resultType="rv">
+		select * from refund where memberNo=#{0}
+	</select> 
 </mapper>

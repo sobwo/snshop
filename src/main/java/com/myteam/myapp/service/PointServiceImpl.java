@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.CouponVo;
 import com.myteam.myapp.domain.MemberPointVo;
@@ -35,6 +36,7 @@ public class PointServiceImpl implements PointService{
 		return cv;
 	}
 
+	@Transactional
 	@Override
 	public int insertPoint(int memberNo, String index, String couponNum) throws Exception{
 		
@@ -104,6 +106,7 @@ public class PointServiceImpl implements PointService{
 		return plist;
 	}
 
+	@Transactional
 	@Override
 	public int insertCoupon(String couponName, String couponNum, int point, String usePeriod) {
 		CouponVo cv = new CouponVo();

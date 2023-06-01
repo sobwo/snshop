@@ -22,4 +22,9 @@ public interface BoardService_Mapper {
 	public int likesTotalCntUpdate(int boardNo);
 
 	public int likesTotalCnt(int boardNo);
+
+	public int boardCnt(int memberNo);
+
+	public ArrayList<BoardVo> boardTotalList(int memberNo);
+
 }
