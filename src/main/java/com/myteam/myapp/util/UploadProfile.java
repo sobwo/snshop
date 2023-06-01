@@ -11,7 +11,7 @@ import org.springframework.util.FileCopyUtils;
 public class UploadProfile {
 
 	public static String uploadFile(String uploadPath,
-									String originalName,byte[] fileData	)	
+									String originalName)	
 	throws Exception{
 		
 		File directory = new File(uploadPath);
@@ -24,10 +24,12 @@ public class UploadProfile {
 		    }
 		}
 		
+		System.out.println("uploadPath"+uploadPath);
+		
 		UUID uid = UUID.randomUUID();
 	    String savedName = uid.toString() + "_" + originalName;
 	    File target = new File(uploadPath,savedName);
-		FileCopyUtils.copy(fileData,target);
+		target.createNewFile();
 		String uploadedFileName = null;
 		uploadedFileName = makeThumbnail(uploadPath,savedName);
 	    File originalFile = new File(uploadPath, savedName);

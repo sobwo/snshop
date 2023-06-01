@@ -57,7 +57,11 @@ public class IamportController {
     	IamportResponse<Payment> irsp = paymentLookup(map.get("imp_uid")); 
     	
     	
-    	int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
     	
     	HashMap<String, Object> hm = ps.verifyPayment(irsp,map,memberNo);
     	
@@ -76,7 +80,12 @@ public class IamportController {
 		IamportResponse<Payment> irsp = paymentLookup(map.get("impUid"));
 		String payMethod = irsp.getResponse().getPayMethod();
 		String buyerName = irsp.getResponse().getBuyerName();
-		int memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		rv = ps.refundSelect(memberNo);
 		
