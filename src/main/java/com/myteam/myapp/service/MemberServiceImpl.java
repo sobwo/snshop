@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.RefundVo;
@@ -36,6 +37,7 @@ public class MemberServiceImpl implements MemberService{
 		return value;
 	}
 	
+	@Transactional
 	@Override
 	public int memberInsertSocial(String memberId, String memberName, String memberEmail, String memberPhone, String memberGender) {
 		int cnt = msm.memberSelectSocialCnt(memberId,"social");
@@ -142,7 +144,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		return value;
 	}
-
+	
+	@Transactional
 	@Override
 	public int modifyProfile(String index, String value, int memberNo) {
 		HashMap<String, Object> map = new HashMap<>();

@@ -62,7 +62,11 @@ public class OrderController {
 			HttpSession session,
 			Model model) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
@@ -109,7 +113,11 @@ public class OrderController {
 		HttpSession session,
 		Model model) throws Exception {
 
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		
 		String statusDetail = null;
@@ -157,7 +165,11 @@ public class OrderController {
 			@RequestParam("sizeName") String sizeName,
 			Model model) {
 	
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		os.addressInsert(basicName, basicPhone, basicAddrNum, basicAddr, basicAddrDetail, basic_check, memberNo);
 		

@@ -1,35 +1,24 @@
 package com.myteam.myapp.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.BoardVo;
-import com.myteam.myapp.domain.GoodsVo;
-import com.myteam.myapp.domain.LikesVo;
+
 import com.myteam.myapp.domain.MemberVo;
-import com.myteam.myapp.domain.ProductImgVo;
+
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.ShopService;
 import com.myteam.myapp.service.StyleService;
-import com.myteam.myapp.util.MediaUtils;
+
 
 @Controller
 @RequestMapping(value = "/style")

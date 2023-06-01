@@ -38,7 +38,31 @@
 								<div class="ar_input_wrap">
 									<c:choose>
 										<c:when test="${rv.refundNo == null}">
-											<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" placeholder="은행명을 입력하세요.">
+											<select class="ar_input" id="ar_bankName" name="ar_bankName">
+													<option value="국민">국민은행</option>
+													<option value="국민">SC제일은행</option>
+													<option value="국민">경남은행</option>
+													<option value="국민">광주은행</option>
+													<option value="국민">기업은행</option>
+													<option value="국민">농협은행</option>
+													<option value="국민">대구은행</option>
+													<option value="국민">부산은행</option>
+													<option value="국민">산업은행</option>
+													<option value="국민">새마을금고</option>
+													<option value="국민">수협</option>
+													<option value="국민">신한은행</option>
+													<option value="국민">신협</option>
+													<option value="국민">외환은행</option>
+													<option value="국민">우리은행</option>
+													<option value="국민">우체국</option>
+													<option value="국민">전북은행</option>
+													<option value="국민">축협</option>
+													<option value="국민">카카오뱅크</option>
+													<option value="국민">케이뱅크</option>
+													<option value="국민">하나은행</option>
+													<option value="국민">한국씨티뱅크</option>
+													<option value="국민">토스뱅크</option>
+											</select>
 										</c:when>
 										<c:otherwise>
 											<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" value="${rv.accountName}">
@@ -107,6 +131,10 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/incomeAccount.js"></script>
 		<script>
+			var msg = "${msg}";
+			if(msg != "")
+				alert(msg);
+		
 			function accountAdd(){
 				var fm = document.frm;
 				fm.action="${pageContext.request.contextPath}/myPage/incomeAccountAction.do";
