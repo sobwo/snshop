@@ -77,7 +77,6 @@ $(document).ready(function(){
 			
 			if(filter.length>0)value = 1;
 			else value = 0;
-			
 			filter_ajax(filter,value);
 	      });
 
@@ -103,7 +102,6 @@ $(document).ready(function(){
 		
 		if(filter.length>0)value = 1;
 		else value = 0;
-		
 		filter_ajax(filter,value);
       });
 
