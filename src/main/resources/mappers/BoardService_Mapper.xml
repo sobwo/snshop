@@ -38,4 +38,8 @@
 	select likeCnt from board where boardNo=#{boardNo}
 </select>
 
+<update id="boardCnt" parameterType="mv">
+	UPDATE member SET boardCnt = (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo}) WHERE memberNo = #{memberNo};
+</update>
+
 </mapper>

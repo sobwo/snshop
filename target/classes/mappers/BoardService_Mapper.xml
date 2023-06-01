@@ -38,4 +38,11 @@
 	select likeCnt from board where boardNo=#{boardNo}
 </select>
 
+<<<<<<< HEAD
+<update id="boardCnt" parameterType="mv">
+	UPDATE member SET boardCnt = (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo}) WHERE memberNo = #{memberNo};
+</update>
+
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 </mapper>
