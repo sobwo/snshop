@@ -77,6 +77,8 @@ public class ShopController {
 			Model model
 			) {
 		
+		System.out.println(value);
+		
 		ArrayList<ProductDto> filterList = ss.filterList(filter,value);
 
 		model.addAttribute("goodsList", filterList);
