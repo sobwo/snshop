@@ -7,6 +7,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>header_style</title>
+		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/style/style_discover.css" rel="stylesheet">
 		<style>
@@ -79,7 +80,7 @@
 											
 								<div class="feedPostUser">
 									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
-									<p class="userName">${mv.memberId}</p>
+									<p class="userName">memberId</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${bv.boardNo}">
 											<c:choose>
@@ -109,18 +110,76 @@
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
-			//하트 클릭 시 이미지 변경
-			var imgChange = document.getElementById("likeImageChange");
-			var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
+			$(".likeImage").click(function() {
+				var boardNo = $(this).val();
+				var clickImage = $(this).children("#likeImageChange");
+				var likeCountChange = $(this).siblings(".likeCount");
 	
-			function like(){
-			    if (currentImage === '${pageContext.request.contextPath}/resources/image/heart.png/') {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart2.png');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
-			    } else {
-			        imgChange.setAttribute('src', '${pageContext.request.contextPath}/resources/image/heart.png/');
-			        currentImage = '${pageContext.request.contextPath}/resources/image/heart.png/';
-			    }
+		    $.ajax({
+		        type: "POST",
+		        url: "${pageContext.request.contextPath}/myPage/like_check.do",
+		        dataType: "json",
+		        data: {
+					"boardNo": boardNo,
+		        	},
+		        cache: false,
+		        success: function(data) {	
+		        	
+					if (data.cnt == 1) {
+						clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
+		          
+		         	}else {
+		         		clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart.png/");
+		          
+		         	}
+					
+					likeCountChange.text(data.totalCnt);
+					
+		        },
+			        error: function() {
+			        }
+	
+			      });
+		      });		    
+	
+		 
+			var imagesMap = {}; 
+			
+			$(".prev").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				currentImageIndex--;
+				if (currentImageIndex < 0) {
+				  currentImageIndex = images.length - 1;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex,images);
+			});
+			
+			$(".next").click(function() {
+				var boardNo = $(this).val();
+				var currentImageIndex = imagesMap[boardNo] || 0;
+				var images = $(".feedPostImage[data-boardNo='" + boardNo + "']").find(".postImage");
+				
+				
+				currentImageIndex++;
+				if (currentImageIndex >= images.length) {
+				  currentImageIndex = 0;
+				}
+				
+				imagesMap[boardNo] = currentImageIndex;
+				updateDisplayedImage(boardNo, currentImageIndex, images);
+			});
+			
+			function updateDisplayedImage(boardNo, currentImageIndex,images) {
+				
+				for (var i = 0; i < images.length; i++) {
+				  images[i].style.display = "none";
+				}
+				images[currentImageIndex].style.display = "block";
 			}
 		</script>
 	</body>
