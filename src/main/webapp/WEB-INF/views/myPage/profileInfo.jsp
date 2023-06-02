@@ -236,16 +236,18 @@
 				$.ajax({
 					url: "${pageContext.request.contextPath}/myPage/profileImgShow.do",		
 					method: "GET",
-					dataType: "json",
+					  xhrFields: {
+					    responseType: "blob" // 이미지를 바이너리 형태로 받기 위해 responseType을 설정합니다.
+					},
 					success : function(data){
-						if(data.value === "" || data.value === "null"){
+						if(data.name === "" || data.name === "null"){
 							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
 						}
 						else{
-							src = "${pageContext.request.contextPath}/resources/uploadFiles"+data.value;
+							var imageUrl = URL.createObjectURL(data);
+							
 						}
-						
-						$("#profileImg_show").attr("src",src);
+						$("#profileImg_show").attr("src",imageUrl);
 					},
 					error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	
