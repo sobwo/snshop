@@ -157,10 +157,10 @@
 		          
 		         	}
 					
-					likeCountChange.text(data.totalCnt);
+					likeCountChange.text(data.totalCnt); 
 					
 		        },
-<<<<<<< HEAD
+
 		        error: function() {
 		        }
 
@@ -168,27 +168,12 @@
 
 		     
 
-=======
-			        error: function() {
-			        }
-	
-			      });
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-		      });		    
-<<<<<<< HEAD
+		 
+		 
+		
 
-			    
-
-		 
-		 
-		 
-		 
-		 
-		 
 		 $(".prev").on("click", function (e) {
 		      e.preventDefault();
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 		 
 			var imagesMap = {}; 

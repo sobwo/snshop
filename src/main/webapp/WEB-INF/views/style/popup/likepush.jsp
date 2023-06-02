@@ -10,7 +10,7 @@
 <body>
     <div class="like_btn">
         <div class="like">
-            <button onclick="openPopup()" style="border-radius: 10px;">좋아요</button>
+          <!--   <button onclick="openPopup()" style="border-radius: 10px;"> </button> -->
         </div>
         <div id="popup"
             style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 350px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">

@@ -126,7 +126,7 @@
                			 	</div> --%>
                			 	
                			 	<div class="social_count" onclick="openPopup()">
-  								<span>좋아요&nbsp;<strong>${blist.likeCnt} <%-- ${bv.likeCnt} --%></strong>개</span>
+  								<span>좋아유&nbsp;<strong>${blist.likeCnt} <%-- ${bv.likeCnt} --%></strong>개</span>
 							</div>
                			 	
                			 	
@@ -269,8 +269,6 @@
 		});
 		 */
 
-			
-			
 			
 		</script>
 	</body>

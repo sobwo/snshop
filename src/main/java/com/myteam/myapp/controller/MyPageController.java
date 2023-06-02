@@ -488,24 +488,7 @@ public class MyPageController {
 
 		return "redirect:/myPage/myStyle.do";
 	}
-<<<<<<< HEAD
 
-=======
-
-<<<<<<< HEAD
-
-	
-=======
-<<<<<<< HEAD
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-	
-	
-
-	
-	
-	
 	
 	
 	
@@ -538,17 +521,7 @@ public class MyPageController {
 	
 	
 	
-<<<<<<< HEAD
 
-=======
-
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
