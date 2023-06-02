@@ -84,7 +84,31 @@ public class StyleController {
 	  
 	  return "style/style_discover_newest"; }
 	 
-	/*
+	
+	  /*  
+	   * 
+	  
+	  @RequestMapping(value = "/style_commentAction.do")
+	  public String style_commentAction( HttpSession session,
+			  @RequestParam("ccomments")String ccomments,
+			  @RequestParam("boardNo")String boardNo,
+				/* @RequestParam("memberNo")String memberNo, 
+			  
+			  
+			  Model model ){
+		  int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		  
+		  
+		  return "style/following";
+		  
+	  }
+	  
+	  */
+	  
+	 /*
+	 * 
+	 * 
+	 * 
 	 * @ResponseBody
 	 * 
 	 * @RequestMapping(value="/likebtn_check.do" , method=RequestMethod.POST) public

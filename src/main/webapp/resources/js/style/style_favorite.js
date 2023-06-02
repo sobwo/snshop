@@ -28,10 +28,11 @@ function comment_btn(id,content){
 	
 }
 */
-function comment_btn(id, content) {
+function comment_btn(id, content, boardNo) {
     popup_wrap.show();
     $(".user_id").text(id);
     $(".content_top").text(content);
+    $(".h_boardNo").val(boardNo);
 }
 
 

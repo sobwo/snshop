@@ -109,7 +109,7 @@
 								</span>	
 		    					<!-- 5-31 like 버튼  -->	
 	    						<span class="commentBox"> 
-									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}')">	
+									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
 								</span> 	 		    			
 					    		</div>
 					
