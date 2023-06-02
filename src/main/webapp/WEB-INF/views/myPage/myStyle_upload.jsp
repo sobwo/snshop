@@ -94,9 +94,10 @@
 			if (event.target.files.length > 5) {
 			  alert("사진은 5개까지만 첨부 가능합니다.");
 			  event.target.value = "";
+			  
 			  return;
-		}
-	
+			}
+		
 		for (var image of event.target.files) {
 		  var reader = new FileReader();
 		  reader.onload = function(event) {
@@ -113,6 +114,14 @@
 		}
 
 		function check(){
+			
+			if($("#fileatt").val()==="") {
+			      
+			      alert("사진을 등록해주세요.");
+			      
+			      return;
+			}
+			
 			var fm = document.frm;
 			fm.action ="${pageContext.request.contextPath}/myPage/myStyle_uploadeAction.do";
 			fm.method="post";

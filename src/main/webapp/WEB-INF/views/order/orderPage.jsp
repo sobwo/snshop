@@ -467,7 +467,7 @@
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	            	pay_ajax(rsp.imp_uid,price);	
+	            	pay_ajax(rsp,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -491,7 +491,7 @@
 	        }, function (rsp) {
 	            console.log(rsp);
 	            if (rsp.success) {
-	            	pay_ajax(rsp.imp_uid,price);	
+	            	pay_ajax(rsp,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -520,7 +520,7 @@
 	            buyer_tel: phone
 	        }, function (rsp) {
 	            if (rsp.success) {
-	            	pay_ajax(rsp.imp_uid,price);	
+	            	pay_ajax(rsp,price);	
 	            } else {
 	                var msg = '결제에 실패하였습니다.';
 	                msg += '에러내용 : ' + rsp.error_msg;
@@ -529,39 +529,72 @@
 	        });
 	    }
 		
+		/*******************************
+					결제 ajax
+		********************************/
 		
-		function pay_ajax(imp_uid,price){
+		function pay_ajax(rsp,price){
 			var addressNo = "${av.addressNo}";
 			var size = "${sizeName}";
 			var pay_info = $("#payInfo_value").val();
 			var point = $("#inner_point").text();
 			
+			let pay_data = {
+				"imp_uid" : rsp.imp_uid,
+				"price" : price,
+				"goodsNo" : goodsNo,
+				"size" : size,
+				"addressNo" : addressNo,
+				"pay_info" : pay_info,
+				"point" : point
+			};
+			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
 				method: "POST",
-				data: {
-						"imp_uid" : imp_uid,
-						"price" : price,
-						"goodsNo" : goodsNo,
-						"size" : size,
-						"addressNo" : addressNo,
-						"pay_info" : pay_info,
-						"point" : point
-					  },
-				dataType : "json",
+				data: JSON.stringify(pay_data),
 				success : function(data){
 					if(data.result == 2){
 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
 					}
 				},
 				error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
+					alert("다시 시도하시기 바랍니다.");
+					cancelPayments(temp);
 					console.log("code: " + request.status);
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);
 				}	
 			});
 		}
+		
+		/*******************************
+					결제 취소
+		********************************/
+		function cancelPayments(temp){
+			let data = null;
+			if(temp!=null){//결제금액이 달라졌을때 결제취소
+					data={
+					impUid:temp.imp_uid,
+					reason:"결제 금액 위/변조. 결제 금액이 일치안함",
+					checksum:temp.paid_amount,
+					refundHolder:temp.buyer_name,
+					bank_name:temp.bank_name
+				};
+			}
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/Iamport/cancelIamport.do",
+				data:JSON.stringify(data),
+				contentType:"application/json; charset=utf-8",
+				success: function(result){
+					alert("결제금액 환불완료");
+				},
+				error: function(result){
+					alert("결제금액 환불못함. 이유: "+result.responseText);
+				}
+			});
+		}//cancelPayments
 		
 	</script>
 </body>

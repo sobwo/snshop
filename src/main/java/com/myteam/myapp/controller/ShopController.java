@@ -33,7 +33,9 @@ public class ShopController {
 	
 
 	@RequestMapping(value = "/shopMain.do")
-	public String shopMain() {
+	public String shopMain(Model model) {
+		ArrayList<ProductDto> trandList = ss.trandList();
+		model.addAttribute("trandList",trandList);
 		
 		return "shop/shopMain";
 	}
@@ -74,6 +76,8 @@ public class ShopController {
 			@RequestParam(value="value") int value,
 			Model model
 			) {
+		
+		System.out.println(value);
 		
 		ArrayList<ProductDto> filterList = ss.filterList(filter,value);
 

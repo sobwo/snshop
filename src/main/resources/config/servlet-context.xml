@@ -54,9 +54,9 @@
 			<beans:ref bean="loginInterceptor"></beans:ref>
 		</interceptor>
 		<interceptor>
-			<mapping path="/order/orderAgree.do"/>
-			<mapping path="/myPage/myPageMain.do"/>
-			<mapping path="/myPage/interest.do"/>
+			<mapping path="/order/*.do"/>
+			<mapping path="/myPage/*.do"/>
+			<mapping path="/Iamport/*.do"/>
 			<beans:ref bean="authInterceptor"></beans:ref>
 		</interceptor>
 		<interceptor>

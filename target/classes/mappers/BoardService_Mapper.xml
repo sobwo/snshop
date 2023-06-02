@@ -38,4 +38,12 @@
 	select likeCnt from board where boardNo=#{boardNo}
 </select>
 
+<update id="boardCnt" parameterType="mv">
+	UPDATE member SET boardCnt = (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo} and delYn = 'N') WHERE memberNo = #{memberNo};
+</update>
+
+<select id="boardTotalList" resultType="bv">
+	select * from board a left outer join likes b on a.boardNo = b.boardNo where a.delYn = 'N' ORDER BY a.likeCnt DESC;
+</select>
+
 </mapper>

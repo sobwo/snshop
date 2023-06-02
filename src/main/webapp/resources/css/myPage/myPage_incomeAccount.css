@@ -27,6 +27,10 @@
 	border-bottom:1px solid #ebebeb;
 }
 
+#ar_bankName{
+	height:40px;
+}
+
 .ar_input:focus{
 	border-bottom:2px solid #222;
 }

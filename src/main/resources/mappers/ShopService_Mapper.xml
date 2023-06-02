@@ -8,7 +8,7 @@
 				 
 			</when>
 			<when test="value==1">
-				AND category in 
+				AND (category in 
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
@@ -16,7 +16,11 @@
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
-				
+				OR goodsgender in
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				)
 			</when>
 		</choose>
 	</sql>	
@@ -56,6 +60,12 @@
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
+	</select>
+	
+	<select id="trandList" resultType="pd">
+		select a.categoryName, sum(a.interestNum)as cnt, min(b.imgfileName) from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		group by a.categoryName order by cnt desc
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">

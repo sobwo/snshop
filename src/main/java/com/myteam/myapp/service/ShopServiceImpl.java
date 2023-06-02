@@ -131,6 +131,12 @@ public class ShopServiceImpl implements ShopService {
 			return glist;
 		}
 
+		@Override
+		public ArrayList<ProductDto> trandList() {
+			ArrayList<ProductDto> trandList = ssm.trandList();
+			return trandList;
+		}
+
 //		@Override
 //		public int interestCnt(int goodsNo) {
 //			int value = ssm.interestCnt(goodsNo);
