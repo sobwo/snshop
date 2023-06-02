@@ -74,12 +74,11 @@ public class ShopController {
 	public String categoryFilter(
 			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
+			@RequestParam(value="page") int page,
+			@RequestParam(required=false, value="price") int price,
 			Model model
 			) {
-		
-		System.out.println(value);
-		
-		ArrayList<ProductDto> filterList = ss.filterList(filter,value);
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page);
 
 		model.addAttribute("goodsList", filterList);
 		
@@ -92,10 +91,11 @@ public class ShopController {
 			@RequestParam(value="filter[]") List<String> filter,
 			@RequestParam(value="value") int value,
 			@RequestParam(value="index") int index,
+			@RequestParam(value="page") int page,
 			Model model
 			) {
 		
-		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index);
+		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index,page);
 		model.addAttribute("goodsList", alignList);
 		
 		return "shop/shopMain_item";

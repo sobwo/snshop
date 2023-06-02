@@ -76,14 +76,14 @@
 		select * from productImg where goodsNo = #{goodsNo} order by imgNo asc
 	</select>
 	
-	<select id="filterList" parameterType="java.util.List" resultType="pd">
+	<select id="filterList" parameterType="hashMap" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
- 
 		<include refid="searchCategory" />
+		 order by a.goodsNo desc limit 0,#{page}
 	</select>
 	
-	<select id="alignList" parameterType="java.util.List" resultType="pd">
+	<select id="alignList" parameterType="hashMap" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
 		<include refid="searchCategory" />

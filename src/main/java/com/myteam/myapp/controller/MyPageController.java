@@ -36,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.GoodsInterestDto;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -217,7 +218,7 @@ public class MyPageController {
 		String str = null;
 		MultipartFile file = profileImg;
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-
+		System.out.println("zzzdata : "+uploadedPath);
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -285,7 +286,7 @@ public class MyPageController {
 		}
 		
 
-		System.out.println("zzzdata : "+mv.getProfileImgData());
+		System.out.println("zzzdata : "+uploadedPath);
 					
 		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
@@ -360,10 +361,10 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<BoardVo> blist = bs.boardList(memberNo);
+		ArrayList<LikesDto> llist = bs.boardList(memberNo);
 				
 		model.addAttribute("mv", mv);
-		model.addAttribute("blist", blist);
+		model.addAttribute("llist", llist);
 
 		return "myPage/myStyle";
 	}
@@ -386,7 +387,7 @@ public class MyPageController {
 		
 	    int value = bs.likesList(lv);
 
-	    if (value == 0) {
+	    if (value == 0) { 
 	    	bs.insertLike(lv);
 	    	
 	    } else if (value != 0) {
@@ -488,27 +489,6 @@ public class MyPageController {
 
 		return "redirect:/myPage/myStyle.do";
 	}
-<<<<<<< HEAD
-
-=======
-
-<<<<<<< HEAD
-
-	
-=======
-<<<<<<< HEAD
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-	
-	
-
-	
-	
-	
-	
-	
-	
 	
 
 	@RequestMapping(value = "/style_discover.do")
@@ -527,28 +507,6 @@ public class MyPageController {
 		return "myPage/style_discover.do";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-<<<<<<< HEAD
-
-=======
-
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
