@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FilenameFilter;
 import java.io.InputStream;
 import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -217,8 +221,13 @@ public class MyPageController {
 		
 		String str = null;
 		MultipartFile file = profileImg;
+<<<<<<< HEAD
+		String uploadedPath = "/uploads";
+
+=======
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
 		System.out.println("zzzdata : "+uploadedPath);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -249,10 +258,9 @@ public class MyPageController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/profileImgShow.do")
-	public String profileImgShow(
+	public ResponseEntity<Resource> profileImgShow(
 			HttpSession session,
 			HttpServletRequest request) throws Exception {
-		String result = null;
 		
 		int memberNo = 0;
 		
@@ -260,23 +268,31 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		String uploadedPath = "/uploads";
 		MemberVo mv = ms.profileImgShow(memberNo);
+		
+		System.out.println("profileImage" + mv.getProfileImg());
 		
 		File dir = new File(uploadedPath);
 		
 		int check = 0;
-		String uploadedFileName = mv.getProfileImg();
+		String uploadedFileName = null;
 		String[] fileList = dir.list();
-		for(String file : fileList) {
-			System.out.println("fileList : " +file);
-			System.out.println("mv.getProfileImg"+mv.getProfileImg());
-			if(!mv.getProfileImg().contains(file)) {
-				check++;
-				
-			}
+		
+		System.out.println("fileList.length : "+fileList.length);
+		
+		if(mv.getProfileImg().equals("noImage") && mv.getProfileImgData().equals("noImage")) {
+			uploadedFileName = null;
 		}
 		
+<<<<<<< HEAD
+		else {
+			for(String file : fileList) {
+				System.out.println("file 이름 : "+file);
+				System.out.println("db file 이름 : "+mv.getProfileImg());
+				if(!mv.getProfileImg().contains(file)) {
+					check++;
+=======
 		if(check>0) {
 			uploadedFileName = UploadProfile.uploadFile(
 								uploadedPath, 
@@ -287,10 +303,36 @@ public class MyPageController {
 		
 
 		System.out.println("zzzdata : "+uploadedPath);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					
-		result = "{\"value\":\""+uploadedFileName+"\"}";
+				}
+			}
+			
+			System.out.println("checked : "+check);
+			
+			if(check>0) {
+				uploadedFileName = UploadProfile.uploadFile(
+									uploadedPath, 
+									mv.getProfileImg(),
+									mv.getProfileImgData(),
+									"show");
+			}
+			else
+				uploadedFileName = mv.getProfileImg();
+		}
 		
-		return result; 
+		HashMap<String, Object> hm = new HashMap<>();
+		
+		Path imagePath = Paths.get(uploadedPath, uploadedFileName);
+        Resource imageResource = new UrlResource(imagePath.toUri());
+
+        if (imageResource.exists() && imageResource.isReadable()) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_PNG)
+                    .body(imageResource);
+        } else {
+            return null;
+        }
 	}
 	
 	@ResponseBody
@@ -488,10 +530,53 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
+<<<<<<< HEAD
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+	@RequestMapping(value = "/style_discover.do")
+	public String style_discover(
+			Model model,
+			HttpSession session) {
+		
+		
+		
+		
+
+		ArrayList<BoardVo> blist = bs.boardTotalList();
+				System.out.println("blist"+ blist);
+		model.addAttribute("blist", blist);
+		
+		return "myPage/style_discover.do";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+=======
 
 	}
 
 
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

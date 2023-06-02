@@ -62,7 +62,7 @@
 	</update>
 	
 	<select id="profileImgShow" parameterType="Integer" resultType="mv">
-		SELECT PROFILEIMG,PROFILEIMGDATA FROM MEMBER WHERE MEMBERNO = #{0}
+		SELECT ifnull(PROFILEIMG,"noImage") as profileImg, ifnull(PROFILEIMGDATA,"noImage") as profileImgData FROM MEMBER WHERE MEMBERNO = #{0}
 	</select>
 	
 	<update id="profileImgDelete" parameterType="Integer">
