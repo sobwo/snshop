@@ -217,7 +217,7 @@ public class MyPageController {
 		String str = null;
 		MultipartFile file = profileImg;
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-
+		System.out.println("zzzdata : "+uploadedPath);
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -292,7 +292,7 @@ public class MyPageController {
 		}
 		
 
-		System.out.println("zzzdata : "+mv.getProfileImgData());
+		System.out.println("zzzdata : "+uploadedPath);
 					
 		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
@@ -496,13 +496,6 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 
-<<<<<<< HEAD
-
-	
-=======
-<<<<<<< HEAD
-
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	
 	
 
@@ -513,8 +506,7 @@ public class MyPageController {
 	
 	
 	
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
 			Model model,
@@ -531,7 +523,6 @@ public class MyPageController {
 		return "myPage/style_discover.do";
 	}
 	
-<<<<<<< HEAD
 	
 	
 	
@@ -543,14 +534,7 @@ public class MyPageController {
 	
 	
 	
-<<<<<<< HEAD
 
-=======
-
-
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
