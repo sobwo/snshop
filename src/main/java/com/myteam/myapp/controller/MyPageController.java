@@ -488,9 +488,20 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
+<<<<<<< HEAD
 	}
+<<<<<<< HEAD
+	
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
+<<<<<<< HEAD
+=======
+	
+	
 	
 
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
 			Model model,
@@ -507,6 +518,24 @@ public class MyPageController {
 		return "myPage/style_discover.do";
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+=======
+	}
+
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

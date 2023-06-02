@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
@@ -34,11 +35,11 @@ public class BoardServiceInpl implements BoardService{
 
 
 	@Override
-	public ArrayList<BoardVo> boardList(int memberNo) {
+	public ArrayList<LikesDto> boardList(int memberNo) {
 		
-		ArrayList<BoardVo> blist = bsm.boardList(memberNo);
+		ArrayList<LikesDto> llist = bsm.boardList(memberNo);
 		
-		return blist;
+		return llist;
 	}
 	
 	@Override
@@ -98,7 +99,7 @@ public class BoardServiceInpl implements BoardService{
 		return value;
 	}
 
-
+/*
 	@Override
 	public ArrayList<BoardVo> boardTotalList() {
 		
@@ -106,5 +107,5 @@ public class BoardServiceInpl implements BoardService{
 		
 		return blist;
 	}
-
+*/
 }

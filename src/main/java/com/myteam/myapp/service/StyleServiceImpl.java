@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
 import com.myteam.myapp.persistance.StyleService_Mapper;
@@ -60,6 +61,22 @@ public class StyleServiceImpl implements StyleService {
 	public int likesTotalCnt(int boardNo) {
 		int value = bsm.likesTotalCnt(boardNo);
 		return value;
+	}
+
+	@Override
+	public ArrayList<LikesDto> boardTotalList(int memberNo) {
+
+		ArrayList<LikesDto> llist = ssm1.boardTotalList(memberNo);
+		
+		return llist;
+	}
+
+	@Override
+	public ArrayList<LikesDto> boardTotalList_newest(int memberNo) {
+		
+		ArrayList<LikesDto> llist = ssm1.boardTotalList_newest(memberNo);
+		
+		return llist;
 	}
 
 	/*

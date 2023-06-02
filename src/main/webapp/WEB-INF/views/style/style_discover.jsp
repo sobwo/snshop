@@ -49,45 +49,46 @@
 		
 			<div class="feedContainer">
 				<div class="feed_wrap">
-					<c:forEach var="bv" items="${blist}" varStatus="status">
+					<c:forEach var="ld" items="${llist}" varStatus="status">
 						<div class="feeds" >
-							<div class="feedPost" id="feedPost${bv.boardNo}">
-								<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${bv.boardNo}">
-									<c:set var="exp" value= "${bv.contentsImg.substring(bv.getContentsImg().length()-3, bv.getContentsImg().length())}" />
-									<c:set var="imgList" value="${fn:split(bv.contentsImg, ',')}" />
+							<div class="feedPost" id="feedPost${ld.boardNo}">
+								<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${ld.boardNo}">
+									<c:set var="exp" value= "${ld.contentsImg.substring(ld.getContentsImg().length()-3, ld.getContentsImg().length())}" />
+									<c:set var="imgList" value="${fn:split(ld.contentsImg, ',')}" />
 									
 									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 									<c:forEach var="img" items="${imgList}">
 										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+							
 									</c:forEach>										
 									</c:if>
 								</div>	
 								<c:choose>
-									<c:when test="${bv.viewCnt == 1}">
+									<c:when test="${ld.viewCnt == 1}">
 										<div class="imageCnt" style="display:none"></div>
 									</c:when>
 									<c:otherwise>
 										<div class="imageCnt" onclick="location.href='#'">
-											<span class="imageCount">+${bv.viewCnt-1}</span>
+											<span class="imageCount">+${ld.viewCnt-1}</span>
 										</div>
 										
 										<div class="imageBtn">
-											<button type="button" class="prev" value="${bv.boardNo}">&#10094;</button>
-											<button type="button" class="next" value="${bv.boardNo}">&#10095;</button>
+											<button type="button" class="prev" value="${ld.boardNo}">&#10094;</button>
+											<button type="button" class="next" value="${ld.boardNo}">&#10095;</button>
 										</div>
 									</c:otherwise>
 								</c:choose>
 											
-								<div class="feedPostUser">
+								<div class="feedPostUser" >
 									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
-									<p class="userName">memberId</p>
+									<p class="userName">${ld.memberNo}</p>
 									<span class="likeBox">
-										<button type="button" class="likeImage" value="${bv.boardNo}">
+										<button type="button" class="likeImage" value="${ld.boardNo}">
 											<c:choose>
-												<c:when test="${bv.like_check == 0}">
+												<c:when test="${ld.like_check == 0}">
 													<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart.png/">
 												</c:when>
-												<c:when test="${bv.like_check eq 1}">
+												<c:when test="${ld.like_check eq 1}">
 													<img id="likeImageChange" src="${pageContext.request.contextPath}/resources/image/heart2.png/">
 												</c:when>
 												<c:otherwise>
@@ -95,11 +96,11 @@
 												</c:otherwise>
 											</c:choose>
 										</button>
-										<span class="likeCount">${bv.likeCnt}</span>
+										<span class="likeCount">${ld.likeCnt}</span>
 									</span>					
 								</div>
 								<div class="feedPostContent" onclick="location.href='#'">
-									<p>${bv.contents}</p>
+									<p>${ld.contents}</p>
 								</div>
 							</div>
 						</div>
