@@ -42,8 +42,7 @@ WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{
 <!-- 	select like_check from likes where memberNo = #{0} and boardNo = #{1}  -->
 <!-- </select> -->
 
-<<<<<<< HEAD
-=======
+
 <select id="boardTotalList" resultType="ld">
 	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} WHERE a.delYn = 'N' ORDER BY a.likeCnt DESC,a.boardNo DESC
 </select>
@@ -57,7 +56,7 @@ WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{
 <select id="likesList" parameterType="lv" resultType="int">
 	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
 </select>
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+-->
 
 
 
