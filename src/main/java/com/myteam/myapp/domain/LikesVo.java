@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class LikesVo {
+public class LikesVo  {
 	
 	private int likeNo;
 	private int boardNo;

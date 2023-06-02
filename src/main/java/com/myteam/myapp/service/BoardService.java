@@ -4,13 +4,14 @@ package com.myteam.myapp.service;
 import java.util.ArrayList;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 
 public interface BoardService {
 
 	public int boardInsert(BoardVo bv);
 
-	public ArrayList<BoardVo> boardList(int memberNo);
+	public ArrayList<LikesDto> boardList(int memberNo);
 	
 	public int likesList(LikesVo lv);
 	
@@ -26,6 +27,6 @@ public interface BoardService {
 
 	public int boardCnt(int memberNo);
 
-	public ArrayList<BoardVo> boardTotalList();
+//	public ArrayList<BoardVo> boardTotalList();
 	
 }
