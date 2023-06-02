@@ -66,6 +66,7 @@
 				            						    				            		
 <%-- 				            	src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${bv.contentsImg}"> --%>
 					    	</div>
+					    	
 					    	<!-- 상품태그 -->
 					    	<div class="social_product">
 					    		<div class="product_title">

@@ -36,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.GoodsInterestDto;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -360,10 +361,10 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<BoardVo> blist = bs.boardList(memberNo);
+		ArrayList<LikesDto> llist = bs.boardList(memberNo);
 				
 		model.addAttribute("mv", mv);
-		model.addAttribute("blist", blist);
+		model.addAttribute("llist", llist);
 
 		return "myPage/myStyle";
 	}
@@ -487,6 +488,7 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
+<<<<<<< HEAD
 	}
 
 	
@@ -520,6 +522,10 @@ public class MyPageController {
 	
 	
 
+=======
+	}
+
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

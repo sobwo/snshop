@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.myteam.myapp.domain.BoardVo;
-
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberVo;
 
 import com.myteam.myapp.service.BoardService;
@@ -64,14 +64,48 @@ public class StyleController {
 	 
 	 }
 	  
-	  @RequestMapping(value = "/style_discover.do") public String styleMain() {
-	  
-	  return "style/style_discover"; }
-	  
-	  @RequestMapping(value = "/style_discover_newest.do") public String
-	  styleDiscoverNewest() {
-	  
-	  return "style/style_discover_newest"; }
+	@RequestMapping(value = "/style_discover.do")
+	public String style_discover(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_discover";
+	}
+	
+	@RequestMapping(value = "/style_discover_newest.do")
+	public String style_discover_newest(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardTotalList_newest(memberNo);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_discover_newest";
+	}
+	
 	 
 	
 	  /*  
@@ -158,4 +192,7 @@ public class StyleController {
 	 * 
 	 * @RequestParam(""){ }
 	 */
+	  
+	  
+
 }
