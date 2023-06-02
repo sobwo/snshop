@@ -12,27 +12,12 @@ var popup_wrap = $(".popup_wrap");
 var cancel_popup = $(".cancel_popup");
 
 popup_wrap.css('height',window.outerHeight);
-/*
-comment_btn.on("click",function(){
-	popup_wrap.show();
-});
-*/
+
 cancel_popup.click(function(){
 	popup_wrap.hide();
 });
-/*
-function comment_btn(id,content){
-	popup_wrap.show();
-	$(".user_id").text(id);
-	${".content_top").text(content);
-	
-}
-*/
-function comment_btn(id, content) {
-    popup_wrap.show();
-    $(".user_id").text(id);
-    $(".content_top").text(content);
-}
+
+
 
 
 //댓글쓸때 css변경

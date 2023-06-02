@@ -47,7 +47,7 @@
 							<div class="filter_title title_first">
 								<div class="filterName">
 									<span>필터</span>
-									<span id="total_cnt"></span>
+									<span id="total_cnt">0</span>
 								</div><!-- filterName -->
 								<button class="reset">초기화</button>
 							</div><!-- filter_title -->
@@ -269,32 +269,32 @@
 										<span>가격</span>
 									</div>
 									<div class="filter_list">
-<!-- 										<input type="text" class=""> -->
-<!-- 										<button>검색</button> -->
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="100000" >
-											<div class="item item_price">10만원이하</div>
-										</div>
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="300000" >
-											<div class="item item_price">10-30만원</div>
-										</div>
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="500000" >
-											<div class="item item_price">30-50만원</div>
-										</div>
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="10000000" >
-											<div class="item item_price">50-100만원</div>
-										</div>
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="3000000" >
-											<div class="item item_price">100-300만원</div>
-										</div>
-										<div class="filter_child_list_in filter_price_list">
-											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="3000001" >
-											<div class="item item_price">300만원이상</div>
-										</div>
+										<input type="text" class="filter_price">
+										<button class="shearchPrice">검색</button>
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="100000" > -->
+<!-- 											<div class="item item_price">10만원이하</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="300000" > -->
+<!-- 											<div class="item item_price">10-30만원</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="500000" > -->
+<!-- 											<div class="item item_price">30-50만원</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="10000000" > -->
+<!-- 											<div class="item item_price">50-100만원</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="3000000" > -->
+<!-- 											<div class="item item_price">100-300만원</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="filter_child_list_in filter_price_list"> -->
+<!-- 											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="3000001" > -->
+<!-- 											<div class="item item_price">300만원이상</div> -->
+<!-- 										</div> -->
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
@@ -372,11 +372,9 @@
 								</ul><!-- product_btn_list -->
 							</div><!-- product_btn_area -->
 						</div><!-- product_top -->
+						<div class="filter_teg_area">
 						
-						<form name="frm">
-							<div class="filter_teg_area">
-							</div><!-- filter_teg_area -->
-						</form>
+						</div><!-- filter_teg_area -->
 					<!-- 상품 게시 공간 -->			
 						<div class="product_area">
 
@@ -391,22 +389,18 @@
 		</div><!-- inner -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-		<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
 		<script>
 		$(document).ready(function(){
 			filter.push("1");
 			value =0;
-			filter_ajax(filter,value);
+			filter_ajax(filter,value,page);
 			filter.pop();
-			
-			$.noConflict();
 			
 			$('.trend_con_area').slick({
 				slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
 				infinite : true, 	//무한 반복 옵션	 
-				slidesToShow : 8,		// 한 화면에 보여질 컨텐츠 개수
+				slidesToShow : 2,		// 한 화면에 보여질 컨텐츠 개수
 				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
 				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
 				arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
@@ -417,14 +411,23 @@
 				vertical : false,		// 세로 방향 슬라이드 옵션
 				draggable : true, 	//드래그 가능 여부 
 			});
+		
+		$(window).scroll(function(){
+			var scrollTop = $(this).scrollTop();
+			var innerHeight = $(this).innerHeight();
+			var scrollHeight = $("body").prop('scrollHeight');
+			if(scrollTop + innerHeight >= scrollHeight) {
+				page++;
+				filter_ajax(filter,value,page);
+			}
+		});
+		
 		});
 		
 		var filter = [];
 		var value=0;
-		var index = 0;
-		
+		var page = 1;
 
-	
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
 		btn_list_item.on("click",function(){
@@ -437,13 +440,18 @@
 		});
 		
 		
-		function filter_ajax(filter,value){
-
+		function filter_ajax(filter,value,page){
+			
+			page = page * 4;
+			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
-				data: {filter:filter,
-					   "value":value},
+				data:{
+				    filter: filter,
+				    "value": value,
+				    "page": page
+				  },
 				cache : false,
 				success : function(data){
 					$(".product_area").html(data);
@@ -464,22 +472,26 @@
 			index = $('.btn_list_item').index(this);			
 			if(filter.length > 0){
 				value = 1;
-				align_ajax(filter,value,index);
+				align_ajax(filter,value,index,page);
 			}else{
 				filter.push("1");
 				value =0;
-				align_ajax(filter,value,index);
+				align_ajax(filter,value,index,page);
 				filter.pop();
 			}
 		});
 	
-		function align_ajax(filter,value,index){
+		function align_ajax(filter,value,index,page){
+			
+			page = page * 4;
+			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/itemAlign.do",		
 				method: "POST",
 				data: {filter:filter,
 					   "value":value,
-					   "index":index},
+					   "index":index,
+					   "page":page},
 				cache : false,
 				success : function(data){
 					$(".product_area").html(data);
@@ -492,6 +504,11 @@
 				}	
 			});	
 		}
+		
+		$(".shearchPrice").on('click',function(){
+			var price = $(this).siblings(".filter_price").val();
+			
+		});
 		
 		</script>
 	</body>

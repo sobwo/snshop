@@ -40,6 +40,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.GoodsInterestDto;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -220,8 +221,13 @@ public class MyPageController {
 		
 		String str = null;
 		MultipartFile file = profileImg;
+<<<<<<< HEAD
 		String uploadedPath = "/uploads";
 
+=======
+		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		System.out.println("zzzdata : "+uploadedPath);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -279,12 +285,25 @@ public class MyPageController {
 			uploadedFileName = null;
 		}
 		
+<<<<<<< HEAD
 		else {
 			for(String file : fileList) {
 				System.out.println("file 이름 : "+file);
 				System.out.println("db file 이름 : "+mv.getProfileImg());
 				if(!mv.getProfileImg().contains(file)) {
 					check++;
+=======
+		if(check>0) {
+			uploadedFileName = UploadProfile.uploadFile(
+								uploadedPath, 
+								mv.getProfileImg(),
+								mv.getProfileImgData(),
+								"show");
+		}
+		
+
+		System.out.println("zzzdata : "+uploadedPath);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					
 				}
 			}
@@ -384,10 +403,10 @@ public class MyPageController {
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<BoardVo> blist = bs.boardList(memberNo);
+		ArrayList<LikesDto> llist = bs.boardList(memberNo);
 				
 		model.addAttribute("mv", mv);
-		model.addAttribute("blist", blist);
+		model.addAttribute("llist", llist);
 
 		return "myPage/myStyle";
 	}
@@ -410,7 +429,7 @@ public class MyPageController {
 		
 	    int value = bs.likesList(lv);
 
-	    if (value == 0) {
+	    if (value == 0) { 
 	    	bs.insertLike(lv);
 	    	
 	    } else if (value != 0) {
@@ -511,6 +530,7 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
+<<<<<<< HEAD
 	}
 	
 	
@@ -551,6 +571,12 @@ public class MyPageController {
 	
 	
 
+=======
+
+	}
+
+
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

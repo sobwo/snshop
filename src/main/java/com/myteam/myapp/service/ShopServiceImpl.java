@@ -57,17 +57,31 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<ProductDto>filterList(List<String> filter,int value){
+		public ArrayList<ProductDto>filterList(
+				List<String> filter,int value,int page){
+			
+			HashMap<String,Object> hashMap =new HashMap<String, Object>();
+			
+			hashMap.put("filter",filter);
+			hashMap.put("value", value);
+			hashMap.put("page", page);
 
-			ArrayList<ProductDto> filterResult = ssm.filterList(filter,value);
+			ArrayList<ProductDto> filterResult = ssm.filterList(hashMap);
 		
 			return filterResult;
 		}
 		
 		@Override
-		public ArrayList<ProductDto> alignList(List<String> filter, int value, int index) {
+		public ArrayList<ProductDto> alignList(
+				List<String> filter, int value, int index,int page){
 			
-			ArrayList<ProductDto> alignList = ssm.alignList(filter, value, index);
+			HashMap<String,Object> hashMap =new HashMap<String, Object>();
+			
+			hashMap.put("filter",filter);
+			hashMap.put("value", value);
+			hashMap.put("index", index);
+			
+			ArrayList<ProductDto> alignList = ssm.alignList(hashMap);
 			
 			return alignList;
 		}

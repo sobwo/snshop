@@ -278,6 +278,7 @@
 			<version>2.2</version>
 		</dependency>
 		
+		<!--이미지 스크롤 -->
 		<!-- https://mvnrepository.com/artifact/com.typesafe.slick/slick -->
 		<dependency>
 			<groupId>com.typesafe.slick</groupId>
@@ -291,6 +292,7 @@
 		    <artifactId>iamport-rest-client-java</artifactId>
 		    <version>0.2.21</version>
 		</dependency>
+
 	</dependencies>
     <build>
         <plugins>
