@@ -46,4 +46,10 @@ public class CommentServiceImpl implements CommentService {
 
 		return value;
 	}
+
+	@Override
+	public ArrayList<CommentVo> getcomment(int boardNo) {
+		ArrayList<CommentVo> value = csm.getcomment(boardNo);
+		return value;
+	}
 }

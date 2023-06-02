@@ -217,7 +217,7 @@ public class MyPageController {
 		String str = null;
 		MultipartFile file = profileImg;
 		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-
+		System.out.println("zzzdata : "+uploadedPath);
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -285,7 +285,7 @@ public class MyPageController {
 		}
 		
 
-		System.out.println("zzzdata : "+mv.getProfileImgData());
+		System.out.println("zzzdata : "+uploadedPath);
 					
 		result = "{\"value\":\""+uploadedFileName+"\"}";
 		
@@ -386,7 +386,7 @@ public class MyPageController {
 		
 	    int value = bs.likesList(lv);
 
-	    if (value == 0) {
+	    if (value == 0) { 
 	    	bs.insertLike(lv);
 	    	
 	    } else if (value != 0) {
@@ -492,7 +492,6 @@ public class MyPageController {
 	
 	
 	
-	
 
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
@@ -509,7 +508,6 @@ public class MyPageController {
 		
 		return "myPage/style_discover.do";
 	}
-	
 	
 	
 	

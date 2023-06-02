@@ -99,10 +99,7 @@
 }
     	
 .comment_area{
-	width:355px;
-	padding:12px 24px;
-	display:flex;
-	align-items:center;
+
 }
 
 .comment_txt_area{
@@ -122,4 +119,11 @@
 	background:#fff;
 	color:rgba(34,34,34,.5);
 	cursor:pointer;
+}
+
+.getCommentList{
+	width:355px;
+	padding:12px 24px;
+	display:flex;
+	align-items:center;
 }

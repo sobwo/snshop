@@ -105,9 +105,24 @@
 											</c:otherwise>
 										</c:choose>
 									</button>
-<%-- 									<span class="likeCount">${blist.likeCnt}</span> --%>
-								</span>	
-		    					<!-- 5-31 like 버튼  -->	
+									<span class="commentBox"> 
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
+									</span>
+								</span>
+								<div class="social_count" onclick="openPopup()">
+	  								<span>좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}   <%-- ${bv.likeCnt}  --%></strong>개</span>
+								</div>
+							</div>
+							</div>
+							
+							<%-- 	위치선정중<span class="commentBox"> 
+									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
+								</span>  --%>
+						<%-- 		<div class="social_count" onclick="openPopup()">
+  									<span>좋아요&nbsp;<strong>${blist.likeCnt} ${bv.likeCnt}</strong>개</span>
+								</div>
+               			 		 --%>
+		<%-- 		    					<!-- 5-31 like 버튼  -->	
 	    						<span class="commentBox"> 
 									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
 								</span> 	 		    			
@@ -125,11 +140,11 @@
 					    		                    
                			 	</div> --%>
                			 	
-               			 	<div class="social_count" onclick="openPopup()">
-  								<span>좋아유&nbsp;<strong>${blist.likeCnt} <%-- ${bv.likeCnt} --%></strong>개</span>
+               			 <%-- 6-2 12:41	<div class="social_count" onclick="openPopup()">
+  								<span>좋아요&nbsp;<strong>${blist.likeCnt} ${bv.likeCnt}</strong>개</span>
 							</div>
                			 	
-               			 	
+               			 	 --%>
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
@@ -154,7 +169,7 @@
 		$(".likeImage").click(function(){
 			var boardNo = $(this).val();
 			var clickImage = $(this).children("#likeImageChange");
-			var likeCountChange = $(this).siblings(".likeCount");
+			var likeCountChange = $(this).parent(".likeBox").siblings(".social_count").find(".likeCount");
 			
 			 $.ajax({
 			        type: "POST",
@@ -183,93 +198,62 @@
 			      });
 			     
 
-			      });		
-		
-		
-		
-		
-/* /* /* 		좋아요누른사람 
-		
-        function openPopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "block";
-        }
+		      });		
 
-        function closePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
-        }
-		
-/* 		좋아요누른사람 */		
-		
-		
-		
-		
-		
-		
-/*  		var imgChange = document.getElementById("like_btn");
-		var currentImage = '${pageContext.request.contextPath}/resources/image/heart.png';
-		var toggleImage = '${pageContext.request.contextPath}/resources/image/heart2.png';
-
-		function like() {
-		  if (imgChange.getAttribute('src') === currentImage) {
-		    imgChange.setAttribute('src', toggleImage);
-		  } else {
-		    imgChange.setAttribute('src', currentImage);
-		  }
-		}
-		
-		 */		
-		
-/* 		$(document).ready(function(){
-			
-		});
-			${".likeImage2"}.click(function(){
-				var boardNo = $(this)val();
-				var clickImage = $(this).children("#like_btn");
-			
-		$.ajax({
-			type:"POST"
-			url: "${pageContext.request.contextPath}/style/likebtn_check.do",
-			dataType:"json",
-			data:{
-				"boardNo":boardNo,
-			},
-			cache:false,
-			success:function(data){
-				if(data.cnt == 1){
-					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart2.png/");
-				}else{
-					clickImage.attr("src","${pageContext.request.contextPath}/resources/image/heart.png/");
-				}
-			},
-			error:function(){
-				
+			function comment_btn(id, content, boardNo) {
+			    popup_wrap.show();
+			    $(".user_id").text(id);
+			    $(".content_top").text(content);
+			    $(".h_boardNo").val(boardNo);
+			    
+			    showComment();
 			}
-		});
-		$.ajax({
-			type:"GET",
-			url:${pageContext.request.contextPath}/style/like_TotalCnt.do",
-			dataType:"json",
-			data:{
-				"boardNo":boardNo,
-		},
-		cache:false,
-		success: function(data){
-			alert("1")
-			likeTotalCnt(data.totalCnt);
-			${".likeCount"}.text(data.totalCnt);
-		},
-		error:function(){
-			alert("Cnt 실패");
-		}
-		
-		
-		});
-		});
-		 */
-
+	
+			function submitComment(){
+				 var ccontents = $(".comment_input").val(); 
+			/* 	var ccomments = $("input[name='ccomments']").val(); */
+				var boardNo = $(".h_boardNo").val();
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
+					dataType:"json",
+					data:{"ccontents": ccontents,
+							"boardNo": boardNo},
+					cache:false,
+					success: function(data){
+						if(data.value==1)
+							showComment();
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+					
+				});	
+			}
 			
+			function showComment(){
+				var boardNo = $(".h_boardNo").val();
+				$.ajax({
+					type:"POST",
+					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
+					data:{
+							"boardNo": boardNo},
+					cache:false,
+					success: function(data){
+						$(".comment_area").html(data);
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+					
+				});
+			}
 		</script>
 	</body>
 </html>

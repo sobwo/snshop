@@ -13,7 +13,7 @@ public interface BoardService_Mapper {
 	
 	public int likesList(LikesVo lv);
 
-	public int likesCnt(int memberNo, int boardNo);
+	public int likesCnt(int memberNo, int boardNo); /* ㅇㅇ */
 
 	public int insertLike(LikesVo lv);
 	

@@ -9,7 +9,8 @@ INSERT INTO COMMENT(ccontents,boardNo,memberNo)
 VALUES(#{ccontents},#{boardNo},#{memberNo})
 
 </insert>
-<!-- INSERT INTO COMMENT(commentNo,ccontents,cwriteday,boardNo,memberNo)
-VALUES(#{commentNo},#{ccontents},NOW(),#{boardNo],#{memberNo}) -->
+<select id="getcomment" parameterType="Integer" resultType="cmv">
+SELECT * FROM comment WHERE boardNo = #{0}
+</select>
 
 </mapper>

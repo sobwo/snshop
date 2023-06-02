@@ -2,14 +2,6 @@ package com.myteam.myapp.domain;
 
 public class BoardVo extends MemberVo{
 
-	/* public class BoardVo extends LikesVo{ */
-	/* public class BoardVo extends LikesVo{ */
-
-/* public class BoardVo implements MemberVo, LikesVo { */
-	
-
-
-
 	private int boardNo;
 	private String contents; 
 	private String contentsImg; 
@@ -18,16 +10,6 @@ public class BoardVo extends MemberVo{
 	private String likeCnt;
 	private String viewCnt;
 	private int memberNo;
-	
-	/*
-	 * private int likes;
-	 * 
-	 * 
-	 * public int getLikes() { return likes; } public void setLikes(int likes) {
-	 * this.likes = likes; }
-	 * 
-	 */
-	
 	private int like_check;
 
 	
