@@ -221,13 +221,7 @@ public class MyPageController {
 		
 		String str = null;
 		MultipartFile file = profileImg;
-<<<<<<< HEAD
 		String uploadedPath = "/uploads";
-
-=======
-		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-		System.out.println("zzzdata : "+uploadedPath);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
@@ -285,31 +279,15 @@ public class MyPageController {
 			uploadedFileName = null;
 		}
 		
-<<<<<<< HEAD
 		else {
 			for(String file : fileList) {
 				System.out.println("file 이름 : "+file);
 				System.out.println("db file 이름 : "+mv.getProfileImg());
 				if(!mv.getProfileImg().contains(file)) {
 					check++;
-=======
-		if(check>0) {
-			uploadedFileName = UploadProfile.uploadFile(
-								uploadedPath, 
-								mv.getProfileImg(),
-								mv.getProfileImgData(),
-								"show");
-		}
-		
-
-		System.out.println("zzzdata : "+uploadedPath);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
-					
 				}
 			}
-			
-			System.out.println("checked : "+check);
-			
+					
 			if(check>0) {
 				uploadedFileName = UploadProfile.uploadFile(
 									uploadedPath, 
@@ -317,11 +295,9 @@ public class MyPageController {
 									mv.getProfileImgData(),
 									"show");
 			}
-			else
-				uploadedFileName = mv.getProfileImg();
 		}
-		
-		HashMap<String, Object> hm = new HashMap<>();
+
+
 		
 		Path imagePath = Paths.get(uploadedPath, uploadedFileName);
         Resource imageResource = new UrlResource(imagePath.toUri());
@@ -333,7 +309,9 @@ public class MyPageController {
         } else {
             return null;
         }
+				
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/profileImgDelete.do")
@@ -530,7 +508,6 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
-<<<<<<< HEAD
 	}
 	
 	
@@ -552,9 +529,9 @@ public class MyPageController {
 		
 		
 
-		ArrayList<BoardVo> blist = bs.boardTotalList();
-				System.out.println("blist"+ blist);
-		model.addAttribute("blist", blist);
+//		ArrayList<BoardVo> blist = bs.boardTotalList();
+//				System.out.println("blist"+ blist);
+//		model.addAttribute("blist", blist);
 		
 		return "myPage/style_discover.do";
 	}
@@ -566,17 +543,7 @@ public class MyPageController {
 	
 	
 	
-	
-	
-	
-	
 
-=======
-
-	}
-
-
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
