@@ -36,38 +36,31 @@
 									<h3 class="ar_title">은행명</h3>
 								</div>
 								<div class="ar_input_wrap">
-									<c:choose>
-										<c:when test="${rv.refundNo == null}">
-											<select class="ar_input" id="ar_bankName" name="ar_bankName">
-													<option value="국민">국민은행</option>
-													<option value="국민">SC제일은행</option>
-													<option value="국민">경남은행</option>
-													<option value="국민">광주은행</option>
-													<option value="국민">기업은행</option>
-													<option value="국민">농협은행</option>
-													<option value="국민">대구은행</option>
-													<option value="국민">부산은행</option>
-													<option value="국민">산업은행</option>
-													<option value="국민">새마을금고</option>
-													<option value="국민">수협</option>
-													<option value="국민">신한은행</option>
-													<option value="국민">신협</option>
-													<option value="국민">외환은행</option>
-													<option value="국민">우리은행</option>
-													<option value="국민">우체국</option>
-													<option value="국민">전북은행</option>
-													<option value="국민">축협</option>
-													<option value="국민">카카오뱅크</option>
-													<option value="국민">케이뱅크</option>
-													<option value="국민">하나은행</option>
-													<option value="국민">한국씨티뱅크</option>
-													<option value="국민">토스뱅크</option>
-											</select>
-										</c:when>
-										<c:otherwise>
-											<input type="text" class="ar_input" id="ar_bankName" name="ar_bankName" value="${rv.accountName}">
-										</c:otherwise>
-									</c:choose>
+									<select class="ar_input" id="ar_bankName" name="ar_bankName">
+											<option value="국민">국민은행</option>
+											<option value="SC제일">SC제일은행</option>
+											<option value="경남">경남은행</option>
+											<option value="광주">광주은행</option>
+											<option value="기업">기업은행</option>
+											<option value="농협">농협은행</option>
+											<option value="대구">대구은행</option>
+											<option value="부산">부산은행</option>
+											<option value="산업">산업은행</option>
+											<option value="새마을금고">새마을금고</option>
+											<option value="수협">수협</option>
+											<option value="신한">신한은행</option>
+											<option value="신협">신협</option>
+											<option value="외환">외환은행</option>
+											<option value="우리">우리은행</option>
+											<option value="우체국">우체국</option>
+											<option value="전북">전북은행</option>
+											<option value="축협">축협</option>
+											<option value="카카오">카카오뱅크</option>
+											<option value="케이">케이뱅크</option>
+											<option value="하나">하나은행</option>
+											<option value="한국씨티">한국씨티뱅크</option>
+											<option value="토스">토스뱅크</option>
+									</select>
 								</div>
 							</div>
 						</div>
@@ -134,7 +127,16 @@
 			var msg = "${msg}";
 			if(msg != "")
 				alert(msg);
-		
+			
+			$(document).ready(function(){
+				var select = "${rv.accountName}";
+				if(select == ""){
+					$("#ar_bankName").val("국민").attr("selected", "selected");
+				}
+				else
+					$("#ar_bankName").val(select).attr("selected", "selected");
+			});
+			
 			function accountAdd(){
 				var fm = document.frm;
 				fm.action="${pageContext.request.contextPath}/myPage/incomeAccountAction.do";

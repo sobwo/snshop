@@ -86,7 +86,7 @@ public class MemberController {
 		}
 		
 		else {
-			rttr.addFlashAttribute("msg", "�븘�씠�뵒�� 鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.");
+			rttr.addFlashAttribute("msg", "로그인 정보가 일치하지 않습니다.");
 			path="redirect:/member/memberLogin.do";
 		}
 			
@@ -235,8 +235,7 @@ public class MemberController {
 			return "member/searchIdVal";
 		
 		else {
-			System.out.println("�떎�뙣");
-			rttr.addFlashAttribute("msg", "�젙蹂닿� �씪移섑븯吏� �븡�뒿�땲�떎.");
+			rttr.addFlashAttribute("msg", "일치하는 아이디가 없습니다.");
 			return "redirect:/member/searchId.do";
 		}
 			
@@ -276,8 +275,7 @@ public class MemberController {
 			return "redirect:/member/searchPwVal.do?memberId="+memberId;
 		
 		else {
-			System.out.println("�떎�뙣");
-			rttr.addFlashAttribute("msg", "�젙蹂닿� �씪移섑븯吏� �븡�뒿�땲�떎.");
+			rttr.addFlashAttribute("msg", "일치하는 정보가 없습니다.");
 			return "redirect:/member/searchPw.do?memberId="+memberId;
 		}
 	}
@@ -307,7 +305,7 @@ public class MemberController {
 		model.addAttribute("memberId", memberId);
 		
 		if(value==1) {
-			rttr.addFlashAttribute("msg", "�뙣�뒪�썙�뱶媛� 蹂�寃쎈릺�뿀�뒿�땲�떎.");
+			rttr.addFlashAttribute("msg", "비밀번호가 변경되었습니다.");
 			return "redirect:/member/memberLogin.do";
 		}
 		
