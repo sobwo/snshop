@@ -202,7 +202,11 @@ public class MyPageController {
 			Model model,
 			HttpSession session) {
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
@@ -211,138 +215,6 @@ public class MyPageController {
 		return "myPage/profileInfo";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/profileImgChange.do")
-	public String profileImgChange(
-			@RequestParam("profileImg") MultipartFile profileImg,
-			HttpSession session,
-			HttpServletRequest request
-			) throws Exception, Exception{
-		
-		String str = null;
-		MultipartFile file = profileImg;
-		String uploadedPath = "/uploads";
-		String uploadedFileName="";
-		if(!file.getOriginalFilename().equals("")) {	
-			uploadedFileName = UploadProfile.uploadFile(
-				uploadedPath, 
-				file.getOriginalFilename(),
-				file.getBytes(),
-				"upload");
-		}
-
-		
-		int memberNo = 0;
-		
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
-
-		MemberVo mv = new MemberVo();
-		mv.setMemberNo(memberNo);
-		mv.setProfileImg(uploadedFileName);
-		mv.setProfileImgData(file.getBytes());
-		
-		int value = ms.updateProfileImg(mv);
-		
-		str = "{\"value\":\""+value+"\"}";
-		
-		return str; 
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/profileImgShow.do")
-	public ResponseEntity<Resource> profileImgShow(
-			HttpSession session,
-			HttpServletRequest request) throws Exception {
-		
-		int memberNo = 0;
-		
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
-		
-		String uploadedPath = "/uploads";
-		MemberVo mv = ms.profileImgShow(memberNo);
-		
-		System.out.println("profileImage" + mv.getProfileImg());
-		
-		File dir = new File(uploadedPath);
-		
-		int check = 0;
-		String uploadedFileName = null;
-		String[] fileList = dir.list();
-		
-		System.out.println("fileList.length : "+fileList.length);
-		
-		if(mv.getProfileImg().equals("noImage") && mv.getProfileImgData().equals("noImage")) {
-			uploadedFileName = null;
-		}
-		
-		else {
-			for(String file : fileList) {
-				System.out.println("file 이름 : "+file);
-				System.out.println("db file 이름 : "+mv.getProfileImg());
-				if(!mv.getProfileImg().contains(file)) {
-					check++;
-				}
-			}
-					
-			if(check>0) {
-				uploadedFileName = UploadProfile.uploadFile(
-									uploadedPath, 
-									mv.getProfileImg(),
-									mv.getProfileImgData(),
-									"show");
-			}
-		}
-
-
-		
-		Path imagePath = Paths.get(uploadedPath, uploadedFileName);
-        Resource imageResource = new UrlResource(imagePath.toUri());
-
-        if (imageResource.exists() && imageResource.isReadable()) {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.IMAGE_PNG)
-                    .body(imageResource);
-        } else {
-            return null;
-        }
-				
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/profileImgDelete.do")
-	public String profileImgDelete(
-			HttpSession session) throws Exception {
-		
-		int memberNo = 0;
-		
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
-		
-		
-		int value = ms.profileImgDelete(memberNo);
-		
-		String uploadedPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
-		
-		File directory = new File(uploadedPath);
-		File[] files = directory.listFiles();
-		for(File file : files) {
-		    if(file.delete()) {
-		        System.out.println(file.getName() + "삭제");
-		    } else {
-		        System.out.println(file.getName() + "삭제 불가");
-		    }
-		}
-		
-		String str = "{\"value\":\""+value+"\"}";
-
-		return str; 
-	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/infoChange.do")

@@ -24,14 +24,7 @@
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
-								<c:choose>
-									<c:when test="${empty mv.profileImg}">
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-									</c:when>
-									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/resources/uploadFiles/${mv.profileImg}">
-									</c:otherwise>
-								</c:choose>
+								<img class="profileImage" src="">
 							</div>
 							<div class="user_info">
 								<strong class="user_name">${mv.memberName}</strong>
@@ -197,6 +190,38 @@
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
-
+				<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script>
+			$(document).ready(function(){
+				showImg();
+			});
+			function showImg(){
+				var src;
+				$.ajax({
+					url: "${pageContext.request.contextPath}/image/profileImgShow.do",		
+					method: "GET",
+					  xhrFields: {
+					    responseType: "blob" // 이미지를 바이너리 형태로 받기 위해 responseType을 설정합니다.
+					},
+					success : function(data){
+						console.log(data);
+						if(data.size==0){
+							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
+						}
+						else{
+							src = URL.createObjectURL(data);
+							
+						}
+						$(".profileImage").attr("src",src);
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
+		</script>
 	</body>
 </html>

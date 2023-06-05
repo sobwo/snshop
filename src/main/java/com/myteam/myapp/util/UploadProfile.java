@@ -16,15 +16,15 @@ public class UploadProfile {
 									String index)	
 	throws Exception{
 		
-		File directory = new File(uploadPath);
-		File[] files = directory.listFiles();
-		for(File file : files) {
-		    if(file.delete()) {
-		        System.out.println(file.getName() + " 삭제 성공");
-		    } else {
-		        System.out.println(file.getName() + " 삭제 실패");
-		    }
-		}
+//		File directory = new File(uploadPath);
+//		File[] files = directory.listFiles();
+//		for(File file : files) {
+//		    if(file.delete()) {
+//		        System.out.println(file.getName() + " 삭제 성공");
+//		    } else {
+//		        System.out.println(file.getName() + " 삭제 실패");
+//		    }
+//		}
 		
 		UUID uid = UUID.randomUUID();
 		String savedName = null;
@@ -34,6 +34,9 @@ public class UploadProfile {
 		else {
 			savedName = uid.toString() + "_" + originalName;
 		}
+		
+		System.out.println("savedName : "+savedName);
+		
 	    File target = new File(uploadPath,savedName);
 		FileCopyUtils.copy(fileData,target);
 		String uploadedFileName = null;
