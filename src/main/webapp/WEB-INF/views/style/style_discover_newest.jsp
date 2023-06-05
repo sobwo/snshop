@@ -81,7 +81,7 @@
 											
 								<div class="feedPostUser" >
 									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
-									<p class="userName">${ld.memberNo}</p>
+									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
 											<c:choose>
