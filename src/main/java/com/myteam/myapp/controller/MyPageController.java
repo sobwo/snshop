@@ -395,20 +395,11 @@ public class MyPageController {
 		
 		int value = bs.boardInsert(bv);
 
-<<<<<<< HEAD
-		return "redirect:/myPage/myStyle.do";
-	}
-=======
-		return "redirect:/myPage/myStyle.do";
-	}
-	
-	
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
+		return "redirect:/myPage/myStyle.do";
+	}
 	
 	
-<<<<<<< HEAD
-=======
 	
 	
 	
@@ -439,7 +430,6 @@ public class MyPageController {
 	
 	
 
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
