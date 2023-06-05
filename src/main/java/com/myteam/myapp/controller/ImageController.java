@@ -80,6 +80,8 @@ public class ImageController {
 				uploadedFileName = mv.getProfileImg();
 		}
 		
+		System.out.println("uploadedFileName"+uploadedFileName);
+		
 		Path imagePath = Paths.get(uploadedPath, uploadedFileName);
 		Resource imageResource = new UrlResource(imagePath.toUri());
 

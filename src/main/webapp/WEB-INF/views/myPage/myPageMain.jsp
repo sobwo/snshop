@@ -24,7 +24,7 @@
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
-								<img class="profileImage" src="">
+								<img class="profileImage">
 							</div>
 							<div class="user_info">
 								<strong class="user_name">${mv.memberName}</strong>
