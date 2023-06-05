@@ -207,11 +207,12 @@
 				
 				showImg();
 			});
+			
 			function inputImg(){
 				var formdata = new FormData();
 				formdata.append('profileImg', $('#profileImg')[0].files[0]);
 				$.ajax({
-					url: "${pageContext.request.contextPath}/myPage/profileImgChange.do",		
+					url: "${pageContext.request.contextPath}/image/profileImgChange.do",		
 					method: "POST",
 					data: formdata,
 					processData : false,
@@ -234,20 +235,21 @@
 			function showImg(){
 				var src;
 				$.ajax({
-					url: "${pageContext.request.contextPath}/myPage/profileImgShow.do",		
+					url: "${pageContext.request.contextPath}/image/profileImgShow.do",		
 					method: "GET",
 					  xhrFields: {
 					    responseType: "blob" // 이미지를 바이너리 형태로 받기 위해 responseType을 설정합니다.
 					},
 					success : function(data){
-						if(data.name === "" || data.name === "null"){
+						console.log(data);
+						if(data.size==0){
 							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
 						}
 						else{
-							var imageUrl = URL.createObjectURL(data);
+							src = URL.createObjectURL(data);
 							
 						}
-						$("#profileImg_show").attr("src",imageUrl);
+						$("#profileImg_show").attr("src",src);
 					},
 					error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	
@@ -260,7 +262,7 @@
 			
 			function deleteImg(){
 				$.ajax({
-					url: "${pageContext.request.contextPath}/myPage/profileImgDelete.do",		
+					url: "${pageContext.request.contextPath}/image/profileImgDelete.do",		
 					method: "POST",
 					dataType: "json",
 					success : function(data){

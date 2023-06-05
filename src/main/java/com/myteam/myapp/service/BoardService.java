@@ -14,7 +14,7 @@ public interface BoardService {
 	public ArrayList<LikesDto> boardList(int memberNo);
 	
 	public int likesList(LikesVo lv);
-	
+
 	public int likesCnt(int memberNo, int boardNo);
 
 	public int insertLike(LikesVo lv);

@@ -4,13 +4,17 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.FollowingVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberVo;
 
@@ -33,24 +37,18 @@ public class StyleController {
 	@Autowired  
 	BoardService bs; 
 
-	/*
-	 * @RequestMapping(value = "/style_following.do") public String
-	 * styleFollowing(HttpSession session) {
-	 
-	 * ArrayList<BoardVo> blist= ss1.boardSelectAll(); 
-	 * int memberNo = Integer.parseInt(model.getAttribute("memberNo").toString());
-	 * 
-	 * return "style/style_following";
-	 * 
-	 * }
-	 */
-	
+
 		@RequestMapping(value = "/style_following.do",method=RequestMethod.GET)
 	  
 		public String styleFollowing(
 				HttpSession session,
 				Model model) {
-			int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+			
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		MemberVo mv = ms.memberInfo(memberNo);
 		
@@ -106,93 +104,59 @@ public class StyleController {
 		return "style/style_discover_newest";
 	}
 	
-	 
+	@ResponseBody
+	@RequestMapping(value="/followingCheck.do", method=RequestMethod.POST)
+	public JSONObject followingCheck(
+			@RequestParam("followingMemberNo")int followingMemberNo,
+			FollowingVo fv,			
+			HttpSession session) throws Exception{
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		fv.setFollowingMemberNo(followingMemberNo);
+		fv.setMemberNo(memberNo);
+		
+		int value = ss1.followingList(fv);
+		int value2  = 0;
+		
+		if (value == 0){
+			
+			value2 = ss1.insertfollowing(fv);
+		
+		}else if (value != 0) {
+			
+			value2 = ss1.updatefollowing(fv);
+		}
+
+		JSONObject json = new JSONObject();
+			
+		json.put("value", value2);
+		
+		return json;
+	};
 	
-	  /*  
-	   * 
-	  
-	  @RequestMapping(value = "/style_commentAction.do")
-	  public String style_commentAction( HttpSession session,
-			  @RequestParam("ccomments")String ccomments,
-			  @RequestParam("boardNo")String boardNo,
-				/* @RequestParam("memberNo")String memberNo, 
-			  
-			  
-			  Model model ){
-		  int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		  
-		  
-		  return "style/following";
-		  
-	  }
-	  
-	  */
-	  
-	 /*
-	 * 
-	 * 
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="/likebtn_check.do" , method=RequestMethod.POST) public
-	 * JSONObject likebtn_check(
-	 * 
-	 * @RequestParam("boardNo")int boardNo, LikesVo lv, HttpSession session ) throws
-	 * Exception{ int memberNo =
-	 * Integer.parseInt(session.getAttribute("memberNo").toString());
-	 * 
-	 * lv.setBoardNo(boardNo); lv.setMemberNo(memberNo);
-	 * 
-	 * int value = bs.likesList(lv);
-	 * 
-	 * if(value ==0) { bs.insertLike(lv); }else if(value != 0 ) { bs.updateLike(lv);
-	 * } int cnt = bs.likesCnt(memberNo, boardNo); int totalCntUpdate =
-	 * bs.likesTotalCntUpdate(lv.getBoardNo());
-	 * 
-	 * JSONObject json = new JSONObject(); json.put("value", value);
-	 * json.put("cnt",cnt); json.put("totalCntUpdate", totalCntUpdate);
-	 * 
-	 * return json;
-	 * 
-	 * }
-	 */
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="like_TotalCnt.do",method=RequestMethod.GET) public
-	 * JSONObject like_TotalCnt(
-	 * 
-	 * @RequestParam("boardNo")int boardNo, BoardVo bv, HttpSession session) throws
-	 * Exception{
-	 * 
-	 * int totalCntUpdate = bs.likesTotalCntUpdate(bv.getBoardNo());
-	 * 
-	 * JSONObject json = new JSONObject();
-	 * json.put("totalCntUpdate",totalCntUpdate);
-	 * 
-	 * return json; }
-	 */
-	
-	
-	
-	
-	
-	
-	
-//	@RequestMapping(value = "/style_favorite.do")
-//	public String styleFavorite( 
-//		@RequestParam("boardNo")int boardNo,Model model) { 
-//			BoardVo bv = ss1.boardSelectOne(boardNo);
-//
-//	
-//		return "style/style_favorite";
-//	}
-	/*
-	 * @RequestMapping(value = "/style_comment.do") public String style_comment(
-	 * 
-	 * @RequestParam(""){ }
-	 */
-	  
-	  
+	@ResponseBody
+	@RequestMapping(value="/followingshow.do")
+	public JSONObject followingshow(
+			@RequestParam("followingMemberNo")int followingMemberNo,
+			FollowingVo fv,			
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		int nowfollowingState = ss1.nowfollowingState(memberNo, followingMemberNo);
+		JSONObject json = new JSONObject();
+			
+		json.put("nowfollowingState", nowfollowingState);
+		return json;
+	}
 
 }

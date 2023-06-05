@@ -151,6 +151,12 @@ public class ShopServiceImpl implements ShopService {
 			return trandList;
 		}
 
+		@Override
+		public int interestCancel(int memberNo, int goodsNo) {
+			int value = ssm.interestCancel(memberNo, goodsNo);
+			return value;
+		}
+
 //		@Override
 //		public int interestCnt(int goodsNo) {
 //			int value = ssm.interestCnt(goodsNo);

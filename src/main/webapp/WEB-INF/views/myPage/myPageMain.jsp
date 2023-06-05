@@ -24,14 +24,7 @@
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
-								<c:choose>
-									<c:when test="${empty mv.profileImg}">
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-									</c:when>
-									<c:otherwise>
-										<img src="${pageContext.request.contextPath}/resources/uploadFiles/${mv.profileImg}">
-									</c:otherwise>
-								</c:choose>
+								<img class="profileImage" src="">
 							</div>
 							<div class="user_info">
 								<strong class="user_name">${mv.memberName}</strong>
@@ -54,7 +47,7 @@
 							</div>
 							<div class="memberShip_item">
 								<a>
-									<strong class="info">0P</strong>
+									<strong class="info">${mpv.avaPoint}P</strong>
 									<span class="title">포인트</span>
 								</a>
 							</div>
@@ -178,25 +171,65 @@
 					</div>
 					
 					<!-- 관심상품 리스트 -->
-					<div class="recent_purchase" style="display:flex; justify-content:space-between">
-						<div class="product_item" onclick="location.href='/shop/shopMain.do'">
-							<div class="item_thumb">
-								<img src="#" alt="상품이미지" />
-								<div class="favorite_thumb">
-									<img src="${pageContext.request.contextPath}/resources/image/favorites2.png" alt="즐겨찾기 버튼" />
-								</div>
-							</div>
-							<div class="item_info">
-								<div class="item_name">상품 이름</div>
-								<div class="item_contents">상품 설명</div>
-								<div class="item_price">가격</div>
-							</div>
-						</div>
+					<div class="recent_purchase" style="display:flex;">
+						<c:choose>
+							<c:when test="${empty glist}">
+								<span style="width:100%;height:100%;text-align:center;padding-top:100px">등록된 관심상품이 없습니다.</span>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="glist" items="${glist}">
+									<input type="hidden" name="goodsNo" value="${glist.goodsNo}">
+									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${glist.goodsNo}'">
+										<div class="item_thumb">
+											<img src="#" alt="상품이미지" />
+										</div>
+										<div class="item_info">
+											<div class="item_name">${glist.goodsName}</div>
+											<div class="item_contents">${glist.categoryName} ${glist.goodsBrandName} ${glist.goodsEng}</div>
+											<div class="item_price">${glist.price} 원</div>
+											<div class="item_size">${glist.sizeName} size</div>
+										</div>
+									</div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
 		</div>
 		<jsp:include page="../common/footer.jsp"></jsp:include>
-
+				<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script>
+			$(document).ready(function(){
+				showImg();
+			});
+			function showImg(){
+				var src;
+				$.ajax({
+					url: "${pageContext.request.contextPath}/image/profileImgShow.do",		
+					method: "GET",
+					  xhrFields: {
+					    responseType: "blob" // 이미지를 바이너리 형태로 받기 위해 responseType을 설정합니다.
+					},
+					success : function(data){
+						console.log(data);
+						if(data.size==0){
+							src = "${pageContext.request.contextPath}/resources/image/blank_profile.png";
+						}
+						else{
+							src = URL.createObjectURL(data);
+							
+						}
+						$(".profileImage").attr("src",src);
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});	
+			}
+		</script>
 	</body>
 </html>

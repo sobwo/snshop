@@ -132,4 +132,7 @@
 		select * from interest a inner join goods b on a.goodsNo = b.goodsNo inner join size c on a.sizeNo = c.sizeNo 
 		where a.interestCheck = 1 and a.memberNo = #{0}
 	</select>
+	<update id="interestCancel" parameterType="Integer">
+		update interest set interestCheck = 0 where memberNo=#{0} and goodsNo = #{1}
+	</update>
 </mapper>

@@ -66,7 +66,7 @@
 	</select>
 	
 	<update id="profileImgDelete" parameterType="Integer">
-		UPDATE MEMBER SET PROFILEIMG = "" WHERE MEMBERNO = #{0}
+		UPDATE MEMBER SET PROFILEIMG = "", PROFILEIMGDATA = "" WHERE MEMBERNO = #{0}
 	</update>
 	
 	<update id="modifyPw" parameterType="java.util.HashMap">

@@ -27,6 +27,7 @@
 			<div class="f_inner_wrap">
 				<img src="${pageContext.request.contextPath}/resources/image/다운로드.png" style="width: 99.98px; height: 99.98px;">
 				<p class="following_title"><strong>팔로잉</strong></p>
+				 <div id="followButton" >팔로우</div>
 				<p class="following_noti">다른 사용자를 팔로우 하면 해당 사용자의 <br>게시물이 여기에 표시됩니다</p>
 		
 				<input type="button" value="인기글 보기" class="custom-btn" onclick="location.href='${pageContext.request.contextPath}/style/style_discover.do'"/>
@@ -53,18 +54,16 @@
 									</div>
 					            </div>
 					            <!-- 팔로우 버튼 -->
-					            <div class="button_wrap">
-									<button class="follow-button" class="btn">팔로잉</button>
+					            <div class="button_wrap">	
+									<button class="follow-button" value="${blist.memberNo}">팔로잉</button>
 								</div>        
 							</div>
-							
 							<!-- 컨텐츠 내용 -->
 							<!-- 이미지 -->
 							<div class="content_img_wrap" style="position:relative;">
-				            <!-- 	<img class="content_img" src="#">   -->
+	
 				            		<img class="content_img" src="${pageContext.request.contextPath}/style/contentsImg=${blist.contentsImg}">
 				            						    				            		
-<%-- 				            	src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${bv.contentsImg}"> --%>
 					    	</div>
 					    	
 					    	<!-- 상품태그 -->
@@ -87,9 +86,7 @@
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
-					    		<div class="social_btn_left">				    				
-
-								
+					    		<div class="social_btn_left">
 								<!-- 5-31 like 버튼  -->
 								<span class="likeBox">
 									<button type="button" class="likeImage" value="${blist.boardNo}">
@@ -109,43 +106,14 @@
 									<span class="commentBox"> 
 										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
 									</span>
+									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
 								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}   <%-- ${bv.likeCnt}  --%></strong>개</span>
+	  								<span>좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span>
 								</div>
 							</div>
 							</div>
-							
-							<%-- 	위치선정중<span class="commentBox"> 
-									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
-								</span>  --%>
-						<%-- 		<div class="social_count" onclick="openPopup()">
-  									<span>좋아요&nbsp;<strong>${blist.likeCnt} ${bv.likeCnt}</strong>개</span>
-								</div>
-               			 		 --%>
-		<%-- 		    					<!-- 5-31 like 버튼  -->	
-	    						<span class="commentBox"> 
-									<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
-								</span> 	 		    			
-					    		</div>
-					
-								
-					    		<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
-					    		
-					    	</div>
-					    	
-					    
-					    	<!-- 좋아요 카운트 -->
-					   <%--  	<div class="social_count" onclick="openPopup()">
-					    		<span>좋아요&nbsp;<strong> ${blist.likeCnt} ${bv.likeCnt} </strong>개</span> 
-					    		                    
-               			 	</div> --%>
-               			 	
-               			 <%-- 6-2 12:41	<div class="social_count" onclick="openPopup()">
-  								<span>좋아요&nbsp;<strong>${blist.likeCnt} ${bv.likeCnt}</strong>개</span>
-							</div>
-               			 	
-               			 	 --%>
+
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
@@ -201,6 +169,82 @@
 
 		      });		
 
+			$(document).ready(function(){
+				showfollowing();
+			});
+			
+			function showfollowing(){
+				var follow_button = $(".follow-button"); 
+				for(var i=0;i<follow_button.length;i++)
+					followAjax(follow_button.eq(i));
+			}
+			
+			function followAjax(follow_button){
+				var followingMemberNo = follow_button.val();
+				var followButton = follow_button;
+				
+				$.ajax({
+	             	  type: "GET",
+	             	  url: "${pageContext.request.contextPath}/style/followingshow.do",
+	             	  dataType: "json",
+	             	  data: {
+	             	    "followingMemberNo": followingMemberNo,
+	             	  },
+	             	  cache: false,
+	             	  success: function(data) {
+	             		  
+	             	  	console.log(data);
+	             	    if (data.nowfollowingState == 1) {
+	             	      followButton.text("팔로잉");
+	             	      followButton.css("background","#fff");
+	             	      followButton.css("color","#000");
+	             	    } else {
+	             	    	followButton.text("팔로우");
+	                	    followButton.css("background","#000");
+	                	    followButton.css("color","#fff");
+	             	    }
+	             	  },
+	             	  error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+						}	
+	             	});
+			}
+                
+               
+            $(".follow-button").on("click",function(){
+           	 
+            	var followingMemberNo = $(this).val();
+	 			var followButton = $(this);
+
+             $.ajax({
+             	  type: "POST",
+             	  url: "${pageContext.request.contextPath}/style/followingCheck.do",
+             	  dataType: "json",
+             	  data: {
+             	    "followingMemberNo": followingMemberNo,
+             	  },
+             	  cache: false,
+             	  success: function(data) {
+             		  
+             	  	console.log(data);
+             	  	if(data.value == 1)
+             	  		showfollowing();
+             	  	else
+             	  		alert();
+             	  },
+             	  error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+					}	
+             	});
+            });
+                
+		
 			function comment_btn(id, content, boardNo) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
@@ -212,7 +256,7 @@
 	
 			function submitComment(){
 				 var ccontents = $(".comment_input").val(); 
-			/* 	var ccomments = $("input[name='ccomments']").val(); */
+
 				var boardNo = $(".h_boardNo").val();
 				$.ajax({
 					type:"POST",
@@ -255,6 +299,10 @@
 					
 				});
 			}
+			
+			
+            
+
 		</script>
 	</body>
 </html>

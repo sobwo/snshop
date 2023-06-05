@@ -121,8 +121,11 @@ public class ShopController {
 	    int interestCheck = ss.interestCheck(iv);
 	    gv = ss.goodsSelectOne(goodsNo);
 	    int interestCnt = gv.getInterestNum();
-
+		int interestGoodsCheck = ss.interestGoodsCheck(goodsNo, memberNo);
+		
+		
 	    HashMap<String,Object> hm = new HashMap<>();
+	    hm.put("interestGoodsCheck", interestGoodsCheck);
 	    hm.put("interestCheck",interestCheck);
 	    hm.put("interestCnt",interestCnt);
 	    hm.put("value",value);
