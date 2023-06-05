@@ -167,6 +167,7 @@
 .share_btn{
 	width:35px;
 	height:35px;
+	margin-left:515px;
 }
 
 .social_count{
@@ -182,3 +183,12 @@
 	height:25px;
 	padding-top:16px;
 }
+
+        #followButton {
+            display: inline-block;
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }

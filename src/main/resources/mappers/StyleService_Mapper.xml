@@ -6,7 +6,7 @@
 
 <select id="boardSelectAll" parameterType="int" resultType="bv">
 <!--  게시물가져오기 select * from board a join member b on a.memberNo = b.memberNo where a.memberNo in (select followingMemberNo from following where memberNo = #{memberNo}) --> 
-	 <!-- 문제 있음 되는게있고 안되는게있음 select * from board a join member b on a.memberNo = b.memberNo join likes c on a. boardNo = c.boardNo where a. memberNo in (select followingMemberNo from following where memberNo =#{memberNo}) 	 -->
+	
 
 <!-- SELECT a.*, b.*, c.like_check FROM board
  a JOIN member b ON a.memberNo = b.memberNo
@@ -14,36 +14,14 @@ LEFT JOIN likes c ON a.boardNo =
  c.boardNo AND c.memberNo = #{memberNo}
 WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})  모르겠음 되긴하는데...-->
 
-SELECT a.*, b.*, c.like_check
-FROM board a
-JOIN member b ON a.memberNo = b.memberNo
-LEFT JOIN likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo}
-WHERE a.memberNo IN (
-    SELECT followingMemberNo
-    FROM following
-    WHERE memberNo = #{memberNo}
-)
-AND a.delYn = 'N'
-
-<!-- select a.*,b.*,c.like_check from board a join member b on a. memberNo = b.memberNo
-left join likes c on a.boardNo = c.boardNo and c.memberNo = #{memberNo}
-where a.memberNo in (select followingMemberNo from following where memberNo =#{memberNo}) -->
-
-<!-- SELECT a.*, b.*, c.like_check
-FROM board a
-JOIN member b ON a.memberNo = b.memberNo
-LEFT JOIN likes c ON a.boardNo = c.boardNo
-WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})
-  AND c.memberNo = #{memberNo}
-
-	이상함	 -->										
+select a.*, b.*, c.like_check from board a join member b ON a.memberNo = b.memberNo
+left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
+SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followingCheck = 1
+) AND a.delYn = 'N' 
+								
 </select>
-<!-- <select id="getcomment" parameterType="Integer" resultType="Integer"> -->
-<!-- 	select like_check from likes where memberNo = #{0} and boardNo = #{1}  -->
-<!-- </select> -->
 
-<<<<<<< HEAD
-=======
+
 <select id="boardTotalList" resultType="ld">
 	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} WHERE a.delYn = 'N' ORDER BY a.likeCnt DESC,a.boardNo DESC
 </select>
@@ -52,14 +30,28 @@ WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{
 	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
 </select>
 
-<!-- <select id="" -->
-<!-- 
-<select id="likesList" parameterType="lv" resultType="int">
-	select count(*) from likes where boardNo=#{boardNo} and memberNo=#{memberNo}
+<select id="followingList" parameterType="fv" resultType="Integer">
+	select count(*) FROM following WHERE memberNo = #{memberNo} AND followingMemberNo = #{followingMemberNo}
 </select>
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
+<insert id ="insertfollowing" parameterType="fv">
+	insert into following(memberNo,followingMemberNo,followingCheck)
+	values(#{memberNo},#{followingMemberNo},1);
+</insert>
 
+<update id ="updatefollowing" parameterType="fv">
+<!-- 	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) 
+	WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}-->
+	
 
+	update following set followingCheck = (case followingCheck when 1 then 0 else 1 end)
+	where memberNo = #{memberNo} and followingMemberNo = #{followingMemberNo};
+	
+</update>
 
+<select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
+	 
+		select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1};
+		
+</select>
 </mapper>

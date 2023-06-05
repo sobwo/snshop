@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.FollowingVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
@@ -59,7 +60,9 @@ public class StyleServiceImpl implements StyleService {
 
 	@Override
 	public int likesTotalCnt(int boardNo) {
+		
 		int value = bsm.likesTotalCnt(boardNo);
+		
 		return value;
 	}
 
@@ -79,58 +82,35 @@ public class StyleServiceImpl implements StyleService {
 		return llist;
 	}
 
-	/*
-	 * @Override public int likesList(LikesVo lv) {
-	 * 
-	 * int value = ssm1.likesList(lv);
-	 * 
-	 * return value; }
-	 * 
-	 * @Override public int likesCnt(int memberNo, int boardNo) {
-	 * 
-	 * int value = ssm1.likesCnt(memberNo, boardNo);
-	 * 
-	 * return value;
-	 * 
-	 * 
-	 * }
-	 * 
-	 * @Override public int insertLike(LikesVo lv) {
-	 * 
-	 * int value = ssm1.insertLike(lv);
-	 * 
-	 * return value; }
-	 * 
-	 * @Override public int updateLike(LikesVo lv) {
-	 * 
-	 * int value = ssm1.updateLike(lv);
-	 * 
-	 * return value;
-	 * 
-	 * }
-	 * 
-	 * @Override public int likesTotalCntUpdate(int boardNo) {
-	 * 
-	 * int value = ssm1.likesTotalCntUpdate(boardNo);
-	 * 
-	 * return value;
-	 * 
-	 * }
-	 * 
-	 * @Override public int likesTotalCnt(int boardNo) {
-	 * 
-	 * int value = ssm1.likesTotalCnt(boardNo);
-	 * 
-	 * return value; }
-	 * 
-	 * @Override public int likeList(LikesVo lv) { int value = ssm1.likesList(lv);
-	 * return value;
-	 * 
-	 * }
-	 */
-	/* 임시 */
-	/*
-	 * @Override public int likesTotalCnt(int boardNo) { int value =
-	 * bsm.likesTotalCnt(boardNo); return value; } 임시
-	 */
+	@Override
+	public int followingList(FollowingVo fv) {
+		
+		int value = ssm1.followingList(fv);
+		
+		return value;
+	}
+
+	@Override
+	public int insertfollowing(FollowingVo fv) {
+		
+		int value = ssm1.insertfollowing(fv);
+		
+		return value;
+	}
+
+	@Override
+	public int updatefollowing(FollowingVo fv) {
+		
+		int value = ssm1.updatefollowing(fv);
+		
+		return value;
+	}
+
+	@Override
+	public int nowfollowingState(int memberNo, int followingMemberNo) {
+			int value = ssm1.nowfollowingState(memberNo,followingMemberNo);
+		return value;
+	}
+
+
 }

@@ -488,44 +488,10 @@ public class MyPageController {
 		int value = bs.boardInsert(bv);
 
 		return "redirect:/myPage/myStyle.do";
-<<<<<<< HEAD
 	}
 
 	
 	
-	
-
-	@RequestMapping(value = "/style_discover.do")
-	public String style_discover(
-			Model model,
-			HttpSession session) {
-		
-		
-		
-		
-
-		ArrayList<BoardVo> blist = bs.boardTotalList();
-				System.out.println("blist"+ blist);
-		model.addAttribute("blist", blist);
-		
-		return "myPage/style_discover.do";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-=======
-	}
-
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,
