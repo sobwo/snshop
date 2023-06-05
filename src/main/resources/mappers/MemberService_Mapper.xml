@@ -54,7 +54,7 @@
 	</update>
 	
 	<select id="memberInfo" parameterType="Integer" resultType="mv">
-		SELECT * FROM MEMBER WHERE MEMBERNO = #{0}
+		SELECT M.*, (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo} AND delYn = 'N') AS boardCnt FROM member M WHERE M.memberNo = #{memberNo}
 	</select>
 	
 	<update id="updateProfileImg" parameterType="mv">
