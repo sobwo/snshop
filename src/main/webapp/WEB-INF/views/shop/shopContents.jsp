@@ -219,16 +219,19 @@
 			        	},
 			        cache: false,
 			        success: function(data) {
-			        	
+			        	console.log(data);
 			        	if(data.value == 1){
 			        		if(data.interestCheck == 1){
-			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
 			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png")
 			        		}
 			        		else{
-			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png");
 			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png")
 			        		}
+			        		
+			        		if(data.interestGoodsCheck > 0)
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png");
+			        		else
+			        			$(".wish_img").attr("src","${pageContext.request.contextPath}/resources/image/favorites2.png");
 			        		
 			        		$(".interestNum").text(data.interestCnt);
 			        	}

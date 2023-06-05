@@ -1,5 +1,4 @@
 $(document).ready(function(){
-   filter_cnt()
 });
       
    //좌측 필터 + - 버튼 
@@ -38,7 +37,7 @@ $(document).ready(function(){
    
 	//   필터 개수 세기
 		function filter_cnt(){
-			var total_cnt = $('.f_div:checked').length;
+			var total_cnt = $('.teg_item').length;
 			$("#total_cnt").text(total_cnt);
 		}
       
@@ -77,7 +76,7 @@ $(document).ready(function(){
 			
 			if(filter.length>0)value = 1;
 			else value = 0;
-			filter_ajax(filter,value);
+			filter_ajax(filter,value,page);
 	      });
 
     //하위 카테고리 클릭
@@ -102,7 +101,7 @@ $(document).ready(function(){
 		
 		if(filter.length>0)value = 1;
 		else value = 0;
-		filter_ajax(filter,value);
+		filter_ajax(filter,value,page);
       });
 
 	//태그 생성 삭제 관리
@@ -126,6 +125,7 @@ $(document).ready(function(){
          else {
             $("div[name="+name_div.val()+"]").detach();
          }
+         filter_cnt()
       }
    
 	//클릭시 filter배열 추가	
@@ -142,6 +142,7 @@ $(document).ready(function(){
          var name = $(this).parent('div').attr('name');
          $("input:checkbox[value='"+name+"']").prop("checked",false);
          $(this).parent('div').detach();
+         filter_cnt()
       });
       
    //좌측 필터 사이즈 

@@ -22,9 +22,9 @@ public interface ShopService_Mapper {
 		//개별 상품 이미지
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 		//카테고리 필터
-	public ArrayList<ProductDto> filterList(@Param("filter") List<String> filter,@Param("value") int value);
+	public ArrayList<ProductDto> filterList(HashMap<String, Object> hashMap);
 		//상품정렬필터
-	public ArrayList<ProductDto>alignList(@Param("filter") List<String> filter,@Param("value") int value,@Param("index") int index);
+	public ArrayList<ProductDto>alignList(HashMap<String,Object> hashMap);
 		//추천상품 
 	public ArrayList<ProductDto>recommentList(HashMap<String, Object> hashMap);
 		//개별 상품 사이즈
@@ -40,4 +40,5 @@ public interface ShopService_Mapper {
 	public int interestCheck(InterestVo iv);
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
+	public int interestCancel(int memberNo, int goodsNo);
 }

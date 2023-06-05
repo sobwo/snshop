@@ -20,9 +20,9 @@ public interface ShopService {
 	//트렌드 상품 리스트
 	public ArrayList<ProductDto> trandList();
 		//카테고리 필터	
-	public ArrayList<ProductDto>filterList(List<String> filter,int value);
+	public ArrayList<ProductDto>filterList(List<String> filter,int value,int page);
 		//상품정렬필터
-	public ArrayList<ProductDto>alignList(List<String> filter, int value, int index);
+	public ArrayList<ProductDto>alignList(List<String> filter, int value, int index, int page);
 		//추천상품 
 	public ArrayList<ProductDto>recommentList(GoodsVo gv);
 		//개별 상품 사이즈
@@ -35,4 +35,5 @@ public interface ShopService {
 //	public int interestCnt(int goodsNo);
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
+	public int interestCancel(int memberNo, int goodsNo);
 }
