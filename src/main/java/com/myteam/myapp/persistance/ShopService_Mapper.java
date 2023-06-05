@@ -40,4 +40,5 @@ public interface ShopService_Mapper {
 	public int interestCheck(InterestVo iv);
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
+	public int interestCancel(int memberNo, int goodsNo);
 }

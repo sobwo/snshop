@@ -1,12 +1,7 @@
 package com.myteam.myapp.controller;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -21,8 +16,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -57,7 +50,6 @@ import com.myteam.myapp.service.ShopService;
 import com.myteam.myapp.service.StyleService;
 import com.myteam.myapp.util.MediaUtils;
 import com.myteam.myapp.util.UploadFileUtiles;
-import com.myteam.myapp.util.UploadProfile;
 
 @Controller
 @RequestMapping(value = "/myPage")
@@ -122,9 +114,14 @@ public class MyPageController {
 		model.addAttribute("saleCntIng", saleCntIng);
 		model.addAttribute("saleCntEnd", saleCntEnd);
 		
+		ArrayList<GoodsInterestDto> glist = ss.selectInterestAll(memberNo);
+		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
+		
+		model.addAttribute("mpv", mpv);
 		model.addAttribute("mv", mv);
 		model.addAttribute("ov_purchase", ov_purchase);
 		model.addAttribute("ov_sale", ov_sale);
+		model.addAttribute("glist",glist);
 		
 		return "myPage/myPageMain";
 	}
@@ -195,6 +192,25 @@ public class MyPageController {
 		model.addAttribute("glist",glist);
 		
 		return "myPage/interest";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/interest_check.do")
+	public String interest_check(
+			@RequestParam("goodsNo") int goodsNo,
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		int value = ss.interestCancel(memberNo, goodsNo);
+		
+		String str = "{\"value\":\""+value+"\"}";
+		
+		return str;
 	}
 	
 	@RequestMapping(value = "/profileInfo.do")
