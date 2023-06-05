@@ -33,10 +33,6 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 <select id="followingList" parameterType="fv" resultType="Integer">
 	select count(*) FROM following WHERE memberNo = #{memberNo} AND followingMemberNo = #{followingMemberNo}
 </select>
-<<<<<<< HEAD
-=======
--->
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 <insert id ="insertfollowing" parameterType="fv">
 	insert into following(memberNo,followingMemberNo,followingCheck)
