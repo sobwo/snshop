@@ -108,7 +108,9 @@ public class StyleServiceImpl implements StyleService {
 
 	@Override
 	public int nowfollowingState(int memberNo, int followingMemberNo) {
-			int value = ssm1.nowfollowingState(memberNo,followingMemberNo);
+		
+		int value = ssm1.nowfollowingState(memberNo,followingMemberNo);
+		
 		return value;
 	}
 

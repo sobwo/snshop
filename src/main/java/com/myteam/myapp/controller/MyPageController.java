@@ -399,37 +399,6 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 	
-	
-	
-	
-	
-	
-	
-
-	@RequestMapping(value = "/style_discover.do")
-	public String style_discover(
-			Model model,
-			HttpSession session) {
-		
-		
-		
-		
-
-//		ArrayList<BoardVo> blist = bs.boardTotalList();
-//				System.out.println("blist"+ blist);
-//		model.addAttribute("blist", blist);
-		
-		return "myPage/style_discover.do";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

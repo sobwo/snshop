@@ -83,6 +83,27 @@ public class StyleController {
 		return "style/style_discover";
 	}
 	
+	@RequestMapping(value = "/style_discover2.do")
+	public String style_discover2(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_discover2";
+	}
+	
 	@RequestMapping(value = "/style_discover_newest.do")
 	public String style_discover_newest(
 			Model model,
@@ -121,20 +142,19 @@ public class StyleController {
 		fv.setMemberNo(memberNo);
 		
 		int value = ss1.followingList(fv);
-		int value2  = 0;
 		
 		if (value == 0){
 			
-			value2 = ss1.insertfollowing(fv);
+			ss1.insertfollowing(fv);
 		
 		}else if (value != 0) {
 			
-			value2 = ss1.updatefollowing(fv);
+			ss1.updatefollowing(fv);
 		}
 
 		JSONObject json = new JSONObject();
 			
-		json.put("value", value2);
+		json.put("value", value);
 		
 		return json;
 	};
