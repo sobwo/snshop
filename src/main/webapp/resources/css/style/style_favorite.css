@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+html,
+body {
+  scroll-behavior: smooth;
+}
 .content_wrap{
 	width:1902px;
 	padding-top:131px;
@@ -64,20 +68,71 @@
 .follow-button{
 	width:100px;
 	height:30px;
-	background:#fff;
+	background:#000;
 	border:1px solid #ebebeb;
 	border-radius:12px;
 	cursor:pointer;
+	color:#fff;
 }
-
+.feedsImage{
+	position: relative;
+}
 .content_img_wrap{
-	width:100%;
+	width:640px;
 	height:640px;
+	display: flex;
 }
 
 .content_img{
-	width:100%;
-	height:100%;
+	position: absolute;
+	object-fit: cover;
+	width: 640px;
+	height: 640px;
+	image-rendering: auto;
+	display: flex;
+	border: none;
+	-webkit-transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	-o-transition: opacity 1s ease-in-out;
+	transition: opacity 1s ease-in-out;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+}
+.imageCnt{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width:23px;
+	height:18px;
+	position:absolute;
+	top:10px;
+	right:10px;
+	padding: 3px 6px;
+	letter-spacing: -.33px;
+	background-color:rgba(34,34,34,.5);
+    border-radius: 15px;
+}
+.imageCount{
+	font-size: 13px;
+    font-weight: 600;
+	color: #fff;
+}
+    
+.imageBtn{	
+	display: flex;
+	align-items: center;
+	width:640px;
+	height:18px;
+	position:absolute;
+	top:315px;
+    justify-content:space-between;
+    font-size:40px;
+    color:rgba(34,34,34,.5);
+}
+
+.imageBtn button{
+	all: unset;
 }
 
 .social_product{
@@ -184,11 +239,13 @@
 	padding-top:16px;
 }
 
-        #followButton {
-            display: inline-block;
-            background-color: black;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+#followButton {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+

@@ -55,7 +55,7 @@
 					            </div>
 					            <!-- 팔로우 버튼 -->
 					            <div class="button_wrap">	
-									<button class="follow-button" value="${blist.memberNo}">팔로잉</button>
+									<button class="follow-button" value="${blist.memberNo}">팔로우</button>
 								</div>        
 							</div>
 							<!-- 컨텐츠 내용 -->
@@ -192,12 +192,12 @@
 	             	  },
 	             	  cache: false,
 	             	  success: function(data) {
-	             		  
-	             	  	console.log(data);
+
 	             	    if (data.nowfollowingState == 1) {
 	             	      followButton.text("팔로잉");
 	             	      followButton.css("background","#fff");
 	             	      followButton.css("color","#000");
+	             	      
 	             	    } else {
 	             	    	followButton.text("팔로우");
 	                	    followButton.css("background","#000");
@@ -206,9 +206,7 @@
 	             	  },
 	             	  error : function(request,status,error){
 						alert("다시 시도하시기 바랍니다.");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
+
 						}	
 	             	});
 			}

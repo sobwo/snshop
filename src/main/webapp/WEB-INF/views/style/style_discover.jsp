@@ -52,14 +52,13 @@
 					<c:forEach var="ld" items="${llist}" varStatus="status">
 						<div class="feeds" >
 							<div class="feedPost" id="feedPost${ld.boardNo}">
-								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover2.do?boardNo=${ld.boardNo}'" data-boardNo="${ld.boardNo}">
+								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover_newest2.do?boardNo=${ld.boardNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
 									<c:set var="exp" value= "${ld.contentsImg.substring(ld.getContentsImg().length()-3, ld.getContentsImg().length())}" />
 									<c:set var="imgList" value="${fn:split(ld.contentsImg, ',')}" />
 									
 									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 									<c:forEach var="img" items="${imgList}">
 										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
-							
 									</c:forEach>										
 									</c:if>
 								</div>	
@@ -182,6 +181,8 @@
 				}
 				images[currentImageIndex].style.display = "block";
 			}
+			
+
 		</script>
 	</body>
 </html>
