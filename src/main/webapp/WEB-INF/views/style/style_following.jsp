@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,7 +47,15 @@
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
-					            	<img class="user_img" src="" alt="">
+					            	
+					            	<c:choose>
+					            		<c:when test="${empty blist.profileImg}">
+					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${blist.profileImg}">
+					            		</c:otherwise>
+					            	</c:choose>
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${blist.memberId} </a>
 						                <p class="write_date">  ${blist.writeday}  </p>
@@ -59,10 +68,18 @@
 							</div>
 							<!-- 컨텐츠 내용 -->
 							<!-- 이미지 -->
-							<div class="content_img_wrap" style="position:relative;">
-	
-				            		<img class="content_img" src="${pageContext.request.contextPath}/style/contentsImg=${blist.contentsImg}">
-				            						    				            		
+							<div class="feedsImage">
+								<div class="content_img_wrap" data-boardNo="${blist.boardNo}">
+									<c:set var="exp" value= "${blist.contentsImg.substring(blist.getContentsImg().length()-3, blist.getContentsImg().length())}" />
+									<c:set var="imgList" value="${fn:split(blist.contentsImg, ',')}" />
+									
+									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+									<c:forEach var="img" items="${imgList}">
+										<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+									</c:forEach>										
+									</c:if>
+				    				            		
+						    	</div>
 					    	</div>
 					    	
 					    	<!-- 상품태그 -->
@@ -103,7 +120,7 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}')">	
 									</span>
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
@@ -242,13 +259,23 @@
             });
                 
 		
-			function comment_btn(id, content, boardNo) {
+			function comment_btn(id, content, boardNo, profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
 			    $(".h_boardNo").val(boardNo);
+			    var memberImg = "${mv.profileImg}";
+			    if(profileImg == null || profileImg == "")
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
 			    
-			    showComment();
+			    if(memberImg == null || memberImg == "")
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
+			    	
+			    showComment(boardNo);
 			}
 	
 			function submitComment(){
@@ -276,8 +303,7 @@
 				});	
 			}
 			
-			function showComment(){
-				var boardNo = $(".h_boardNo").val();
+			function showComment(boardNo){
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",

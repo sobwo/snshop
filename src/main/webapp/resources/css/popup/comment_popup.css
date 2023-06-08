@@ -71,9 +71,15 @@
 	height:41px;
 	padding:10px 24px;
 	display:flex;
+	align-items : center;
 	justify-content:space-between;
 	border-bottom:1px solid #ebebeb;
 	border-top:8px solid #f4f4f4;
+}
+
+.social_comment_input > form[name=crm]{
+	display:flex;
+	align-items : center;
 }
 
 .comment_input{
@@ -83,6 +89,7 @@
 	background:#fafafa;
 	border:1px solid #ebebeb;
 	border-radius:14px;
+	margin-left:10px;
 }
 
 .submit_comment{

@@ -14,7 +14,7 @@ LEFT JOIN likes c ON a.boardNo =
  c.boardNo AND c.memberNo = #{memberNo}
 WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})  모르겠음 되긴하는데...-->
 
-select a.*, b.*, c.like_check from board a join member b ON a.memberNo = b.memberNo
+select a.*, b.*, c.like_check,c.memberNo from board a join member b ON a.memberNo = b.memberNo
 left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
 SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followingCheck = 1
 ) AND a.delYn = 'N' 

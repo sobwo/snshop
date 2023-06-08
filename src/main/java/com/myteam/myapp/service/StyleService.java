@@ -27,7 +27,7 @@ public interface StyleService {
 
 	public int updatefollowing(FollowingVo fv);
 	
-	public int nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
+	public Integer nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
 	/*public int nowfollowingState(FollowingVo fv);/* 현재 상태 */
 	
 	/* 완성x */

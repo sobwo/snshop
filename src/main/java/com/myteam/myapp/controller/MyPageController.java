@@ -290,6 +290,9 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
+		if(memberNo == 0)
+			return null;
+		
 		lv.setBoardNo(boardNo);
 		lv.setMemberNo(memberNo);
 		

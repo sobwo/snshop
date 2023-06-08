@@ -225,7 +225,7 @@ public class StyleController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		int nowfollowingState = ss1.nowfollowingState(memberNo, followingMemberNo);
+		Integer nowfollowingState = ss1.nowfollowingState(memberNo, followingMemberNo);
 		
 		JSONObject json = new JSONObject();
 		json.put("nowfollowingState", nowfollowingState);

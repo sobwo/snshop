@@ -18,7 +18,7 @@
 			
 			<!-- 본문내용 -->
 			<div class="comment_top">
-				<img class="user_img" src="" alt="">
+				<img class="user_img user_profileImg" src="" alt="">
 	           	<div class="user_id_wrap">
 	           		<a class="user_id" href="#"> 아이디</a>
 	               	<span class="content_top"> </span>
@@ -42,7 +42,7 @@
  -->
  				<div class="social_comment_input">
 				<form name = "crm">
-		 		<img class="user_img" src="" alt="">
+		 		<img class="user_img memberProfileImg" src="" alt="프로필 사진">
 					<input type="text" class="comment_input" name="ccontents" placeholder="댓글을 남기세요.">
 					<input type="button" class="submit_comment" value="등록" onclick="submitComment()">
 					

@@ -75,7 +75,7 @@ public class ShopController {
 			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			@RequestParam(value="page") int page,
-			@RequestParam(required=false, value="price") int price,
+//			@RequestParam(value="price",required=false) int price,
 			Model model
 			) {
 		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page);

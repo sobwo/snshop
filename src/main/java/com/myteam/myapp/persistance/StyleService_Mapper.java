@@ -20,7 +20,7 @@ public interface StyleService_Mapper {
 	public int insertfollowing(FollowingVo fv);
 	public int updatefollowing(FollowingVo fv);
 
-	public int nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
+	public Integer nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
 	/* 완성x */
 	 public int likesTotalCnt(int boardNo);
 
