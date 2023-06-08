@@ -20,6 +20,7 @@ body {
 	margin: 0 auto; 
 	width: 1200px;
 	height: 199px;
+	padding-top:131px;
 	justify-content: center; 
 	align-items: center; 
 }
@@ -164,6 +165,16 @@ body {
 	cursor:pointer;
 	color:#fff;
 }
+.modify-button{
+	width:20px;
+	height:30px;
+	background:#000;
+	border:1px solid #ebebeb;
+	border-radius:12px;
+	cursor:pointer;
+	color:#fff;
+}
+
 .feedsImage{
 	position: relative;
 }

@@ -178,6 +178,16 @@ public class StyleController {
 		return "style/myStyle2";
 	}
 	
+	@RequestMapping(value = "/myStyle2_popup.do")
+	public String myStyle2_popup(
+			Model model,
+			HttpSession session) {
+		
+
+		
+		return "style/myStyle2_popup";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/followingCheck.do", method=RequestMethod.POST)
 	public JSONObject followingCheck(
