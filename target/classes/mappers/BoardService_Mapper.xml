@@ -10,7 +10,12 @@
 </insert>
 
 <select id="boardList" parameterType="int" resultType="bv">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = 26 WHERE a.delYn = 'N' AND a.memberNo=#{memberNo} ORDER BY a.boardNo DESC
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId
+	FROM board a
+	LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo =#{memberNo}
+	JOIN member m ON a.memberNo = m.memberNo
+	WHERE a.delYn = 'N' AND a.memberNo =#{memberNo}
+	ORDER BY a.boardNo DESC
 </select>
 
 <select id="likesList" parameterType="lv" resultType="int">
@@ -38,9 +43,7 @@
 	select likeCnt from board where boardNo=#{boardNo}
 </select>
 
-<update id="boardCnt" parameterType="mv">
-	UPDATE member SET boardCnt = (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo} and delYn = 'N') WHERE memberNo = #{memberNo};
-</update>
+
 <!--  
 <select id="boardTotalList" resultType="bv">
 	select * from board a left outer join likes b on a.boardNo = b.boardNo where a.delYn = 'N' ORDER BY a.likeCnt DESC;

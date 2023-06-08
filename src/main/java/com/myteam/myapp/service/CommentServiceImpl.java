@@ -42,4 +42,5 @@ public class CommentServiceImpl implements CommentService {
 		ArrayList<CommentVo> value = csm.getcomment(boardNo);
 		return value;
 	}
+
 }

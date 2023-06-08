@@ -91,13 +91,6 @@ public class BoardServiceInpl implements BoardService{
 	}
 
 
-	@Override
-	public int boardCnt(int memberNo) {
-		
-		int value = bsm.boardCnt(memberNo);
-		
-		return value;
-	}
 
 /*
 	@Override

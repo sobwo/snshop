@@ -12,8 +12,6 @@ public interface CommentService {
 	
 	
 	public ArrayList<CommentVo> getcomment(int boardNo);
-	
-
 
 
 }

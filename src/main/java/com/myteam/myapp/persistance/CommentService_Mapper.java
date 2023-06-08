@@ -9,4 +9,5 @@ public interface CommentService_Mapper {
 	public int commentInsert(CommentVo cv);
 
 	 public ArrayList<CommentVo> getcomment(int boardNo);
+
 }

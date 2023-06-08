@@ -24,7 +24,7 @@
 					<div class="user_memberShip">
 						<div class="user_detail">
 							<div class="user_thumb">
-								<img class="profileImage" src="">
+								<img class="profileImage">
 							</div>
 							<div class="user_info">
 								<strong class="user_name">${mv.memberName}</strong>
@@ -47,7 +47,14 @@
 							</div>
 							<div class="memberShip_item">
 								<a>
-									<strong class="info">${mpv.avaPoint}P</strong>
+									<c:choose>
+										<c:when test="${empty mpv}">
+											<strong class="info">0P</strong>
+										</c:when>
+										<c:otherwise>
+											<strong class="info">${mpv.avaPoint}P</strong>
+										</c:otherwise>
+									</c:choose>
 									<span class="title">포인트</span>
 								</a>
 							</div>
@@ -203,6 +210,7 @@
 			$(document).ready(function(){
 				showImg();
 			});
+			
 			function showImg(){
 				var src;
 				$.ajax({

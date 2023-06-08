@@ -52,14 +52,13 @@
 					<c:forEach var="ld" items="${llist}" varStatus="status">
 						<div class="feeds" >
 							<div class="feedPost" id="feedPost${ld.boardNo}">
-								<div class="feedPostImage" onclick="location.href='#'" data-boardNo="${ld.boardNo}">
+								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover_newest2.do?boardNo=${ld.boardNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
 									<c:set var="exp" value= "${ld.contentsImg.substring(ld.getContentsImg().length()-3, ld.getContentsImg().length())}" />
 									<c:set var="imgList" value="${fn:split(ld.contentsImg, ',')}" />
 									
 									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 									<c:forEach var="img" items="${imgList}">
 										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
-							
 									</c:forEach>										
 									</c:if>
 								</div>	
@@ -81,7 +80,7 @@
 											
 								<div class="feedPostUser" >
 									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
-									<p class="userName">${ld.memberNo}</p>
+									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
 											<c:choose>
@@ -115,7 +114,6 @@
 				var boardNo = $(this).val();
 				var clickImage = $(this).children("#likeImageChange");
 				var likeCountChange = $(this).siblings(".likeCount");
-	
 		    $.ajax({
 		        type: "POST",
 		        url: "${pageContext.request.contextPath}/myPage/like_check.do",
@@ -125,7 +123,6 @@
 		        	},
 		        cache: false,
 		        success: function(data) {	
-		        	
 					if (data.cnt == 1) {
 						clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
 		          
@@ -136,8 +133,9 @@
 					
 					likeCountChange.text(data.totalCnt);
 					
-		        },
+		        	},
 			        error: function() {
+			        	alert("로그인이 필요합니다");
 			        }
 	
 			      });
@@ -182,6 +180,8 @@
 				}
 				images[currentImageIndex].style.display = "block";
 			}
+			
+
 		</script>
 	</body>
 </html>

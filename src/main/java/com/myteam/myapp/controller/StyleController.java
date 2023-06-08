@@ -1,11 +1,21 @@
 package com.myteam.myapp.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +36,7 @@ import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.ShopService;
 import com.myteam.myapp.service.StyleService;
+import com.myteam.myapp.util.MediaUtils;
 
 
 @Controller
@@ -87,6 +98,27 @@ public class StyleController {
 		return "style/style_discover";
 	}
 	
+	@RequestMapping(value = "/style_discover2.do")
+	public String style_discover2(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_discover2";
+	}
+	
 	@RequestMapping(value = "/style_discover_newest.do")
 	public String style_discover_newest(
 			Model model,
@@ -108,6 +140,58 @@ public class StyleController {
 		return "style/style_discover_newest";
 	}
 	
+	@RequestMapping(value = "/style_discover_newest2.do")
+	public String style_discover_newest2(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardTotalList_newest(memberNo);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_discover_newest2";
+	}
+	
+	@RequestMapping(value = "/myStyle2.do")
+	public String myStyle2(
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist = bs.boardList(memberNo);
+				
+		model.addAttribute("mv", mv);
+		model.addAttribute("llist", llist);
+		
+		return "style/myStyle2";
+	}
+	
+	@RequestMapping(value = "/myStyle2_popup.do")
+	public String myStyle2_popup(
+			Model model,
+			HttpSession session) {
+		
+
+		
+		return "style/myStyle2_popup";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value="/followingCheck.do", method=RequestMethod.POST)
 	public JSONObject followingCheck(
@@ -125,20 +209,19 @@ public class StyleController {
 		fv.setMemberNo(memberNo);
 		
 		int value = ss1.followingList(fv);
-		int value2  = 0;
 		
 		if (value == 0){
 			
-			value2 = ss1.insertfollowing(fv);
+			ss1.insertfollowing(fv);
 		
 		}else if (value != 0) {
 			
-			value2 = ss1.updatefollowing(fv);
+			ss1.updatefollowing(fv);
 		}
 
 		JSONObject json = new JSONObject();
 			
-		json.put("value", value2);
+		json.put("value", value);
 		
 		return json;
 	};
@@ -156,12 +239,15 @@ public class StyleController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		int nowfollowingState = ss1.nowfollowingState(memberNo, followingMemberNo);
+		Integer nowfollowingState = ss1.nowfollowingState(memberNo, followingMemberNo);
+		
 		JSONObject json = new JSONObject();
-			
 		json.put("nowfollowingState", nowfollowingState);
+		
 		return json;
 	}
+	
+
 
 	/*
 	 * @ResponseBody

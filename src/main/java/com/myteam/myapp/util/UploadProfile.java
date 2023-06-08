@@ -41,8 +41,6 @@ public class UploadProfile {
 		FileCopyUtils.copy(fileData,target);
 		String uploadedFileName = null;
 		uploadedFileName = makeThumbnail(uploadPath,savedName);
-	    File originalFile = new File(uploadPath, savedName);
-	    originalFile.delete();
 				
 		return uploadedFileName;
 	}	
@@ -102,10 +100,14 @@ public class UploadProfile {
 						Scalr.Method.AUTOMATIC, 
 						Scalr.Mode.FIT_TO_HEIGHT,100);
 		
-		String thumbnailName = 
+		String thumbnailName = 			 
 				uploadPath +  
 				File.separator + 
 				"s-"+fileName;
+
+			System.out.println("uploadPath : "+uploadPath);
+			System.out.println("fileName : "+fileName);
+			System.out.println("썸네일"+thumbnailName);
 		
 		File newFile = new File(thumbnailName);
 		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);

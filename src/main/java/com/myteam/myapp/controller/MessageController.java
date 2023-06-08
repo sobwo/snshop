@@ -31,6 +31,8 @@ public class MessageController {
 		
     	String memberPhone = ms.searchPhoneCheck(memberName);
     	
+    	System.out.println("randomNumber"+randomNumber);
+    	
     	if(phone.equals(memberPhone)) {
     		value = Integer.toString(randomNumber);
 //    		sendSMS.certify_phone(phone,randomNumber);

@@ -33,9 +33,9 @@ public class UploadFileUtiles {
 //        String realpath = request.getSession().getServletContext().getRealPath(uploadPath);
 //		System.out.println("realpath:"+realpath);
         
-		String savedPath = calcPath(uploadPath);
+//		String savedPath = calcPath(uploadPath);
 		
-		File target = new File(uploadPath+savedPath,savedName);
+		File target = new File(uploadPath,savedName);
 //  	����� ���� �����
 //		String loc = target.getCanonicalPath();
 
@@ -46,9 +46,9 @@ public class UploadFileUtiles {
 		String uploadedFileName = null;
 		
 		if(MediaUtils.getMediaType(formatName) != null){
-			uploadedFileName = makeThumbnail(uploadPath,savedPath, savedName);
+			uploadedFileName = makeThumbnail(uploadPath, savedName);
 		}else{
-			uploadedFileName = makeIcon(uploadPath,savedPath,savedName);
+			uploadedFileName = makeIcon(uploadPath,savedName);
 		}
 				
 		// 2018/05/03/s-dssddssf-2323423.jpg
@@ -56,33 +56,32 @@ public class UploadFileUtiles {
 	}	
 
 	private  static String makeIcon(String uploadPath,
-			String path,
 			String fileName)throws Exception{
 
-		String iconName = uploadPath+path+File.separator+fileName;				
+		String iconName = uploadPath+File.separator+fileName;				
 		
 		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
-	private static String calcPath(String uploadPath){	
-		
-		Calendar cal = Calendar.getInstance();
-		String yearPath = File.separator+cal.get(Calendar.YEAR);
-		
-		String monthPath = yearPath+
-				File.separator +
-				new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
-		
-		String datePath = monthPath +
-				File.separator +
-				new DecimalFormat("00").format(cal.get(Calendar.DATE));
-			
-		makeDir(uploadPath, yearPath, monthPath, datePath);
-		
-		logger.info(datePath);
-		
-		return datePath;
-	}
+//	private static String calcPath(String uploadPath){	
+//		
+//		Calendar cal = Calendar.getInstance();
+//		String yearPath = File.separator+cal.get(Calendar.YEAR);
+//		
+//		String monthPath = yearPath+
+//				File.separator +
+//				new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
+//		
+//		String datePath = monthPath +
+//				File.separator +
+//				new DecimalFormat("00").format(cal.get(Calendar.DATE));
+//			
+//		makeDir(uploadPath, yearPath, monthPath, datePath);
+//		
+//		logger.info(datePath);
+//		
+//		return datePath;
+//	}
 	
 	private static void makeDir(String uploadPath,String...paths){
 			
@@ -101,11 +100,10 @@ public class UploadFileUtiles {
 	}
 	
 	private static String makeThumbnail(String uploadPath,
-			String path,
 			String fileName) throws Exception{
 		
 		BufferedImage sourceImg = 
-				ImageIO.read(new File(uploadPath+path,fileName));
+				ImageIO.read(new File(uploadPath,fileName));
 		BufferedImage destImg = 
 				Scalr.resize(sourceImg, 
 						Scalr.Method.AUTOMATIC, 
@@ -113,7 +111,6 @@ public class UploadFileUtiles {
 		
 		String thumbnailName = 
 				uploadPath + 
-				path + 
 				File.separator + 
 				"s-"+fileName;
 		

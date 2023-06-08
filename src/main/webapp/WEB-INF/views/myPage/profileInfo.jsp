@@ -174,22 +174,22 @@
 						</div>
 						
 						<!-- 동의 체크 버튼 -->
-						<div class="profile_group">
-							<h2>광고성 정보 수신</h2>
-							<div class="profile_unit">
-								<div class="profile_user_info profile_check_wrap">
-									<span class="profile_contents profile_check">이메일</span>
-									<div class="radio_btn_area">
-										<div class="agree_btn">
-											수신 동의&nbsp;<input type="radio" name="email_agree" value="agree">
-										</div>
-										<div class="agree_btn">
-											수신 비동의&nbsp;<input type="radio" name="email_agree" value="disagree">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="profile_group"> -->
+<!-- 							<h2>광고성 정보 수신</h2> -->
+<!-- 							<div class="profile_unit"> -->
+<!-- 								<div class="profile_user_info profile_check_wrap"> -->
+<!-- 									<span class="profile_contents profile_check">이메일</span> -->
+<!-- 									<div class="radio_btn_area"> -->
+<!-- 										<div class="agree_btn"> -->
+<!-- 											수신 동의&nbsp;<input type="radio" name="email_agree" value="agree"> -->
+<!-- 										</div> -->
+<!-- 										<div class="agree_btn"> -->
+<!-- 											수신 비동의&nbsp;<input type="radio" name="email_agree" value="disagree"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 				</div>
 			</div>

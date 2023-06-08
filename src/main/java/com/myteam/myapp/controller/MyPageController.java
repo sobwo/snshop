@@ -290,6 +290,9 @@ public class MyPageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
+		if(memberNo == 0)
+			return null;
+		
 		lv.setBoardNo(boardNo);
 		lv.setMemberNo(memberNo);
 		
@@ -325,7 +328,7 @@ public class MyPageController {
 
 	    try {
 	        HttpHeaders headers = new HttpHeaders();
-	        String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+	        String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
@@ -370,7 +373,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {
@@ -399,37 +402,6 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 	
-	
-	
-	
-	
-	
-	
-
-	@RequestMapping(value = "/style_discover.do")
-	public String style_discover(
-			Model model,
-			HttpSession session) {
-		
-		
-		
-		
-
-//		ArrayList<BoardVo> blist = bs.boardTotalList();
-//				System.out.println("blist"+ blist);
-//		model.addAttribute("blist", blist);
-		
-		return "myPage/style_discover.do";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

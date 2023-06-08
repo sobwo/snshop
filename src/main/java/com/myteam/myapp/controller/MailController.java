@@ -35,8 +35,6 @@ public class MailController {
     	else if(index.equals("searchId") || index.equals("searchPw")) {
         	String searchEmail = ms.searchEmailCheck(memberName);
         	
-        	System.out.println("searchEmail"+searchEmail);
-        	
         	if(email.equals(searchEmail))
         		code = registerMail.sendSimpleMessage(email);
         	else

@@ -14,7 +14,7 @@ LEFT JOIN likes c ON a.boardNo =
  c.boardNo AND c.memberNo = #{memberNo}
 WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})  모르겠음 되긴하는데...-->
 
-select a.*, b.*, c.like_check from board a join member b ON a.memberNo = b.memberNo
+select a.*, b.*, c.like_check,c.memberNo from board a join member b ON a.memberNo = b.memberNo
 left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
 SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followingCheck = 1
 ) AND a.delYn = 'N' 
@@ -23,11 +23,17 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 
 <select id="boardTotalList" resultType="ld">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} WHERE a.delYn = 'N' ORDER BY a.likeCnt DESC,a.boardNo DESC
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId, IFNULL(f.followingCheck, 0) AS followingCheck
+	FROM board a
+	LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo}
+	LEFT JOIN member m ON a.memberNo = m.memberNo
+	LEFT JOIN following f ON m.memberNo = f.memberNo AND f.followingMemberNo = #{memberNo}
+	WHERE a.delYn = 'N'
+	ORDER BY a.likeCnt DESC, a.boardNo DESC
 </select>
 
 <select id="boardTotalList_newest" resultType="ld">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check,  m.memberId FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} LEFT JOIN member m ON a.memberNo = m.memberNo WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
 </select>
 
 <select id="followingList" parameterType="fv" resultType="Integer">
@@ -47,7 +53,11 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 <select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
 	 
+<<<<<<< HEAD
 	select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1};
+=======
+	SELECT IFNULL(followingCheck, 0) AS followingCheck FROM following WHERE memberNo = #{0} AND followingMemberNo = #{1}
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		
 </select>
 

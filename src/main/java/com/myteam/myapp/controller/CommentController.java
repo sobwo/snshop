@@ -61,12 +61,9 @@ public class CommentController {
 			  Model model){
 		
 		ArrayList<CommentVo> get = cs.getcomment(boardNo);
-		
 		model.addAttribute("get",get);
 		
 		return "style/commentAjax";
-	
 	}
-
 }
 
