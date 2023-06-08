@@ -2,21 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myteam.myapp.persistance.ShopService_Mapper">
+	<sql id="resultGoodsNo">
+		<choose>
+			<when test="list.size==0">
+				and a.goodsNo in (0)
+			</when>
+			<when test="list.size!=0">
+				and a.goodsNo in 
+				<foreach collection="list" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+			</when>
+		</choose>
+	</sql>
 	<sql id="searchCategory">
 		<choose>
 			<when test="value==0">
-				 
+			
 			</when>
 			<when test="value==1">
-				AND (category in 
+				AND (goods.category in
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
-				OR categoryName in 
+				or goods.categoryName in
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
-				OR goodsgender in
+				or goods.goodsgender in
+				<foreach collection="filter" item="item" separator="," open="(" close=")">
+					#{item}
+				</foreach>
+				or size.sizeName in
 				<foreach collection="filter" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
@@ -24,28 +41,28 @@
 			</when>
 		</choose>
 	</sql>	
-	
 	<sql id="align">
-		<choose>
-			<when test="index==0">
-				order by a.goodsNo desc 
-			</when>
-			<when test="index==1">
-				order by a.price desc
-			</when>
-			<when test="index==2">
-				order by a.price asc
-			</when>
-			<when test="index==3">
-				order by a.interestNum desc
-			</when>
-			<when test="index==4">
-				order by a.goodsNo desc 
-			</when>
-		</choose>
+			<choose>
+				<when test="align == null">
+					order by goods.goodsNo desc
+				</when>
+				<when test="align == 0">
+					order by goods.goodsNo desc 
+				</when>
+				<when test="align == 1">
+					order by goods.price desc
+				</when>
+				<when test="align == 2">
+					order by goods.price asc
+				</when>
+				<when test="align == 3">
+					order by goods.interestNum desc
+				</when>
+				<when test="align == 4">
+					order by goods.goodsNo desc 
+				</when>
+			</choose>
 	</sql>
-	
-	
 	<sql id="setInterest">
 		<choose>
 			<when test="value==1">
@@ -56,7 +73,16 @@
 			</when>
 		</choose>
 	</sql>
-	
+	<select id="goodsTotal" parameterType="hashMap" resultType = "int">
+		SELECT COUNT(DISTINCT goods.goodsNo)
+		FROM goods
+		INNER JOIN size ON goods.goodsNo = size.goodsNo
+		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo
+		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
+		WHERE inventory.quantity > 0
+		<include refid="searchCategory" />
+		AND goods.price >= 0;
+	</select>
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
@@ -76,18 +102,22 @@
 		select * from productImg where goodsNo = #{goodsNo} order by imgNo asc
 	</select>
 	
-	<select id="filterList" parameterType="hashMap" resultType="pd">
+	<select id="filterList" parameterType="map" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
-		<include refid="searchCategory" />
-		 order by a.goodsNo desc limit 0,#{page}
+		<include refid="resultGoodsNo" />
 	</select>
 	
-	<select id="alignList" parameterType="hashMap" resultType="pd">
-		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+	<select id="searchResult" parameterType="hashMap" resultType="int">
+		SELECT distinct(goods.goodsNo),goods.price,goods.interestNum
+		FROM goods
+		INNER JOIN size ON goods.goodsNo = size.goodsNo
+		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo
+		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
+		where inventory.quantity > 0
 		<include refid="searchCategory" />
-		<include refid="align" />
+		and goods.price >= #{price}
+		<include refid="align" /> limit 0 ,#{page}
 	</select>
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">

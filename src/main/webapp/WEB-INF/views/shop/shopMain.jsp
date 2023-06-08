@@ -269,32 +269,10 @@
 										<span>가격</span>
 									</div>
 									<div class="filter_list">
-										<input type="text" class="filter_price">
-										<button class="shearchPrice">검색</button>
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="100000" > -->
-<!-- 											<div class="item item_price">10만원이하</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="300000" > -->
-<!-- 											<div class="item item_price">10-30만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="500000" > -->
-<!-- 											<div class="item item_price">30-50만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="10000000" > -->
-<!-- 											<div class="item item_price">50-100만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="3000000" > -->
-<!-- 											<div class="item item_price">100-300만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="3000001" > -->
-<!-- 											<div class="item item_price">300만원이상</div> -->
-<!-- 										</div> -->
+										<div class="priceArea">
+											<input type="text" class="filter_price">
+											<button class="shearchPrice">검색</button>
+										</div>
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
@@ -303,15 +281,10 @@
 					
 					<div class="product_wrap">
 						<div class="product_top">
+							<div class="filter_teg_area">
 						
-			<!-- 상품 개수 -->
-							<div class="product_count">
-								<span>상품수</span>
-								<span id="productNum">
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="" />
-								</span>
-							</div><!-- product_count -->
-			<!-- 상품 정렬 버튼  -->
+							</div><!-- filter_teg_area -->
+									<!-- 상품 정렬 버튼  -->
 							<div class="product_btn_area">
 								<button onclick="btn_list();">
 									<span class="btn_title">인기순</span>
@@ -372,13 +345,10 @@
 								</ul><!-- product_btn_list -->
 							</div><!-- product_btn_area -->
 						</div><!-- product_top -->
-						<div class="filter_teg_area">
-						
-						</div><!-- filter_teg_area -->
 					<!-- 상품 게시 공간 -->			
-						<div class="product_area">
+						<div class="goods_wrap">
 
-						</div><!-- product_area -->
+						</div><!-- product_wrap -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
 				
@@ -394,6 +364,7 @@
 		$(document).ready(function(){
 			filter.push("1");
 			value =0;
+			page = 1;
 			filter_ajax(filter,value,page);
 			filter.pop();
 			
@@ -427,6 +398,7 @@
 		var filter = [];
 		var value=0;
 		var page = 1;
+		var price = $(".filter_price")
 
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
@@ -438,8 +410,7 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
-		
-		
+
 		function filter_ajax(filter,value,page){
 			
 			page = page * 4;
@@ -454,7 +425,8 @@
 				  },
 				cache : false,
 				success : function(data){
-					$(".product_area").html(data);
+					$(".goods_wrap").html(data);
+					
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -469,7 +441,7 @@
 	//정렬 ajax
 		
 		$('.btn_list_item').on('click',function(){
-			index = $('.btn_list_item').index(this);			
+			var index = parseInt($('.btn_list_item').index(this));
 			if(filter.length > 0){
 				value = 1;
 				align_ajax(filter,value,index,page);
@@ -494,7 +466,7 @@
 					   "page":page},
 				cache : false,
 				success : function(data){
-					$(".product_area").html(data);
+					$(".goods_wrap").html(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -505,10 +477,61 @@
 			});	
 		}
 		
-		$(".shearchPrice").on('click',function(){
-			var price = $(this).siblings(".filter_price").val();
+		
+	//가격 필터 ajax
+		$(".shearchPrice").on("click",function(){
 			
+			var priceInput = $(".filter_price");
+			var price = priceInput.val();
+			
+			var regExp = /^[0-9]*$/;
+			  
+			if(priceInput.val()==""){
+				alert("가격을 입력해 주세요");
+				priceInput.focus();
+				return false;
+			}else if(!regExp.test(priceInput.val())){
+				alert("숫자만 입력 가능합니다. 다시 입력해주세요.");
+				priceInput.val("");
+				return false;
+			}else{
+				
+				if(filter.length > 0){
+					value = 1;
+					price_ajax(filter,value,page,price);
+				}else{
+					filter.push("1");
+					value =0;
+					price_ajax(filter,value,page,price);
+					filter.pop();
+				}
+			};
+
 		});
+		
+		function price_ajax(filter,value,page,price){
+			
+			page = page * 4;
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/priceFilter.do",		
+				method: "POST",
+				data: {filter:filter,
+					   "value":value,
+					   "page":page,
+					   "price":price},
+				cache : false,
+				success : function(data){
+					$(".goods_wrap").html(data);
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});	
+		}
 		
 		</script>
 	</body>

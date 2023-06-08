@@ -17,10 +17,12 @@ public interface ShopService {
 	public GoodsVo goodsSelectOne(int goodsNo);
 		//개별 상품 이미지	
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
-	//트렌드 상품 리스트
+		//트렌드 상품 리스트
 	public ArrayList<ProductDto> trandList();
 		//카테고리 필터	
 	public ArrayList<ProductDto>filterList(List<String> filter,int value,int page);
+		//상품가격필터
+	public ArrayList<ProductDto>priceAlign(List<String> filter, int value, int page, int price);
 		//상품정렬필터
 	public ArrayList<ProductDto>alignList(List<String> filter, int value, int index, int page);
 		//추천상품 
@@ -28,6 +30,7 @@ public interface ShopService {
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
 	
+	public int goodsTotal(List<String> filter, int value, int page,int price);
 	
 	//관심품목
 	public int interestAction(InterestVo iv);

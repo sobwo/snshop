@@ -151,18 +151,24 @@ $(document).ready(function(){
       
       for(var i=0; i<column_menu.length;i++){
          click_size(i);
-      }
+      }	
       
       function click_size(index){
          column_menu.eq(index).click(function(){
             
             $("div[name='teg_size']").detach();
             
-            $(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
-                  +"</span><button class='teg_item_btn'>X</button></div>");
-            
-         });
-      }
+			$(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
+			+"</span><button class='teg_item_btn'>X</button></div>");
+		});
+	}
+      
+	column_menu.on('click',function(){
+		filterList();
+		value = 1;
+		filter_ajax(filter,value,page);
+      });
+      
       
       //우측 필터버튼
       var list = $(".product_btn_list");
