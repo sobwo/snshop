@@ -38,7 +38,7 @@
 						</div>
 						<ul>
 							<c:forEach var="pivList" items="${pivList}">
-								<li><img src="">${pivList.imgFileName}</li>
+								<li><img src=""></li>
 							</c:forEach>
 						</ul>
 					</div>	
@@ -103,13 +103,12 @@
 						</div><!--productInfo-->
 				<!-- 상품 구매시 주의사항 -->
 						<div class="confirm">
-							<h3>구매 전 꼭 확인해주세요!</h3>
+<!-- 							<h3>구매 전 꼭 확인해주세요!</h3> -->
 							<div>	
 								<ul>
 									<li>
 										<div class="dropDownHead">
-											<p>배송 기간 안내</p>
-											<img>
+											
 										</div>
 										<div class="dropDownContents">
 											<ul>

@@ -267,11 +267,10 @@
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-
+			    $(".submit_comment").val(boardNo);
  			   
 			    showComment(boardNo);     
 
-			    $(".h_boardNo").val(boardNo);
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
@@ -287,8 +286,9 @@
 
 			}
 	
-			function submitComment(boardNo){
-				 var ccontents = $(".comment_input").val(); 
+			function submitComment(){
+				 var ccontents = $(".comment_input").val();
+				 var boardNo = $(".submit_comment").val();
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
@@ -298,7 +298,7 @@
 					cache:false,
 					success: function(data){
 						if(data.value == 1) 			/* 	if(data.value == 1) 댓글 안되서 임시  */
-							showComment();
+							showComment(boardNo);
 					},
 					error : function(request,status,error){
 						alert("2다시 시도하시기 바랍니다.");	
