@@ -120,5 +120,13 @@ public class StyleServiceImpl implements StyleService {
 		return value;
 	}
 
+	@Override
+	public int boardDelete(LikesDto ld) {
+		
+		int value = ssm1.boardDelete(ld);
+		
+		return value;
+	}
+
 
 }

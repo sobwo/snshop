@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myteam.myapp.domain.CommentDto;
 import com.myteam.myapp.domain.CommentVo;
 import com.myteam.myapp.persistance.CommentService_Mapper;
 
@@ -38,8 +39,8 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public ArrayList<CommentVo> getcomment(int boardNo) {
-		ArrayList<CommentVo> value = csm.getcomment(boardNo);
+	public ArrayList<CommentDto> getcomment(int boardNo) {
+		ArrayList<CommentDto> value = csm.getcomment(boardNo);
 		return value;
 	}
 

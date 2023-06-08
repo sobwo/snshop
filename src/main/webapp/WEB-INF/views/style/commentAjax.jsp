@@ -8,7 +8,7 @@
 <body>
 	<c:forEach var = "get" items="${get}">
 		<div class="getCommentList">
-			<img class="user_img" src="" alt="">
+			<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
 			<div class="comment_txt_area">
 				<a class="othereuser_id" href="#">ID</a>
 				<span class="comment_txt">${get.ccontents}</span>

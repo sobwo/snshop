@@ -31,7 +31,6 @@ import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
-
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.ShopService;
@@ -181,16 +180,26 @@ public class StyleController {
 		
 		return "style/myStyle2";
 	}
-	
-	@RequestMapping(value = "/myStyle2_popup.do")
-	public String myStyle2_popup(
-			Model model,
-			HttpSession session) {
-		
 
+	@ResponseBody
+	@RequestMapping(value = "/deleteAction.do" , method=RequestMethod.POST)
+	public JSONObject deleteAction(
+			@RequestParam("boardNo") int boardNo,
+			LikesDto ld,
+			HttpSession session) throws Exception{
 		
-		return "style/myStyle2_popup";
+		
+			ld.setBoardNo(boardNo);
+			int value = ss1.boardDelete(ld);
+			
+			JSONObject json = new JSONObject();
+			
+			json.put("value", value);
+			
+			return json;
 	}
+	
+
 	
 	@ResponseBody
 	@RequestMapping(value="/followingCheck.do", method=RequestMethod.POST)

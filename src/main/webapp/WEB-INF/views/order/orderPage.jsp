@@ -78,7 +78,7 @@
 										<b>휴대폰 번호</b>
 									</p>
 									<input type="tel" class="popup_style" placeholder="- 없이 입력"
-										id="phone_msg" name="basicPhone"> <span
+										id="basic_phone" name="basicPhone"> <span
 										class="basic_msg" id="phone_msg" style="display: none">정확한
 										휴대폰 번호를 입력해주세요.</span>
 									<p>
@@ -163,7 +163,7 @@
 								<c:choose>
 									<c:when test="${total <= 200000}">
 										<button class="btnimg2">
-											<img src="" alt="button image2" class="btnimg-img">
+											<img src="${pageContext.request.contextPath}/resources/image/parcel.png" alt="button image2" class="btnimg-img">
 											<div style="display: flex; flex-direction: column;">
 												<span style="display: block;" class="movespan2"><b>일반배송 3000원
 												</b> </span> <span style="display: block;">검수 후 배송 * 5~7일 내 도착 예정</span>
@@ -552,15 +552,18 @@
 			$.ajax({
 				url: "${pageContext.request.contextPath}/Iamport/verifyIamport.do",		
 				method: "POST",
+				contentType: "application/json",
+				dataType: "json",
 				data: JSON.stringify(pay_data),
 				success : function(data){
+					console.log(data);
 					if(data.result == 2){
 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
 					}
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");
-					cancelPayments(temp);
+					cancelPayments(rsp);
 					console.log("code: " + request.status);
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);
