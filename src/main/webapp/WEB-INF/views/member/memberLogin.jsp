@@ -26,7 +26,7 @@
 				<div id="login_inner_wrap">
 					<div id="login_area">
 						<h2 style='padding-bottom:50px'>
-							<span style='font-size:35px'>SNSHOP</span><br/>
+							<span style='font-size:35px'>TLING</span><br/>
 							<span style='font-size:15px; font-weight:normal'>SNS플랫폼 기반 쇼핑몰</span>
 						</h2>
 						<div id="loginId_area">

@@ -325,7 +325,7 @@ public class MyPageController {
 
 	    try {
 	        HttpHeaders headers = new HttpHeaders();
-	        String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+	        String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
@@ -370,7 +370,7 @@ public class MyPageController {
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = request.getSession().getServletContext().getResource("/resources/uploadFiles/").getPath();
+		String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 		List<String> uploadedFileNames = new ArrayList<>();
 		for (MultipartFile file : contentsImg) {
 			if (!file.getOriginalFilename().equals("")) {

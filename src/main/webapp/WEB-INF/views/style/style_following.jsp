@@ -27,7 +27,6 @@
 			<div class="f_inner_wrap">
 				<img src="${pageContext.request.contextPath}/resources/image/다운로드.png" style="width: 99.98px; height: 99.98px;">
 				<p class="following_title"><strong>팔로잉</strong></p>
-				 <div id="followButton" >팔로우</div>
 				<p class="following_noti">다른 사용자를 팔로우 하면 해당 사용자의 <br>게시물이 여기에 표시됩니다</p>
 		
 				<input type="button" value="인기글 보기" class="custom-btn" onclick="location.href='${pageContext.request.contextPath}/style/style_discover.do'"/>

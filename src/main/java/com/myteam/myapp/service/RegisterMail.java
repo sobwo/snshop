@@ -25,11 +25,11 @@ public class RegisterMail implements MailServiceInter{
 		 MimeMessage message = emailSender.createMimeMessage();
 
         message.addRecipients(RecipientType.TO, to); // 메일 받을 사용자
-        message.setSubject("[snshop] 이메일 인증코드 입니다");
+        message.setSubject("[TLING] 이메일 인증코드 입니다");
         
         String msgg = "";
         msgg += "<h1>안녕하세요</h1>";
-        msgg += "<h1>SNS 및 쇼핑몰 플랫폼 snshop 입니다</h1>";
+        msgg += "<h1>SNS 및 쇼핑몰 플랫폼 TLING 입니다</h1>";
         msgg += "<br>";
         msgg += "<p>아래 인증코드를 해당 페이지에 입력해주세요</p>";
         msgg += "<br>";

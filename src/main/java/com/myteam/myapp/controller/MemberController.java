@@ -89,6 +89,8 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "로그인 정보가 일치하지 않습니다.");
 			path="redirect:/member/memberLogin.do";
 		}
+		
+		
 			
 		return path;
 	}
@@ -163,6 +165,8 @@ public class MemberController {
 			session.removeAttribute("memberNo");
 
 		}
+		
+		System.out.println("dest : "+session.getAttribute("dest"));
 		
 		if(session.getAttribute("dest")==null)
 			path = "redirect:/";
@@ -310,7 +314,6 @@ public class MemberController {
 		}
 		
 		else {
-			System.out.println("�떎�뙣");	
 			return "redirect:/member/searchPwVal.do?memberId="+memberId;
 		}
 	}
