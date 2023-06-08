@@ -19,7 +19,9 @@
 	<typeAlias alias="pmv" type="com.myteam.myapp.domain.PayVo"/>
 	<typeAlias alias="cmv" type="com.myteam.myapp.domain.CommentVo"/>
 	<typeAlias alias="fv" type="com.myteam.myapp.domain.FollowingVo"/>
+	<typeAlias alias="cmd" type="com.myteam.myapp.domain.CommentDto"/>
 	<typeAlias alias="ld" type="com.myteam.myapp.domain.LikesDto"/>
+	<typeAlias alias="lmd" type="com.myteam.myapp.domain.LikeMemberDto"/>
 	<typeAlias alias="od" type="com.myteam.myapp.domain.OrderDto"/>
 	<typeAlias alias="pd" type="com.myteam.myapp.domain.ProductDto"/>
 	<typeAlias alias="sd" type="com.myteam.myapp.domain.SizeDto"/>

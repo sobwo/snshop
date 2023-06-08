@@ -11,6 +11,11 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)	throws Exception {
 		HttpSession session = request.getSession();
+		String requestURI = request.getRequestURI();
+		
+		if (requestURI.contains("/displayFile.do")) {
+	        return true; // 처리를 계속 진행하도록 true를 반환
+	    }
 		
 		if(session.getAttribute("memberNo") == null) {
 			//로그인 후 이동할 주소를 담는다.
@@ -31,7 +36,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		else
 			query = "?"+query;
 		
-		if(request.getMethod().equals("GET"))
+		if(request.getMethod().equals("GET") || request.getMethod().equals("POST"))
 			request.getSession().setAttribute("dest", uri+query);
 	}
 }

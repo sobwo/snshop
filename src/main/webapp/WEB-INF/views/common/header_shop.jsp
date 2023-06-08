@@ -29,11 +29,11 @@
 			<div id="header_down">
 				<div id="down_inner">
 					<ul>
-						<li><a href='#'>전체</a></li>
-						<li style='margin-left:27px'><a href='#'>아우터</a></li>
-						<li style='margin-left:27px'><a href='#'>상의</a></li>
-						<li style='margin-left:27px'><a href='#'>하의</a></li>
-						<li style='margin-left:27px'><a href='#'>신발</a></li>
+<!-- 						<li><a href='#'>전체</a></li> -->
+<!-- 						<li style='margin-left:27px'><a href='#'>아우터</a></li> -->
+<!-- 						<li style='margin-left:27px'><a href='#'>상의</a></li> -->
+<!-- 						<li style='margin-left:27px'><a href='#'>하의</a></li> -->
+<!-- 						<li style='margin-left:27px'><a href='#'>신발</a></li> -->
 					</ul>
 				</div>
 			</div>	

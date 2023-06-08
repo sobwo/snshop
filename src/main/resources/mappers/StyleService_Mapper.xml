@@ -14,7 +14,7 @@ LEFT JOIN likes c ON a.boardNo =
  c.boardNo AND c.memberNo = #{memberNo}
 WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})  모르겠음 되긴하는데...-->
 
-select a.*, b.*, c.like_check from board a join member b ON a.memberNo = b.memberNo
+select a.*, b.*, c.like_check,c.memberNo from board a join member b ON a.memberNo = b.memberNo
 left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
 SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followingCheck = 1
 ) AND a.delYn = 'N' 
@@ -46,10 +46,6 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </insert>
 
 <update id ="updatefollowing" parameterType="fv">
-<!-- 	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) 
-	WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}-->
-	
-
 	update following set followingCheck = (case followingCheck when 1 then 0 else 1 end)
 	where memberNo = #{memberNo} and followingMemberNo = #{followingMemberNo};
 	
@@ -57,12 +53,27 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 <select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
 	 
+
+<!-- 	select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1}; -->
+
 	SELECT IFNULL(followingCheck, 0) AS followingCheck FROM following WHERE memberNo = #{0} AND followingMemberNo = #{1}
+
 		
 </select>
 
+<<<<<<< HEAD
 <update id="boardDelete" parameterType="ld">
 	update board set delYn='Y' where boardNo=#{boardNo}
 </update>
+=======
+
+ <select id = "getlikeMemberList" parameterType="Integer" resultType="lmd">
+
+	select * from likes l join member m On l.memberNo = m.memberNo where l.like_check = 1
+	and l.boardNo = #{0};
+
+
+</select> 
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 </mapper>

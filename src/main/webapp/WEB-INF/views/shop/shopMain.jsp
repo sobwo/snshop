@@ -17,6 +17,7 @@
 		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+		
 	</head>
 	<body>
 		<jsp:include page="popup/favorite_popup.jsp"></jsp:include>
@@ -58,7 +59,7 @@
 										<span>카테고리</span>
 										<span class="filter_allSelect">모든 카테고리</span>
 									</div><!-- filterName -->
-									<button class="filter_btn" value="open">+</button>
+									<button class="filter_btn">+</button>
 								</div><!-- title_area -->
 								<div class="filter_list_area">
 									<ul class="filter_list">
@@ -79,7 +80,11 @@
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="로퍼" >
 													<div class="item">로퍼</div>
-													</li>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="샌들" >
+													<div class="item">샌들</div>
+												</li>
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="더비" >
 													<div class="item">더비</div>
@@ -91,7 +96,11 @@
 												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="부츠" >
 													<div class="item">부츠</div>
-												</li>                     
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div shoese" name="shoese" value="기타" >
+													<div class="item">기타</div>
+												</li>                    
 											</ul><!-- filter_child_list -->      
 										</li><!-- filter_list_in --> 
 										<li class="filter_list_in">
@@ -109,6 +118,10 @@
 													<div class="item">코트</div>
 												</li>
 												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div outer" name="outer" value="아노락" >
+													<div class="item">아노락</div>
+												</li>
+												<li class="filter_child_list_in">
 													<input type="checkbox" class="filter_list_bottom f_div outer" name="outer" value="패딩" >
 													<div class="item">패딩</div>
 												</li>
@@ -120,33 +133,191 @@
 										</li>
 										<li class="filter_list_in">
 											<div class ="item_top">
-												<input type="checkbox" class="filter_list_top f_div" id="" name="상의" value="상의" >
+												<input type="checkbox" class="filter_list_top f_div" id="top" name="상의" value="상의" >
 												<span class="item">상의</span>
 											</div>
+											<ul class="filter_child_list">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="가디건" >
+													<div class="item">가디건</div>	
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="긴팔" >
+													<div class="item">긴팔</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="반팔" >
+													<div class="item">반팔</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="셔츠" >
+													<div class="item">셔츠</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="후드" >
+													<div class="item">후드</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="후드집업" >
+													<div class="item">후드집업</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="후드집업" >
+													<div class="item">스웨트셔츠</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="슬리브리스" >
+													<div class="item">슬리브리스</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="원피스" >
+													<div class="item">원피스</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="니트" >
+													<div class="item">니트</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div top" name="top" value="기타" >
+													<div class="item">기타</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>
 										<li class="filter_list_in">
 											<div class ="item_top">
-												<input type="checkbox" class="filter_list_top f_div" id="" name="하의" value="하의" >
+												<input type="checkbox" class="filter_list_top f_div" id="bottoms" name="하의" value="하의" >
 												<span class="item">하의</span>
 											</div>
+											<ul class="filter_child_list">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bottoms" name="bottoms" value="바지" >
+													<div class="item">바지</div>	
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bottoms" name="bottoms" value="반바지" >
+													<div class="item">반바지</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bottoms" name="bottoms" value="스커트" >
+													<div class="item">스커트</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bottoms" name="bottoms" value="레깅스" >
+													<div class="item">레깅스</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bottoms" name="bottoms" value="기타" >
+													<div class="item">기타</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>
 										<li class="filter_list_in">
 											<div class ="item_top">
-												<input type="checkbox" class="filter_list_top f_div" id="" name="가방" value="가방" >
+												<input type="checkbox" class="filter_list_top f_div" id="bag" name="가방" value="가방" >
 												<span class="item">가방</span>
 											</div>
+											<ul class="filter_child_list">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="프리미엄가방" >
+													<div class="item">프리미엄가방</div>	
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="미니백" >
+													<div class="item">미니백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="백팩" >
+													<div class="item">백팩</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="숄더백" >
+													<div class="item">숄더백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="토트백" >
+													<div class="item">토트백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="크로스백" >
+													<div class="item">크로스백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="클러치" >
+													<div class="item">클러치</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="더플백" >
+													<div class="item">더플백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="에코백" >
+													<div class="item">에코백</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="캐리어" >
+													<div class="item">캐리어</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div bag" name="bag" value="기타" >
+													<div class="item">기타</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>
 										<li class="filter_list_in">
 											<div class ="item_top">
-												<input type="checkbox" class="filter_list_top f_div" id="" name="지갑" value="지갑" >
+												<input type="checkbox" class="filter_list_top f_div" id="wallet" name="지갑" value="지갑" >
 												<span class="item">지갑</span>
 											</div>
+											<ul class="filter_child_list">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div wallet" name="wallet" value="반지갑" >
+													<div class="item">반지갑</div>	
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div wallet" name="wallet" value="장지갑" >
+													<div class="item">장지갑</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div wallet" name="wallet" value="카드지갑" >
+													<div class="item">카드지갑</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div wallet" name="wallet" value="체인지갑" >
+													<div class="item">체인지갑</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div wallet" name="wallet" value="기타" >
+													<div class="item">기타</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>
 										<li class="filter_list_in">
 											<div class ="item_top">
-												<input type="checkbox" class="filter_list_top f_div" id="" name="시계" value="시계" >
+												<input type="checkbox" class="filter_list_top f_div" id="watch" name="시계" value="시계" >
 												<span class="item">시계</span>
 											</div>
+											<ul class="filter_child_list">
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div watch" name="watch" value="프리미엄시계" >
+													<div class="item">프리미엄시계</div>	
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div watch" name="watch" value="전자시계" >
+													<div class="item">전자시계</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div watch" name="watch" value="가죽시계" >
+													<div class="item">가죽시계</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div watch" name="watch" value="메탈시계" >
+													<div class="item">메탈시계</div>
+												</li>
+												<li class="filter_child_list_in">
+													<input type="checkbox" class="filter_list_bottom f_div watch" name="watch" value="기타" >
+													<div class="item">기타</div>
+												</li>		
+											</ul><!-- filter_child_list -->
 										</li>						
 									</ul><!-- filter_list -->
 								</div><!-- filter_list_area -->
@@ -158,7 +329,7 @@
 										<span>성별</span>
 										<span class="filter_allSelect">모든 성별</span>
 									</div><!-- filterName -->
-									<button class="filter_btn" value="open">+</button>
+									<button class="filter_btn">+</button>
 								</div><!-- title_area -->
 								
 								<div class="filter_list_area">
@@ -181,7 +352,7 @@
 										<span>사이즈</span>
 										<span class="filter_allSelect">모든 사이즈</span>
 									</div><!-- filterName -->
-									<button class="filter_btn" value="open">+</button>
+									<button class="filter_btn">+</button>
 								</div><!-- title_area -->
 								
 								<div class="filter_list_area">
@@ -248,7 +419,7 @@
 										<span>혜택/가격</span>
 										<span class="filter_allSelect">모든 혜택/가격</span>
 									</div><!-- filterName -->
-									<button class="filter_btn" value="open">+</button>
+									<button class="filter_btn">+</button>
 								</div><!-- title_area -->
 								
 								<div class="filter_list_area">									
@@ -269,32 +440,10 @@
 										<span>가격</span>
 									</div>
 									<div class="filter_list">
-										<input type="text" class="filter_price">
-										<button class="shearchPrice">검색</button>
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="10만원이하" value="100000" > -->
-<!-- 											<div class="item item_price">10만원이하</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="10-30만원" value="300000" > -->
-<!-- 											<div class="item item_price">10-30만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="30-50만원" value="500000" > -->
-<!-- 											<div class="item item_price">30-50만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="50-100만원" value="10000000" > -->
-<!-- 											<div class="item item_price">50-100만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="100-300만원" value="3000000" > -->
-<!-- 											<div class="item item_price">100-300만원</div> -->
-<!-- 										</div> -->
-<!-- 										<div class="filter_child_list_in filter_price_list"> -->
-<!-- 											<input type="checkbox" class="filter_price f_div" name="300만원이상" value="3000001" > -->
-<!-- 											<div class="item item_price">300만원이상</div> -->
-<!-- 										</div> -->
+										<div class="priceArea">
+											<input type="text" class="filter_price">
+											<button class="shearchPrice">검색</button>
+										</div>
 									</div><!-- filter_list -->
 								</div><!-- filter_list_area -->
 							</div><!-- filter_title -->
@@ -303,15 +452,10 @@
 					
 					<div class="product_wrap">
 						<div class="product_top">
+							<div class="filter_teg_area">
 						
-			<!-- 상품 개수 -->
-							<div class="product_count">
-								<span>상품수</span>
-								<span id="productNum">
-								<fmt:formatNumber type="number" maxFractionDigits="3" value="" />
-								</span>
-							</div><!-- product_count -->
-			<!-- 상품 정렬 버튼  -->
+							</div><!-- filter_teg_area -->
+									<!-- 상품 정렬 버튼  -->
 							<div class="product_btn_area">
 								<button onclick="btn_list();">
 									<span class="btn_title">인기순</span>
@@ -372,13 +516,10 @@
 								</ul><!-- product_btn_list -->
 							</div><!-- product_btn_area -->
 						</div><!-- product_top -->
-						<div class="filter_teg_area">
-						
-						</div><!-- filter_teg_area -->
 					<!-- 상품 게시 공간 -->			
-						<div class="product_area">
+						<div class="goods_wrap">
 
-						</div><!-- product_area -->
+						</div><!-- product_wrap -->
 					</div><!-- product_wrap -->
 				</section><!-- product_area -->	
 				
@@ -394,6 +535,7 @@
 		$(document).ready(function(){
 			filter.push("1");
 			value =0;
+			page = 1;
 			filter_ajax(filter,value,page);
 			filter.pop();
 			
@@ -427,7 +569,24 @@
 		var filter = [];
 		var value=0;
 		var page = 1;
+		var price = $(".filter_price");
 
+	//상단 네비
+		$(".topNav").on("click",function(){
+			var value = 1;
+			var page = 1;
+			var cate = $(this).text();
+			var tegArea = $(".filter_teg_area");
+			tegArea.empty();
+			$(".filter_list_in").hide();			
+			$(".f_div").prop("checked", false);
+			filter =[];
+			filter.push(cate);
+			filter_ajax(filter,value,page);
+			filter_cnt();
+			
+		});
+		
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
 		btn_list_item.on("click",function(){
@@ -438,8 +597,7 @@
 			$(this).find('div.check_img').html("<img src='${pageContext.request.contextPath}/resources/image/check.png'>");
 			list.hide();
 		});
-		
-		
+
 		function filter_ajax(filter,value,page){
 			
 			page = page * 4;
@@ -454,7 +612,8 @@
 				  },
 				cache : false,
 				success : function(data){
-					$(".product_area").html(data);
+					$(".goods_wrap").html(data);
+					
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -469,7 +628,7 @@
 	//정렬 ajax
 		
 		$('.btn_list_item').on('click',function(){
-			index = $('.btn_list_item').index(this);			
+			var index = parseInt($('.btn_list_item').index(this));
 			if(filter.length > 0){
 				value = 1;
 				align_ajax(filter,value,index,page);
@@ -494,7 +653,7 @@
 					   "page":page},
 				cache : false,
 				success : function(data){
-					$(".product_area").html(data);
+					$(".goods_wrap").html(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -505,10 +664,61 @@
 			});	
 		}
 		
-		$(".shearchPrice").on('click',function(){
-			var price = $(this).siblings(".filter_price").val();
+		
+	//가격 필터 ajax
+		$(".shearchPrice").on("click",function(){
 			
+			var priceInput = $(".filter_price");
+			var price = priceInput.val();
+			
+			var regExp = /^[0-9]*$/;
+			  
+			if(priceInput.val()==""){
+				alert("가격을 입력해 주세요");
+				priceInput.focus();
+				return false;
+			}else if(!regExp.test(priceInput.val())){
+				alert("숫자만 입력 가능합니다. 다시 입력해주세요.");
+				priceInput.val("");
+				return false;
+			}else{
+				
+				if(filter.length > 0){
+					value = 1;
+					price_ajax(filter,value,page,price);
+				}else{
+					filter.push("1");
+					value =0;
+					price_ajax(filter,value,page,price);
+					filter.pop();
+				}
+			};
+
 		});
+		
+		function price_ajax(filter,value,page,price){
+			
+			page = page * 4;
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/priceFilter.do",		
+				method: "POST",
+				data: {filter:filter,
+					   "value":value,
+					   "page":page,
+					   "price":price},
+				cache : false,
+				success : function(data){
+					$(".goods_wrap").html(data);
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});	
+		}
 		
 		</script>
 	</body>

@@ -75,31 +75,53 @@ public class ShopController {
 			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			@RequestParam(value="page") int page,
-			@RequestParam(required=false, value="price") int price,
 			Model model
 			) {
-		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page);
 
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page);
 		model.addAttribute("goodsList", filterList);
 		
+		int price = 0;
+		int total = ss.goodsTotal(filter, value, page, price);
+		model.addAttribute("total", total);		
+		
 		return "shop/shopMain_item";
 	}
-	
-//상품 정렬  ajax	
-	@RequestMapping(value="/itemAlign.do")
-	public String itemAlign(
-			@RequestParam(value="filter[]") List<String> filter,
+//가격 검색 ajax
+	@RequestMapping(value="/priceFilter.do")
+	public String categorySize(
+			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
-			@RequestParam(value="index") int index,
 			@RequestParam(value="page") int page,
-			Model model
-			) {
+			@RequestParam(value="price")int price,
+			Model model){
 		
-		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index,page);
-		model.addAttribute("goodsList", alignList);
+		ArrayList<ProductDto> priceAlign = ss.priceAlign(filter, value, page, price);
+		model.addAttribute("goodsList",priceAlign);
+		
+		int total = ss.goodsTotal(filter, value, page, price);
+		model.addAttribute("total", total);
 		
 		return "shop/shopMain_item";
 	}
+	//상품 정렬  ajax	
+		@RequestMapping(value="/itemAlign.do")
+		public String itemAlign(
+				@RequestParam(value="filter[]") List<String> filter,
+				@RequestParam(value="value") int value,
+				@RequestParam(value="index") int index,
+				@RequestParam(value="page") int page,
+				Model model
+				) {		
+			ArrayList<ProductDto> alignList = ss.alignList(filter, value, index, page);
+			model.addAttribute("goodsList", alignList);
+			
+			int price = 0;
+			int total = ss.goodsTotal(filter, value, page, price);
+			model.addAttribute("total", total);
+			
+			return "shop/shopMain_item";
+		}
 	
 	@ResponseBody
 	@RequestMapping(value="/interest_check.do" , method=RequestMethod.POST)

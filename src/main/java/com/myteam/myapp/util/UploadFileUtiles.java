@@ -83,27 +83,31 @@ public class UploadFileUtiles {
 //		return datePath;
 //	}
 	
-	private static void makeDir(String uploadPath,String...paths){
-			
-		if(new File(uploadPath+paths[paths.length -1]).exists())
-			return;
-		
-		for(String path : paths){
-			
-			File dirPath = new File(uploadPath + path);		
-	//		System.out.println("dirPath:"+dirPath);			
-			
-			if (! dirPath.exists()){			
-				dirPath.mkdir();				
-			}
-		}
-	}
+//	private static void makeDir(String uploadPath,String...paths){
+//			
+//		if(new File(uploadPath+paths[paths.length -1]).exists())
+//			return;
+//		
+//		for(String path : paths){
+//			
+//			File dirPath = new File(uploadPath + path);		
+//	//		System.out.println("dirPath:"+dirPath);			
+//			
+//			if (! dirPath.exists()){			
+//				dirPath.mkdir();				
+//			}
+//		}
+//	}
 	
 	private static String makeThumbnail(String uploadPath,
 			String fileName) throws Exception{
 		
+		System.out.println("uploadPath"+uploadPath);
+		System.out.println("fileName"+fileName);
+		
 		BufferedImage sourceImg = 
 				ImageIO.read(new File(uploadPath,fileName));
+		System.out.println("sourceImg"+sourceImg);
 		BufferedImage destImg = 
 				Scalr.resize(sourceImg, 
 						Scalr.Method.AUTOMATIC, 

@@ -1,32 +1,24 @@
 $(document).ready(function(){
 });
       
-   //좌측 필터 + - 버튼 
-      var filter_btn = $(".filter_btn");
-      var filter_allSelect = $(".filter_allSelect");
-      var filter_list_area = $(".filter_list_area");
-
-      for(var i=0; i<4;i++){
-         btn_filter(i);
-      }
-      
-      function btn_filter(index){
-         filter_btn.eq(index).on("click",function(){
-            if(filter_btn.eq(index).val()=="open"){
-               filter_list_area.eq(index).show();
-               filter_btn.eq(index).text("-");
-               filter_btn.eq(index).attr("value","close");
-               filter_allSelect.eq(index).hide();
-            }
-            else{
-               filter_list_area.eq(index).hide();
-               filter_btn.eq(index).text("+");
-               filter_btn.eq(index).attr("value","open");
-               filter_allSelect.eq(index).show();
-            }   
-         });
-      }
-  
+	//좌측 필터 + - 버튼 
+		
+		$(document).on("click",".title_area",function(){
+			var btn = $(this).children(".filter_btn");
+			var list = $(this).siblings(".filter_list_area");
+			var filterTitle = $(this).closest(".filter_allSelect");
+			
+			if(btn.text()=="+"){
+				list.show();
+				filterTitle.hide();
+				btn.text("-");
+			}else{
+				list.hide();
+				filterTitle.show();
+				btn.text("+");
+			}
+		});
+		
    //좌측 필터 초기화
    
       var reset = $(".reset")
@@ -151,18 +143,24 @@ $(document).ready(function(){
       
       for(var i=0; i<column_menu.length;i++){
          click_size(i);
-      }
+      }	
       
       function click_size(index){
          column_menu.eq(index).click(function(){
             
             $("div[name='teg_size']").detach();
             
-            $(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
-                  +"</span><button class='teg_item_btn'>X</button></div>");
-            
-         });
-      }
+			$(".filter_teg_area").append("<div class='teg_item' name='teg_size'><span>"+column_menu.eq(index).text()
+			+"</span><button class='teg_item_btn'>X</button></div>");
+		});
+	}
+      
+	column_menu.on('click',function(){
+		filterList();
+		value = 1;
+		filter_ajax(filter,value,page);
+      });
+      
       
       //우측 필터버튼
       var list = $(".product_btn_list");

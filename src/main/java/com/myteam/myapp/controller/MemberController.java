@@ -1,5 +1,6 @@
 package com.myteam.myapp.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -158,22 +159,24 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberLogOut.do")
 	public String memberLogOut(
-			HttpSession session) {
+			HttpSession session,
+			HttpServletRequest request) {
 		String path = null;
 		
 		if(session.getAttribute("memberNo")!=null) {
 			session.removeAttribute("memberNo");
-
 		}
 		
 		System.out.println("dest : "+session.getAttribute("dest"));
 		
 		if(session.getAttribute("dest")==null)
-			path = "redirect:/";
+			path = "member/memberLogin";
 		else {
 			String dest = (String) session.getAttribute("dest");
 			path = "redirect:"+dest;
 		}
+		
+		
 		
 		session.invalidate();
 		

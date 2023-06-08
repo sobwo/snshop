@@ -114,7 +114,6 @@
 				var boardNo = $(this).val();
 				var clickImage = $(this).children("#likeImageChange");
 				var likeCountChange = $(this).siblings(".likeCount");
-	
 		    $.ajax({
 		        type: "POST",
 		        url: "${pageContext.request.contextPath}/myPage/like_check.do",
@@ -124,7 +123,6 @@
 		        	},
 		        cache: false,
 		        success: function(data) {	
-		        	
 					if (data.cnt == 1) {
 						clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
 		          
@@ -135,8 +133,9 @@
 					
 					likeCountChange.text(data.totalCnt);
 					
-		        },
+		        	},
 			        error: function() {
+			        	alert("로그인이 필요합니다");
 			        }
 	
 			      });

@@ -36,7 +36,14 @@
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
-					            	<img class="user_img" src="" alt="">
+					            	<c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}">
+					            		</c:otherwise>
+					            	</c:choose>
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
@@ -116,7 +123,7 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}','${ld.profileImg}')">	
 									</span>
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
@@ -174,6 +181,8 @@
 						
 			        },
 			        error: function() {
+			        	alert("로그인이 필요합니다");
+			        
 			        }
 
 			      });
@@ -200,10 +209,11 @@
 	             	  url: "${pageContext.request.contextPath}/style/followingshow.do",
 	             	  dataType: "json",
 	             	  data: {
-	             	    "followingMemberNo": followingMemberNo,
+	             	    "followingMemberNo": followingMemberNo
 	             	  },
 	             	  cache: false,
 	             	  success: function(data) {
+	             		  console.log(data);
 	             	    if (data.nowfollowingState == 1) {
 	             	      followButton.text("팔로잉");
 	             	      followButton.css("background","#fff");
@@ -215,7 +225,9 @@
 	             	    }
 	             	  },
 	             	  error : function(request,status,error){
-					
+		  					console.log("code: " + request.status);
+					        console.log("message: " + request.responseText);
+					        console.log("error: " + error);
 						}	
 	             	});
 			}
@@ -243,7 +255,7 @@
              	  		alert();
              	  },
              	  error : function(request,status,error){
-					alert("다시 시도2");	
+             		 alert("로그인이 필요합니다");
 					console.log("code: " + request.status);
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);
@@ -252,19 +264,27 @@
             });
                 
 		
-			function comment_btn(id, content, boardNo) {
+			function comment_btn(id, content, boardNo,profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
+			    $(".submit_comment").val(boardNo);
+			    var memberImg = "${mv.profileImg}";
+			    if(profileImg == null || profileImg == "")
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
 			    
-			    showComment();
+			    if(memberImg == null || memberImg == "")
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
+			    showComment(boardNo);
 			}
 	
 			function submitComment(){
-				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
+				var ccontents = $(".comment_input").val(); 
+				var boardNo = $(".submit_comment").val();
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
@@ -274,7 +294,7 @@
 					cache:false,
 					success: function(data){
 						if(data.value==1)
-							showComment();
+							showComment(boardNo);
 					},
 					error : function(request,status,error){
 						alert("다시 시도3");	
@@ -286,8 +306,7 @@
 				});	
 			}
 			
-			function showComment(){
-				var boardNo = $(".h_boardNo").val();
+			function showComment(boardNo){
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -298,7 +317,6 @@
 						$(".comment_area").html(data);
 					},
 					error : function(request,status,error){
-						alert("다시 시도4");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
