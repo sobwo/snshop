@@ -28,10 +28,7 @@
 			<div class="f_inner_wrap">
 				<img src="${pageContext.request.contextPath}/resources/image/다운로드.png" style="width: 99.98px; height: 99.98px;">
 				<p class="following_title"><strong>팔로잉</strong></p>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 				<p class="following_noti">다른 사용자를 팔로우 하면 해당 사용자의 <br>게시물이 여기에 표시됩니다</p>
 		
 				<input type="button" value="인기글 보기" class="custom-btn" onclick="location.href='${pageContext.request.contextPath}/style/style_discover.do'"/>
@@ -270,10 +267,10 @@
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-<<<<<<< HEAD
-/* 			    $(".h_boardNo").val(boardNo);   */ /* 임시 댓글 오류 때문에 6-8 원래 없었음 */
-			    showComment(boardNo);      /* 괄호 안에 boardNo 임시 빼봄 */
-=======
+
+ 			   
+			    showComment(boardNo);     
+
 			    $(".h_boardNo").val(boardNo);
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
@@ -287,7 +284,7 @@
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
 			    	
 			    showComment(boardNo);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 			}
 	
 			function submitComment(boardNo){

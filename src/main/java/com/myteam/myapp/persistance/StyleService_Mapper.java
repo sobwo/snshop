@@ -30,7 +30,7 @@ public interface StyleService_Mapper {
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);
 
 	/* 좋아요 누른사람 */
-	/* public ArrayList<LikesVo> getlikeMemberList(String boardNo); */
+
 	public ArrayList<LikeMemberDto> getlikeMemberList(int boardNo);
 	
 

@@ -248,28 +248,16 @@ public class StyleController {
 	}
 	
 
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value="/likeMemberList.do") public JSONObject likeMemberList(
-	 * 
-	 * @RequestParam("boardNo")int boardNo, Model model, HttpSession session) {
-	 * ArrayList<LikesDto> get = ss1.getlikeMemberList(boardNo);
-	 * 
-	 * model.addAttribute("get", get); }
-	 */
-	
 	@RequestMapping(value="/likeMemberList.do") 
 	public String  likeMemberList(
 			@RequestParam("boardNo")int boardNo,
 			Model model) {
 			
 		ArrayList<LikeMemberDto> get = ss1.getlikeMemberList(boardNo);
-		/* model.addAttribute("likeMemberList",likeMemberList); */
+
 		
 		model.addAttribute("get", get);
-		/* JSONObject result = new JSONObject(); */
+
 		
 		
 		return "style/likepush2";
