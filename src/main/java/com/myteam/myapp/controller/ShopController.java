@@ -75,8 +75,6 @@ public class ShopController {
 			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			@RequestParam(value="page") int page,
-//			@RequestParam(value="price",required=false) int price,
-
 			Model model
 			) {
 

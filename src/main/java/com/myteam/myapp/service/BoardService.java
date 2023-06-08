@@ -25,6 +25,10 @@ public interface BoardService {
 
 	public int likesTotalCnt(int boardNo);
 
+	public BoardVo boardSelectOne(int boardNo);
+
+	public int boardModifyUpdate(BoardVo bv);
+
 //	public ArrayList<BoardVo> boardTotalList();
 	
 }

@@ -405,6 +405,67 @@ public class MyPageController {
 		return "redirect:/myPage/myStyle.do";
 	}
 	
+	@RequestMapping(value = "/myStyle_modify.do")
+	public String myStyle_modify(
+			@RequestParam("boardNo") int boardNo,
+			Model model
+			) {
+			BoardVo bv = bs.boardSelectOne(boardNo);
+			
+			model.addAttribute("bv", bv);
+			
+		return "myPage/myStyle_modify";
+	}
+
+	@RequestMapping(value="/myStyle_modifyAction.do")
+	public String myStyle_modifyAction(
+			@RequestParam("contentsImg") MultipartFile[] contentsImg,
+			@RequestParam("contents") String contents,
+			HttpSession session
+			) throws Exception {
+		
+		String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
+		List<String> uploadedFileNames = new ArrayList<>();
+		for (MultipartFile file : contentsImg) {
+			if (!file.getOriginalFilename().equals("")) {
+				String uploadedFileName = UploadFileUtiles.uploadFile(
+						uploadPath, 
+						file.getOriginalFilename(),
+						file.getBytes());
+				uploadedFileNames.add(uploadedFileName);
+			}
+		}
+		
+		BoardVo bv = new BoardVo();
+		bv.setContentsImg(String.join(",", uploadedFileNames));
+		bv.setContents(contents);
+				
+		int memberNo = 0;
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		bv.setMemberNo(memberNo);
+		
+		int value = bs.boardModifyUpdate(bv);
+
+
+		return "redirect:/style/myStyle2.do";
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

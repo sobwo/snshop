@@ -74,7 +74,14 @@
 					            <!-- 팔로우 버튼 -->
 					            <div class="button_wrap">	
 									<button class="follow-button" value="${ld.memberNo}">팔로우</button>
-									<button class="modify-button" value="${ld.memberNo}" onclick="deleteOption('${ld.boardNo}')">..</button>
+									<button class="modify-button" value="${ld.boardNo}">..</button>
+									
+									<div class="popupContainer">
+								
+										<button class="delete" value="${ld.boardNo}"  onclick="confirmDelete(${ld.boardNo})">삭제</button>
+										<button class="modify" value="${ld.boardNo}" onclick="location.href = '${pageContext.request.contextPath}/myPage/myStyle_modify.do?boardNo=${ld.boardNo}'">수정</button>
+								
+									</div>
 								</div>        
 							</div>
 							<!-- 컨텐츠 내용 -->
@@ -375,7 +382,7 @@
 				images[currentImageIndex].style.display = "block";
 			}
 
-		 window.addEventListener('DOMContentLoaded', function() {
+			window.addEventListener('DOMContentLoaded', function() {
 			    var postId = getParameterByName('boardNo');
 			    if (postId) {
 			      scrollToPost(postId);
@@ -391,13 +398,41 @@
 			    }
 			  }
 			  
-		  function deleteOption(boardNo) {
-			  var jspFilePath = "popup/myStyle2_popup.do"; // 다른 JSP 파일의 상대 경로
+			  $(document).ready(function(){
+					$(".modify-button").click(function(){
+						$(".popupContainer").fadeIn();
+					});
+					$(".popupContainer").click(function(){
+						$(".popupContainer").fadeOut();
+					});
+				});
 
-			  var popupStyle = "width=300,height=200";
-			  window.open(jspFilePath, "Popup", popupStyle);
-			}
-	
+				function confirmDelete(boardNo) {
+
+					var confirmation = confirm("삭제하시겠습니까?");
+
+					if (confirmation) {
+
+						$.ajax({
+							type: "POST",
+							url: "${pageContext.request.contextPath}/style/deleteAction.do",
+							dataType: "json",
+							data: {
+								"boardNo": boardNo,
+								},
+							cache: false,
+							success: function(data) {	
+								alert("삭제 되었습니다.");
+								location.reload(); // 페이지 새로고침
+								
+									},
+							error: function() {
+								alert("삭제실패");
+							}
+						});
+					}
+				}
+				
 		</script>
 	</body>
 </html>

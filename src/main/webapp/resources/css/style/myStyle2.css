@@ -350,3 +350,21 @@ body {
 }
 
 
+
+
+.popupContainer {
+    display: none; /*숨기기*/
+    position: fixed;
+    width: 100px;
+    height: 100px;
+	right:470px;
+}
+.delete{
+	
+}
+.modify{
+	
+}
+
+
+

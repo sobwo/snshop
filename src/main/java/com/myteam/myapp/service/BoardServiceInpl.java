@@ -91,6 +91,22 @@ public class BoardServiceInpl implements BoardService{
 	}
 
 
+	@Override
+	public BoardVo boardSelectOne(int boardNo) {
+		
+		BoardVo bv =  bsm.boardSelectOne(boardNo);
+		
+		return bv;
+	}
+
+
+	@Override
+	public int boardModifyUpdate(BoardVo bv) {
+		
+		int value = bsm.boardModifyUpdate(bv);
+
+		return value;
+	}
 
 /*
 	@Override
