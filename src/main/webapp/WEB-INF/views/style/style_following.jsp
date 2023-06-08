@@ -28,6 +28,7 @@
 			<div class="f_inner_wrap">
 				<img src="${pageContext.request.contextPath}/resources/image/다운로드.png" style="width: 99.98px; height: 99.98px;">
 				<p class="following_title"><strong>팔로잉</strong></p>
+
 				<p class="following_noti">다른 사용자를 팔로우 하면 해당 사용자의 <br>게시물이 여기에 표시됩니다</p>
 		
 				<input type="button" value="인기글 보기" class="custom-btn" onclick="location.href='${pageContext.request.contextPath}/style/style_discover.do'"/>
@@ -124,8 +125,8 @@
 									</span>
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
-								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span>
+								<div class="social_count" > 
+	  								<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span>
 								</div>
 							</div>
 							</div>
@@ -138,7 +139,7 @@
 					</c:forEach>
 		    	</div>
 		    	<jsp:include page="popup/comment_popup.jsp"></jsp:include>
-		    		<jsp:include page="popup/likepush.jsp"></jsp:include>
+		    	<jsp:include page="popup/likepush.jsp"></jsp:include>
 
 		    
 			</div>
@@ -150,6 +151,9 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
 		<script>
+
+		
+		
 		
 		$(".likeImage").click(function(){
 			var boardNo = $(this).val();
@@ -250,7 +254,7 @@
              	  		alert();
              	  },
              	  error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
+					alert("3다시 시도하시기 바랍니다.");	
 					console.log("code: " + request.status);
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);
@@ -263,6 +267,10 @@
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
+
+ 			   
+			    showComment(boardNo);     
+
 			    $(".h_boardNo").val(boardNo);
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
@@ -276,6 +284,7 @@
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
 			    	
 			    showComment(boardNo);
+
 			}
 	
 			function submitComment(boardNo){
@@ -288,11 +297,11 @@
 							"boardNo": boardNo},
 					cache:false,
 					success: function(data){
-						if(data.value==1)
+						if(data.value == 1) 			/* 	if(data.value == 1) 댓글 안되서 임시  */
 							showComment();
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
+						alert("2다시 시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
@@ -312,7 +321,7 @@
 						$(".comment_area").html(data);
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
+						alert("1다시 시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
@@ -321,8 +330,45 @@
 				});
 			}
 			
-			
-            
+
+ 			function openPopup2(boardNo) {
+	    		$.ajax({
+	        		type: "GET",
+	        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
+	        		data: {
+	            			"boardNo": boardNo
+	        		},
+	        		cache: false,
+	        		success: function(data) {
+            		console.log(data);
+            		var popup = document.getElementById("popup");
+	            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	            
+	            // 팝업 창의 위치를 스크롤 위치에 따라 조정
+	           	 	popup.style.top = (500 + scrollTop) + "px";
+	            
+	            	popup.style.display = "block";
+	            	$(".popup_style_wrap").html(data);
+	            
+	            // 스크롤 막기
+			            document.body.style.overflow = "hidden";
+			        },
+			        error: function(request, status, error) {
+			            alert("다시 시도해주세요.");
+			            console.log("code: " + request.status);
+			            console.log("message: " + request.responseText);
+			            console.log("error: " + error);
+			        }
+			    });
+			}
+		
+			function closePopup2() {
+			    var popup = document.getElementById("popup");
+			    popup.style.display = "none";
+			    
+			    // 스크롤 허용
+			    document.body.style.overflow = "auto";
+			}
 
 		</script>
 	</body>

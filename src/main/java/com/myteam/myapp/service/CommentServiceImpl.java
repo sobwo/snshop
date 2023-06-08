@@ -23,17 +23,7 @@ public class CommentServiceImpl implements CommentService {
 		this.csm = sqlSession.getMapper(CommentService_Mapper.class);
 	}
 
-	/*
-	 * @Override public int commentInsert(String ccomments, int memberNo,int
-	 * boardNo,String ccontents, String setCwriteday, int commentNo ) { CommentVo cv
-	 * = new CommentVo(); cv.setBoardNo(boardNo); cv.setCcontents(ccontents);
-	 * cv.setCommentNo(commentNo); cv.setCwriteday(setCwriteday);
-	 * cv.setMemberNo(memberNo);
-	 * 
-	 * int value = csm.commentInsert(cv);
-	 * 
-	 * return value; }
-	 */
+
 	@Override
 	public int commentInsert(int memberNo, int boardNo,
 			String ccontents) {

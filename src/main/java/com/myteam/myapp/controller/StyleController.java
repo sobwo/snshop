@@ -19,13 +19,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
+import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
 
 import com.myteam.myapp.service.BoardService;
@@ -244,5 +248,25 @@ public class StyleController {
 	}
 	
 
+	@RequestMapping(value="/likeMemberList.do") 
+	public String  likeMemberList(
+			@RequestParam("boardNo")int boardNo,
+			Model model) {
+			
+		ArrayList<LikeMemberDto> get = ss1.getlikeMemberList(boardNo);
 
-}
+		
+		model.addAttribute("get", get);
+
+		
+		
+		return "style/likepush2";
+			
+		}
+
+	}
+	
+	
+	
+	
+
