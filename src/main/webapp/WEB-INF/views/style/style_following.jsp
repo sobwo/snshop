@@ -331,7 +331,7 @@
 				});
 			}
 			
-
+			/* 	좋아요 누른 사람 보여주기  */
  			function openPopup2(boardNo) {
 	    		$.ajax({
 	        		type: "GET",
@@ -345,13 +345,13 @@
             		var popup = document.getElementById("popup");
 	            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 	            
-	            // 팝업 창의 위치를 스크롤 위치에 따라 조정
+	   
 	           	 	popup.style.top = (500 + scrollTop) + "px";
 	            
 	            	popup.style.display = "block";
 	            	$(".popup_style_wrap").html(data);
 	            
-	            // 스크롤 막기
+
 			            document.body.style.overflow = "hidden";
 			        },
 			        error: function(request, status, error) {

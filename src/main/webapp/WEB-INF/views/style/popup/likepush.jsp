@@ -36,21 +36,13 @@
             color: whitesmoke;
            
         }
-        .like_btn{
-      
-         
-        }
         .img{
-
             width: 35px; 
             height: 35px; 
             border-radius: 50%;
-
-
         }
         .close_btn{
             margin-left: 50px;
-
         }
 
     </style>
@@ -72,17 +64,10 @@
                     <div class="close_btn">
                   		<button onclick="closePopup2()" style="border-radius: 10px;  width: 55px; margin-left: 125px;">확인</button>
                     </div>
-
-                        
+                 
                     </div>
             </div>
            
-            
-            <script>
-
-
-
-            </script>
             
             </body>
             </html>
