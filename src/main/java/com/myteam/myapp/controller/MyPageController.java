@@ -385,6 +385,9 @@ public class MyPageController {
 			}
 		}
 		
+		for(String name : uploadedFileNames)
+		System.out.println("uploadedFileNames"+name);
+		
 		BoardVo bv = new BoardVo();
 		bv.setContentsImg(String.join(",", uploadedFileNames));
 		bv.setContents(contents);

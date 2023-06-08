@@ -9,8 +9,8 @@ INSERT INTO COMMENT(ccontents,boardNo,memberNo)
 VALUES(#{ccontents},#{boardNo},#{memberNo})
 
 </insert>
-<select id="getcomment" parameterType="Integer" resultType="cmv">
-SELECT * FROM comment WHERE boardNo = #{0}
+<select id="getcomment" parameterType="Integer" resultType="cmd">
+SELECT * FROM comment a inner join member b on a.memberNo = b.memberNo WHERE boardNo = #{0}
 </select>
 
 </mapper>

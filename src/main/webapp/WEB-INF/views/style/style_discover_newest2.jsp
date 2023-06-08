@@ -268,7 +268,7 @@
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
+			    $(".submit_comment").val(boardNo);
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
@@ -283,9 +283,8 @@
 			}
 	
 			function submitComment(){
-				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
+				var ccontents = $(".comment_input").val(); 
+				var boardNo = $(".submit_comment").val();
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
@@ -295,7 +294,7 @@
 					cache:false,
 					success: function(data){
 						if(data.value==1)
-							showComment();
+							showComment(boardNo);
 					},
 					error : function(request,status,error){
 						alert("다시 시도3");	
@@ -318,7 +317,6 @@
 						$(".comment_area").html(data);
 					},
 					error : function(request,status,error){
-						alert("다시 시도4");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);

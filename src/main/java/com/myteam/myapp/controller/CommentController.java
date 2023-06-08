@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.CommentDto;
 import com.myteam.myapp.domain.CommentVo;
 import com.myteam.myapp.service.BoardService;
 import com.myteam.myapp.service.CommentService;
@@ -60,7 +61,7 @@ public class CommentController {
 			  @RequestParam("boardNo")int boardNo,
 			  Model model){
 		
-		ArrayList<CommentVo> get = cs.getcomment(boardNo);
+		ArrayList<CommentDto> get = cs.getcomment(boardNo);
 		model.addAttribute("get",get);
 		
 		return "style/commentAjax";

@@ -278,10 +278,8 @@
 			    showComment(boardNo);
 			}
 	
-			function submitComment(){
+			function submitComment(boardNo){
 				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
