@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 
@@ -29,6 +30,11 @@ public interface StyleService {
 	
 	public int nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
 	/*public int nowfollowingState(FollowingVo fv);/* 현재 상태 */
+	
+	/* 좋아요 누른사람? */
+	/* public ArrayList<LikesDto> getlikeMemberList(int boardNo); */
+	 public ArrayList<LikeMemberDto> getlikeMemberList(int boardNo); 
+	/* 좋아요 누른사람 */
 	
 	/* 완성x */
 	public ArrayList<LikesDto> boardTotalList(int memberNo);

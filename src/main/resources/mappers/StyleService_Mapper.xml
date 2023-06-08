@@ -40,10 +40,6 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </insert>
 
 <update id ="updatefollowing" parameterType="fv">
-<!-- 	UPDATE LIKES SET LIKE_CHECK = (CASE LIKE_CHECK WHEN 0 THEN 1 ELSE 0 END) 
-	WHERE boardNo=#{boardNo} AND memberNo = #{memberNo}-->
-	
-
 	update following set followingCheck = (case followingCheck when 1 then 0 else 1 end)
 	where memberNo = #{memberNo} and followingMemberNo = #{followingMemberNo};
 	
@@ -51,7 +47,23 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 <select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
 	 
-		select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1};
+	select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1};
 		
 </select>
+
+<!-- <select id = "getlikeMemberList" parameterType="Integer" resultType="mv"> -->
+<!-- <select id = "getlikeMemberList" parameterType="Integer" resultType="lv"> -->
+
+ <select id = "getlikeMemberList" parameterType="Integer" resultType="lmd">
+
+	select * from likes l join member m On l.memberNo = m.memberNo where l.like_check = 1
+	and l.boardNo = #{0};
+
+<!-- SELECT m.memberName, m.profileImg
+FROM likes l
+JOIN member m ON l.memberNo = m.memberNo
+WHERE l.like_check = 1
+AND l.boardNo = 58; -->
+</select> 
+
 </mapper>

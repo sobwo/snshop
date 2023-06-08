@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.persistance.BoardService_Mapper;
@@ -109,6 +110,14 @@ public class StyleServiceImpl implements StyleService {
 	@Override
 	public int nowfollowingState(int memberNo, int followingMemberNo) {
 			int value = ssm1.nowfollowingState(memberNo,followingMemberNo);
+		return value;
+	}
+
+	@Override
+	public ArrayList<LikeMemberDto> getlikeMemberList(int boardNo) {
+		
+		ArrayList<LikeMemberDto> value = ssm1.getlikeMemberList(boardNo);
+		
 		return value;
 	}
 

@@ -30,16 +30,6 @@
 			
 			<!-- 댓글 입력창 -->
 		
-	<!-- 		<div class="social_comment_input">
-				<form name = "crm">
-					<img class="user_img" src="" alt="">
-					<input type="text" class="comment_input" name="ccomments" placeholder="댓글을 남기세요.">
-					<input type="button" class="submit_comment" value="등록" onclick="submitComment()">
-					
-			
-				</form>
-			</div>
- -->
  				<div class="social_comment_input">
 				<form name = "crm">
 		 		<img class="user_img" src="" alt="">
