@@ -39,10 +39,10 @@ public class ImageController {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		String tempDir = System.getProperty("java.io.tmpdir");
+//		String tempDir = System.getProperty("java.io.tmpdir");
 		
-		String uploadFolderPath = tempDir + File.separator + "uploads"; // 업로드 폴더 경로 설정
-
+//		String uploadFolderPath = tempDir + File.separator + "uploads"; // 업로드 폴더 경로 설정
+		String uploadFolderPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 		String uploadedPath = uploadFolderPath;
 		MemberVo mv = ms.profileImgShow(memberNo);
 		
@@ -52,10 +52,8 @@ public class ImageController {
 		String uploadedFileName = "";
 		String[] fileList = dir.list();
 		
-		System.out.println("profileImage : "+mv.getProfileImg());
 		
 		if(mv.getProfileImg()==null || mv.getProfileImg().equals("noImage")) {
-			System.out.println("null값입니다.");
 			return null;
 		}
 		
@@ -104,10 +102,10 @@ public class ImageController {
 		String str = null;
 		MultipartFile file = profileImg;
 		
-		String tempDir = System.getProperty("java.io.tmpdir");
-		
-		String uploadedPath = tempDir + File.separator + "uploads"; // 업로드 폴더 경로 설정
-		
+//		String tempDir = System.getProperty("java.io.tmpdir");
+//		
+//		String uploadedPath = tempDir + File.separator + "uploads"; // 업로드 폴더 경로 설정
+		String uploadedPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
 		String uploadedFileName="";
 		if(!file.getOriginalFilename().equals("")) {	
 			uploadedFileName = UploadProfile.uploadFile(
