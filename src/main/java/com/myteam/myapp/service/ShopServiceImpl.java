@@ -57,32 +57,79 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<ProductDto>filterList(
-				List<String> filter,int value,int page){
-			
-			HashMap<String,Object> hashMap =new HashMap<String, Object>();
-			
-			hashMap.put("filter",filter);
+		public ArrayList<ProductDto> filterList(List<String> filter, int value, int page) {
+
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+
+			hashMap.put("filter", filter);
 			hashMap.put("value", value);
 			hashMap.put("page", page);
+			hashMap.put("index",null);
+			hashMap.put("price", 0);
+			
+			List<Integer> goodsNoList = ssm.searchResult(hashMap);
 
-			ArrayList<ProductDto> filterResult = ssm.filterList(hashMap);
-		
+			HashMap<String, List<Integer>> data = new HashMap<String, List<Integer>>();
+			data.put("list", goodsNoList);
+
+			ArrayList<ProductDto> filterResult = ssm.filterList(data);
+
 			return filterResult;
 		}
-		
 		@Override
-		public ArrayList<ProductDto> alignList(
-				List<String> filter, int value, int index,int page){
+		public int goodsTotal(List<String> filter, int value, int price, int page) {
 			
-			HashMap<String,Object> hashMap =new HashMap<String, Object>();
+			int total =0;
 			
-			hashMap.put("filter",filter);
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+
+			hashMap.put("filter", filter);
 			hashMap.put("value", value);
+			hashMap.put("page", page);
+			hashMap.put("price", price);
+			
+			total = ssm.goodsTotal(hashMap);
+			
+			return total;
+		}
+		@Override
+		public ArrayList<ProductDto> priceAlign(List<String> filter, int value, int page, int price) {
+			
+			HashMap<String,Object>  hashMap = new HashMap<String,Object>();
+			hashMap.put("filter",filter);
+			hashMap.put("value",value);
+			hashMap.put("page",page);
+			hashMap.put("index",null);
+			hashMap.put("price", price);
+			
+			List<Integer> goodsNoList = ssm.searchResult(hashMap);
+			
+			HashMap<String,List<Integer>> data = new HashMap<String,List<Integer>>();
+			
+			data.put("list",goodsNoList);
+			
+			ArrayList<ProductDto> priceAlign = ssm.filterList(data);
+			
+			return priceAlign;
+		}
+		@Override
+		public ArrayList<ProductDto> alignList(List<String> filter, int value, int index, int page) {
+
+			HashMap<String, Object> hashMap = new HashMap<String, Object>();
+
+			hashMap.put("filter", filter);
+			hashMap.put("value", value);
+			hashMap.put("page", page);
 			hashMap.put("index", index);
-			
-			ArrayList<ProductDto> alignList = ssm.alignList(hashMap);
-			
+
+			List<Integer> goodsNoList = ssm.searchResult(hashMap);
+
+			HashMap<String, List<Integer>> data = new HashMap<String, List<Integer>>();
+
+			data.put("list", goodsNoList);
+
+			ArrayList<ProductDto> alignList = ssm.filterList(data);
+
 			return alignList;
 		}
 

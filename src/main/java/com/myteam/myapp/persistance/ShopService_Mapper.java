@@ -16,15 +16,16 @@ import com.myteam.myapp.domain.SizeDto;
 public interface ShopService_Mapper {
 		//상품 전체
 	public ArrayList<GoodsVo> goodsSelectAll();
-	
 		//상품 개별 선택
 	public GoodsVo goodsSelectOne(int goodsNo);
 		//개별 상품 이미지
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 		//카테고리 필터
-	public ArrayList<ProductDto> filterList(HashMap<String, Object> hashMap);
+	public ArrayList<ProductDto> filterList(HashMap<String, List<Integer>> data);
+	
+	public ArrayList<Integer> searchResult(HashMap<String, Object> hashMap);
 		//상품정렬필터
-	public ArrayList<ProductDto>alignList(HashMap<String,Object> hashMap);
+	public ArrayList<ProductDto>alignList(HashMap<String, List<Integer>> data);
 		//추천상품 
 	public ArrayList<ProductDto>recommentList(HashMap<String, Object> hashMap);
 		//개별 상품 사이즈
@@ -32,6 +33,7 @@ public interface ShopService_Mapper {
 	
 	public ArrayList<ProductDto> trandList();
 	
+	public int goodsTotal(HashMap<String, Object> hashMap);	
 	//관심품목
 	public int interestListCnt(InterestVo iv);
 	public int insertInterest(InterestVo iv);
