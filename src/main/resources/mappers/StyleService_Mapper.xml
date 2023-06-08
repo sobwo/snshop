@@ -60,4 +60,9 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 	SELECT IFNULL(followingCheck, 0) AS followingCheck FROM following WHERE memberNo = #{0} AND followingMemberNo = #{1}
 		
 </select>
+
+<update id="boardDelete" parameterType="ld">
+	update board set delYn='Y' where boardNo=#{boardNo}
+</update>
+
 </mapper>

@@ -7,6 +7,7 @@ import com.myteam.myapp.domain.FollowingVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 
+
 public interface StyleService {
 
 
@@ -34,6 +35,8 @@ public interface StyleService {
 	public ArrayList<LikesDto> boardTotalList(int memberNo);
 
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);
+
+	public int boardDelete(LikesDto ld);
 
 
 

@@ -28,6 +28,8 @@ public interface StyleService_Mapper {
 
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);
 
+	public int boardDelete(LikesDto ld);
+
 	
 	
 	
