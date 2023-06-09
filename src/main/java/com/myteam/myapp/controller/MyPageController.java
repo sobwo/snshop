@@ -370,6 +370,7 @@ public class MyPageController {
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
 			@RequestParam("viewCnt") String viewCnt,
+//			@RequestParam("hashTagName") String hashTagName,
 			HttpSession session
 			) throws Exception {
 		

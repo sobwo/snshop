@@ -339,6 +339,10 @@ body {
 	height:25px;
 	padding-top:16px;
 }
+.hashTag{
+	margin:20px 0;
+	font-size:13px;
+}
 
 #followButton {
     display: inline-block;

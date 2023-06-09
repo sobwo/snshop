@@ -30,7 +30,7 @@
 			<div class="socialTab">
 				<ul class="socialList">
 					<li class="socialItem">
-						<a class="menuLink" href="#">
+						<a class="menuLink" href="${pageContext.request.contextPath}/myPage/myStyle.do?memberNo=${memberNo}">
 							<span class="socialMenu">게시물</span>
 							<span class="socialMenuCnt">${mv.boardCnt}</span>
 						</a>
@@ -110,6 +110,7 @@
 									</div>
 									<div class="feedPostContent" onclick="location.href='#'">
 										<p>${ld.contents}</p>
+										<p class="hashTag">#메롱<p>
 									</div>
 								</div>
 							</div>
