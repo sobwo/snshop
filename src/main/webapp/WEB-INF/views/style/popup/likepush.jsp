@@ -7,7 +7,7 @@
 <html lang="UTF-8">
 <head>
 
-    <style>
+     <style>
         .popup_follow_btn{
             width: 100px;
             height: 30px;
@@ -45,29 +45,23 @@
             margin-left: 50px;
         }
 
-    </style>
+    </style> 
 
  
     </head>
         <body>
             <div class="like_btn">
-                <div class="like">
-
-                </div>
-                    <div id="popup" style="display: none; position: absolute; top: 750px; left: 750px; width: 400px; height: 350px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
+                <div class="like"> 
+                
+				</div>
+                    <div id="popup" style="display: none; position: absolute;  top: 750px; left: 750px; width: 400px; height: 350px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
                         <h3 style="text-align: center;">좋아요</h3>
-                    
-
-					<div class="popup_style_wrap">
-						
+					<div class="popup_style_wrap">						
                     </div>
                     <div class="close_btn">
-                  		<button onclick="closePopup2()" style="border-radius: 10px;  width: 55px; margin-left: 125px;">확인</button>
-                    </div>
-                 
+                  		<button onclick="closePopup2()" style="border-radius: 10px;   width: 55px; margin-left: 125px; background:white;">확인</button>
+                    </div>                
                     </div>
             </div>
-           
-            
-            </body>
-            </html>
+         </body>
+       </html>

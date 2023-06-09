@@ -9,6 +9,7 @@
 		<title>팔로잉</title>
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
+
 		<style>
 			.top_menu_list:nth-child(1) a{
 				font-weight:bold;
@@ -48,7 +49,6 @@
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
-					            	
 					            	<c:choose>
 					            		<c:when test="${empty blist.profileImg}">
 					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
@@ -126,7 +126,9 @@
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
 								<div class="social_count" > 
-	  								<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span>
+<%-- 	  								<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span> --%>
+									<span class="openPopup21" onclick="openPopup2(${blist.boardNo}, '${blist.profileImg}')">좋아요&nbsp;<strong class="likeCount">${blist.likeCnt}</strong>개</span>
+									
 								</div>
 							</div>
 							</div>
@@ -330,8 +332,8 @@
 				});
 			}
 			
-			/* 	좋아요 누른 사람 보여주기  */
- 			function openPopup2(boardNo) {
+ 			/* 	좋아요 누른 사람 보여주기  */
+  			function openPopup2(boardNo,profileImg) {
 	    		$.ajax({
 	        		type: "GET",
 	        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
@@ -352,6 +354,7 @@
 	            
 
 			            document.body.style.overflow = "hidden";
+			         
 			        },
 			        error: function(request, status, error) {
 			            alert("다시 시도해주세요.");
@@ -368,7 +371,7 @@
 			    
 			    // 스크롤 허용
 			    document.body.style.overflow = "auto";
-			}
+			} 
 
 		</script>
 	</body>

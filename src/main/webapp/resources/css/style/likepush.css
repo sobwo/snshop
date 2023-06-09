@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+      .popup_follow_btn{
+          width: 100px;
+          height: 30px;
+          background-color: black;
+          color: whitesmoke;
+          border: none;
+          border-radius: 4px;
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 15px;
+      }
+
+      .close_btn{
+          margin-top: 55%;
+          margin-left: 125px;
+      }
+      
+      .popup_style{
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center;
+          margin-bottom: 10px;
+      }
+      
+      .like{
+          color: whitesmoke;
+         
+      }
+      .img{
+          width: 35px; 
+          height: 35px; 
+          border-radius: 50%;
+      }
+      .close_btn{
+          margin-left: 50px;
+      }

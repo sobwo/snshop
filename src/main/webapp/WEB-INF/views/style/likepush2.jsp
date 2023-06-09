@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/resources/css/popup/likepush.css" rel="stylesheet">
 </head>
 <body>
 
 	<c:forEach var = "get" items="${get}">
 		<div class="popup_style">
-		    <img src="" style="width: 25px; height: 25px; border-radius: 50%;">
-			<p style="margin-left: -200px;"><b>${get.memberName} </b></p>
+			<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
+		    <img  class="user_img" src="" style="width: 25px; height: 25px; border-radius: 50%;">
+			<p style="margin-left: -425px;"><b>${get.memberName} </b></p>
 	        <button class="follow-button" value="${get.memberNo}">팔로우 </button>             
 		</div>
            
