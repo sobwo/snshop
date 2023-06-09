@@ -28,9 +28,9 @@
 						></textarea>
 					</div>
 					<div class="hashtagContainer">
-						<button onclick="addHashtag('#하이라이트챌린지')">#하이라이트챌린지</button>
-						<button onclick="addHashtag('#스타일컬렉터')">#스타일컬렉터</button>
-					</div>   
+						<button onclick="addHashtag(event, '#하이라이트챌린지')">#하이라이트챌린지</button>
+						<button onclick="addHashtag(event, '#스타일컬렉터')">#스타일컬렉터</button>
+					</div>  
 					
 				</div>
 				<div class="tagSelectContainer">
@@ -78,12 +78,14 @@
 		  obj.style.height = (12+obj.scrollHeight)+"px";
 		}
 		
-		function addHashtag(hashtag) {
-	     var textarea = document.getElementById("contents");
-	     var currentText = textarea.value;
-	     var newText = currentText + " " + hashtag;
-	     
-	     textarea.value = newText;
+		function addHashtag(event, hashtag) {
+		    event.preventDefault(); // 폼의 기본 동작 중지
+		    
+		    var textarea = document.getElementById("contents");
+		    var currentText = textarea.value;
+		    var newText = currentText + " " + hashtag;
+		    
+		    textarea.value = newText;
 		}
 		
 		function readImage(event) {

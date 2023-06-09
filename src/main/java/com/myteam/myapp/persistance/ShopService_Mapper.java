@@ -19,7 +19,7 @@ public interface ShopService_Mapper {
 		//개별 상품 이미지
 	public ArrayList<ProductImgVo> imgSelectOne(int goodsNo);
 		//카테고리 필터
-	public ArrayList<ProductDto> filterList(HashMap<String, List<Integer>> data);
+	public ArrayList<ProductDto> filterList(HashMap<String, Object> data);
 	
 	public ArrayList<Integer> searchResult(HashMap<String, Object> hashMap);
 		//상품정렬필터

@@ -64,22 +64,24 @@ public class ShopServiceImpl implements ShopService {
 			hashMap.put("filter", filter);
 			hashMap.put("value", value);
 			hashMap.put("page", page);
-			hashMap.put("index",null);
 			hashMap.put("price", 0);
 			
 			List<Integer> goodsNoList = ssm.searchResult(hashMap);
-
-			HashMap<String, List<Integer>> data = new HashMap<String, List<Integer>>();
+			
+			int index =0;
+			
+			HashMap<String, Object> data = new HashMap<String, Object>();
 			data.put("list", goodsNoList);
+			data.put("align",index);
 
 			ArrayList<ProductDto> filterResult = ssm.filterList(data);
 
 			return filterResult;
 		}
 		@Override
-		public int goodsTotal(List<String> filter, int value, int price, int page) {
+		public int goodsTotal(List<String> filter, int value, int page, int price) {
 			
-			int total =0;
+			int total;
 			
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 
@@ -104,10 +106,11 @@ public class ShopServiceImpl implements ShopService {
 			
 			List<Integer> goodsNoList = ssm.searchResult(hashMap);
 			
-			HashMap<String,List<Integer>> data = new HashMap<String,List<Integer>>();
+			HashMap<String, Object> data = new HashMap<String, Object>();
 			
-			data.put("list",goodsNoList);
-			
+			data.put("list", goodsNoList);
+			data.put("align",null);
+
 			ArrayList<ProductDto> priceAlign = ssm.filterList(data);
 			
 			return priceAlign;
@@ -120,13 +123,13 @@ public class ShopServiceImpl implements ShopService {
 			hashMap.put("filter", filter);
 			hashMap.put("value", value);
 			hashMap.put("page", page);
-			hashMap.put("index", index);
-
+			
 			List<Integer> goodsNoList = ssm.searchResult(hashMap);
-
-			HashMap<String, List<Integer>> data = new HashMap<String, List<Integer>>();
-
+			
+			HashMap<String, Object> data = new HashMap<String, Object>();			
+			
 			data.put("list", goodsNoList);
+			data.put("align",index);
 
 			ArrayList<ProductDto> alignList = ssm.filterList(data);
 
