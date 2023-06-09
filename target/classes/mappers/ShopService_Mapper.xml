@@ -127,8 +127,8 @@
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		where inventory.quantity > 0
 		<include refid="searchCategory" />
-		and goods.price >= #{price}
-		<include refid="align" /> limit 0 ,#{page}
+		<include refid="priceValue" />
+		limit 0 ,#{page}
 	</select>
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
