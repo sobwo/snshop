@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.notosanskr * { 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+
+.history_popup{
+	margin-top:100px;
+	height:650px;
+	font-family:'Noto Sans KR', sans-serif;
+}
+
+.basic_title_wrap{
+	width:100%;
+	height:70px;
+	padding:30px 10px 0 10px;
+	display:flex;
+	border-bottom:1px solid #ebebeb;
+	
+}
+
+.productImg{
+	width:50px;
+	height:50px;
+	margin-right:10px;
+}
+
+.basic_wrap{
+	padding:5px 10px;
+}
+
+.order{
+	padding:10px 0;
+}
+
+.title{
+	display:block;
+	width:428px;
+	font-weight:bold;
+	font-size:19px;
+}

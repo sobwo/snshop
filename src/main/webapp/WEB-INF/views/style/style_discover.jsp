@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>header_style</title>
+		<title>스타일(발견)</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/style/style_discover.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 				font-weight:bold;
 			}
 						
-			.nav_list:nth-child(2) a{
+			.nav_list:nth-child(1) a{
 				font-weight:bold;
 			}
 			.socialSorting li:nth-child(1) a{

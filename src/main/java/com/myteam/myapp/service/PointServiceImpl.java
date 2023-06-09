@@ -23,8 +23,8 @@ public class PointServiceImpl implements PointService{
 	}
 
 	@Override
-	public int checkCouponUse(String couponNum) {
-		int value = psm.checkCouponUse(couponNum);
+	public String checkCouponUse(String couponNum) {
+		String value = psm.checkCouponUse(couponNum);
 		
 		return value;
 	}

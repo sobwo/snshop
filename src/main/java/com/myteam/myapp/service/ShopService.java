@@ -38,5 +38,5 @@ public interface ShopService {
 //	public int interestCnt(int goodsNo);
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
-	public int interestCancel(int memberNo, int goodsNo);
+//	public int interestCancel(int memberNo, int goodsNo);
 }

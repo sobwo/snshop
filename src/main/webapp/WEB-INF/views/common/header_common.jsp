@@ -26,11 +26,11 @@
 		<div id="header_main">
 			<div id="main_inner">
 				<div id="logo">
-					<h1 style='font-size:22px;'><a href="${pageContext.request.contextPath}/">TLING</a></h1>
+					<h1 style='font-size:22px;'><a href="${pageContext.request.contextPath}/style/style_discover.do">TLING</a></h1>
 				</div>
 				<div id="nav_main">
 					<ul>
-						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li>
+<%-- 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li> --%>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/style/style_discover.do'>STYLE</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/shop/shopMain.do'>SHOP</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/myPage/myPageMain.do'>MY</a></li>

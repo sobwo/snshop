@@ -41,4 +41,6 @@ public interface OrderService_Mapper {
 	public int orderInsert(OrderVo ov); 
 	
 	public OrderDto orderSelectNew(String OrderNum);
+	
+	public OrderDto orderHistoryShow(int orderNo);
 }

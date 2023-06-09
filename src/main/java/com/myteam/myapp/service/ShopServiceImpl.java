@@ -159,16 +159,25 @@ public class ShopServiceImpl implements ShopService {
 			int value = ssm.interestListCnt(iv);
 			int value2 = 0;
 			int result = 0;
+			int result2 = 0;
 			
 			if(value == 0)
 				value2 = ssm.insertInterest(iv);
 			else
 				value2 = ssm.updateInterest(iv);
 			
-			if(value2 == 1)
-				result = ssm.updateGoodsInterest(iv.getGoodsNo());
+			if(value2 == 1) {
+				int cnt = ssm.selectCheckM(iv.getGoodsNo());
+				if(cnt==3)
+					result = ssm.minusCheckM(iv.getGoodsNo());
+				else
+					result = ssm.plusCheckM(iv.getGoodsNo());
+				System.out.println("checkM result : "+result);
+				result2 = ssm.updateGoodsInterest(iv.getGoodsNo());
+			}
 			
-			return result;
+			
+			return result+result2;
 		}
 
 		@Override
@@ -197,12 +206,21 @@ public class ShopServiceImpl implements ShopService {
 			ArrayList<ProductDto> trandList = ssm.trandList();
 			return trandList;
 		}
-
-		@Override
-		public int interestCancel(int memberNo, int goodsNo) {
-			int value = ssm.interestCancel(memberNo, goodsNo);
-			return value;
-		}
+		
+		
+//		@Override
+//		public int interestCancel(int memberNo, int goodsNo) {
+//			int value = ssm.interestCancel(memberNo, goodsNo);
+//			int result = 0;
+//			if(value == 1) {
+//				int value2 = ssm.selectCheckM(goodsNo);
+//				
+//				if(value2 == 0)
+//					 result = ssm.updateCheckM(goodsNo);
+//			}
+//			
+//			return result;
+//		}
 
 //		@Override
 //		public int interestCnt(int goodsNo) {

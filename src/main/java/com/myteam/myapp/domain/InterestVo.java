@@ -1,9 +1,15 @@
 package com.myteam.myapp.domain;
 
 public class InterestVo{
-	private int memberNo, goodsNo, sizeNo;
+	private int interestNo, memberNo, goodsNo, sizeNo;
 	private String interestCheck;
 	
+	public int getInterestNo() {
+		return interestNo;
+	}
+	public void setInterestNo(int interestNo) {
+		this.interestNo = interestNo;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}

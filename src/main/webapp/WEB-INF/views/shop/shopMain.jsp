@@ -11,7 +11,7 @@
 		<title>SHOP 메인페이지</title>
 		
 		<style>
-			.nav_list:nth-child(3) a{
+			.nav_list:nth-child(2) a{
 				font-weight:bold;
 			}
 		</style>
@@ -526,8 +526,10 @@
 				
 			</main>	
 			<jsp:include page="../common/footer.jsp"></jsp:include>
-			
 		</div><!-- inner -->
+		<div class="popup_wrap shopMain_popup_wrap" style="display:none">
+			
+		</div>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopMain.js"></script>
@@ -719,7 +721,6 @@
 				}	
 			});	
 		}
-		
 		</script>
 	</body>
 </html>

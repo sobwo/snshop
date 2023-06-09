@@ -19,6 +19,7 @@
 	</head>
 	<body>
 		<form name="frm">
+		<jsp:include page="popup/history_popup.jsp"></jsp:include>
 		<jsp:include page="popup/purchase_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
 			<jsp:include page="../common/header_common.jsp"></jsp:include>
@@ -95,7 +96,7 @@
 				<!--  구매내역 리스트 -->
 				<div class="purchase_contents_wrap">
 					<c:forEach var="alist" items="${alist}">
-						<div class="purchase_contents">
+						<div class="purchase_contents" onclick="showHistory('${alist.orderNo}')">
 							<div class="purchase_detail">
 								<div class="purchase_thumb">
 									<!-- 이미지 파일(수정해야될곳) -->
@@ -197,6 +198,27 @@
 			fm.action="${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying";
 			fm.submit();
 		});
+		
+		function showHistory(orderNo){
+			$(".history_wrap").show();
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/myPage/historyShow.do",
+				data:{
+						"orderNo": orderNo},
+				cache:false,
+				success: function(data){
+					$(".popup_contents").html(data);
+				},
+				error : function(request,status,error){
+					alert("1다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+				
+			});
+		}
 		
 		</script>
 	</body>
