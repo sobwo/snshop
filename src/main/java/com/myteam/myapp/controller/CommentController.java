@@ -66,5 +66,47 @@ public class CommentController {
 		
 		return "style/commentAjax";
 	}
+
+
+	/*
+	 * @RequestMapping(value="/deletecomment.do") public JSONObject delectcomment(
+	 * 
+	 * @RequestParam("commentNo")int commentNo, CommentDto CD, HttpSession session)
+	 * throws Exception{
+	 * 
+	 * CD.setCommentNo(commentNo); int value = cs.deletecomment(CD);
+	 * 
+	 * JSONObject json = new JSONObject();
+	 * 
+	 * json.put("value",value);
+	 * 
+	 * return json;
+	 * 
+	 * 
+	 * }
+	 */
+	  @ResponseBody
+	  @RequestMapping(value="/deletecomment.do") 
+	  public String delectcomment(
+  
+			  @RequestParam("commentNo")int commentNo, 
+			  CommentDto CD,
+		
+			  HttpSession session) /*throws Exception*/{
+		  		
+		  	CD.setCommentNo(commentNo);
+		  	int value = cs.deletecomment(CD);
+		  			
+			 return value+""; 
+			
+		
+		  			
+		  			
+	 }
+	  
+	 
 }
+
+
+
 

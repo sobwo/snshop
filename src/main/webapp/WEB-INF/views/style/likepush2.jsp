@@ -11,8 +11,8 @@
 
 	<c:forEach var = "get" items="${get}">
 		<div class="popup_style">
-			<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
-		    <img  class="user_img" src="" style="width: 25px; height: 25px; border-radius: 50%;">
+			<img class="user_img" style="width: 25px; height: 25px; border-radius: 10px;" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
+	 	    <img  class="user_img" src="" style="width: 25px; height: 25px; border-radius: 10px;">
 			<p style="margin-left: -425px;"><b>${get.memberName} </b></p>
 	        <button class="follow-button" value="${get.memberNo}">팔로우 </button>             
 		</div>
