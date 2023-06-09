@@ -35,7 +35,7 @@ public class MessageController {
     	
     	if(phone.equals(memberPhone)) {
     		value = Integer.toString(randomNumber);
-//    		sendSMS.certify_phone(phone,randomNumber);
+    		sendSMS.certify_phone(phone,randomNumber);
     	}
     	else
     		value = "no";

@@ -8,7 +8,7 @@ import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.PointVo;
 
 public interface PointService_Mapper {
-	public int checkCouponUse(String couponNum);
+	public String checkCouponUse(String couponNum);
 	public CouponVo selectCoupon(String coupon);
 
 	public int insertPoint(PointVo pv);

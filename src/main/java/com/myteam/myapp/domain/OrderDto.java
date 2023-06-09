@@ -17,6 +17,13 @@ public class OrderDto extends GoodsVo{
 	private String orderstatus;
 	private String memberPhone;
 	
+	private String userName;
+	private String addressPhone;
+	private String zipCode;
+	private String address;
+	private String detailAddress;
+	private String mainAddress;
+	
 	public String getOrderDays() {
 		return orderDays;
 	}
@@ -101,4 +108,41 @@ public class OrderDto extends GoodsVo{
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getAddressPhone() {
+		return addressPhone;
+	}
+	public void setAddressPhone(String addressPhone) {
+		this.addressPhone = addressPhone;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getMainAddress() {
+		return mainAddress;
+	}
+	public void setMainAddress(String mainAddress) {
+		this.mainAddress = mainAddress;
+	}
+	
 }

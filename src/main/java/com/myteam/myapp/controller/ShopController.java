@@ -17,11 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
-import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
-import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
@@ -155,5 +153,22 @@ public class ShopController {
 		JSONObject json = new JSONObject(hm);
 	    
 	    return json;
+	}
+	
+	@RequestMapping(value = "/interestShow.do")
+	public String interestShow(
+			@RequestParam("goodsNo") int goodsNo,
+			Model model,
+			HttpSession session) {
+		
+		GoodsVo gv = ss.goodsSelectOne(goodsNo);
+
+		ArrayList<SizeDto>sizeList = ss.sizeList(goodsNo);
+		
+		model.addAttribute("sizeList",sizeList);
+		model.addAttribute("gv", gv);	
+		
+		return "shop/favorite_ajax";
+		
 	}
 }

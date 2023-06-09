@@ -42,7 +42,7 @@ public class HomeController {
 //			System.out.println("있음");
 		
 		
-		return "home";
+		return "redirect:/style/style_discover.do";
 	}
 	
 }

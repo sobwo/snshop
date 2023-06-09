@@ -4,13 +4,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myteam.myapp.persistance.PointService_Mapper">
-	<select id="checkCouponUse" parameterType="String" resultType="Integer">
+	<select id="checkCouponUse" parameterType="String" resultType="String">
 		<![CDATA[
 			SELECT IFNULL((
 				case
-					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='N') THEN 3
-					WHEN (a.usePeriod < CURDATE()) THEN 2
-					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='Y') THEN 1
+					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='N') THEN 'N'
+					WHEN (a.usePeriod < CURDATE()) THEN 'E'
+					WHEN (a.usePeriod >= CURDATE() AND b.USAGECHECK='Y') THEN 'Y'
 				END 
 				),0) AS RESULT
 			FROM COUPON a INNER JOIN COUPONUSAGE b ON a.COUPONNO = b.COUPONNO 

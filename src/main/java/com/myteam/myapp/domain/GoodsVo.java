@@ -4,8 +4,6 @@ public class GoodsVo {
 	
 	private int goodsNo, price, interestNum;
 
-	
-
 	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, imgFileName;
 
 	

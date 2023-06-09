@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>header_style</title>
+		<title>스타일(발견)</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
@@ -243,7 +243,7 @@
              	  		alert();
              	  },
              	  error : function(request,status,error){
-					alert("다시 시도2");	
+					alert("로그인이 필요합니다");	
 					console.log("code: " + request.status);
 			        console.log("message: " + request.responseText);
 			        console.log("error: " + error);

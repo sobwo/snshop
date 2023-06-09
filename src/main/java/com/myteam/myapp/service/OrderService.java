@@ -29,5 +29,7 @@ public interface OrderService {
 	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String statusDetail, String memberPhone);
 	
 	public OrderDto orderSelectNew(String orderNum);
+	
+	public OrderDto orderHistoryShow(int orderNo);
 }
 

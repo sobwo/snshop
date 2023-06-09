@@ -7,7 +7,7 @@ import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.PointVo;
 
 public interface PointService {
-	public int checkCouponUse(String couponNum);
+	public String checkCouponUse(String couponNum);
 	public CouponVo selectCoupon(String coupon);
 	public int insertPoint(int memberNo, String index, String coupon) throws Exception;
 	public int usePoint(int memberNo, int point, String useDetail);

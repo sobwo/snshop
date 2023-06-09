@@ -113,8 +113,20 @@
 	</select>
 	
 	<select id="filterList" parameterType="map" resultType="pd">
-		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
+		SELECT *
+		FROM goods a
+		INNER JOIN productImg b ON a.goodsNo = b.goodsNo
+		LEFT JOIN (
+		    SELECT *
+		    FROM interest
+		    WHERE interestNo IN (SELECT MIN(interestNo) FROM interest GROUP BY goodsNo)
+		) c ON a.goodsNo = c.goodsNo
+		WHERE b.goodsNo IN (
+		    SELECT goodsNo
+		    FROM productImg
+		    GROUP BY goodsNo
+		    HAVING imgNo = MIN(imgNo)
+		)
 		<include refid="resultGoodsNo" />
 		<include refid="align" /> 
 	</select>
@@ -140,8 +152,7 @@
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
-		select * from size a inner join interest b on a.sizeNo = b.sizeNo  
-		where a.goodsNo = #{goodsNo}
+		select * from size s left join interest i on s.sizeNo = i.sizeNo where s.goodsNo = #{0}
 	</select>
 	
 	<!-- interest -->
@@ -154,7 +165,8 @@
 	</insert>
 
 	<update id="updateInterest" parameterType="iv">
-		update interest set interestCheck = (CASE interestCheck WHEN 0 THEN 1 ELSE 0 END) where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
+		update interest set interestCheck = (CASE interestCheck WHEN 0 THEN 1 ELSE 0 END) 
+		where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
 	</update>
 	
 	<update id="updateGoodsInterest" parameterType="Integer">
@@ -176,4 +188,19 @@
 	<update id="interestCancel" parameterType="Integer">
 		update interest set interestCheck = 0 where memberNo=#{0} and goodsNo = #{1}
 	</update>
+	
+	<update id="plusCheckM" parameterType="Integer">
+		update interest set checkM = 1
+		where goodsNo = #{0}
+	</update>
+	
+	<update id="minusCheckM" parameterType="Integer">
+		update interest set checkM = 0 
+		where goodsNo = #{0}
+	</update>
+	
+	<select id="selectCheckM" parameterType="Integer" resultType="Integer">
+		select count(interestCheck) from interest where goodsNo = #{0} and interestCheck = 0
+	</select>
+	
 </mapper>

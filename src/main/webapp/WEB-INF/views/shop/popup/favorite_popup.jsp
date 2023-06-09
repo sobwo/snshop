@@ -13,7 +13,7 @@
 		<div class="popup shopMain_popup">
 			<div class="popup_head">
 				<h2 class="popup_name">관심 상품 추가</h2>
-				<div class="popup_cancel">X</div>
+				<div class="popup_cancel" id="cancel">X</div>
 			</div>
 			<div class="popup_contents">
 				<div class="suggest_wrap">

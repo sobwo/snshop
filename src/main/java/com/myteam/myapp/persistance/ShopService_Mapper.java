@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
@@ -43,4 +41,7 @@ public interface ShopService_Mapper {
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
 	public int interestCancel(int memberNo, int goodsNo);
+	public int plusCheckM(int goodsNo);
+	public int minusCheckM(int goodsNo);
+	public int selectCheckM(int goodsNo);
 }
