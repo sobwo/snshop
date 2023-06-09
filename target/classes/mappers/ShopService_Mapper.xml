@@ -40,26 +40,36 @@
 				)
 			</when>
 		</choose>
-	</sql>	
+	</sql>
+	<sql id="priceValue">
+		<choose>
+			<when test="price == null">
+			
+			</when>
+			<when test="price != null">
+				and goods.price >= #{price}
+			</when>
+		</choose>
+	</sql>
 	<sql id="align">
 			<choose>
 				<when test="align == null">
-					order by goods.goodsNo desc
+					order by a.goodsNo desc
 				</when>
 				<when test="align == 0">
-					order by goods.goodsNo desc 
+					order by a.goodsNo desc 
 				</when>
 				<when test="align == 1">
-					order by goods.price desc
+					order by a.price desc
 				</when>
 				<when test="align == 2">
-					order by goods.price asc
+					order by a.price asc
 				</when>
 				<when test="align == 3">
-					order by goods.interestNum desc
+					order by a.interestNum desc
 				</when>
 				<when test="align == 4">
-					order by goods.goodsNo desc 
+					order by a.goodsNo desc 
 				</when>
 			</choose>
 	</sql>
@@ -81,7 +91,7 @@
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		WHERE inventory.quantity > 0
 		<include refid="searchCategory" />
-		AND goods.price >= 0;
+		and goods.price >= #{price};
 	</select>
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -106,6 +116,7 @@
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
 		<include refid="resultGoodsNo" />
+		<include refid="align" /> 
 	</select>
 	
 	<select id="searchResult" parameterType="hashMap" resultType="int">
@@ -116,8 +127,8 @@
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		where inventory.quantity > 0
 		<include refid="searchCategory" />
-		and goods.price >= #{price}
-		<include refid="align" /> limit 0 ,#{page}
+		<include refid="priceValue" />
+		limit 0 ,#{page}
 	</select>
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">

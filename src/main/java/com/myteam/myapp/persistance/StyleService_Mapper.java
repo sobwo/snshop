@@ -29,16 +29,13 @@ public interface StyleService_Mapper {
 
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);
 
-<<<<<<< HEAD
 	public int boardDelete(LikesDto ld);
 
 	
 	
-=======
 	/* 좋아요 누른사람 */
 
 	public ArrayList<LikeMemberDto> getlikeMemberList(int boardNo);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	
 
 }

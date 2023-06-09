@@ -48,7 +48,6 @@ public class IamportController {
        
        IamportResponse<Payment> irsp = paymentLookup(map.get("imp_uid")); 
        
-       
       int memberNo = 0;
       
       if(session.getAttribute("memberNo") != null) {

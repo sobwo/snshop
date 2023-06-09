@@ -61,6 +61,7 @@ public class PaymentServiceImpl implements PaymentService{
 	}
 
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	@Transactional
 	public HashMap<String,Object> verifyPayment(IamportResponse<Payment> irsp, Map<String, String> map, int memberNo) {
@@ -105,8 +106,8 @@ public class PaymentServiceImpl implements PaymentService{
     	else statusDetail = "입금완료";
     	
     	int result = 0;
-    	
-    	if(irsp.getResponse().getAmount().toString().equals(price)) {
+    	if(totalPrice == price) {
+    		System.out.println("실행");
     		value = os.orderInsert(goodsNo, memberNo, orderNum, addressNo, totalPrice, payInfo, size, statusDetail, memberPhone);
     		value2 = ps.usePoint(memberNo, point, orderNum);
     		

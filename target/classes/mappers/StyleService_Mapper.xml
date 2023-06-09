@@ -61,11 +61,9 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 		
 </select>
 
-<<<<<<< HEAD
 <update id="boardDelete" parameterType="ld">
 	update board set delYn='Y' where boardNo=#{boardNo}
 </update>
-=======
 
  <select id = "getlikeMemberList" parameterType="Integer" resultType="lmd">
 
@@ -74,6 +72,5 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 
 </select> 
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 </mapper>

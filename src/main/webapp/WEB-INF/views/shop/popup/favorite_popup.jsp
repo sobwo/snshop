@@ -21,8 +21,8 @@
 						<img class="suggest_thumb" src="#">
 					</div>
 					<div class="suggest_info">
-						<span class="model_title">이름</span>
-						<span class="model_info">상세설명</span>
+						<span class="model_title">${gv.goodsName}</span>
+						<span class="model_info">${gv.goodsEng}</span>
 					</div>
 				</div>
 				<ul class="status_item_list">

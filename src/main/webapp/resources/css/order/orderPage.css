@@ -536,3 +536,8 @@ button.active {
 #kakaopay{
 	background-size: 50px;
 }
+
+.basic_msg{
+	font-size:12px;
+	color:red;
+}
