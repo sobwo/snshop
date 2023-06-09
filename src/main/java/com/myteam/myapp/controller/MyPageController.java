@@ -419,26 +419,17 @@ public class MyPageController {
 
 	@RequestMapping(value="/myStyle_modifyAction.do")
 	public String myStyle_modifyAction(
-			@RequestParam("contentsImg") MultipartFile[] contentsImg,
+			@RequestParam("boardNo") int boardNo,
 			@RequestParam("contents") String contents,
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
-		List<String> uploadedFileNames = new ArrayList<>();
-		for (MultipartFile file : contentsImg) {
-			if (!file.getOriginalFilename().equals("")) {
-				String uploadedFileName = UploadFileUtiles.uploadFile(
-						uploadPath, 
-						file.getOriginalFilename(),
-						file.getBytes());
-				uploadedFileNames.add(uploadedFileName);
-			}
-		}
+
 		
 		BoardVo bv = new BoardVo();
-		bv.setContentsImg(String.join(",", uploadedFileNames));
+
 		bv.setContents(contents);
+		bv.setBoardNo(boardNo);
 				
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
