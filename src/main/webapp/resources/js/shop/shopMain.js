@@ -6,7 +6,7 @@ $(document).ready(function(){
 		$(document).on("click",".title_area",function(){
 			var btn = $(this).children(".filter_btn");
 			var list = $(this).siblings(".filter_list_area");
-			var filterTitle = $(this).closest(".filter_allSelect");
+			var filterTitle = $(this).find(".filter_allSelect");
 			
 			if(btn.text()=="+"){
 				list.show();

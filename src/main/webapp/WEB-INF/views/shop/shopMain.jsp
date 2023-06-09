@@ -542,8 +542,8 @@
 			$('.trend_con_area').slick({
 				slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
 				infinite : true, 	//무한 반복 옵션	 
-				slidesToShow : 2,		// 한 화면에 보여질 컨텐츠 개수
-				slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
+				slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
+				slidesToScroll : 4,		//스크롤 한번에 움직일 컨텐츠 개수
 				speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
 				arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
 				dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
@@ -600,7 +600,7 @@
 
 		function filter_ajax(filter,value,page){
 			
-			page = page * 4;
+			page = page * 8;
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
@@ -642,7 +642,7 @@
 	
 		function align_ajax(filter,value,index,page){
 			
-			page = page * 4;
+			page = page * 8;
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/itemAlign.do",		
@@ -698,7 +698,7 @@
 		
 		function price_ajax(filter,value,page,price){
 			
-			page = page * 4;
+			page = page * 8;
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/priceFilter.do",		
