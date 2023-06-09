@@ -147,6 +147,12 @@ public class OrderServiceImpl implements OrderService{
 		OrderDto od = osm.orderSelectNew(OrderNum);
 		return od;
 	}
+
+	@Override
+	public OrderDto orderHistoryShow(int orderNo) {
+		OrderDto value = osm.orderHistoryShow(orderNo);
+		return value;
+	}
 }
 
 

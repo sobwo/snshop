@@ -38,5 +38,15 @@
 			</div>
 		</div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script>
+		$(".popup_cancel").click(function(){
+			$("#admin_point_popup_wrap").hide();
+		})
+		
+		$(".basic_btn_1").click(function(){
+			$("#admin_point_popup_wrap").hide();
+		});
+	</script>
 </body>
 </html>

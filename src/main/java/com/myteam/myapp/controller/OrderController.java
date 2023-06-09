@@ -64,18 +64,27 @@ public class OrderController {
 		
 		int memberNo = 0;
 		
+		System.out.println("goodsNo"+goodsNo);
+		System.out.println("sizeName"+sizeName);
+		System.out.println("point"+point);
+		
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
-		
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
 		AddressVo av = os.addressOrderPage(memberNo);
 		MemberVo mv = ms.memberInfo(memberNo);
 		MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
 		
-		int totalPoint = mpv.getAvaPoint();
+		int totalPoint = 0;
 		int Avapoint = totalPoint;
+		
+		if(mpv != null) {
+			totalPoint = mpv.getAvaPoint();
+			Avapoint = totalPoint;
+		}
+		
 		Avapoint -= point;
 		
 		int total=gv.getPrice()-point;

@@ -64,18 +64,31 @@
 	resize: none;
 	overflow-y: hidden; 
 }
-.hashtagContainer{
+#hashtagContainer{
+	display: flex;
+	margin: 0 auto; 
+	width: 1200px;
+	margin-bottom:20px
+}
+#hashtagContainer span{
+	display:block;
+	height:30px; 
+	line-height: 30px; 
+	margin: 0 5px;
+	font-size: 13px;
+
+}
+.tagContainer{
 	display: flex;
 	margin: 0 auto; 
 	width: 1200px;
 	margin-bottom:20px;	
 }
-.hashtagContainer button{
+.tagContainer input{
 	display:block;
 	height:30px; 
 	line-height: 30px; 
 	margin: 0 5px;
-	text-align: center;
 	cursor: pointer; 
 	background: #fff;
 	border: 1px solid #808080;

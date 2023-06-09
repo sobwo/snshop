@@ -30,13 +30,45 @@
 						</div>
 					</div><!-- product_item -->
 					<div class="pro_icon_area">
-						<span class="wish_btn"><img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png"></span>
-						<span>${goodsList.interestNum}</span>
+						<input type="hidden" name="goodsNo" id="${goodsList.goodsNo}">
+						<span class="wish_btn" onclick="interest_popup('${goodsList.goodsNo}')">
+							<c:choose>
+									<c:when test="${goodsList.checkM == 1 && goodsList.memberNo == sessionScope.memberNo}">
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
+									</c:when>
+									<c:otherwise>
+										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png">
+									</c:otherwise>
+								</c:choose>
+						</span>
+						<span class="interestNum">${goodsList.interestNum}</span>
 						<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
 						<span>123</span>
 					</div>
 				</div><!-- product_item_wrap -->
 			</c:forEach>
 		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+		<script>
+		function interest_popup(goodsNo){
+			$("input[name=goodsNo]").val(goodsNo);
+			$(".shopMain_popup_wrap").show();
+			$.ajax({
+		        type: "GET",
+		        url: "${pageContext.request.contextPath}/shop/interestShow.do",
+		        data: {
+					"goodsNo" : goodsNo,
+		        	},
+		        cache: false,
+		        success: function(data) {
+		        	console.log(data);
+		        	$(".shopMain_popup_wrap").html(data);
+		        },
+		        error: function() {
+		        }
+
+			});
+		}
+		</script>
 	</body>
 </html>

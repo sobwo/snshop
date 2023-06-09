@@ -176,6 +176,20 @@ public class MyPageController {
 			return "myPage/sale";
 	}
 	
+	@RequestMapping(value = "/historyShow.do")
+	public String historyShow(
+			HttpSession session,
+			Model model,
+			@RequestParam("orderNo") int orderNo) {
+			
+		
+		OrderDto od = os.orderHistoryShow(orderNo);
+		
+		model.addAttribute("od",od);
+	
+		return "myPage/history_ajax";
+	}
+	
 	@RequestMapping(value = "/interest.do")
 	public String interest(
 			HttpSession session,
@@ -192,25 +206,6 @@ public class MyPageController {
 		model.addAttribute("glist",glist);
 		
 		return "myPage/interest";
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/interest_check.do")
-	public String interest_check(
-			@RequestParam("goodsNo") int goodsNo,
-			Model model,
-			HttpSession session) {
-		
-		int memberNo = 0;
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
-		
-		int value = ss.interestCancel(memberNo, goodsNo);
-		
-		String str = "{\"value\":\""+value+"\"}";
-		
-		return str;
 	}
 	
 	@RequestMapping(value = "/profileInfo.do")
@@ -370,6 +365,7 @@ public class MyPageController {
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
 			@RequestParam("viewCnt") String viewCnt,
+//			@RequestParam("hashTagName") String hashTagName,
 			HttpSession session
 			) throws Exception {
 		
@@ -419,26 +415,17 @@ public class MyPageController {
 
 	@RequestMapping(value="/myStyle_modifyAction.do")
 	public String myStyle_modifyAction(
-			@RequestParam("contentsImg") MultipartFile[] contentsImg,
+			@RequestParam("boardNo") int boardNo,
 			@RequestParam("contents") String contents,
 			HttpSession session
 			) throws Exception {
 		
-		String uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
-		List<String> uploadedFileNames = new ArrayList<>();
-		for (MultipartFile file : contentsImg) {
-			if (!file.getOriginalFilename().equals("")) {
-				String uploadedFileName = UploadFileUtiles.uploadFile(
-						uploadPath, 
-						file.getOriginalFilename(),
-						file.getBytes());
-				uploadedFileNames.add(uploadedFileName);
-			}
-		}
+
 		
 		BoardVo bv = new BoardVo();
-		bv.setContentsImg(String.join(",", uploadedFileNames));
+
 		bv.setContents(contents);
+		bv.setBoardNo(boardNo);
 				
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
@@ -645,15 +632,22 @@ public class MyPageController {
 			RedirectAttributes rttr
 			) throws Exception{
 		
+		System.out.println("couponAction.do 들어옴");
+		
 		int memberNo = 0;
 		
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
-		int resultUse = ps.checkCouponUse(couponNum);
-
-		if(resultUse==3) {
+		String resultUse = "";
+		
+		if(ps.checkCouponUse(couponNum) != null)
+			resultUse = ps.checkCouponUse(couponNum);
+		
+		System.out.println("result : "+resultUse);
+		
+		if(resultUse.equals("Y")) {
 			int value = ps.insertPoint(memberNo,index,couponNum);
 			if(value==1) {
 				rttr.addFlashAttribute("msg", "쿠폰이 등록되었습니다.");
@@ -665,12 +659,12 @@ public class MyPageController {
 			}	
 		}
 		
-		else if(resultUse==2) {
+		else if(resultUse.equals("E")) {
 			rttr.addFlashAttribute("msg", "만료된 쿠폰입니다.");
 			return "redirect:/myPage/point.do";
 		}
 		
-		else if(resultUse==1) {
+		else if(resultUse.equals("N")) {
 			rttr.addFlashAttribute("msg", "이미 사용한 쿠폰번호 입니다.");
 			return "redirect:/myPage/point.do";
 		}

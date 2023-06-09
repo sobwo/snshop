@@ -15,7 +15,7 @@
 				font-weight:bold;
 			}
 			
-			.nav_list:nth-child(2) a{
+			.nav_list:nth-child(1) a{
 				font-weight:bold;
 			}
 		</style>

@@ -9,7 +9,7 @@
 	<title>상품 상세 페이지</title>
 	<link href=" ${pageContext.request.contextPath}/resources/css/shop/shopContents.css" rel="stylesheet">
 	<style>	
-		.nav_list:nth-child(3) a{
+		.nav_list:nth-child(2) a{
 			font-weight:bold;
 		}
 	</style>
@@ -219,7 +219,7 @@
 			        cache: false,
 			        success: function(data) {
 			        	console.log(data);
-			        	if(data.value == 1){
+			        	if(data.value >= 1){
 			        		if(data.interestCheck == 1){
 			        			interestImg.attr("src","${pageContext.request.contextPath}/resources/image/favorites2_on.png")
 			        		}

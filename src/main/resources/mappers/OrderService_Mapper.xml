@@ -91,7 +91,7 @@
 	
 	
 	<select id="selectHistoryAll" parameterType="Integer" resultType="od">
-		SELECT b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
+		SELECT a.orderNo, b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
 		WHERE MEMBERNO = #{1} 
 		<include refid="search_pors"/>
@@ -116,5 +116,10 @@
 	<select id="orderSelectNew" parameterType="String" resultType="od">
 		SELECT * FROM orders a inner join goods b on a.goodsNo = b.goodsNo 
 		where orderNum = #{0} 
+	</select>
+	
+	<select id="orderHistoryShow" parameterType="Integer" resultType="od">
+		select * from orders a inner join goods b on a.goodsNo = b.goodsNo inner join address c on a.addressNo = c.addressNo 
+		where a.orderNo = #{0}
 	</select>
 </mapper>

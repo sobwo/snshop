@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>마이페이지</title>
@@ -24,14 +24,24 @@
 						<input type="hidden" name="viewCnt" id="viewCntInput" value="">
 						<label for="fileatt" id="fileLabel"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
 						<textarea id="contents" name="contents" placeholder="#아이템과 #스타일을 자랑해보세요."
-								onkeydown="resize(this)" onkeyup="resize(this)"
-						></textarea>
+								onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+						<div id="tagContainer"></div>
 					</div>
-					<div class="hashtagContainer">
-						<button onclick="addHashtag('#하이라이트챌린지')">#하이라이트챌린지</button>
-						<button onclick="addHashtag('#스타일컬렉터')">#스타일컬렉터</button>
-					</div>   
 					
+					<div id="hashtagContainer">
+					<!--  
+						<span id = "hashTagName">#해시태그</span>
+						<span id = "hashTagName">#해시태그2</span>
+					-->
+					</div>
+					
+					<div class="tagContainer">
+					     <div>
+					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
+					         <input type="hidden" id="hashtags-hidden" th:field="*{hashtags}" />
+					     </div>
+					</div>
+
 				</div>
 				<div class="tagSelectContainer">
 					<div class="tagSelectBox">
@@ -78,13 +88,52 @@
 		  obj.style.height = (12+obj.scrollHeight)+"px";
 		}
 		
-		function addHashtag(hashtag) {
-	     var textarea = document.getElementById("contents");
-	     var currentText = textarea.value;
-	     var newText = currentText + " " + hashtag;
-	     
-	     textarea.value = newText;
-		}
+		const hashtagsInput = document.getElementById("hashtags");
+		const hashtagsContainer = document.getElementById("hashtagContainer");
+        const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
+
+        let hashtags = [];
+
+        function addHashtag(tag) {
+            tag = tag.replace(/[\[\]]/g, '').trim();
+            if(tag && !hashtags.includes(tag)) {
+                const span = document.createElement("span");
+                span.innerText = "#" + tag + " ";
+//              span.classList.add("hashtag");
+                span.id = "hashTagName";
+
+
+                const removeButton = document.createElement("button");
+                removeButton.innerText = "x";
+                removeButton.classList.add("remove-button");
+                
+                removeButton.style.backgroundColor = "white";
+                removeButton.style.border = "none";
+                removeButton.style.cursor = "pointer";
+                
+                removeButton.addEventListener("click", () => {
+                    hashtagsContainer.removeChild(span);
+                    hashtags = hashtags.filter((hashtag) => hashtag !== tag);
+                    hiddenHashtagsInput.value = hashtags.join(",");
+                });
+
+                span.appendChild(removeButton);
+                hashtagsContainer.appendChild(span);
+                hashtags.push(tag);
+                hiddenHashtagsInput.value = hashtags.join(",");
+            }
+        }
+
+        hashtagsInput.addEventListener("keydown", (event) => {
+            if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
+                event.preventDefault();
+                const tag = hashtagsInput.value.trim();
+                if (tag) {
+                    addHashtag(tag);
+                    hashtagsInput.value = "";
+                }
+            }
+        });		
 		
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
