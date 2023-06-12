@@ -9,7 +9,7 @@
 	<title>상품 상세 페이지</title>
 	<link href=" ${pageContext.request.contextPath}/resources/css/shop/shopContents.css" rel="stylesheet">
 	<style>	
-		.nav_list:nth-child(2) a{
+		.nav_list:nth-child(3) a{
 			font-weight:bold;
 		}
 	</style>

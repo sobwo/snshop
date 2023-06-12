@@ -29,6 +29,7 @@ public interface ShopService {
 	public ArrayList<ProductDto>recommentList(GoodsVo gv);
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
+	public ArrayList<SizeDto>sizeListAll(int goodsNo);
 	
 	public int goodsTotal(List<String> filter, int value, int page,int price);
 	
@@ -39,4 +40,7 @@ public interface ShopService {
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
 //	public int interestCancel(int memberNo, int goodsNo);
+	
+	//상품 등록
+	public int goodsInsert(GoodsVo gv, String size, int quantity);
 }

@@ -11,8 +11,30 @@
 		<title>SHOP 메인페이지</title>
 		
 		<style>
-			.nav_list:nth-child(2) a{
+			.nav_list:nth-child(3) a{
 				font-weight:bold;
+			}
+			.inner{
+				font-family: '수트';
+			}
+			.sale_btn_wrap{
+				width:200px;
+				border-bottom:1px solid #ebebeb;
+				margin-right:20px;
+				padding-bottom:10px;
+				margin-bottom:15px;
+			}
+			.sale_btn{
+				width:100%;
+				height:50px;
+				border:1px solid #000;
+				border-radius:5px;
+				background:#fff;
+				cursor:pointer;
+				margin-bottom:20px;
+				font-size:18px;
+				font-weight:bold;
+				
 			}
 		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
@@ -32,7 +54,7 @@
 						<c:forEach var="tl" items="${trandList}">
 							<div class="trendContents">
 								<div class="trendImg">
-									<img src="${tl.imgFileName}" width="90px" height="90px">
+									<img src="" width="90px" height="90px">
 								</div><!-- trendImg -->
 								<div class="trendName">
 									<span>${tl.categoryName}</span>
@@ -44,6 +66,9 @@
 	<!-- 좌측 필터  -->
 				<section class="product_container">
 					<aside class="aside_area">
+						<div class="sale_btn_wrap">
+							<input class="sale_btn" type="button" value="판매 상품 등록" onclick="location.href='${pageContext.request.contextPath}/shop/salePage.do'">
+						</div>
 						<div class="filter_area">
 							<div class="filter_title title_first">
 								<div class="filterName">

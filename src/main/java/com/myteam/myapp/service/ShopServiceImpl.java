@@ -7,13 +7,16 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.InventoryVo;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
+import com.myteam.myapp.domain.SizeVo;
 import com.myteam.myapp.persistance.ShopService_Mapper;
 
 @Service("ShopServiceImpl")
@@ -156,6 +159,14 @@ public class ShopServiceImpl implements ShopService {
 			return sizeList;
 			
 		}
+		
+		@Override
+		public ArrayList<SizeDto> sizeListAll(int goodsNo) {
+			
+			ArrayList<SizeDto> sizeList = ssm.sizeListAll(goodsNo);
+			return sizeList;
+			
+		}
 
 		@Override
 		public int interestAction(InterestVo iv) {
@@ -208,6 +219,42 @@ public class ShopServiceImpl implements ShopService {
 		public ArrayList<ProductDto> trandList() {
 			ArrayList<ProductDto> trandList = ssm.trandList();
 			return trandList;
+		}
+		
+		@Transactional
+		@Override
+		public int goodsInsert(GoodsVo gv, String size, int quantity) {
+			int value = ssm.goodsInsert(gv);
+			int value2 = 0;
+			int value3 = 0;
+			
+			SizeVo sv = new SizeVo();
+			InventoryVo iv = new InventoryVo(); 
+			
+			if(value==1) {
+				int goodsNo = ssm.goodsNoSelect(gv.getMemberNo());
+				System.out.println("goodsNo = "+goodsNo);
+				sv.setGoodsNo(goodsNo);
+				sv.setSizeName(size);
+				value2 = ssm.sizeInsert(sv);
+				
+				if(value2 == 1) {
+					int sizeNo = ssm.sizeNoSelect(sv);
+					System.out.println("sizeNo = "+sizeNo);
+					iv.setGoodsNo(goodsNo);
+					iv.setSizeNo(sizeNo);
+					iv.setQuantity(quantity);
+					int cnt = ssm.inventoryCheck(iv);
+					
+					
+					if(cnt == 0)
+						value3 = ssm.inventoryInsert(iv);
+					else
+						value3 = ssm.inventoryUpdate(iv);
+				}
+			}
+			
+			return value3;
 		}
 		
 		

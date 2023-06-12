@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,8 +19,18 @@
 				<div class="product_item_wrap">
 					<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 						<div class="pro_img_area">
-						${goodsList.imgFileName}
-							<img class="pro_img" src="">
+						<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
+							<c:set var="imgList" value="${fn:split(goodsList.productImg, ',')}" />
+							<c:choose>
+								<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+									<c:forEach var="img" items="${imgList}">
+										<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="pro_name_area">
 							<ul>

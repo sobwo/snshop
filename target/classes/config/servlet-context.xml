@@ -57,6 +57,7 @@
 			<mapping path="/order/*.do"/>
 			<mapping path="/myPage/*.do"/>
 			<mapping path="/Iamport/*.do"/>
+			<mapping path="/shop/salePage.do"/>
 			<mapping path="/style/style_following.do"/>
 			<beans:ref bean="authInterceptor"></beans:ref>
 		</interceptor>
