@@ -28,7 +28,7 @@
 									</c:forEach>
 								</c:when>
 								<c:otherwise>
-									<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+									<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
 								</c:otherwise>
 							</c:choose>
 						</div>

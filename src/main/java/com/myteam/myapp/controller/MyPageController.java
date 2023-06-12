@@ -150,12 +150,20 @@ public class MyPageController {
 //		String formatedEnd = now.format(formatter);
 //		String formatedStart = sixMonthsAgo.format(formatter);
 		
+		System.out.println("startDate : "+startDate);
+		System.out.println("endDate : "+endDate);
+		System.out.println("filter : "+filter);
+		
 		String str[] = date_format();
 		
 		if(startDate == null) startDate = str[0];
 		if(endDate == null) endDate = str[1];
 		
+		
+		
+		
 		ArrayList<OrderDto> alist = os.selectHistoryAll(index,memberNo,value,startDate,endDate,filter,price);
+		
 		int cntAll = os.cntHistoryAll(index,memberNo,0,startDate,endDate);
 		int cntIng = os.cntHistoryAll(index,memberNo,1,startDate,endDate);
 		int cntEnd = os.cntHistoryAll(index,memberNo,2,startDate,endDate);
