@@ -153,13 +153,10 @@
 	<select id="sizeList" parameterType="int" resultType="sd">
 		select * from size a inner join inventory b on a.sizeNo = b.sizeNo  
 		where a.goodsNo = #{goodsNo}
-<<<<<<< HEAD
 	</select>
 	
 	<select id="sizeListAll" parameterType="Integer" resultType="sd">
 		select * from size where goodsNo = #{0}
-=======
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	</select>
 	
 	<!-- interest -->
