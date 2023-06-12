@@ -91,7 +91,7 @@
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		WHERE inventory.quantity > 0
 		<include refid="searchCategory" />
-		and goods.price >= #{price};
+		and goods.price >= #{price}
 	</select>
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -136,6 +136,12 @@
 		limit 0 ,#{page}
 	</select>
 	
+	<select id="sellSelect" parameterType="int" resultType="pd">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) 
+		and a.goodsNo=#{goodsNo}
+	</select>
+	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
 		
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -147,10 +153,13 @@
 	<select id="sizeList" parameterType="int" resultType="sd">
 		select * from size a inner join inventory b on a.sizeNo = b.sizeNo  
 		where a.goodsNo = #{goodsNo}
+<<<<<<< HEAD
 	</select>
 	
 	<select id="sizeListAll" parameterType="Integer" resultType="sd">
 		select * from size where goodsNo = #{0}
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	</select>
 	
 	<!-- interest -->
