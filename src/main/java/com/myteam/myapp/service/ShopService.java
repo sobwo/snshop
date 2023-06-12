@@ -30,6 +30,8 @@ public interface ShopService {
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
 	
+	public ProductDto sellSelect (int goodsNo);
+	
 	public int goodsTotal(List<String> filter, int value, int page,int price);
 	
 	//관심품목

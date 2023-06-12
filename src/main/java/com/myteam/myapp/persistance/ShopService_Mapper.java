@@ -31,6 +31,8 @@ public interface ShopService_Mapper {
 	
 	public ArrayList<ProductDto> trandList();
 	
+	public ProductDto sellSelect(int goodsNo);
+	
 	public int goodsTotal(HashMap<String, Object> hashMap);	
 	//관심품목
 	public int interestListCnt(InterestVo iv);

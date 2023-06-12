@@ -25,7 +25,7 @@
 				<form class="product_area" name="frm">
 				<!-- 상품 이미지 표시 -->
 					<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
-
+					<input type="hidden" name="category" value="${gv.category}">
 					<div class="productImg_area">
 						<div class="productImage">
 							<img src="../" width="560px" height="560px">
@@ -70,7 +70,7 @@
 						</div><!-- productContents -->
 						<div class="btn_area">
 							<button type="button" class="buyButton" name="buy_btn" onclick="buyButton();">구매</button>
-							<button type="button" class="sellButton" name="sell_btn">판매</button>
+							<button type="button" class="sellButton" name="sell_btn" onclick="sellButton()">판매</button>
 							<button type="button" class="wish">
 								<c:choose>
 									<c:when test="${interestGoodsCheck >= 1}">
@@ -195,6 +195,14 @@
 				fm.method= "get";
 				fm.submit();
 			}
+		};
+		
+		function sellButton(){
+			var fm = document.frm;
+			fm.ectype = "multipart/form-data"
+			fm.action = "${pageContext.request.contextPath}/shop/shopSell.do"
+			fm.method = "POST"
+			fm.submit();
 		};
 		
 		$(".status_item_fb").on("click",function(){

@@ -41,7 +41,6 @@ public class ShopController {
 	@RequestMapping(value = "/shopContents.do")
 	public String shopContents(
 			@RequestParam("goodsNo") int goodsNo,
-			/* @RequestParam("sizeNo")int sizeNo, */
 			Model model,
 			HttpSession session) {
 		
@@ -120,6 +119,31 @@ public class ShopController {
 			
 			return "shop/shopMain_item";
 		}
+		
+	@RequestMapping(value="/shopSell.do")
+	public String shopSell(
+		@RequestParam("goodsNo") int goodsNo,
+		@RequestParam("category") String category,
+		Model model
+		){
+	
+		int value;
+		
+		switch(category) {
+			case "신발" : value = 0;
+				break; 
+			case "아우터": case "상의": case "하의": value = 1;
+				break;
+			default : value =2;								
+		};
+		
+		ProductDto pd = ss.sellSelect(goodsNo);
+		
+		model.addAttribute("pd", pd);
+		model.addAttribute("value", value);
+		
+	return "shop/shopSell";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value="/interest_check.do" , method=RequestMethod.POST)

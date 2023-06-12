@@ -135,6 +135,15 @@ public class ShopServiceImpl implements ShopService {
 
 			return alignList;
 		}
+		
+		@Override
+		public ProductDto sellSelect(int goodsNo) {
+			
+			ProductDto pd = ssm.sellSelect(goodsNo);
+			
+			return pd;
+		}
+		
 
 		@Override
 		public ArrayList<ProductDto> recommentList(GoodsVo gv) {
@@ -209,7 +218,8 @@ public class ShopServiceImpl implements ShopService {
 			ArrayList<ProductDto> trandList = ssm.trandList();
 			return trandList;
 		}
-		
+
+
 		
 //		@Override
 //		public int interestCancel(int memberNo, int goodsNo) {
