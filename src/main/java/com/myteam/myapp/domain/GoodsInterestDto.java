@@ -4,14 +4,15 @@ public class GoodsInterestDto extends InterestVo {
 	
 	private int goodsNo, price, interestNum;
 
-	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, imgFileName;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, productImg;
 	private String sizeName;
 	
-	public String getImgFileName() {
-		return imgFileName;
+
+	public String getProductImg() {
+		return productImg;
 	}
-	public void setImgFileName(String imgFileName) {
-		this.imgFileName = imgFileName;
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
 	}
 	public String getGoodsBrandName() {
 		return goodsBrandName;

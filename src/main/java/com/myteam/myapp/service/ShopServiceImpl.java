@@ -195,6 +195,7 @@ public class ShopServiceImpl implements ShopService {
 					result = ssm.minusCheckM(iv.getGoodsNo());
 				else
 					result = ssm.plusCheckM(iv.getGoodsNo());
+				
 				System.out.println("checkM result : "+result);
 				result2 = ssm.updateGoodsInterest(iv.getGoodsNo());
 			}
