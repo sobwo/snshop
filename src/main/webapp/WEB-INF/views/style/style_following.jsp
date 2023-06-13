@@ -127,7 +127,7 @@
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
 								<div class="social_count" > 
-<%-- 	  								<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span> --%>
+									<%-- 	<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span> --%>
 									<span class="openPopup21" onclick="openPopup2(${blist.boardNo}, '${blist.profileImg}')">좋아요&nbsp;<strong class="likeCount">${blist.likeCnt}</strong>개</span>
 									
 								</div>
@@ -292,25 +292,36 @@
 			function submitComment(){
 				 var ccontents = $(".comment_input").val();
 				 var boardNo = $(".submit_comment").val();
-				$.ajax({
-					type:"POST",
-					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
-					dataType:"json",
-					data:{"ccontents": ccontents,
-							"boardNo": boardNo},
-					cache:false,
-					success: function(data){
-						if(data.value == 1) 			/* 	if(data.value == 1) 댓글 안되서 임시  */
-							showComment(boardNo);
-					},
-					error : function(request,status,error){
-						alert("2다시 시도하시기 바랍니다.");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
-					}	
-					
-				});	
+				 
+				 var index = $(".submit_comment").text();
+				 
+				 if(index == '등록'){
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
+						dataType:"json",
+						data:{"ccontents": ccontents,
+								"boardNo": boardNo},
+						cache:false,
+						success: function(data){
+							if(data.value == 1) 		
+								showComment(boardNo);
+						},
+						error : function(request,status,error){
+							alert("2다시 시도하시기 바랍니다.");	
+							console.log("code: " + request.status);
+					        console.log("message: " + request.responseText);
+					        console.log("error: " + error);
+						}	
+						
+					});	
+				 }
+				 else if(index == '수정'){
+					 modfiy_comment(boardNo,ccontents);
+				 }
+				 else if(index =='답글입력'){
+					 
+				 }
 			}
 			
  		function showComment(boardNo){
@@ -370,11 +381,36 @@
 			    var popup = document.getElementById("popup");
 			    popup.style.display = "none";
 			    
-			    // 스크롤 허용
+
 			    document.body.style.overflow = "auto";
 			} 
 
-
+			function modfiy_comment(boardNo,ccontents){
+				var commentNo = $(".commentNo").val();
+			    $.ajax({
+			    	type:"POST",
+			    	url:"${pageContext.request.contextPath}/comment/modifycomment.do",
+				 	dataType:"json", 
+			    	data:{
+			   			"ccontents":ccontents, 
+			   			"commentNo":commentNo
+			   		},
+			   	  cache: false,
+			      success: function(data) {
+			        console.log(data);
+			        if(data.value == 1)
+			        	showComment(boardNo);
+			      },
+			    	error:function(request,status,error){
+			    		alert("실패");
+			    		console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+			    		
+			    	}
+			    });
+		
+			}
 	
 		</script>
 	</body>

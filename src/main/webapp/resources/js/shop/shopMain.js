@@ -68,7 +68,7 @@ $(document).ready(function(){
 			
 			if(filter.length>0)value = 1;
 			else value = 0;
-			filter_ajax(filter,value,page);
+			filter_ajax();
 	      });
 
     //하위 카테고리 클릭
@@ -93,7 +93,7 @@ $(document).ready(function(){
 		
 		if(filter.length>0)value = 1;
 		else value = 0;
-		filter_ajax(filter,value,page);
+		filter_ajax();
       });
 
 	//태그 생성 삭제 관리
@@ -117,7 +117,7 @@ $(document).ready(function(){
          else {
             $("div[name="+name_div.val()+"]").detach();
          }
-         filter_cnt()
+		filter_cnt();
       }
    
 	//클릭시 filter배열 추가	
@@ -130,11 +130,12 @@ $(document).ready(function(){
 		}
 
    //태그 div 버튼 클릭시 삭제 및 클릭 해제
-      $(document).on('click','.teg_item_btn',function(){
-         var name = $(this).parent('div').attr('name');
-         $("input:checkbox[value='"+name+"']").prop("checked",false);
-         $(this).parent('div').detach();
-         filter_cnt()
+	$(document).on('click','.teg_item_btn',function(){
+		var name = $(this).parent('div').attr('name');
+		$("input:checkbox[value='"+name+"']").prop("checked",false);
+		$(this).parent('div').detach();
+		filter_cnt();
+		filter_ajax();
       });
       
    //좌측 필터 사이즈 
@@ -155,10 +156,10 @@ $(document).ready(function(){
 		});
 	}
       
-	column_menu.on('click',function(){
+	$(document).on('click','.column_menu',function(){
 		filterList();
 		value = 1;
-		filter_ajax(filter,value,page);
+		filter_ajax();
       });
       
       
@@ -193,5 +194,3 @@ $(document).ready(function(){
       });
       
       //리뷰 버튼
-      
-      

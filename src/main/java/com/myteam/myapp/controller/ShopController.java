@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
@@ -151,13 +152,13 @@ public class ShopController {
 			@RequestParam(value="filter[]", required=false) List<String> filter,
 			@RequestParam(value="value") int value,
 			@RequestParam(value="page") int page,
+			@RequestParam(value="price") int price,
 			Model model
 			) {
 
-		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page);
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page,price);
 		model.addAttribute("goodsList", filterList);
 		
-		int price = 0;
 		int total = ss.goodsTotal(filter, value, page, price);
 		model.addAttribute("total", total);		
 		
@@ -198,7 +199,7 @@ public class ShopController {
 			
 			return "shop/shopMain_item";
 		}
-		
+	
 	@RequestMapping(value="/shopSell.do")
 	public String shopSell(
 		@RequestParam("goodsNo") int goodsNo,
@@ -222,6 +223,19 @@ public class ShopController {
 		model.addAttribute("value", value);
 		
 	return "shop/shopSell";
+	}
+	@RequestMapping(value="/shopReview.do")
+	public String shopReview(
+			@RequestParam("goodsNo")int goodsNo,
+			Model model) {
+		
+		ProductDto pd = ss.sellSelect(goodsNo);
+		ArrayList<LikesDto> ReviewList = ss.shopReviewList(goodsNo);
+		
+		model.addAttribute("llist", ReviewList);
+		model.addAttribute("pd", pd);
+		
+		return "shop/shopReview";
 	}
 	
 	@ResponseBody

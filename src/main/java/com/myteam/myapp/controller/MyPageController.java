@@ -452,21 +452,7 @@ public class MyPageController {
 
 		return "redirect:/style/myStyle2.do";
 	}	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@RequestMapping(value = "/address.do")
 	public String address(
 			Model model,

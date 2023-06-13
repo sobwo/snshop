@@ -5,6 +5,14 @@
 <html>
 	<head>
 		<link href="${pageContext.request.contextPath}/resources/css/popup/comment_popup.css" rel="stylesheet">
+	<style>
+	     .popup_content22 { 
+            max-height: 900px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+	
+	</style>
 	</head>
 	<body>
 
@@ -16,6 +24,7 @@
 				<h3 class="popup_title">댓글</h3>
 			</div>
 			
+			
 			<!-- 본문내용 -->
 			<div class="comment_top">
 				<img class="user_img user_profileImg" src="" alt="">
@@ -26,8 +35,9 @@
 	               		<a class="tag" href="#">태그</a>
 	               	</div> 
 				</div>
-			</div>    
-			
+			</div>  
+		
+
 			<!-- 댓글 입력창 -->
 		
 			<div class="social_comment_input">
@@ -35,13 +45,15 @@
 		 			<img class="user_img memberProfileImg" src="" alt="프로필 사진">
 						<input type="text" class="comment_input" name="ccontents" placeholder="댓글을 남기세요.">
 					<button type="button" class="submit_comment" onclick="submitComment()">등록</button>
+					<input type="hidden" class="commentNo">
 				</form>
 			</div>
 			<!-- 댓글내용창 -->
+			 <div class="popup_content22"> <!-- 스크롤 -->
 			<div class="comment_area">
 				
 			</div>
-			  
+		</div>
 		</div>
 	</body>
 </html>
