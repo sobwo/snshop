@@ -6,6 +6,7 @@ import java.util.List;
 import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
@@ -20,7 +21,7 @@ public interface ShopService {
 		//트렌드 상품 리스트
 	public ArrayList<ProductDto> trandList();
 		//카테고리 필터	
-	public ArrayList<ProductDto>filterList(List<String> filter,int value,int page);
+	public ArrayList<ProductDto>filterList(List<String> filter,int value,int page,int price);
 		//상품가격필터
 	public ArrayList<ProductDto>priceAlign(List<String> filter, int value, int page, int price);
 		//상품정렬필터
@@ -29,6 +30,11 @@ public interface ShopService {
 	public ArrayList<ProductDto>recommentList(GoodsVo gv);
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
+	public ArrayList<SizeDto>sizeListAll(int goodsNo);
+	
+	public ProductDto sellSelect (int goodsNo);
+	
+	public ArrayList<LikesDto> shopReviewList(int goodsNo);
 	
 	public int goodsTotal(List<String> filter, int value, int page,int price);
 	
@@ -39,4 +45,7 @@ public interface ShopService {
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
 //	public int interestCancel(int memberNo, int goodsNo);
+	
+	//상품 등록
+	public int goodsInsert(GoodsVo gv, String size, int quantity);
 }

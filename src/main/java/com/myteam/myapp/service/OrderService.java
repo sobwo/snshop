@@ -31,5 +31,7 @@ public interface OrderService {
 	public OrderDto orderSelectNew(String orderNum);
 	
 	public OrderDto orderHistoryShow(int orderNo);
+	
+	public int orderCancel(String orderNum);
 }
 

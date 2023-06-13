@@ -3,7 +3,7 @@ package com.myteam.myapp.domain;
 public class InventoryVo {
 	
 	private int inventoryNo;
-	private String quantity;
+	private int quantity;
 	private int sizeNo;
 	private int goodsNo;
 	
@@ -13,10 +13,10 @@ public class InventoryVo {
 	public void setInventoryNo(int inventoryNo) {
 		this.inventoryNo = inventoryNo;
 	}
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	public int getSizeNo() {

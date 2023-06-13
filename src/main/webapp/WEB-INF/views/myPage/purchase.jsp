@@ -18,7 +18,7 @@
 		</style>
 	</head>
 	<body>
-		<form name="frm">
+		
 		<jsp:include page="popup/history_popup.jsp"></jsp:include>
 		<jsp:include page="popup/purchase_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
@@ -49,7 +49,7 @@
 							<div class="tab_title">종료</div>
 						</div>
 					</div>
-
+					<form id="frm">
 					<!-- 기간별 설정 -->
 					<div class="period_search">
 						<ul class="month_btn_area">
@@ -64,9 +64,10 @@
 							<input type="date" class="calander" name="endDate" value="${endDate}">
 						</div>
 						<div>
-							<input type="button" class="btn_search" value="조회">
+							<input type="button" class="btn_search" value="조회" onclick="check()">
 						</div>
 					</div>
+					</form>
 					<div class="search_info">
 						<p>&#183;&nbsp;한 번에 조회 가능한 기간은 최대 6개월입니다.</p>
 						<p>&#183;&nbsp;기간별 조회 결과는 결제일 기준으로 노출됩니다.</p>
@@ -149,13 +150,49 @@
 				</div>
 			</div>
 		</div>
-		</form>
+
 		<jsp:include page="../common/footer.jsp"></jsp:include>	
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/orderHistory.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
+		$(document).ready(function(){
+			var today = new Date();
+			today = today.toISOString().slice(0, 10);
+			$(".calander").eq(1).val(today);
+			
+			var startDate = "${startDate}";
+			var endDate = "${endDate}";
+			if(startDate == "")
+				monthAgo(6);
+			else{
+				 $(".calander").eq(0).val(startDate);
+				 $(".calander").eq(1).val(endDate);
+			}
+			
+			var month = $(".month_link");
+			
+			month.eq(0).click(function(){
+			    monthAgo(2);
+			});
+			
+			month.eq(1).click(function(){
+			    monthAgo(4);
+			});
+			
+			month.eq(2).click(function(){
+			    monthAgo(6);
+			});
+			
+			function monthAgo(value){
+				var monthCal = new Date(today); // today를 Date 객체로 변환
+			    monthCal.setMonth(monthCal.getMonth() - value); // 월 계산
+			    monthCal = monthCal.toISOString().slice(0, 10);
+			    $(".calander").eq(0).val(monthCal);
+			}
+		});
+		
 		tab.eq(0).click(function() {
 			purchase_index.val("0");
 			$(location).attr("href", "${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying&value="+purchase_index.val());
@@ -192,12 +229,12 @@
 			$(location).attr("href","${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying&value="+purchase_index.val()+"&price="+price_filter_index.val());
 		});
 		
-		btn_search.click(function(){
-			var fm = document.frm;
+		function check(){
+			var fm = document.getElementById("frm");
 			fm.method = "POST";
 			fm.action="${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying";
 			fm.submit();
-		});
+		}
 		
 		function showHistory(orderNo){
 			$(".history_wrap").show();

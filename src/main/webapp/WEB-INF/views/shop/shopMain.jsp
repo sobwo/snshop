@@ -11,8 +11,30 @@
 		<title>SHOP 메인페이지</title>
 		
 		<style>
-			.nav_list:nth-child(2) a{
+			.nav_list:nth-child(3) a{
 				font-weight:bold;
+			}
+			.inner{
+				font-family: '수트';
+			}
+			.sale_btn_wrap{
+				width:200px;
+				border-bottom:1px solid #ebebeb;
+				margin-right:20px;
+				padding-bottom:10px;
+				margin-bottom:15px;
+			}
+			.sale_btn{
+				width:100%;
+				height:50px;
+				border:1px solid #000;
+				border-radius:5px;
+				background:#fff;
+				cursor:pointer;
+				margin-bottom:20px;
+				font-size:18px;
+				font-weight:bold;
+				
 			}
 		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
@@ -32,7 +54,7 @@
 						<c:forEach var="tl" items="${trandList}">
 							<div class="trendContents">
 								<div class="trendImg">
-									<img src="${tl.imgFileName}" width="90px" height="90px">
+									<img src="" width="90px" height="90px">
 								</div><!-- trendImg -->
 								<div class="trendName">
 									<span>${tl.categoryName}</span>
@@ -44,6 +66,9 @@
 	<!-- 좌측 필터  -->
 				<section class="product_container">
 					<aside class="aside_area">
+						<div class="sale_btn_wrap">
+							<input class="sale_btn" type="button" value="판매 상품 등록" onclick="location.href='${pageContext.request.contextPath}/shop/salePage.do'">
+						</div>
 						<div class="filter_area">
 							<div class="filter_title title_first">
 								<div class="filterName">
@@ -359,54 +384,23 @@
 									<div class="filter_list">
 										<div class="size_title">신발</div>
 										<div class="sh_size_btn">
-											<button class="column_menu">215</button>
-											<button class="column_menu">220</button>
-											<button class="column_menu">225</button>
-											<button class="column_menu">230</button>
-											<button class="column_menu">235</button>
-											<button class="column_menu">240</button>
-											<button class="column_menu">245</button>
-											<button class="column_menu">250</button>
-											<button class="column_menu">255</button>
-											<button class="column_menu">260</button>
-											<button class="column_menu">265</button>
-											<button class="column_menu">270</button>
-											<button class="column_menu">275</button>
-											<button class="column_menu">280</button>
-											<button class="column_menu">285</button>
-											<button class="column_menu">290</button>
-											<button class="column_menu">295</button>
-											<button class="column_menu">300</button>
-											<button class="column_menu">305</button>
-											<button class="column_menu">310</button>
-											<button class="column_menu">315</button>
-											<button class="column_menu">320</button>
-											<button class="column_menu">325</button>
-											<button class="column_menu">330</button>
+											<c:forEach begin="215" end="330" step="5" var="i">
+												<button class="column_menu">${i}</button>
+											</c:forEach>
 										</div><!-- size_btn -->			
 										<div class="size_title">의류</div>
 										
 										<div class="clo_size_btn_wrap">
 											<div class="ahpabet_size">
-												<button class="column_menu">XXS</button>
-												<button class="column_menu">XS</button>
-												<button class="column_menu">S</button>
-												<button class="column_menu">M</button>
-												<button class="column_menu">L</button>
-												<button class="column_menu">XL</button>
-												<button class="column_menu">XXL</button>
-												<button class="column_menu">XXXL</button>
+												<c:set var="alpabetSize" value='XXS, XS, S, M, L, XL, XXL, XXXL' />
+												<c:forEach items="${alpabetSize}" var="j">
+													<button class="column_menu" value="${j}">${j}</button>
+												</c:forEach>
 											</div><!-- ahpabet_size -->
 											<div class="number_size">
-												<button class="column_menu">28</button>
-												<button class="column_menu">29</button>
-												<button class="column_menu">30</button>
-												<button class="column_menu">31</button>
-												<button class="column_menu">32</button>
-												<button class="column_menu">33</button>
-												<button class="column_menu">34</button>
-												<button class="column_menu">35</button>
-												<button class="column_menu">36</button>
+												<c:forEach begin="28" end="36" step="1" var="k">
+													<button class="column_menu">${k}</button>
+												</c:forEach>
 											</div><!-- number_size -->										
 										</div><!-- clo_size_btn_wrap -->
 									</div><!-- filter_list -->
@@ -538,7 +532,8 @@
 			filter.push("1");
 			value =0;
 			page = 1;
-			filter_ajax(filter,value,page);
+			price = 0;
+			filter_ajax();
 			filter.pop();
 			
 			$('.trend_con_area').slick({
@@ -572,22 +567,6 @@
 		var value=0;
 		var page = 1;
 		var price = $(".filter_price");
-
-	//상단 네비
-		$(".topNav").on("click",function(){
-			var value = 1;
-			var page = 1;
-			var cate = $(this).text();
-			var tegArea = $(".filter_teg_area");
-			tegArea.empty();
-			$(".filter_list_in").hide();			
-			$(".f_div").prop("checked", false);
-			filter =[];
-			filter.push(cate);
-			filter_ajax(filter,value,page);
-			filter_cnt();
-			
-		});
 		
 	//우측 필터버튼 클릭시
 		var btn_list_item = $(".btn_list_item");
@@ -600,18 +579,32 @@
 			list.hide();
 		});
 
-		function filter_ajax(filter,value,page){
+		function filter_ajax(){
+			filterList();
 			
-			page = page * 8;
+			if(filter.length == 0){
+				filter.push("1");
+				value =0;
+			}
+			console.log(filter);
+			var data = {filter : filter}
+			
+			if (value !== null) {
+			data.value = value;
+			}
+			
+			if (page !== null) {
+			data.page = page * 8;
+			}
+			
+			if (price !== null) {
+			data.price = price;
+			}
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/shop/categoryFilter.do",		
 				method: "POST",
-				data:{
-				    filter: filter,
-				    "value": value,
-				    "page": page
-				  },
+				data:data,
 				cache : false,
 				success : function(data){
 					$(".goods_wrap").html(data);
@@ -624,7 +617,7 @@
 			        console.log("error: " + error);
 				}	
 			});
-		}
+		}	
 		
 
 	//정렬 ajax
@@ -665,13 +658,10 @@
 				}	
 			});	
 		}
-		
-		
 	//가격 필터 ajax
-		$(".shearchPrice").on("click",function(){
+		$(document).on("click",".shearchPrice",function(){
 			
 			var priceInput = $(".filter_price");
-			var price = priceInput.val();
 			
 			var regExp = /^[0-9]*$/;
 			  
@@ -684,43 +674,20 @@
 				priceInput.val("");
 				return false;
 			}else{
+				price = priceInput.val();
 				
 				if(filter.length > 0){
 					value = 1;
-					price_ajax(filter,value,page,price);
+					filter_ajax();
 				}else{
 					filter.push("1");
 					value =0;
-					price_ajax(filter,value,page,price);
+					filter_ajax();
 					filter.pop();
 				}
 			};
 
 		});
-		
-		function price_ajax(filter,value,page,price){
-			
-			page = page * 8;
-			
-			$.ajax({
-				url: "${pageContext.request.contextPath}/shop/priceFilter.do",		
-				method: "POST",
-				data: {filter:filter,
-					   "value":value,
-					   "page":page,
-					   "price":price},
-				cache : false,
-				success : function(data){
-					$(".goods_wrap").html(data);
-				},
-				error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
-					console.log("code: " + request.status);
-			        console.log("message: " + request.responseText);
-			        console.log("error: " + error);
-				}	
-			});	
-		}
 		</script>
 	</body>
 </html>

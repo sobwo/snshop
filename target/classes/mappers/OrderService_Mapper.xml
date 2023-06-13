@@ -80,20 +80,20 @@
 	<select id="purchaseInfo" parameterType="Integer" resultType="od">
 		SELECT * 
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
-		WHERE MEMBERNO = #{0} AND PORS = '구매'
+		WHERE a.MEMBERNO = #{0} AND PORS = '구매'
 	</select>
 		
 	<select id="saleInfo" parameterType="Integer" resultType="od">
 		SELECT * 
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
-		WHERE MEMBERNO = #{0} AND PORS = '판매'
+		WHERE a.MEMBERNO = #{0} AND PORS = '판매'
 	</select>
 	
 	
 	<select id="selectHistoryAll" parameterType="Integer" resultType="od">
 		SELECT a.orderNo, b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
-		WHERE MEMBERNO = #{1} 
+		WHERE a.MEMBERNO = #{1} 
 		<include refid="search_pors"/>
 		<include refid="search_status"/>
 		<include refid="search_detail"/>
@@ -122,4 +122,8 @@
 		select * from orders a inner join goods b on a.goodsNo = b.goodsNo inner join address c on a.addressNo = c.addressNo 
 		where a.orderNo = #{0}
 	</select>
+	
+	<update id="orderCancel" parameterType="String">
+		update orders set orderStatus='종료', statusDetail='대기중' where orderNum = #{0} 
+	</update>
 </mapper>

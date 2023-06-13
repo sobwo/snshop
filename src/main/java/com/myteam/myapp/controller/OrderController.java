@@ -202,4 +202,26 @@ public class OrderController {
 
 		return js;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/orderCancel.do")
+	public JSONObject orderCancel(
+			@RequestParam("orderNum") String orderNum) {
+		
+		System.out.println("접속");
+		
+		HashMap<String, Object> map = new HashMap<>();
+
+
+		
+		int value = os.orderCancel(orderNum);
+		
+		map.put("value",value);
+		
+		JSONObject js = new JSONObject(map);
+
+		return js;
+		
+	}
+	
 }
