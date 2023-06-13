@@ -43,4 +43,6 @@ public interface OrderService_Mapper {
 	public OrderDto orderSelectNew(String OrderNum);
 	
 	public OrderDto orderHistoryShow(int orderNo);
+	
+	public int orderCancel(String orderNum);
 }

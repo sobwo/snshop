@@ -30,7 +30,7 @@
 				</div>
 				<div id="nav_main">
 					<ul>
-<%-- 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li> --%>
+						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/'>HOME</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/style/style_discover.do'>STYLE</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/shop/shopMain.do'>SHOP</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/myPage/myPageMain.do'>MY</a></li>

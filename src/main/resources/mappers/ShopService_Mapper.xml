@@ -91,7 +91,7 @@
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		WHERE inventory.quantity > 0
 		<include refid="searchCategory" />
-		and goods.price >= #{price};
+		and goods.price >= #{price}
 	</select>
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -115,18 +115,11 @@
 	<select id="filterList" parameterType="map" resultType="pd">
 		SELECT *
 		FROM goods a
-		INNER JOIN productImg b ON a.goodsNo = b.goodsNo
 		LEFT JOIN (
 		    SELECT *
 		    FROM interest
 		    WHERE interestNo IN (SELECT MIN(interestNo) FROM interest GROUP BY goodsNo)
 		) c ON a.goodsNo = c.goodsNo
-		WHERE b.goodsNo IN (
-		    SELECT goodsNo
-		    FROM productImg
-		    GROUP BY goodsNo
-		    HAVING imgNo = MIN(imgNo)
-		)
 		<include refid="resultGoodsNo" />
 		<include refid="align" /> 
 	</select>
@@ -143,6 +136,12 @@
 		limit 0 ,#{page}
 	</select>
 	
+	<select id="sellSelect" parameterType="int" resultType="pd">
+		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
+		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) 
+		and a.goodsNo=#{goodsNo}
+	</select>
+	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
 		
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
@@ -152,7 +151,12 @@
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
-		select * from size s left join interest i on s.sizeNo = i.sizeNo where s.goodsNo = #{0}
+		select * from size a inner join inventory b on a.sizeNo = b.sizeNo  
+		where a.goodsNo = #{goodsNo}
+	</select>
+	
+	<select id="sizeListAll" parameterType="Integer" resultType="sd">
+		select * from size where goodsNo = #{0}
 	</select>
 	
 	<!-- interest -->
@@ -203,4 +207,27 @@
 		select count(interestCheck) from interest where goodsNo = #{0} and interestCheck = 0
 	</select>
 	
+	<insert id="goodsInsert" parameterType="gv">
+		insert into goods(goodsName,goodsEng,modelNum,category,categoryName,goodsGender,price,memberNo,productImg)
+		values(#{goodsName},#{goodsEng},#{modelNum},#{category},#{categoryName},#{goodsGender},#{price},#{memberNo},#{imgFileName})
+	</insert>
+	<select id="goodsNoSelect" parameterType="Integer" resultType="Integer">
+		SELECT * FROM goods where memberNo = #{0} ORDER BY goodsNo DESC LIMIT 1
+	</select>
+	<insert id="sizeInsert" parameterType="sv">
+		insert into size(sizeName,goodsNo) values(#{sizeName},#{goodsNo})
+	</insert>
+	<select id="sizeNoSelect" parameterType="sv" resultType="Integer">
+		select sizeNo from size where goodsNo = #{goodsNo} and sizeName = #{sizeName}
+	</select>
+	<select id="inventoryCheck" parameterType="iv" resultType="Integer">
+		select count(*) from inventory where sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
+	</select>
+	<insert id="inventoryInsert" parameterType="iv">
+		insert into inventory(quantity,sizeNo,goodsNo)
+		values(#{quantity},#{sizeNo},#{goodsNo})
+	</insert>
+	<update id="inventoryUpdate" parameterType="iv">
+		update inventory set quantity=quantity+1 where sizeNo=#{sizeNo} and goodsNo=#{goodsNo}
+	</update>
 </mapper>

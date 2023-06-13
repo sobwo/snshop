@@ -14,5 +14,5 @@ public interface CommentService {
 	
 	public ArrayList<CommentDto> getcomment(int boardNo);
 
-
+	 public int deletecomment(CommentDto CD);
 }

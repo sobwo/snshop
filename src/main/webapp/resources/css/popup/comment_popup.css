@@ -6,6 +6,7 @@
 	top:0;
 	right:0;
 	width:420px; 
+
 	background-color: #fff; 
 	z-index:15;
 	border-left:1px solid #f4f4f4;
@@ -127,6 +128,20 @@
 	color:rgba(34,34,34,.5);
 	cursor:pointer;
 }
+.delete_comment_btn{
+	border:0;
+	background:#fff;
+	color:rgba(34,34,34,.5);
+	cursor:pointer;
+}
+
+.correction_comment_btn{
+	border:0;
+	background:#fff;
+	color:rgba(34,34,34,.5);
+	cursor:pointer;
+	
+}
 
 .getCommentList{
 	width:355px;
@@ -134,3 +149,4 @@
 	display:flex;
 	align-items:center;
 }
+

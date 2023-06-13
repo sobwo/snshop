@@ -153,6 +153,12 @@ public class OrderServiceImpl implements OrderService{
 		OrderDto value = osm.orderHistoryShow(orderNo);
 		return value;
 	}
+
+	@Override
+	public int orderCancel(String orderNum) {
+		int value = osm.orderCancel(orderNum);
+		return value;
+	}
 }
 
 

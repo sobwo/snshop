@@ -44,4 +44,12 @@ public class CommentServiceImpl implements CommentService {
 		return value;
 	}
 
+
+	@Override
+	public int deletecomment(CommentDto CD) {
+		int value = csm.deletecomment(CD);
+		
+		return value;
+	}
+
 }

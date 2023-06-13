@@ -10,7 +10,17 @@ VALUES(#{ccontents},#{boardNo},#{memberNo})
 
 </insert>
 <select id="getcomment" parameterType="Integer" resultType="cmd">
-SELECT * FROM comment a inner join member b on a.memberNo = b.memberNo WHERE boardNo = #{0}
+<!-- SELECT * FROM comment a inner join member b on a.memberNo = b.memberNo WHERE boardNo = #{0} -->
+
+
+SELECT * FROM comment a INNER JOIN member b ON a.memberNo = b.memberNo WHERE a.boardNo = #{0}
+AND a.delyn = 'N';
+
 </select>
+
+<update id="deletecomment" parameterType="cmd">
+		update comment set delyn='Y' where commentNo=#{commentNo}
+</update>
+
 
 </mapper>

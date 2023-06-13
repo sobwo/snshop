@@ -11,4 +11,6 @@ public interface CommentService_Mapper {
 
 	 public ArrayList<CommentDto> getcomment(int boardNo);
 
+	 
+	 public int deletecomment(CommentDto CD);
 }

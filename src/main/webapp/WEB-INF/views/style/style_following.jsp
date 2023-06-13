@@ -15,7 +15,7 @@
 				font-weight:bold;
 			}
 			
-			.nav_list:nth-child(1) a{
+			.nav_list:nth-child(2) a{
 				font-weight:bold;
 			}
 		</style>
@@ -121,7 +121,8 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}' )">	
+
 									</span>
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
@@ -312,7 +313,7 @@
 				});	
 			}
 			
-			function showComment(boardNo){
+ 		function showComment(boardNo){
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -331,7 +332,7 @@
 					
 				});
 			}
-			
+
  			/* 	좋아요 누른 사람 보여주기  */
   			function openPopup2(boardNo,profileImg) {
 	    		$.ajax({
@@ -373,6 +374,8 @@
 			    document.body.style.overflow = "auto";
 			} 
 
+
+	
 		</script>
 	</body>
 </html>

@@ -2,17 +2,17 @@ package com.myteam.myapp.domain;
 
 public class GoodsVo {
 	
-	private int goodsNo, price, interestNum;
+	private int goodsNo, price, interestNum, memberNo;
 
-	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, imgFileName;
+	private String goodsName, modelNum, releaseDate, color, category, categoryName, goodsBrandName, goodsEng, productImg,goodsGender;
 
 	
 	
-	public String getImgFileName() {
-		return imgFileName;
+	public String getProductImg() {
+		return productImg;
 	}
-	public void setImgFileName(String imgFileName) {
-		this.imgFileName = imgFileName;
+	public void setProductImg(String productImg) {
+		this.productImg = productImg;
 	}
 	public String getGoodsBrandName() {
 		return goodsBrandName;
@@ -81,7 +81,16 @@ public class GoodsVo {
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
-	
-	
-	
+	public String getGoodsGender() {
+		return goodsGender;
+	}
+	public void setGoodsGender(String goodsGender) {
+		this.goodsGender = goodsGender;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}	
 }

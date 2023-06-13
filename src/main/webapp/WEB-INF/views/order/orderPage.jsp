@@ -557,7 +557,7 @@
 				data: JSON.stringify(pay_data),
 				success : function(data){
 					console.log(data);
-					if(data.result == 2){
+					if(data.result >= 1){
 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
 					}
 				},
