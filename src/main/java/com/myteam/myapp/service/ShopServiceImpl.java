@@ -13,6 +13,7 @@ import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.InventoryVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
@@ -60,14 +61,14 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<ProductDto> filterList(List<String> filter, int value, int page) {
+		public ArrayList<ProductDto> filterList(List<String> filter, int value, int page,int price) {
 
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 
 			hashMap.put("filter", filter);
 			hashMap.put("value", value);
 			hashMap.put("page", page);
-			hashMap.put("price", 0);
+			hashMap.put("price", price);
 			
 			List<Integer> goodsNoList = ssm.searchResult(hashMap);
 			
@@ -146,6 +147,15 @@ public class ShopServiceImpl implements ShopService {
 			
 			return pd;
 		}
+		
+		@Override
+		public ArrayList<LikesDto> shopReviewList(int goodsNo) {
+			
+			ArrayList<LikesDto> reviewList = ssm.shopReviewList(goodsNo);
+			
+			return reviewList;
+		}
+		
 		
 
 		@Override

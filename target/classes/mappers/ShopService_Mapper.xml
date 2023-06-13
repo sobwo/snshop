@@ -99,9 +99,22 @@
 	</select>
 	
 	<select id="trandList" resultType="pd">
-		select a.categoryName, sum(a.interestNum)as cnt, min(b.imgfileName) from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
-		group by a.categoryName order by cnt desc
+		SELECT a.categoryName, SUM(a.interestNum + IFNULL(c.cntnum, 0)) AS cnt, MIN(b.imgfileName)
+		FROM goods a
+		INNER JOIN productImg b ON a.goodsNo = b.goodsNo
+		LEFT JOIN (
+		    SELECT goodsNo, COUNT(goodsNo) AS cntnum
+		    FROM orders
+		    GROUP BY goodsNo
+		) c ON a.goodsNo = c.goodsNo
+		WHERE b.goodsNo IN (
+		    SELECT goodsNo
+		    FROM productImg
+		    GROUP BY goodsNo
+		    HAVING imgNo = MIN(imgNo)
+		)
+		GROUP BY a.categoryName
+		ORDER BY cnt DESC;
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
@@ -140,6 +153,10 @@
 		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
 		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) 
 		and a.goodsNo=#{goodsNo}
+	</select>
+	
+	<select id="shopReviewList" parameterType="int" resultType="ld">
+		select * from board where boardNo in (select boardNo from connect where goodsNo = #{goodsNo})
 	</select>
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
