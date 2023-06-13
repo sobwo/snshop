@@ -6,18 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <link href="${pageContext.request.contextPath}/resources/css/popup/likepush.css" rel="stylesheet">
+  <style>
+ 	 .popup_content {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 15px;
+        }   
+</style > 
 </head>
 <body>
-
+ <div class="popup_content"> 
 	<c:forEach var = "get" items="${get}">
 		<div class="popup_style">
 			<img class="user_img" style="width: 25px; height: 25px; border-radius: 10px;" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
-	 	    <img  class="user_img" src="" style="width: 25px; height: 25px; border-radius: 10px;">
-			<p style="margin-left: -425px;"><b>${get.memberName} </b></p>
+			<p style="margin-left: -210px;"><b>${get.memberName} </b></p>
 	        <button class="follow-button" value="${get.memberNo}">팔로우 </button>             
 		</div>
-           
 	</c:forEach>
+ </div>  
 	<script>
 	$(document).ready(function(){
 		showfollowing();

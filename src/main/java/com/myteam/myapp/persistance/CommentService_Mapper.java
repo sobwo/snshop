@@ -6,11 +6,13 @@ import com.myteam.myapp.domain.CommentDto;
 import com.myteam.myapp.domain.CommentVo;
 public interface CommentService_Mapper {
 
-//	int commentInsert(CommentVo cv);
+
 	public int commentInsert(CommentVo cv);
 
 	 public ArrayList<CommentDto> getcomment(int boardNo);
 
 	 
 	 public int deletecomment(CommentDto CD);
+	 public int modifycomment(CommentDto cdo);
+	 
 }

@@ -30,14 +30,9 @@ public interface StyleService {
 	public int updatefollowing(FollowingVo fv);
 	
 	public Integer nowfollowingState(int memberNo, int followingMemberNo);/* 현재 상태 */
-	/*public int nowfollowingState(FollowingVo fv);/* 현재 상태 */
-	
-	/* 좋아요 누른사람? */
-	/* public ArrayList<LikesDto> getlikeMemberList(int boardNo); */
+
 	 public ArrayList<LikeMemberDto> getlikeMemberList(int boardNo); 
-	/* 좋아요 누른사람 */
-	
-	/* 완성x */
+
 	public ArrayList<LikesDto> boardTotalList(int memberNo);
 
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);

@@ -84,7 +84,7 @@
 }
 
 .comment_input{
-	width:262px;
+	width:212px;
 	height:17px;
 	padding:11px 52px 11px 12px;
 	background:#fafafa;
@@ -93,8 +93,7 @@
 	margin-left:10px;
 }
 
-.submit_comment{
-	display:none;
+.submit_comment, .modify_comment{
 	width:40px;	
 	height:100%;
 	padding-left:5px;

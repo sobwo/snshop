@@ -15,4 +15,11 @@ public interface CommentService {
 	public ArrayList<CommentDto> getcomment(int boardNo);
 
 	 public int deletecomment(CommentDto CD);
+	 public int modifycomment(int commentNo,String ccontents);
+
+		/*
+		 * public CommentDto modifycomment(int commentNo, String ccontents);
+		 */
+	 
+	 
 }

@@ -5,22 +5,24 @@
 <mapper namespace="com.myteam.myapp.persistance.CommentService_Mapper">
 
 <insert id ="commentInsert" parameterType="cmv">
-INSERT INTO COMMENT(ccontents,boardNo,memberNo)
-VALUES(#{ccontents},#{boardNo},#{memberNo})
+	INSERT INTO COMMENT(ccontents,boardNo,memberNo)
+	VALUES(#{ccontents},#{boardNo},#{memberNo})
 
 </insert>
 <select id="getcomment" parameterType="Integer" resultType="cmd">
 <!-- SELECT * FROM comment a inner join member b on a.memberNo = b.memberNo WHERE boardNo = #{0} -->
 
-
-SELECT * FROM comment a INNER JOIN member b ON a.memberNo = b.memberNo WHERE a.boardNo = #{0}
-AND a.delyn = 'N';
+	
+	SELECT * FROM comment a INNER JOIN member b ON a.memberNo = b.memberNo WHERE a.boardNo = #{0}
+	AND a.delyn = 'N';
 
 </select>
 
 <update id="deletecomment" parameterType="cmd">
-		update comment set delyn='Y' where commentNo=#{commentNo}
+	update comment set delyn='Y' where commentNo=#{commentNo}
 </update>
 
-
+<update id = "modifycomment" parameterType="cmd">
+	update comment set ccontents=#{ccontents} where commentNo=#{commentNo}
+</update>
 </mapper>

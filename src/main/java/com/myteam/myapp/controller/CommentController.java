@@ -68,43 +68,38 @@ public class CommentController {
 	}
 
 
-	/*
-	 * @RequestMapping(value="/deletecomment.do") public JSONObject delectcomment(
-	 * 
-	 * @RequestParam("commentNo")int commentNo, CommentDto CD, HttpSession session)
-	 * throws Exception{
-	 * 
-	 * CD.setCommentNo(commentNo); int value = cs.deletecomment(CD);
-	 * 
-	 * JSONObject json = new JSONObject();
-	 * 
-	 * json.put("value",value);
-	 * 
-	 * return json;
-	 * 
-	 * 
-	 * }
-	 */
+	
 	  @ResponseBody
-	  @RequestMapping(value="/deletecomment.do") 
-	  public String delectcomment(
-  
-			  @RequestParam("commentNo")int commentNo, 
-			  CommentDto CD,
-		
-			  HttpSession session) /*throws Exception*/{
-		  		
-		  	CD.setCommentNo(commentNo);
-		  	int value = cs.deletecomment(CD);
-		  			
-			 return value+""; 
-			
-		
-		  			
-		  			
-	 }
-	  
 	 
+	  @RequestMapping(value="/deletecomment.do")
+	  public String delectcomment(
+	  		@RequestParam("commentNo")int commentNo,
+			@RequestParam("memberNo") int memberNo,
+		  CommentDto CD, HttpSession session) {
+		  int memberNo1 = Integer.parseInt(session.getAttribute("memberNo").toString());
+
+	  CD.setCommentNo(commentNo);
+	  int value = cs.deletecomment(CD);
+
+	  return value+"";
+	 }
+	 
+
+
+	  @ResponseBody
+	  @RequestMapping(value ="/modifycomment.do")
+	  public String modifycomment(
+			  @RequestParam("ccontents")String ccontents,
+			  @RequestParam("commentNo")int commentNo,
+			Model model  ) {
+		  
+		  int value = cs.modifycomment(commentNo, ccontents);
+		  
+
+		  
+		  return "{\"value\":"+value+"}";
+	  }
+	  
 }
 
 
