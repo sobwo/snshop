@@ -168,8 +168,6 @@
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
-<<<<<<< HEAD
-
 <!-- 		select * from size a inner join inventory b on a.sizeNo = b.sizeNo  
 =======
 		select * from size a inner join inventory b on a.sizeNo = b.sizeNo  
@@ -178,13 +176,10 @@
 <<<<<<< HEAD
  -->
 		select * from size s left join interest i on s.sizeNo = i.sizeNo where s.goodsNo = #{0}
-
-=======
 	</select>
 	
 	<select id="sizeListAll" parameterType="Integer" resultType="sd">
 		select * from size where goodsNo = #{0}
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	</select>
 	
 	<!-- interest -->
