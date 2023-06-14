@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -100,8 +101,19 @@
 						<div class="purchase_contents" onclick="showHistory('${alist.orderNo}')">
 							<div class="purchase_detail">
 								<div class="purchase_thumb">
-									<!-- 이미지 파일(수정해야될곳) -->
-									<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+									<!-- 이미지 파일 -->
+									<c:set var="exp" value= "${alist.productImg.substring(alist.getProductImg().length()-3, alist.getProductImg().length())}" />
+									<c:set var="imgList" value="${fn:split(alist.productImg, ',')}" />
+									<c:choose>
+										<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+											<c:forEach var="img" items="${imgList}">
+												<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+										</c:otherwise>
+									</c:choose>
 								</div>
 								<div class="purchase_info">
 									<p class="purchase_name"><strong>${alist.goodsName}</strong></p>
@@ -155,7 +167,6 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/orderHistory.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/purchase_menu.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/myPage/calander.js"></script>
 		<script>
 		$(document).ready(function(){
 			var today = new Date();

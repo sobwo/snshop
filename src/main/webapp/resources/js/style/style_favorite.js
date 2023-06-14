@@ -13,21 +13,6 @@
 			
 			
 			
-			
-			//댓글쓸때 css변경
-			var comment = $(".comment_input");
-			var submit_comment = $(".submit_comment");
-			comment.on("input",function(){
-			if(comment.val()!=""){
-				comment.css("width","212px");
-				submit_comment.show();
-			}
-			else{
-				comment.css("width","262px");
-					submit_comment.hide();
-				}
-			});
-			
 			//답글쓰기
 			reply_comment_btn = $(".reply_comment_btn");
 			reply_comment_btn.on("click",function(){

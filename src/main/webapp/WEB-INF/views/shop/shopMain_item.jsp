@@ -19,7 +19,7 @@
 				<div class="product_item_wrap">
 					<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 						<div class="pro_img_area">
-						<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
+							<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
 							<c:set var="imgList" value="${fn:split(goodsList.productImg, ',')}" />
 							<c:choose>
 								<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">

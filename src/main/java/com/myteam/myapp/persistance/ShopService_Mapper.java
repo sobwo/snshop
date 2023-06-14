@@ -8,6 +8,7 @@ import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.InterestVo;
 import com.myteam.myapp.domain.InventoryVo;
+import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.ProductDto;
 import com.myteam.myapp.domain.ProductImgVo;
 import com.myteam.myapp.domain.SizeDto;
@@ -30,7 +31,10 @@ public interface ShopService_Mapper {
 	public ArrayList<ProductDto>recommentList(HashMap<String, Object> hashMap);
 		//개별 상품 사이즈
 	public ArrayList<SizeDto>sizeList(int goodsNo);
-	public ArrayList<SizeDto>sizeListAll(int goodsNo);
+	
+	public ArrayList<SizeDto>sizeListAll(int goodsNo);	
+	
+	public ArrayList<LikesDto> shopReviewList(int goodsNo);
 	
 	public ArrayList<ProductDto> trandList();
 	

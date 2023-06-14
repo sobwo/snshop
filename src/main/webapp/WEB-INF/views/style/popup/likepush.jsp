@@ -20,10 +20,7 @@
             border-radius: 15px;
         }
 
-        .close_btn{
-            margin-top: 55%;
-            margin-left: 125px;
-        }
+
         
         .popup_style{
             display: flex; 
@@ -52,16 +49,19 @@
         <body>
             <div class="like_btn">
                 <div class="like"> 
-                
 				</div>
-                    <div id="popup" style="display: none; position: absolute;  top: 750px; left: 750px; width: 400px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
+                    <div id="popup" style="display: none; position: absolute;  top: 500px; left: 750px; width: 400px;  background-color: #fff; border: 1px solid #ccc; padding: 10px;">
                         <h3 style="text-align: center;">좋아요</h3>
-					<div class="popup_style_wrap">						
-                    </div>
-                    <div class="close_btn">
+                        
+						<div class="popup_style_wrap">	
+					
+			
+                    	</div>
+                   	<div class="close_btn">
                   		<button onclick="closePopup2()" style="border-radius: 10px;   width: 55px; margin-left: 125px; background:white;">확인</button>
-                    </div>                
-                    </div>
+                    </div>             
+                	</div>
+                 
             </div>
          </body>
        </html>

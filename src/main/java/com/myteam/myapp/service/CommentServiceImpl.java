@@ -52,4 +52,16 @@ public class CommentServiceImpl implements CommentService {
 		return value;
 	}
 
+
+	@Override
+	public int modifycomment(int commentNo,String ccontents) {
+		/* CommentDto cdo = csm.modifycomment(commentNo); */
+		CommentDto cdo = new CommentDto();
+		cdo.setCcontents(ccontents);
+		cdo.setCommentNo(commentNo);
+		
+		int value = csm.modifycomment(cdo);
+		return value;
+	}
+
 }

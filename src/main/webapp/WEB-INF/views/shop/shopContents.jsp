@@ -133,7 +133,7 @@
 						<c:forEach var ="reList" items="${recommentList}">
 							<div class="o_product">
 								<div class="o_product_img">
-									<img src="${reList.imgFileName}" width="224px" height="224px">
+									<img src="${reList.productImg}" width="224px" height="224px">
 								</div>
 								<div class="o_info">
 									<span>${reList.goodsName}</span>
