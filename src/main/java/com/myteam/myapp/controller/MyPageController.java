@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
 import com.myteam.myapp.domain.GoodsInterestDto;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.LikesVo;
@@ -379,7 +383,7 @@ public class MyPageController {
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
 			@RequestParam("contents") String contents,
 			@RequestParam("viewCnt") String viewCnt,
-//			@RequestParam("hashTagName") String hashTagName,
+			@RequestParam("hashTagName") String hashTagName,
 			HttpSession session
 			) throws Exception {
 		
@@ -397,12 +401,12 @@ public class MyPageController {
 		
 		for(String name : uploadedFileNames)
 		System.out.println("uploadedFileNames"+name);
-		
+// 게시물 insert		
 		BoardVo bv = new BoardVo();
 		bv.setContentsImg(String.join(",", uploadedFileNames));
 		bv.setContents(contents);
 		bv.setViewCnt(viewCnt);
-				
+		
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
@@ -410,11 +414,34 @@ public class MyPageController {
 		bv.setMemberNo(memberNo);
 		
 		int value = bs.boardInsert(bv);
+		
+//해시태그 insert 		
+		HashTagVo hv = new HashTagVo();
+		hv.setHashTagName(hashTagName);
+		
+		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
+		int value3 = bs.hashTagList2(hv);
+		
+		if(value2==0){
+				bs.hashTagInsert(hv);
 
+			}else if(value2 != 0){
+
+				bs.tagCntUpdate(hv);
+				hv.setHashTagNo(value3);
+			}
+		
+// board_hashTag insert
+		
+		int boardNo = bv.getBoardNo();		
+		int hashTagNo = hv.getHashTagNo();
+		
+	
+		bs.insertBoardHashTag(boardNo, hashTagNo);
 
 		return "redirect:/myPage/myStyle.do";
 	}
-	
+	 
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(
 			@RequestParam("boardNo") int boardNo,

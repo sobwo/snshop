@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 import com.myteam.myapp.domain.MemberVo;
@@ -108,13 +109,49 @@ public class BoardServiceInpl implements BoardService{
 		return value;
 	}
 
-/*
+
 	@Override
-	public ArrayList<BoardVo> boardTotalList() {
+	public int hashTagInsert(HashTagVo hv) {
+
+		int value = bsm.hashTagInsert(hv);
 		
-		ArrayList<BoardVo> blist = bsm.boardTotalList();
-		
-		return blist;
+		return value;
 	}
-*/
+
+
+	@Override
+	public int hashTagList(HashTagVo hv) {
+		
+		int value = bsm.hashTagList(hv);
+				
+		return value;
+	}
+
+
+	@Override
+	public int tagCntUpdate(HashTagVo hv) {
+		
+		int value = bsm.tagCntUpdate(hv);
+				
+		return value;
+	}
+
+
+	@Override
+	public int insertBoardHashTag(int boardNo, int hashTagNo) {
+		
+		int value = bsm.insertBoardHashTag(boardNo,hashTagNo);
+		
+		return value;
+	}
+
+
+	@Override
+	public int hashTagList2(HashTagVo hv) {
+		int value = bsm.hashTagList2(hv);
+		
+		return value;
+	}
+
+
 }
