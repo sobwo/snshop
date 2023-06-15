@@ -32,7 +32,7 @@
 							<span class="item_size_fb" style="font-size:14px">${sizeList.sizeName}</span>
 							<span class="item_price_fb">
 								<c:choose>
-									<c:when test="${sizeList.interestCheck == 1 && sizeList.memberNo == sessionScope.memberNo}">
+									<c:when test="${sizeList.interestCheck == 1}">
 										<img class="interestImg" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
 									</c:when>
 									<c:otherwise>
