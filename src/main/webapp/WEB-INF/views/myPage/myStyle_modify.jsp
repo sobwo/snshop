@@ -44,7 +44,7 @@
 					<div class="tagContainer">
 					     <div>
 					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-					         <input type="hidden" id="hashtags-hidden" th:field="*{hashtags}" />
+					         <input type="hidden" id="hashtags-hidden" name="hashTagName">
 					     </div>
 					</div>   
 					
@@ -106,7 +106,7 @@
                 const span = document.createElement("span");
                 span.innerText = "#" + tag + " ";
 //              span.classList.add("hashtag");
-                span.id = "hashTagName";
+                span.id = "hashTagNames";
 
 
                 const removeButton = document.createElement("button");

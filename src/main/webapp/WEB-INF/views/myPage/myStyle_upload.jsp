@@ -28,17 +28,12 @@
 						<div id="tagContainer"></div>
 					</div>
 					
-					<div id="hashtagContainer">
-					<!--  
-						<span id = "hashTagName">#해시태그</span>
-						<span id = "hashTagName">#해시태그2</span>
-					-->
-					</div>
+					<div id="hashtagContainer"></div>
 					
 					<div class="tagContainer">
 					     <div>
 					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-					         <input type="hidden" id="hashtags-hidden" name="hashTagName"> <!-- *th:field="*{hashtags}" --> 
+					         <input type="hidden" id="hashtags-hidden" name="hashTagName">
 					     </div>
 					</div>
 
