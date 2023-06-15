@@ -58,7 +58,7 @@
 		<c:if test="${od.orderStatus eq '진행중'}">
 			<div class="popup_bottom">
 				<input type="button" class="basic_btn_1" value="주문취소"
-					style="color:red" onclick="cancel('${od.orderNum}','${od.statusDetail})">
+					style="color:red" onclick="cancel('${od.orderNum}','${od.statusDetail}')">
 			</div>
 		</c:if>
 		<script>
@@ -72,7 +72,10 @@
 					dataType: "json",
 					success : function(data){
 						console.log(data);
-						if(data.value == 1) alert("주문 취소 신청 완료되었습니다.");
+						if(data.value == 1) {
+							alert("주문 취소 신청 완료되었습니다.");
+							location.reload();
+						}
 						else alert("주문취소가 불가능합니다.");
 					},
 					error : function(request,status,error){

@@ -50,16 +50,21 @@ public class ShopController {
 			Model model,
 			HttpSession session) {
 		
-		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
-
-		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
-		ArrayList<SizeDto>sizeList = ss.sizeList(goodsNo);
-		
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
+		
+		GoodsVo gv = ss.goodsSelectOne(goodsNo);
+		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
+
+		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
+		
+		ArrayList<SizeDto> sizeList = null;
+		if(memberNo == 0)
+			sizeList = ss.sizeListAll(goodsNo);
+		else
+			sizeList = ss.sizeList(memberNo, goodsNo);
 		
 		int interestGoodsCheck = ss.interestGoodsCheck(goodsNo, memberNo);
 		
@@ -153,10 +158,14 @@ public class ShopController {
 			@RequestParam(value="value") int value,
 			@RequestParam(value="page") int page,
 			@RequestParam(value="price") int price,
-			Model model
+			Model model,
+			HttpSession session
 			) {
-
-		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page,price);
+		int memberNo = 0;
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+		ArrayList<ProductDto> filterList = ss.filterList(filter,value,page,price,memberNo);
 		model.addAttribute("goodsList", filterList);
 		
 		int total = ss.goodsTotal(filter, value, page, price);
@@ -277,10 +286,17 @@ public class ShopController {
 			@RequestParam("goodsNo") int goodsNo,
 			Model model,
 			HttpSession session) {
+		int memberNo = 0;
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-
-		ArrayList<SizeDto>sizeList = ss.sizeListAll(goodsNo);
+		ArrayList<SizeDto> sizeList = null;
+		if(memberNo == 0)
+			sizeList = ss.sizeListAll(goodsNo);
+		else
+			sizeList = ss.sizeList(memberNo, goodsNo);
 		
 		model.addAttribute("sizeList",sizeList);
 		model.addAttribute("gv", gv);	

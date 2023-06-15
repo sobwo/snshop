@@ -68,7 +68,6 @@
 				var goodsNo = $("input[name=goodsNo]").val();
 				var interestImg = $(this).find(".interestImg");
 				
-				alert(goodsNo);
 				if(memberNo == null || memberNo == ""){
 					alert("로그인이 필요합니다.");
 					$(location).attr("href","${pageContext.request.contextPath}/member/memberLogin.do");

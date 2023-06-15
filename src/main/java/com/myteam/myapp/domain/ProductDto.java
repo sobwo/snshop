@@ -1,7 +1,7 @@
 package com.myteam.myapp.domain;
 
 public class ProductDto extends GoodsVo{
-	private int imgNo, goodsNo,memberNo;
+	private int imgNo, goodsNo,memberNo, interestMemberNo;
 	private int interestCheck, checkM;
 	public int getImgNo() {
 		return imgNo;
@@ -33,5 +33,12 @@ public class ProductDto extends GoodsVo{
 	public void setCheckM(int checkM) {
 		this.checkM = checkM;
 	}
+	public int getInterestMemberNo() {
+		return interestMemberNo;
+	}
+	public void setInterestMemberNo(int interestMemberNo) {
+		this.interestMemberNo = interestMemberNo;
+	}
+	
 	
 }

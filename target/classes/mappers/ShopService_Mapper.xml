@@ -5,10 +5,10 @@
 	<sql id="resultGoodsNo">
 		<choose>
 			<when test="list.size==0">
-				and a.goodsNo in (0)
+				where a.goodsNo in (0)
 			</when>
 			<when test="list.size!=0">
-				and a.goodsNo in 
+				where a.goodsNo in 
 				<foreach collection="list" item="item" separator="," open="(" close=")">
 					#{item}
 				</foreach>
@@ -87,7 +87,7 @@
 		SELECT COUNT(DISTINCT goods.goodsNo)
 		FROM goods
 		INNER JOIN size ON goods.goodsNo = size.goodsNo
-		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo
+<!-- 		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo -->
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		WHERE inventory.quantity > 0
 		<include refid="searchCategory" />
@@ -126,12 +126,12 @@
 	</select>
 	
 	<select id="filterList" parameterType="map" resultType="pd">
-		SELECT *
+		SELECT a.*, c.memberNo as interestMemberNo, c.checkM
 		FROM goods a
 		LEFT JOIN (
 		    SELECT *
 		    FROM interest
-		    WHERE interestNo IN (SELECT MIN(interestNo) FROM interest GROUP BY goodsNo)
+		    WHERE interestNo IN (SELECT MIN(interestNo) FROM interest where memberNo = #{memberNo} GROUP BY goodsNo)
 		) c ON a.goodsNo = c.goodsNo
 		<include refid="resultGoodsNo" />
 		<include refid="align" /> 
@@ -141,7 +141,7 @@
 		SELECT distinct(goods.goodsNo),goods.price,goods.interestNum
 		FROM goods
 		INNER JOIN size ON goods.goodsNo = size.goodsNo
-		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo
+<!-- 		INNER JOIN productImg ON goods.goodsNo = productImg.goodsNo -->
 		INNER JOIN inventory ON goods.goodsNo = inventory.goodsNo
 		where inventory.quantity > 0
 		<include refid="searchCategory" />
@@ -168,7 +168,14 @@
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
+<<<<<<< HEAD
 		select * from size s left join interest i on s.sizeNo = i.sizeNo where s.goodsNo = #{0}
+=======
+		SELECT *
+		FROM size s
+		LEFT JOIN interest i ON s.sizeNo = i.sizeNo AND (i.memberNo = #{0} OR i.memberNo IS NULL)
+		WHERE s.goodsNo = #{1};
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	</select>
 	
 	<select id="sizeListAll" parameterType="Integer" resultType="sd">
@@ -189,8 +196,8 @@
 		where memberNo=#{memberNo} and sizeNo = #{sizeNo} and goodsNo = #{goodsNo}
 	</update>
 	
-	<update id="updateGoodsInterest" parameterType="Integer">
-		update goods set interestNum = (select count(*) from interest where goodsNo = #{0} and interestCheck = 1) where goodsNo = #{0}
+	<update id="updateGoodsInterest" parameterType="iv">
+		update goods set interestNum = (select count(*) from interest where goodsNo = #{goodsNo} and interestCheck = 1) where goodsNo = #{goodsNo}
 	</update>
 	
 	<select id="interestCheck" parameterType="iv" resultType="Integer">
@@ -209,18 +216,22 @@
 		update interest set interestCheck = 0 where memberNo=#{0} and goodsNo = #{1}
 	</update>
 	
-	<update id="plusCheckM" parameterType="Integer">
+	<update id="plusCheckM" parameterType="iv">
 		update interest set checkM = 1
-		where goodsNo = #{0}
+		where goodsNo = #{goodsNo} and memberNo = #{memberNo}
 	</update>
 	
-	<update id="minusCheckM" parameterType="Integer">
+	<update id="minusCheckM" parameterType="iv">
 		update interest set checkM = 0 
-		where goodsNo = #{0}
+		where goodsNo = #{goodsNo} and memberNo = #{memberNo}
 	</update>
 	
-	<select id="selectCheckM" parameterType="Integer" resultType="Integer">
-		select count(interestCheck) from interest where goodsNo = #{0} and interestCheck = 0
+	<select id="selectCheckM" parameterType="iv" resultType="Integer">
+		select count(interestCheck) from interest where goodsNo = #{goodsNo} and memberNo = #{memberNo} and interestCheck = 0
+	</select>
+	
+	<select id="countInterest" parameterType="iv" resultType="Integer">
+		select count(interestCheck) from interest where goodsNo = #{goodsNo} and memberNo = #{memberNo}
 	</select>
 	
 	<insert id="goodsInsert" parameterType="gv">
