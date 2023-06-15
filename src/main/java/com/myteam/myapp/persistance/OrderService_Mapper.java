@@ -44,5 +44,5 @@ public interface OrderService_Mapper {
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
-	public int orderCancel(String orderNum);
+	public int orderCancel(OrderVo ov);
 }

@@ -17,6 +17,7 @@ import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.PayVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
@@ -206,15 +207,18 @@ public class OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/orderCancel.do")
 	public JSONObject orderCancel(
-			@RequestParam("orderNum") String orderNum) {
-		
-		System.out.println("접속");
+			@RequestParam("orderNum") String orderNum,
+			@RequestParam("reason") String reason,
+			@RequestParam("checksum") int checksum,
+			OrderVo ov) {
 		
 		HashMap<String, Object> map = new HashMap<>();
 
-
+		ov.setOrderNum(orderNum);
+		ov.setReason(reason);
+		ov.setChecksum(checksum);
 		
-		int value = os.orderCancel(orderNum);
+		int value = os.orderCancel(ov);
 		
 		map.put("value",value);
 		

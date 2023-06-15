@@ -69,7 +69,7 @@ public class PaymentServiceImpl implements PaymentService{
     	int value2 = 0;
     	int value3 = 0;
 		
-		String orderNum = irsp.getResponse().getMerchantUid();
+		String orderNum = irsp.getResponse().getImpUid();
     	int totalPrice = Integer.parseInt(irsp.getResponse().getAmount().toString());
     	String status = irsp.getResponse().getStatus().toString();
     	String memberPhone = irsp.getResponse().getBuyerTel();
@@ -131,8 +131,14 @@ public class PaymentServiceImpl implements PaymentService{
 		CancelData data = new CancelData(irsp.getResponse().getImpUid(),true);
 		data.setReason(map.get("reason"));
 		data.setChecksum(new BigDecimal(map.get("checksum")));
-		data.setRefund_holder(map.get("refundHolder"));
-		data.setRefund_bank(code(map.get("bank_name")));
+		data.setRefund_holder(irsp.getResponse().getBuyerName());
+		data.setRefund_bank(code(irsp.getResponse().getVbankName()));
+		
+		System.out.println("reason : "+map.get("reason"));
+		System.out.println("checkSum : "+map.get("checksum"));
+		System.out.println("refundHolder : "+irsp.getResponse().getBuyerName());
+		System.out.println("bank : "+irsp.getResponse().getVbankName());
+		
 		
 		return data;
 	}

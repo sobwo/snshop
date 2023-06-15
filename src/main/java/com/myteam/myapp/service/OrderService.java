@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.OrderVo;
 
 public interface OrderService {
 	//二쇱냼
@@ -32,6 +33,6 @@ public interface OrderService {
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
-	public int orderCancel(String orderNum);
+	public int orderCancel(OrderVo ov);
 }
 

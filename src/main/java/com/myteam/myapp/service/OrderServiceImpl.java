@@ -155,8 +155,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public int orderCancel(String orderNum) {
-		int value = osm.orderCancel(orderNum);
+	public int orderCancel(OrderVo ov) {
+		int value = osm.orderCancel(ov);
 		return value;
 	}
 }
