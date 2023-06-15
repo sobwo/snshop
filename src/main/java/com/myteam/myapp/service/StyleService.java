@@ -3,7 +3,9 @@ package com.myteam.myapp.service;
 import java.util.ArrayList;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.Board_hashtagVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
@@ -38,10 +40,13 @@ public interface StyleService {
 	public ArrayList<LikesDto> boardTotalList_newest(int memberNo);
 
 	public int boardDelete(LikesDto ld);
-
-
-
 	
-	 
+	public int hashtagCntUpdate(int boardNo);
+	
+	public int board_hashtagDelete(int boardNo);
+	
+	public ArrayList<HashTagVo> hashTagTotalList(int memberNo);
+
+
 	
 }

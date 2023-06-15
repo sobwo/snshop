@@ -26,7 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.Board_hashtagVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
@@ -90,8 +92,10 @@ public class StyleController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
 		
 		model.addAttribute("llist", llist);
+		model.addAttribute("hlist",hlist);
 		model.addAttribute("mv",mv);
 		
 		return "style/style_discover";
@@ -132,8 +136,12 @@ public class StyleController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList_newest(memberNo);
+		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
 		
 		model.addAttribute("llist", llist);
+		model.addAttribute("hlist",hlist);
+		
+		
 		model.addAttribute("mv",mv);
 		
 		return "style/style_discover_newest";
@@ -192,10 +200,16 @@ public class StyleController {
 			ld.setBoardNo(boardNo);
 			int value = ss1.boardDelete(ld);
 			
+			
+			int value3 = ss1.hashtagCntUpdate(ld.getBoardNo());
+			int value2 = ss1.board_hashtagDelete(ld.getBoardNo());
+			
 			JSONObject json = new JSONObject();
 			
 			json.put("value", value);
 			
+
+	
 			return json;
 	}
 	

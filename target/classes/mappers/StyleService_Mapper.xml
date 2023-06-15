@@ -62,15 +62,25 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select>
 
 <update id="boardDelete" parameterType="ld">
-	update board set delYn='Y' where boardNo=#{boardNo}
+	update board set delYn='Y' where boardNo=#{boardNo}	
 </update>
 
- <select id = "getlikeMemberList" parameterType="Integer" resultType="lmd">
+<update id="hashtagCntUpdate" parameterType="int">
+	UPDATE hashTag SET tagCnt = tagCnt - 1 WHERE hashtagNo IN (
+	SELECT hashTagNo FROM board_hashtag WHERE boardNo = #{boardNo});
+</update>
 
+<delete id="board_hashtagDelete" parameterType="bhv">
+	DELETE FROM board_hashtag WHERE boardNo = #{boardNo}
+</delete>
+
+<select id = "getlikeMemberList" parameterType="Integer" resultType="lmd">
 	select * from likes l join member m On l.memberNo = m.memberNo where l.like_check = 1
 	and l.boardNo = #{0};
-
-
 </select> 
+
+<select id="hashTagTotalList" resultType="hv">
+	select*from hashTag ORDER BY tagCnt DESC, hashTagNo DESC LIMIT 8;
+</select>
 
 </mapper>

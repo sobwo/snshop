@@ -74,14 +74,8 @@
 					            <!-- 팔로우 버튼 -->
 					            <div class="button_wrap">	
 									<button class="follow-button" value="${ld.memberNo}">팔로우</button>
-									<button class="modify-button" value="${ld.boardNo}">..</button>
-									
-									<div class="popupContainer">
-								
-										<button class="delete" value="${ld.boardNo}"  onclick="confirmDelete(${ld.boardNo})">삭제</button>
-										<button class="modify" value="${ld.boardNo}" onclick="location.href = '${pageContext.request.contextPath}/myPage/myStyle_modify.do?boardNo=${ld.boardNo}'">수정</button>
-								
-									</div>
+									<button class="modify-button" value="${ld.boardNo}" onclick="location.href = '${pageContext.request.contextPath}/myPage/myStyle_modify.do?boardNo=${ld.boardNo}'">수정</button>
+									<button class="delete-button" value="${ld.boardNo}"  onclick="confirmDelete(${ld.boardNo})">삭제</button>
 								</div>        
 							</div>
 							<!-- 컨텐츠 내용 -->
@@ -166,7 +160,9 @@
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${ld.contents}</span>
+					    		<!--  
 					    		<span class="hashTag">#해시태그</span>
+					    		-->
 					    	</div>
 
 					    </div>

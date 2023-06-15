@@ -50,6 +50,7 @@
 <select id="boardSelectOne" parameterType="int" resultType="bv">
 	select*from board where delYn='N' and boardNo=#{boardNo}
 </select>
+ 
 
 <update id="boardModifyUpdate" parameterType="bv">
 	update board set contents=#{contents} where boardNo=#{boardNo}

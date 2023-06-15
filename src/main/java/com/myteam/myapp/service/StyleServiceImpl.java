@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.Board_hashtagVo;
 import com.myteam.myapp.domain.FollowingVo;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikeMemberDto;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
@@ -127,6 +129,34 @@ public class StyleServiceImpl implements StyleService {
 		
 		return value;
 	}
+	
+	@Override
+	public int hashtagCntUpdate(int boardNo) {
+		
+		int value = ssm1.hashtagCntUpdate(boardNo);
+		
+		return value;
+	}
+
+	@Override
+	public int board_hashtagDelete(int boardNo) {
+		
+		int value = ssm1.board_hashtagDelete(boardNo);
+		
+		return value;
+	}
+
+
+
+	@Override
+	public ArrayList<HashTagVo> hashTagTotalList(int memberNo) {
+		
+		ArrayList<HashTagVo> value = ssm1.hashTagTotalList(memberNo);
+				
+		return value;
+	}
+
+
 
 
 }

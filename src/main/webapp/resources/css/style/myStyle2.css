@@ -165,12 +165,13 @@ body {
 	cursor:pointer;
 	color:#fff;
 }
-.modify-button{
-	width:20px;
+.modify-button,
+.delete-button{
+	width:30px;
 	height:30px;
 	background:#000;
 	border:1px solid #ebebeb;
-	border-radius:12px;
+	border-radius:10px;
 	cursor:pointer;
 	color:#fff;
 }
