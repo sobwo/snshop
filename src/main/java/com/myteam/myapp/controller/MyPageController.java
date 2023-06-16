@@ -1,5 +1,6 @@
 package com.myteam.myapp.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -340,9 +341,9 @@ public class MyPageController {
 	        String uploadPath = "";
 	        if(index.equals("product"))
 	        	uploadPath = "\\\\DESKTOP-IQUHLB7\\productImg";
-	        else
+	        else if(index.equals("style"))
 	        	uploadPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
-
+	        
 	        for (String contentsImg : contentsImgs) {
 	            in = new FileInputStream(uploadPath + contentsImg);
 
@@ -361,6 +362,8 @@ public class MyPageController {
 
 	            in.close();
 	        }
+	        
+	        System.out.println("in은? "+in);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);

@@ -124,7 +124,7 @@
 		where a.orderNo = #{0}
 	</select>
 	
-	<update id="orderCancel" parameterType="String">
-		update orders set orderStatus='종료', statusDetail='대기중' where orderNum = #{0} 
+	<update id="orderCancel" parameterType="ov">
+		update orders set orderStatus='종료', statusDetail='대기중', reason=#{reason}, checksum=#{checksum} where orderNum = #{orderNum} 
 	</update>
 </mapper>

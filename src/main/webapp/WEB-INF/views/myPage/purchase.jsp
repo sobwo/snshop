@@ -19,7 +19,6 @@
 		</style>
 	</head>
 	<body>
-		
 		<jsp:include page="popup/history_popup.jsp"></jsp:include>
 		<jsp:include page="popup/purchase_popup.jsp"></jsp:include>
 		<div id="header_wrap" style='height:94px;border:0'>
@@ -204,6 +203,13 @@
 			}
 		});
 		
+		$(".refund_wrap").on("show", function(){
+			console.log("on");
+			$(".goodsName").text($(".goodsName_r").val());
+			$(".goodsEng").text($(".goodsEng").val());
+			$(".refundOrderNum").text($(".orderNum_r").val());
+		});
+		
 		tab.eq(0).click(function() {
 			purchase_index.val("0");
 			$(location).attr("href", "${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying&value="+purchase_index.val());
@@ -267,6 +273,31 @@
 				
 			});
 		}
+		
+		function cancelPayments(orderNum,reason,checksum,refundHolder,bank_name){
+			let data={
+					impUid:orderNum,
+					reason:reason,
+					checksum:checksum,
+					refundHolder:refundHolder,
+					bank_name:bank_name
+				};
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/Iamport/cancelIamport.do",
+				data:JSON.stringify(data),
+				contentType:"application/json; charset=utf-8",
+				success: function(result){
+					if(result.result == "success")
+						alert("결제금액 환불 신청 완료");
+					else
+						alert("결제금액 환불 취소.");
+				},
+				error: function(result){
+					alert("결제금액 환불 취소.");
+				}
+			});
+		}//cancelPayments
 		
 		</script>
 	</body>

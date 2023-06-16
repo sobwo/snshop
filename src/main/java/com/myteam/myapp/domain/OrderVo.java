@@ -15,6 +15,8 @@ public class OrderVo{
 	private String statusDetail;
 	private String orderstatus;
 	private String memberPhone;	
+	private String reason;
+	private int checksum;
 
 	public String getOrderDays() {
 		return orderDays;
@@ -100,4 +102,17 @@ public class OrderVo{
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	public int getChecksum() {
+		return checksum;
+	}
+	public void setChecksum(int checksum) {
+		this.checksum = checksum;
+	}
+	
 }
