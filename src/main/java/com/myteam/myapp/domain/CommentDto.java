@@ -6,7 +6,21 @@ public class CommentDto extends MemberVo{
 	private String cwriteday;
 	private int boardNo; 
 	private int memberNo;
+	private int rc_level;
+	private int recommentNo;
 	
+	public int getRc_level() {
+		return rc_level;
+	}
+	public void setRc_level(int rc_level) {
+		this.rc_level = rc_level;
+	}
+	public int getRecommentNo() {
+		return recommentNo;
+	}
+	public void setRecommentNo(int recommentNo) {
+		this.recommentNo = recommentNo;
+	}
 	public int getCommentNo() {
 		return commentNo;
 	}

@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
+<<<<<<< HEAD
+import com.myteam.myapp.domain.PointVo;
+=======
 import com.myteam.myapp.domain.OrderVo;
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 
 public interface OrderService {
 	//二쇱냼
@@ -30,9 +34,16 @@ public interface OrderService {
 	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String statusDetail, String memberPhone);
 	
 	public OrderDto orderSelectNew(String orderNum);
+
+	public int accumulatefinishPoint(int finishPoint, int memberNo); 
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
+<<<<<<< HEAD
+	public int orderCancel(String orderNum);
+
+=======
 	public int orderCancel(OrderVo ov);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 }
 

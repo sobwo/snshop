@@ -46,6 +46,7 @@
 						<input type="text" class="comment_input" name="ccontents" placeholder="댓글을 남기세요.">
 					<button type="button" class="submit_comment" onclick="submitComment()">등록</button>
 					<input type="hidden" class="commentNo">
+			
 				</form>
 			</div>
 			<!-- 댓글내용창 -->
@@ -55,5 +56,9 @@
 			</div>
 		</div>
 		</div>
+		<script>
+
+
+		</script>
 	</body>
 </html>

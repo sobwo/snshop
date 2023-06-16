@@ -324,7 +324,7 @@
 				 }
 			}
 			
- 		function showComment(boardNo){
+ 	 	function showComment(boardNo){
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -342,7 +342,7 @@
 					}	
 					
 				});
-			}
+			} 
 
  			/* 	좋아요 누른 사람 보여주기  */
   			function openPopup2(boardNo,profileImg) {
@@ -411,6 +411,7 @@
 			    });
 		
 			}
+	
 	
 		</script>
 	</body>

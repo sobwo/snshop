@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 
 public interface OrderService_Mapper {
 	// 정보 입력
@@ -17,6 +18,8 @@ public interface OrderService_Mapper {
 	public int addressCheckReset(int memberNo);
 
 	public AddressVo addressOrderPage(int memberNo);
+	
+	
 
 	// 회원별 주소
 	public AddressVo addressSelectOne(int addressNo);
@@ -44,5 +47,13 @@ public interface OrderService_Mapper {
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
+<<<<<<< HEAD
+	public int orderCancel(String orderNum);
+	
+	public int accumulatefinishPoint(int finishPoint, int memberNo); 
+
+
+=======
 	public int orderCancel(OrderVo ov);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 }

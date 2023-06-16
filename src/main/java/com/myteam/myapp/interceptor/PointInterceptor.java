@@ -24,7 +24,11 @@ public class PointInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)	throws Exception {
 		HttpSession session = request.getSession();
 		
-		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
 		
 		updatePoint(memberNo);
 

@@ -128,7 +128,8 @@
 									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
 								</span>
 								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${ld.likeCnt}  </strong>개</span>
+	  								<%-- <span>좋아요&nbsp;<strong class="likeCount">  ${ld.likeCnt}  </strong>개</span> --%>
+	  									<span class="openPopup21" onclick="openPopup2(${ld.boardNo}, '${ld.profileImg}')">좋아요&nbsp;<strong class="likeCount">${ld.likeCnt}</strong>개</span>
 								</div>
 							</div>
 							</div>
@@ -268,7 +269,11 @@
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
+			   /*  $(".h_boardNo").val(boardNo); */
+			        $(".submit_comment").val(boardNo);
+			    /* 임시 */
+			    showComment(boardNo);     
+			    /* 임시 */
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
@@ -306,7 +311,7 @@
 					
 				});	
 			}
-			
+		
 			function showComment(boardNo){
 				$.ajax({
 					type:"POST",
@@ -381,7 +386,45 @@
 				      });
 				    }
 				  }
-	
+						 /* 좋아요 누른사람 보여주기 +스크롤 */
+					function openPopup2(boardNo,profileImg) {
+			    		$.ajax({
+			        		type: "GET",
+			        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
+			        		data: {
+			            			"boardNo": boardNo
+			        		},
+			        		cache: false,
+			        		success: function(data) {
+		            		console.log(data);
+		            		var popup = document.getElementById("popup");
+			            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			            
+			   
+			           	 	popup.style.top = (500 + scrollTop) + "px";
+			            
+			            	popup.style.display = "block";
+			            	$(".popup_style_wrap").html(data);
+			            
+
+					            document.body.style.overflow = "hidden";
+					         
+					        },
+					        error: function(request, status, error) {
+					            alert("다시 시도해주세요.");
+					            console.log("code: " + request.status);
+					            console.log("message: " + request.responseText);
+					            console.log("error: " + error);
+					        }
+					    });
+					}
+					function closePopup2() {
+					    var popup = document.getElementById("popup");
+					    popup.style.display = "none";
+					    
+
+					    document.body.style.overflow = "auto";
+					} 
 
 		</script>
 	</body>

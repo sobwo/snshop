@@ -317,7 +317,8 @@
 							</div>
 						</div>
 									
- 						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기
+<!--  						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기 -->
+							<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기</button>
 						</button>					
 					</div>
 				</div>
@@ -440,20 +441,20 @@
 		}
 
 		
-		function orderPay(){
+		function orderPay(finishPoint){
 			for(var i=0; i<$(".method").length; i++){
 				if($(".method").eq(i).val() == "on"){
 					if($(".method").eq(i).closest(".pay_box").attr("id") == "card")
-						nicePay();
+						nicePay(finishPoint);
 					else if($(".method").eq(i).closest(".pay_box").attr("id") == "kakaopay")
-						kakaoPay();
+						kakaoPay(finishPoint);
 					else
-						vPay();
+						vPay(finishPoint);
 				}
 			}
 		}
 		
-		function kakaoPay() {
+		function kakaoPay(finishPoint) {
 	        // getter
 	        IMP.init('imp23228257');
 
@@ -477,7 +478,7 @@
 	        });
 	    }
 		
-		function nicePay(){
+		function nicePay(finishPoint){
 	        IMP.init('imp23228257');
 	    	
 	        IMP.request_pay({
@@ -500,7 +501,7 @@
 	        });
 	    }
 		
-		function vPay(){
+		function vPay(finishPoint){
 			var today = new Date();   
 
 			var year = today.getFullYear().toString(); // 년도
@@ -557,8 +558,8 @@
 				data: JSON.stringify(pay_data),
 				success : function(data){
 					console.log(data);
-					if(data.result >= 1){
-						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
+					if(data.result == 2){
+						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint);
 					}
 				},
 				error : function(request,status,error){
