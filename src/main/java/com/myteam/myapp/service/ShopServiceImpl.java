@@ -61,7 +61,7 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<ProductDto> filterList(List<String> filter, int value, int page,int price) {
+		public ArrayList<ProductDto> filterList(List<String> filter, int value, int page,int price,int memberNo) {
 
 			HashMap<String, Object> hashMap = new HashMap<String, Object>();
 
@@ -77,6 +77,7 @@ public class ShopServiceImpl implements ShopService {
 			HashMap<String, Object> data = new HashMap<String, Object>();
 			data.put("list", goodsNoList);
 			data.put("align",index);
+			data.put("memberNo",memberNo);
 
 			ArrayList<ProductDto> filterResult = ssm.filterList(data);
 
@@ -172,9 +173,9 @@ public class ShopServiceImpl implements ShopService {
 		}
 
 		@Override
-		public ArrayList<SizeDto> sizeList(int goodsNo) {
+		public ArrayList<SizeDto> sizeList(int memberNo, int goodsNo) {
 			
-			ArrayList<SizeDto> sizeList = ssm.sizeList(goodsNo);
+			ArrayList<SizeDto> sizeList = ssm.sizeList(memberNo, goodsNo);
 			return sizeList;
 			
 		}
@@ -186,7 +187,8 @@ public class ShopServiceImpl implements ShopService {
 			return sizeList;
 			
 		}
-
+		
+		@Transactional
 		@Override
 		public int interestAction(InterestVo iv) {
 			int value = ssm.interestListCnt(iv);
@@ -199,14 +201,18 @@ public class ShopServiceImpl implements ShopService {
 			else
 				value2 = ssm.updateInterest(iv);
 			
+			System.out.println("count checkM : "+ssm.selectCheckM(iv));
+			System.out.println("count interest : "+ssm.countInterest(iv));
+			
 			if(value2 == 1) {
-				int cnt = ssm.selectCheckM(iv.getGoodsNo());
-				if(cnt==3)
-					result = ssm.minusCheckM(iv.getGoodsNo());
+				int cnt = ssm.selectCheckM(iv);
+				if(cnt==ssm.countInterest(iv))
+					result = ssm.minusCheckM(iv);
 				else
-					result = ssm.plusCheckM(iv.getGoodsNo());
-				System.out.println("checkM result : "+result);
-				result2 = ssm.updateGoodsInterest(iv.getGoodsNo());
+					result = ssm.plusCheckM(iv);
+				
+				
+				result2 = ssm.updateGoodsInterest(iv);
 			}
 			
 			

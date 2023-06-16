@@ -30,7 +30,7 @@ public interface ShopService_Mapper {
 		//추천상품 
 	public ArrayList<ProductDto>recommentList(HashMap<String, Object> hashMap);
 		//개별 상품 사이즈
-	public ArrayList<SizeDto>sizeList(int goodsNo);
+	public ArrayList<SizeDto>sizeList(int memberNo, int goodsNo);
 	
 	public ArrayList<SizeDto>sizeListAll(int goodsNo);	
 	
@@ -45,15 +45,15 @@ public interface ShopService_Mapper {
 	public int interestListCnt(InterestVo iv);
 	public int insertInterest(InterestVo iv);
 	public int updateInterest(InterestVo iv);
-	public int updateGoodsInterest(int goodsNo);
+	public int updateGoodsInterest(InterestVo iv);
 	public int interestCheck(InterestVo iv);
 	public int interestGoodsCheck(int goodsNo, int memberNo);
 	public ArrayList<GoodsInterestDto> selectInterestAll(int memberNo);
 	public int interestCancel(int memberNo, int goodsNo);
-	public int plusCheckM(int goodsNo);
-	public int minusCheckM(int goodsNo);
-	public int selectCheckM(int goodsNo);
-	
+	public int plusCheckM(InterestVo iv);
+	public int minusCheckM(InterestVo iv);
+	public int selectCheckM(InterestVo iv);
+	public int countInterest(InterestVo iv);
 	//상품 등록
 	public int goodsInsert(GoodsVo gv);
 	public int goodsNoSelect(int memberNo);

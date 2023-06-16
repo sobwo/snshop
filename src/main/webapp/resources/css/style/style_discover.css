@@ -16,6 +16,7 @@
 }
 .tagShortCuts{
 	display: flex;
+	padding: 0px 10px; 
 	justify-content: center; 
 	align-items: center;
 	grid-column-gap: 24px;

@@ -28,12 +28,14 @@
 		<jsp:include page="../common/header_style.jsp"></jsp:include>
 		<div id="content_wrap">
 			<div class="tagContainer">
+				<c:forEach var="hv" items="${hlist}" varStatus="status">
 				<div class="tagShortCuts">
 					<a href="#" id="shortCutRounded" style="display:block;">
 						<img class="shortCutImage" src=""/>
-						<span class="shortCutTitle">#스타일컬렉터</span>
+						<span class="shortCutTitle">${hv.hashTagName}</span>
 					</a>		
 				</div>
+				</c:forEach>
 			</div>	
 			<div class="sortingContainer">
 				<ul class="socialSorting">
@@ -58,7 +60,7 @@
 									
 									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 									<c:forEach var="img" items="${imgList}">
-										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
 									</c:forEach>										
 									</c:if>
 								</div>	

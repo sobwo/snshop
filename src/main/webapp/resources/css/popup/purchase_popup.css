@@ -69,3 +69,15 @@
 	line-height:52px;
 	font-size:14px;
 }
+
+.order_r{
+	margin-top:15px;
+}
+
+input[name=reason]{
+	margin-right:3px;
+}
+
+.reason{
+	margin-bottom:15px;
+}

@@ -586,16 +586,27 @@
 					bank_name:temp.bank_name
 				};
 			}
+			else
+				data={
+					impUid:temp.imp_uid,
+					reason:"결제 금액 위/변조. 결제 금액이 일치안함",
+					checksum:temp.paid_amount,
+					refundHolder:temp.buyer_name,
+					bank_name:temp.bank_name
+				};
 			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/Iamport/cancelIamport.do",
 				data:JSON.stringify(data),
 				contentType:"application/json; charset=utf-8",
 				success: function(result){
-					alert("결제금액 환불완료");
+					if(result.result == "success")
+						alert("결제금액 환불완료");
+					else
+						alert("결제금액 환불 취소.");
 				},
 				error: function(result){
-					alert("결제금액 환불못함. 이유: "+result.responseText);
+					alert("결제금액 환불 취소.");
 				}
 			});
 		}//cancelPayments

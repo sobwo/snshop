@@ -47,9 +47,13 @@ public interface OrderService_Mapper {
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
+<<<<<<< HEAD
 	public int orderCancel(String orderNum);
 	
 	public int accumulatefinishPoint(int finishPoint, int memberNo); 
 
 
+=======
+	public int orderCancel(OrderVo ov);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 }

@@ -19,7 +19,7 @@
 				<div class="product_item_wrap">
 					<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 						<div class="pro_img_area">
-						<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
+							<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
 							<c:set var="imgList" value="${fn:split(goodsList.productImg, ',')}" />
 							<c:choose>
 								<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
@@ -44,7 +44,7 @@
 						<input type="hidden" name="goodsNo" id="${goodsList.goodsNo}">
 						<span class="wish_btn" onclick="interest_popup('${goodsList.goodsNo}')">
 							<c:choose>
-									<c:when test="${goodsList.checkM == 1 && goodsList.memberNo == sessionScope.memberNo}">
+									<c:when test="${goodsList.checkM == 1 && goodsList.interestMemberNo == sessionScope.memberNo}">
 										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
 									</c:when>
 									<c:otherwise>
@@ -61,6 +61,7 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
+		
 		function interest_popup(goodsNo){
 			$("input[name=goodsNo]").val(goodsNo);
 			$(".shopMain_popup_wrap").show();

@@ -608,7 +608,7 @@
 				cache : false,
 				success : function(data){
 					$(".goods_wrap").html(data);
-					
+					console.log(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -649,6 +649,7 @@
 				cache : false,
 				success : function(data){
 					$(".goods_wrap").html(data);
+					console.log(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	

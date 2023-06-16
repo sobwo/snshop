@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -45,11 +46,23 @@
 									<div class="purchase_contents purchase_contents_interest">
 										<div class="purchase_detail">
 											<div class="purchase_thumb">
-												<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+												<c:set var="exp" value= "${glist.productImg.substring(glist.getProductImg().length()-3, glist.getProductImg().length())}" />
+												<c:set var="imgList" value="${fn:split(glist.productImg, ',')}" />
+												<c:choose>
+													<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+														<c:forEach var="img" items="${imgList}">
+															<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+														</c:forEach>
+													</c:when>
+													<c:otherwise>
+														<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div class="purchase_info">
 												<strong class="purchase_name">${glist.goodsName}</strong>
-												<p class="purchase_price purchase_price_interest">${glist.categoryName} ${glist.goodsBrandName} ${glist.goodsEng}</p>
+												<p class="purchase_price purchase_price_interest">${glist.goodsEng}</p>
+												<p class="purchase_price purchase_price_interest">${glist.categoryName} ${glist.goodsBrandName}</p>
 												<p class="purchase_size purchase_size_interest">${glist.sizeName}</p>
 											</div>
 										</div>

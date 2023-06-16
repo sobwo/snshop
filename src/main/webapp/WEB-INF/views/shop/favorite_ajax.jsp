@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,18 @@
 			<div class="popup_contents">
 				<div class="suggest_wrap">
 					<div class="suggest_thumb_area">
-						<img class="suggest_thumb" src="#">
+							<c:set var="exp" value= "${gv.productImg.substring(gv.getProductImg().length()-3, gv.getProductImg().length())}" />
+							<c:set var="imgList" value="${fn:split(gv.productImg, ',')}" />
+							<c:choose>
+								<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+									<c:forEach var="img" items="${imgList}">
+										<img class="suggest_thumb" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<img class="suggest_thumb" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+								</c:otherwise>
+							</c:choose>
 					</div>
 					<div class="suggest_info">
 						<span class="model_title">${gv.goodsName}</span>
@@ -56,7 +68,6 @@
 				var goodsNo = $("input[name=goodsNo]").val();
 				var interestImg = $(this).find(".interestImg");
 				
-				alert(goodsNo);
 				if(memberNo == null || memberNo == ""){
 					alert("로그인이 필요합니다.");
 					$(location).attr("href","${pageContext.request.contextPath}/member/memberLogin.do");

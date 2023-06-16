@@ -4,6 +4,7 @@ package com.myteam.myapp.service;
 import java.util.ArrayList;
 
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikesDto;
 import com.myteam.myapp.domain.LikesVo;
 
@@ -29,6 +30,16 @@ public interface BoardService {
 
 	public int boardModifyUpdate(BoardVo bv);
 
-//	public ArrayList<BoardVo> boardTotalList();
+	public int hashTagInsert(HashTagVo hv);
+
+	public int hashTagList(HashTagVo hv);
+
+	public int tagCntUpdate(HashTagVo hv);
+
+	public int insertBoardHashTag(int boardNo, int hashTagNo);
+
+	public int hashTagList2(HashTagVo hv);
+
+
 	
 }

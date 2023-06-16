@@ -5,8 +5,12 @@
 <mapper namespace="com.myteam.myapp.persistance.BoardService_Mapper">
 
 <insert id="boardInsert" parameterType="bv">
-		INSERT INTO board(boardNo, contentsImg, contents, memberNo, viewCnt)
-		VALUES(#{boardNo}, #{contentsImg}, #{contents}, #{memberNo}, #{viewCnt})
+	INSERT INTO board(boardNo, contentsImg, contents, memberNo, viewCnt)
+	VALUES(#{boardNo}, #{contentsImg}, #{contents}, #{memberNo}, #{viewCnt})
+	
+	<selectKey resultType="int" keyProperty="boardNo" order="AFTER" >
+		SELECT LAST_INSERT_ID()
+	</selectKey>
 </insert>
 
 <select id="boardList" parameterType="int" resultType="bv">
@@ -46,15 +50,34 @@
 <select id="boardSelectOne" parameterType="int" resultType="bv">
 	select*from board where delYn='N' and boardNo=#{boardNo}
 </select>
+ 
 
 <update id="boardModifyUpdate" parameterType="bv">
 	update board set contents=#{contents} where boardNo=#{boardNo}
 </update>
 
-
-<!--  
-<select id="boardTotalList" resultType="bv">
-	select * from board a left outer join likes b on a.boardNo = b.boardNo where a.delYn = 'N' ORDER BY a.likeCnt DESC;
+<select id="hashTagList" parameterType="hv" resultType="int">
+	select count(*)from hashTag where hashTagName=#{hashTagName}
 </select>
--->
+
+<select id="hashTagList2" parameterType="hv" resultType="int">
+	select hashTagNo from hashTag where hashTagName=#{hashTagName}
+</select>
+
+<insert id="hashTagInsert" parameterType="hv">
+	INSERT INTO hashTag(hashTagNo, hashTagName) VALUES(#{hashTagNo}, #{hashTagName})
+	
+	<selectKey resultType="int" keyProperty="hashTagNo" order="AFTER" >
+		SELECT LAST_INSERT_ID()
+	</selectKey>
+</insert>
+
+<update id="tagCntUpdate" parameterType="hv">
+	UPDATE hashTag SET tagCnt = tagCnt + 1 WHERE hashTagName = #{hashTagName}
+</update>
+
+<insert id="insertBoardHashTag" parameterType="bhv">
+	INSERT INTO board_hashtag(boardNo, hashTagNo) VALUES(#{0},#{1})
+</insert>
+
 </mapper>
