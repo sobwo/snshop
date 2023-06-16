@@ -422,30 +422,33 @@ public class MyPageController {
 		HashTagVo hv = new HashTagVo();
 		hv.setHashTagName(hashTagName);
 		
-		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
-		
-		
-		if(value2==0){
-				bs.hashTagInsert(hv);
-				
-			}else if(value2 != 0){
-				
-				int value3 = bs.hashTagList2(hv);
-				
-				bs.tagCntUpdate(hv);
-				hv.setHashTagNo(value3);
-			}
+	if (hashTagName.isEmpty()) {
+	    // 해시태그 값이 없을 경우 아무 작업도 수행하지 않음
+	} else {
+	    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
+	
+	    if (value2 == 0) {
+
+	    	int value3 = bs.hashTagList2(hv);
+
+	        bs.tagCntUpdate(hv);
+	        hv.setHashTagNo(value3);
+	    }
+	}
 		
 // board_hashTag insert
-		
-		int boardNo = bv.getBoardNo();		
-		int hashTagNo = hv.getHashTagNo();
-		
+	int boardNo = bv.getBoardNo();		
+	int hashTagNo = hv.getHashTagNo();
 	
-		bs.insertBoardHashTag(boardNo, hashTagNo);
 
-		return "redirect:/myPage/myStyle.do";
+	if (hashTagName.isEmpty()) {
+
+	} else {
+	   bs.insertBoardHashTag(boardNo, hashTagNo);
 	}
+
+	return "redirect:/myPage/myStyle.do";
+}
 	 
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(
@@ -488,7 +491,6 @@ public class MyPageController {
 		
 		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
 		
-		
 		if(value2==0){
 				bs.hashTagInsert(hv);
 				
@@ -500,11 +502,9 @@ public class MyPageController {
 				hv.setHashTagNo(value3);
 			}
 		
-// board_hashTag insert
-//		int boardNo = bv.getBoardNo();		
+// board_hashTag insert	
 		int hashTagNo = hv.getHashTagNo();
 		
-	
 		bs.insertBoardHashTag(boardNo, hashTagNo);
 
 
