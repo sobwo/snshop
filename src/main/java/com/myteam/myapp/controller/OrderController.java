@@ -17,6 +17,7 @@ import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.PayVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
@@ -147,17 +148,26 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish( 
+	public String orderFinish(  HttpSession session,
 			String vIndex,
 			Model model,
 			@RequestParam(value = "payMethod", defaultValue="card") String payMethod,
+			@RequestParam(value="finishPoint") int finishPoint,
 			@RequestParam(value = "orderNum") String orderNum) {
 		
+		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+ 
 		OrderDto od = os.orderSelectNew(orderNum);
-		PayVo pv = pms.paySelectNew(od.getOrderNo());
+		PayVo pmv = pms.paySelectNew(od.getOrderNo());
+	
+		
+		
+		/* 실행ㅇ int value = os.accumulatefinishPoint(finishPoint, memberNo); */
+		 int value = os.insertPPoint(finishPoint, memberNo, orderNum);
+		 
 		
 		model.addAttribute("od", od);
-		model.addAttribute("pv", pv);
+		model.addAttribute("pv", pmv);
 		
 		return "order/orderFinish";
 	}
@@ -206,15 +216,18 @@ public class OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/orderCancel.do")
 	public JSONObject orderCancel(
-			@RequestParam("orderNum") String orderNum) {
-		
-		System.out.println("접속");
+			@RequestParam("orderNum") String orderNum,
+			@RequestParam("reason") String reason,
+			@RequestParam("checksum") int checksum,
+			OrderVo ov) {
 		
 		HashMap<String, Object> map = new HashMap<>();
 
-
+		ov.setOrderNum(orderNum);
+		ov.setReason(reason);
+		ov.setChecksum(checksum);
 		
-		int value = os.orderCancel(orderNum);
+		int value = os.orderCancel(ov);
 		
 		map.put("value",value);
 		

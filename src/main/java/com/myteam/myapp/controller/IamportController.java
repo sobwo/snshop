@@ -68,36 +68,37 @@ public class IamportController {
           HttpSession session,
           RedirectAttributes rttr) throws IamportResponseException, Exception {
 
-      IamportResponse<Payment> irsp = paymentLookup(map.get("impUid"));
-      String payMethod = irsp.getResponse().getPayMethod();
-      String buyerName = irsp.getResponse().getBuyerName();
-      
-      int memberNo = 0;
-      
-      if(session.getAttribute("memberNo") != null) {
-         memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-      }
-      
-      rv = ps.refundSelect(memberNo);
-      
-      if(payMethod.equals("vbank")) {
-         if(rv == null) {
-            rttr.addFlashAttribute("msg", "환불 정산 계좌가 등록되지 않았습니다.");
-            return "redirect:/myPage/incomeAccount";
-         }
-         
-         else if(buyerName.equals(rv.getAccountUserName())) {
-            map.put("bank_name", rv.getAccountName());
-            map.put("refund_account", rv.getAccountNum());
-         }   
-      }
-      
-      CancelData data = ps.cancelData(irsp,map);
-      IamportResponse<Payment> cancel = api.cancelPaymentByImpUid(data);
-      
-      if(cancel != null) 
-         return "success";
-      else
-         return "fail";
-    }    
+	      IamportResponse<Payment> irsp = paymentLookup(map.get("impUid"));
+	      String payMethod = irsp.getResponse().getPayMethod();
+	      String buyerName = irsp.getResponse().getBuyerName();
+	
+	      int memberNo = 0;
+	      
+	      if(session.getAttribute("memberNo") != null) {
+	         memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+	      }
+	      
+	      rv = ps.refundSelect(memberNo);
+	      
+	      if(payMethod.equals("vbank")) {
+	         if(rv == null) {
+	            rttr.addFlashAttribute("msg", "환불 정산 계좌가 등록되지 않았습니다.");
+	            return "redirect:/myPage/incomeAccount";
+	         }
+	         
+	         else if(buyerName.equals(rv.getAccountUserName())) {
+	        	map.put("refund_holder",rv.getAccountUserName());
+	            map.put("bank_name", rv.getAccountName());
+	            map.put("refund_account", rv.getAccountNum());
+	         }   
+	      }
+	      
+	      CancelData data = ps.cancelData(irsp,map);
+	      IamportResponse<Payment> cancel = api.cancelPaymentByImpUid(data);
+	      
+	      if(cancel != null) 
+	         return "{\"result\": \"success\"}";
+	      else
+	         return "{\"result\":\"fail\"}";
+	    }    
 }

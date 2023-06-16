@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -96,7 +97,19 @@
 								<div class="purchase_contents">
 									<div class="purchase_detail">
 										<div class="purchase_thumb">
-											<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+											<!-- 이미지 파일 -->
+											<c:set var="exp" value= "${purchase.productImg.substring(purchase.getProductImg().length()-3, purchase.getProductImg().length())}" />
+											<c:set var="imgList" value="${fn:split(purchase.productImg, ',')}" />
+											<c:choose>
+												<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+													<c:forEach var="img" items="${imgList}">
+														<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="purchase_info">
 											<strong class="purchase_name">${purchase.goodsName}</strong>
@@ -151,7 +164,21 @@
 								<div class="purchase_contents">
 									<div class="purchase_detail">
 										<div class="purchase_thumb">
-											<img src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+											<div class="purchase_thumb">
+											<!-- 이미지 파일 -->
+											<c:set var="exp" value= "${sale.productImg.substring(sale.getProductImg().length()-3, sale.getProductImg().length())}" />
+											<c:set var="imgList" value="${fn:split(sale.productImg, ',')}" />
+											<c:choose>
+												<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+													<c:forEach var="img" items="${imgList}">
+														<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+												</c:otherwise>
+											</c:choose>
+										</div>
 										</div>
 										<div class="purchase_info">
 											<strong class="purchase_name">${sale.goodsName}</strong>
@@ -188,7 +215,19 @@
 									<input type="hidden" name="goodsNo" value="${glist.goodsNo}">
 									<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${glist.goodsNo}'">
 										<div class="item_thumb">
-											<img src="#" alt="상품이미지" />
+											<!-- 이미지 파일 -->
+											<c:set var="exp" value= "${glist.productImg.substring(glist.getProductImg().length()-3, glist.getProductImg().length())}" />
+											<c:set var="imgList" value="${fn:split(glist.productImg, ',')}" />
+											<c:choose>
+												<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+													<c:forEach var="img" items="${imgList}">
+														<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+												</c:otherwise>
+											</c:choose>
 										</div>
 										<div class="item_info">
 											<div class="item_name">${glist.goodsName}</div>

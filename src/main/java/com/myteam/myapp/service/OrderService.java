@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 
 public interface OrderService {
 	//二쇱냼
@@ -30,8 +32,13 @@ public interface OrderService {
 	
 	public OrderDto orderSelectNew(String orderNum);
 	
+	 public int insertPPoint(int finishPoint,int memberNo, String orderNum); 
+
+	/* 실행 ㅇ public int accumulatefinishPoint(int finishPoint, int memberNo); */
+	
 	public OrderDto orderHistoryShow(int orderNo);
 	
-	public int orderCancel(String orderNum);
+	public int orderCancel(OrderVo ov);
+
 }
 

@@ -4,6 +4,15 @@ public class PointVo {
 	private int pointNo, memberNo, point;
 	private String expiration, pointInfo,useStatus,useHistory,useDetail,useDate;
 	
+	/*포인트 적립부분 임시*/
+    public int getFinishPoint() {
+        return point; // 또는 해당 필드에 맞는 반환값을 설정하세요.
+    }
+    public String getOrderNum() {
+        return useDetail; // 또는 해당 필드에 맞는 반환값을 설정하세요.
+    }
+
+	/* 포인트 적립부분 임시 */
 	public int getPointNo() {
 		return pointNo;
 	}

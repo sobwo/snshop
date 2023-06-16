@@ -317,7 +317,7 @@
 							</div>
 						</div>
 									
- 						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기
+ 						<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기
 						</button>					
 					</div>
 				</div>
@@ -438,22 +438,22 @@
 				$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result+"&sizeName="+sizeName);
 			}
 		}
-
+		  var finishPoint = Math.floor(${gv.price * 0.01});
 		
-		function orderPay(){
+		function orderPay(finishPoint){
 			for(var i=0; i<$(".method").length; i++){
 				if($(".method").eq(i).val() == "on"){
 					if($(".method").eq(i).closest(".pay_box").attr("id") == "card")
-						nicePay();
+						nicePay(finishPoint);
 					else if($(".method").eq(i).closest(".pay_box").attr("id") == "kakaopay")
-						kakaoPay();
+						kakaoPay(finishPoint);
 					else
-						vPay();
+						vPay(finishPoint);
 				}
 			}
 		}
 		
-		function kakaoPay() {
+		function kakaoPay(finishPoint) {
 	        // getter
 	        IMP.init('imp23228257');
 
@@ -477,7 +477,7 @@
 	        });
 	    }
 		
-		function nicePay(){
+		function nicePay(finishPoint){
 	        IMP.init('imp23228257');
 	    	
 	        IMP.request_pay({
@@ -500,7 +500,7 @@
 	        });
 	    }
 		
-		function vPay(){
+		function vPay(finishPoint){
 			var today = new Date();   
 
 			var year = today.getFullYear().toString(); // 년도
@@ -558,7 +558,8 @@
 				success : function(data){
 					console.log(data);
 					if(data.result >= 1){
-						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum);
+						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint); 
+			
 					}
 				},
 				error : function(request,status,error){
@@ -585,19 +586,31 @@
 					bank_name:temp.bank_name
 				};
 			}
+			else
+				data={
+					impUid:temp.imp_uid,
+					reason:"결제 금액 위/변조. 결제 금액이 일치안함",
+					checksum:temp.paid_amount,
+					refundHolder:temp.buyer_name,
+					bank_name:temp.bank_name
+				};
 			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/Iamport/cancelIamport.do",
 				data:JSON.stringify(data),
 				contentType:"application/json; charset=utf-8",
 				success: function(result){
-					alert("결제금액 환불완료");
+					if(result.result == "success")
+						alert("결제금액 환불완료");
+					else
+						alert("결제금액 환불 취소.");
 				},
 				error: function(result){
-					alert("결제금액 환불못함. 이유: "+result.responseText);
+					alert("결제금액 환불 취소.");
 				}
 			});
-		}//cancelPayments
+		}
+		//cancelPayments
 		
 	</script>
 </body>

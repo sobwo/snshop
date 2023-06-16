@@ -38,7 +38,7 @@
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
-											${mpv.avaPoint}P
+											${mpv.avaPoint}P  
 										</c:when>
 										<c:otherwise>
 											0P

@@ -28,17 +28,12 @@
 						<div id="tagContainer"></div>
 					</div>
 					
-					<div id="hashtagContainer">
-					<!--  
-						<span id = "hashTagName">#해시태그</span>
-						<span id = "hashTagName">#해시태그2</span>
-					-->
-					</div>
+					<div id="hashtagContainer"></div>
 					
 					<div class="tagContainer">
 					     <div>
 					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-					         <input type="hidden" id="hashtags-hidden" th:field="*{hashtags}" />
+					         <input type="hidden" id="hashtags-hidden" name="hashTagName">
 					     </div>
 					</div>
 
@@ -83,58 +78,61 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
 		<script>
+<!--textarea-->
 		function resize(obj) {
 		  obj.style.height = "1px";
 		  obj.style.height = (12+obj.scrollHeight)+"px";
 		}
-		
+<!--hashtag-->	
 		const hashtagsInput = document.getElementById("hashtags");
 		const hashtagsContainer = document.getElementById("hashtagContainer");
-        const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
+		const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
 
-        let hashtags = [];
+		let hashtags = [];
 
-        function addHashtag(tag) {
-            tag = tag.replace(/[\[\]]/g, '').trim();
-            if(tag && !hashtags.includes(tag)) {
-                const span = document.createElement("span");
-                span.innerText = "#" + tag + " ";
-//              span.classList.add("hashtag");
-                span.id = "hashTagName";
-
-
-                const removeButton = document.createElement("button");
-                removeButton.innerText = "x";
-                removeButton.classList.add("remove-button");
-                
-                removeButton.style.backgroundColor = "white";
-                removeButton.style.border = "none";
-                removeButton.style.cursor = "pointer";
-                
-                removeButton.addEventListener("click", () => {
-                    hashtagsContainer.removeChild(span);
-                    hashtags = hashtags.filter((hashtag) => hashtag !== tag);
-                    hiddenHashtagsInput.value = hashtags.join(",");
-                });
-
-                span.appendChild(removeButton);
-                hashtagsContainer.appendChild(span);
-                hashtags.push(tag);
-                hiddenHashtagsInput.value = hashtags.join(",");
-            }
-        }
-
-        hashtagsInput.addEventListener("keydown", (event) => {
-            if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
-                event.preventDefault();
-                const tag = hashtagsInput.value.trim();
-                if (tag) {
-                    addHashtag(tag);
-                    hashtagsInput.value = "";
-                }
-            }
-        });		
 		
+		
+		function addHashtag(tag) {
+			tag = tag.replace(/[\[\]]/g, '').trim();
+			if(tag && !hashtags.includes(tag)) {
+				const span = document.createElement("span");
+				span.innerText = "#" + tag + " ";
+				span.id = "hashTagNames";  
+
+<!--hashtag X button-->
+			const removeButton = document.createElement("button");
+			removeButton.innerText = "x";
+			removeButton.classList.add("remove-button");
+			
+			removeButton.style.backgroundColor = "white";
+			removeButton.style.border = "none";
+			removeButton.style.cursor = "pointer";
+			
+			removeButton.addEventListener("click", () => {
+				hashtagsContainer.removeChild(span);
+				hashtags = hashtags.filter((hashtag) => hashtag !== tag);
+				hiddenHashtagsInput.value = hashtags.join(",");
+			});
+
+			span.appendChild(removeButton);
+			hashtagsContainer.appendChild(span);
+			hashtags.push(tag);
+			hiddenHashtagsInput.value = hashtags.join(",");
+			}
+		}
+
+<!--hashtag enter-->
+		hashtagsInput.addEventListener("keydown", (event) => {
+			if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
+				event.preventDefault();
+				const tag = hashtagsInput.value.trim();
+				if (tag) {
+					addHashtag(tag);
+					hashtagsInput.value = "";
+				}
+			}
+		});
+<!--첨부파일 미리보기-->	
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
 			var fileLabel = document.querySelector("label#fileLabel");
@@ -161,7 +159,7 @@
 		  reader.readAsDataURL(image);
 			}
 		}
-
+<!--업로드-->
 		function check(){
 			
 			if($("#fileatt").val()==="") {

@@ -91,7 +91,7 @@
 	
 	
 	<select id="selectHistoryAll" parameterType="Integer" resultType="od">
-		SELECT a.orderNo, b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL
+		SELECT a.orderNo, b.GOODSNAME,a.TOTALPRICE,a.SIZE, DATE_FORMAT(a.ORDERDAYS,'%Y-%m-%d') AS ORDERDAYS, a.STATUSDETAIL, b.productImg
 		FROM ORDERS a INNER JOIN GOODS b ON a.goodsNo = b.goodsNo 
 		WHERE a.MEMBERNO = #{1} 
 		<include refid="search_pors"/>
@@ -99,6 +99,7 @@
 		<include refid="search_detail"/>
 		<include refid="search_price"/>
 	</select>
+	
 	<select id="cntHistoryAll" parameterType="Integer" resultType="Integer">
 		SELECT COUNT(*)
 		FROM ORDERS
@@ -123,7 +124,16 @@
 		where a.orderNo = #{0}
 	</select>
 	
-	<update id="orderCancel" parameterType="String">
-		update orders set orderStatus='종료', statusDetail='대기중' where orderNum = #{0} 
+	<update id="orderCancel" parameterType="ov">
+		update orders set orderStatus='종료', statusDetail='대기중', reason=#{reason}, checksum=#{checksum} where orderNum = #{orderNum} 
 	</update>
+	<insert id="insertPPoint" parameterType="pv">
+	insert into Point(point, useStatus, useHistory,useDetail, memberNo)
+	values(#{finishPoint},'적립','구매',#{orderNum},#{memberNo})
+	</insert>
+	
+<!-- 실행 0		<insert id="accumulatefinishPoint" parameterType="int">
+		insert into Point(point, useStatus, useHistory, memberNo)
+		VALUES (#{0},'미사용','적립',#{1})
+		</insert>    --> 
 </mapper>
