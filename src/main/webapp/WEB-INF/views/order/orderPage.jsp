@@ -317,7 +317,12 @@
 							</div>
 						</div>
 									
+<<<<<<< HEAD
  						<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기
+=======
+<!--  						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기 -->
+							<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기</button>
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 						</button>					
 					</div>
 				</div>
@@ -557,9 +562,14 @@
 				data: JSON.stringify(pay_data),
 				success : function(data){
 					console.log(data);
+<<<<<<< HEAD
 					if(data.result >= 1){
 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint); 
 			
+=======
+					if(data.result == 2){
+						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint);
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					}
 				},
 				error : function(request,status,error){

@@ -19,6 +19,7 @@ import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
 import com.myteam.myapp.domain.PayVo;
+import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.service.PaymentService;
@@ -63,12 +64,13 @@ public class OrderController {
 			HttpSession session,
 			Model model) {
 		
-		int memberNo = 0;
-		
+		System.out.println("접속");
 		System.out.println("goodsNo"+goodsNo);
 		System.out.println("sizeName"+sizeName);
 		System.out.println("point"+point);
 		
+		int memberNo = 0;
+	
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
@@ -147,30 +149,74 @@ public class OrderController {
 		return str;
 	}
 	
+	
+	
+	
+	
+	
+	
+
+	/* 수정중 */
+	/* @ResponseBody */
 	@RequestMapping(value = "/orderFinish.do")
+<<<<<<< HEAD
 	public String orderFinish(  HttpSession session,
+=======
+	public String orderFinish( HttpSession session,
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 			String vIndex,
 			Model model,
 			@RequestParam(value = "payMethod", defaultValue="card") String payMethod,
+<<<<<<< HEAD
 			@RequestParam(value="finishPoint") int finishPoint,
 			@RequestParam(value = "orderNum") String orderNum) {
+=======
+			@RequestParam(value = "orderNum") String orderNum ,
+			@RequestParam("finishPoint") int finishPoint){
+		
+		
+		 int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		 
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		
 		int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
  
 		OrderDto od = os.orderSelectNew(orderNum);
 		PayVo pmv = pms.paySelectNew(od.getOrderNo());
+<<<<<<< HEAD
 	
 		
 		
 		/* 실행ㅇ int value = os.accumulatefinishPoint(finishPoint, memberNo); */
 		 int value = os.insertPPoint(finishPoint, memberNo, orderNum);
 		 
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		
+	
+		int value = os.accumulatefinishPoint(finishPoint, memberNo); 
+	
 		model.addAttribute("od", od);
+<<<<<<< HEAD
 		model.addAttribute("pv", pmv);
 		
+=======
+		model.addAttribute("pmv", pmv);
+	
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		return "order/orderFinish";
-	}
+	}	/* 수정중 */
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/order_addressAction.do")
 	public String order_addressAction(HttpSession session,

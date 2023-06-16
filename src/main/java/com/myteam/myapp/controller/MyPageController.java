@@ -422,6 +422,7 @@ public class MyPageController {
 		HashTagVo hv = new HashTagVo();
 		hv.setHashTagName(hashTagName);
 		
+<<<<<<< HEAD
 		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
 		
 		
@@ -446,6 +447,35 @@ public class MyPageController {
 
 		return "redirect:/myPage/myStyle.do";
 	}
+=======
+	if (hashTagName.isEmpty()) {
+	    // 해시태그 값이 없을 경우 아무 작업도 수행하지 않음
+	} else {
+	    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
+	
+	    if (value2 == 0) {
+
+	    	int value3 = bs.hashTagList2(hv);
+
+	        bs.tagCntUpdate(hv);
+	        hv.setHashTagNo(value3);
+	    }
+	}
+		
+// board_hashTag insert
+	int boardNo = bv.getBoardNo();		
+	int hashTagNo = hv.getHashTagNo();
+	
+
+	if (hashTagName.isEmpty()) {
+
+	} else {
+	   bs.insertBoardHashTag(boardNo, hashTagNo);
+	}
+
+	return "redirect:/myPage/myStyle.do";
+}
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	 
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(
@@ -488,6 +518,7 @@ public class MyPageController {
 		
 		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
 		
+<<<<<<< HEAD
 		
 		if(value2==0){
 				bs.hashTagInsert(hv);
@@ -505,6 +536,22 @@ public class MyPageController {
 		int hashTagNo = hv.getHashTagNo();
 		
 	
+=======
+		if(value2==0){
+				bs.hashTagInsert(hv);
+				
+			}else if(value2 != 0){
+				
+				int value3 = bs.hashTagList2(hv);
+				
+				bs.tagCntUpdate(hv);
+				hv.setHashTagNo(value3);
+			}
+		
+// board_hashTag insert	
+		int hashTagNo = hv.getHashTagNo();
+		
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		bs.insertBoardHashTag(boardNo, hashTagNo);
 
 
@@ -779,7 +826,15 @@ public class MyPageController {
 		return str;
 	}
 	
-	
+	/*
+	 * @RequestMapping(value = "/order_completion_point.do") public String
+	 * order_completion_point(HttpSession session,
+	 * 
+	 * @RequestParam("accumulatePoint")int accumulatePoint, Model model) { int
+	 * memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+	 * 
+	 * int value ps. }
+	 */
 
 	
 	

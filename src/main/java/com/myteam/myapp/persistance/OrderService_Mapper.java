@@ -18,6 +18,8 @@ public interface OrderService_Mapper {
 	public int addressCheckReset(int memberNo);
 
 	public AddressVo addressOrderPage(int memberNo);
+	
+	
 
 	// 회원별 주소
 	public AddressVo addressSelectOne(int addressNo);
@@ -46,10 +48,19 @@ public interface OrderService_Mapper {
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
+<<<<<<< HEAD
 	public int orderCancel(OrderVo ov);
 	
 	/*실행 ㅇ public int accumulatefinishPoint(int finishPoint, int memberNo); */
 
 
 	
+=======
+	public int orderCancel(String orderNum);
+	
+	public int accumulatefinishPoint(int finishPoint, int memberNo); 
+
+	public int orderCancel(OrderVo ov);
+
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 }

@@ -2,6 +2,7 @@ package com.myteam.myapp.domain;
 
 public class MemberPointVo{
 	private int pointNo, memberNo; 
+
 	private int avaPoint,expPoint;
 	public int getPointNo() {
 		return pointNo;

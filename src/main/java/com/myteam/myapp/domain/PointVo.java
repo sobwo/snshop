@@ -2,6 +2,8 @@ package com.myteam.myapp.domain;
 
 public class PointVo {
 	private int pointNo, memberNo, point;
+
+
 	private String expiration, pointInfo,useStatus,useHistory,useDetail,useDate;
 	
 	/*포인트 적립부분 임시*/
