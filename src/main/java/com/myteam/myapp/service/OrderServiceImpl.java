@@ -170,6 +170,12 @@ public class OrderServiceImpl implements OrderService{
 	  value ;
 	  
 	  }
+
+	@Override
+	public int orderCancel(String orderNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	 
 	  
 	 
