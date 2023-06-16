@@ -126,4 +126,21 @@
 	<update id="orderCancel" parameterType="String">
 		update orders set orderStatus='종료', statusDetail='대기중' where orderNum = #{0} 
 	</update>
+	
+<!-- 	<insert id="accumulatefinishPoint" parameterType="Integer" >
+		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo)
+		VALUES(#{finishPoint},#{expiration},'미사용','적립',#{useDetail},#{memberNo})   
+		INSERT INTO POINT(point, useStatus, useHistory, memberNo)
+		VALUES (#{finishPoint}, '미사용', '적립', #{memberNo})
+	</insert> -->
+
+		<insert id="accumulatefinishPoint" parameterType="pv">
+		insert into Point(point, useStatus, useHistory, memberNo)
+		values (#{finishPoint},'미사용','적립',#{memberNo})
+		</insert>   
+<!--  <insert id="accumulatefinishPoint" parameterType="pv1">
+ insert into Point(point,expiration,pointInfo,useStatus,useHistory,useDetail,useDate,memberNo)
+ values(#{})
+ </insert> -->
+	
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
 
 @Service("orderServiceImpl")
@@ -159,6 +160,19 @@ public class OrderServiceImpl implements OrderService{
 		int value = osm.orderCancel(orderNum);
 		return value;
 	}
+	
+	
+	  @Override 
+	  public int accumulatefinishPoint(int finishPoint, int memberNo) 
+	  {
+	  PointVo pv = new PointVo(); pv.setMemberNo(memberNo);
+	  pv.setPoint(finishPoint); int value = osm.accumulatefinishPoint(pv); return
+	  value ;
+	  
+	  }
+	 
+	  
+	 
 }
 
 

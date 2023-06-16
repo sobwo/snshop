@@ -18,6 +18,7 @@ import com.myteam.myapp.domain.MemberPointVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.PayVo;
+import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.service.MemberService;
 import com.myteam.myapp.service.OrderService;
 import com.myteam.myapp.service.PaymentService;
@@ -62,12 +63,13 @@ public class OrderController {
 			HttpSession session,
 			Model model) {
 		
-		int memberNo = 0;
-		
+		System.out.println("접속");
 		System.out.println("goodsNo"+goodsNo);
 		System.out.println("sizeName"+sizeName);
 		System.out.println("point"+point);
 		
+		int memberNo = 0;
+	
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
@@ -146,21 +148,49 @@ public class OrderController {
 		return str;
 	}
 	
+	
+	
+	
+	
+	
+	
+
+	/* 수정중 */
+	/* @ResponseBody */
 	@RequestMapping(value = "/orderFinish.do")
-	public String orderFinish( 
+	public String orderFinish( HttpSession session,
 			String vIndex,
 			Model model,
 			@RequestParam(value = "payMethod", defaultValue="card") String payMethod,
-			@RequestParam(value = "orderNum") String orderNum) {
+			@RequestParam(value = "orderNum") String orderNum ,
+			@RequestParam("finishPoint") int finishPoint){
+		
+		
+		 int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+		 
 		
 		OrderDto od = os.orderSelectNew(orderNum);
-		PayVo pv = pms.paySelectNew(od.getOrderNo());
+		PayVo pmv = pms.paySelectNew(od.getOrderNo());
 		
+	
+		int value = os.accumulatefinishPoint(finishPoint, memberNo); 
+	
 		model.addAttribute("od", od);
-		model.addAttribute("pv", pv);
-		
+		model.addAttribute("pmv", pmv);
+	
 		return "order/orderFinish";
-	}
+	}	/* 수정중 */
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/order_addressAction.do")
 	public String order_addressAction(HttpSession session,

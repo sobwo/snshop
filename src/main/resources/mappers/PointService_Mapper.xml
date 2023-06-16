@@ -23,18 +23,20 @@
 	</select>
 		
 	<insert id="insertPoint" parameterType="pv">
-		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo) VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{memberNo})  
+		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo) 
+		VALUES(#{point},#{expiration},#{useStatus},#{useHistory},#{useDetail},#{memberNo})  
 	</insert>
 		
 	<select id="selectPointNew" parameterType="Integer" resultType="pv">
 		SELECT * FROM POINT WHERE MEMBERNO=#{0} ORDER BY POINTNO DESC LIMIT 1
 	</select>
-	
+	<!-- 수정중  -->
 	<insert id="insertMemberPoint" parameterType="mpv">
-		INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO)
-		VALUES(#{pointNo},#{memberNo})
-	</insert>
+	 	INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO,)
+			VALUES(#{pointNo},#{memberNo}) 
 		
+	</insert>
+		<!-- 수정중  -->	
 	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
 		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY POINTNO DESC LIMIT 1
 	</select>

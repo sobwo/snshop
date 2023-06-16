@@ -721,7 +721,15 @@ public class MyPageController {
 		return str;
 	}
 	
-	
+	/*
+	 * @RequestMapping(value = "/order_completion_point.do") public String
+	 * order_completion_point(HttpSession session,
+	 * 
+	 * @RequestParam("accumulatePoint")int accumulatePoint, Model model) { int
+	 * memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
+	 * 
+	 * int value ps. }
+	 */
 
 	
 	

@@ -106,6 +106,7 @@ new daum.Postcode({
 
 //결제수단 버튼 클릭시 css
 $(".pay_box").on("click",function(){
+
 	payCntCheck();
 	var method = $(this).children(".method");
 	

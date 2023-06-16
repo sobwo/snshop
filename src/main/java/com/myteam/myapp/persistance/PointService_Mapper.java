@@ -13,7 +13,10 @@ public interface PointService_Mapper {
 
 	public int insertPoint(PointVo pv);
 	public PointVo selectPointNew(int memberNo);
+
+	/* 수정중 */
 	public int insertMemberPoint(MemberPointVo mpv);
+	/* 수정중 */
 	public MemberPointVo selectMemberPointNew(int memberNo);
 	
 	public int updateUsage(int couponNo);
@@ -21,6 +24,9 @@ public interface PointService_Mapper {
 	public int updateAvaPoint(int memberNo);
 	public MemberPointVo selectMemberPointAll(int memberNo);
 	public ArrayList<PointVo> selectPointAll(int memberNo);
+	
+	
+	
 	
 	//인터셉터
 	public int updateExpPoint(int memberNo);
