@@ -422,6 +422,7 @@ public class MyPageController {
 		HashTagVo hv = new HashTagVo();
 		hv.setHashTagName(hashTagName);
 		
+<<<<<<< HEAD
 
 		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
 		
@@ -447,7 +448,37 @@ public class MyPageController {
 
 		return "redirect:/myPage/myStyle.do";
 	}
+=======
+	if (hashTagName.isEmpty()) {
 
+	} else {
+	    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
+	
+	    if (value2 == 0) {
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
+<<<<<<< HEAD
+=======
+	    	int value3 = bs.hashTagList2(hv);
+
+	        bs.tagCntUpdate(hv);
+	        hv.setHashTagNo(value3);
+	    }
+	}
+		
+// board_hashTag insert
+		int boardNo = bv.getBoardNo();		
+		int hashTagNo = hv.getHashTagNo();
+	
+		if (hashTagName.isEmpty()) {
+	
+		} else {
+		   bs.insertBoardHashTag(boardNo, hashTagNo);
+		}
+	
+		return "redirect:/myPage/myStyle.do";
+	}
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 	 
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(
@@ -489,6 +520,7 @@ public class MyPageController {
 		hv.setHashTagName(hashTagName);
 		
 		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
+<<<<<<< HEAD
 
 		
 		if(value2==0){
@@ -503,10 +535,27 @@ public class MyPageController {
 			}
 		
 
+=======
+		
+		if(value2==0){
+				bs.hashTagInsert(hv);
+				
+			}else if(value2 != 0){
+				
+				int value3 = bs.hashTagList2(hv);
+				
+				bs.tagCntUpdate(hv);
+				hv.setHashTagNo(value3);
+			}
+		
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 // board_hashTag insert	
 		int hashTagNo = hv.getHashTagNo();
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 		bs.insertBoardHashTag(boardNo, hashTagNo);
 
 
