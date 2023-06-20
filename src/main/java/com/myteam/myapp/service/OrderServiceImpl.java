@@ -161,7 +161,7 @@ public class OrderServiceImpl implements OrderService {
 		int value = osm.orderCancel(ov);
 		return value;
 	}
-<<<<<<< HEAD
+
 
 
 
@@ -176,43 +176,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
-	/* 실행 ㅇ
-	 * @Override
-	 *  public int accumulatefinishPoint(int finishPoint, int memberNo) {
-	 * PointVo pv = new PointVo();
-	 * 
-	 * pv.setMemberNo(memberNo); 
 
-	 * pv.setPoint(finishPoint); 
-;
-	 * 
-	 *
-	 *  int value = osm.accumulatefinishPoint(finishPoint, memberNo);
-	 *  
-	 *   return value ;
-	 * 
-	 * }
-	 */
-
-=======
 	
-	
-	  @Override 
-	  public int accumulatefinishPoint(int finishPoint, int memberNo) 
-	  {
-	  PointVo pv = new PointVo(); pv.setMemberNo(memberNo);
-	  pv.setPoint(finishPoint); int value = osm.accumulatefinishPoint(pv); return
-	  value ;
-	  
-	  }
 
-	@Override
-	public int orderCancel(String orderNum) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	 
-	  
-	 
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+
 }

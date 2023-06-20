@@ -32,17 +32,19 @@
 					
 					<!-- 포인트 내역 창 -->
 					<div class="point_area">
+					
+					
 						<div class="point_summery">
+			
+						<input type="hidden" id="pointNoInput" value="${mpv.pointNo}">
+
+						
 							<div class="point point_p">
 								<span class="point_title">사용 가능 포인트</span>
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
-<<<<<<< HEAD
 											${mpv.avaPoint}P  
-=======
-									 ${mpv.avaPoint}p
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 										</c:when>
 										<c:otherwise>
 											0P
@@ -55,10 +57,11 @@
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
-											${mpv.expPoint}P
+											 ${mpv.expPoint}P
+										
 										</c:when>
 										<c:otherwise>
-											0P
+											0
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -75,10 +78,11 @@
 							</c:choose>
 						</div>
 					</div>
-					
+		
+			
 					<!-- 포인트 설명 -->
 					<div class="description">포인트 유효기간은 적립일로부터 최대 1년까지이며, 유형에 따라 달라질 수 있습니다.</div>
-					
+				
 					<!-- 포인트 적립 내역 -->
 					<table class="point_table">
 						<thead>
@@ -127,7 +131,8 @@
 				if(msg != "")
 					alert(msg);
 			});
-			
+
+
 			function submitCoupon(){
 				var fm = document.frm;
 				fm.action = "${pageContext.request.contextPath}/myPage/couponAction.do?index=coupon";
@@ -140,6 +145,11 @@
 				fm.method = "post";
 				fm.submit();
 			}
+			
+
+		
+
+
 			
 		</script>
 	</body>

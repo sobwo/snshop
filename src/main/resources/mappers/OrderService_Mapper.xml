@@ -127,33 +127,10 @@
 	<update id="orderCancel" parameterType="ov">
 		update orders set orderStatus='종료', statusDetail='대기중', reason=#{reason}, checksum=#{checksum} where orderNum = #{orderNum} 
 	</update>
-<<<<<<< HEAD
+
 	<insert id="insertPPoint" parameterType="pv">
 	insert into Point(point, useStatus, useHistory,useDetail, memberNo)
 	values(#{finishPoint},'적립','구매',#{orderNum},#{memberNo})
 	</insert>
 	
-<!-- 실행 0		<insert id="accumulatefinishPoint" parameterType="int">
-		insert into Point(point, useStatus, useHistory, memberNo)
-		VALUES (#{0},'미사용','적립',#{1})
-		</insert>    --> 
-=======
-	
-<!-- 	<insert id="accumulatefinishPoint" parameterType="Integer" >
-		INSERT INTO POINT(point,expiration,useStatus,useHistory,useDetail,memberNo)
-		VALUES(#{finishPoint},#{expiration},'미사용','적립',#{useDetail},#{memberNo})   
-		INSERT INTO POINT(point, useStatus, useHistory, memberNo)
-		VALUES (#{finishPoint}, '미사용', '적립', #{memberNo})
-	</insert> -->
-
-		<insert id="accumulatefinishPoint" parameterType="pv">
-		insert into Point(point, useStatus, useHistory, memberNo)
-		values (#{finishPoint},'미사용','적립',#{memberNo})
-		</insert>   
-<!--  <insert id="accumulatefinishPoint" parameterType="pv1">
- insert into Point(point,expiration,pointInfo,useStatus,useHistory,useDetail,useDate,memberNo)
- values(#{})
- </insert> -->
-	
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 </mapper>

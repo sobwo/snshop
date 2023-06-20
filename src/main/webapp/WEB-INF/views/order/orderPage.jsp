@@ -309,7 +309,7 @@
 							</div>
 							
 							<div class="totalprice_area">
-								<p style="font-size:20px;">총 결제금액</p>
+								<p style="font-size:20px;">총 결제금액 </p>
 								<p style="color: red;">
 								<c:out value="${t_Total}" /> 
 								
@@ -317,12 +317,8 @@
 							</div>
 						</div>
 									
-<<<<<<< HEAD
- 						<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기
-=======
 <!--  						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기 -->
-							<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기</button>
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+ 						<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기
 						</button>					
 					</div>
 				</div>
@@ -443,7 +439,7 @@
 				$(location).attr("href","${pageContext.request.contextPath}/order/orderPage.do?goodsNo="+goodsNo+"&point="+result+"&sizeName="+sizeName);
 			}
 		}
-		  var finishPoint = Math.floor(${gv.price * 0.01});
+		 var finishPoint = Math.floor(${gv.price * 0.01});
 		
 		function orderPay(finishPoint){
 			for(var i=0; i<$(".method").length; i++){
@@ -562,14 +558,10 @@
 				data: JSON.stringify(pay_data),
 				success : function(data){
 					console.log(data);
-<<<<<<< HEAD
 					if(data.result >= 1){
-						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint); 
-			
-=======
-					if(data.result == 2){
-						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint);
->>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
+/* 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum); */
+ 						$(location).attr("href","${pageContext.request.contextPath}/order/orderFinish.do?orderNum="+data.orderNum+"&finishPoint="+finishPoint);
+ 
 					}
 				},
 				error : function(request,status,error){
