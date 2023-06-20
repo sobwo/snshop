@@ -136,7 +136,6 @@
 			}
 		});
 		
-// -------------------------------------------------------------------------------------------
 // 첨부파일 미리보기
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
@@ -231,21 +230,6 @@
 			resetPreviewImages();
 			document.querySelector("input[type='button']").style.display = "none";
 		}
-
-// 업로드
-function check(){
-	if($("#fileatt").val()==="") {     
-			alert("사진을 등록해주세요.");	      
-			return;
-	}
-	var fm = document.frm;
-	fm.action ="${pageContext.request.contextPath}/myPage/myStyle_uploadeAction.do";
-	fm.method="post";
-	fm.enctype ="multipart/form-data";
-	fm.submit();
-	return;
-}
-
 // 업로드
 		function check(){
 			if($("#fileatt").val()==="") {     
