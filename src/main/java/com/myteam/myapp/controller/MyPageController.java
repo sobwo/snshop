@@ -423,7 +423,7 @@ public class MyPageController {
 		hv.setHashTagName(hashTagName);
 		
 	if (hashTagName.isEmpty()) {
-	    // 해시태그 값이 없을 경우 아무 작업도 수행하지 않음
+
 	} else {
 	    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
 	
@@ -439,7 +439,6 @@ public class MyPageController {
 // board_hashTag insert
 	int boardNo = bv.getBoardNo();		
 	int hashTagNo = hv.getHashTagNo();
-	
 
 	if (hashTagName.isEmpty()) {
 

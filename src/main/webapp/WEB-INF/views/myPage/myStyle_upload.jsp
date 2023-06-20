@@ -78,17 +78,17 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
 		<script>
-<!--textarea-->
+// textarea
 		function resize(obj) {
 		  obj.style.height = "1px";
 		  obj.style.height = (12+obj.scrollHeight)+"px";
 		}
-<!--hashtag-->	
+// hashtag
 		const hashtagsInput = document.getElementById("hashtags");
 		const hashtagsContainer = document.getElementById("hashtagContainer");
 		const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
 
-		let hashtags = [];
+		var hashtags = [];
 
 		
 		
@@ -99,7 +99,7 @@
 				span.innerText = "#" + tag + " ";
 				span.id = "hashTagNames";  
 
-<!--hashtag X button-->
+// hashtag X button
 			const removeButton = document.createElement("button");
 			removeButton.innerText = "x";
 			removeButton.classList.add("remove-button");
@@ -121,7 +121,7 @@
 			}
 		}
 
-<!--hashtag enter-->
+// hashtag enter
 		hashtagsInput.addEventListener("keydown", (event) => {
 			if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
 				event.preventDefault();
@@ -132,11 +132,13 @@
 				}
 			}
 		});
-<!--첨부파일 미리보기-->	
+		
+// -------------------------------------------------------------------------------------------
+// 첨부파일 미리보기
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
 			var fileLabel = document.querySelector("label#fileLabel");
-	
+		
 			// 파일 개수가 5개를 초과하는 경우 업로드를 막음
 			if (event.target.files.length > 5) {
 			  alert("사진은 5개까지만 첨부 가능합니다.");
@@ -147,8 +149,10 @@
 		
 		for (var image of event.target.files) {
 		  var reader = new FileReader();
+		  
 		  reader.onload = function(event) {
 		    var img = document.createElement("img");
+		    img.setAttribute("id", "previewImg");
 		    img.setAttribute("src", event.target.result);
 		    previewImages.appendChild(img);
 		    if (previewImages.childElementCount >= 5) {
@@ -158,8 +162,30 @@
 		  console.log(image);
 		  reader.readAsDataURL(image);
 			}
-		}
-<!--업로드-->
+		}	
+	
+// file List		
+		const dataTransfer = new DataTransfer();
+
+	    $("#fileatt").change(function(){
+	       
+	        var fileArr = document.getElementById("fileatt").files
+
+	        if(fileArr != null && fileArr.length>0){
+
+	            for(var i=0; i<fileArr.length; i++){
+	                dataTransfer.items.add(fileArr[i])
+	            }
+	            document.getElementById("fileatt").files = dataTransfer.files;
+	            console.log("dataTransfer =>",dataTransfer.files);
+	            console.log("input FIles =>", document.getElementById("fileatt").files); 
+	        }   
+	    });
+	    
+// file List Delete 
+
+
+// 업로드
 		function check(){
 			
 			if($("#fileatt").val()==="") {
