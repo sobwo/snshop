@@ -25,12 +25,22 @@
 	width:1200px;
 	margin:40px 40px 10px 40px;
 }
+#fileBox{
+	display: flex;
+    flex-direction: row;
+}
 #previewImages img{
 	width:118px;
 	height:118px;
 	border: 1px solid rgba(34,34,34,.1);
 	border-radius: 10px;
 	margin:0 0 0 10px;
+}
+#fileDelete{
+	 background-color: transparent;
+    border: none;
+    padding: 50px;
+	
 }
 .file-item{
 	position: relative;
