@@ -38,7 +38,11 @@
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
+<<<<<<< HEAD
+											${mpv.avaPoint}P  
+=======
 									 ${mpv.avaPoint}p
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 										</c:when>
 										<c:otherwise>
 											0P

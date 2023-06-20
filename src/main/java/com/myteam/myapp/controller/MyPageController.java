@@ -437,17 +437,17 @@ public class MyPageController {
 	}
 		
 // board_hashTag insert
-	int boardNo = bv.getBoardNo();		
-	int hashTagNo = hv.getHashTagNo();
-
-	if (hashTagName.isEmpty()) {
-
-	} else {
-	   bs.insertBoardHashTag(boardNo, hashTagNo);
+		int boardNo = bv.getBoardNo();		
+		int hashTagNo = hv.getHashTagNo();
+	
+		if (hashTagName.isEmpty()) {
+	
+		} else {
+		   bs.insertBoardHashTag(boardNo, hashTagNo);
+		}
+	
+		return "redirect:/myPage/myStyle.do";
 	}
-
-	return "redirect:/myPage/myStyle.do";
-}
 	 
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(

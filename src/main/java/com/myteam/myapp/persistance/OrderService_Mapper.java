@@ -42,15 +42,25 @@ public interface OrderService_Mapper {
 			@Param("price") String price);
 
 	public int orderInsert(OrderVo ov); 
+	public int insertPPoint(PointVo pv);
 	
 	public OrderDto orderSelectNew(String OrderNum);
 	
 	public OrderDto orderHistoryShow(int orderNo);
 	
+<<<<<<< HEAD
+	public int orderCancel(OrderVo ov);
+	
+	/*실행 ㅇ public int accumulatefinishPoint(int finishPoint, int memberNo); */
+
+
+	
+=======
 	public int orderCancel(String orderNum);
 	
 	public int accumulatefinishPoint(int finishPoint, int memberNo); 
 
 	public int orderCancel(OrderVo ov);
 
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 }
