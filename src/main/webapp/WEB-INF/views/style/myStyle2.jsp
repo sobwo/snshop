@@ -380,7 +380,7 @@
 			}
 
 			window.addEventListener('DOMContentLoaded', function() {
-			    var postId = getParameterByName('boardNo');
+			    var postId = document.getElementsByName('boardNo');
 			    if (postId) {
 			      scrollToPost(postId);
 			    }
