@@ -172,6 +172,9 @@ public class OrderServiceImpl implements OrderService {
 		pv.setPoint(finishPoint);
 		pv.setUseDetail(orderNum);
 		int value = osm.insertPPoint(pv);
+		
+		
+		
 		return value;
 	}
 

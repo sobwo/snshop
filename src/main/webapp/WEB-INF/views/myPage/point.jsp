@@ -32,22 +32,19 @@
 					
 					<!-- 포인트 내역 창 -->
 					<div class="point_area">
-					
-					
-						<div class="point_summery">
 			
-						<input type="hidden" id="pointNoInput" value="${mpv.pointNo}">
-
-						
+					
+						<div class="point_summery">				
 							<div class="point point_p">
 								<span class="point_title">사용 가능 포인트</span>
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
-											${mpv.avaPoint}P  
+								 			 ${mpv.avaPoint}P    
+												
 										</c:when>
 										<c:otherwise>
-											0P
+												0P
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -61,7 +58,7 @@
 										
 										</c:when>
 										<c:otherwise>
-											0
+											0 
 										</c:otherwise>
 									</c:choose>
 								</span>
@@ -119,6 +116,8 @@
 							
 						</tbody>
 					</table>
+					
+				
 				</div>
 			</div>
 		</div>	
@@ -147,7 +146,6 @@
 			}
 			
 
-		
 
 
 			
