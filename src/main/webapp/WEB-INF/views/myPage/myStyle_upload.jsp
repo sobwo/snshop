@@ -36,7 +36,7 @@
 					<div class="tagContainer">
 					     <div>
 					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-					         <input type="hidden" id="hashtags-hidden" name="hashTagName">
+					         <input type="hidden" id="hashtags-hidden" name="hashTagName">  
 					     </div>
 					</div>
 
@@ -90,17 +90,16 @@
 		const hashtagsInput = document.getElementById("hashtags");
 		const hashtagsContainer = document.getElementById("hashtagContainer");
 		const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
-
+		
 		var hashtags = [];
 
-		
-		
-		function addHashtag(tag) {
+		function addHashtag(tag) {	      
 			tag = tag.replace(/[\[\]]/g, '').trim();
+			
 			if(tag && !hashtags.includes(tag)) {
 				const span = document.createElement("span");
 				span.innerText = "#" + tag + " ";
-				span.id = "hashTagNames";  
+				span.id = "hashTagNames";
 
 // hashtag X button
 			const removeButton = document.createElement("button");
@@ -136,6 +135,8 @@
 			}
 		});
 		
+		
+		
 // 첨부파일 미리보기
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
@@ -150,26 +151,25 @@
 			for (var image of event.target.files) {
 			var reader = new FileReader();
 		
-			reader.onload = function (event) {
-				if (isFileAttached(event.target.result, event.target.fileName)) {
-				var img = document.createElement("img");
-				img.setAttribute("id", "previewImg");
-				img.setAttribute("src", event.target.result);
-				previewImages.appendChild(img);
-				if (previewImages.childElementCount >= 5) {
-					fileLabel.style.display = "none";
-				}
+				reader.onload = function (event) {
+					if (isFileAttached(event.target.result, event.target.fileName)) {
+						var img = document.createElement("img");
+						img.setAttribute("id", "previewImg");
+						img.setAttribute("src", event.target.result);
+						previewImages.appendChild(img);
+						
+						if (previewImages.childElementCount >= 5) {
+							fileLabel.style.display = "none";
+						}
+						// 파일 첨부가 있을 때만 버튼을 표시
+						if (previewImages.childElementCount > 0) {
+							document.querySelector("input[type='button']").style.display = "inline-block";
+						}
+					}
+				};
 				
-				// 파일 첨부가 있을 때만 버튼을 표시
-				if (previewImages.childElementCount > 0) {
-					document.querySelector("input[type='button']").style.display = "inline-block";
-				}
-				
-				}
-			};
-		
-			reader.fileName = image.name; // 파일 이름을 FileReader 객체에 저장
-			reader.readAsDataURL(image);
+				reader.fileName = image.name; // 파일 이름을 FileReader 객체에 저장
+				reader.readAsDataURL(image);
 			}
 		}
 // 첨부된 파일만 미리보기	

@@ -110,9 +110,9 @@
 									</div>
 									<div class="feedPostContent" onclick="location.href='#'">
 										<p>${ld.contents}</p>
-										<!--  
-										<p class="hashTag">#${hv.hashTagName}<p>
-										-->
+										 
+										<p class="hashTag">해시태그 영역${hv.hashTagName}<p>
+									
 									</div>
 								</div>
 							</div>

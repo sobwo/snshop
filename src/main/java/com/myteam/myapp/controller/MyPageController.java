@@ -418,37 +418,43 @@ public class MyPageController {
 		
 		int value = bs.boardInsert(bv);
 		
-//해시태그 insert 		
-		HashTagVo hv = new HashTagVo();
-		hv.setHashTagName(hashTagName);
+//해시태그 insert 	
+		String hashTagNames = hashTagName;		
+		String[] hashtags = hashTagNames.split(",");
 		
-	if (hashTagName.isEmpty()) {
-
-	} else {
-	    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
-	
-	    if (value2 == 0) {
-
-	    	int value3 = bs.hashTagList2(hv);
-
-	        bs.tagCntUpdate(hv);
-	        hv.setHashTagNo(value3);
-	    }
-	}
+		for (String hashtag : hashtags) {	
 		
-// board_hashTag insert
-		int boardNo = bv.getBoardNo();		
-		int hashTagNo = hv.getHashTagNo();
+			HashTagVo hv = new HashTagVo();
+			hv.setHashTagName(hashtag);
+			
+			if (hashTagName.isEmpty()) {
 	
-		if (hashTagName.isEmpty()) {
-	
-		} else {
-		   bs.insertBoardHashTag(boardNo, hashTagNo);
+			} else {
+			    int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
+			
+			    if (value2 == 0) {
+					bs.hashTagInsert(hv);
+					
+					} else if (value2 != 0) {
+						int value3 = bs.hashTagList2(hv);
+						
+						bs.tagCntUpdate(hv);
+						hv.setHashTagNo(value3);
+					}
+				}
+		// board_hashTag insert
+				int boardNo = bv.getBoardNo();		
+				int hashTagNo = hv.getHashTagNo();
+			
+				if (hashTagName.isEmpty()) {
+			
+				}else {
+				   bs.insertBoardHashTag(boardNo, hashTagNo);
+				}
 		}
-	
 		return "redirect:/myPage/myStyle.do";
 	}
-	 
+
 	@RequestMapping(value = "/myStyle_modify.do")
 	public String myStyle_modify(
 			@RequestParam("boardNo") int boardNo,
@@ -660,17 +666,15 @@ public class MyPageController {
 	}
 
 	
-	  @RequestMapping(value = "/point.do") public String point( Model model,
-	  
-	  @RequestParam("pointNo") String pointNo,
-	  
+	  @RequestMapping(value = "/point.do") 
+	  public String point( Model model,
 	  
 	  HttpSession session) throws Exception {
-	  
+
 	  int memberNo = 0;
 	  
-	  if(session.getAttribute("memberNo") != null) { memberNo=
-	  Integer.parseInt(session.getAttribute("memberNo").toString()); }
+	  if(session.getAttribute("memberNo") != null) {
+		  memberNo=Integer.parseInt(session.getAttribute("memberNo").toString()); }
 	  
 	  
 	  MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
@@ -678,7 +682,7 @@ public class MyPageController {
 	  ArrayList<PointVo> plist = ps.selectPointAll(memberNo);
 	  
 	  model.addAttribute("mpv", mpv); model.addAttribute("plist", plist);
-	  System.out.println("pointNo: " + pointNo);
+
 	  return "myPage/point"; }
 	 
 	@RequestMapping(value = "/couponAction.do")

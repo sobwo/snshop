@@ -30,19 +30,33 @@ public class PointInterceptor extends HandlerInterceptorAdapter{
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
 		
+		insertMemberPoint2(memberNo);
 		updatePoint(memberNo);
 
 		return true;
+	}
+	
+	public void insertMemberPoint2(int memberNo) {
+		MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
+		
+
+		
+		/* if(mpv != null) */
+		if(mpv==null)
+		{
+		 psm.insertMemberPoint2(memberNo);
+		
+		}
 	}
 	
 	public void updatePoint(int memberNo) {
 		MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
 		
 		psm.updatePointDel(memberNo);
-		
-		if(mpv != null)
+					
+		if(mpv != null) {
 			psm.updateAvaPoint(memberNo);
-		
-		psm.updateExpPoint(memberNo);
+			psm.updateExpPoint(memberNo);
+		}
 	}
 }

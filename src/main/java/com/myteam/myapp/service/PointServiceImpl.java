@@ -66,8 +66,10 @@ public class PointServiceImpl implements PointService{
         mpv_insert.setMemberNo(memberNo);
         
         MemberPointVo mpv = psm.selectMemberPointNew(memberNo);
-        if(mpv==null)
-        	psm.insertMemberPoint(mpv_insert);
+		
+        if(mpv==null) 
+			 psm.insertMemberPoint(mpv_insert);  
+		
 			
 		return value;
 	}
@@ -135,6 +137,16 @@ public class PointServiceImpl implements PointService{
 		
 		return result;
 	}
-	
+
+	/* 임시 */
+	@Override
+	public int insertMemberPoint2(int memberNo) {
+		
+		 int value =psm.insertMemberPoint2(memberNo);
+
+
+		return value;
+	}
+	/* 임시 */
 	
 }
