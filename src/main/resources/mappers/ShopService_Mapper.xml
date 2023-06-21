@@ -109,15 +109,13 @@
 	</select>
 	
 	<select id="trandList" resultType="pd">
-		SELECT a.categoryName, SUM(a.interestNum + IFNULL(c.cntnum, 0)) AS cnt, a.productImg
-		FROM goods a
-		LEFT JOIN (
-		    SELECT goodsNo, COUNT(goodsNo) AS cntnum
-		    FROM orders
-		    GROUP BY goodsNo
-		) c ON a.goodsNo = c.goodsNo
-		GROUP BY a.categoryName
-		ORDER BY cnt DESC;
+		select c.categoryname, sum(cnt)as total from(
+			select categoryname, COUNT(interestNum)as cnt from goods group by categoryName
+			union 
+			select categoryname , count(categoryName)as cnt from orders a left join goods b on a.goodsNo = b.goodsNo group by categoryName
+		) c group by c.categoryname
+		
+		order by total desc limit 8
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
@@ -169,8 +167,7 @@
 	</select> 
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
-		select * from goods
-		where categoryname = #{categoryName} and a.goodsNo not in(#{goodsNo}) order by a.interestNum desc limit 10
+		select * from goods where categoryname = '로퍼' and goodsNo not in(#{goodsNo}) order by interestNum desc limit 10
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
