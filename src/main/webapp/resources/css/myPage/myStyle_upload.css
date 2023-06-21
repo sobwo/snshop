@@ -25,12 +25,41 @@
 	width:1200px;
 	margin:40px 40px 10px 40px;
 }
+#fileBox{
+	display: flex;
+    flex-direction: row;
+}
 #previewImages img{
 	width:118px;
 	height:118px;
 	border: 1px solid rgba(34,34,34,.1);
 	border-radius: 10px;
-	margin:0 10px 0 0;
+	margin:0 0 0 10px;
+}
+#fileDelete{
+	 background-color: transparent;
+    border: none;
+    padding: 50px;
+	
+}
+.file-item{
+	position: relative;
+  	display: inline-block;
+}
+.fileImage{
+	position: relative;
+	z-index: 1;
+}
+.removeBtn{
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	color:#C0C0C0;
+	top: 3px;
+	right: 4px;
+	z-index: 2;
+	cursor:pointer;
+	
 }
 #fileatt{
 	position: absolute;

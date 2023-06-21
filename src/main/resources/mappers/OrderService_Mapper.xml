@@ -127,4 +127,10 @@
 	<update id="orderCancel" parameterType="ov">
 		update orders set orderStatus='종료', statusDetail='대기중', reason=#{reason}, checksum=#{checksum} where orderNum = #{orderNum} 
 	</update>
+
+	<insert id="insertPPoint" parameterType="pv">
+	insert into Point(point, useStatus, useHistory,useDetail, memberNo)
+	values(#{finishPoint},'적립','구매',#{orderNum},#{memberNo})
+	</insert>
+	
 </mapper>

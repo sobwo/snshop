@@ -22,7 +22,7 @@
 					<span class="write_date">${get.cwriteday}</span>
 					<!-- 답글쓰기 -->
 					
-					<button class="reply_comment_btn" onclick="populateInput('${get.memberName}')">답글쓰기 </button>
+					<button class="reply_comment_btn" onclick="recomment_btn('${get.memberName}','${get.memberNo}','${get.commentNo}' )">답글쓰기 </button>
 			
 						
 					<button class="delete_comment_btn" value="${get.commentNo}" onclick="del_comment_btn(${get.commentNo},${get.boardNo},${get.memberNo},'${get.memberName}')"
@@ -74,11 +74,13 @@
 			}
 		
 
-		  function populateInput(memberName) {
-		    var commentInput = document.querySelector('.comment_input');
-		    commentInput.value = "#" + memberName;
+		  function recomment_btn(memberName) {
+			  var commentInput = document.querySelector('.comment_input');
+		  
+		    commentInput.value = "#" + memberName; 
+		    
 		  }
-
+		  
 		  
 		  
 		  function modify_comment_btn(commentNo,ccontents,memberNo) {

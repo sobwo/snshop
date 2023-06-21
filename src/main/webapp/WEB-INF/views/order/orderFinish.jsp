@@ -32,6 +32,7 @@
 							<p class="payTotal">결제 금액</p>
 						</div>	
 						<div class="payNumber">
+					
 							<p class="payTotalNumber">	<fmt:formatNumber type='number' maxFractionDigits='3' value='${od.totalPrice}'/>원</p>
 						</div>		
 					</div>
@@ -59,11 +60,12 @@
 						</div>
 					</c:if>	
 					<div class="orderFinishBtn">
-						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="location.href='${pageContext.request.contextPath}/'">
+						<input type="button" name="orderFinish" id="orderFinish" value="확 인" onclick="location.href='${pageContext.request.contextPath}/'">			
 					</div>	
 				</div>
 			</div>	
 		</div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>	
+
 	</body>
 </html>

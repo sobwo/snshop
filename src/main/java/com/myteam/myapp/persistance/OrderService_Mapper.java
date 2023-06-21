@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 
 public interface OrderService_Mapper {
 	// 정보 입력
@@ -40,9 +41,14 @@ public interface OrderService_Mapper {
 
 	public int orderInsert(OrderVo ov); 
 	
+	public int insertPPoint(PointVo pv);
+	
 	public OrderDto orderSelectNew(String OrderNum);
 	
 	public OrderDto orderHistoryShow(int orderNo);
-	
+
 	public int orderCancel(OrderVo ov);
+	
+	public int orderCancel(String orderNum);
+
 }

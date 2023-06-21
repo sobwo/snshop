@@ -9,16 +9,17 @@ import org.springframework.stereotype.Service;
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
 import com.myteam.myapp.domain.OrderVo;
+import com.myteam.myapp.domain.PointVo;
 import com.myteam.myapp.persistance.OrderService_Mapper;
 
 @Service("orderServiceImpl")
-public class OrderServiceImpl implements OrderService{
-	
+public class OrderServiceImpl implements OrderService {
+
 	private OrderService_Mapper osm;
-	
+
 	@Autowired
 	public OrderServiceImpl(SqlSession sqlSession) {
-		
+
 		this.osm = sqlSession.getMapper(OrderService_Mapper.class);
 	}
 
@@ -26,7 +27,7 @@ public class OrderServiceImpl implements OrderService{
 	public int addressInsert(String basicName, String basicPhone, String basicAddrNum, String basicAddr,
 			String basicAddrDetail, String basic_check, int memberNo) {
 		AddressVo av = new AddressVo();
-		
+
 		av.setUserName(basicName);
 		av.setAddressPhone(basicPhone);
 		av.setZipCode(basicAddrNum);
@@ -34,25 +35,23 @@ public class OrderServiceImpl implements OrderService{
 		av.setDetailAddress(basicAddrDetail);
 		av.setMainAddress(basic_check);
 		av.setMemberNo(memberNo);
-		
+
 		int value = osm.addressCheckReset(memberNo);
 		int value2 = osm.addressInsert(av);
-		
-		return value+value2;
-		
+
+		return value + value2;
+
 		/*
 		 * int value = osm.addressInsert(av);
 		 * 
 		 * return value;
 		 */
 	}
-	
-	
 
 	@Override
 	public ArrayList<AddressVo> addressSelect(int memberNo) {
 		ArrayList<AddressVo> alist = osm.addressSelect(memberNo);
-		
+
 		return alist;
 	}
 
@@ -60,14 +59,14 @@ public class OrderServiceImpl implements OrderService{
 	public AddressVo addressSelectOne(int addressNo) {
 
 		AddressVo av = osm.addressSelectOne(addressNo);
-		
+
 		return av;
 	}
 
 	@Override
 	public int addressDelete(int addressNo) {
 		int value = osm.addressDelete(addressNo);
-		
+
 		return value;
 	}
 
@@ -77,13 +76,12 @@ public class OrderServiceImpl implements OrderService{
 		return av;
 	}
 
-
 	@Override
 	public int addressModify(int addressNo, String basicName, String basicPhone, String basicAddrNum, String basicAddr,
 			String basicAddrDetail, String basic_check) {
-		
+
 		AddressVo av = new AddressVo();
-		
+
 		av.setAddressNo(addressNo);
 		av.setUserName(basicName);
 		av.setAddressPhone(basicPhone);
@@ -91,12 +89,12 @@ public class OrderServiceImpl implements OrderService{
 		av.setAddress(basicAddr);
 		av.setDetailAddress(basicAddrDetail);
 		av.setMainAddress(basic_check);
-		
+
 		int value = osm.addressModify(av);
-		
+
 		return value;
 	}
-	
+
 	@Override
 	public OrderDto purchaseInfo(int memberNo) {
 		OrderDto od = osm.purchaseInfo(memberNo);
@@ -109,23 +107,24 @@ public class OrderServiceImpl implements OrderService{
 		return od;
 	}
 
-
 	@Override
-	public ArrayList<OrderDto> selectHistoryAll(String index,int memberNo, int value, String startDate, String endDate, String filter, String price) {
-		ArrayList<OrderDto> alist = osm.selectHistoryAll(index, memberNo,value,startDate, endDate, filter,price);
-		
+	public ArrayList<OrderDto> selectHistoryAll(String index, int memberNo, int value, String startDate, String endDate,
+			String filter, String price) {
+		ArrayList<OrderDto> alist = osm.selectHistoryAll(index, memberNo, value, startDate, endDate, filter, price);
+
 		return alist;
 	}
 
 	@Override
 	public int cntHistoryAll(String index, int memberNo, int value, String startDate, String endDate) {
 		int cnt = osm.cntHistoryAll(index, memberNo, value, startDate, endDate);
-		
+
 		return cnt;
 	}
 
 	@Override
-	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo, String size, String statusDetail, String memberPhone) {
+	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo,
+			String size, String statusDetail, String memberPhone) {
 		OrderVo ov = new OrderVo();
 		ov.setGoodsNo(goodsNo);
 		ov.setMemberNo(memberNo);
@@ -136,15 +135,18 @@ public class OrderServiceImpl implements OrderService{
 		ov.setOrderNum(orderNum);
 		ov.setMemberPhone(memberPhone);
 		ov.setStatusDetail(statusDetail);
-		
+
 		int value = osm.orderInsert(ov);
-		
+
 		return value;
 	}
 
 	@Override
-	public OrderDto orderSelectNew(String OrderNum) {
-		OrderDto od = osm.orderSelectNew(OrderNum);
+	public OrderDto orderSelectNew(String orderNum) {
+		System.out.println("orderNum" + orderNum);
+
+		OrderDto od = osm.orderSelectNew(orderNum);
+		System.out.println("od" + od);
 		return od;
 	}
 
@@ -159,6 +161,23 @@ public class OrderServiceImpl implements OrderService{
 		int value = osm.orderCancel(ov);
 		return value;
 	}
+
+
+
+
+	@Override
+	public int insertPPoint(int finishPoint, int memberNo, String orderNum) {
+		PointVo pv = new PointVo();
+		pv.setMemberNo(memberNo);
+		pv.setPoint(finishPoint);
+		pv.setUseDetail(orderNum);
+		int value = osm.insertPPoint(pv);
+		return value;
+	}
+
+
+
+	
+
+
 }
-
-

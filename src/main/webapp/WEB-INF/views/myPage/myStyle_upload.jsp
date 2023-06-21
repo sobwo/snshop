@@ -19,7 +19,10 @@
 			<div class="myStyleContainer_inner">
 				<div class="uploadContainer">
 					<div class="uploadBox">
+						<div id="fileBox">
 						<div id="previewImages"></div>
+						<input type="button" id="fileDelete"onclick="deletePreview()" value="X" style="display: none;">
+						</div>
 						<input type="file" multiple="multiple" id="fileatt" name="contentsImg" onchange="readImage(event)">
 						<input type="hidden" name="viewCnt" id="viewCntInput" value="">
 						<label for="fileatt" id="fileLabel"><img class="fileattImage" src="${pageContext.request.contextPath}/resources/image/imageAdd.png"></label>
@@ -78,17 +81,17 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/myPage/myStyle_upload.js"></script>
 		<script>
-<!--textarea-->
+// textarea
 		function resize(obj) {
 		  obj.style.height = "1px";
 		  obj.style.height = (12+obj.scrollHeight)+"px";
 		}
-<!--hashtag-->	
+// hashtag
 		const hashtagsInput = document.getElementById("hashtags");
 		const hashtagsContainer = document.getElementById("hashtagContainer");
 		const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
 
-		let hashtags = [];
+		var hashtags = [];
 
 		
 		
@@ -99,7 +102,7 @@
 				span.innerText = "#" + tag + " ";
 				span.id = "hashTagNames";  
 
-<!--hashtag X button-->
+// hashtag X button
 			const removeButton = document.createElement("button");
 			removeButton.innerText = "x";
 			removeButton.classList.add("remove-button");
@@ -121,7 +124,7 @@
 			}
 		}
 
-<!--hashtag enter-->
+// hashtag enter
 		hashtagsInput.addEventListener("keydown", (event) => {
 			if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
 				event.preventDefault();
@@ -132,43 +135,107 @@
 				}
 			}
 		});
-<!--첨부파일 미리보기-->	
+		
+// 첨부파일 미리보기
 		function readImage(event) {
 			var previewImages = document.querySelector("div#previewImages");
 			var fileLabel = document.querySelector("label#fileLabel");
-	
+		
 			// 파일 개수가 5개를 초과하는 경우 업로드를 막음
 			if (event.target.files.length > 5) {
-			  alert("사진은 5개까지만 첨부 가능합니다.");
-			  event.target.value = "";
-			  
-			  return;
+			alert("사진은 5개까지만 첨부 가능합니다.");
+			event.target.value = "";
 			}
 		
-		for (var image of event.target.files) {
-		  var reader = new FileReader();
-		  reader.onload = function(event) {
-		    var img = document.createElement("img");
-		    img.setAttribute("src", event.target.result);
-		    previewImages.appendChild(img);
-		    if (previewImages.childElementCount >= 5) {
-		      fileLabel.style.display = "none";
-		    }
-		  };
-		  console.log(image);
-		  reader.readAsDataURL(image);
+			for (var image of event.target.files) {
+			var reader = new FileReader();
+		
+			reader.onload = function (event) {
+				if (isFileAttached(event.target.result, event.target.fileName)) {
+				var img = document.createElement("img");
+				img.setAttribute("id", "previewImg");
+				img.setAttribute("src", event.target.result);
+				previewImages.appendChild(img);
+				if (previewImages.childElementCount >= 5) {
+					fileLabel.style.display = "none";
+				}
+				
+				// 파일 첨부가 있을 때만 버튼을 표시
+				if (previewImages.childElementCount > 0) {
+					document.querySelector("input[type='button']").style.display = "inline-block";
+				}
+				
+				}
+			};
+		
+			reader.fileName = image.name; // 파일 이름을 FileReader 객체에 저장
+			reader.readAsDataURL(image);
 			}
 		}
-<!--업로드-->
+// 첨부된 파일만 미리보기	
+		function isFileAttached(fileData, fileName) {
+			var previewImages = document.querySelectorAll("img#previewImg");
+			for (var image of previewImages) {
+			if (image.getAttribute("src") === fileData) {
+				return false;
+				}
+			}
+			return true;
+		}
+// 파일 리스트에 중복된 파일 X
+		function isDuplicateFile(file, fileList) {
+				for (var i = 0; i < fileList.length; i++) {
+				if (file.name === fileList[i].name && file.size === fileList[i].size) {
+					return true;
+					}
+				}
+				return false;
+			}
+// file List		
+		const dataTransfer = new DataTransfer();
+		
+		$("#fileatt").change(function () {
+			var fileArr = document.getElementById("fileatt").files;
+		
+			if (fileArr != null && fileArr.length > 0) {
+			for (var i = 0; i < fileArr.length; i++) {
+				if (isDuplicateFile(fileArr[i], dataTransfer.files)) {
+				alert("이미 첨부된 파일입니다: " + fileArr[i].name);
+				continue; // 중복된 파일은 건너뜀
+				}
+				dataTransfer.items.add(fileArr[i]);
+			}
+			document.getElementById("fileatt").files = dataTransfer.files;
+			console.log("dataTransfer =>", dataTransfer.files);
+			console.log("input FIles =>", document.getElementById("fileatt").files);
+			}
+		});   
+// file List Delete 
+		function resetFileList() {
+				dataTransfer.items.clear();
+				
+				console.log("dataTransfer 삭제 =>", dataTransfer.files);
+				console.log("input FIles 삭제 =>", document.getElementById("fileatt").files);    
+		}
+		
+		function resetPreviewImages() {
+			var previewImages = document.getElementById("previewImages");
+			while (previewImages.firstChild) {
+			previewImages.removeChild(previewImages.firstChild);
+			}
+		}
+		
+		function deletePreview() {
+			resetFileList();
+			resetPreviewImages();
+			document.querySelector("input[type='button']").style.display = "none";
+		}
+// 업로드
 		function check(){
-			
-			if($("#fileatt").val()==="") {
-			      
-			      alert("사진을 등록해주세요.");
-			      
+			if($("#fileatt").val()==="") {     
+			      alert("사진을 등록해주세요.");	      
 			      return;
 			}
-			
 			var fm = document.frm;
 			fm.action ="${pageContext.request.contextPath}/myPage/myStyle_uploadeAction.do";
 			fm.method="post";
