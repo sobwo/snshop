@@ -150,14 +150,19 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
-		public ArrayList<LikesDto> shopReviewList(int goodsNo) {
+		public ArrayList<LikesDto> shopReviewList(HashMap<String,Object> hm) {
 			
-			ArrayList<LikesDto> reviewList = ssm.shopReviewList(goodsNo);
+			ArrayList<LikesDto> reviewList = ssm.shopReviewList(hm);
 			
 			return reviewList;
 		}
 		
-		
+		@Override
+		public int ReviewTotal(int goodsNo) {
+
+			int total = ssm.ReviewTotal(goodsNo);
+			return total;
+		}
 
 		@Override
 		public ArrayList<ProductDto> recommentList(GoodsVo gv) {

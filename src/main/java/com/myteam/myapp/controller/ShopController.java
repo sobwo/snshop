@@ -150,6 +150,18 @@ public class ShopController {
 		return "shop/salePage";
 	}
 	
+	@RequestMapping(value="/contentsSalePage.do")
+	public String contentsSalePage(
+			@RequestParam("goodsNo") int goodsNo,
+			Model model) {
+		
+		ProductDto pd = ss.sellSelect(goodsNo);
+		
+		model.addAttribute("pd", pd);
+		
+		return "shop/salePage";
+	}
+	
 	
 //좌측 필터버튼  ajax	
 	@RequestMapping(value="/categoryFilter.do")
@@ -191,60 +203,61 @@ public class ShopController {
 		return "shop/shopMain_item";
 	}
 	//상품 정렬  ajax	
-		@RequestMapping(value="/itemAlign.do")
-		public String itemAlign(
-				@RequestParam(value="filter[]") List<String> filter,
-				@RequestParam(value="value") int value,
-				@RequestParam(value="index") int index,
-				@RequestParam(value="page") int page,
-				Model model
-				) {		
-			ArrayList<ProductDto> alignList = ss.alignList(filter, value, index, page);
-			model.addAttribute("goodsList", alignList);
-			
-			int price = 0;
-			int total = ss.goodsTotal(filter, value, page, price);
-			model.addAttribute("total", total);
-			
-			return "shop/shopMain_item";
-		}
-	
-	@RequestMapping(value="/shopSell.do")
-	public String shopSell(
-		@RequestParam("goodsNo") int goodsNo,
-		@RequestParam("category") String category,
-		Model model
-		){
-	
-		int value;
+	@RequestMapping(value="/itemAlign.do")
+	public String itemAlign(
+			@RequestParam(value="filter[]") List<String> filter,
+			@RequestParam(value="value") int value,
+			@RequestParam(value="index") int index,
+			@RequestParam(value="page") int page,
+			Model model
+			) {		
+		ArrayList<ProductDto> alignList = ss.alignList(filter, value, index, page);
+		model.addAttribute("goodsList", alignList);
 		
-		switch(category) {
-			case "신발" : value = 0;
-				break; 
-			case "아우터": case "상의": case "하의": value = 1;
-				break;
-			default : value =2;								
-		};
+		int price = 0;
+		int total = ss.goodsTotal(filter, value, page, price);
+		model.addAttribute("total", total);
 		
-		ProductDto pd = ss.sellSelect(goodsNo);
-		
-		model.addAttribute("pd", pd);
-		model.addAttribute("value", value);
-		
-	return "shop/shopSell";
+		return "shop/shopMain_item";
 	}
+	
 	@RequestMapping(value="/shopReview.do")
 	public String shopReview(
 			@RequestParam("goodsNo")int goodsNo,
 			Model model) {
 		
 		ProductDto pd = ss.sellSelect(goodsNo);
-		ArrayList<LikesDto> ReviewList = ss.shopReviewList(goodsNo);
+		
+		HashMap<String, Object> hm = new HashMap<String,Object>();
+		hm.put("goodsNo", goodsNo);
+		hm.put("more", null);
+		
+		ArrayList<LikesDto> ReviewList = ss.shopReviewList(hm);
 		
 		model.addAttribute("llist", ReviewList);
 		model.addAttribute("pd", pd);
 		
 		return "shop/shopReview";
+	}
+	@RequestMapping(value ="contReviewMore.do")
+	public String contentsReviewMore(
+			@RequestParam("goodsNo")int goodsNo,
+			@RequestParam("more") int more,
+			Model model
+			) {
+
+		HashMap<String,Object>hm = new HashMap<String,Object>();		
+				
+		hm.put("goodsNo", goodsNo);
+		hm.put("more", more);
+		
+		ArrayList<LikesDto> reviewList = ss.shopReviewList(hm);
+		
+		model.addAttribute("rl",reviewList);
+		
+		
+		return "shop/contentsReview";
+		
 	}
 	
 	@ResponseBody

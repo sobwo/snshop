@@ -53,7 +53,9 @@
 								</c:choose>
 						</span>
 						<span class="interestNum">${goodsList.interestNum}</span>
-						<span class="review_btn"><img src="${pageContext.request.contextPath}/resources/image/writing.png"></span>
+						<span class="review_btn" onclick="location.href='${pageContext.request.contextPath}/shop/shopReview.do?goodsNo=${goodsList.goodsNo}'">
+							<img src="${pageContext.request.contextPath}/resources/image/writing.png">
+						</span>
 						<span>123</span>
 					</div>
 				</div><!-- product_item_wrap -->

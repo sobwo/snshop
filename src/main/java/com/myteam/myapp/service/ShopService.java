@@ -1,6 +1,7 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.myteam.myapp.domain.GoodsInterestDto;
@@ -34,7 +35,9 @@ public interface ShopService {
 	
 	public ProductDto sellSelect (int goodsNo);
 	
-	public ArrayList<LikesDto> shopReviewList(int goodsNo);
+	public ArrayList<LikesDto> shopReviewList(HashMap<String,Object> hm);
+	
+	public int ReviewTotal(int goodsNo);
 	
 	public int goodsTotal(List<String> filter, int value, int page,int price);
 	

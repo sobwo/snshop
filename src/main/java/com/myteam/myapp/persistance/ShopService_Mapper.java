@@ -34,9 +34,11 @@ public interface ShopService_Mapper {
 	
 	public ArrayList<SizeDto>sizeListAll(int goodsNo);	
 	
-	public ArrayList<LikesDto> shopReviewList(int goodsNo);
+	public ArrayList<LikesDto> shopReviewList(HashMap<String, Object> hm);
 	
 	public ArrayList<ProductDto> trandList();
+	
+	public int ReviewTotal(int goodsNo);
 	
 	public ProductDto sellSelect(int goodsNo);
 	

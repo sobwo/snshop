@@ -83,6 +83,16 @@
 			</when>
 		</choose>
 	</sql>
+	<sql id="moreNum">
+		<if test="more ==null">
+		
+		</if>
+		
+		<if test ="more !=null">
+			limit 0 , #{more}
+		</if>
+	</sql>
+	
 	<select id="goodsTotal" parameterType="hashMap" resultType = "int">
 		SELECT COUNT(DISTINCT goods.goodsNo)
 		FROM goods
@@ -93,28 +103,19 @@
 		<include refid="searchCategory" />
 		and goods.price >= #{price}
 	</select>
+	
 	<select id="goodsSelectAll" resultType="pd">
-		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) order by a.goodsNo desc
+		select * from goods
 	</select>
 	
 	<select id="trandList" resultType="pd">
-		SELECT a.categoryName, SUM(a.interestNum + IFNULL(c.cntnum, 0)) AS cnt, MIN(b.imgfileName)
-		FROM goods a
-		INNER JOIN productImg b ON a.goodsNo = b.goodsNo
-		LEFT JOIN (
-		    SELECT goodsNo, COUNT(goodsNo) AS cntnum
-		    FROM orders
-		    GROUP BY goodsNo
-		) c ON a.goodsNo = c.goodsNo
-		WHERE b.goodsNo IN (
-		    SELECT goodsNo
-		    FROM productImg
-		    GROUP BY goodsNo
-		    HAVING imgNo = MIN(imgNo)
-		)
-		GROUP BY a.categoryName
-		ORDER BY cnt DESC;
+		select c.categoryname, sum(cnt)as total from(
+			select categoryname, COUNT(interestNum)as cnt from goods group by categoryName
+			union 
+			select categoryname , count(categoryName)as cnt from orders a left join goods b on a.goodsNo = b.goodsNo group by categoryName
+		) c group by c.categoryname
+		
+		order by total desc limit 8
 	</select>
 	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
@@ -150,21 +151,23 @@
 	</select>
 	
 	<select id="sellSelect" parameterType="int" resultType="pd">
-		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo)) 
-		and a.goodsNo=#{goodsNo}
+		select * from goods 
+		where goodsNo=#{goodsNo}
 	</select>
 	
-	<select id="shopReviewList" parameterType="int" resultType="ld">
-		select * from board where boardNo in (select boardNo from connect where goodsNo = #{goodsNo})
+	<select id="shopReviewList" parameterType="hashMap" resultType="ld">
+		SELECT * FROM board a LEFT JOIN member b ON a.memberNo = b.memberNo
+		WHERE a.boardNo IN (SELECT boardNo FROM connect WHERE goodsNo = #{goodsNo}) 
+		<include refid="moreNum" />
 	</select>
+	
+	<select id="ReviewTotal" parameterType="int" resultType="int">
+		SELECT count(*) FROM board a LEFT JOIN member b ON a.memberNo = b.memberNo
+		WHERE a.boardNo IN (SELECT boardNo FROM connect WHERE goodsNo = #{goodsNo})
+	</select> 
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
-		
-		select * from goods a inner join productImg b on a.goodsNo = b.goodsNo
-		where b.goodsNo IN (select goodsNo from productImg group by goodsNo having imgNo=min(imgNo))
-		and categoryname = #{categoryName} and a.goodsNo not in(#{goodsNo}) order by a.interestNum desc limit 10
-	
+		select * from goods where categoryname = '로퍼' and goodsNo not in(#{goodsNo}) order by interestNum desc limit 10
 	</select>
 	
 	<select id="sizeList" parameterType="int" resultType="sd">
