@@ -50,14 +50,14 @@
 			<main class="main_area">
 	<!-- 상단 트랜드 상품 리스트 -->
 				<section class="trend_container">
-					<div class="trend_con_area">
+					<div class="trend_con_area" >
 						<c:forEach var="tl" items="${trandList}">
 							<div class="trendContents">
 								<div class="trendImg">
 									<img src="" width="90px" height="90px">
 								</div><!-- trendImg -->
 								<div class="trendName">
-									<span>${tl.categoryName}</span>
+									<span class="cateName">${tl.categoryName}</span>
 								</div><!-- trendName -->
 							</div>
 						</c:forEach>
@@ -688,6 +688,23 @@
 				}
 			};
 
+		});
+	
+		$(document).on("click",".trendContents",function(){
+			var categoryName = $(this).find(".cateName").text();
+			
+			var childListIn = $("input:checkbox[value='"+categoryName+"']").closest(".filter_child_list_in");
+			childListIn.click();
+			
+			childListIn.closest(".filter_child_list").show();
+			
+			var filterBtn = $(".filter_btn").eq(0);
+			var title = $(".title_area").eq(0);
+
+			if(filterBtn.text() == "+") title.click();
+			else{}
+			
+			
 		});
 		</script>
 	</body>

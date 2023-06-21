@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,20 +29,20 @@
 					<input type="hidden" name="category" value="${gv.category}">
 					<div class="productImg_area">
 						<div class="productImage">
-							<img src="../" width="560px" height="560px">
-							<div class="pre_btn">
-								<button type="button" name="pre_btn">&#60;</button>
-							</div>
-							<div class="next_btn">
-								<button type="button" name="next_btn">&#62;</button>
-							</div>
+							<c:set var="exp" value= "${gv.productImg.substring(gv.getProductImg().length()-3, gv.getProductImg().length())}" />
+							<c:set var="imgList" value="${fn:split(gv.productImg, ',')}" />
+							<c:choose>
+								<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+									<c:forEach var="img" items="${imgList}">
+										<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+								</c:otherwise>
+							</c:choose>
 						</div>
-						<ul>
-							<c:forEach var="pivList" items="${pivList}">
-								<li><img src=""></li>
-							</c:forEach>
-						</ul>
-					</div>	
+					</div>		
 			<!-- 상품 가격 표시 -->
 					<div class="productContents_area">
 						<div class="productContents">
@@ -133,7 +134,7 @@
 						<c:forEach var ="reList" items="${recommentList}">
 							<div class="o_product">
 								<div class="o_product_img">
-									<img src="${reList.productImg}" width="224px" height="224px">
+									<img src="" width="224px" height="224px">
 								</div>
 								<div class="o_info">
 									<span>${reList.goodsName}</span>
@@ -148,30 +149,12 @@
 				
 			<!-- 상품 리뷰(후기) -->
 			
-				<div class="feed_area">
-					<h3 class="sub_h3">리뷰(스타일)<span>123</span></h3>
-					
-					<div class="feed_contents_area" onclick="">
-						
-						<div class="feed_img">
-							<img src=""  width="279px" height="279px">
-						</div>
-						<div class="feed">
-							<div class="feed_user">
-								<div class="user_info">
-									<img src=""  width="26px" height="26px">
-									<p>ID</p>
-								</div>
-								<span><img src="">23</span>
-							</div>
-							<div class="feed_con">
-								<p>#KREAM챌린지 #스타일챌린지 #하트챌린지 #빈티지 #시카고2022</p>
-							</div>
-						</div>
-					</div>
+				<div class="reviewTotal">
+					<h3 class="sub_h3">리뷰(스타일)  <span>  ${total}</span></h3>
 				</div>
+				<div class="feed_area"></div>
 				<div class="more_btn_area">
-					<button>더보기</button>
+					<button class="more_btn" value="1" onclick="reviewMore();">더보기</button>
 				</div>
 			</div>
 		</main>
@@ -179,6 +162,9 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/shop/shopContents.js"></script>
 		<script>
+		$(document).ready(function(){
+			reviewMore();
+		});
 
 		status_item_fb.on("click",function(){
 			popup_wrap_2.hide();
@@ -200,7 +186,7 @@
 		function sellButton(){
 			var fm = document.frm;
 			fm.ectype = "multipart/form-data"
-			fm.action = "${pageContext.request.contextPath}/shop/shopSell.do"
+			fm.action = "${pageContext.request.contextPath}/shop/contentsSalePage.do?goodsNo=${gv.goodsNo}"
 			fm.method = "POST"
 			fm.submit();
 		};
@@ -249,6 +235,33 @@
 	
 				});
 			}
+		});
+		function reviewMore(){
+			var goodsNo = $("input[name=goodsNo]").val();
+			var more = parseInt($(".more_btn").val())*8;
+		
+			$.ajax({
+		        url: "${pageContext.request.contextPath}/shop/contReviewMore.do",
+		        type: "POST",
+		        data: {
+					"goodsNo" : goodsNo,
+					"more" : more
+		        	},
+		        cache: false,
+		        success: function(data) {
+			        $(".feed_area").html(data);					
+		        },
+		        error: function() {
+
+		        }
+
+			});
+		}
+		$(document).on("click",".more_btn",function(){
+			var value = $(this).val();
+			var valueInt = parseInt(value)+1;
+			$(this).val(valueInt);
+			reviewMore();
 		});
 		</script>
 	</body>

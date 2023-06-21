@@ -83,6 +83,16 @@
 			</when>
 		</choose>
 	</sql>
+	<sql id="moreNum">
+		<if test="more ==null">
+		
+		</if>
+		
+		<if test ="more !=null">
+			limit 0 , #{more}
+		</if>
+	</sql>
+	
 	<select id="goodsTotal" parameterType="hashMap" resultType = "int">
 		SELECT COUNT(DISTINCT goods.goodsNo)
 		FROM goods
@@ -93,6 +103,7 @@
 		<include refid="searchCategory" />
 		and goods.price >= #{price}
 	</select>
+	
 	<select id="goodsSelectAll" resultType="pd">
 		select * from goods
 	</select>
@@ -146,9 +157,16 @@
 		where goodsNo=#{goodsNo}
 	</select>
 	
-	<select id="shopReviewList" parameterType="int" resultType="ld">
-		select * from board where boardNo in (select boardNo from connect where goodsNo = #{goodsNo})
+	<select id="shopReviewList" parameterType="hashMap" resultType="ld">
+		SELECT * FROM board a LEFT JOIN member b ON a.memberNo = b.memberNo
+		WHERE a.boardNo IN (SELECT boardNo FROM connect WHERE goodsNo = #{goodsNo}) 
+		<include refid="moreNum" />
 	</select>
+	
+	<select id="ReviewTotal" parameterType="int" resultType="int">
+		SELECT count(*) FROM board a LEFT JOIN member b ON a.memberNo = b.memberNo
+		WHERE a.boardNo IN (SELECT boardNo FROM connect WHERE goodsNo = #{goodsNo})
+	</select> 
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
 		select * from goods
