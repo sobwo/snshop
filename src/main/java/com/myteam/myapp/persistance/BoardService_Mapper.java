@@ -39,6 +39,8 @@ public interface BoardService_Mapper {
 
 	public int hashTagList2(HashTagVo hv);
 
+//	public ArrayList<HashTagVo> hashtagBoard(int boardNo);
+
 
 
 }
