@@ -32,13 +32,13 @@
 	</select>
 	<!-- 수정중  -->
 	<insert id="insertMemberPoint" parameterType="mpv">
-	 	INSERT INTO MEMBERPOINT(POINTNO,MEMBERNO,)
-			VALUES(#{pointNo},#{memberNo}) 
+	 	INSERT INTO MEMBERPOINT(MEMBERNO)
+			VALUES(#{memberNo}) 
 		
 	</insert>
 		<!-- 수정중  -->	
 	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
-		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY POINTNO DESC LIMIT 1
+		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY memberPointNo DESC LIMIT 1
 	</select>
 	
 	<update id="updateUsage" parameterType="Integer">
@@ -64,7 +64,7 @@
 	
 	<update id="updateExpPoint" parameterType="Integer">
 		update memberPoint 
-		set expPoint =  ifnull((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0} and useStatus='적립'),0)
+		set exaPoint =  ifnull((select sum(point) from point where expiration >= curdate() and month(expiration) = month(curdate()) and memberNo = #{0} and useStatus='적립'),0)
 		 				 - ifnull((select sum(point) from point where month(useDate) = month(curdate()) and memberNo = #{0} and useStatus='사용'),0)
 		where memberNo = #{0};
 	</update>
@@ -86,5 +86,10 @@
 		
 	<insert id="insertCouponUsage" parameterType="Integer">
 		insert into couponUsage(couponNo,memberNo) values(#{0},#{1})
+	</insert>
+	
+	<insert id ="insertMemberPoint2" parameterType="Integer">
+		insert into memberPoint(avaPoint,exaPoint,memberNo) 
+		values(0,0,#{0})
 	</insert>
 </mapper>

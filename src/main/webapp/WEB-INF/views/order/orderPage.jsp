@@ -44,7 +44,7 @@
 								<p class="model_title"> ${gv.goodsName}</p>
 								<p class="model_ko">${gv.modelNum}</p>
 								<div class="model_desc">
-									<p class="size_txt">${sizeName}</p>
+									<p class="size_txt">${sizeName} </p>
 								</div>
 							</div>
 						</div>
@@ -197,7 +197,8 @@
 							<p class="have_point">
 								보유포인트:
 								<button onclick="openPopup()" class="Q">?</button>
-								${Avapoint} P						
+									 ${Avapoint} P			
+									
 							</p>
 							<!--포인트 - 팝업창-->
 							<div class="point_popup">
@@ -256,7 +257,8 @@
 						<div class="inner_totalprice"
 							style="display: flex; justify-content: space-between; align-items: center;">
 							<p>포인트</p>							
-							<p id="inner_point" style="color: red; text-align: right;">${point}</p>
+							<p id="inner_point" style="color: red; text-align: right;">${point}</p> 
+								
 						</div>					
 				 		<div 
 							style="display: flex; justify-content: space-between; align-items: center;">
@@ -267,7 +269,7 @@
 					</div>
 					
 					<div class="payMethod">
-						<h3 class="title_txt1 title_pay">결제 방법</h3>
+						<h3 class="title_txt1 title_pay">결제 방법  </h3>
 						<div class="method_title">
 							<div class="pay_box" id="card">신용카드
 								<input type="hidden" class="method" value="off">
@@ -306,6 +308,7 @@
 							<div class=agree-terms2>
 								<input type="checkbox" class="agree-terms" id="checkbox3">
 								<label for="agree-terms" ><b>위 내용을 모두 확인하였으며, 거래 진행에동의합니다.</b></label> <br>									
+												
 							</div>
 							
 							<div class="totalprice_area">
@@ -316,9 +319,9 @@
 								</p>
 							</div>
 						</div>
-									
-<!--  						<button class="payment-button" id="payment-button" disabled onclick="orderPay()">결제하기 -->
- 						<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기
+
+
+					<button class="payment-button" id="payment-button" disabled onclick="orderPay(Math.floor(${gv.price * 0.01}))">결제하기 
 						</button>					
 					</div>
 				</div>

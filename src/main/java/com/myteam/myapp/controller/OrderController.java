@@ -71,6 +71,7 @@ public class OrderController {
 		
 		int memberNo = 0;
 	
+
 		if(session.getAttribute("memberNo") != null) {
 			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
 		}
@@ -82,12 +83,15 @@ public class OrderController {
 		
 		int totalPoint = 0;
 		int Avapoint = totalPoint;
+		/* int pointNo = 0; */
 		
 		if(mpv != null) {
 			totalPoint = mpv.getAvaPoint();
 			Avapoint = totalPoint;
-		}
+			/* pointNo = mpv.getPointNo(); */
 		
+		}
+		/* session.setAttribute("pointNo", pointNo); */
 		Avapoint -= point;
 		
 		int total=gv.getPrice()-point;
@@ -150,7 +154,7 @@ public class OrderController {
 	}
 
 	/* 수정중 */
-	/* @ResponseBody */
+
 	@RequestMapping(value = "/orderFinish.do")
 	public String orderFinish(  HttpSession session,
 			String vIndex,
@@ -160,19 +164,15 @@ public class OrderController {
 			@RequestParam(value = "orderNum") String orderNum) {
 
 		 int memberNo = Integer.parseInt(session.getAttribute("memberNo").toString());
-		 
+	
 		OrderDto od = os.orderSelectNew(orderNum);
 		PayVo pmv = pms.paySelectNew(od.getOrderNo());
-
-		/* 실행ㅇ int value = os.accumulatefinishPoint(finishPoint, memberNo); */
 		 int value = os.insertPPoint(finishPoint, memberNo, orderNum);
 	
 		model.addAttribute("od", od);
 		model.addAttribute("pmv", pmv);
 		
-		/*
-		 * model.addAttribute("od", od); model.addAttribute("pv", pv);
-		 */
+
 		return "order/orderFinish";
 	}	/* 수정중 */
 

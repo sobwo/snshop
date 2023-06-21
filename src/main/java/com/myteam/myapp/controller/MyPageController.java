@@ -687,17 +687,15 @@ public class MyPageController {
 	}
 
 	
-	  @RequestMapping(value = "/point.do") public String point( Model model,
-	  
-	  @RequestParam("pointNo") String pointNo,
-	  
+	  @RequestMapping(value = "/point.do") 
+	  public String point( Model model,
 	  
 	  HttpSession session) throws Exception {
-	  
+
 	  int memberNo = 0;
 	  
-	  if(session.getAttribute("memberNo") != null) { memberNo=
-	  Integer.parseInt(session.getAttribute("memberNo").toString()); }
+	  if(session.getAttribute("memberNo") != null) {
+		  memberNo=Integer.parseInt(session.getAttribute("memberNo").toString()); }
 	  
 	  
 	  MemberPointVo mpv = ps.selectMemberPointAll(memberNo);
@@ -705,7 +703,7 @@ public class MyPageController {
 	  ArrayList<PointVo> plist = ps.selectPointAll(memberNo);
 	  
 	  model.addAttribute("mpv", mpv); model.addAttribute("plist", plist);
-	  System.out.println("pointNo: " + pointNo);
+
 	  return "myPage/point"; }
 	 
 	@RequestMapping(value = "/couponAction.do")

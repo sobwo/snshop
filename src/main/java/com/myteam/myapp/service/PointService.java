@@ -14,7 +14,10 @@ public interface PointService {
 	
 	public ArrayList<PointVo> selectPointAll(int memberNo);
 	public MemberPointVo selectMemberPointAll(int memberNo);
-
+	/* 임시6-21 */
+	public int insertMemberPoint2(int memberNo);
+	/* 임시 */
+	
 	//관리자일떄 쿠폰 등록
 	public int insertCoupon(String couponName, String couponNum, int point, String usePeriod);
 }
