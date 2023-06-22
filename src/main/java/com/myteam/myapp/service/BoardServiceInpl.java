@@ -153,5 +153,14 @@ public class BoardServiceInpl implements BoardService{
 		return value;
 	}
 
+/*
+	@Override
+	public ArrayList<HashTagVo> hashtagBoard(int boardNo) {
+		
+		ArrayList<HashTagVo> hlist = bsm.hashtagBoard(boardNo);
+		
+		return hlist;
+	}
+*/
 
 }

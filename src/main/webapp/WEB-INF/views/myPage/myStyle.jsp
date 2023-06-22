@@ -110,9 +110,18 @@
 									</div>
 									<div class="feedPostContent" onclick="location.href='#'">
 										<p>${ld.contents}</p>
-										 
-										<p class="hashTag">해시태그 영역${hv.hashTagName}<p>
-									
+			
+										<p class="hashTag">
+											<c:forEach var="hv" items="${hlist}" varStatus="status">
+										
+										<!--<c:set var="hastTagList" value="${ld.boardNo}" />-->
+											
+												<c:if test="${hv.boardNo == ld.boardNo}">
+													<span>#${hv.hashTagName}</span>
+												</c:if>
+											</c:forEach>
+										<p>
+	
 									</div>
 								</div>
 							</div>

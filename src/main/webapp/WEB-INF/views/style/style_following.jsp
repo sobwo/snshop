@@ -78,8 +78,7 @@
 									<c:forEach var="img" items="${imgList}">
 										<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
 									</c:forEach>										
-									</c:if>
-				    				            		
+									</c:if>		    				            		
 						    	</div>
 					    	</div>
 					    	
@@ -124,12 +123,12 @@
 										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}' )">	
 
 									</span>
-									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
-								</span>
+									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="">
+
+								</span>  
 								<div class="social_count" > 
 									<%-- 	<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span> --%>
 									<span class="openPopup21" onclick="openPopup2(${blist.boardNo}, '${blist.profileImg}')">좋아요&nbsp;<strong class="likeCount">${blist.likeCnt}</strong>개</span>
-									
 								</div>
 							</div>
 							</div>
@@ -143,7 +142,7 @@
 		    	</div>
 		    	<jsp:include page="popup/comment_popup.jsp"></jsp:include>
 		    	<jsp:include page="popup/likepush.jsp"></jsp:include>
-
+	   
 		    
 			</div>
 		</div>
@@ -412,7 +411,24 @@
 		
 			}
 	
+		        function openPopup9() {
+		            var popup = document.getElementById("popup");
+		            popup.style.display = "block";
+		        }
 	
+		        function closePopup9() {
+		            var popup = document.getElementById("popup");
+		            popup.style.display = "none";
+		        }
+	
+		        let nowUrl = window.location.href;
+	
+		    function copyUrl(){ 
+	
+		  	navigator.clipboard.writeText(nowUrl).then(res=>{
+			  alert("주소가 복사되었습니다!");
+			})
+		}
 		</script>
 	</body>
 </html>

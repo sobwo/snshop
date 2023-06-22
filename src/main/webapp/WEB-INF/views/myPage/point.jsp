@@ -54,7 +54,7 @@
 								<span class="point_content">
 									<c:choose>
 										<c:when test="${mpv!=null}">
-											 ${mpv.expPoint}P
+											 ${mpv.exaPoint}P
 										
 										</c:when>
 										<c:otherwise>

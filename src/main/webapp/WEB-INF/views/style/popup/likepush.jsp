@@ -58,7 +58,7 @@
 			
                     	</div>
                    	<div class="close_btn">
-                  		<button onclick="closePopup2()" style="border-radius: 10px;   width: 55px; margin-left: 125px; background:white;">확인</button>
+                  		<button onclick="closePopup2()" style="border-radius: 10px;   width: 55px; margin-left:120px; background:white;">확인</button>
                     </div>             
                 	</div>
                  

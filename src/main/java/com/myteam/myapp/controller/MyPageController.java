@@ -36,6 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.BoardVo;
+import com.myteam.myapp.domain.Board_hashtagVo;
 import com.myteam.myapp.domain.GoodsInterestDto;
 import com.myteam.myapp.domain.HashTagVo;
 import com.myteam.myapp.domain.LikesDto;
@@ -278,9 +279,29 @@ public class MyPageController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<LikesDto> llist = bs.boardList(memberNo);
-				
+		
+/*		
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		   
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+
+		    
+		    hlist.addAll(hashtagList);
+
+		    
+		}
+*/		
+//		ArrayList<HashTagVo> hlist = bs.hashtagBoard(boardNo);
+
+
+		
+	
 		model.addAttribute("mv", mv);
 		model.addAttribute("llist", llist);
+//		model.addAttribute("hlist", hlist);
 
 		return "myPage/myStyle";
 	}

@@ -113,7 +113,7 @@
 						$("#basic_Addr").val(data.av.address);
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
+						alert("다시1 시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
@@ -146,7 +146,7 @@
 							location.reload();
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
+						alert("다시2 시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
@@ -168,7 +168,7 @@
 						}
 					},
 					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
+						alert("다시 3시도하시기 바랍니다.");	
 						console.log("code: " + request.status);
 				        console.log("message: " + request.responseText);
 				        console.log("error: " + error);
