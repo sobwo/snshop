@@ -51,7 +51,7 @@
 /* 임시 6-21 */
 
 
-        #popup {
+/*         #popup {
             display: none;
             position: fixed;
             top: 50%;
@@ -63,7 +63,7 @@
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
-        }
+        } 
 
         #imageWrapper {
             display: flex;
@@ -96,3 +96,5 @@
             margin-left: -25px;
             margin-bottom: 10px;
         }
+        )
+        */

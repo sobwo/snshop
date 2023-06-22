@@ -13,9 +13,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
 			throws Exception {
 		Object memberNo = modelAndView.getModel().get("memberNo");
+		Object role = modelAndView.getModel().get("role");
 		
 		if(memberNo!=null) {
 			request.getSession().setAttribute("memberNo", memberNo);
+			request.getSession().setAttribute("role", role);
+
 		}
 	}
 	

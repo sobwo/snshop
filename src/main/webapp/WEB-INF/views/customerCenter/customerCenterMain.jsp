@@ -7,6 +7,9 @@
 		<meta charset="UTF-8">
 		<title>고객센터</title>
 		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/customerCenter.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/adminWrite.css" rel="stylesheet"/>
+		
+		
 		<style>
 			.titleSorting{}
 			
@@ -29,6 +32,25 @@
 				color:#222;
 				font-weight:bold;
 			}
+			.writeButton{
+			    width: 13%;
+			    height: 60px;
+			    background-color:white;
+			    border: none;
+			    border-radius: 10px;
+			    font-size: 18px;
+			    font-weight: bold;
+			    color: black;
+			    line-height: 60px;
+			   	cursor: pointer;
+				margin-left:870px;
+			}
+			
+			
+			
+			
+			
+			
 		</style>
 	</head>
 	<body>
@@ -41,7 +63,29 @@
 				<div class="content_wrap">
 					<div class="content_title">
 						<h3 class="content_title_txt">공지 사항</h3>
+
 					</div>
+	
+					<c:set var="role" value = "${sessionScope.role}" />
+					<c:if test="${role eq 'admin'}">
+					 <div class="container">
+					    <h2>공지사항 글쓰기</h2>
+					    <form action="process.php" method="post">
+					      <div class="form-group">
+					        <label for="title">제목</label>
+					        <input type="text" id="title" name="title" required>
+					      </div>
+					      <div class="form-group">
+					        <label for="content">내용</label>
+					        <textarea id="content" name="content" required></textarea>
+					      </div>
+					      <div class="form-group">
+					        <button type="submit">작성하기</button>
+					      </div>
+					    </form>
+					  </div>
+				  	</c:if>
+					  	
 					<ul class="titleSorting">
 						<li>
 							<div class="titleContainer">
