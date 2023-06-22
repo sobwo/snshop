@@ -53,7 +53,7 @@
 				</div>
 				<div class="order">
 					<h4 class="title">배송 주소</h4>
-					<div>${od.zipCode}&nbsp;&nbsp;${od.address}&nbsp;&nbsp;${od.detailAddress}</div>
+					<div>${od.address}</div>
 				</div>
 			</div>
 		</div>

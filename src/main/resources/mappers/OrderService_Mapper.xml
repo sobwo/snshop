@@ -110,8 +110,8 @@
 
 	
 	<insert id="orderInsert" parameterType="ov">
-		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,ADDRESSNO,GOODSNO,MEMBERNO,SIZE,PORS,orderstatus,statusDetail,memberPhone)
-		VALUES(#{payInfo},#{totalPrice},#{orderNum},#{addressNo},#{goodsNo},#{memberNo},#{size},'구매','진행중',#{statusDetail},#{memberPhone})
+		INSERT INTO ORDERS(PAYINFO,TOTALPRICE,ORDERNUM,GOODSNO,MEMBERNO,SIZE,PORS,orderstatus,statusDetail,memberPhone,address)
+		VALUES(#{payInfo},#{totalPrice},#{orderNum},#{goodsNo},#{memberNo},#{size},'구매','진행중',#{statusDetail},#{memberPhone},#{address})
 	</insert>
 		
 	<select id="orderSelectNew" parameterType="String" resultType="od">
@@ -120,7 +120,7 @@
 	</select>
 	
 	<select id="orderHistoryShow" parameterType="Integer" resultType="od">
-		select * from orders a inner join goods b on a.goodsNo = b.goodsNo inner join address c on a.addressNo = c.addressNo 
+		select * from orders a inner join goods b on a.goodsNo = b.goodsNo
 		where a.orderNo = #{0}
 	</select>
 	
