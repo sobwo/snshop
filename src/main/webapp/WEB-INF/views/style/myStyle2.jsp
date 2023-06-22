@@ -160,9 +160,15 @@
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${ld.contents}</span>
-					    		<!--  
-					    		<span class="hashTag">#해시태그</span>
-					    		-->
+					    		
+					    		<p class="hashTag">
+									<c:forEach var="hv" items="${hlist}">
+										<c:if test="${hv.boardNo == ld.boardNo}">
+											<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
+										</c:if>
+									</c:forEach>
+								</p>
+										
 					    	</div>
 
 					    </div>
