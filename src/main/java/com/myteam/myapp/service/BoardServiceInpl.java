@@ -153,7 +153,7 @@ public class BoardServiceInpl implements BoardService{
 		return value;
 	}
 
-/*
+
 	@Override
 	public ArrayList<HashTagVo> hashtagBoard(int boardNo) {
 		
@@ -161,6 +161,6 @@ public class BoardServiceInpl implements BoardService{
 		
 		return hlist;
 	}
-*/
+
 
 }

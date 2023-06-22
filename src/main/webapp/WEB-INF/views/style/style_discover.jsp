@@ -54,7 +54,7 @@
 					<c:forEach var="ld" items="${llist}" varStatus="status">
 						<div class="feeds" >
 							<div class="feedPost" id="feedPost${ld.boardNo}">
-								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover_newest2.do?boardNo=${ld.boardNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
+								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover2.do?boardNo=${ld.boardNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
 									<c:set var="exp" value= "${ld.contentsImg.substring(ld.getContentsImg().length()-3, ld.getContentsImg().length())}" />
 									<c:set var="imgList" value="${fn:split(ld.contentsImg, ',')}" />
 									
@@ -102,6 +102,14 @@
 								</div>
 								<div class="feedPostContent" onclick="location.href='#'">
 									<p>${ld.contents}</p>
+									
+									<p class="hashTag">
+										<c:forEach var="hv" items="${hhlist}">
+											<c:if test="${hv.boardNo == ld.boardNo}">
+												<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
+											</c:if>
+										</c:forEach>
+									</p>
 								</div>
 							</div>
 						</div>
