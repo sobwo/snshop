@@ -160,30 +160,11 @@
 	color: rgba(34, 34, 34, .8);
 	background-color: #fff;
 	border: 1px solid #d3d3d3;
-	margin-left: 150px;
+ 	margin-left: 150px; 
 	cursor: pointer
 }
 
-/* .addressSave{
-	width:45px;
-	height:25px;
-	border-radius:5px;
-	text-align:center;
-	color:rgba(34,34,34,.8);
-	background-color:#fff;
-	border :1px; solid # d3d3d3;
-	cursor:ponter;
-}
- */
-/* .addressnum {
-	color: #222222cc;
-	color: rgba(34, 34, 34, .8);
-	background-color: #fff;
-	border: 1px solid #d3d3d3;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-bottom: 25px;
-} */
+
 .section_content {
 	width: 636px;
 	height: 123px;
@@ -461,6 +442,8 @@ button.active {
 	background-color: #fff;
 	border: 1px solid #d3d3d3;
 	cursor: pointer;
+	margin-left:150px;
+	margin-bottom:10px;
 }
 
 .agree-terms2 {

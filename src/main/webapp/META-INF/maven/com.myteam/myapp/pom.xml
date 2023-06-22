@@ -154,7 +154,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.28</version>
-        </dependency>
+        </dependency> 
 		
 		<!-- mybatis : 스프링 프레임워크 -->
 		<dependency>
@@ -277,6 +277,13 @@
 			<artifactId>javaSDK</artifactId>
 			<version>2.2</version>
 		</dependency>
+		
+<!-- 			<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.24</version>
+		</dependency>
+		 -->
 		
 		<!--이미지 스크롤 -->
 		<!-- https://mvnrepository.com/artifact/com.typesafe.slick/slick -->
