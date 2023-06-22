@@ -39,13 +39,19 @@
 								onkeydown="resize(this)" onkeyup="resize(this)">${bv.contents}</textarea>
 					</div>
 					
-					<div id="hashtagContainer"></div>
+					<div id="hashtagContainer">
+						<c:forEach var="hv" items="${hlist}">
+							<c:if test="${hv.boardNo == bv.boardNo}">
+								<span id="hashTagNames">#${hv.hashTagName}</span>
+							</c:if>
+						</c:forEach>
+					</div>
 					
 					<div class="tagContainer">
-					     <div>
-					         <input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-					         <input type="hidden" id="hashtags-hidden" name="hashTagName">
-					     </div>
+						<div>
+							<input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
+							<input type="hidden" id="hashtags-hidden" name="hashTagName">
+						</div>
 					</div>   
 					
 				</div>
@@ -54,6 +60,7 @@
 						<div class="tagTitle">
 							<span>유형</span>
 						</div>
+						
 						<div class="tagSelect">
 							<input class="genderSelect" id="male" type="checkbox" value="남성">
 							<label for="male">남성</label>
@@ -97,7 +104,7 @@
 		const hashtagsInput = document.getElementById("hashtags");
 		const hashtagsContainer = document.getElementById("hashtagContainer");
         const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
-
+        
         let hashtags = [];
 
         function addHashtag(tag) {
@@ -105,7 +112,6 @@
             if(tag && !hashtags.includes(tag)) {
                 const span = document.createElement("span");
                 span.innerText = "#" + tag + " ";
-//              span.classList.add("hashtag");
                 span.id = "hashTagNames";
 
 
@@ -140,6 +146,7 @@
                 }
             }
         });	
+        
 
 		function mCheck(){
 			

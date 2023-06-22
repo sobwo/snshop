@@ -484,6 +484,16 @@ public class MyPageController {
 			) {
 			BoardVo bv = bs.boardSelectOne(boardNo);
 			
+			ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+			    
+			    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+			    
+			    hlist.addAll(hashtagList);
+			
+
+			model.addAttribute("hlist", hlist);
+			
 			model.addAttribute("bv", bv);
 			
 		return "myPage/myStyle_modify";
@@ -511,30 +521,39 @@ public class MyPageController {
 		
 		int value = bs.boardModifyUpdate(bv);
 
-//해시태그 insert 		
-		HashTagVo hv = new HashTagVo();
+//해시태그 insert 	
+		String hashTagNames = hashTagName;		
+		String[] hashtags = hashTagNames.split(",");
 		
-		hv.setHashTagName(hashTagName);
+		for (String hashtag : hashtags) {	
 		
-		int value2 = bs.hashTagList(hv);  // hashTagName 값 있는지 없는지 확인
-		
-		if(value2==0){
-				bs.hashTagInsert(hv);
-				
-			}else if(value2 != 0){
-				
-				int value3 = bs.hashTagList2(hv);
-				
-				bs.tagCntUpdate(hv);
-				hv.setHashTagNo(value3);
-			}
-		
-// board_hashTag insert	
-		int hashTagNo = hv.getHashTagNo();
-		
-		bs.insertBoardHashTag(boardNo, hashTagNo);
+			HashTagVo hv = new HashTagVo();
+			hv.setHashTagName(hashtag);
+			
+			if (hashTagName.isEmpty()) {
 
-
+			} else {
+				int value2 = bs.hashTagList(hv); // hashTagName 값 있는지 없는지 확인
+			
+				if (value2 == 0) {
+					bs.hashTagInsert(hv);
+					
+					} else if (value2 != 0) {
+						int value3 = bs.hashTagList2(hv);
+						
+						bs.tagCntUpdate(hv);
+						hv.setHashTagNo(value3);
+					}
+				}
+// board_hashTag insert		
+				int hashTagNo = hv.getHashTagNo();
+			
+				if (hashTagName.isEmpty()) {
+			
+				}else {
+					bs.insertBoardHashTag(boardNo, hashTagNo);
+				}
+		}
 		return "redirect:/style/myStyle2.do";
 	}	
 	
