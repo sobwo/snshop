@@ -196,7 +196,6 @@ public class MyPageController {
 			HttpSession session,
 			Model model,
 			@RequestParam("orderNo") int orderNo) {
-			
 		
 		OrderDto od = os.orderHistoryShow(orderNo);
 		
