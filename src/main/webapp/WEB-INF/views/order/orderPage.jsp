@@ -103,13 +103,20 @@
 											기본 배송지로 설정
 										</span>
 									</div>
-									<button onclick="add_address_closePopup()"
+								<!-- 	<button  onclick="add_address_closePopup()"
 										class="popup_inner_btn2">닫기
-									</button>
+									</button> -->
+									
 									<button class="addressSave" value="저장하기"
 										onclick="submit_address()">저장
 									</button>
+								
 								</form>
+							
+								<button onclick="add_address_closePopup()"
+										class="popup_inner_btn2">닫기
+								</button>
+						
 							</div>
 
 							<div class="delivery_info">

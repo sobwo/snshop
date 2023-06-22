@@ -83,15 +83,15 @@ public class OrderController {
 		
 		int totalPoint = 0;
 		int Avapoint = totalPoint;
-		/* int pointNo = 0; */
+
 		
 		if(mpv != null) {
 			totalPoint = mpv.getAvaPoint();
 			Avapoint = totalPoint;
-			/* pointNo = mpv.getPointNo(); */
+
 		
 		}
-		/* session.setAttribute("pointNo", pointNo); */
+
 		Avapoint -= point;
 		
 		int total=gv.getPrice()-point;

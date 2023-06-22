@@ -62,7 +62,8 @@ public class PointServiceImpl implements PointService{
 		
         MemberPointVo mpv_insert = new MemberPointVo();	
         
-        mpv_insert.setPointNo(pv_newSelect.getPointNo());
+		/*og mpv_insert.setPointNo(pv_newSelect.getPointNo()); */
+        mpv_insert.setMemberPointNo(pv_newSelect.getPointNo());
         mpv_insert.setMemberNo(memberNo);
         
         MemberPointVo mpv = psm.selectMemberPointNew(memberNo);

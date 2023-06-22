@@ -37,10 +37,10 @@
 		
 	</insert>
 		<!-- 수정중  -->	
-	<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
+<select id="selectMemberPointNew" parameterType="Integer" resultType="mpv">
 		SELECT * FROM MEMBERPOINT WHERE MEMBERNO = #{0} ORDER BY memberPointNo DESC LIMIT 1
 	</select>
-	
+
 	<update id="updateUsage" parameterType="Integer">
 		UPDATE COUPONUSAGE SET USAGECHECK = 'Y' WHERE COUPONNO = #{0}
 	</update>

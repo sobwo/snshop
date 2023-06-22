@@ -14,7 +14,9 @@ public interface OrderService {
 			String basicAddr, String basicAddrDetail, String basic_check,int memberNo);
 	public ArrayList<AddressVo> addressSelect(int memberNo); 
 	public AddressVo addressSelectOne(int addressNo);
+	
 	public int addressDelete(int addressNo);
+	
 	public int addressModify(int addressNo, String basicName, String basicPhone, String basicAddrNum, 
 			String basicAddr, String basicAddrDetail, String basic_check);
 	
