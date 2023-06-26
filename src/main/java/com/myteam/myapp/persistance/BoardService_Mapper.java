@@ -41,6 +41,10 @@ public interface BoardService_Mapper {
 
 	public ArrayList<HashTagVo> hashtagBoard(int boardNo);
 
+	public int deleteBoardHashTags(int boardNo);
+
+	public int updateHashTagCount(int boardNo);
+
 
 
 }

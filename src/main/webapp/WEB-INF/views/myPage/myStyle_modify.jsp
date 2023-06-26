@@ -42,7 +42,9 @@
 					<div id="hashtagContainer">
 						<c:forEach var="hv" items="${hlist}">
 							<c:if test="${hv.boardNo == bv.boardNo}">
-								<span id="hashTagNames">#${hv.hashTagName}</span>
+							<c:set var="tagNames" value="${tagNames}${hv.hashTagName}," />
+								<span id="hashTagNames" class="tag-item">#${hv.hashTagName}</span>
+								<input type="button" class="remove-button" value="x">
 							</c:if>
 						</c:forEach>
 					</div>
@@ -50,7 +52,7 @@
 					<div class="tagContainer">
 						<div>
 							<input type="text" id="hashtags" class="form-control" placeholder="  해시태그를 추가해보세요.">
-							<input type="hidden" id="hashtags-hidden" name="hashTagName">
+							<input type="hidden" id="hashtags-hidden" name="hashTagName" value="${fn:substring(tagNames, 0, fn:length(tagNames) - 1)}">
 						</div>
 					</div>   
 					
@@ -70,6 +72,7 @@
 					</div>
 					
 					<div class="tagSelectBox">
+					
 						<div class="tagTitle">
 							<span>스타일</span>
 						</div>
@@ -100,52 +103,90 @@
 			  obj.style.height = "1px";
 			  obj.style.height = (12+obj.scrollHeight)+"px";
 			}
-			
-		const hashtagsInput = document.getElementById("hashtags");
-		const hashtagsContainer = document.getElementById("hashtagContainer");
-        const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
-        
-        let hashtags = [];
 
-        function addHashtag(tag) {
-            tag = tag.replace(/[\[\]]/g, '').trim();
-            if(tag && !hashtags.includes(tag)) {
-                const span = document.createElement("span");
-                span.innerText = "#" + tag + " ";
-                span.id = "hashTagNames";
+		
+		$(document).ready(function() {
+		    $('.remove-button').click(function() {
+		        var index = $('.remove-button').index(this);
 
+		        // 해당 span 요소와 값을 동시에 제거합니다.
+		        $('.tag-item').eq(index).remove();
 
-                const removeButton = document.createElement("button");
-                removeButton.innerText = "x";
-                removeButton.classList.add("remove-button");
-                
-                removeButton.style.backgroundColor = "white";
-                removeButton.style.border = "none";
-                removeButton.style.cursor = "pointer";
-                
-                removeButton.addEventListener("click", () => {
-                    hashtagsContainer.removeChild(span);
-                    hashtags = hashtags.filter((hashtag) => hashtag !== tag);
-                    hiddenHashtagsInput.value = hashtags.join(",");
-                });
+		        // 해당 버튼 자체를 제거합니다.
+		        $(this).remove();
 
-                span.appendChild(removeButton);
-                hashtagsContainer.appendChild(span);
-                hashtags.push(tag);
-                hiddenHashtagsInput.value = hashtags.join(",");
-            }
-        }
+		        // 숨겨진 입력 필드의 값을 가져옵니다.
+		        var tagNames = $('#hashtags-hidden').val().split(',');
 
-        hashtagsInput.addEventListener("keydown", (event) => {
-            if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
-                event.preventDefault();
-                const tag = hashtagsInput.value.trim();
-                if (tag) {
-                    addHashtag(tag);
-                    hashtagsInput.value = "";
-                }
-            }
-        });	
+		        // 해당 값 제거
+		        tagNames.splice(index, 1);
+
+		        // 숨겨진 입력 필드의 값을 업데이트합니다.
+		        $('#hashtags-hidden').val(tagNames.join(','));
+
+		        // value 값을 제거합니다.
+		        var value = $(this).val();
+		        var hiddenValue = $('#hashtags-hidden').val();
+		        hiddenValue = hiddenValue.replace(value + ',', '');
+		        $('#hashtags-hidden').val(hiddenValue);
+
+		        // 변경된 값을 hashtags 배열에 업데이트합니다.
+		        hashtags = tagNames.filter((tag) => tag.trim() !== "");
+		    });
+		});
+		
+	    const hashtagsInput = document.getElementById("hashtags");
+	    const hashtagsContainer = document.getElementById("hashtagContainer");
+	    const hiddenHashtagsInput = document.getElementById("hashtags-hidden");
+	    
+	    let hashtags = hiddenHashtagsInput.value.split(",").filter((tag) => tag.trim() !== "");
+	    
+	    function updateHiddenInput() {
+	        hiddenHashtagsInput.value = hashtags.join(",");
+	    }
+	    
+	    function addHashtag(tag) {
+	        tag = tag.replace(/[\[\]]/g, '').trim();
+	        if (tag && !hashtags.includes(tag)) {
+	            const span = document.createElement("span");
+	            span.innerText = "#" + tag + " ";
+	            span.id = "hashTagNames";
+	            
+	            const removeButton = document.createElement("button");
+	            removeButton.innerText = "x";
+	            removeButton.classList.add("remove-button");
+	            
+	            removeButton.style.backgroundColor = "white";
+	            removeButton.style.border = "none";
+	            removeButton.style.cursor = "pointer";
+	            
+	            removeButton.addEventListener("click", () => {
+	                hashtagsContainer.removeChild(span);
+	                hashtags = hashtags.filter((hashtag) => hashtag !== tag);
+	                updateHiddenInput();
+	            });
+	            
+	            span.appendChild(removeButton);
+	            hashtagsContainer.appendChild(span);
+	            hashtags.push(tag);
+	            updateHiddenInput();
+	        }
+	    }
+	    
+	    hashtagsInput.addEventListener("keydown", (event) => {
+	        if (event.key === 'Enter' || event.key === ' ' || event.key === ',') {
+	            event.preventDefault();
+	            const tag = hashtagsInput.value.trim();
+	            if (tag) {
+	                addHashtag(tag);
+	                hashtagsInput.value = "";
+	            }
+	        }
+	    });
+
+	    hashtags.forEach((tag) => {
+	        addHashtag(tag);
+	    });
         
 
 		function mCheck(){

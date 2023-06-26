@@ -187,3 +187,9 @@ input[type="checkbox"]:checked + label{
     border-radius: 12px;
     cursor: pointer;
  }
+ .remove-button{
+ 	background: white;
+ 	border:none;
+ 	cursor:pointer;
+ }
+ 

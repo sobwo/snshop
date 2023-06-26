@@ -262,21 +262,17 @@ public class StyleController {
 			ld.setBoardNo(boardNo);
 			int value = ss1.boardDelete(ld);
 			
-			
 			int value3 = ss1.hashtagCntUpdate(ld.getBoardNo());
 			int value2 = ss1.board_hashtagDelete(ld.getBoardNo());
 			
 			JSONObject json = new JSONObject();
 			
 			json.put("value", value);
-			
 
-	
+			
 			return json;
 	}
-	
 
-	
 	@ResponseBody
 	@RequestMapping(value="/followingCheck.do", method=RequestMethod.POST)
 	public JSONObject followingCheck(

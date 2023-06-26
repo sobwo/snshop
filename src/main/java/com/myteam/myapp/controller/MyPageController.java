@@ -463,7 +463,7 @@ public class MyPageController {
 						hv.setHashTagNo(value3);
 					}
 				}
-		// board_hashTag insert
+// board_hashTag insert
 				int boardNo = bv.getBoardNo();		
 				int hashTagNo = hv.getHashTagNo();
 			
@@ -485,14 +485,10 @@ public class MyPageController {
 			
 			ArrayList<HashTagVo> hlist = new ArrayList<>();
 
-			    
-			    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
-			    
+			    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);			    
 			    hlist.addAll(hashtagList);
 			
-
 			model.addAttribute("hlist", hlist);
-			
 			model.addAttribute("bv", bv);
 			
 		return "myPage/myStyle_modify";
@@ -518,6 +514,12 @@ public class MyPageController {
 		}
 		bv.setMemberNo(memberNo);
 		
+		// hashTagCnt 값 -1로 업데이트
+		bs.updateHashTagCount(boardNo);
+				
+		// board_hashTag 삭제
+		bs.deleteBoardHashTags(boardNo);
+
 		int value = bs.boardModifyUpdate(bv);
 
 //해시태그 insert 	
