@@ -109,28 +109,16 @@
 		    $('.remove-button').click(function() {
 		        var index = $('.remove-button').index(this);
 
-		        // 해당 span 요소와 값을 동시에 제거합니다.
 		        $('.tag-item').eq(index).remove();
-
-		        // 해당 버튼 자체를 제거합니다.
 		        $(this).remove();
-
-		        // 숨겨진 입력 필드의 값을 가져옵니다.
 		        var tagNames = $('#hashtags-hidden').val().split(',');
-
-		        // 해당 값 제거
 		        tagNames.splice(index, 1);
-
-		        // 숨겨진 입력 필드의 값을 업데이트합니다.
 		        $('#hashtags-hidden').val(tagNames.join(','));
-
-		        // value 값을 제거합니다.
 		        var value = $(this).val();
 		        var hiddenValue = $('#hashtags-hidden').val();
 		        hiddenValue = hiddenValue.replace(value + ',', '');
 		        $('#hashtags-hidden').val(hiddenValue);
 
-		        // 변경된 값을 hashtags 배열에 업데이트합니다.
 		        hashtags = tagNames.filter((tag) => tag.trim() !== "");
 		    });
 		});
