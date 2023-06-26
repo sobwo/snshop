@@ -94,7 +94,7 @@
 								</div>
 								<div class="productInfo_1 productInfo_day">
 									<p>출시일</p>
-									<span>${gv.releaseDate}</span>
+									<span>${fn:substring(gv.releaseDate,0,10)}</span>
 								</div>
 								<div class="productInfo_1">
 									<p>컬러</p>
@@ -130,12 +130,21 @@
 					<div class="o_sub">
 						<h3 class="sub_h3">추천상품</h3>
 					</div>
-					<div class="o_contents">
+					<div class="o_contents" >
 						<c:forEach var ="reList" items="${recommentList}">
-							<div class="o_product">
-								<div class="o_product_img">
-									<img src="" width="224px" height="224px">
-								</div>
+							<div class="o_product" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${reList.goodsNo}'">
+								<c:set var="exp" value= "${reList.productImg.substring(reList.getProductImg().length()-3, reList.getProductImg().length())}" />
+								<c:set var="imgList" value="${fn:split(reList.productImg, ',')}" />
+								<c:choose>
+									<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+										<c:forEach var="img" items="${imgList}">
+											<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product" width="224px" height="224px">
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png" width="224px" height="224px">
+									</c:otherwise>
+								</c:choose>
 								<div class="o_info">
 									<span>${reList.goodsName}</span>
 								</div>
