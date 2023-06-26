@@ -35,6 +35,10 @@
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/shop/shopMain.do'>SHOP</a></li>
 						<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/myPage/myPageMain.do'>MY</a></li>
 						<li><a href='#'><img src='${pageContext.request.contextPath}/resources/image/search.png' style='width:27px; height:27px;'></a></li>
+						<c:set var = "role" value ="${sessionScope.role}" />
+						<c:if test = "${role eq 'admin'}" >
+							<li class="nav_list" style='margin-right:40px;'><a href='${pageContext.request.contextPath}/admin/adminMain.do'>관리자 페이지</a></li>
+						</c:if>
 					</ul>
 				</div>
 			</div>

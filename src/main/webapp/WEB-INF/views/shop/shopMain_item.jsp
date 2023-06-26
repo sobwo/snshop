@@ -16,9 +16,18 @@
 		</div>
 		<div class="product_area">
 			<c:forEach var="goodsList" items="${goodsList}" varStatus="status">
+				
 				<div class="product_item_wrap">
-					<div class="product_item" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
-						<div class="pro_img_area">
+					<div class="product_item">
+						<c:set var = "role" value ="${sessionScope.role}" />
+						<c:set var = "memberNo" value ="${sessionScope.memberNo}" />
+						
+						<c:if test ="${goodsList.memberNo==memberNo || role eq 'admin'}">
+							<div class="delArea">
+								<button class="goodsDel" value = "${goodsList.goodsNo}">X</button>
+							</div>
+						</c:if>
+						<div class="pro_img_area" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 							<c:set var="exp" value= "${goodsList.productImg.substring(goodsList.getProductImg().length()-3, goodsList.getProductImg().length())}" />
 							<c:set var="imgList" value="${fn:split(goodsList.productImg, ',')}" />
 							<c:choose>
@@ -32,7 +41,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div class="pro_name_area">
+						<div class="pro_name_area" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 							<ul>
 								<li class="pro_brand" >"${goodsList.goodsBrandName}"</li>
 								<li class="pro_name1" >${goodsList.goodsName}"</li>

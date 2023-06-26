@@ -286,7 +286,12 @@ public class ShopServiceImpl implements ShopService {
 			
 			return value3;
 		}
-
+		
+		@Override
+		public int goodsDelete(int goodsNo) {
+			int value = ssm.goodsDelete(goodsNo);		
+			return value;
+		}
 		
 //		@Override
 //		public int interestCancel(int memberNo, int goodsNo) {

@@ -170,6 +170,10 @@
 		select * from goods where categoryname = '로퍼' and goodsNo not in(#{goodsNo}) order by interestNum desc limit 10
 	</select>
 	
+	<update id="goodsDelete" parameterType="int">
+		UPDATE inventory SET quantity = 0 where goodsNo = #{goodsNo}
+	</update>
+	
 	<select id="sizeList" parameterType="int" resultType="sd">
 		SELECT *
 		FROM size s

@@ -2,9 +2,15 @@ package com.myteam.myapp.domain;
 
 public class MemberVo {
 	private int memberNo,point;
-	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt;
+	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt,role;
 	private byte[] profileImgData;
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}
