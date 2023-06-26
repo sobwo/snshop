@@ -294,6 +294,16 @@ public class ShopController {
 	    return json;
 	}
 	
+	@RequestMapping(value="/goodsDelete.do")
+	public String goodsDelete(
+			@RequestParam("goodsNo") int goodsNo
+			) {
+		
+		ss.goodsDelete(goodsNo);
+
+		return "shop/shopMain";
+	};
+	
 	@RequestMapping(value = "/interestShow.do")
 	public String interestShow(
 			@RequestParam("goodsNo") int goodsNo,

@@ -42,7 +42,10 @@ public interface ShopService_Mapper {
 	
 	public ProductDto sellSelect(int goodsNo);
 	
-	public int goodsTotal(HashMap<String, Object> hashMap);	
+	public int goodsTotal(HashMap<String, Object> hashMap);
+	
+	public int goodsDelete(int goodsNo);
+	
 	//관심품목
 	public int interestListCnt(InterestVo iv);
 	public int insertInterest(InterestVo iv);
