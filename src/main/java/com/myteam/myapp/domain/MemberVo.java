@@ -2,7 +2,7 @@ package com.myteam.myapp.domain;
 
 public class MemberVo {
 	private int memberNo,point;
-	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt,role;
+	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt,role,followingCnt,followerCnt;
 	private byte[] profileImgData;
 	
 	public String getRole() {
@@ -13,6 +13,18 @@ public class MemberVo {
 	}
 	public int getMemberNo() {
 		return memberNo;
+	}
+	public String getFollowingCnt() {
+		return followingCnt;
+	}
+	public void setFollowingCnt(String followingCnt) {
+		this.followingCnt = followingCnt;
+	}
+	public String getFollowerCnt() {
+		return followerCnt;
+	}
+	public void setFollowerCnt(String followerCnt) {
+		this.followerCnt = followerCnt;
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;

@@ -279,9 +279,6 @@ public class MyPageController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<LikesDto> llist = bs.boardList(memberNo);
-		
-	
-		
 		ArrayList<HashTagVo> hlist = new ArrayList<>();
 
 		for (BoardVo bv : llist) {
@@ -293,11 +290,6 @@ public class MyPageController {
 		}
 
 		model.addAttribute("hlist", hlist);
-
-		
-		
-		
-	
 		model.addAttribute("mv", mv);
 		model.addAttribute("llist", llist);
 		
