@@ -30,25 +30,16 @@
 					<div class="content_title">
 						<h3 class="content_title_txt">자주 묻는 질문</h3>
 					</div>
-					<jsp:include page="../common/customerCenter_question.jsp"></jsp:include>
-					<ul class="titleSorting">
+					<jsp:include page="../common/customerCenter_question.jsp"></jsp:include>	
+					<ul class="titleSorting">	
 						<li>
+						<c:forEach var="AWlist2" items="${AWlist2}">
 							<div class="titleContainer">
 								<div class="titleBox">
-									<a>
-										<span class="title">
-											<strong class="question">이용정책</strong>
-											패널티 정책
-											<img class="downImage" src='${pageContext.request.contextPath}/resources/image/down.png/'>
-										</span>
-									</a>								
+									<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${AWlist2.AWboardNo}"><b>[${AWlist2.categorytitle}]</b> ${AWlist2.AWtitle}</a>
 								</div>
 							</div>	
-							<div class="contentContainer">
-								<div class="contentBox">
-									<P>1.dkfjdakfghjsdk</P>
-								</div>
-							</div>
+						</c:forEach>
 						</li>
 					</ul>
 				</div>

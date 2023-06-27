@@ -38,10 +38,7 @@
             height: 35px; 
             border-radius: 50%;
         }
-        .close_btn{
-            margin-left: 50px;
-        }
-
+     
     </style> 
 
  
@@ -50,7 +47,7 @@
             <div class="like_btn">
                 <div class="like"> 
 				</div>
-                    <div id="popup" style="display: none; position: absolute;  top: 500px; left: 750px; width: 400px;  background-color: #fff; border: 1px solid #ccc; padding: 10px;">
+                    <div id="popup" style="display: none; position: absolute;  top: 500px; left: 950px; width: 400px; margin-left:-190px; background-color: #fff; border: 1px solid #ccc; padding: 10px;">
                         <h3 style="text-align: center;">좋아요</h3>
                         
 						<div class="popup_style_wrap">	
@@ -58,7 +55,7 @@
 			
                     	</div>
                    	<div class="close_btn">
-                  		<button onclick="closePopup2()" style="border-radius: 10px;   width: 55px; margin-left:120px; background:white;">확인</button>
+                  		<button onclick="closePopup2()" style="border-radius: 10px; margin-left:175px;  width: 55px; background:white;">확인</button>
                     </div>             
                 	</div>
                  

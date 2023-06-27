@@ -70,18 +70,31 @@
 							<!-- 컨텐츠 내용 -->
 							<!-- 이미지 -->
 							<div class="feedsImage">
-								<div class="content_img_wrap" data-boardNo="${blist.boardNo}">
-									<c:set var="exp" value= "${blist.contentsImg.substring(blist.getContentsImg().length()-3, blist.getContentsImg().length())}" />
-									<c:set var="imgList" value="${fn:split(blist.contentsImg, ',')}" />
-									
-									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
-									<c:forEach var="img" items="${imgList}">
-										<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
-									</c:forEach>										
-									</c:if>		    				            		
-						    	</div>
+							<div class="content_img_wrap" data-boardNo="${blist.boardNo}">
+								<c:set var="exp" value= "${blist.contentsImg.substring(blist.getContentsImg().length()-3, blist.getContentsImg().length())}" />
+								<c:set var="imgList" value="${fn:split(blist.contentsImg, ',')}" />
+								
+								<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+								<c:forEach var="img" items="${imgList}">
+									<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
+								</c:forEach>										
+								</c:if>		    				            		
 					    	</div>
-					    	
+		    	    		<c:choose>
+								<c:when test="${blist.viewCnt == 1}">
+									<div class="imageCnt" style="display:none"></div>
+								</c:when>
+								<c:otherwise>
+									<div class="imageCnt" onclick="location.href='#'">
+										<span class="imageCount">+${blist.viewCnt-1}</span>
+									</div>
+									<div class="imageBtn">
+										<button type="button" class="prev" value="${blist.boardNo}">&#10094;</button>
+										<button type="button" class="next" value="${blist.boardNo}">&#10095;</button>
+									</div>
+								</c:otherwise>
+							</c:choose>
+					    	</div>
 					    	<!-- 상품태그 -->
 					    	<div class="social_product">
 					    		<div class="product_title">
@@ -93,8 +106,8 @@
 					    				<li class="product_list">
 					    					<div class="product">
 					    						<img class="product_img" src="#">
-					    						<div class="product_name"><%-- ${gv.goodsName} --%></div>
-					    						<div class="product_price"><%-- ${gv.price}  --%></div>
+					    						<div class="product_name"></div>
+					    						<div class="product_price"></div>
 					    					</div>
 					    				</li>
 					    			</ul>
@@ -127,12 +140,10 @@
 
 								</span>  
 								<div class="social_count" > 
-									<%-- 	<span class="openPopup21" onclick ="openPopup2(${blist.boardNo})">좋아요&nbsp;<strong class="likeCount">  ${blist.likeCnt}  </strong>개</span> --%>
 									<span class="openPopup21" onclick="openPopup2(${blist.boardNo}, '${blist.profileImg}')">좋아요&nbsp;<strong class="likeCount">${blist.likeCnt}</strong>개</span>
 								</div>
 							</div>
 							</div>
-
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
@@ -142,21 +153,15 @@
 		    	</div>
 		    	<jsp:include page="popup/comment_popup.jsp"></jsp:include>
 		    	<jsp:include page="popup/likepush.jsp"></jsp:include>
-	   
-		    
 			</div>
 		</div>
 		</c:otherwise>
 		</c:choose>
-
 		<jsp:include page="../common/footer.jsp"></jsp:include>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
 		<script>
-
-		
-		
-		
+	
 		$(".likeImage").click(function(){
 			var boardNo = $(this).val();
 			var clickImage = $(this).children("#likeImageChange");

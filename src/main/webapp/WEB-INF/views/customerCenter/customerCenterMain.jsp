@@ -7,6 +7,9 @@
 		<meta charset="UTF-8">
 		<title>고객센터</title>
 		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/customerCenter.css" rel="stylesheet"/>
+		<link href="${pageContext.request.contextPath}/resources/css/customerCenter/adminWrite.css" rel="stylesheet"/>
+		
+		
 		<style>
 			.titleSorting{}
 			
@@ -29,6 +32,19 @@
 				color:#222;
 				font-weight:bold;
 			}
+			.writeButton{
+			    width: 13%;
+			    height: 60px;
+			    background-color:white;
+			    border: none;
+			    border-radius: 10px;
+			    font-size: 18px;
+			    font-weight: bold;
+			    color: black;
+			    line-height: 60px;
+			   	cursor: pointer;
+				margin-left:870px;
+			}
 		</style>
 	</head>
 	<body>
@@ -44,11 +60,13 @@
 					</div>
 					<ul class="titleSorting">
 						<li>
+						<c:forEach var="AWlist" items="${AWlist}">
 							<div class="titleContainer">
 								<div class="titleBox">
-									<p class="title">[공지]5월 공휴일 택배사 휴무에 따른 ..</p>
+								<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${AWlist.AWboardNo}">[${AWlist.categorytitle}] ${AWlist.AWtitle}</a>
 								</div>
 							</div>	
+							</c:forEach>
 						</li>
 					</ul>
 				</div>

@@ -5,14 +5,6 @@
 
 
 <select id="boardSelectAll" parameterType="int" resultType="bv">
-<!--  게시물가져오기 select * from board a join member b on a.memberNo = b.memberNo where a.memberNo in (select followingMemberNo from following where memberNo = #{memberNo}) --> 
-	
-
-<!-- SELECT a.*, b.*, c.like_check FROM board
- a JOIN member b ON a.memberNo = b.memberNo
-LEFT JOIN likes c ON a.boardNo =
- c.boardNo AND c.memberNo = #{memberNo}
-WHERE a.memberNo IN (SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo})  모르겠음 되긴하는데...-->
 
 select a.*, b.*, c.like_check,c.memberNo from board a join member b ON a.memberNo = b.memberNo
 left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
@@ -56,7 +48,7 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 <select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
 	 
 
-<!-- 	select followingCheck FROM following WHERE memberNo = #{0} and followingMemberNo = #{1}; -->
+
 
 	SELECT IFNULL(followingCheck, 0) AS followingCheck FROM following WHERE memberNo = #{0} AND followingMemberNo = #{1}
 

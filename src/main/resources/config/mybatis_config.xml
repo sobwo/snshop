@@ -15,6 +15,9 @@
 	<typeAlias alias="cv" type="com.myteam.myapp.domain.CouponVo"/>
 	<typeAlias alias="pv" type="com.myteam.myapp.domain.PointVo"/>
 
+
+	<typeAlias alias="awv" type="com.myteam.myapp.domain.AdminWriteVo"/>
+
 	<typeAlias alias="mpv" type="com.myteam.myapp.domain.MemberPointVo"/>
 	<typeAlias alias="iv" type="com.myteam.myapp.domain.InterestVo"/>
 	<typeAlias alias="pmv" type="com.myteam.myapp.domain.PayVo"/>

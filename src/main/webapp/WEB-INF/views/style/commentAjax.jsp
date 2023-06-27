@@ -77,7 +77,7 @@
 		  function recomment_btn(memberName) {
 			  var commentInput = document.querySelector('.comment_input');
 		  
-		    commentInput.value = "#" + memberName; 
+		    commentInput.value = "#" +  memberName; 
 		    
 		  }
 		  

@@ -71,7 +71,7 @@ public class StyleController {
 		ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
 
 		model.addAttribute("blist", blist);
-		/* model.addAttribute("memberName", memberName); */
+
 		model.addAttribute("mv",mv);
 	  
 		return "style/style_following";

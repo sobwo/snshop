@@ -2,7 +2,11 @@ package com.myteam.myapp.domain;
 
 public class MemberVo {
 	private int memberNo,point;
-	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt,role,followingCnt,followerCnt;
+
+
+	private String memberId, memberName, memberPw, memberEmail, memberPhone, memberGender, delYn, profileImg,social,boardCnt,role,
+	followingCnt,followerCnt;
+
 	private byte[] profileImgData;
 	
 	public String getRole() {

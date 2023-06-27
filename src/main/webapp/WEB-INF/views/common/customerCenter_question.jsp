@@ -33,12 +33,14 @@
 		<table class="questionTable">
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do">전체</a></td>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_use.do">이용정책</a></td>
-				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_common.do">공통</a></td>
+ 				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_use.do">이용정책</a></td> 
+
+ 				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_common.do">공통</a></td> 
 			</tr>
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_buy.do">구매</a></td>
 				<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_sale.do">판매</a></td>
+			 	<td><a href="${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_delivery.do">배송</a></td> 
 				<td></td>
 			</tr>
 		</table>
