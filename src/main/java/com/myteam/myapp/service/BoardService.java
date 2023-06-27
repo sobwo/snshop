@@ -42,6 +42,10 @@ public interface BoardService {
 
 	public ArrayList<HashTagVo> hashtagBoard(int boardNo);
 
+	public int deleteBoardHashTags(int boardNo);
+
+	public int updateHashTagCount(int boardNo);
+
 
 
 

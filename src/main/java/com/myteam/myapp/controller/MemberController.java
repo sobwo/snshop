@@ -66,6 +66,7 @@ public class MemberController {
 		
 		if(mv != null && mv.getSocial().equals("other") && bcryptPasswordEncoder.matches(memberPw, mv.getMemberPw())) {
 			rttr.addAttribute("memberNo",mv.getMemberNo());
+			rttr.addAttribute("role",mv.getRole());
 			
 			if(session.getAttribute("dest")==null)
 				path = "redirect:/";

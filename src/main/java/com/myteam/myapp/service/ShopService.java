@@ -51,4 +51,6 @@ public interface ShopService {
 	
 	//상품 등록
 	public int goodsInsert(GoodsVo gv, String size, int quantity);
+	
+	public int goodsDelete(int goodsNo);
 }

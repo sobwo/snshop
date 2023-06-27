@@ -54,7 +54,12 @@
 	</update>
 	
 	<select id="memberInfo" parameterType="Integer" resultType="mv">
-		SELECT M.*, (SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo} AND delYn = 'N') AS boardCnt FROM member M WHERE M.memberNo = #{memberNo}
+		SELECT M.*, 
+		(SELECT COUNT(*) FROM board WHERE memberNo = #{memberNo} AND delYn = 'N') AS boardCnt,
+		(SELECT COUNT(*) FROM following WHERE memberNo = #{memberNo} AND followingCheck = 1) AS followingCnt,
+		(SELECT COUNT(*) FROM following WHERE followingMemberNo = #{memberNo} AND followingCheck = 1) AS followerCnt
+		FROM member M
+		WHERE M.memberNo = #{memberNo};
 	</select>
 	
 	<update id="updateProfileImg" parameterType="mv">

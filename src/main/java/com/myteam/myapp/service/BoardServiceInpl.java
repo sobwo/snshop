@@ -163,4 +163,24 @@ public class BoardServiceInpl implements BoardService{
 	}
 
 
+	@Override
+	public int deleteBoardHashTags(int boardNo) {
+		
+		int value = bsm.deleteBoardHashTags(boardNo);
+		
+		return value;
+		
+	}
+
+
+	@Override
+	public int updateHashTagCount(int boardNo) {
+		
+		int value = bsm.updateHashTagCount(boardNo);
+		
+		return value;
+		
+	}
+
+
 }
