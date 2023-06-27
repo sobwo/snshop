@@ -29,7 +29,7 @@
 
 
 <!-- 	<beans:bean id="uploadPath" name="uploadPath" class="java.lang.String"> -->
-<!-- 		<beans:constructor-arg value="D:/uploadFiles"/> -->
+<!-- 		<beans:constructor-arg value="c:/upload/dev1230"/> -->
 <!-- 	</beans:bean> -->
 
 	<!-- api 로그인 -->
