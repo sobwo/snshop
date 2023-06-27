@@ -18,12 +18,8 @@
 	margin-left: 600px;
 	}
 	.area{
-/* 	width:450px;
 
-	padding: 30px 30px 28px;
-	background-color:#fafafa;
-	 */
-	 padding: 17px 0 19px;
+	padding: 17px 0 19px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ebebeb;
@@ -83,12 +79,13 @@
 			<div class= "detail">
 				<div class="area">
 					<h3>${awv.AWtitle} </h3>
+					<hr>
 					<p>${awv.AWwriteday} </p>
 				</div>
 				<hr>
 				<div class="area2">
 					<p class="AWcontents"> ${awv.AWcontents}</p>
-					<br>
+					
 					<%-- <p> ${awv.categorytitle}</p> --%>
 					<input type="hidden" name="awBoardNo" value="${awv.AWboardNo}" />
 				</div>
