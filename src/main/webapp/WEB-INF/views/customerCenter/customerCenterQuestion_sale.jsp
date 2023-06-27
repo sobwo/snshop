@@ -33,22 +33,13 @@
 					<jsp:include page="../common/customerCenter_question.jsp"></jsp:include>
 					<ul class="titleSorting">
 						<li>
+								<c:forEach var="salelist" items="${salelist}">
 							<div class="titleContainer">
 								<div class="titleBox">
-									<a>
-										<span class="title">
-											<strong class="question">판매</strong>
-											패널티 정책
-											<img class="downImage" src='${pageContext.request.contextPath}/resources/image/down.png/'>
-										</span>
-									</a>								
+								<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${salelist.AWboardNo}"><b>[${salelist.categorytitle}]</b> ${salelist.AWtitle}</a>
 								</div>
 							</div>	
-							<div class="contentContainer">
-								<div class="contentBox">
-									<P>1.dkfjdakfghjsdk</P>
-								</div>
-							</div>
+							</c:forEach>
 						</li>
 					</ul>
 				</div>

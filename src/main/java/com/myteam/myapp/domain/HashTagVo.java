@@ -1,6 +1,6 @@
 package com.myteam.myapp.domain;
 
-public class HashTagVo {
+public class HashTagVo extends Board_hashtagVo {
 	private int hashTagNo;
 	private String hashTagName;
 	private String tagCnt;

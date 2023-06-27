@@ -17,7 +17,14 @@ public class OrderVo{
 	private String memberPhone;	
 	private String reason;
 	private int checksum;
+	private String address;
 
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getOrderDays() {
 		return orderDays;
 	}

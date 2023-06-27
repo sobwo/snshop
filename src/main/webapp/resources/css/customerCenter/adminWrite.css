@@ -34,3 +34,17 @@
 		      border-radius: 4px;
 		      cursor: pointer;
 		    }
+		      
+		      
+		      .ad{		       
+		  	width: 13%;
+		    height: 38px;
+		    background-color: white;
+		    border: none;
+		    border-radius: 10px;
+		    font-size: 18px;
+		    font-weight: bold;
+		    color: balck;
+		  	margin-left: 865px;
+  	      	cursor: pointer;
+	      	}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myteam.myapp.domain.AddressVo;
 import com.myteam.myapp.domain.OrderDto;
@@ -121,14 +122,14 @@ public class OrderServiceImpl implements OrderService {
 
 		return cnt;
 	}
-
+	
+	@Transactional
 	@Override
 	public int orderInsert(int goodsNo, int memberNo, String orderNum, int addressNo, int totalPrice, String payInfo,
 			String size, String statusDetail, String memberPhone) {
 		OrderVo ov = new OrderVo();
 		ov.setGoodsNo(goodsNo);
 		ov.setMemberNo(memberNo);
-		ov.setAddressNo(addressNo);
 		ov.setTotalPrice(totalPrice);
 		ov.setPayInfo(payInfo);
 		ov.setSize(size);
@@ -136,6 +137,11 @@ public class OrderServiceImpl implements OrderService {
 		ov.setMemberPhone(memberPhone);
 		ov.setStatusDetail(statusDetail);
 
+		AddressVo av = osm.addressSelectOne(addressNo);
+		String address = av.getZipCode()+" "+av.getAddress()+" "+av.getDetailAddress();
+		
+		ov.setAddress(address);
+		
 		int value = osm.orderInsert(ov);
 
 		return value;

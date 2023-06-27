@@ -71,7 +71,7 @@ public class StyleController {
 		ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
 
 		model.addAttribute("blist", blist);
-		/* model.addAttribute("memberName", memberName); */
+
 		model.addAttribute("mv",mv);
 	  
 		return "style/style_following";
@@ -93,6 +93,20 @@ public class StyleController {
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
 		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
+		
+		ArrayList<HashTagVo> hhlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hhlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hhlist", hhlist);
+		
+		
 		
 		model.addAttribute("llist", llist);
 		model.addAttribute("hlist",hlist);
@@ -116,6 +130,18 @@ public class StyleController {
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
 		
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hlist", hlist);
+		
 		model.addAttribute("llist", llist);
 		model.addAttribute("mv",mv);
 		
@@ -137,6 +163,18 @@ public class StyleController {
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList_newest(memberNo);
 		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
+		
+		ArrayList<HashTagVo> hhlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hhlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hhlist", hhlist);
 		
 		model.addAttribute("llist", llist);
 		model.addAttribute("hlist",hlist);
@@ -162,6 +200,18 @@ public class StyleController {
 		
 		ArrayList<LikesDto> llist =ss1.boardTotalList_newest(memberNo);
 		
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hlist", hlist);
+		
 		model.addAttribute("llist", llist);
 		model.addAttribute("mv",mv);
 		
@@ -182,6 +232,18 @@ public class StyleController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<LikesDto> llist = bs.boardList(memberNo);
+		
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hlist", hlist);
 				
 		model.addAttribute("mv", mv);
 		model.addAttribute("llist", llist);

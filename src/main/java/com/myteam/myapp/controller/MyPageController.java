@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myteam.myapp.domain.AddressVo;
@@ -195,7 +196,6 @@ public class MyPageController {
 			HttpSession session,
 			Model model,
 			@RequestParam("orderNo") int orderNo) {
-			
 		
 		OrderDto od = os.orderHistoryShow(orderNo);
 		
@@ -280,31 +280,31 @@ public class MyPageController {
 		
 		ArrayList<LikesDto> llist = bs.boardList(memberNo);
 		
-/*		
+	
+		
 		ArrayList<HashTagVo> hlist = new ArrayList<>();
 
 		for (BoardVo bv : llist) {
 		    int boardNo = bv.getBoardNo();
-		   
+		    
 		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
-
 		    
 		    hlist.addAll(hashtagList);
-
-		    
 		}
-*/		
-//		ArrayList<HashTagVo> hlist = bs.hashtagBoard(boardNo);
 
+		model.addAttribute("hlist", hlist);
 
+		
+		
 		
 	
 		model.addAttribute("mv", mv);
 		model.addAttribute("llist", llist);
-//		model.addAttribute("hlist", hlist);
+		
 
 		return "myPage/myStyle";
 	}
+
 	
 	@ResponseBody
 	@RequestMapping(value="/like_check.do" , method=RequestMethod.POST)

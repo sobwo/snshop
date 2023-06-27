@@ -5,6 +5,59 @@
 <mapper namespace="com.myteam.myapp.persistance.AdminWriteService_Mapper">
 
 
+<insert id ="AWinsert" parameterType="awv">   
+insert into adminWrite(AWtitle,AWcontents,categorytitle)
+values(#{AWtitle},#{AWcontents},#{categorytitle})
+</insert>
+
+
+<select id="boardSelectAll" resultType="awv">
+<!-- SELECT * FROM adminWrite WHERE delYn = 'N'
+ORDER BY AWboardNo DESC; -->
+SELECT * FROM adminWrite WHERE delYn = 'N' AND categorytitle = '공지사항' ORDER BY AWboardNo DESC;
+</select>
+
+<select id="boardSelectAll2" resultType="awv">
+SELECT * FROM adminWrite WHERE delYn = 'N'
+ORDER BY AWboardNo DESC;
+</select>
+
+
+
+
+<select id="boarduseAll" resultType="awv">
+<!-- SELECT * FROM adminWrite WHERE categorytitle = '이용정책'; -->
+SELECT * FROM adminWrite WHERE categorytitle = '이용정책' AND delYn = 'N';
+
+</select>
+<select id="boardbuyAll" resultType="awv">
+SELECT * FROM adminWrite WHERE categorytitle = '구매'AND delYn = 'N';
+</select>
+<select id="boardsaleAll" resultType="awv">
+SELECT * FROM adminWrite WHERE categorytitle = '판매'AND delYn = 'N';
+</select>
+<select id="boarddelAll" resultType="awv">
+SELECT * FROM adminWrite WHERE categorytitle = '배송'AND delYn = 'N';
+</select>
+<select id="boardcommonAll" resultType="awv">
+SELECT * FROM adminWrite WHERE categorytitle = '공통'AND delYn = 'N';
+</select>
+<select id ="boardSelectOne" parameterType="Integer" resultType="awv">
+SELECT AWcontents, AWtitle,AWwriteday,AWboardNo,categorytitle FROM adminWrite WHERE AWboardNo = #{AWboardNo};
+</select>
+
+
+ <update id ="deleteAW" parameterType="awv">
+UPDATE adminWrite SET delYn = 'Y'
+WHERE AWboardNo = #{AWboardNo};
+</update> 
+
+
+
+
+
+
+
 
 
 

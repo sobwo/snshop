@@ -79,9 +79,9 @@
 <insert id="insertBoardHashTag" parameterType="bhv">
 	INSERT INTO board_hashtag(boardNo, hashTagNo) VALUES(#{0},#{1})
 </insert>
-<!--  
+
 <select id="hashtagBoard" parameterType="int" resultType="hv">
-﻿	SELECT h.* FROM board_hashTag b JOIN hashTag h ON b.hashTagNo = h.hashTagNo WHERE b.boardNo = #{boardNo}
+SELECT h.*, b.boardNo FROM board_hashTag b JOIN hashTag h ON b.hashTagNo = h.hashTagNo WHERE b.boardNo = #{boardNo}
 </select>
--->
+
 </mapper>

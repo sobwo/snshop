@@ -45,12 +45,6 @@
 			   	cursor: pointer;
 				margin-left:870px;
 			}
-			
-			
-			
-			
-			
-			
 		</style>
 	</head>
 	<body>
@@ -63,36 +57,16 @@
 				<div class="content_wrap">
 					<div class="content_title">
 						<h3 class="content_title_txt">공지 사항</h3>
-
 					</div>
-	
-					<c:set var="role" value = "${sessionScope.role}" />
-					<c:if test="${role eq 'admin'}">
-					 <div class="container">
-					    <h2>공지사항 글쓰기</h2>
-					    <form action="process.php" method="post">
-					      <div class="form-group">
-					        <label for="title">제목</label>
-					        <input type="text" id="title" name="title" required>
-					      </div>
-					      <div class="form-group">
-					        <label for="content">내용</label>
-					        <textarea id="content" name="content" required></textarea>
-					      </div>
-					      <div class="form-group">
-					        <button type="submit">작성하기</button>
-					      </div>
-					    </form>
-					  </div>
-				  	</c:if>
-					  	
 					<ul class="titleSorting">
 						<li>
+						<c:forEach var="AWlist" items="${AWlist}">
 							<div class="titleContainer">
 								<div class="titleBox">
-									<p class="title">[공지]5월 공휴일 택배사 휴무에 따른 ..</p>
+								<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${AWlist.AWboardNo}">[${AWlist.categorytitle}] ${AWlist.AWtitle}</a>
 								</div>
 							</div>	
+							</c:forEach>
 						</li>
 					</ul>
 				</div>
