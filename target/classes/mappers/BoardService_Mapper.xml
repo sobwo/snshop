@@ -84,4 +84,12 @@
 SELECT h.*, b.boardNo FROM board_hashTag b JOIN hashTag h ON b.hashTagNo = h.hashTagNo WHERE b.boardNo = #{boardNo}
 </select>
 
+<delete id="deleteBoardHashTags" parameterType="int">
+	delete from board_hashtag where boardNo=#{boardNo}
+</delete>
+
+<update id="updateHashTagCount" parameterType="int" >
+	UPDATE hashTag SET tagCnt = tagCnt - 1 WHERE hashTagNo IN ( SELECT hashTagNo FROM board_hashtag WHERE boardNo = #{boardNo})
+</update>
+
 </mapper>

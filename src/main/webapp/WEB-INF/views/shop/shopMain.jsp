@@ -34,7 +34,13 @@
 				margin-bottom:20px;
 				font-size:18px;
 				font-weight:bold;
-				
+			}
+			.goodsDel{
+				all:unset;
+				width: 24px;
+			    height: 24px;
+			    font-size: 24px;
+			    cursor: pointer;
 			}
 		</style>
 		<link href="${pageContext.request.contextPath}/resources/css/shop/shopMain.css" rel="stylesheet"/>
@@ -536,6 +542,8 @@
 			filter_ajax();
 			filter.pop();
 			
+			
+			
 			$('.trend_con_area').slick({
 				slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
 				infinite : true, 	//무한 반복 옵션	 
@@ -557,7 +565,7 @@
 			var scrollHeight = $("body").prop('scrollHeight');
 			if(scrollTop + innerHeight >= scrollHeight) {
 				page++;
-				filter_ajax(filter,value,page);
+				filter_ajax();
 			}
 		});
 		
@@ -586,7 +594,6 @@
 				filter.push("1");
 				value =0;
 			}
-			console.log(filter);
 			var data = {filter : filter}
 			
 			if (value !== null) {
@@ -608,7 +615,6 @@
 				cache : false,
 				success : function(data){
 					$(".goods_wrap").html(data);
-					console.log(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -624,11 +630,18 @@
 		
 		$('.btn_list_item').on('click',function(){
 			var index = parseInt($('.btn_list_item').index(this));
+			
+			if(filter.includes('1')==true && filter.length==1){
+				filter.pop()
+			}
+
 			if(filter.length > 0){
+				alert("value1"+filter)
 				value = 1;
 				align_ajax(filter,value,index,page);
 			}else{
 				filter.push("1");
+				alert("value2"+filter)
 				value =0;
 				align_ajax(filter,value,index,page);
 				filter.pop();
@@ -649,7 +662,6 @@
 				cache : false,
 				success : function(data){
 					$(".goods_wrap").html(data);
-					console.log(data);
 				},
 				error : function(request,status,error){
 					alert("다시 시도하시기 바랍니다.");	
@@ -702,9 +714,27 @@
 			var title = $(".title_area").eq(0);
 
 			if(filterBtn.text() == "+") title.click();
-			else{}
+		});
+		
+		$(document).on("click",".goodsDel",function(){
+			var goodsNo = $(this).val();
 			
-			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/shop/goodsDelete.do",		
+				method: "POST",
+				data:{"goodsNo":goodsNo},
+				cache : false,
+				success : function(){
+					filter_ajax();
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
+			});
+
 		});
 		</script>
 	</body>

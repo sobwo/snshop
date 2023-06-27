@@ -2,13 +2,16 @@ package com.myteam.myapp.domain;
 
 public class OrderDto extends GoodsVo{	
 	private int orderNo;
-	private String payInfo ;
+	private String payInfo;
 	private int totalPrice; 
 	private String orderNum; 
-	private int addressNo ;
-	private int goodsNo; 
+	private int addressNo;
+	private int goodsNo;
 	private int memberNo;
-
+	private int checksum;
+	
+	private String memberId;
+	private String memberName;
 	private String orderDays;
 	private String size;
 	private String pors;
@@ -16,11 +19,40 @@ public class OrderDto extends GoodsVo{
 	private String statusDetail;
 	private String orderstatus;
 	private String memberPhone;
+	private String reason;
 	
 	private String userName;
 	private String addressPhone;
+	private String zipCode;
 	private String address;
+	private String detailAddress;
+	private String mainAddress;
 	
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public int getChecksum() {
+		return checksum;
+	}
+	public void setChecksum(int checksum) {
+		this.checksum = checksum;
+	}
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 	public String getOrderDays() {
 		return orderDays;
 	}
@@ -117,14 +149,29 @@ public class OrderDto extends GoodsVo{
 	public void setAddressPhone(String addressPhone) {
 		this.addressPhone = addressPhone;
 	}
-
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getMainAddress() {
+		return mainAddress;
+	}
+	public void setMainAddress(String mainAddress) {
+		this.mainAddress = mainAddress;
+	}
 	
 }

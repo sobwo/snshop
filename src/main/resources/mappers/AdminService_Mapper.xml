@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myteam.myapp.persistance.AdminService_Mapper">
+
+	<select id="totalMemberNum" resultType="int">
+		select count(*) as totalMemberNum from member where delYn = 'N' and role ='user'
+	</select>
+	
+	<select id="totalGoodsNum" resultType="int">
+		select count(s.goodsNo) from (
+			select goodsNo,count(*)from inventory where quantity>0 group by goodsNo
+		) as s
+	</select>
+	
+	<select id="totalRefund" resultType="int">
+		select count(*) from orders where orderStatus = '종료' and statusDetail = '대기중'
+	</select>
+	
+	<select id ="goodsList" resultType="agd">
+		select * from goods a left join member b on a.memberNo = b.memberNo
+	</select>
+	
+	<select id="sizeList" parameterType = "int" resultType="asd">
+		select * from size a left join inventory b on a.sizeNo = b.sizeNo where a.goodsNo = #{goodsNo}
+	</select>
+	
+	<select id="memberList" resultType="mv">
+		select * from member where role= 'user'
+	</select>
+	
+	<select id="orderList" resultType ="od">
+		select * from orders 
+		inner join goods on orders.goodsNo =goods.goodsNo
+		inner join member on orders.memberNo = member.memberNo
+	</select>
+	
+	<select id="refundList" resultType ="od">
+		select * from orders where orderStatus = '종료' and statusDetail = '대기중'
+	</select>
+</mapper>

@@ -43,7 +43,18 @@
 						</div>
 						<div class="memberShip_detail">
 							<div class="memberShip_item" style="border-right:1px solid #ebebeb">
-								<strong class="info">일반 회원</strong>
+								<c:set var="totalInt" value="${total}" />
+								<c:choose>
+									<c:when test="${totalInt>1000000}">
+										<strong class="info">골드 회원</strong>
+									</c:when>
+									<c:when test="${totalInt>500000}">
+										<strong class="info">실버 회원</strong>
+									</c:when>
+									<c:otherwise>
+										<strong class="info">일반 회원</strong>
+									</c:otherwise>
+								</c:choose>
 								<p class="title">회원 등급</p>
 							</div>
 							<div class="memberShip_item">

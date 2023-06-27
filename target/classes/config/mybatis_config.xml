@@ -33,5 +33,7 @@
 	<typeAlias alias="sd" type="com.myteam.myapp.domain.SizeDto"/>
 	<typeAlias alias="gid" type="com.myteam.myapp.domain.GoodsInterestDto"/>
 	
+	<typeAlias alias ="agd" type="com.myteam.myapp.domain.AdminGoodsDto"/>
+	<typeAlias alias = "asd" type="com.myteam.myapp.domain.AdminSizeDto"/>
 </typeAliases>
 </configuration>

@@ -72,7 +72,7 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select> 
 
 <select id="hashTagTotalList" resultType="hv">
-	select*from hashTag ORDER BY tagCnt DESC, hashTagNo DESC LIMIT 8;
+	SELECT * FROM hashTag WHERE tagCnt > 0 ORDER BY tagCnt DESC, hashTagNo DESC LIMIT 8
 </select>
 
 </mapper>
