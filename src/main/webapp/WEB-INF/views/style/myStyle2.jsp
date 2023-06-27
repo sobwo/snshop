@@ -37,13 +37,13 @@
 					<li class="socialItem">
 						<a class="menuLink" href="#">
 							<span class="socialMenu">팔로워</span>
-							<span class="socialMenuCnt">0</span>
+							<span class="socialMenuCnt">${mv.followerCnt}</span>
 						</a>
 					</li>
 					<li class="socialItem">
 						<a class="menuLink" href="#">
 							<span class="socialMenu">팔로잉</span>
-							<span class="socialMenuCnt">0</span>
+							<span class="socialMenuCnt">${mv.followingCnt}</span>
 						</a>
 					</li>
 					

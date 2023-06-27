@@ -30,7 +30,7 @@
 			<div class="tagContainer">
 				<c:forEach var="hv" items="${hlist}" varStatus="status">
 				<div class="tagShortCuts">
-					<a href="#" id="shortCutRounded" style="display:block;">
+					<a href="${pageContext.request.contextPath}/style/style_hashTag.do?hashTagNo=${hv.hashTagNo}" id="shortCutRounded" style="display:block;">
 						<img class="shortCutImage" src=""/>
 						<span class="shortCutTitle">${hv.hashTagName}</span>
 					</a>		
@@ -61,7 +61,6 @@
 									<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 									<c:forEach var="img" items="${imgList}">
 										<img class="postImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
-							
 									</c:forEach>										
 									</c:if>
 								</div>	
