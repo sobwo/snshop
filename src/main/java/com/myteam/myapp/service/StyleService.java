@@ -47,6 +47,8 @@ public interface StyleService {
 	
 	public ArrayList<HashTagVo> hashTagTotalList(int memberNo);
 
+	public ArrayList<LikesDto> boardHashTagList(int memberNo,int hashTagNo);
+
 
 	
 }

@@ -218,6 +218,81 @@ public class StyleController {
 		return "style/style_discover_newest2";
 	}
 	
+	@RequestMapping(value = "/style_hashTag.do")
+	public String style_hashTag(
+			@RequestParam("hashTagNo") int hashTagNo,
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardHashTagList(memberNo,hashTagNo);
+		
+		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
+		
+		ArrayList<HashTagVo> hhlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hhlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hhlist", hhlist);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("hlist",hlist);
+		model.addAttribute("mv",mv);
+		
+		
+		return "style/style_hashTag";
+	}
+	
+	@RequestMapping(value = "/style_hashTag2.do")
+	public String style_hashTag2(
+			@RequestParam("hashTagNo") int hashTagNo,
+			Model model,
+			HttpSession session) {
+		
+		int memberNo = 0;
+		
+		if(session.getAttribute("memberNo") != null) {
+			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+		}
+
+		MemberVo mv = ms.memberInfo(memberNo);
+		
+		ArrayList<LikesDto> llist =ss1.boardHashTagList(memberNo,hashTagNo);
+
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+		for (BoardVo bv : llist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hlist.addAll(hashtagList);
+		}
+
+		model.addAttribute("hlist", hlist);
+		
+		model.addAttribute("llist", llist);
+		model.addAttribute("mv",mv);
+		
+		return "style/style_hashTag2";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/myStyle2.do")
 	public String myStyle2(
 			Model model,

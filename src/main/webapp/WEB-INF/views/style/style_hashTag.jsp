@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>스타일(발견)</title>
+		<title>header_style</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/style/style_discover.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 			.nav_list:nth-child(2) a{
 				font-weight:bold;
 			}
-			.socialSorting li:nth-child(1) a{
+			.socialSorting li:nth-child(3) a{
 				color:#222;
 				font-weight:bold;
 			}
@@ -40,11 +40,11 @@
 			<div class="sortingContainer">
 				<ul class="socialSorting">
 					<li>
-						<a href="${pageContext.request.contextPath}/style/style_discover.do" class="choiceActive">인기순</a>
+						<a class="choiceActive"></a>
 					</li>		
-					<li>|</li>
+					<li></li>
 					<li>
-						<a href="${pageContext.request.contextPath}/style/style_discover_newest.do" class="choice">최신순</a>
+						<a class="choice"></a>
 					</li>
 				</ul>
 			</div>
@@ -54,7 +54,7 @@
 					<c:forEach var="ld" items="${llist}" varStatus="status">
 						<div class="feeds" >
 							<div class="feedPost" id="feedPost${ld.boardNo}">
-								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_discover2.do?boardNo=${ld.boardNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
+								<div class="feedPostImage" onclick="location.href='${pageContext.request.contextPath}/style/style_hashTag2.do?hashTagNo=${ld.hashTagNo}#post_${ld.boardNo}'" data-boardNo="${ld.boardNo}">
 									<c:set var="exp" value= "${ld.contentsImg.substring(ld.getContentsImg().length()-3, ld.getContentsImg().length())}" />
 									<c:set var="imgList" value="${fn:split(ld.contentsImg, ',')}" />
 									
@@ -124,6 +124,7 @@
 				var boardNo = $(this).val();
 				var clickImage = $(this).children("#likeImageChange");
 				var likeCountChange = $(this).siblings(".likeCount");
+	
 		    $.ajax({
 		        type: "POST",
 		        url: "${pageContext.request.contextPath}/myPage/like_check.do",
@@ -133,6 +134,7 @@
 		        	},
 		        cache: false,
 		        success: function(data) {	
+		        	
 					if (data.cnt == 1) {
 						clickImage.attr("src", "${pageContext.request.contextPath}/resources/image/heart2.png/");
 		          
@@ -143,9 +145,8 @@
 					
 					likeCountChange.text(data.totalCnt);
 					
-		        	},
+		        },
 			        error: function() {
-			        	alert("로그인이 필요합니다");
 			        }
 	
 			      });
@@ -190,8 +191,6 @@
 				}
 				images[currentImageIndex].style.display = "block";
 			}
-			
-
 		</script>
 	</body>
 </html>

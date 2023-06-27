@@ -23,6 +23,10 @@
 			<div class="userProfileTop">
 				<div>
 					<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+					
+				 
+					
+					
 					<span class="userNameTop">${mv.memberName}</span>
 					<span class="userIdTop">${mv.memberId}</span>
 				</div>
@@ -36,6 +40,9 @@
 						</a>
 					</li>
 					<li class="socialItem">
+					
+					
+					
 						<a class="menuLink" href="#">
 							<span class="socialMenu">팔로워</span>
 							<span class="socialMenuCnt">${mv.followerCnt}</span>

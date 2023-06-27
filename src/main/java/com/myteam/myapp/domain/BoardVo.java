@@ -11,8 +11,15 @@ public class BoardVo extends MemberVo{
 	private String viewCnt;
 	private int memberNo;
 	private int like_check;
+	private int hashTagNo;
 
 	
+	public int getHashTagNo() {
+		return hashTagNo;
+	}
+	public void setHashTagNo(int hashTagNo) {
+		this.hashTagNo = hashTagNo;
+	}
 	public int getLike_check() {
 		return like_check;
 	}

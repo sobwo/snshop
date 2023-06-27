@@ -156,7 +156,17 @@ public class StyleServiceImpl implements StyleService {
 		return value;
 	}
 
+	@Override
+	public ArrayList<LikesDto> boardHashTagList(int memberNo, int hashTagNo) {
+		
+		ArrayList<LikesDto> llist = ssm1.boardHashTagList(memberNo,hashTagNo);
+		
+		return llist;
+	}
 
+
+	
+	
 
 
 }

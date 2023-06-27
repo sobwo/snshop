@@ -24,7 +24,9 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select>
 
 <select id="boardTotalList_newest" resultType="ld">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check,  m.memberId FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} LEFT JOIN member m ON a.memberNo = m.memberNo WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check,
+	m.memberId FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} 
+	LEFT JOIN member m ON a.memberNo = m.memberNo WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
 </select>
 
 <select id="followingList" parameterType="fv" resultType="Integer">
@@ -68,6 +70,16 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 <select id="hashTagTotalList" resultType="hv">
 	SELECT * FROM hashTag WHERE tagCnt > 0 ORDER BY tagCnt DESC, hashTagNo DESC LIMIT 8
+</select>
+
+<select id="boardHashTagList"  parameterType="int" resultType="ld">
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId, c.hashtagNo
+	FROM board a
+	LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{0}
+	LEFT JOIN member m ON a.memberNo = m.memberNo
+	LEFT JOIN board_hashtag c ON a.boardNo = c.boardNo
+	WHERE a.delYn = 'N' AND c.hashtagNo = #{1}
+	ORDER BY a.likeCnt DESC, a.boardNo DESC
 </select>
 
 </mapper>
