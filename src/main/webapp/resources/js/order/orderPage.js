@@ -18,6 +18,7 @@ function add_address_openPopup() {
 }
 
 function add_address_closePopup() {
+
     var popup = document.getElementById("address_popup");
     popup.style.display = "none";
 }

@@ -38,6 +38,9 @@
 							<p class="modelSize">${sizeName}</p>
 						</div>				
 					</div>
+					<div class="cab">					
+						<button id="checkAllBtn">모두  체크 </button>
+					</div>
 					<div class="buyCheckBox">
 					<ul class="checkList">
 						<li>
@@ -78,5 +81,6 @@
 	<jsp:include page="../common/footer.jsp"></jsp:include>	
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/order/orderAgree.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	</body>
 </html>
