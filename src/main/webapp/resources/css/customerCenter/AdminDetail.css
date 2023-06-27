@@ -27,17 +27,30 @@
 	padding: 30px 30px 28px;
 	background-color:#fafafa;
 	}
-.btn1{
+.btn1 {
     display: inline-block;
     height: 30px;
-    width: 58px;
+    width: 84px;
     background: #fff;
     border: 1px solid #d3d3d3;
     border-radius: 10px;
     padding: 0 14px;
     margin-top: 12px;
     cursor: pointer;
-    margin-left: -75px;
+    margin-left: -145px;
+	}
+	.btn1-1{
+
+   	display: inline-block;
+    height: 30px;
+    width: 118px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    padding: 0 14px;
+    margin-top: 12px;
+    cursor: pointer;
+
 	}
 .btn2{
     display: inline-block;
@@ -52,6 +65,10 @@
 	
 	
 	}
+.btns{
+	height:100px;
+	width:500px;
+}
 .p1{
 	margin-left:445px;
 	}

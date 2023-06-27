@@ -28,11 +28,15 @@
 				</div>
 			</div>
 			<div class="menu_wrap">
-				<button class="btn1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'">목록 </button>
-				<c:set var="role" value = "${sessionScope.role}" />
-					<c:if test="${role eq 'admin'}">
-			  			<button class="btn2"onclick="confirmDelete(${awv.AWboardNo})">삭제 </button>
-		  			</c:if>
+				<div class="btns">
+
+					<button class="btn1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'">공지사항 </button>
+					<button class="btn1-1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'">자주 묻는 질문  </button>
+					<c:set var="role" value = "${sessionScope.role}" />
+						<c:if test="${role eq 'admin'}">
+				  			<button class="btn2"onclick="confirmDelete(${awv.AWboardNo})">삭제 </button>
+			  			</c:if>
+	  			</div>
 			</div>
 		  		  <jsp:include page="../common/footer.jsp"></jsp:include>
 	    		<script>
