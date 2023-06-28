@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
@@ -95,7 +96,6 @@ public class StyleController {
 		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
 		
 		ArrayList<HashTagVo> hhlist = new ArrayList<>();
-
 		for (BoardVo bv : llist) {
 		    int boardNo = bv.getBoardNo();
 		    
@@ -103,11 +103,21 @@ public class StyleController {
 		    
 		    hhlist.addAll(hashtagList);
 		}
+/*
+		List<String> imageList = new ArrayList<>();
+	    imageList.add("image1.jpg");
+	    imageList.add("image2.jpg");
+	    imageList.add("image3.jpg");
 
+	    Random random = new Random();
+	    int randomIndex = random.nextInt(imageList.size());
+	    String randomImage = imageList.get(randomIndex);
+
+	    String imageURL = "myPage/displayFile.do?contentsImg=" + randomImage + "&index=style";
+	    return ResponseEntity.ok(imageURL);
+*/
+	    
 		model.addAttribute("hhlist", hhlist);
-		
-		
-		
 		model.addAttribute("llist", llist);
 		model.addAttribute("hlist",hlist);
 		model.addAttribute("mv",mv);

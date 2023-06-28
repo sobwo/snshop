@@ -31,7 +31,7 @@
 				<c:forEach var="hv" items="${hlist}" varStatus="status">
 				<div class="tagShortCuts">
 					<a href="${pageContext.request.contextPath}/style/style_hashTag.do?hashTagNo=${hv.hashTagNo}" id="shortCutRounded" style="display:block;">
-						<img class="shortCutImage" src=""/>
+						<img class="shortCutImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${randomImage}&index=style"/>
 						<span class="shortCutTitle">${hv.hashTagName}</span>
 					</a>		
 				</div>
