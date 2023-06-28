@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 게시판 글쓰기</title>
+<%-- <link href="${pageContext.request.contextPath}/resources/css/customerCenter/adminWrite.css" rel="stylesheet"/> --%>
 				 <style>
 				    body {
 				      font-family: Arial, sans-serif;
@@ -73,7 +74,7 @@
 					}
 
 					    
-			  </style>
+			  </style> 
 				</head>	
 					<body>
 						<div id="header_wrap" style='height:94px;border:0'>
@@ -92,7 +93,7 @@
 							    </div>
 							    
 						       	<div class="form-group">
-							      <label for="category"><b>타이틀</b></label>
+							      <label for="category"><b>카테고리</b></label>
 							      <input type="text" id="categorytitle" name="categorytitle" required>
 							    </div>
 							    

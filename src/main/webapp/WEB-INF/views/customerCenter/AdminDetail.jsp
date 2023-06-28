@@ -6,81 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta http-equiv="page-enter" content="blendTrans(duration=0.3)">
-<meta http-equiv="page-exit" content="blendTrans(duration=0.3)">
+		 <link href="${pageContext.request.contextPath}/resources/css/customerCenter/AdminDetail.css" rel="stylesheet"/> 
 </head>
-	<style>
-	.detail{
-	width:700px;
-
-	background-color:white;
-	padding-top: 100px;
-	margin-left: 600px;
-	}
-	.area{
-
-	padding: 17px 0 19px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #ebebeb;
-    cursor: pointer;
-    background-color:white;
-    margin-left:25px;
-	}
-	.menu_wrap{
-	margin-left:950px;
-	width:50px;
-	height:30px;
-	color:black;
-	}
-	.area2{
-	
-	padding: 30px 30px 28px;
-	}
-	.btn1{
-    display: inline-block;
-    height: 30px;
-    width: 58px;
-    background: #fff;
-    border: 1px solid #d3d3d3;
-    border-radius: 10px;
-    padding: 0 14px;
-    margin-top: 12px;
-    cursor: pointer;
-    margin-left: -75px;
-	}
-	.btn2{
-    display: inline-block;
-    height: 30px;
-    width: 58px;
-    background: #fff;
-    border: 1px solid #d3d3d3;
-    border-radius: 10px;
-    padding: 0 14px;
-    margin-top: 12px;
-    cursor: pointer;
-	
-	
-	}
-	
-	.AWcontents{
-	
-  line-height: 50px;
-
-	
-	}
-	</style>
 		<body>
 			<div id="header_wrap" style='height:94px;border:0'>	
 		 		<jsp:include page="../common/header_common.jsp"></jsp:include> 
 			</div>	
-			
-			
 			<div class= "detail">
 				<div class="area">
 					<h3>${awv.AWtitle} </h3>
+					
 					<hr>
-					<p>${awv.AWwriteday} </p>
+					<p class="p1">${awv.AWwriteday} </p>
 				</div>
 				<hr>
 				<div class="area2">
@@ -91,11 +28,15 @@
 				</div>
 			</div>
 			<div class="menu_wrap">
-				<button class="btn1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'">목록 </button>
-				<c:set var="role" value = "${sessionScope.role}" />
-					<c:if test="${role eq 'admin'}">
-			  			<button class="btn2"onclick="confirmDelete(${awv.AWboardNo})">삭제 </button>
-		  			</c:if>
+				<div class="btns">
+
+					<button class="btn1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'">공지사항 </button>
+					<button class="btn1-1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'">자주 묻는 질문  </button>
+					<c:set var="role" value = "${sessionScope.role}" />
+						<c:if test="${role eq 'admin'}">
+				  			<button class="btn2"onclick="confirmDelete(${awv.AWboardNo})">삭제 </button>
+			  			</c:if>
+	  			</div>
 			</div>
 		  		  <jsp:include page="../common/footer.jsp"></jsp:include>
 	    		<script>

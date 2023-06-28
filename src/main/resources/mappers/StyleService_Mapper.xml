@@ -13,7 +13,6 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 								
 </select>
 
-
 <select id="boardTotalList" resultType="ld">
 	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId, IFNULL(f.followingCheck, 0) AS followingCheck
 	FROM board a
@@ -47,12 +46,8 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 
 <select id= "nowfollowingState" parameterType="Integer" resultType="Integer">
 	 
-
-
-
 	SELECT IFNULL(followingCheck, 0) AS followingCheck FROM following WHERE memberNo = #{0} AND followingMemberNo = #{1}
-
-		
+	
 </select>
 
 <update id="boardDelete" parameterType="ld">

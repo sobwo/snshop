@@ -64,6 +64,11 @@
 							<div id="address_popup">
 								<h3 style="text-align: center;">
 									<b>새 주소 추가</b>
+									<div class="aac">
+										<button onclick="add_address_closePopup()"
+											class="popup_inner_btn2">X
+										</button> 
+									</div>
 								</h3>
 								<form name="frm">
 									<input type="hidden" name="goodsNo" value="${gv.goodsNo}">
@@ -98,27 +103,17 @@
 									<input type="text" class="popup_style" id="basic_AddrDetail"
 										placeholder=" 건물,아파트,동/호수 입력" name="basicAddrDetail">
 									<div class="basic_check">
-										<input type="checkbox" class="basic_checkBtn" name="basic_check" value="Y">
+										<input type="checkbox" class="basic_checkBtn" name="basic_check" value="Y"> 
 										<span class="basic_checkTitle">
 											기본 배송지로 설정
 										</span>
 									</div>
-								<!-- 	<button  onclick="add_address_closePopup()"
-										class="popup_inner_btn2">닫기
-									</button> -->
 									
 									<button class="addressSave" value="저장하기"
 										onclick="submit_address()">저장
 									</button>
-								
 								</form>
-							
-								<button onclick="add_address_closePopup()"
-										class="popup_inner_btn2">닫기
-								</button>
-						
 							</div>
-
 							<div class="delivery_info">
 								<div class="address_popup address_plus_wrap">
 									<c:choose>

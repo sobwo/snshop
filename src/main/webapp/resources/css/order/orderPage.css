@@ -153,14 +153,15 @@
 }
 
 .popup_inner_btn2 {
-	width: 45px;
+	width: 30px;
 	height: 25px;
 	border-radius: 5px;
 	text-align: center;
 	color: rgba(34, 34, 34, .8);
 	background-color: #fff;
 	border: 1px solid #d3d3d3;
- 	margin-left: 150px; 
+ 	/* margin-left: 55px;  */
+ 	margin-right:-255px;
 	cursor: pointer
 }
 
@@ -532,4 +533,8 @@ button.active {
 	width:20px;
 	height:21px;
 	
+}
+.aac{
+	margin-top: -23px;
+	margin-left: 115px;
 }
