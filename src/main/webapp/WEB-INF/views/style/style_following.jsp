@@ -134,10 +134,12 @@
 									</button>
 									<span class="commentBox"> 
 										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}' )">	
-
 									</span>
-									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="">
 
+									<button id="copyButton">
+									  <img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
+									</button>
+									
 								</span>  
 								<div class="social_count" > 
 									<span class="openPopup21" onclick="openPopup2(${blist.boardNo}, '${blist.profileImg}')">좋아요&nbsp;<strong class="likeCount">${blist.likeCnt}</strong>개</span>
@@ -147,6 +149,13 @@
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
+			    				<p class="hashTag">
+									<c:forEach var="hv" items="${hlist}">
+										<c:if test="${hv.boardNo == blist.boardNo}">
+											<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
+										</c:if>
+									</c:forEach>
+								</p>
 					    	</div>
 					    </div>
 					</c:forEach>
@@ -161,7 +170,7 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
 		<script>
-	
+
 		$(".likeImage").click(function(){
 			var boardNo = $(this).val();
 			var clickImage = $(this).children("#likeImageChange");
@@ -415,25 +424,23 @@
 			    });
 		
 			}
-	
-		        function openPopup9() {
-		            var popup = document.getElementById("popup");
-		            popup.style.display = "block";
-		        }
-	
-		        function closePopup9() {
-		            var popup = document.getElementById("popup");
-		            popup.style.display = "none";
-		        }
-	
-		        let nowUrl = window.location.href;
-	
-		    function copyUrl(){ 
-	
-		  	navigator.clipboard.writeText(nowUrl).then(res=>{
-			  alert("주소가 복사되었습니다!");
-			})
-		}
+			
+			document.getElementById('copyButton').addEventListener('click', function() {
+			    var currentUrl = window.location.href; 
+			    copyToClipboard(currentUrl); 
+			  });
+
+			 
+			  function copyToClipboard(text) {
+			    var input = document.createElement('input');
+			    input.setAttribute('value', text);
+			    document.body.appendChild(input);
+			    input.select();
+			    document.execCommand('copy');
+			    document.body.removeChild(input);
+			    alert('현재 주소가 복사되었습니다.');
+			  }
+
 		</script>
 	</body>
 </html>

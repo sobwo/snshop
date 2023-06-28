@@ -56,7 +56,7 @@
 								
 								<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 								<c:forEach var="img" items="${imgList}">
-									<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+									<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
 								</c:forEach>										
 								</c:if>
 			    				            		
@@ -116,12 +116,16 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}','${ld.profileImg} ')">	
 									</span>
-									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
+									
+									<button id="copyButton1">
+								  		<img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
+									</button>
+									
 								</span>
-								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${ld.likeCnt}  </strong>개</span>
+								<div class="social_count" > 
+									<span class="openPopup21" onclick="openPopup2(${ld.boardNo}, '${ld.profileImg}')">좋아요&nbsp;<strong class="likeCount">${ld.likeCnt}</strong>개</span>
 								</div>
 							</div>
 							</div>
@@ -144,8 +148,6 @@
 		    	</div>
 		    	<jsp:include page="popup/comment_popup.jsp"></jsp:include>
 		    		<jsp:include page="popup/likepush.jsp"></jsp:include>
-
-		    
 			</div>
 		</div>
 
@@ -260,42 +262,67 @@
             });
                 
 		
-			function comment_btn(id, content, boardNo) {
+			function comment_btn(id, content, boardNo,profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
+			    $(".submit_comment").val(boardNo);
 			    
-			    showComment();
+			    showComment(boardNo);
+			    
+			    var memberImg = "${mv.profileImg}";
+			    if(profileImg == null || profileImg == "")
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
+			    
+			    if(memberImg == null || memberImg == "")
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
+			    	
+			    showComment(boardNo);
+
 			}
 	
-			function submitComment(){
-				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
-				$.ajax({
-					type:"POST",
-					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
-					dataType:"json",
-					data:{"ccontents": ccontents,
-							"boardNo": boardNo},
-					cache:false,
-					success: function(data){
-						if(data.value==1)
-							showComment();
-					},
-					error : function(request,status,error){
-						alert("다시 시도3");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
-					}	
-					
-				});	
-			}
 			
-			function showComment(){
-				var boardNo = $(".h_boardNo").val();
+			function submitComment(){
+				 var ccontents = $(".comment_input").val();
+				 var boardNo = $(".submit_comment").val();
+				 
+				 var index = $(".submit_comment").text();
+				 
+				 if(index == '등록'){
+					$.ajax({
+						type:"POST",
+						url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
+						dataType:"json",
+						data:{"ccontents": ccontents,
+								"boardNo": boardNo},
+						cache:false,
+						success: function(data){
+							if(data.value == 1) 		
+								showComment(boardNo);
+						},
+						error : function(request,status,error){
+							alert("2다시 시도하시기 바랍니다.");	
+							console.log("code: " + request.status);
+					        console.log("message: " + request.responseText);
+					        console.log("error: " + error);
+						}	
+						
+					});	
+				 }
+				 else if(index == '수정'){
+					 modfiy_comment(boardNo,ccontents);
+				 }
+				 else if(index =='답글입력'){
+					 
+				 }
+			}
+
+			function showComment(boardNo){
+				
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -313,6 +340,32 @@
 					}	
 					
 				});
+			}
+			function modfiy_comment(boardNo,ccontents){
+				var commentNo = $(".commentNo").val();
+			    $.ajax({
+			    	type:"POST",
+			    	url:"${pageContext.request.contextPath}/comment/modifycomment.do",
+				 	dataType:"json", 
+			    	data:{
+			   			"ccontents":ccontents, 
+			   			"commentNo":commentNo
+			   		},
+			   	  cache: false,
+			      success: function(data) {
+			        console.log(data);
+			        if(data.value == 1)
+			        	showComment(boardNo);
+			      },
+			    	error:function(request,status,error){
+			    		alert("실패");
+			    		console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+			    		
+			    	}
+			    });
+		
 			}
 			
 			var imagesMap = {}; 
@@ -361,16 +414,72 @@
 				    }
 				  });
 
-				  function scrollToPost(postId) {
-				    var postElement = document.getElementById('post_' + postId);
-				    if (postElement) {
-				      postElement.scrollIntoView({
-				        behavior: 'smooth'
-				      });
-				    }
-				  }
-	
+			  function scrollToPost(postId) {
+			    var postElement = document.getElementById('post_' + postId);
+			    if (postElement) {
+			      postElement.scrollIntoView({
+			        behavior: 'smooth'
+			      });
+			    }
+			  }
+				
+				document.getElementById('copyButton1').addEventListener('click', function() {
+				    var currentUrl = window.location.href; 
+				    copyToClipboard(currentUrl); 
+				  });
 
+				 
+				  function copyToClipboard(text) {
+				    var input = document.createElement('input');
+				    input.setAttribute('value', text);
+				    document.body.appendChild(input);
+				    input.select();
+				    document.execCommand('copy');
+				    document.body.removeChild(input);
+				    alert('현재 주소가 복사되었습니다.');
+				  }
+	 			/* 	좋아요 누른 사람 보여주기  */
+	  			function openPopup2(boardNo,profileImg) {
+		    		$.ajax({
+		        		type: "GET",
+		        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
+		        		data: {
+		            			"boardNo": boardNo
+		        		},
+		        		cache: false,
+		        		success: function(data) {
+	            		console.log(data);
+	            		var popup = document.getElementById("popup");
+		            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		            
+		   
+		           	 	popup.style.top = (500 + scrollTop) + "px";
+		            
+		            	popup.style.display = "block";
+		            	$(".popup_style_wrap").html(data);
+		            
+
+				            document.body.style.overflow = "hidden";
+				         
+				        },
+				        error: function(request, status, error) {
+				            alert("다시 시도해주세요.");
+				            console.log("code: " + request.status);
+				            console.log("message: " + request.responseText);
+				            console.log("error: " + error);
+				        }
+				    });
+				}
+				
+					function closePopup2() {
+					    var popup = document.getElementById("popup");
+					    popup.style.display = "none";
+					    
+
+					    document.body.style.overflow = "auto";
+					} 
+					
+				
 		</script>
 	</body>
 </html>
