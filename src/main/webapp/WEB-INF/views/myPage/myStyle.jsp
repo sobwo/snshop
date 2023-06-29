@@ -22,10 +22,14 @@
 		<div class="myStyleContainer">
 			<div class="userProfileTop">
 				<div>
-					<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-					
-				 
-					
+					<c:choose>
+						<c:when test="${not empty mv.profileImg}">
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${mv.profileImg}">	
+						</c:when>
+						<c:otherwise>
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+						</c:otherwise>
+					</c:choose>
 					
 					<span class="userNameTop">${mv.memberName}</span>
 					<span class="userIdTop">${mv.memberId}</span>
