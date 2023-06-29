@@ -13,6 +13,13 @@
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_main.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_menu.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/style/myStyle2.css" rel="stylesheet"/>
+			<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
+		<style>
+	#copyButton{
+	background: white;
+	border: none;
+	}
+	</style>
 	</head>
 	<body>
 		<div id="header_wrap" style='height:94px;border:0'>
@@ -113,7 +120,18 @@
 					    	<div class="social_product">
 					    		<div class="product_title">
 					    			<span class="title_txt">상품 태그</span>
-					    			<span class="cnt_txt"><strong>3</strong>개</span>
+										<c:set var="count" value="0" /> 
+											<c:forEach var="hv" items="${hlist}">
+												<c:if test="${hv.boardNo == ld.boardNo}">
+													<c:if test="${hv.tagCnt >= 2}">
+														<c:set var="count" value="${count + 1}" /> 
+													</c:if>
+													<c:if test="${hv.tagCnt == 1}">
+														<c:set var="count" value="${count + hv.tagCnt}" /> 
+													</c:if>
+												</c:if>
+											</c:forEach>
+									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
 					    		<div class="product_list_area">
 					    			<ul>
@@ -147,30 +165,30 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}','${ld.profileImg}' )">	
 									</span>
-									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
+									
+									<button id="copyButton">
+									  <img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
+									</button>
+								
 								</span>
-								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${ld.likeCnt}  </strong>개</span>
+								<div class="social_count" > 
+									<span class="openPopup21" onclick="openPopup2(${ld.boardNo}, '${ld.profileImg}')">좋아요&nbsp;<strong class="likeCount">${ld.likeCnt}</strong>개</span>
 								</div>
 							</div>
 							</div>
-
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${ld.contents}</span>
-					    		
 					    		<p class="hashTag">
 									<c:forEach var="hv" items="${hlist}">
 										<c:if test="${hv.boardNo == ld.boardNo}">
 											<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
 										</c:if>
 									</c:forEach>
-								</p>
-										
+								</p>			
 					    	</div>
-
 					    </div>
 					</c:forEach>
 		    	</div>
@@ -291,42 +309,67 @@
             });
                 
 		
-			function comment_btn(id, content, boardNo) {
+			function comment_btn(id, content, boardNo,profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
+			  /*   $(".h_boardNo").val(boardNo); */
+    		    $(".submit_comment").val(boardNo);
+			    showComment(boardNo);
+
+			    var memberImg = "${mv.profileImg}";
+			    if(profileImg == null || profileImg == "")
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
 			    
-			    showComment();
+			    if(memberImg == null || memberImg == "")
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
+			    	
+			    showComment(boardNo);
+
 			}
+			
 	
 			function submitComment(){
 				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
-				$.ajax({
-					type:"POST",
-					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
-					dataType:"json",
-					data:{"ccontents": ccontents,
-							"boardNo": boardNo},
-					cache:false,
-					success: function(data){
-						if(data.value==1)
-							showComment();
-					},
-					error : function(request,status,error){
-						alert("다시 시도3");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
-					}	
-					
-				});	
-			}
-			
-			function showComment(){
-				var boardNo = $(".h_boardNo").val();
+				 var boardNo = $(".submit_comment").val();
+				 var index = $(".submit_comment").text();
+				/* var boardNo = $(".h_boardNo").val(); */
+				
+				 if(index == '등록'){
+						$.ajax({
+							type:"POST",
+							url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
+							dataType:"json",
+							data:{"ccontents": ccontents,
+									"boardNo": boardNo},
+							cache:false,
+							success: function(data){
+								if(data.value == 1) 		
+									showComment(boardNo);
+							},
+							error : function(request,status,error){
+								alert("2다시 시도하시기 바랍니다.");	
+								console.log("code: " + request.status);
+						        console.log("message: " + request.responseText);
+						        console.log("error: " + error);
+							}	
+							
+						});	
+					 }
+					 else if(index == '수정'){
+						 modfiy_comment(boardNo,ccontents);
+					 }
+					 else if(index =='답글입력'){
+						 
+					 }
+				}
+				
+			function showComment(boardNo){
+		/* 		var boardNo = $(".h_boardNo").val(); */
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -345,7 +388,72 @@
 					
 				});
 			}
-		 
+ 			/* 	좋아요 누른 사람 보여주기  */
+  			function openPopup2(boardNo,profileImg) {
+	    		$.ajax({
+	        		type: "GET",
+	        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
+	        		data: {
+	            			"boardNo": boardNo
+	        		},
+	        		cache: false,
+	        		success: function(data) {
+            		console.log(data);
+            		var popup = document.getElementById("popup");
+	            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	            
+	   
+	           	 	popup.style.top = (500 + scrollTop) + "px";
+	            
+	            	popup.style.display = "block";
+	            	$(".popup_style_wrap").html(data);
+	            
+
+			            document.body.style.overflow = "hidden";
+			         
+			        },
+			        error: function(request, status, error) {
+			            alert("다시 시도해주세요.");
+			            console.log("code: " + request.status);
+			            console.log("message: " + request.responseText);
+			            console.log("error: " + error);
+			        }
+			    });
+			}
+		
+			function closePopup2() {
+			    var popup = document.getElementById("popup");
+			    popup.style.display = "none";
+			    
+
+			    document.body.style.overflow = "auto";
+			} 
+			function modfiy_comment(boardNo,ccontents){
+				var commentNo = $(".commentNo").val();
+			    $.ajax({
+			    	type:"POST",
+			    	url:"${pageContext.request.contextPath}/comment/modifycomment.do",
+				 	dataType:"json", 
+			    	data:{
+			   			"ccontents":ccontents, 
+			   			"commentNo":commentNo
+			   		},
+			   	  cache: false,
+			      success: function(data) {
+			        console.log(data);
+			        if(data.value == 1)
+			        	showComment(boardNo);
+			      },
+			    	error:function(request,status,error){
+			    		alert("실패");
+			    		console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+			    		
+			    	}
+			    });
+		
+			}
 			var imagesMap = {}; 
 			
 			$(".prev").click(function() {
@@ -436,7 +544,22 @@
 					}
 				}
 				
-				
+				document.getElementById('copyButton').addEventListener('click', function() {
+				    var currentUrl = window.location.href; 
+				    copyToClipboard(currentUrl); 
+				  });
+
+				 
+				  function copyToClipboard(text) {
+				    var input = document.createElement('input');
+				    input.setAttribute('value', text);
+				    document.body.appendChild(input);
+				    input.select();
+				    document.execCommand('copy');
+				    document.body.removeChild(input);
+				    alert('현재 주소가 복사되었습니다.');
+				  }
+
 				
 		</script>
 	</body>
