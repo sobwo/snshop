@@ -36,9 +36,19 @@
 									<span id="nameMsg"></span></td>
 							</tr>
 							<tr>
+								<td>상품 브랜드 이름</td>
+								<td><input type="text" name="goodsBrandName" id="goodsBrandName"  placeholder="상품 브랜드 이름을 입력하세요">
+									<span id="nameBrandMsg"></span></td>
+							</tr>
+							<tr>
 								<td>상품 영문 이름</td>
 								<td><input type="text" name="goodsEng" id="goodsEng" placeholder="상품 영문 이름 입력하세요">
 									<span id="nameEngMsg"></span></td>
+							</tr>
+							<tr>
+								<td>상품 색상</td>
+								<td><input type="text" name="goodsColor" id="goodsColor" placeholder="상품 색상을 입력하세요">
+									<span id="nameColor"></span></td>
 							</tr>
 							<tr>
 								<td>모델 번호</td>
@@ -218,12 +228,14 @@
 			previewImages.style.flexWrap = "wrap";
 		}
 			
-			$('#fileatt, #goodsName, #goodsEng, #modelNum, #category, #price, .categoryName, #size, #quantity').on('input',function(){
+			$('#fileatt, #goodsBrandName, #goodsName, #goodsEng, #modelNum, #goodsColor, #category, #price, .categoryName, #size, #quantity').on('input',function(){
 				
 				var inputImg = $('#fileatt').val();
+				var inputBrandName = $('#goodsBrandName').val();
 				var inputName = $('#goodsName').val();
 				var inputEng = $(' #goodsEng').val();
 				var inputNum = $('#modelNum').val();
+				var inputColor = $('#goodsColor').val();
 				var inputCategory = $('#category').val();
 				var inputCategoryName = 'none';
 				for(var i=0;i<$('.categoryName').length;i++)
@@ -233,7 +245,7 @@
 				var inputSize = $('#size').val();
 				var inputQuantity = $('#quantity').val();
 
-				if((inputImg != '') && (inputName != '') && (inputEng != '') && (inputNum != '') && (inputCategory != 'none') && (inputCategoryName != 'none') 
+				if((inputImg != '') && (inputBrandName != '') && (inputName != '') && (inputEng != '') && (inputNum != '') && (inputCategory != 'none') && (inputCategoryName != 'none') 
 						&& (inputPrice != '') &&(inputSize !='') && (inputQuantity != '') && (isNaN(inputQuantity)==false)){
 					$('#submit_btn').prop('disabled', false);
 					$('#submit_btn').css('background-color', '#222');
@@ -246,7 +258,7 @@
 			
 			function check(){
 				var fm = document.frm;
-				fm.action ="${pageContext.request.contextPath}/shop/shop_upload.do";
+				fm.action ="${pageContext.request.contextPath}/shop/shop_upload.do?index=product";
 				fm.method="post";
 				fm.enctype ="multipart/form-data";
 				fm.submit();

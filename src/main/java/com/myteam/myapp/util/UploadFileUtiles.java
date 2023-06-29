@@ -18,7 +18,7 @@ public class UploadFileUtiles {
 			LoggerFactory.getLogger(UploadFileUtiles.class);
 
 	public static String uploadFile(String uploadPath,
-									String originalName,byte[] fileData	)	
+									String originalName,byte[] fileData,String index)	
 	throws Exception{
 		
 		UUID uid = UUID.randomUUID();
@@ -44,6 +44,9 @@ public class UploadFileUtiles {
 		String formatName = originalName.substring(originalName.lastIndexOf(".")+1);
 		System.out.println("formatName:"+formatName);
 		String uploadedFileName = null;
+		
+		if(index.equals("product"))
+			return "/"+savedName;
 		
 		if(MediaUtils.getMediaType(formatName) != null){
 			uploadedFileName = makeThumbnail(uploadPath, savedName);

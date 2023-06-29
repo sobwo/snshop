@@ -410,7 +410,8 @@ public class MyPageController {
 				String uploadedFileName = UploadFileUtiles.uploadFile(
 						uploadPath, 
 						file.getOriginalFilename(),
-						file.getBytes());
+						file.getBytes(),
+						"");
 				uploadedFileNames.add(uploadedFileName);
 			}
 		}
