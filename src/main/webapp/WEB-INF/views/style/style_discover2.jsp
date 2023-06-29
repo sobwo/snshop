@@ -82,7 +82,18 @@
 					    	<div class="social_product">
 					    		<div class="product_title">
 					    			<span class="title_txt">상품 태그</span>
-					    			<span class="cnt_txt"><strong>3</strong>개</span>
+	  									<c:set var="count" value="0" /> <!-- 변수 count를 0으로 초기화 -->									
+											<c:forEach var="hv" items="${hlist}">
+												<c:if test="${hv.boardNo == ld.boardNo}">
+													<c:if test="${hv.tagCnt >= 2}">
+														<c:set var="count" value="${count + 1}" /> <!-- ${hv.tagCnt}가 2 이상인 경우 count에 1을 더함 -->
+													</c:if>
+													<c:if test="${hv.tagCnt == 1}">
+														<c:set var="count" value="${count + hv.tagCnt}" /> <!-- ${hv.tagCnt}가 1인 경우 count에 ${hv.tagCnt}를 더함 -->
+													</c:if>
+												</c:if>
+											</c:forEach>
+									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
 					    		<div class="product_list_area">
 					    			<ul>
@@ -120,7 +131,7 @@
 									</span>
 									
 									<button id="copyButton1">
-								  		<img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
+								  		<img class ="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
 									</button>
 									
 								</span>

@@ -99,7 +99,18 @@
 					    	<div class="social_product">
 					    		<div class="product_title">
 					    			<span class="title_txt">상품 태그</span>
-					    			<span class="cnt_txt"><strong>3</strong>개</span>
+									<c:set var="count" value="0" /> 
+									<c:forEach var="hv" items="${hlist}">
+										<c:if test="${hv.boardNo == blist.boardNo}">
+											<c:if test="${hv.tagCnt >= 2}">
+												<c:set var="count" value="${count + 1}" /> 
+											</c:if>
+											<c:if test="${hv.tagCnt == 1}">
+												<c:set var="count" value="${count + hv.tagCnt}" /> 
+											</c:if>
+										</c:if>
+									</c:forEach>
+									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
 					    		<div class="product_list_area">
 					    			<ul>
@@ -135,7 +146,7 @@
 									<span class="commentBox"> 
 										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}' )">	
 									</span>
-
+									
 									<button id="copyButton">
 									  <img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
 									</button>
