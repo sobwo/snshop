@@ -30,7 +30,7 @@
 							
 							<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 							<c:forEach var="img" items="${imgList}">
-								<img class="fileattImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+								<img class="fileattImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
 							</c:forEach>										
 							</c:if>
 						</div>
