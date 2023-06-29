@@ -69,7 +69,14 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select> 
 
 <select id="hashTagTotalList" resultType="hv">
-	SELECT * FROM hashTag WHERE tagCnt > 0 ORDER BY tagCnt DESC, hashTagNo DESC LIMIT 8
+	SELECT h.*, SUBSTRING_INDEX(GROUP_CONCAT(a.contentsImg ORDER BY RAND()), ',', 1) AS ContentsImg
+	FROM hashTag h
+	JOIN board_hashTag b ON h.hashTagNo = b.hashTagNo
+	JOIN board a ON a.boardNo = b.boardNo
+	WHERE h.tagCnt > 0
+	GROUP BY h.hashTagNo
+	ORDER BY h.tagCnt DESC, h.hashTagNo DESC
+	LIMIT 8;
 </select>
 
 <select id="boardHashTagList"  parameterType="int" resultType="ld">
