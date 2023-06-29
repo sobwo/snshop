@@ -71,15 +71,55 @@ public class StyleController {
 		MemberVo mv = ms.memberInfo(memberNo);
 		
 		ArrayList<BoardVo> blist =ss1.boardSelectAll(memberNo);
+		ArrayList<HashTagVo> hlist = new ArrayList<>();
 
+		for (BoardVo bv : blist) {
+		    int boardNo = bv.getBoardNo();
+		    
+		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+		    
+		    hlist.addAll(hashtagList);
+		    
+		}
+
+		model.addAttribute("hlist", hlist);
 		model.addAttribute("blist", blist);
-
 		model.addAttribute("mv",mv);
 	  
 		return "style/style_following";
 	 
 	 }
-	  
+		@RequestMapping(value = "/style_discover2.do")
+		public String style_discover2(
+				Model model,
+				HttpSession session) {
+			
+			int memberNo = 0;
+			
+			if(session.getAttribute("memberNo") != null) {
+				memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
+			}
+
+			MemberVo mv = ms.memberInfo(memberNo);
+			
+			ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+			ArrayList<HashTagVo> hlist = new ArrayList<>();
+
+			for (BoardVo bv : llist) {
+			    int boardNo = bv.getBoardNo();
+			    
+			    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
+			    
+			    hlist.addAll(hashtagList);
+			}
+
+			model.addAttribute("hlist", hlist);
+			model.addAttribute("llist", llist);
+			model.addAttribute("mv",mv);
+			
+			return "style/style_discover2";
+		}
+		
 	@RequestMapping(value = "/style_discover.do")
 	public String style_discover(
 			Model model,
@@ -121,39 +161,7 @@ public class StyleController {
 		return "style/style_discover";
 	}
 	
-	@RequestMapping(value = "/style_discover2.do")
-	public String style_discover2(
-			Model model,
-			HttpSession session) {
-		
-		int memberNo = 0;
-		
-		if(session.getAttribute("memberNo") != null) {
-			memberNo= Integer.parseInt(session.getAttribute("memberNo").toString());
-		}
 
-		MemberVo mv = ms.memberInfo(memberNo);
-		
-		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
-		
-		ArrayList<HashTagVo> hlist = new ArrayList<>();
-
-		for (BoardVo bv : llist) {
-		    int boardNo = bv.getBoardNo();
-		    
-		    ArrayList<HashTagVo> hashtagList = bs.hashtagBoard(boardNo);
-		    
-		    hlist.addAll(hashtagList);
-		}
-
-		model.addAttribute("hlist", hlist);
-		
-		model.addAttribute("llist", llist);
-		model.addAttribute("mv",mv);
-		
-		return "style/style_discover2";
-	}
-	
 	@RequestMapping(value = "/style_discover_newest.do")
 	public String style_discover_newest(
 			Model model,
@@ -295,9 +303,6 @@ public class StyleController {
 		
 		return "style/style_hashTag2";
 	}
-	
-	
-	
 	
 	@RequestMapping(value = "/myStyle2.do")
 	public String myStyle2(

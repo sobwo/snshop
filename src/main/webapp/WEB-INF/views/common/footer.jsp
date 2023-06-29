@@ -5,6 +5,21 @@
 	<head>
 		<link href=" ${pageContext.request.contextPath}/resources/css/footer.css" rel="stylesheet">
 	</head>
+	<style>
+		.btn1-3{
+
+   	display: inline-block;
+    height: 40px;
+    width: 118px;
+    background: black;
+    color: white;
+    border: 1px solid #d3d3d3;
+    padding: -1px 14px;
+    margin-top: -5px;
+    cursor: pointer;
+
+	}
+	</style>
 	<body>
 		<div id="footer_wrap">
 			<div id="footer_service_wrap">
@@ -21,7 +36,8 @@
 					<h4>고객센터 0000-0000</h4>
 					<p>운영시간 평일 10:00 ~ 18:00(토,일, 공휴일 휴무) 점심시간 평일 13:00 ~ 14:00</p>
 					<div id="btn_Wrap">
-						<input type="button" id="questionBtn" value="자주 묻는 질문" />
+						<!-- <input type="button" id="questionBtn" value="자주 묻는 질문" /> -->
+						<button class="btn1-3" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'">자주 묻는 질문 </button>
 					</div>
 				</div>
 			</div>

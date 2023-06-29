@@ -238,8 +238,8 @@
 	</select>
 	
 	<insert id="goodsInsert" parameterType="gv">
-		insert into goods(goodsName,goodsEng,modelNum,category,categoryName,goodsGender,price,memberNo,productImg)
-		values(#{goodsName},#{goodsEng},#{modelNum},#{category},#{categoryName},#{goodsGender},#{price},#{memberNo},#{imgFileName})
+		insert into goods(goodsName,goodsBrandName,goodsEng,modelNum,color,category,categoryName,goodsGender,price,memberNo,productImg)
+		values(#{goodsName},#{goodsBrandName},#{goodsEng},#{modelNum},#{color},#{category},#{categoryName},#{goodsGender},#{price},#{memberNo},#{productImg})
 	</insert>
 	<select id="goodsNoSelect" parameterType="Integer" resultType="Integer">
 		SELECT * FROM goods where memberNo = #{0} ORDER BY goodsNo DESC LIMIT 1

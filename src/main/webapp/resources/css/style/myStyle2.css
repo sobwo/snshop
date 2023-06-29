@@ -167,13 +167,13 @@ body {
 }
 .modify-button,
 .delete-button{
-	width:30px;
+	width:50px;
 	height:30px;
-	background:#000;
+	background:white;
 	border:1px solid #ebebeb;
 	border-radius:10px;
 	cursor:pointer;
-	color:#fff;
+	color:black;
 }
 
 .feedsImage{

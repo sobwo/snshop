@@ -56,7 +56,6 @@ public class ShopController {
 		}
 		
 		GoodsVo gv = ss.goodsSelectOne(goodsNo);
-		ArrayList<ProductImgVo> pivList = ss.imgSelectOne(goodsNo);
 
 		ArrayList<ProductDto> recommentList = ss.recommentList(gv);
 		
@@ -72,7 +71,6 @@ public class ShopController {
 		model.addAttribute("sizeList",sizeList);
 		model.addAttribute("recommentList", recommentList);
 		model.addAttribute("gv", gv);
-		model.addAttribute("pivList", pivList);
 
 		return "shop/shopContents";
 	}
@@ -81,7 +79,9 @@ public class ShopController {
 	@RequestMapping(value = "/shop_upload.do")
 	public String shop_upload(
 			@RequestParam("goodsName") String goodsName,
+			@RequestParam("goodsBrandName") String goodsBrandName,
 			@RequestParam("goodsEng") String goodsEng,
+			@RequestParam("goodsColor") String color,
 			@RequestParam("modelNum") String modelNum,
 			@RequestParam("category") String category,
 			@RequestParam("categoryName") String[] categoryName,
@@ -90,6 +90,7 @@ public class ShopController {
 			@RequestParam("size") String size,
 			@RequestParam("quantity") int quantity,
 			@RequestParam("contentsImg") MultipartFile[] contentsImg,
+			@RequestParam("index") String index,
 			HttpSession session,
 			Model model,
 			GoodsVo gv,
@@ -119,14 +120,17 @@ public class ShopController {
 				String uploadedFileName = UploadFileUtiles.uploadFile(
 						uploadPath, 
 						file.getOriginalFilename(),
-						file.getBytes());
+						file.getBytes(),
+						index);
 				uploadedFileNames.add(uploadedFileName);
 			}
 		}
 		
 		gv.setProductImg(String.join(",", uploadedFileNames));
 		gv.setGoodsName(goodsName);
+		gv.setGoodsBrandName(goodsBrandName);
 		gv.setGoodsEng(goodsEng);
+		gv.setColor(color);
 		gv.setModelNum(modelNum);
 		gv.setCategory(category);
 		gv.setCategoryName(categoryName2);
@@ -223,7 +227,7 @@ public class ShopController {
 	
 	@RequestMapping(value="/shopReview.do")
 	public String shopReview(
-			@RequestParam("goodsNo")int goodsNo,
+			@RequestParam("goodsNo") int goodsNo,
 			Model model) {
 		
 		ProductDto pd = ss.sellSelect(goodsNo);

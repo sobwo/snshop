@@ -92,7 +92,7 @@ public class CommentController {
 			  @RequestParam("ccontents")String ccontents,
 			  @RequestParam("commentNo")int commentNo,
 			Model model  ) {
-		  
+		  System.out.println("ccontents : " +ccontents);
 		  int value = cs.modifycomment(commentNo, ccontents);
 		  
 

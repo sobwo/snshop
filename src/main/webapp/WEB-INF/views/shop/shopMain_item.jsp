@@ -65,7 +65,7 @@
 						<span class="review_btn" onclick="location.href='${pageContext.request.contextPath}/shop/shopReview.do?goodsNo=${goodsList.goodsNo}'">
 							<img src="${pageContext.request.contextPath}/resources/image/writing.png">
 						</span>
-						<span>123</span>
+						<span></span>
 					</div>
 				</div><!-- product_item_wrap -->
 			</c:forEach>

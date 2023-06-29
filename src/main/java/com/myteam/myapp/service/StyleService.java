@@ -23,8 +23,7 @@ public interface StyleService {
 	 public int likesTotalCnt(int boardNo);
 	 /* 임시 */
 	
-	 
-	 /* 6-5완성x */
+
 	public int followingList(FollowingVo fv); 
 	
 	public int insertfollowing(FollowingVo fv);

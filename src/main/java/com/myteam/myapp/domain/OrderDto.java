@@ -20,6 +20,7 @@ public class OrderDto extends GoodsVo{
 	private String orderstatus;
 	private String memberPhone;
 	private String reason;
+	private String refundReason;
 	
 	private String userName;
 	private String addressPhone;
@@ -29,6 +30,12 @@ public class OrderDto extends GoodsVo{
 	private String mainAddress;
 	
 	
+	public String getRefundReason() {
+		return refundReason;
+	}
+	public void setRefundReason(String refundReason) {
+		this.refundReason = refundReason;
+	}
 	public String getMemberId() {
 		return memberId;
 	}
