@@ -421,7 +421,7 @@ public class MyPageController {
 		BoardVo bv = new BoardVo();
 		bv.setContentsImg(String.join(",", uploadedFileNames));
 		bv.setContents(contents);
-		bv.setViewCnt(viewCnt);
+		bv.setViewCnt(String.valueOf(uploadedFileNames.size()));
 		
 		int memberNo = 0;
 		if(session.getAttribute("memberNo") != null) {
@@ -430,6 +430,7 @@ public class MyPageController {
 		bv.setMemberNo(memberNo);
 		
 		int value = bs.boardInsert(bv);
+
 		
 //해시태그 insert 	
 		String hashTagNames = hashTagName;		

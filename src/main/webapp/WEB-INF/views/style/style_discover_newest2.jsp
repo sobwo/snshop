@@ -380,7 +380,7 @@
 			}
 
 			 window.addEventListener('DOMContentLoaded', function() {
-				    var postId = document.getElementsByName('boardNo');
+				    var postId = getParameterByName('boardNo');
 				    if (postId) {
 				      scrollToPost(postId);
 				    }
@@ -394,46 +394,6 @@
 				      });
 				    }
 				  }
-						 /* 좋아요 누른사람 보여주기 +스크롤 */
-					function openPopup2(boardNo,profileImg) {
-			    		$.ajax({
-			        		type: "GET",
-			        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
-			        		data: {
-			            			"boardNo": boardNo
-			        		},
-			        		cache: false,
-			        		success: function(data) {
-		            		console.log(data);
-		            		var popup = document.getElementById("popup");
-			            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			            
-			   
-			           	 	popup.style.top = (500 + scrollTop) + "px";
-			            
-			            	popup.style.display = "block";
-			            	$(".popup_style_wrap").html(data);
-			            
-
-					            document.body.style.overflow = "hidden";
-					         
-					        },
-					        error: function(request, status, error) {
-					            alert("다시 시도해주세요.");
-					            console.log("code: " + request.status);
-					            console.log("message: " + request.responseText);
-					            console.log("error: " + error);
-					        }
-					    });
-					}
-					function closePopup2() {
-					    var popup = document.getElementById("popup");
-					    popup.style.display = "none";
-					    
-
-					    document.body.style.overflow = "auto";
-					} 
-
 		</script>
 	</body>
 </html>
