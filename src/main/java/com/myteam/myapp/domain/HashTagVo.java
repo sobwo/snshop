@@ -5,7 +5,14 @@ public class HashTagVo extends Board_hashtagVo {
 	private String hashTagName;
 	private String tagCnt;
 	private String hwrtieday;
+	private String contentsImg;
 	
+	public String getContentsImg() {
+		return contentsImg;
+	}
+	public void setContentsImg(String contentsImg) {
+		this.contentsImg = contentsImg;
+	}
 	public int getHashTagNo() {
 		return hashTagNo;
 	}

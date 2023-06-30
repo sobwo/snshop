@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Random" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -31,7 +34,7 @@
 				<c:forEach var="hv" items="${hlist}" varStatus="status">
 				<div class="tagShortCuts">
 					<a href="${pageContext.request.contextPath}/style/style_hashTag.do?hashTagNo=${hv.hashTagNo}" id="shortCutRounded" style="display:block;">
-						<img class="shortCutImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${randomImage}&index=style"/>
+						<img class="shortCutImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${hv.contentsImg}&index=style"/>
 						<span class="shortCutTitle">${hv.hashTagName}</span>
 					</a>		
 				</div>
@@ -106,7 +109,7 @@
 									<p class="hashTag">
 										<c:forEach var="hv" items="${hhlist}">
 											<c:if test="${hv.boardNo == ld.boardNo}">
-												<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
+												<span id="board${hv.boardNo}">#${hv.hashTagName}</span>
 											</c:if>
 										</c:forEach>
 									</p>

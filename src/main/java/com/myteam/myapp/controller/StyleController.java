@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.servlet.http.HttpSession;
@@ -143,20 +144,15 @@ public class StyleController {
 		    
 		    hhlist.addAll(hashtagList);
 		}
-/*
-		List<String> imageList = new ArrayList<>();
-	    imageList.add("image1.jpg");
-	    imageList.add("image2.jpg");
-	    imageList.add("image3.jpg");
-
-	    Random random = new Random();
-	    int randomIndex = random.nextInt(imageList.size());
-	    String randomImage = imageList.get(randomIndex);
-
-	    String imageURL = "myPage/displayFile.do?contentsImg=" + randomImage + "&index=style";
-	    return ResponseEntity.ok(imageURL);
-*/
-	    
+		
+		
+		Random random = new Random();
+		int randomIndex = random.nextInt(llist.size());
+		String randomImg = llist.get(randomIndex).getContentsImg();
+	
+		model.addAttribute("randomImg", randomImg); // 랜덤 이미지 추가
+		
+		
 		model.addAttribute("hhlist", hhlist);
 		model.addAttribute("llist", llist);
 		model.addAttribute("hlist",hlist);
@@ -307,9 +303,6 @@ public class StyleController {
 		
 		return "style/style_hashTag2";
 	}
-	
-	
-	
 	
 	@RequestMapping(value = "/myStyle2.do")
 	public String myStyle2(
