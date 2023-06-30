@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>스타일(발견)</title>
+		<title>스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
@@ -35,6 +35,7 @@
 					        <div class="header_container">
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
+<<<<<<< HEAD
 			           					            	<c:choose>
 					            		<c:when test="${empty ld.profileImg}">
 					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
@@ -44,6 +45,17 @@
 					            		</c:otherwise>
 					            		</c:choose>
 					          
+=======
+					            	<!--상단 프로필 사진 -->
+					            	<c:choose>
+										<c:when test="${not empty ld.profileImg}">
+											<img class="user_img" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}">	
+										</c:when>
+										<c:otherwise>
+											<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</c:otherwise>
+									</c:choose>
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>

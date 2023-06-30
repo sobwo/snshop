@@ -145,14 +145,6 @@ public class StyleController {
 		    hhlist.addAll(hashtagList);
 		}
 		
-		
-		Random random = new Random();
-		int randomIndex = random.nextInt(llist.size());
-		String randomImg = llist.get(randomIndex).getContentsImg();
-	
-		model.addAttribute("randomImg", randomImg); // 랜덤 이미지 추가
-		
-		
 		model.addAttribute("hhlist", hhlist);
 		model.addAttribute("llist", llist);
 		model.addAttribute("hlist",hlist);

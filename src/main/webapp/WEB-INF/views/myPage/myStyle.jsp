@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>마이페이지</title>
+		<title>내 스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_PitemCommon.css" rel="stylesheet"/>
@@ -101,15 +101,16 @@
 										</c:otherwise>
 									</c:choose>
 												
-									<div class="feedPostUser">
+									<div class="feedPostUser">	
 										<c:choose>
-						            		<c:when test="${empty mv.profileImg}">
-					            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
-						            		</c:when>
-						            		<c:otherwise>
-												<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
-						            		</c:otherwise>
-					            		</c:choose>
+											<c:when test="${not empty mv.profileImg}">
+												<img class="userProfileImage" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${mv.profileImg}">	
+											</c:when>
+											<c:otherwise>
+												<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+											</c:otherwise>
+										</c:choose>
+
 										<p class="userName">${mv.memberId}</p>
 										<span class="likeBox">
 											<button type="button" class="likeImage" value="${ld.boardNo}">

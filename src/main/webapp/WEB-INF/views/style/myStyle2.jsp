@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>마이페이지</title>
+		<title>내 스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage.css" rel="stylesheet"/>
 		<link href="${pageContext.request.contextPath}/resources/css/myPage/myPage_PitemCommon.css" rel="stylesheet"/>
@@ -29,13 +29,13 @@
 			<div class="userProfileTop">
 				<div>
 					<c:choose>
-	            		<c:when test="${empty mv.profileImg}">
-            				<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
-	            		</c:when>
-	            		<c:otherwise>
-							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
-	            		</c:otherwise>
-	            	</c:choose>
+						<c:when test="${not empty mv.profileImg}">
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${mv.profileImg}">	
+						</c:when>
+						<c:otherwise>
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+						</c:otherwise>
+					</c:choose>
 					<span class="userNameTop">${mv.memberName}</span>
 					<span class="userIdTop">${mv.memberId}</span>
 				</div>
@@ -80,13 +80,13 @@
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
 					            	<c:choose>
-					            		<c:when test="${empty mv.profileImg}">
-				            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
-					            		</c:when>
-					            		<c:otherwise>
-											<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
-					            		</c:otherwise>
-				            		</c:choose>
+										<c:when test="${not empty mv.profileImg}">
+											<img class="user_img" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${mv.profileImg}">	
+										</c:when>
+										<c:otherwise>
+											<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</c:otherwise>
+									</c:choose>
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>

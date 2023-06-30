@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>header_style</title>
+		<title>스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href=" ${pageContext.request.contextPath}/resources/css/header.css" rel="stylesheet">
 		<link href=" ${pageContext.request.contextPath}/resources/css/style/style_discover.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 				<div class="tagShortCuts">
 					<a href="${pageContext.request.contextPath}/style/style_hashTag.do?hashTagNo=${hv.hashTagNo}" id="shortCutRounded" style="display:block;">
 						<img class="shortCutImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${hv.contentsImg}&index=style"/>
-						<span class="shortCutTitle">${hv.hashTagName}</span>
+						<span class="shortCutTitle">#${hv.hashTagName}</span>
 					</a>		
 				</div>
 				</c:forEach>
@@ -81,7 +81,14 @@
 								</c:choose>
 											
 								<div class="feedPostUser" >
-									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
+									<c:choose>
+										<c:when test="${not empty ld.profileImg}">
+											<img class="userProfileImage" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}" data-boardNo="${ld.boardNo}">	
+										</c:when>
+										<c:otherwise>
+											<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</c:otherwise>
+									</c:choose>
 									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
