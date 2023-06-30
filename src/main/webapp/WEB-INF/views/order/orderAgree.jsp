@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -29,7 +30,18 @@
 						</h2>
 					</div>
 					<div class="buyProduct">
-						<img class="buyItem" src=""/>
+						<c:set var="exp" value= "${gv.productImg.substring(gv.getProductImg().length()-3, gv.getProductImg().length())}" />
+						<c:set var="imgList" value="${fn:split(gv.productImg, ',')}" />
+						<c:choose>
+							<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+								<c:forEach var="img" items="${imgList}">
+									<img class="buyItem" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<img class="buyItem" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+							</c:otherwise>
+						</c:choose>
 						<div class="buyInfo">
 							<strong class="modelNumber">${gv.goodsEng} </strong>
 							<%-- <strong class="modelNumber"><fmt:formatNumber type='number' maxFractionDigits='3' value='${gv.price}'/></strong> --%>

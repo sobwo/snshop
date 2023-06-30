@@ -22,11 +22,14 @@
 		<div class="myStyleContainer">
 			<div class="userProfileTop">
 				<div>
-					<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-					
-				 
-					
-					
+					<c:choose>
+						<c:when test="${not empty mv.profileImg}">
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${mv.profileImg}">	
+						</c:when>
+						<c:otherwise>
+							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+						</c:otherwise>
+					</c:choose>
 					<span class="userNameTop">${mv.memberName}</span>
 					<span class="userIdTop">${mv.memberId}</span>
 				</div>
@@ -99,7 +102,14 @@
 									</c:choose>
 												
 									<div class="feedPostUser">
-										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
+										<c:choose>
+						            		<c:when test="${empty mv.profileImg}">
+					            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+						            		</c:when>
+						            		<c:otherwise>
+												<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
+						            		</c:otherwise>
+					            		</c:choose>
 										<p class="userName">${mv.memberId}</p>
 										<span class="likeBox">
 											<button type="button" class="likeImage" value="${ld.boardNo}">

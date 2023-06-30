@@ -53,13 +53,13 @@
 						<input type="hidden" name="goodsNo" id="${goodsList.goodsNo}">
 						<span class="wish_btn" onclick="interest_popup('${goodsList.goodsNo}')">
 							<c:choose>
-									<c:when test="${goodsList.checkM == 1 && goodsList.interestMemberNo == sessionScope.memberNo}">
-										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
-									</c:when>
-									<c:otherwise>
-										<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png">
-									</c:otherwise>
-								</c:choose>
+								<c:when test="${goodsList.checkM == 1 && goodsList.interestMemberNo == sessionScope.memberNo}">
+									<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2_on.png">
+								</c:when>
+								<c:otherwise>
+									<img class="wish_img" src="${pageContext.request.contextPath}/resources/image/favorites2.png">
+								</c:otherwise>
+							</c:choose>
 						</span>
 						<span class="interestNum">${goodsList.interestNum}</span>
 						<span class="review_btn" onclick="location.href='${pageContext.request.contextPath}/shop/shopReview.do?goodsNo=${goodsList.goodsNo}'">

@@ -183,7 +183,18 @@
 		<!-- 상품 정보 표시 -->
 			<div class="goodsArea">
 				<div class="goodsImg">
-					<img alt="" src="" />
+				<c:set var="exp" value= "${pd.productImg.substring(pd.getProductImg().length()-3, pd.getProductImg().length())}" />
+				<c:set var="imgList" value="${fn:split(pd.productImg, ',')}" />
+				<c:choose>
+					<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+					<c:forEach var="img" items="${imgList}">
+						<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product">
+					</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png">
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<div class="goodsName">${pd.goodsName}</div>
 				<div class="goodsEnglishName">${pd.goodsEng}</div>

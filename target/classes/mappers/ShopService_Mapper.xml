@@ -118,6 +118,18 @@
 		order by total desc limit 8
 	</select>
 	
+	<select id="trandImgList" resultType="pd">
+	select min(goodsNo),productImg from goods where categoryname in(
+	select c.categoryname from(
+		select categoryname, COUNT(interestNum)as cnt from goods group by categoryName
+		union 
+		select categoryname , count(categoryName)as cnt from orders a left join goods b on a.goodsNo = b.goodsNo group by categoryName
+	) c group by c.categoryname
+	order by sum(cnt) desc
+	) group by categoryname limit 8
+	
+	</select>
+	
 	<select id="goodsSelectOne" parameterType="int" resultType="gv">
 		select * from goods where goodsNo = #{goodsNo}
 	</select>

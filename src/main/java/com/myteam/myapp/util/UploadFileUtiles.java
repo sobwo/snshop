@@ -45,7 +45,7 @@ public class UploadFileUtiles {
 		System.out.println("formatName:"+formatName);
 		String uploadedFileName = null;
 		
-		if(index.equals("product"))
+		if(index.equals("product") || index.equals("contents"))
 			return "/"+savedName;
 		
 		if(MediaUtils.getMediaType(formatName) != null){
