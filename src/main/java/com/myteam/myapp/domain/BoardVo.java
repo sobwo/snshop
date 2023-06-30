@@ -13,7 +13,6 @@ public class BoardVo extends MemberVo{
 	private int like_check;
 	private int hashTagNo;
 
-	
 	public int getHashTagNo() {
 		return hashTagNo;
 	}

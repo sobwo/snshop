@@ -14,7 +14,7 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select>
 
 <select id="boardTotalList" resultType="ld">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId, IFNULL(f.followingCheck, 0) AS followingCheck
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId,m.profileImg, IFNULL(f.followingCheck, 0) AS followingCheck
 	FROM board a
 	LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo}
 	LEFT JOIN member m ON a.memberNo = m.memberNo
@@ -24,9 +24,13 @@ SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followi
 </select>
 
 <select id="boardTotalList_newest" resultType="ld">
-	SELECT a.*, IFNULL(b.like_check, 0) AS like_check,
-	m.memberId FROM board a LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo} 
-	LEFT JOIN member m ON a.memberNo = m.memberNo WHERE a.delYn = 'N' ORDER BY a.boardNo DESC
+	SELECT a.*, IFNULL(b.like_check, 0) AS like_check, m.memberId,m.profileImg, IFNULL(f.followingCheck, 0) AS followingCheck
+	FROM board a
+	LEFT JOIN likes b ON a.boardNo = b.boardNo AND b.memberNo = #{memberNo}
+	LEFT JOIN member m ON a.memberNo = m.memberNo
+	LEFT JOIN following f ON m.memberNo = f.memberNo AND f.followingMemberNo = #{memberNo}
+	WHERE a.delYn = 'N'
+	ORDER BY a.boardNo DESC
 </select>
 
 <select id="followingList" parameterType="fv" resultType="Integer">

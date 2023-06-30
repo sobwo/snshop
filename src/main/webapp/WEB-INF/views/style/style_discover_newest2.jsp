@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>header_style</title>
+		<title>스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
@@ -37,13 +37,13 @@
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
 					            	<c:choose>
-					            		<c:when test="${empty ld.profileImg}">
-					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
-					            		</c:when>
-					            		<c:otherwise>
-												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}">
-					            		</c:otherwise>
-					            	</c:choose>
+										<c:when test="${not empty ld.profileImg}">
+											<img class="user_img" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}">	
+										</c:when>
+										<c:otherwise>
+											<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+										</c:otherwise>
+									</c:choose>
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>

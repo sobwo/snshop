@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>스타일(발견)</title>
+		<title>스타일</title>
 		<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_following.css" rel="stylesheet">
 		<link href="${pageContext.request.contextPath}/resources/css/style/style_favorite.css" rel="stylesheet">
@@ -56,7 +56,7 @@
 								
 								<c:if test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
 								<c:forEach var="img" items="${imgList}">
-									<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}">
+									<img class="content_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=style">
 								</c:forEach>										
 								</c:if>
 			    				            		
