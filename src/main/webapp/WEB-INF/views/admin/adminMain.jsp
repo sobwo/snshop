@@ -67,6 +67,7 @@
 						<div>
 							<span>회원수</span>
 							<span>${memberNum}</span>
+								
 						</div>
 					</div>
 					<div class="goodsInfo">
@@ -86,8 +87,6 @@
 			</div>
 		</main>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-		<script>
-			
-		</script>
+		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</body>
 </html>

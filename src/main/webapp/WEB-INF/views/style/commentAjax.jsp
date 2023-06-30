@@ -14,7 +14,16 @@
 	 <c:forEach var = "get" items="${get}">
 
 		<div class="getCommentList">
-			<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
+		       	<c:choose>
+	           		<c:when test="${empty get.profileImg}">
+	          				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+	           		</c:when>
+	           		<c:otherwise>
+						<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style">
+	           		</c:otherwise>
+          		</c:choose> 
+<%-- 	<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style" alt="프로필 사진">  --%>
+			
 			<div class="comment_txt_area">
 				<a class="othereuser_id" href="#">${get.memberName}</a>
 				<span class="comment_txt">${get.ccontents}</span>

@@ -54,7 +54,7 @@
 					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
 					            		</c:when>
 					            		<c:otherwise>
-												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${blist.profileImg}">
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${blist.profileImg}&index=style">
 					            		</c:otherwise>
 					            	</c:choose>
 					            	<div class="user_id_wrap">
@@ -98,7 +98,7 @@
 					    	<!-- 상품태그 -->
 					    	<div class="social_product">
 					    		<div class="product_title">
-					    			<span class="title_txt">상품 태그</span>
+					    			<span class="title_txt"> 해시태그</span>
 									<c:set var="count" value="0" /> 
 									<c:forEach var="hv" items="${hlist}">
 										<c:if test="${hv.boardNo == blist.boardNo}">
@@ -112,7 +112,7 @@
 									</c:forEach>
 									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
-					    		<div class="product_list_area">
+		<!-- 			    		<div class="product_list_area">
 					    			<ul>
 					    				<li class="product_list">
 					    					<div class="product">
@@ -122,7 +122,7 @@
 					    					</div>
 					    				</li>
 					    			</ul>
-					    		</div>
+					    		</div> -->
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
@@ -160,6 +160,7 @@
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
+					    		
 			    				<p class="hashTag">
 									<c:forEach var="hv" items="${hlist}">
 										<c:if test="${hv.boardNo == blist.boardNo}">
@@ -295,7 +296,7 @@
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
 			    $(".submit_comment").val(boardNo);
- 			   
+		
 			    showComment(boardNo);     
 
 			    var memberImg = "${mv.profileImg}";

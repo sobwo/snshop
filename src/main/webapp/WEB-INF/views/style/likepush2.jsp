@@ -22,7 +22,14 @@
  <div class="popup_content"> 
 		<c:forEach var="get" items="${get}">
 			<div class="popup_style">
-				<img class="user_img" style="width: 25px; height: 25px; border-radius: 10px;" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
+		  	<c:choose>
+           		<c:when test="${empty get.profileImg}">
+           				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+           		</c:when>
+           		<c:otherwise>
+						<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style">
+           		</c:otherwise>
+           	</c:choose>
 				<p style="margin-left: -210px;"><b>${get.memberName}</b></p>
 				<button class="follow-button" value="${get.memberNo}">팔로우</button>
 			</div>

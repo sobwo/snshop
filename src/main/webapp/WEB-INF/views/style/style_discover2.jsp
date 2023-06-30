@@ -29,14 +29,21 @@
 			<div class="content_wrap">
 			<div class="content_inner_wrap">
 			    <div class="content_area">
-			    	<c:forEach var="ld" items="${llist}" varStatus="status">
+			    	<c:forEach var="ld" items="${llist}"><%--  varStatus="status" --%>
 				    	<div class="content" id="post_${ld.boardNo}">
 					    	<!-- 상단바 -->
 					        <div class="header_container">
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
-					            	<!--상단 프로필 사진 -->
-					            	<img class="user_img" src="" alt="">
+			           					            	<c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+					            		</c:otherwise>
+					            		</c:choose>
+					          
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
