@@ -30,7 +30,6 @@
 							<img class="userProfileImageTop" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
 						</c:otherwise>
 					</c:choose>
-					
 					<span class="userNameTop">${mv.memberName}</span>
 					<span class="userIdTop">${mv.memberId}</span>
 				</div>

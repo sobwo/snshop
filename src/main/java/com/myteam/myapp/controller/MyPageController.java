@@ -400,6 +400,7 @@ public class MyPageController {
 			@RequestParam("contents") String contents,
 			@RequestParam("viewCnt") String viewCnt,
 			@RequestParam("hashTagName") String hashTagName,
+			@RequestParam("index") String index,
 			HttpSession session
 			) throws Exception {
 		
@@ -411,7 +412,7 @@ public class MyPageController {
 						uploadPath, 
 						file.getOriginalFilename(),
 						file.getBytes(),
-						"");
+						index);
 				uploadedFileNames.add(uploadedFileName);
 			}
 		}

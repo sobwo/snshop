@@ -33,12 +33,12 @@
 					<jsp:include page="../common/customerCenter_question.jsp"></jsp:include>
 					<ul class="titleSorting">
 						<li>
-									<c:forEach var="commonlist" items="${commonlist}">
-							<div class="titleContainer">
-								<div class="titleBox">
-								<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${commonlist.AWboardNo}"><b>[${commonlist.categorytitle}]</b> ${commonlist.AWtitle}</a>
-								</div>
-							</div>	
+							<c:forEach var="commonlist" items="${commonlist}">
+								<div class="titleContainer">
+									<div class="titleBox">
+										<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${commonlist.AWboardNo}"><b>[${commonlist.categorytitle}]</b> ${commonlist.AWtitle}</a>
+									</div>
+								</div>	
 							</c:forEach>
 						</li>
 					</ul>

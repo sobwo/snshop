@@ -33,13 +33,13 @@
 					<jsp:include page="../common/customerCenter_question.jsp"></jsp:include>	
 					<ul class="titleSorting">	
 						<li>
-						<c:forEach var="dellist" items="${dellist}">
-							<div class="titleContainer">
-								<div class="titleBox">
-									<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${dellist.AWboardNo}"><b>[${dellist.categorytitle}]</b>  ${dellist.AWtitle}</a>
-								</div>
-							</div>	
-						</c:forEach>
+							<c:forEach var="dellist" items="${dellist}">
+								<div class="titleContainer">
+									<div class="titleBox">
+										<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${dellist.AWboardNo}"><b>[${dellist.categorytitle}]</b>  ${dellist.AWtitle}</a>
+									</div>
+								</div>	
+							</c:forEach>
 						</li>
 					</ul>
 				</div>

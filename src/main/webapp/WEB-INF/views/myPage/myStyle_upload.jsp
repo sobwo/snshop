@@ -237,7 +237,7 @@
 			      return;
 			}
 			var fm = document.frm;
-			fm.action ="${pageContext.request.contextPath}/myPage/myStyle_uploadeAction.do";
+			fm.action ="${pageContext.request.contextPath}/myPage/myStyle_uploadeAction.do?index=contents";
 			fm.method="post";
 			fm.enctype ="multipart/form-data";
 			fm.submit();

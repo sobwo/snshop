@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,18 @@
 					<div class="product_info_area" style="background-color: #fff;">
 						<div class="product_info">
 							<div class="product">
-								<img src="" style="width: 80px;height:80px;">
+								<c:set var="exp" value= "${gv.productImg.substring(gv.getProductImg().length()-3, gv.getProductImg().length())}" />
+								<c:set var="imgList" value="${fn:split(gv.productImg, ',')}" />
+								<c:choose>
+									<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+										<c:forEach var="img" items="${imgList}">
+											<img class="pro_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product"  style="width: 80px;height:80px;">
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<img class="pro_img" src="${pageContext.request.contextPath}/resources/image/blank_product.png"  style="width: 80px;height:80px;">
+									</c:otherwise>
+								</c:choose>
 							</div>
 							<div class="product_detail">
 
@@ -55,8 +67,7 @@
 								<h3 class="title_txt">배송주소</h3>
 								<div class="address_popup">
 									<button onclick="add_address_openPopup()"
-										style="border: 1px solid white; cursor: pointer; background-color: white">+새
-										주소 추가
+										style="border: 1px solid white; cursor: pointer; background-color: white">+새주소 추가
 									</button>
 								</div>
 							</div>

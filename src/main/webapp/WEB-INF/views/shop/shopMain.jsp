@@ -57,10 +57,21 @@
 	<!-- 상단 트랜드 상품 리스트 -->
 				<section class="trend_container">
 					<div class="trend_con_area" >
-						<c:forEach var="tl" items="${trandList}">
+						<c:forEach var="tl" items="${trandList}" varStatus="status">
 							<div class="trendContents">
 								<div class="trendImg">
-									<img src="" width="90px" height="90px">
+								<c:set var="exp" value= "${trandImg[status.index].productImg.substring(trandImg[status.index].getProductImg().length()-3, trandImg[status.index].getProductImg().length())}" />
+								<c:set var="imgList" value="${fn:split(trandImg[status.index].productImg, ',')}" />
+								<c:choose>
+									<c:when test="${exp == 'jpg' || exp == 'gif' || exp == 'png' || exp == 'fif'}">
+										<c:forEach var="img" items="${imgList}">
+											<img src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${img}&index=product" width="90px" height="90px">
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<img src="${pageContext.request.contextPath}/resources/image/blank_product.png" width="90px" height="90px">
+									</c:otherwise>
+								</c:choose>
 								</div><!-- trendImg -->
 								<div class="trendName">
 									<span class="cateName">${tl.categoryName}</span>

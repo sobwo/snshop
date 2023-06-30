@@ -37,6 +37,7 @@ public interface ShopService_Mapper {
 	public ArrayList<LikesDto> shopReviewList(HashMap<String, Object> hm);
 	
 	public ArrayList<ProductDto> trandList();
+	public ArrayList<ProductDto> trandImgList();
 	
 	public int ReviewTotal(int goodsNo);
 	

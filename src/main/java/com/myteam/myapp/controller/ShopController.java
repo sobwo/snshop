@@ -41,6 +41,9 @@ public class ShopController {
 		ArrayList<ProductDto> trandList = ss.trandList();
 		model.addAttribute("trandList",trandList);
 		
+		ArrayList<ProductDto> trandImg =ss.trandImgList();
+		model.addAttribute("trandImg", trandImg);
+		
 		return "shop/shopMain";
 	}
 

@@ -250,6 +250,13 @@ public class ShopServiceImpl implements ShopService {
 			ArrayList<ProductDto> trandList = ssm.trandList();
 			return trandList;
 		}
+		@Override
+		public ArrayList<ProductDto> trandImgList(){
+			
+			ArrayList<ProductDto> imgList =ssm.trandImgList();
+			
+			return imgList;
+		}
 		
 		@Transactional
 		@Override
