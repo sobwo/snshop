@@ -63,10 +63,10 @@
 						<c:forEach var="AWlist" items="${AWlist}">
 							<div class="titleContainer">
 								<div class="titleBox">
-								<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${AWlist.AWboardNo}">[${AWlist.categorytitle}] ${AWlist.AWtitle}</a>
+									<a href="${pageContext.request.contextPath}/AdminWrite/AdminDetail.do?AWboardNo=${AWlist.AWboardNo}"><b>[${AWlist.categorytitle}]</b> ${AWlist.AWtitle}</a>
 								</div>
 							</div>	
-							</c:forEach>
+						</c:forEach>
 						</li>
 					</ul>
 				</div>

@@ -12,17 +12,24 @@
             overflow-y: auto;
             padding-right: 15px;
         }   
+        .p-like{
+         	text-align: center;
+		 	padding: 10px;
+        }
 </style > 
 </head>
 <body>
  <div class="popup_content"> 
-	<c:forEach var = "get" items="${get}">
-		<div class="popup_style">
-			<img class="user_img" style="width: 25px; height: 25px; border-radius: 10px;" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
-			<p style="margin-left: -210px;"><b>${get.memberName} </b></p>
-	        <button class="follow-button" value="${get.memberNo}">팔로우 </button>             
-		</div>
-	</c:forEach>
+		<c:forEach var="get" items="${get}">
+			<div class="popup_style">
+				<img class="user_img" style="width: 25px; height: 25px; border-radius: 10px;" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}" alt="프로필 사진">
+				<p style="margin-left: -210px;"><b>${get.memberName}</b></p>
+				<button class="follow-button" value="${get.memberNo}">팔로우</button>
+			</div>
+		</c:forEach>
+		<c:if test="${empty get}">
+			<p class="p-like">좋아요를 눌러보세요!</p>
+		</c:if>
  </div>  
 	<script>
 	$(document).ready(function(){

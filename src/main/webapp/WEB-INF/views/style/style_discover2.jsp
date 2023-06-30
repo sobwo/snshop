@@ -261,7 +261,7 @@
              	  	if(data.value == 1)
              	  		showfollowing();
              	  	else
-             	  		alert();
+             	  		alert("다시 한번 클릭해 주세요");
              	  },
              	  error : function(request,status,error){
 					alert("로그인이 필요합니다");	

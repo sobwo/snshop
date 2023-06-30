@@ -44,10 +44,19 @@
 					<li><a href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'>자주 묻는 질문</a></li>
 					<c:set var="role" value = "${sessionScope.role}" />
 						<c:if test="${role eq 'admin'}">
-						<li><a href='${pageContext.request.contextPath}/AdminWrite/AdminWrite.do'>공지사항 글쓰기</a></li>
+						<%-- <li><a href='${pageContext.request.contextPath}/AdminWrite/AdminWrite.do'>공지사항 글쓰기</a></li> --%>
+						<li><a href="#" onclick="showConfirmation()">공지사항 글쓰기</a></li>
 				  	</c:if>
 				</ul>
 			</div>
 		</div>
+		<script>
+			function showConfirmation() {
+			  if (confirm("공지 사항을 작성하시겠습니까?")) {
+			    var url = "${pageContext.request.contextPath}/AdminWrite/AdminWrite.do";
+			    window.location.href = url;
+			  }
+			}
+		</script>
 	</body>
 </html>
