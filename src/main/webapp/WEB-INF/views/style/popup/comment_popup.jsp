@@ -27,12 +27,22 @@
 			
 			<!-- 본문내용 -->
 			<div class="comment_top">
-				<img class="user_img user_profileImg" src="" alt="">
+           	<c:choose>
+        		<c:when test="${empty mv.profileImg}">
+       				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+        		</c:when>
+        		<c:otherwise>
+        		
+				<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
+        		</c:otherwise>
+       		</c:choose>
 	           	<div class="user_id_wrap">
 	           		<a class="user_id" href="#"> 아이디</a>
 	               	<span class="content_top"> </span>
 	               	<div class="tag_wrap">
 	               		<a class="tag" href="#">태그</a>
+             
+						</p>
 	               	</div> 
 				</div>
 			</div>  
@@ -42,7 +52,16 @@
 		
 			<div class="social_comment_input">
 				<form name = "crm">
-		 			<img class="user_img memberProfileImg" src="" alt="프로필 사진">
+	              	<c:choose>
+		        		<c:when test="${empty mv.profileImg}">
+		       				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+		        		</c:when>
+		        		<c:otherwise>
+		        		
+						<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
+		        		</c:otherwise>
+		       		</c:choose>
+
 						<input type="text" class="comment_input" name="ccontents" placeholder="댓글을 남기세요.">
 					<button type="button" class="submit_comment" onclick="submitComment()">등록</button>
 					<input type="hidden" class="commentNo">

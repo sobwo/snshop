@@ -83,6 +83,27 @@
 									</c:otherwise>
 								</c:choose>
 											
+<<<<<<< HEAD
+								<div class="feedPostUser" >
+    									<c:choose>
+						            		<c:when test="${empty ld.profileImg}">
+					            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+						            		</c:when>
+						            		<c:otherwise>
+												<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+						            		</c:otherwise>
+					            		</c:choose>	     		
+			<%-- 					<c:choose>
+									<c:when test="${not empty ld.profileImg}">
+										<img class="userProfileImage" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}$index=style">	
+									</c:when>
+									<c:otherwise>
+										<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
+									</c:otherwise>
+								</c:choose>
+						 --%>
+<%-- 									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" /> --%>
+=======
 								<div class="feedPostUser">
 								<c:set var="user" value="${userList[status.index]}" />
 									<c:choose>
@@ -93,6 +114,7 @@
 											<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
 										</c:otherwise>
 									</c:choose>
+>>>>>>> branch 'main' of https://github.com/sobwo/snshop.git
 									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
