@@ -43,8 +43,8 @@
 						</div>
 						<div class="pro_name_area" onclick="location.href='${pageContext.request.contextPath}/shop/shopContents.do?goodsNo=${goodsList.goodsNo}'">
 							<ul>
-								<li class="pro_brand" >"${goodsList.goodsBrandName}"</li>
-								<li class="pro_name1" >${goodsList.goodsName}"</li>
+								<li class="pro_brand" >${goodsList.goodsBrandName}</li>
+								<li class="pro_name1" >${goodsList.goodsName}</li>
 								<li class="pro_price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${goodsList.price}" />원</li>
 							</ul>
 						</div>
