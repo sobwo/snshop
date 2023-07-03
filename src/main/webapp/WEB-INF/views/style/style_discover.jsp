@@ -84,6 +84,7 @@
 								</c:choose>
 											
 								<div class="feedPostUser">
+								<c:set var="user" value="${userList[status.index]}" />
 									<c:choose>
 										<c:when test="${not empty ld.profileImg}">
 											<img class="userProfileImage" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}" data-boardNo="${ld.boardNo}">	

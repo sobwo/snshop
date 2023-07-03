@@ -133,7 +133,7 @@ public class StyleController {
 
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);		
 		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
 		
 		ArrayList<HashTagVo> hhlist = new ArrayList<>();
@@ -144,6 +144,13 @@ public class StyleController {
 		    
 		    hhlist.addAll(hashtagList);
 		}
+		
+		/*
+		 * ArrayList<BoardVo> llistt = new ArrayList<>(); for (BoardVo bv : llist) { int
+		 * memberNo = bv.getMemberNo(); MemberVo mv1 = ms.memberInfo(memberNo);
+		 * bv.setMemberNo(memberNo); llistt.add(bv); } model.addAttribute("llistt",
+		 * llistt);
+		 */
 		
 		model.addAttribute("hhlist", hhlist);
 		model.addAttribute("llist", llist);
