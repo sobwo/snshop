@@ -78,17 +78,16 @@
 											<button type="button" class="next" value="${ld.boardNo}">&#10095;</button>
 										</div>
 									</c:otherwise>
-								</c:choose>
-											
+								</c:choose>	
 								<div class="feedPostUser" >
 									<c:choose>
-										<c:when test="${not empty ld.profileImg}">
-											<img class="userProfileImage" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}" data-boardNo="${ld.boardNo}">	
-										</c:when>
-										<c:otherwise>
-											<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-										</c:otherwise>
-									</c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+				            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+											<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+					            		</c:otherwise>
+				            		</c:choose>	 
 									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
