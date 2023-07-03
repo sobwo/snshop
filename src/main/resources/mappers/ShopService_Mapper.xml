@@ -180,7 +180,7 @@
 	
 	<select id="recommentList" parameterType="hashMap" resultType="pd">
 		select * from goods a left join inventory b on a.goodsNo = b.goodsNo
-		where a.categoryname = '스니커즈' and a.goodsNo not in(3) and b.quantity >0
+		where a.categoryname = #{categoryName} and a.goodsNo not in(#{goodsNo}) and b.quantity >0
 		order by a.interestNum desc limit 10
 	</select>
 	
