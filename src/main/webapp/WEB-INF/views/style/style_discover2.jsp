@@ -35,18 +35,7 @@
 					        <div class="header_container">
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
-
-
-					            	<!--상단 프로필 사진 -->
-					     <%--       	<c:choose>
-										<c:when test="${not empty ld.profileImg}">
-											<img class="user_img" src="${pageContext.request.contextPath}/image/profileImgShow.do?profileImg=${ld.profileImg}$index=style">	
-										</c:when>
-										<c:otherwise>
-											<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png">
-										</c:otherwise>
-									</c:choose>  --%>
-								 	   	<c:choose>
+								<c:choose>
 					            		<c:when test="${empty ld.profileImg}">
 					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
 					            		</c:when>
@@ -54,7 +43,6 @@
 												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ ld.profileImg}&index=style">
 					            		</c:otherwise>
 					            	</c:choose>
-
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
