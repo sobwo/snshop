@@ -564,7 +564,7 @@
 				arrows : false, 		// 옆으로 이동하는 화살표 표시 여부
 				dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
 				autoplay : true,			// 자동 스크롤 사용 여부
-				autoplaySpeed : 5000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+				autoplaySpeed : 3000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
 				pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 				vertical : false,		// 세로 방향 슬라이드 옵션
 				draggable : true, 	//드래그 가능 여부 
@@ -729,23 +729,28 @@
 		
 		$(document).on("click",".goodsDel",function(){
 			var goodsNo = $(this).val();
-			
-			$.ajax({
-				url: "${pageContext.request.contextPath}/shop/goodsDelete.do",		
-				method: "POST",
-				data:{"goodsNo":goodsNo},
-				cache : false,
-				success : function(){
-					filter_ajax();
-				},
-				error : function(request,status,error){
-					alert("다시 시도하시기 바랍니다.");	
-					console.log("code: " + request.status);
-			        console.log("message: " + request.responseText);
-			        console.log("error: " + error);
-				}	
-			});
 
+			if(confirm("삭제하시겠습니까?")){
+				alert("삭제")
+				$.ajax({
+					url: "${pageContext.request.contextPath}/shop/goodsDelete.do",		
+					method: "POST",
+					data:{"goodsNo":goodsNo},
+					cache : false,
+					success : function(){
+						filter_ajax();
+					},
+					error : function(request,status,error){
+						alert("다시 시도하시기 바랍니다.");	
+						console.log("code: " + request.status);
+				        console.log("message: " + request.responseText);
+				        console.log("error: " + error);
+					}	
+				});
+				
+			}else{
+
+			}
 		});
 		</script>
 	</body>

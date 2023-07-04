@@ -133,7 +133,7 @@ public class StyleController {
 
 		MemberVo mv = ms.memberInfo(memberNo);
 		
-		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);
+		ArrayList<LikesDto> llist =ss1.boardTotalList(memberNo);		
 		ArrayList<HashTagVo> hlist=ss1.hashTagTotalList(memberNo);
 		
 		ArrayList<HashTagVo> hhlist = new ArrayList<>();

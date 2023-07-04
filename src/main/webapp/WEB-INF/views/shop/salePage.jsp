@@ -105,6 +105,36 @@
 										<option value="레깅스">레깅스</option>
 										<option value="기타">기타</option>
 									</select>
+									<select name="categoryName" class="bag categoryName">
+										<option value="none" selected>하위 카테고리 선택</option>
+										<option value="프리미엄가방">프리미엄가방</option>
+										<option value="미니백">미니백</option>
+										<option value="백팩">백팩</option>
+										<option value="숄더백">숄더백</option>
+										<option value="토트백">토트백</option>
+										<option value="크로스백">크로스백</option>
+										<option value="클러치">클러치</option>
+										<option value="더플백">더플백</option>
+										<option value="에코백">에코백</option>
+										<option value="캐리어">캐리어</option>
+										<option value="기타">기타</option>
+									</select>
+									<select name="categoryName" class="wallet categoryName">
+										<option value="none" selected>하위 카테고리 선택</option>
+										<option value="반지갑">반지갑</option>
+										<option value="장지갑">장지갑</option>
+										<option value="카드지갑">카드지갑</option>
+										<option value="체인지갑">체인지갑</option>
+										<option value="기타">기타</option>
+									</select>
+									<select name="categoryName" class="watch categoryName">
+										<option value="none" selected>하위 카테고리 선택</option>
+										<option value="프리미엄시계">프리미엄시계</option>
+										<option value="전자시계">전자시계</option>
+										<option value="가죽시계">가죽시계</option>
+										<option value="메탈시계">메탈시계</option>
+										<option value="기타">기타</option>
+									</select>
 									<span id="categoryMsg"></span>
 								</td>
 							</tr>
@@ -173,6 +203,18 @@
 				else if(category == '하의'){
 					$("select[name=categoryName]").hide();
 					$(".pants").show();
+				}
+				else if(category == '가방'){
+					$("select[name=categoryName]").hide();
+					$(".bag").show();
+				}
+				else if(category == '지갑'){
+					$("select[name=categoryName]").hide();
+					$(".wallet").show();
+				}
+				else if(category == '시계'){
+					$("select[name=categoryName]").hide();
+					$(".watch").show();
 				}
 					
 			});
