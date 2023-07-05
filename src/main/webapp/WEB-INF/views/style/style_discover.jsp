@@ -29,6 +29,7 @@
 	</head>
 	<body>
 		<jsp:include page="../common/header_style.jsp"></jsp:include>
+		
 		<div id="content_wrap">
 			<div class="tagContainer">
 				<c:forEach var="hv" items="${hlist}" varStatus="status">

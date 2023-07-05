@@ -1,6 +1,7 @@
 package com.myteam.myapp.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.myteam.myapp.domain.AdminSizeDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.persistance.AdminService_Mapper;
 
 @Service("AdminServiceImpl")
@@ -82,6 +84,29 @@ public class AdminServiceImpl implements AdminService {
 		ArrayList<OrderDto> rfList = asm.refundList();
 		
 		return rfList;
+	}
+
+	@Override
+	public OrderDto orderSelectOne(int orderNo) {
+
+		OrderDto od = asm.orderSelectOne(orderNo);
+		
+		return od;
+	}
+
+	@Override
+	public RefundVo refundSelectOne(int memberNo) {
+		RefundVo rv = asm.refundSelectOne(memberNo);
+		
+		return rv;
+	}
+
+	@Override
+	public int refundAction(int orderNo) {
+		
+		int value = asm.refundAction(orderNo);
+		
+		return value;
 	}
 
 
