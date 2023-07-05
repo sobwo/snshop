@@ -23,6 +23,7 @@
 			display : flex;
 			flex-direction : row;
 			padding: 20px;
+			position:absolute;
 		}
 		table {
 			width: 100%;
@@ -36,6 +37,10 @@
 			border: 1px solid #ebebeb;
 			padding: 5px;
 		}
+		.popup_wrap{
+			position : relative;
+			top: 50px;
+		}
 	</style>
 	</head>
 	<body>
@@ -47,69 +52,79 @@
 				<div class="menu">
 					<jsp:include page="../common/adminMenu.jsp"></jsp:include>
 				</div>
-			<table>
-				<thead>
-					<tr>
-						<td>주문번호</td>
-						<td>주문일</td>
-						<td>구매/판매</td>
-						<td>현황</td>
-						<td>입금상황</td>
-						<td>환불이유</td>
-						<td>환불여부</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="rl" items="${rfList}">
-						<tr class="orderList">
-							<td class="num">${rl.orderNo}</td>
-							<td>${rl.orderDays}</td>
-							<td>${rl.pors}</td>
-							<td>${rl.orderStatus}</td>
-							<td>${rl.statusDetail}</td>
-							<td>${rl.reason}</td>
-							<c:set var="check" value="${rl.checksum}" />
-							<c:choose>
-								<c:when test="${empty check}">
-									<td>진행중</td>
-								</c:when>
-								<c:when test="${not empty check}">
-									<td>완료</td>
-								</c:when>
-							</c:choose>
+				<div class="filter">
+					<ul>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<td>주문번호</td>
+							<td>주문일</td>
+							<td>구매/판매</td>
+							<td>현황</td>
+							<td>입금상황</td>
+							<td>환불이유</td>
+							<td>환불여부</td>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="rl" items="${rfList}">
+							<tr class="orderList">
+								<td class="num">${rl.orderNo}</td>
+								<td>${rl.orderDays}</td>
+								<td>${rl.pors}</td>
+								<td>${rl.orderStatus}</td>
+								<td>${rl.statusDetail}</td>
+								<td>${rl.reason}</td>
+								<c:set var="check" value="${rl.refundReason}" />
+								<c:choose>
+									<c:when test="${empty check}">
+										<td>진행중</td>
+									</c:when>
+									<c:when test="${not empty check}">
+										<td>완료</td>
+									</c:when>
+								</c:choose>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div class="popup_wrap" style="display:none">
+		
 			</div>
 		</main>
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script>
 		$(document).on("click",".orderList",function(){
 			var orderNo = $(this).children(".num").text();
-	
-				$.ajax({
-					url: "${pageContext.request.contextPath}/admin/adminSizeList.do",		
-					method: "POST",
-					data:{"goodsNo":goodsNo},
-					cache : false,
-					success : function(data){
-						$(".popup_wrap").html(data);
-					},
-					error : function(request,status,error){
-						alert("다시 시도하시기 바랍니다.");	
-						console.log("code: " + request.status);
-				        console.log("message: " + request.responseText);
-				        console.log("error: " + error);
-					}	
-				});
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/admin/adminRefundPopup.do",		
+				method: "POST",
+				data:{"orderNo":orderNo},
+				cache : false,
+				success : function(data){
+					$(".popup_wrap").html(data);
+				},
+				error : function(request,status,error){
+					alert("다시 시도하시기 바랍니다.");	
+					console.log("code: " + request.status);
+			        console.log("message: " + request.responseText);
+			        console.log("error: " + error);
+				}	
 			});
-				
-			$(document).on("click",".close",function(){
-				$(".popup_wrap").hide();
-			});
+			
+			$(".popup_wrap").show();
+		});
+		
+		$(document).on("click",".close",function(){
+			$(".popup_wrap").hide();
+		});
 
 		</script>
-		<jsp:include page="../common/footer.jsp"></jsp:include>
 	</body>
 </html>

@@ -1,12 +1,14 @@
 package com.myteam.myapp.persistance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.myteam.myapp.domain.AdminGoodsDto;
 import com.myteam.myapp.domain.AdminSizeDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.RefundVo;
 
 public interface AdminService_Mapper {
 
@@ -25,4 +27,11 @@ public interface AdminService_Mapper {
 	public ArrayList<AdminGoodsDto> goodsList();
 	
 	public ArrayList<AdminSizeDto> sizeList(int goodsNo);
+	
+	public OrderDto orderSelectOne(int orderNo);
+
+	public RefundVo refundSelectOne(int memberNo);
+	
+	public int refundAction(int orderNo);
+
 }

@@ -647,12 +647,12 @@
 			}
 
 			if(filter.length > 0){
-				alert("value1"+filter)
+
 				value = 1;
 				align_ajax(filter,value,index,page);
 			}else{
 				filter.push("1");
-				alert("value2"+filter)
+
 				value =0;
 				align_ajax(filter,value,index,page);
 				filter.pop();

@@ -13,12 +13,14 @@ import com.myteam.myapp.domain.AdminSizeDto;
 import com.myteam.myapp.domain.GoodsVo;
 import com.myteam.myapp.domain.MemberVo;
 import com.myteam.myapp.domain.OrderDto;
+import com.myteam.myapp.domain.RefundVo;
 import com.myteam.myapp.service.AdminService;
 import com.myteam.myapp.service.ShopService;
 
 @Controller
 @RequestMapping(value = "/admin")
 	public class AdminController {
+	
 		
 		@Autowired
 		AdminService as;
@@ -90,4 +92,30 @@ import com.myteam.myapp.service.ShopService;
 			
 			return "admin/adminRefund";
 		}
+		@RequestMapping(value="/adminRefundPopup.do")
+		public String adminRefundPopup(
+				@RequestParam("orderNo")int orderNo,
+				Model model) {
+			
+			OrderDto od = as.orderSelectOne(orderNo);
+			model.addAttribute("od",od);
+			
+			int goodsNo = od.getGoodsNo();
+			GoodsVo gv = ss.goodsSelectOne(goodsNo);
+			model.addAttribute("gv",gv);
+			
+			int memberNo = od.getMemberNo();
+			RefundVo rv = as.refundSelectOne(memberNo);
+			model.addAttribute("rv",rv);
+			
+			return "admin/adminRefundPopup";
+		}
+		
+		@RequestMapping(value="/adminRefundAction.do")
+		public String adminRefundAction(@RequestParam("orderNo") int orderNo) {
+			
+			int value = as.refundAction(orderNo);
+			
+			return "redirect:/admin/adminRefund.do";
+		};		
 	}

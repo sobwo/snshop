@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="totalRefund" resultType="int">
-		select count(*) from orders where orderStatus = '종료' and statusDetail = '대기중'
+		select count(*) from orders where orderStatus = '종료' and reason is not null
 	</select>
 	
 	<select id ="goodsList" resultType="agd">
@@ -36,6 +36,19 @@
 	</select>
 	
 	<select id="refundList" resultType ="od">
-		select * from orders where orderStatus = '종료' and statusDetail = '대기중'
+		select * from orders where orderStatus = '종료' and reason is not null
 	</select>
+	
+	<select id="orderSelectOne" parameterType ="int" resultType="od">
+		select * from orders where orderNo = #{orderNo}
+	</select>
+	
+	<select id="refundSelectOne" parameterType="int" resultType ="rv">
+		select * from refund where memberNo = #{memberNo}
+	</select>
+	
+	<update id="refundAction" parameterType="int">
+		UPDATE orders set statusDetail = '취소완료', refundReason ='확인' where orderNo = #{orderNo}
+	</update>
+	
 </mapper>
