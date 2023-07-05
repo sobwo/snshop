@@ -112,7 +112,7 @@
 									</c:forEach>
 									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
-		<!-- 			    		<div class="product_list_area">
+		 			    		<div class="product_list_area">
 					    			<ul>
 					    				<li class="product_list">
 					    					<div class="product">
@@ -122,7 +122,7 @@
 					    					</div>
 					    				</li>
 					    			</ul>
-					    		</div> -->
+					    		</div> 
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
@@ -143,9 +143,17 @@
 											</c:otherwise>
 										</c:choose>
 									</button>
-									<span class="commentBox"> 
+						<%-- 			<span class="commentBox"> 
 										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${blist.memberId}', '${blist.contents}','${blist.boardNo}','${blist.profileImg}' )">	
+									</span> --%>
+									<span class="commentBox"> 
+    								<%-- 	<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick="comment_btn('${blist.memberId}', '${blist.contents}', '${blist.boardNo}', '${blist.profileImg}', '${hv.hashTagName}')">	 --%>
+    								<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick="comment_btn('${blist.memberId}', '${blist.contents}', '${blist.boardNo}', '${blist.profileImg}') ">
+    						
+    								
+    									
 									</span>
+									
 									
 									<button id="copyButton">
 									  <img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
@@ -160,13 +168,13 @@
 					    	<!-- 컨텐츠 내용 -->
 					    	<div class="social_text">
 					    		<span>${blist.contents}</span>
-					    		
-			    				<p class="hashTag">
-									<c:forEach var="hv" items="${hlist}">
+				    				<p class="hashTag">
+								 	<c:forEach var="hv" items="${hlist}">
 										<c:if test="${hv.boardNo == blist.boardNo}">
 											<span id="hashTag${hv.boardNo}">#${hv.hashTagName}</span>
 										</c:if>
-									</c:forEach>
+									</c:forEach> 	
+						
 								</p>
 					    	</div>
 					    </div>
@@ -182,6 +190,10 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/style/style_favorite.js"></script>
 		<script>
+		
+		
+		
+
 
 		$(".likeImage").click(function(){
 			var boardNo = $(this).val();
@@ -290,15 +302,14 @@
              	});
             });
                 
-		
+ 		
 			function comment_btn(id, content, boardNo, profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".submit_comment").val(boardNo);
-		
-			    showComment(boardNo);     
 
+			    $(".submit_comment").val(boardNo);
+	
 			    var memberImg = "${mv.profileImg}";
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
@@ -309,11 +320,43 @@
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
 			    else
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
-			    	
-			    showComment(boardNo);
 
+
+			    showComment(boardNo);   
+			    
+			    
+			    displayHashTags(boardNo); //댓글 팝업창에 게시물의 해시태그 보여주게
+		
 			}
-	
+
+		    function createHashTagMapping() {
+		        var hashTagMapping = {};
+
+
+		        <c:forEach var="hv" items="${hlist}">
+		            if (!hashTagMapping[${hv.boardNo}]) {
+		                hashTagMapping[${hv.boardNo}] = [];
+		            }
+		            hashTagMapping[${hv.boardNo}].push("${hv.hashTagName}");
+		        </c:forEach>
+
+		        return hashTagMapping;
+		    }
+
+		    
+		    	    function displayHashTags(boardNo) {
+		        var hashTagMapping = createHashTagMapping();
+		        var hashTags = hashTagMapping[boardNo];
+
+		        if (hashTags && hashTags.length > 0) {
+		            var hashTagValues = "#" + hashTags.join(" #");
+		            $("#dynamicTag").text(hashTagValues);
+		        } else {
+		            $("#dynamicTag").text("");
+		        }
+		    }
+
+
 			function submitComment(){
 				 var ccontents = $(".comment_input").val();
 				 var boardNo = $(".submit_comment").val();
@@ -452,6 +495,9 @@
 			    document.body.removeChild(input);
 			    alert('현재 주소가 복사되었습니다.');
 			  }
+	
+	
+
 
 		</script>
 	</body>

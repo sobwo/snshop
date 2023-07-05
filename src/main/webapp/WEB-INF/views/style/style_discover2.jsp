@@ -35,14 +35,16 @@
 					        <div class="header_container">
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
+					
 									<c:choose>
 					            		<c:when test="${empty ld.profileImg}">
 				            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
 					            		</c:when>
 					            		<c:otherwise>
-											<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ ld.profileImg}&index=style">
 					            		</c:otherwise>
-				            		</c:choose>	
+					            	</c:choose>
+			
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
@@ -92,10 +94,10 @@
 											<c:forEach var="hv" items="${hlist}">
 												<c:if test="${hv.boardNo == ld.boardNo}">
 													<c:if test="${hv.tagCnt >= 2}">
-														<c:set var="count" value="${count + 1}" /> <!-- ${hv.tagCnt}가 2 이상인 경우 count에 1을 더함 -->
+														<c:set var="count" value="${count + 1}" /> 
 													</c:if>
 													<c:if test="${hv.tagCnt == 1}">
-														<c:set var="count" value="${count + hv.tagCnt}" /> <!-- ${hv.tagCnt}가 1인 경우 count에 ${hv.tagCnt}를 더함 -->
+														<c:set var="count" value="${count + hv.tagCnt}" /> 
 													</c:if>
 												</c:if>
 											</c:forEach>

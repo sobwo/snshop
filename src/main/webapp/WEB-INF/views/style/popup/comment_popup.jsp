@@ -32,18 +32,18 @@
        				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
         		</c:when>
         		<c:otherwise>
-        		
 				<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
         		</c:otherwise>
        		</c:choose>
 	           	<div class="user_id_wrap">
 	           		<a class="user_id" href="#"> 아이디</a>
 	               	<span class="content_top"> </span>
-	               	<div class="tag_wrap">
-	               		<a class="tag" href="#">태그</a>
-             
-						</p>
-	               	</div> 
+	               	<div class="tag_wrap">               	 
+	              <a class="tag" href="#" id="dynamicTag">태그</a> 
+
+	               	</div>    
+	         
+	               	 	
 				</div>
 			</div>  
 		
@@ -76,6 +76,7 @@
 		</div>
 		</div>
 		<script>
+	      
 
 
 		</script>
