@@ -46,7 +46,7 @@
 					            	</c:choose>
 			
 					            	<div class="user_id_wrap">
-					            		<a class="user_id" href="#"> ${ld.memberId} </a>
+					            		<a class="user_id1" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
 									</div>
 					            </div>
@@ -102,17 +102,6 @@
 												</c:if>
 											</c:forEach>
 									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
-					    		</div>
-					    		<div class="product_list_area">
-					    			<ul>
-					    				<li class="product_list">
-					    					<div class="product">
-					    						<img class="product_img" src="#">
-					    						<div class="product_name"><%-- ${gv.goodsName} --%></div>
-					    						<div class="product_price"><%-- ${gv.price}  --%></div>
-					    					</div>
-					    				</li>
-					    			</ul>
 					    		</div>
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
@@ -293,52 +282,87 @@
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
 			    else
-			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg+"&index=style");
 			    
-			    if(memberImg == null || memberImg == "")
-			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
-			    else
-			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
+// 			    if(memberImg == null || memberImg == "")
+// 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+// 			    else
+// 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
 			    	
 			    showComment(boardNo);
-
+			    
+			    displayHashTags(boardNo); //댓글 팝업창에 게시물의 해시태그 보여주게
 			}
 	
-			
-			function submitComment(){
-				 var ccontents = $(".comment_input").val();
-				 var boardNo = $(".submit_comment").val();
-				 
-				 var index = $(".submit_comment").text();
-				 
-				 if(index == '등록'){
-					$.ajax({
-						type:"POST",
-						url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
-						dataType:"json",
-						data:{"ccontents": ccontents,
-								"boardNo": boardNo},
-						cache:false,
-						success: function(data){
-							if(data.value == 1) 		
-								showComment(boardNo);
-						},
-						error : function(request,status,error){
-							alert("2다시 시도하시기 바랍니다.");	
-							console.log("code: " + request.status);
-					        console.log("message: " + request.responseText);
-					        console.log("error: " + error);
-						}	
-						
-					});	
-				 }
-				 else if(index == '수정'){
-					 modfiy_comment(boardNo,ccontents);
-				 }
-				 else if(index =='답글입력'){
-					 
-				 }
-			}
+			  function createHashTagMapping() {
+			        var hashTagMapping = {};
+
+
+			        <c:forEach var="hv" items="${hlist}">
+			            if (!hashTagMapping[${hv.boardNo}]) {
+			                hashTagMapping[${hv.boardNo}] = [];
+			            }
+			            hashTagMapping[${hv.boardNo}].push("${hv.hashTagName}");
+			        </c:forEach>
+
+			        return hashTagMapping;
+			    }
+
+			    
+			    	    function displayHashTags(boardNo) {
+			        var hashTagMapping = createHashTagMapping();
+			        var hashTags = hashTagMapping[boardNo];
+
+			        if (hashTags && hashTags.length > 0) {
+			            var hashTagValues = "#" + hashTags.join(" #");
+			            $("#dynamicTag").text(hashTagValues);
+			        } else {
+			            $("#dynamicTag").text("");
+			        }
+			    }
+
+
+			 function submitComment() {
+				    var ccontents = $(".comment_input").val();
+				    var boardNo = $(".submit_comment").val();
+				    
+				    var index = $(".submit_comment").text();
+				    
+				    if (index == '등록') {
+				        if (ccontents.trim() === "") {
+				            alert("댓글 내용을 입력해주세요.");
+				            return;
+				        }
+				        
+				        $.ajax({
+				            type: "POST",
+				            url: "${pageContext.request.contextPath}/comment/comment_commentAction.do",
+				            dataType: "json",
+				            data: {
+				                "ccontents": ccontents,
+				                "boardNo": boardNo
+				            },
+				            cache: false,
+				            success: function(data) {
+				                if (data.value == 1)
+				                    showComment(boardNo);
+				            },
+				            error: function(request, status, error) {
+				                alert("2다시 시도하시기 바랍니다.");
+				                console.log("code: " + request.status);
+				                console.log("message: " + request.responseText);
+				                console.log("error: " + error);
+				            }
+				        });
+				    }
+				    else if (index == '수정') {
+				        modfiy_comment(boardNo, ccontents);
+				    }
+				    else if (index == '답글입력') {
+				        
+				    }
+				}
+
 
 			function showComment(boardNo){
 				

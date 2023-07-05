@@ -30,7 +30,7 @@
 						<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style">
            		</c:otherwise>
            	</c:choose>
-				<p style="margin-left: -210px;"><b>${get.memberName}</b></p>
+				<p style="margin-left: -210px;"><b style="padding-left:10px;">${get.memberName}</b></p>
 				<button class="follow-button" value="${get.memberNo}">팔로우</button>
 			</div>
 		</c:forEach>

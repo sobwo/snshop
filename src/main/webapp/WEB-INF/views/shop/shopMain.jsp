@@ -84,7 +84,7 @@
 				<section class="product_container">
 					<aside class="aside_area">
 						<div class="sale_btn_wrap">
-							<input class="sale_btn" type="button" value="판매 상품 등록" onclick="location.href='${pageContext.request.contextPath}/shop/salePage.do'">
+							<input class="sale_btn" type="button" value="판매 상품 등록" onclick="location.href='${pageContext.request.contextPath}/shop/salePage.do'"> 
 						</div>
 						<div class="filter_area">
 							<div class="filter_title title_first">

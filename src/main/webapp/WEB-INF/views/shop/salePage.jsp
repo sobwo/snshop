@@ -65,6 +65,7 @@
 										<option value="상의">상의</option>
 										<option value="하의">하의</option>
 										<option value="가방">가방</option>
+										<option value="지갑">지갑</option>
 										<option value="시계">시계</option>
 									</select>
 									<select name="categoryName" class="shoes categoryName">
@@ -75,6 +76,7 @@
 										<option value="샌들">샌들</option>
 										<option value="더비">더비</option>
 										<option value="힐">힐</option>
+										<option value="부츠">부츠</option>
 										<option value="기타">기타</option>
 									</select>
 									<select name="categoryName" class="outer categoryName">
@@ -92,7 +94,8 @@
 										<option value="셔츠">셔츠</option>
 										<option value="후드">후드</option>
 										<option value="후드집업">후드집업</option>
-										<option value="맨투맨">맨투맨</option>
+										<option value="스웨트셔츠">스웨트셔츠</option>
+										<option value="슬리브리스">슬리브리스</option>
 										<option value="원피스">원피스</option>
 										<option value="니트">니트</option>
 										<option value="기타">기타</option>
