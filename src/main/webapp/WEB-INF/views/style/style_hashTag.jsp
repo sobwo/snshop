@@ -81,7 +81,14 @@
 								</c:choose>
 											
 								<div class="feedPostUser" >
-									<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" />
+									<c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+				            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+											<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+					            		</c:otherwise>
+				            		</c:choose>	 
 									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">

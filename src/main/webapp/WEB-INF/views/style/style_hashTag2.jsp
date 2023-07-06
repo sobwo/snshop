@@ -34,11 +34,19 @@
 					    	<!-- 상단바 -->
 					        <div class="header_container">
 					        	<!-- 상단 프로필 -->
-					            <div class="user_profile">
-					            	<!--상단 프로필 사진 -->
-					            	<img class="user_img" src="" alt="">
+					             <div class="user_profile">
+					
+									<c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+				            				<img class="userProfileImage" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+					            		</c:otherwise>
+					            	</c:choose>
+			
 					            	<div class="user_id_wrap">
-					            		<a class="user_id" href="#"> ${ld.memberId} </a>
+					            		<a class="user_id1" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
 									</div>
 					            </div>
@@ -78,22 +86,22 @@
 								</c:otherwise>
 							</c:choose>
 					    	</div>
-					    	<!-- 상품태그 -->
+					    <!-- 상품태그 -->
 					    	<div class="social_product">
 					    		<div class="product_title">
 					    			<span class="title_txt">상품 태그</span>
-					    			<span class="cnt_txt"><strong>3</strong>개</span>
-					    		</div>
-					    		<div class="product_list_area">
-					    			<ul>
-					    				<li class="product_list">
-					    					<div class="product">
-					    						<img class="product_img" src="#">
-					    						<div class="product_name"><%-- ${gv.goodsName} --%></div>
-					    						<div class="product_price"><%-- ${gv.price}  --%></div>
-					    					</div>
-					    				</li>
-					    			</ul>
+	  									<c:set var="count" value="0" /> <!-- 변수 count를 0으로 초기화 -->									
+											<c:forEach var="hv" items="${hlist}">
+												<c:if test="${hv.boardNo == ld.boardNo}">
+													<c:if test="${hv.tagCnt >= 2}">
+														<c:set var="count" value="${count + 1}" /> 
+													</c:if>
+													<c:if test="${hv.tagCnt == 1}">
+														<c:set var="count" value="${count + hv.tagCnt}" /> 
+													</c:if>
+												</c:if>
+											</c:forEach>
+									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
