@@ -520,9 +520,7 @@
 					    
 
 					    document.body.style.overflow = "auto";
-					} 
-					
-				
+					} 				
 		</script>
 	</body>
 </html>

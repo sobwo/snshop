@@ -88,7 +88,7 @@
 					            		<c:otherwise>
 											<img class="userProfileImage" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
 					            		</c:otherwise>
-				            		</c:choose>	 
+				            		</c:choose>
 									<p class="userName">${ld.memberId}</p>
 									<span class="likeBox">
 										<button type="button" class="likeImage" value="${ld.boardNo}">
