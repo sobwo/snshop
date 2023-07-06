@@ -66,7 +66,7 @@
 						</div>
 						<div class="register_btn">
 							<c:choose>
-								<c:when test="${sessionScope.memberNo == 1}">
+								<c:when test="${sessionScope.memberNo == 4}">
 									<input type="button" id="admin_register" class="register admin_coupon_register" value="+ 쿠폰 등록하기">
 								</c:when>
 								<c:otherwise>

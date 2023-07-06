@@ -22,11 +22,15 @@
 						<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style">
 	           		</c:otherwise>
           		</c:choose> 
-<%-- 	<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${get.profileImg}&index=style" alt="프로필 사진">  --%>
+
 			
 			<div class="comment_txt_area">
 				<a class="othereuser_id" href="#">${get.memberName}</a>
+		
 				<span class="comment_txt">${get.ccontents}</span>
+
+
+				
 				<div class="comment_txt_bottom">
 					<span class="write_date">${get.cwriteday}</span>
 					<!-- 답글쓰기 -->

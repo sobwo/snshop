@@ -5,11 +5,22 @@
 
 
 <select id="boardSelectAll" parameterType="int" resultType="bv">
-
+<!-- 
 select a.*, b.*, c.like_check,c.memberNo from board a join member b ON a.memberNo = b.memberNo
 left join likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo} WHERE a.memberNo IN (
 SELECT followingMemberNo FROM following WHERE memberNo = #{memberNo} and followingCheck = 1
-) AND a.delYn = 'N' 
+) AND a.delYn = 'N'  -->
+SELECT a.*, b.*, c.like_check, c.memberNo, b.profileImg
+FROM board a
+JOIN member b ON a.memberNo = b.memberNo
+LEFT JOIN likes c ON a.boardNo = c.boardNo AND c.memberNo = #{memberNo}
+WHERE a.memberNo IN (
+    SELECT followingMemberNo
+    FROM following
+    WHERE memberNo = #{memberNo} AND followingCheck = 1
+)
+AND a.delYn = 'N'
+
 								
 </select>
 

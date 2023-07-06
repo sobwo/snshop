@@ -23,6 +23,7 @@
 						<c:set var = "memberNo" value ="${sessionScope.memberNo}" />
 						
 						<c:if test ="${goodsList.memberNo==memberNo || role eq 'admin'}">
+							
 							<div class="delArea">
 								<button class="goodsDel" value = "${goodsList.goodsNo}">X</button>
 							</div>

@@ -14,22 +14,17 @@
 			</div>	
 			<div class= "detail">
 				<div class="area">
-					<h3>${awv.AWtitle} </h3>
-					
-					<hr>
-					<p class="p1">${awv.AWwriteday} </p>
+					<p><b>${awv.AWtitle}</b> </p>
+					<%-- <p class="p1">${awv.AWwriteday} </p> --%>
 				</div>
 				<hr>
 				<div class="area2">
 					<p class="AWcontents"> ${awv.AWcontents}</p>
-					
-					<%-- <p> ${awv.categorytitle}</p> --%>
 					<input type="hidden" name="awBoardNo" value="${awv.AWboardNo}" />
 				</div>
 			</div>
 			<div class="menu_wrap">
 				<div class="btns">
-
 					<button class="btn1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterMain.do'">공지사항 </button>
 					<button class="btn1-1" onclick="location.href='${pageContext.request.contextPath}/customerCenter/customerCenterQuestion_all.do'">자주 묻는 질문  </button>
 					<c:set var="role" value = "${sessionScope.role}" />

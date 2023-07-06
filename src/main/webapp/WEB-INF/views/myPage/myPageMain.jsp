@@ -77,7 +77,7 @@
 					<%-- <c:if test="${get.memberNo eq sessionScope.memberNo} "> --%>
 					<!-- 	<h3 class="myHomeTitle">구매 내역  </h3> -->
 					<h3 class="myHomeTitle">구매 내역 (회원번호: ${mv.memberNo})</h3>			
-						 <a href='${pageContext.request.contextPath}/myPage/purchase.do'><span>더보기 &rarr;</span></a> 
+						 <a href='${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying'><span>더보기 &rarr;</span></a> 
 					</div>			
 					<!-- 구매내역 메뉴 -->
 					<div class="recent_purchase">
@@ -143,7 +143,7 @@
 					<!-- 판매내역 -->
 					<div class="myHome_title_wrap">
 						<h3 class="myHomeTitle">판매 내역</h3>
-						<a href='${pageContext.request.contextPath}/myPage/sale.do'><span>더보기 &rarr;</span></a>
+						<a href='${pageContext.request.contextPath}/myPage/orderHistory.do?index=selling'><span>더보기 &rarr;</span></a>
 					</div>
 					
 					<!-- 판매내역 메뉴 -->
