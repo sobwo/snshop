@@ -76,7 +76,7 @@
 					<div class="myHome_title_wrap">
 					<%-- <c:if test="${get.memberNo eq sessionScope.memberNo} "> --%>
 					<!-- 	<h3 class="myHomeTitle">구매 내역  </h3> -->
-					<h3 class="myHomeTitle">구매 내역 (회원번호: ${mv.memberNo})</h3>			
+					<h3 class="myHomeTitle">구매 내역</h3>			
 						 <a href='${pageContext.request.contextPath}/myPage/orderHistory.do?index=buying'><span>더보기 &rarr;</span></a> 
 					</div>			
 					<!-- 구매내역 메뉴 -->

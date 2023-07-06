@@ -326,13 +326,13 @@
 			    if(profileImg == null || profileImg == "")
 			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
 			    else
-			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg);
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg+"&index=style");
 			    
-			    if(memberImg == null || memberImg == "")
+		/* 	    if(memberImg == null || memberImg == "")
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
 			    else
 			    	$(".memberProfileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+memberImg);
-			    	
+			    	 */
 			    showComment(boardNo);
 			    displayHashTags(boardNo); //댓글 팝업창에 게시물의 해시태그 보여주게
 

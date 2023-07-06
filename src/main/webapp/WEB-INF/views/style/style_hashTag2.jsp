@@ -36,7 +36,15 @@
 					        	<!-- 상단 프로필 -->
 					            <div class="user_profile">
 					            	<!--상단 프로필 사진 -->
-					            	<img class="user_img" src="" alt="">
+					            	<c:choose>
+					            		<c:when test="${empty ld.profileImg}">
+					            				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
+					            		</c:when>
+					            		<c:otherwise>
+												<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
+					            		</c:otherwise>
+					            	</c:choose>
+					         <!--    	<img class="user_img" src="" alt=""> -->
 					            	<div class="user_id_wrap">
 					            		<a class="user_id" href="#"> ${ld.memberId} </a>
 						                <p class="write_date">  ${ld.writeday}  </p>
@@ -78,23 +86,25 @@
 								</c:otherwise>
 							</c:choose>
 					    	</div>
-					    	<!-- 상품태그 -->
-					    	<div class="social_product">
+
+    				    	<div class="social_product">
 					    		<div class="product_title">
-					    			<span class="title_txt">상품 태그</span>
-					    			<span class="cnt_txt"><strong>3</strong>개</span>
+					    			<span class="title_txt"> 해시태그</span>
+									<c:set var="count" value="0" /> 
+									<c:forEach var="hv" items="${hlist}">
+										<c:if test="${hv.boardNo == ld.boardNo}">
+											<c:if test="${hv.tagCnt >= 2}">
+												<c:set var="count" value="${count + 1}" /> 
+											</c:if>
+											<c:if test="${hv.tagCnt == 1}">
+												<c:set var="count" value="${count + hv.tagCnt}" /> 
+											</c:if>
+										</c:if>
+									</c:forEach>
+									<span id="hashTag ${hv.boardNo}">총 ${count}개</span> 
 					    		</div>
-					    		<div class="product_list_area">
-					    			<ul>
-					    				<li class="product_list">
-					    					<div class="product">
-					    						<img class="product_img" src="#">
-					    						<div class="product_name"><%-- ${gv.goodsName} --%></div>
-					    						<div class="product_price"><%-- ${gv.price}  --%></div>
-					    					</div>
-					    				</li>
-					    			</ul>
-					    		</div>
+	
+					    		
 					    	</div>
 					    	<!-- 좋아요,댓글,공유버튼 -->
 					    	<div class="social_btn">
@@ -116,12 +126,16 @@
 										</c:choose>
 									</button>
 									<span class="commentBox"> 
-										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}')">	
+										<img class="comment_btn" src="${pageContext.request.contextPath}/resources/image/comment.png" onclick= "comment_btn('${ld.memberId}', '${ld.contents}','${ld.boardNo}','${ld.profileImg}' )">	
 									</span>
-									<img class="share_btn" src="${pageContext.request.contextPath}/resources/image/share.png" onclick="openPopup()">
+									
+									<button id="copyButton">
+									  <img class="share_btn"  src="${pageContext.request.contextPath}/resources/image/share.png" alt="Share" />
+									</button>
 								</span>
-								<div class="social_count" onclick="openPopup()">
-	  								<span>좋아요&nbsp;<strong class="likeCount">  ${ld.likeCnt}  </strong>개</span>
+							
+								<div class="social_count" > 
+									<span class="openPopup21" onclick="openPopup2(${ld.boardNo}, '${ld.profileImg}')">좋아요&nbsp;<strong class="likeCount">${ld.likeCnt}</strong>개</span>
 								</div>
 							</div>
 							</div>
@@ -260,19 +274,61 @@
             });
                 
 		
-			function comment_btn(id, content, boardNo) {
+			function comment_btn(id, content, boardNo,profileImg) {
 			    popup_wrap.show();
 			    $(".user_id").text(id);
 			    $(".content_top").text(content);
-			    $(".h_boardNo").val(boardNo);
-			    
-			    showComment();
+
+			    $(".submit_comment").val(boardNo);
+/* 			    $(".h_boardNo").val(boardNo); */
+			    	     var memberImg = "${mv.profileImg}";
+			    if(profileImg == null || profileImg == "")
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/resources/image/blank_profile.png");
+			    else
+			    	$(".user_profileImg").attr("src","${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg="+profileImg+"&index=style");
+
+			    showComment(boardNo);
+			    displayHashTags(boardNo); 
 			}
 	
+
+		    function createHashTagMapping() {
+		        var hashTagMapping = {};
+
+
+		        <c:forEach var="hv" items="${hlist}">
+		            if (!hashTagMapping[${hv.boardNo}]) {
+		                hashTagMapping[${hv.boardNo}] = [];
+		            }
+		            hashTagMapping[${hv.boardNo}].push("${hv.hashTagName}");
+		        </c:forEach>
+
+		        return hashTagMapping;
+		    }
+
+    	    function displayHashTags(boardNo) {
+		        var hashTagMapping = createHashTagMapping();
+		        var hashTags = hashTagMapping[boardNo];
+
+		        if (hashTags && hashTags.length > 0) {
+		            var hashTagValues = "#" + hashTags.join(" #");
+		            $("#dynamicTag").text(hashTagValues);
+		        } else {
+		            $("#dynamicTag").text("");
+		        }
+		    }
+
 			function submitComment(){
 				 var ccontents = $(".comment_input").val(); 
-
-				var boardNo = $(".h_boardNo").val();
+			    var boardNo = $(".submit_comment").val();
+			    var index = $(".submit_comment").text();
+			    
+			    if (index == '등록') {
+			        if (ccontents.trim() === "") {
+			            alert("댓글 내용을 입력해주세요.");
+			            return;
+			        }
+			/* 	var boardNo = $(".h_boardNo").val(); */
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentAction.do",
@@ -282,7 +338,7 @@
 					cache:false,
 					success: function(data){
 						if(data.value==1)
-							showComment();
+							showComment(boardNo);
 					},
 					error : function(request,status,error){
 						alert("다시 시도3");	
@@ -293,9 +349,16 @@
 					
 				});	
 			}
+			    else if (index == '수정') {
+			        modfiy_comment(boardNo, ccontents);
+			    }
+			    else if (index == '답글입력') {
+			        
+			    }
+			}
 			
-			function showComment(){
-				var boardNo = $(".h_boardNo").val();
+			function showComment(boardNo){
+	/* 			var boardNo = $(".h_boardNo").val(); */
 				$.ajax({
 					type:"POST",
 					url:"${pageContext.request.contextPath}/comment/comment_commentShow.do",
@@ -369,7 +432,63 @@
 				      });
 				    }
 				  }
-	
+				  function openPopup2(boardNo,profileImg) {
+			    		$.ajax({
+			        		type: "GET",
+			        		url: "${pageContext.request.contextPath}/style/likeMemberList.do",
+			        		data: {
+			            			"boardNo": boardNo
+			        		},
+			        		cache: false,
+			        		success: function(data) {
+		            		console.log(data);
+		            		var popup = document.getElementById("popup");
+			            	var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			            
+			   
+			           	 	popup.style.top = (500 + scrollTop) + "px";
+			            
+			            	popup.style.display = "block";
+			            	$(".popup_style_wrap").html(data);
+			            
+
+					            document.body.style.overflow = "hidden";
+					         
+					        },
+					        error: function(request, status, error) {
+					            alert("다시 시도해주세요.");
+					            console.log("code: " + request.status);
+					            console.log("message: " + request.responseText);
+					            console.log("error: " + error);
+					        }
+					    });
+					}
+				
+					function closePopup2() {
+					    var popup = document.getElementById("popup");
+					    popup.style.display = "none";
+					    
+
+					    document.body.style.overflow = "auto";
+					} 
+					document.getElementById('copyButton').addEventListener('click', function() {
+					    var currentUrl = window.location.href; 
+					    copyToClipboard(currentUrl); 
+					  });
+
+					 
+					  function copyToClipboard(text) {
+					    var input = document.createElement('input');
+					    input.setAttribute('value', text);
+					    document.body.appendChild(input);
+					    input.select();
+					    document.execCommand('copy');
+					    document.body.removeChild(input);
+					    alert('현재 주소가 복사되었습니다.');
+					  }
+			
+			
+
 
 		</script>
 	</body>
