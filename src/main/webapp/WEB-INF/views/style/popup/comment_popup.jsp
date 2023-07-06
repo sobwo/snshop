@@ -32,7 +32,7 @@
        				<img class="user_img" src="${pageContext.request.contextPath}/resources/image/blank_profile.png" alt="빈 프로필 사진">
         		</c:when>
         		<c:otherwise>
-				<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${mv.profileImg}&index=style">
+				<img class="user_img" src="${pageContext.request.contextPath}/myPage/displayFile.do?contentsImg=${ld.profileImg}&index=style">
         		</c:otherwise>
        		</c:choose>
 	           	<div class="user_id_wrap">

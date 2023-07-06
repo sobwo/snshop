@@ -376,7 +376,6 @@ public class MyPageController {
 	            in.close();
 	        }
 	        
-	        System.out.println("in은? "+in);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
