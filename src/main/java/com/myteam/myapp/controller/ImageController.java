@@ -42,7 +42,7 @@ public class ImageController {
 //		String tempDir = System.getProperty("java.io.tmpdir");
 		
 //		String uploadFolderPath = tempDir + File.separator + "uploads"; // 업로드 폴더 경로 설정
-		String uploadFolderPath = "\\\\DESKTOP-IQUHLB7\\uploadFiles";
+		String uploadFolderPath = "C:\\\\upload\\\\dev1230";
 		String uploadedPath = uploadFolderPath;
 		MemberVo mv = ms.profileImgShow(memberNo);
 		
